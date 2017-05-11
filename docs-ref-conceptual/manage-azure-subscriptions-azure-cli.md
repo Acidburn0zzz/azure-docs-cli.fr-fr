@@ -12,9 +12,10 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 98fb955e-6dbf-47e2-80ac-170d6d95cb70
-ms.openlocfilehash: c3538077e05d61f3c40880bb8b804226eb99dc85
-ms.sourcegitcommit: bcf93ad8ed8802072249cd8187cd4420da89b4c6
-translationtype: HT
+ms.openlocfilehash: a28b24dd186fc567f36e52f8a0f5a7c2b0af060c
+ms.sourcegitcommit: c2d380f4ad8e7606850530db690855bcccfd6e86
+ms.translationtype: HT
+ms.contentlocale: fr-FR
 ---
 # <a name="manage-multiple-azure-subscriptions"></a>Gérer plusieurs abonnements Azure
 
@@ -41,6 +42,9 @@ Dans ce cas, vous pouvez configurer Azure CLI 2.0 pour exécuter les commandes s
    ```azurecli
    az account set --subscription "My Demos"
    ```
+
+   > [!NOTE]
+   > Le paramètre `--subscription` accepte soit le nom d’abonnement, soit l’ID d’abonnement.
 
 Vous pouvez vérifier que cette modification a été prise en compte en réexécutant la commande `az account list --output table`.
 
