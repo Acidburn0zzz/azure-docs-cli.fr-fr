@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 85c418a8-6177-4833-bb8d-ff4ce2233c1a
-ms.openlocfilehash: 0f8e494ffdd73c666b8361488db0966af01d6876
-ms.sourcegitcommit: 66d997a5afcf32143a4d4817ec1608cbdf58a59f
+ms.openlocfilehash: 45e51918ec95494699bf781f66e4cd57bd06fbad
+ms.sourcegitcommit: b4cb5c910b2238cba342f70122feb158c4036844
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 05/18/2017
 ---
 # <a name="get-started-with-azure-cli-20"></a>Bien démarrer avec Azure CLI 2.0
 
@@ -40,7 +40,10 @@ Vous devez voir le numéro de version d’Azure CLI et d’autres bibliothèques
   
 Si une erreur s’affiche, un problème d’installation de l’interface de ligne de commande s’est sans doute produit. Consultez la section « Dépannage de l’installation » de l’article sur [l’installation d’Azure CLI 2.0](install-azure-cli.md#troubleshooting) pour obtenir des instructions, ou publiez un commentaire dans la discussion en bas de cette page pour obtenir de l’aide.
 
-## <a name="log-in-to-azure"></a>Se connecter à Azure
+> [!Note]
+> Si vous ne souhaitez pas installer Azure CLI 2.0, vous pouvez utiliser [Cloud Shell](/azure/cloud-shell/overview) pour l’exécuter dans votre navigateur.
+
+## <a name="log-in-to-azure"></a>Connexion à Azure
 
 Maintenant qu’Azure CLI 2.0 est installé, l’étape suivante consiste à vous connecter de manière sécurisée à votre compte Azure. Pour cela, utilisez la commande `az login`.
 
@@ -62,7 +65,7 @@ Vous pouvez désormais exécuter des commandes à partir d’Azure CLI 2.0 sur l
 
 Maintenant que tout est configuré, nous allons utiliser Azure CLI pour créer des ressources dans Azure.
 
-Créez d’abord un groupe de ressources.  Les groupes de ressources dans Azure permettent de gérer plusieurs ressources à regrouper logiquement.  Par exemple, vous pouvez créer un groupe de ressources pour une application ou un projet, et y ajouter une machine virtuelle, une base de données et un service CDN.
+Nous devons d’abord créer un groupe de ressources.  Les groupes de ressources dans Azure permettent de gérer plusieurs ressources à regrouper logiquement.  Par exemple, vous pouvez créer un groupe de ressources pour une application ou un projet, et y ajouter une machine virtuelle, une base de données et un service CDN.
 
 Nous allons créer un groupe de ressources nommé « MyResourceGroup » dans la région *westus2* d’Azure.  Pour ce faire, tapez la commande suivante :
 
@@ -89,7 +92,7 @@ Une fois le groupe de ressources créé, la commande `az group create` génère 
 
 Maintenant que nous avons notre groupe de ressources, nous allons y créer une machine virtuelle Linux.
 
-Vous pouvez créer une machine virtuelle Linux à l’aide de l’image UbuntuTLS populaire, avec deux disques de stockage de 10 et 20 Go, à l’aide de la commande suivante :
+Vous pouvez créer une machine virtuelle Linux à l’aide de l’image UbuntuTLS populaire, avec deux disques de stockage liés de 10 Go et 20 Go, à l’aide de la commande suivante :
 
 ```azurecli-interactive
 az vm create -n MyLinuxVM -g MyResourceGroup --image UbuntuLTS --data-disk-sizes-gb 10 20
@@ -237,7 +240,7 @@ SQL Database Server         az sql server create
 Document DB                 az documentdb create
 ```
 
-Consultez la [documentation de référence](/azure/doc-ref-autogen) pour en savoir plus sur les paramètres propres aux ressources supplémentaires que vous pouvez passer à chacune des commandes précédentes et sur les types de ressources que vous pouvez créer. 
+Consultez la [documentation de référence](/cli/azure) pour en savoir plus sur les paramètres propres aux ressources supplémentaires que vous pouvez passer à chacune des commandes précédentes et sur les types de ressources que vous pouvez créer. 
 
 ## <a name="useful-tip-optimizing-create-operations-using---no-wait"></a>Astuce : Optimisation des opérations de création à l’aide de --no-wait
 

@@ -12,10 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ea5c0ee1-c530-4a1e-a83f-e1be71f6d416
-ms.openlocfilehash: 664535701ad814f8ff85fefe8ecc45772777d0ba
-ms.sourcegitcommit: ec22ff07aedb5c47e5f636f2a9a341c3edbe7ca1
+ms.openlocfilehash: 7065ed5270ef9bfc70beea81d0bc442a7b4df38c
+ms.sourcegitcommit: c077bd5cbe07f7225714c41714d3981fa0d9928f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
+ms.lasthandoff: 05/16/2017
 ---
 # <a name="install-azure-cli-20"></a>Installer Azure CLI 2.0
 
@@ -51,10 +52,19 @@ Pour plus d’informations sur la version la plus récente, consultez les [notes
 
 ## <a name="windows"></a>Windows
 
-Étant donné qu’Azure CLI 2.0 prend en charge la syntaxe de commande Bash, Bash sur Ubuntu sur Windows constitue une excellente façon d’utiliser l’interface de ligne de commande.
-Si vous n’utilisez pas Bash, vous pouvez installer et utiliser l’interface de ligne de commande dans la ligne de commande Windows.
+Vous pouvez installer l’interface de ligne de commande avec le MSI et l’utiliser dans la ligne de commande Windows, ou vous pouvez installer l’interface de ligne de commande avec apt-get avec Bash sur Ubuntu sous Windows.
 
-### <a name="bash-on-ubuntu-on-windows"></a>Bash sur Ubuntu sur Windows
+### <a name="msi-for-the-windows-command-line"></a>MSI pour la ligne de commande Windows 
+
+Pour installer l’interface de ligne de commande sous Windows et l’utiliser dans la ligne de commande Windows, téléchargez et exécutez le [msi](https://aka.ms/InstallAzureCliWindows).
+
+> [!NOTE]
+> Lorsque vous installez le msi, `az component` n’est pas pris en charge.
+> Pour mettre à jour vers l’interface de ligne de commande la plus récente, réexécutez le [msi](https://aka.ms/InstallAzureCliWindows).
+> 
+> Pour désinstaller l’interface de ligne de commande, réexécutez le [msi](https://aka.ms/InstallAzureCliWindows) et choisissez Désinstaller.
+
+### <a name="apt-get-for-bash-on-ubuntu-on-windows"></a>apt-get pour Bash sur Ubuntu sous Windows
 
 1. Si vous ne disposez pas de Bash sur Windows, [installez-le](https://msdn.microsoft.com/commandline/wsl/install_guide).
 
@@ -80,38 +90,6 @@ Si vous n’utilisez pas Bash, vous pouvez installer et utiliser l’interface d
 > Pour mettre à jour l’interface de ligne de commande, ré-exécutez `sudo apt-get update && sudo apt-get install azure-cli`.
 > 
 > Pour désinstaller l’interface, exécutez `sudo apt-get remove azure-cli`.
-
-### <a name="windows-command-line"></a>Ligne de commande Windows 
-
-1. Accédez au site Python et [téléchargez Python](https://www.python.org/downloads/) pour Windows.
-   Lorsque vous installez Python, prenez soin d’installer le composant Pip.
-   Une fois l’installation effectuée, ajoutez Python à votre variable d’environnement PATH (lorsque le programme d’installation vous y invite).
-
-2. Vérifiez votre installation de Python à partir d’une invite de commandes.
-
-   ```bash
-   python --version
-   ```
-
-3. Installez Azure CLI 2.0 en utilisant `pip`.
-
-   ```bash
-   pip install --user azure-cli
-   ```
-
-4. Ajoutez le dossier contenant le fichier az.bat à votre chemin d’accès.
-   Le fichier `az.bat` de l’interface de ligne de commande peut être installé dans `%USERPROFILE%\AppData\Roaming\Python\Scripts` ou dans `%USERPROFILE%\AppData\Roaming\Python\PythonXY\Scripts`, où `XY` correspond à votre version Python (par exemple, `%USERPROFILE%\AppData\Roaming\Python\Python27\Scripts`).
-   Ajoutez le dossier contenant le fichier `az.bat` à votre chemin d’accès.
-   
-4. Exécutez Azure CLI 2.0 à partir de l’invite de commandes avec la commande `az`.
-
-> [!NOTE]
-> Si vous avez déjà installé Azure CLI 2.0 et que vous voulez savoir si vous disposez de la dernière version, exécutez la commande `az --version` pour connaître la version que vous utilisez.
-> Comparez cette version avec la dernière version disponible sur le site [https://pypi.python.org/pypi/azure-cli](https://pypi.python.org/pypi/azure-cli).
-> 
-> Pour mettre à jour l’interface de ligne de commande avec la dernière version, exécutez `az component update`.
-> 
-> Pour désinstaller l’interface, exécutez `pip uninstall azure-cli`.
 
 ## <a name="linux"></a>Linux
 
@@ -213,7 +191,6 @@ Dans le cas des systèmes Debian/Ubuntu, vous pouvez installer Azure CLI 2.0 par
    ```
 
 ## <a name="troubleshooting"></a>Résolution des problèmes
--------------------------------
 
 ### <a name="errors-with-curl-redirection"></a>Erreurs de redirection curl
 
@@ -232,70 +209,6 @@ bash: line 1: syntax error near unexpected token `<'
 curl https://azurecliprod.blob.core.windows.net/install | bash
 ```
 
-
-### <a name="errors-on-install-with-cffi-or-cryptography"></a>Erreurs d’installation avec `cffi` ou de chiffrement
-
-Si vous obtenez des erreurs lors de l’installation sur OS X, mettez à niveau `pip`.
-
-```bash
-pip install --upgrade --force-reinstall pip
-```
-
-Si vous obtenez des erreurs dans le cadre de l’installation sur **Debian** ou **Ubuntu**, comme dans les exemples ci-après, installez `libssl-dev` et `libffi-dev`.
-
-```bash
-sudo apt-get update
-sudo apt-get install -y libssl-dev libffi-dev
-```
-
-Installez également Python Dev pour votre version de Python.
-
-Python 2 :
-
-```bash
-sudo apt-get install -y python-dev
-```
-
-Python 3 :
-
-```bash
-sudo apt-get install -y python3-dev
-```
-
-Ubuntu 15 peut également nécessiter `build-essential` :
-
-```bash
-sudo apt-get install -y build-essential
-```
-
-### <a name="example-errors"></a>Exemples d’erreurs
-
-```
-Downloading cffi-1.5.2.tar.gz (388kB)
-    100% |################################| 389kB 3.9MB/s
-    Complete output from command python setup.py egg_info:
-
-        No working compiler found, or bogus compiler options
-        passed to the compiler from Python's distutils module.
-        See the error messages above.
-        (If they are about -mno-fused-madd and you are on OS/X 10.8,
-        see http://stackoverflow.com/questions/22313407/ .)
-
-    ----------------------------------------
-Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-77i2fido/cffi/
-```
-
-```
-#include <openssl/e_os2.h>
-                            ^
-compilation terminated.
-error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
-
-Failed building wheel for cryptography
-```
-
-Reportez-vous à la question du site Stack Overflow : [Failed to install Python Cryptography package with PIP and setup.py](http://stackoverflow.com/questions/22073516/failed-to-install-python-cryptography-package-with-pip-and-setup-py) (Échec de l’installation du package de chiffrement de Python avec PIP et setup.py).
-
 ## <a name="uninstall"></a>Désinstaller l’interface
 
 Si vous avez installé l’interface de ligne de commande en utilisant le script accessible à l’adresse https://aka.ms/InstallAzureCli, vous pouvez désinstaller l’interface à l’aide de la procédure suivante.
@@ -312,7 +225,7 @@ Si vous avez installé l’interface de ligne de commande en utilisant le script
 > [!Note]
 > L’emplacement d’installation par défaut est `/Users/<username>`.
 
-Si vous avez utilisé pip, apt-get ou Docker pour installer l’interface de ligne de commande, utilisez le même outil pour désinstaller l’interface.
+Si vous avez utilisé apt-get, Docker ou le msi pour installer l’interface de ligne de commande, utilisez le même outil pour la désinstaller.
 
 ## <a name="reporting-issues-and-feedback"></a>Signalement de problèmes et envoi de commentaires
 
