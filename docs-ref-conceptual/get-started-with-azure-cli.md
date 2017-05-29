@@ -12,54 +12,35 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 85c418a8-6177-4833-bb8d-ff4ce2233c1a
-ms.openlocfilehash: 45e51918ec95494699bf781f66e4cd57bd06fbad
-ms.sourcegitcommit: b4cb5c910b2238cba342f70122feb158c4036844
+ms.openlocfilehash: 274336acbf09a21d45b6ef3868f5f7f21757831b
+ms.sourcegitcommit: 21c42ed07c9f7679e4860013ac5647cf31213f4e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2017
+ms.lasthandoff: 05/22/2017
 ---
 # <a name="get-started-with-azure-cli-20"></a>Bien démarrer avec Azure CLI 2.0
 
 Azure CLI 2.0 est la nouvelle expérience de ligne de commande Azure pour la gestion des ressources Azure.
-Elle peut être utilisée sur macOS, Linux et Windows. 
+Vous pouvez l’utiliser dans votre navigateur avec [Azure Cloud Shell](/azure/cloud-shell/overview) ou [l’installer](install-azure-cli.md) sur macOS, Linux et Windows et l’exécuter à partir de la ligne de commande.
 
 Azure CLI 2.0 est optimisé pour la gestion et l’administration des ressources Azure à partir de la ligne de commande, et pour la création de scripts d’automatisation qui opèrent sur Azure Resource Manager.
 Cet article vous aide à bien démarrer et explique les concepts de base.
 
-Pour plus d’informations sur la version la plus récente, consultez les [Notes de publication](release-notes-azure-cli.md).
+Pour plus d’informations sur la version la plus récente, consultez les [notes de publication](release-notes-azure-cli.md).
 
-## <a name="install-azure-cli"></a>Installation de l’interface de ligne de commande Azure
+## <a name="connect"></a>Connecter
 
-La première étape consiste à vérifier que la dernière version d’Azure CLI est installé :
+La façon la plus simple de commencer est de [lancer Cloud Shell](/azure.cloud-shell/quickstart).
 
-1. [Installez Azure CLI 2.0](install-azure-cli.md) sur votre plateforme.
+1. Lancez Cloud Shell dans le volet de navigation supérieur du Portail Azure.
 
-2. Pour vérifier que l’installation a réussi, exécutez `az --version` à partir de la ligne de commande. 
+   ![Icône Shell](media/get-started-with-azure-cli/shell-icon.png)
 
-Vous devez voir le numéro de version d’Azure CLI et d’autres bibliothèques dépendantes installées sur votre ordinateur.  
-  
-Si une erreur s’affiche, un problème d’installation de l’interface de ligne de commande s’est sans doute produit. Consultez la section « Dépannage de l’installation » de l’article sur [l’installation d’Azure CLI 2.0](install-azure-cli.md#troubleshooting) pour obtenir des instructions, ou publiez un commentaire dans la discussion en bas de cette page pour obtenir de l’aide.
+2. Sélectionnez l’abonnement que vous souhaitez utiliser, et créez un compte de stockage.
 
-> [!Note]
-> Si vous ne souhaitez pas installer Azure CLI 2.0, vous pouvez utiliser [Cloud Shell](/azure/cloud-shell/overview) pour l’exécuter dans votre navigateur.
+   ![Créer un compte de stockage](media/get-started-with-azure-cli/storage-prompt.png)
 
-## <a name="log-in-to-azure"></a>Connexion à Azure
-
-Maintenant qu’Azure CLI 2.0 est installé, l’étape suivante consiste à vous connecter de manière sécurisée à votre compte Azure. Pour cela, utilisez la commande `az login`.
-
-1. Exécutez la commande suivante à partir de la ligne de commande.
-
-   ```azurecli-interactive
-   az login
-   ```
-   
-   Cette commande génère un code à utiliser lors de l’étape suivante. 
-
-2. Ouvrez la page [https://aka.ms/devicelogin](https://aka.ms/devicelogin) dans un navigateur web et entrez le code.
-  
-3. À l’invite, connectez-vous à l’aide de vos informations d’identification Azure.
-
-Vous pouvez désormais exécuter des commandes à partir d’Azure CLI 2.0 sur les ressources et les services Azure accessibles à votre compte.
+Vous pouvez également [installer](install-azure-cli.md) l’interface CLI et l’exécuter localement à partir de la ligne de commande.
 
 ## <a name="create-a-resource-group"></a>Créer un groupe de ressources
 
