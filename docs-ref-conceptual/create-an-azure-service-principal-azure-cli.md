@@ -12,9 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: fab89cb8-dac1-4e21-9d34-5eadd5213c05
-ms.openlocfilehash: 10a168ae0c33207905d58b7b57ac9ad76d8d9bf4
-ms.sourcegitcommit: 73a73c8a17d95b116d33eee3287d938addc5c0ac
-translationtype: HT
+ms.openlocfilehash: 0ee794d5a732c6e8d2d52fca5810a874827930ae
+ms.sourcegitcommit: 4fd631a58cf19c494162510d073fbbbdf0524d16
+ms.translationtype: HT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 06/05/2017
 ---
 # <a name="create-an-azure-service-principal-with-azure-cli-20"></a>Créer un principal du service avec Azure CLI 2.0
 
@@ -33,7 +35,7 @@ Un principal du service Azure est une identité de sécurité utilisée par les 
 
 ## <a name="verify-your-own-permission-level"></a>Vérifier votre propre niveau d’autorisation
 
-Tout d’abord, vous devez disposer des autorisations suffisantes dans votre annuaire Azure Active Directory et votre abonnement Azure. Plus précisément, vous devez pouvoir créer une application dans l’annuaire Active Directory et affecter un rôle au principal du service. 
+Tout d’abord, vous devez avoir les autorisations suffisantes dans votre annuaire Azure Active Directory et votre abonnement Azure. Plus précisément, vous devez pouvoir créer une application dans l’annuaire Active Directory et affecter un rôle au principal du service. 
 
 Le moyen le plus simple pour vérifier que votre compte dispose des autorisations adéquates est d’utiliser le portail. Consultez [Vérifier l’autorisation requise dans le portail](/azure/azure-resource-manager/resource-group-create-service-principal-portal.md#required-permissions).
 
@@ -50,7 +52,9 @@ Ces valeurs identifient votre application lors de la création d’un principal 
 
 Obtenez des informations sur l’identité de votre application avec la commande `az ad app list`.
 
-```azurecli
+[!INCLUDE [cloud-shell-try-it.md](includes/cloud-shell-try-it.md)]
+
+```azurecli-interactive
 az ad app list --display-name MyDemoWebApp
 ```
 
@@ -76,7 +80,7 @@ L’option `--display-name` filtre la liste des applications retournées pour af
 
 Utilisez [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) pour créer le principal du service. 
 
-```azurecli
+```azurecli-interactive
 az ad sp create-for-rbac --name {appId} --password "{strong password}" 
 ``` 
 
@@ -95,7 +99,7 @@ az ad sp create-for-rbac --name {appId} --password "{strong password}"
 
 ### <a name="get-information-about-the-service-principal"></a>Obtenir des informations sur le principal du service
 
-```azurecli
+```azurecli-interactive
 az ad sp show --id a487e0c1-82af-47d9-9a0b-af184eb87646d
 ```
 
@@ -116,7 +120,7 @@ az ad sp show --id a487e0c1-82af-47d9-9a0b-af184eb87646d
 
 Vous pouvez maintenant vous connecter en tant que nouveau principal du service pour votre application en utilisant l’*appId* et le *password* fournis par la commande `az ad sp show`.  Fournissez la valeur *tenant* indiquée dans les résultats de `az ad sp create-for-rbac`.
 
-```azurecli
+```azurecli-interactive
 az login --service-principal -u a487e0c1-82af-47d9-9a0b-af184eb87646d --password {password} --tenant {tenant}
 ``` 
 
@@ -143,8 +147,8 @@ Utilisez les valeurs `id`, `password` et `tenant` comme informations d’identif
 ## <a name="managing-roles"></a>Gestion des rôles 
 
 > [!NOTE]
-> Le contrôle d’accès en fonction du rôle Azure (RBAC) est un modèle pour la définition et la gestion des rôles pour les principaux de l’utilisateur et du service.
-> Les rôles sont associés à des jeux d’autorisations, qui déterminent les ressources qu’un principal peut lire, écrire ou gérer, ou auxquelles il peut accéder.
+> Le contrôle d’accès en fonction du rôle (RBAC) dans Azure est un modèle utilisé pour définir et gérer les rôles des principaux de l’utilisateur et du service.
+> Les rôles sont associés à des ensembles d’autorisations, qui déterminent les ressources qu’un principal peut lire, écrire ou gérer, ou auxquelles il peut accéder.
 > Pour plus d’informations sur le contrôle d’accès en fonction du rôle et les rôles, consultez [Rôles intégrés pour le contrôle d’accès en fonction du rôle Azure](/azure/active-directory/role-based-access-built-in-roles).
 
 Azure CLI 2.0 fournit les commandes suivantes pour gérer les attributions de rôle :
@@ -157,14 +161,14 @@ Le rôle par défaut pour un principal du service est **Contributor**. Il ne s�
 
 Dans cet exemple, ajoutez le rôle **Reader** à notre exemple précédent, puis supprimez le rôle **Contributor** :
 
-```azurecli
+```azurecli-interactive
 az role assignment create --assignee a487e0c1-82af-47d9-9a0b-af184eb87646d --role Reader
 az role assignment delete --assignee a487e0c1-82af-47d9-9a0b-af184eb87646d --role Contributor
 ```
 
 Vérifiez les modifications apportées en énumérant les rôles actuellement affectés :
 
-```azurecli
+```azurecli-interactive
 az role assignment list --assignee a487e0c1-82af-47d9-9a0b-af184eb87646d
 ```
 
@@ -195,7 +199,7 @@ Nous vous recommandons de passer en revue les autorisations et de mettre réguli
 
 Utilisez `az ad sp reset-credentials` pour réinitialiser le mot de passe actuel du principal du service.
 
-```azurecli
+```azurecli-interactive
 az ad sp reset-credentials --name 20bce7de-3cd7-49f4-ab64-bb5b443838c3 --password {new-password}
 ```
 

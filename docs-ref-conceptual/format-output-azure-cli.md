@@ -12,9 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 74bdb727-481d-45f7-a44e-15d18dc55483
-ms.openlocfilehash: de37b1ad6aa55c9ac73b5b6b89d9507c86cc1245
-ms.sourcegitcommit: bcf93ad8ed8802072249cd8187cd4420da89b4c6
-translationtype: HT
+ms.openlocfilehash: d1440cc1e99ccddb18d23306cc0fcdb4b8babf14
+ms.sourcegitcommit: 4fd631a58cf19c494162510d073fbbbdf0524d16
+ms.translationtype: HT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 06/05/2017
 ---
 # <a name="output-formats-for-azure-cli-20-commands"></a>Formats de sortie pour les commandes Azure CLI 2.0
 
@@ -27,11 +29,13 @@ Azure CLI 2.0 utilise json comme option de sortie par défaut, mais vous pouvez 
 `table`  | Table avec en-têtes de colonnes.
 `tsv`    | Valeurs séparées par des tabulations.
 
+[!INCLUDE [cloud-shell-try-it.md](includes/cloud-shell-try-it.md)]
+
 ## <a name="using-the-json-option"></a>Utilisation de l’option json
 
 L’exemple suivant affiche la liste des machines virtuelles dans vos abonnements au format json par défaut.
 
-```azurecli
+```azurecli-interactive
 az vm list --output json
 ```
 
@@ -69,7 +73,7 @@ Les résultats sont affichés au format suivant (affiche uniquement des résulta
 
 L’option table fournit une sortie facile à lire, mais notez que les objets imbriqués ne sont pas inclus dans la sortie avec la commande simple `--output table`, contrairement à l’exemple .json précédent.  L’utilisation du même exemple avec le format de sortie « table » fournit une liste organisée des valeurs de propriété les plus courantes.
 
-```azurecli
+```azurecli-interactive
 az vm list --out table
 ```
 
@@ -85,7 +89,7 @@ KBDemo020    RGDEMO001        westus
 
 Vous pouvez utiliser le paramètre `--query` pour personnaliser les propriétés et les colonnes à afficher dans la liste générée. L’exemple suivant montre comment sélectionner uniquement le nom de la machine virtuelle et le nom du groupe de ressources dans la commande `list`.
 
-```azurecli
+```azurecli-interactive
 az vm list --query "[].{ resource: resourceGroup, name: name }" -o table
 ```
 
@@ -103,7 +107,7 @@ RGDEMO001   KBDemo020
 
 Le format de sortie « tsv » retourne une sortie texte simple et séparée par des tabulations, sans en-tête ni tiret. Avec ce format, il est facile de consommer la sortie dans d’autres commandes et outils qui ont besoin de traiter le texte dans une forme donnée. L’exécution de l’exemple précédent avec l’option `tsv` retourne le résultat séparé par des tabulations.
 
-```azurecli
+```azurecli-interactive
 az vm list --out tsv
 ```
 
