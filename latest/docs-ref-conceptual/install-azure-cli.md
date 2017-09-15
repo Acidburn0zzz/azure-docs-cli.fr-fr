@@ -1,7 +1,7 @@
 ---
 title: Installer Azure CLI 2.0
 description: "Documents de référence pour l’installation de l’interface de ligne de commande Azure 2.0"
-keywords: "Interface de ligne de commande Azure 2.0, Référence de l’interface de ligne de commande Azure 2.0, Installer l’interface de ligne de commande Azure 2.0, Interface de ligne de commande Azure Python, Désinstaller l’interface de ligne de commande Azure 2.0, l’interface de ligne de commande Azure, Installer l’interface de ligne de commande Azure, Référence de l’interface de ligne de commande Azure"
+keywords: "Azure CLI, Installer Azure CLI, Azure Python CLI, Référence sur Azure CLI"
 author: sptramer
 ms.author: sttramer
 manager: routlaw
@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ea5c0ee1-c530-4a1e-a83f-e1be71f6d416
-ms.openlocfilehash: 00d5b555975007d7e57f04ce5d69f4f29e6d0219
-ms.sourcegitcommit: f107cf927ea1ef51de181d87fc4bc078e9288e47
+ms.openlocfilehash: a61f47076854d0ff0a7056f82240794b7533fe3e
+ms.sourcegitcommit: 3db5fb207db551a0d3fe0a88fe09e8f5e2ec184d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/04/2017
+ms.lasthandoff: 09/14/2017
 ---
 # <a name="install-azure-cli-20"></a>Installer Azure CLI 2.0
 
@@ -79,7 +79,7 @@ Pour installer l’interface de ligne de commande sous Windows et l’utiliser d
 
 Dans le cas des systèmes Debian/Ubuntu, vous pouvez installer Azure CLI 2.0 par le biais de la commande `apt-get`.
 
-1. Modifiez votre liste de sources.
+1. Modifiez votre liste de sources :
  
    - Système 32 bits
 
@@ -105,15 +105,63 @@ Dans le cas des systèmes Debian/Ubuntu, vous pouvez installer Azure CLI 2.0 par
 
 3.  Exécutez l’interface de ligne de commande Azure 2.0 à partir de l’invite de commandes avec la commande `az` .
 
+## <a name="install-on-rhel-fedora-and-centos-with-yum"></a>Installer sur RHEL, Fedora et CentOS avec yum
+
+Pour une distribution basée sur RedHat et qui contient le gestionnaire de package `yum`, vous pouvez installer Azure CLI 2.0 via `yum`.
+
+1. Importer la clé de référentiel Microsoft :
+
+   ```bash
+   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+   ```
+
+2. Créer des informations de référentiel `azure-cli` locales :
+
+   ```bash
+   sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
+   ```
+
+3. Mettre à jour l’index de package `yum` et l’installer :
+
+   ```bash
+   yum check-update
+   sudo yum install azure-cli
+   ```
+
+4. Exécutez l’interface de ligne de commande Azure 2.0 à partir de l’invite de commandes avec la commande `az` .
+
+## <a name="install-on-opensuse-and-sle-with-zypper"></a>Installer sur openSUSE et SLE avec zypper
+
+1. Importer la clé de référentiel Microsoft :
+
+   ```bash
+   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+   ```
+
+2. Créer des informations de référentiel `azure-cli` locales :
+
+   ```bash
+   sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/azure-cli.repo'
+   ```
+
+3. Mettre à jour l’index de package `zypper` et l’installer :
+
+   ```bash
+   sudo zypper refresh
+   sudo zypper install azure-cli
+   ```
+
+4. Exécutez l’interface de ligne de commande Azure 2.0 à partir de l’invite de commandes avec la commande `az` .
+
 ## <a name="install-with-docker"></a>Installer avec Docker
 
 Nous fournissons une image Docker pré-configurée avec l’interface de ligne de commande Azure 2.0.
 
 Installez l’interface de ligne de commande à l’aide de `docker run`.
 
-  ```bash
-  docker run azuresdk/azure-cli-python:<version>
-  ```
+   ```bash
+   docker run azuresdk/azure-cli-python:<version>
+   ```
 
 Consultez nos [balises Docker](https://hub.docker.com/r/azuresdk/azure-cli-python/tags/) pour connaître les versions disponibles.
 
@@ -128,7 +176,7 @@ L’interface de ligne de commande est installé sur l’image en tant que comma
 
 ## <a name="a-namelinuxinstall-on-linux-without-apt-get"></a><a name="Linux"/>Installer sous Linux sans apt-get
 
-Il est recommandé d’installer l’interface de ligne de commande avec `apt-get` si possible. Pour les distributions qui n’utilisent pas le gestionnaire de package `apt`, vous pouvez installer manuellement.
+Il est recommandé d’installer l’interface de ligne de commande avec un gestionnaire de package si possible. Pour les distributions ne disposant pas de gestionnaire de package, vous pouvez procéder à une installation manuelle.
 
 1. Installez les composants requis en fonction de votre distribution Linux.
 
@@ -289,26 +337,26 @@ Si vous avez installé une image docker, vous devez supprimer tous les conteneur
 
 1. Obtenez les conteneurs qui exécutent l’image de l’interface de ligne de commande Azure.
 
-  ```bash
-  docker container ls -a --filter 'ancestor=azuresdk/azure-cli-python'
-  ```
+   ```bash
+   docker container ls -a --filter 'ancestor=azuresdk/azure-cli-python'
+   ```
 
-  ```output
-  CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS                        PORTS               NAMES
-  34a868beb2ab        azuresdk/azure-cli-python:latest      "/bin/sh -c bash"   8 minutes ago       Exited (0) 8 minutes ago                       inspiring_benz
-  ```
+   ```output
+   CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS                        PORTS               NAMES
+   34a868beb2ab        azuresdk/azure-cli-python:latest      "/bin/sh -c bash"   8 minutes ago       Exited (0) 8 minutes ago                       inspiring_benz
+   ```
 
 2. Supprimez tous les conteneurs avec l’image de l’interface de ligne de commande.
 
-  ```bash
-  docker rm 34a868beb2ab
-  ```
+   ```bash
+   docker rm 34a868beb2ab
+   ```
 
 3. Supprimez l’image de l’interface de ligne de commande installée localement.
 
-  ```bash
-  docker rmi azuresdk/azure-cli-python
-  ```
+   ```bash
+   docker rmi azuresdk/azure-cli-python
+   ```
 
 > [!NOTE]
 > Si vous avez installé une version spécifique de l’image, vous devez ajouter `:<version>` à la fin du nom de l’image.

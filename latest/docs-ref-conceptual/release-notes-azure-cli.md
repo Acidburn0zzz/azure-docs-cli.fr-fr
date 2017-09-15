@@ -12,13 +12,87 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ce0428f7-0a59-4e72-9237-d907b171af51
-ms.openlocfilehash: e893b99349bbf2a5eec8af254158eb07001f1da7
-ms.sourcegitcommit: f107cf927ea1ef51de181d87fc4bc078e9288e47
+ms.openlocfilehash: ad30efeb7efafcc5816160ee130665d37adb62c6
+ms.sourcegitcommit: e866977985ba0286fa05f41729dd7e7d9ce86f8e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/04/2017
+ms.lasthandoff: 09/13/2017
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="september-11-2017"></a>11 septembre 2017
+
+Version 2.0.17
+
+### <a name="core"></a>Principal
+
+* Module de commande activé pour définir son propre ID de corrélation dans la télémétrie
+* Résolution du problème de vidage JSON lorsque la télémétrie est définie en mode diagnostics
+
+### <a name="acs"></a>Acs
+
+* Ajout de la commande `acs list-locations`
+* Faire en sorte que `ssh-key-file` soit fourni avec la valeur par défaut attendu
+
+### <a name="appservice"></a>AppService
+
+* Ajout de la possibilité de créer une application web dans un groupe de ressources autre que celui du plan de service actif
+
+### <a name="cdn"></a>CDN
+
+* Correction du bogue « CustomDomain n’est pas itérable » pour `cdn custom-domain create`.
+
+### <a name="extension"></a>Extension
+
+* Version initiale.
+
+### <a name="keyvault"></a>KeyVault
+
+* Résolution du problème, où les autorisations étaient sensibles à la casse pour `keyvault set-policy`.
+
+### <a name="network"></a>Réseau
+
+* Renommage de `vnet list-private-access-services` en `vnet list-endpoint-services`
+* Argument `--private-access-services` renommé en `--service-endpoints` pour`vnet subnet create/update`
+* Ajout de la prise en charge de plusieurs plages IP et de ports à `nsg rule create/update`
+* Ajout de la prise en charge de la référence (SKU) pour `lb create`
+* Ajout de la prise en charge de la référence (SKU) pour `public-ip create`
+
+### <a name="resource"></a>Ressource
+
+* Autoriser le passages dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
+* Autoriser le passage dans les valeurs de paramètres pour `policy assignment create`
+* Autoriser le passage de JSON ou d’un fichier pour tous les paramètres
+* Incrémentation de la version de l’API
+
+### <a name="sql"></a>SQL
+
+* Ajout des commandes `sql server vnet-rule`
+
+### <a name="vm"></a>Machine virtuelle
+
+* Résolu : n’affecte aucun accès tant que `--scope` n’est pas indiqué
+* Résolu : utilisation de la même dénomination d’extension que celle du portail
+* Suppression de `subscription` de la sortie `[vm|vmss] create`
+* Résolu : la référence SKU de stockage `[vm|vmss] create` n’est pas appliquée sur les disques de données avec une image
+* Résolu : `vm format-secret --secrets` n’accepte pas d’ID séparés par un saut de ligne
+
+## <a name="august-31-2017"></a>31 août 2017
+
+Version 2.0.16
+
+### <a name="keyvault"></a>KeyVault
+
+* Correction d’un bogue à cause duquel vous tentez de résoudre automatiquement l’encodage secret avec `secret download`
+
+### <a name="sf"></a>Sf
+
+* Déconseiller toutes les commandes en faveur de Service Fabric CLI (sfctl)
+
+### <a name="storage"></a>Storage
+
+* Résolution du problème dans lequel la création de comptes de stockage dans les régions ne prenant pas en charge la fonctionnalité NetworkACLs était impossible
+* Déterminer le type de contenu et l’encodage du contenu lors du chargement d’objets blob et de fichiers si aucun type de contenu et d’encodage n’est spécifié.
 
 ## <a name="august-28-2017"></a>28 août 2017
 
@@ -276,7 +350,7 @@ vm (2.0.11)
 
 * Ajout de commandes pour la gestion de la stratégie de calcul sous le titre `dla account compute-policy`
 * Ajout de `dla job pipeline show`
-* Ajotu de `dla job recurrence list`
+* Ajout de `dla job recurrence list`
 
 ### <a name="data-lake-store"></a>Data Lake Store
 
