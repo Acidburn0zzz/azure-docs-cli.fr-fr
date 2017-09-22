@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ea5c0ee1-c530-4a1e-a83f-e1be71f6d416
-ms.openlocfilehash: a61f47076854d0ff0a7056f82240794b7533fe3e
-ms.sourcegitcommit: 3db5fb207db551a0d3fe0a88fe09e8f5e2ec184d
+ms.openlocfilehash: 580438bfc66f3ed0b4dad504258eab453b1b9183
+ms.sourcegitcommit: c1df7794ad42adb8640b51b630e4275f4a791ac2
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/14/2017
+ms.lasthandoff: 09/19/2017
 ---
 # <a name="install-azure-cli-20"></a>Installer Azure CLI 2.0
 
@@ -29,6 +29,33 @@ Pour plus d’informations sur la version la plus récente, consultez les [Notes
 > Si vous devez utiliser la version précédente d’Azure CLI, voici comment [installer Azure 1.0](/azure/cli-install-nodejs).
 
 ## <a name="a-namemacosinstall-on-macos"></a><a name="macOS"/>Installer sur macOS
+
+Sur macOS, vous avez le choix de procéder à l’installation avec [Homebrew](https://brew.sh/) ou manuellement.
+
+### <a name="install-with-homebrew"></a>Désinstaller avec Homebrew
+
+1. Si vous ne l’avez pas encore, installez Homebrew en suivant les [instructions d’installation pour Homebrew](https://docs.brew.sh/Installation.html).
+
+2. Mettez à jour vos référentiels Homebrew locaux.
+
+   ```bash
+   brew update
+   ```
+
+3. Installez le package `azure-cli`.
+
+  ```bash
+  brew install azure-cli
+  ```
+
+> [!NOTE]
+> Si vous avez installé Azure CLI 1.0 avec Homebrew au préalable, au lieu d’installer le package, vous pouvez obtenir CLI 2.0 grâce au processus normal de mise à niveau Homebrew.
+>
+> ```bash
+> brew upgrade
+> ```
+
+### <a name="install-manually"></a>Installer manuellement
 
 1. Installer l’interface de ligne de commande Azure 2.0 avec `curl`.
 
@@ -220,12 +247,6 @@ Si la commande `curl` renvoie une erreur concernant le `-L` paramètre ou un mes
 curl https://azurecliprod.blob.core.windows.net/install | bash
 ```
 
-### <a name="homebrew-on-macos-installing-older-version"></a>Installation d’une version antérieure de Homebrew sous macOS
-
-La formule de Homebrew `azure-cli` disponible pour macOS n’est pas à jour et installe une version 1.x de l’interface de ligne de commande. Vous pouvez vous tenir au courant de sa mise à jour en vérifiant `brew info azure-cli`.
-
-En attendant, [désinstallez l’ancienne version](#uninstall_brew) et suivez le [les instructions d’installation macOS](#macOS).
-
 ## <a name="uninstall-cli-1x-versions"></a>Désinstaller les versions 1.x de l’interface de ligne de commande
 
 Si vous votre système dispose d’une version 1.x antérieure de l’interface de ligne de commande, vous pouvez la désinstaller en fonction du type d’installation utilisé.
@@ -237,14 +258,6 @@ Supprimez l’ancienne interface de ligne de commande avec `npm uninstall`.
   ```bash
   npm uninstall -g azure-cli
   ```
-
-### <a name="a-nameuninstallbrewuninstall-with-homebrew-on-macos"></a><a name="uninstall_brew"/>Désinstaller avec Homebrew sur macOS
-
-Supprimez l’ancienne interface de ligne de commande avec `brew uninstall`.
-
-```bash
-brew uninstall azure-cli
-```
 
 ### <a name="uninstall-with-distributable"></a>Désinstaller avec distribuable
 
@@ -261,6 +274,20 @@ Si vous avez installé une image Docker pour utiliser la version antérieure de 
 ## <a name="update-the-cli"></a>Mise à jour de l’interface CLI
 
 Pour mettre à jour l’interface de ligne de commande Azure, utilisez la même méthode que vous avez utilisée pour l’installer.
+
+### <a name="update-with-homebrew"></a>Mettre à jour avec Homebrew
+
+1. Mettez à jour vos informations de référentiel Homebrew locales.
+
+   ```bash
+   brew update
+   ```
+
+2. Mettez à niveau les packages installés.
+
+   ```bash
+   brew upgrade
+   ```
 
 ### <a name="update-with-msi"></a>Mettre à jour avec MSI
 
@@ -318,6 +345,14 @@ Suivez les instructions d’installation manuelle de [macOS](#macOS) ou [Linux](
 ## <a name="uninstall"></a>Désinstaller l’interface
 
 Si vous décidez de désinstaller l’interface de ligne de commande, nous sommes désolés de vous voir partir. Vous devez effectuer la désinstallation à l’aide de la même méthode que vous avez utilisée pour installer l’interface de ligne de commande.
+
+### <a name="uninstall-with-homebrew"></a>Désinstaller avec Homebrew
+
+Désinstallez le package `azure-cli`.
+
+   ```bash
+   brew uninstall azure-cli
+   ```
 
 ### <a name="uninstall-with-msi"></a>Désinstaller avec MSI
 
