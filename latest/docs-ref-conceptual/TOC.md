@@ -5,10 +5,10 @@
 ## [Se connecter](authenticate-azure-cli.md)
 ### [Créer un principal du service](create-an-azure-service-principal-azure-cli.md)
 ## [Mode interactif](interactive-azure-cli.md)
-## Déployer
-### [Avec des modèles](/azure/azure-resource-manager/resource-group-template-deploy-cli?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
-### [Exporter des modèles](/azure/azure-resource-manager/resource-manager-export-template-cli?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
-### [Avec des modèles privés](/azure-resource-manager/resource-manager-cli-sas-token?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
+## Modèles de déploiement
+### [Utiliser des modèles de déploiement](/azure/azure-resource-manager/resource-group-template-deploy-cli?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
+### [Exporter des modèles de déploiement](/azure/azure-resource-manager/resource-manager-export-template-cli?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
+### [Déployer des modèles privés](/azure/azure-resource-manager/resource-manager-cli-sas-token?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
 ## [Formats de sortie](format-output-azure-cli.md)
 ## [Requête](query-azure-cli.md)
 ## [Abonnements](manage-azure-subscriptions-azure-cli.md)
