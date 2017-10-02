@@ -12,13 +12,73 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ce0428f7-0a59-4e72-9237-d907b171af51
-ms.openlocfilehash: ad30efeb7efafcc5816160ee130665d37adb62c6
-ms.sourcegitcommit: e866977985ba0286fa05f41729dd7e7d9ce86f8e
+ms.openlocfilehash: 72630c52b5e6afd69809ff19145717c0d65e0252
+ms.sourcegitcommit: 3a490ae3a2a1b2e63a062806f9b720fa4c6be01e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/13/2017
+ms.lasthandoff: 09/25/2017
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="september-22-2017"></a>22 septembre 2017
+
+Version 2.0.18
+
+### <a name="resource"></a>Ressource
+
+* Ajout de la prise en charge de l’affichage des définitions de stratégie intégrée
+* Ajout de la prise en charge du paramètre de mode pour la création de définitions de stratégie
+* Ajout de la prise en charge des définitions d’interface utilisateur et des modèles pour `managedapp definition create`
+* [CHANGEMENT RÉCENT] Modification du type de ressource `managedapp` de `appliances` en `applications` et de `applianceDefinitions` en `applicationDefinitions`
+
+### <a name="network"></a>Réseau
+
+* Ajout de la prise en charge de la zone de disponibilité aux sous-commandes `network lb` et `network public-ip`
+* Ajout de la prise en charge de l’homologation Microsoft IPv6 pour `express-route`
+* Ajout des commandes du groupe de sécurité d’application `asg`
+* Ajout de l’argument `--application-security-groups` à `nic [create|ip-config create|ip-config update]`
+* Ajout des arguments `--source-asgs` et `--destination-asgs` à `nsg rule [create|update]`
+* Ajout des arguments `--ddos-protection` et `--vm-protection` à `vnet [create|update]`
+* Ajout des commandes `network [vnet-gateway|vpn-client|show-url]`
+
+### <a name="storage"></a>Storage
+
+* Résolution d’un problème qui pouvait causer l’échec des commandes `storage account network-rule` après la mise à jour du Kit de développement logiciel (SDK)
+
+### <a name="eventgrid"></a>Événement
+
+* Mise à jour du Kit de développement logiciel (SDK) Python Azure Event Grid afin d’utiliser une version plus récente de l’API « 2017-09-15-preview »
+
+### <a name="sql"></a>SQL
+
+* La modification de l’`sql server list`argument`--resource-group` devient facultative. En l’absence de précisions, tous les serveurs SQL dans l’abonnement seront retournés
+* Ajout du paramètre `--no-wait` à `db [create|copy|restore|update|replica create|create|update]` et `dw [create|update]`
+
+### <a name="keyvault"></a>KeyVault
+
+* Ajout de la prise en charge des commandes Keyvault derrière un proxy
+
+### <a name="vm"></a>Machine virtuelle
+
+* Ajout de la prise en charge de zone de disponibilité pour `[vm|vmss|disk] create`
+* Résolution d’un problème à cause duquel l’utilisation de `--app-gateway ID` avec `vmss create` entraînait un échec
+* Ajout de l’argument `--asgs` à `vm create`
+* Ajout de la prise en charge des commandes en cours d’exécution sur des machines virtuelles avec `vm run-command`
+* [PRÉVERSION] Ajout de la prise en charge du chiffrement de disque VMSS avec `vmss encryption`
+* Ajout de la prise en charge de la réalisation de la maintenance sur des machines virtuelles avec `vm perform-maintenance`
+
+### <a name="acs"></a>ACS
+
+* [PRÉVERSION] Ajout de l’argument `--orchestrator-release` à `acs create` pour les régions ACS en préversion
+
+### <a name="appservice"></a>AppService
+
+* Ajout de la capacité à mettre à jour et à afficher les paramètres d’authentification avec `webapp auth [update|show]`
+
+### <a name="backup"></a>Sauvegarde
+
+* Version préliminaire
+
 
 ## <a name="september-11-2017"></a>11 septembre 2017
 

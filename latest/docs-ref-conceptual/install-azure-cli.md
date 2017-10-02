@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ea5c0ee1-c530-4a1e-a83f-e1be71f6d416
-ms.openlocfilehash: 580438bfc66f3ed0b4dad504258eab453b1b9183
-ms.sourcegitcommit: c1df7794ad42adb8640b51b630e4275f4a791ac2
+ms.openlocfilehash: 935814d56d0a6be00f626da860dc643adbf14804
+ms.sourcegitcommit: 9f38efbb7efd800ee5cab80d6641770d268c5a68
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/19/2017
+ms.lasthandoff: 09/22/2017
 ---
 # <a name="install-azure-cli-20"></a>Installer Azure CLI 2.0
 
@@ -36,13 +36,15 @@ Sur macOS, vous avez le choix de procéder à l’installation avec [Homebrew](h
 
 1. Si vous ne l’avez pas encore, installez Homebrew en suivant les [instructions d’installation pour Homebrew](https://docs.brew.sh/Installation.html).
 
-2. Mettez à jour vos référentiels Homebrew locaux.
+2. Si vous avez précédemment installé CLI manuellement, suivez les instructions du [manuel de désinstallation](#UninstallManually).
+
+3. Mettez à jour vos référentiels Homebrew locaux.
 
    ```bash
    brew update
    ```
 
-3. Installez le package `azure-cli`.
+4. Installez le package `azure-cli`.
 
   ```bash
   brew install azure-cli
@@ -73,11 +75,9 @@ Sur macOS, vous avez le choix de procéder à l’installation avec [Homebrew](h
 
 ## <a name="install-on-windows"></a>Installer sur Windows
 
-Vous pouvez installer l’interface de ligne de commande Azure 2.0 avec le MSI et l’utiliser dans la ligne de commande Windows, ou vous pouvez installer la CLI avec `apt-get` sur Bash sous Ubuntu ou Windows.
-
 ### <a name="install-with-msi-for-the-windows-command-line"></a>Installer avec MSI pour la ligne de commande Windows 
 
-Pour installer l’interface de ligne de commande sous Windows et l’utiliser dans la ligne de commande Windows, téléchargez et exécutez le [MSI](https://aka.ms/InstallAzureCliWindows).
+Pour installer CLI sur Windows et l’utiliser dans la ligne de commande, téléchargez et exécutez le [Programme d’installation d’Azure CLI (MSI)](https://aka.ms/InstallAzureCliWindows).
 
 ### <a name="install-with-apt-get-for-bash-on-ubuntu-on-windows"></a>Installer avec apt-get pour Bash sous Ubuntu ou Windows
 
@@ -247,6 +247,16 @@ Si la commande `curl` renvoie une erreur concernant le `-L` paramètre ou un mes
 curl https://azurecliprod.blob.core.windows.net/install | bash
 ```
 
+### <a name="az-command-not-found"></a>`az` commande introuvable
+
+Vous devrez peut-être effacer le cache de hachage de commande de l’interpréteur de commandes Exécuter
+
+```bash
+hash -r
+```
+
+et vérifier si le problème est résolu.
+
 ## <a name="uninstall-cli-1x-versions"></a>Désinstaller les versions 1.x de l’interface de ligne de commande
 
 Si vous votre système dispose d’une version 1.x antérieure de l’interface de ligne de commande, vous pouvez la désinstaller en fonction du type d’installation utilisé.
@@ -261,7 +271,7 @@ Supprimez l’ancienne interface de ligne de commande avec `npm uninstall`.
 
 ### <a name="uninstall-with-distributable"></a>Désinstaller avec distribuable
 
-Si vous avez installé [MSI](http://aka.ms/webpi-azure-cli) ou un [package macOS](http://aka.ms/mac-azure-cli), utilisez le même outil pour supprimer votre installation.
+Si vous avez effectué l’installation via le [Programme d’installation d’Azure CLI (MSI)](http://aka.ms/webpi-azure-cli) ou un [package macOS](http://aka.ms/mac-azure-cli), utilisez le même outil pour supprimer votre installation.
 
 ### <a name="uninstall-with-docker"></a>Désinstaller avec Docker
 
@@ -277,13 +287,15 @@ Pour mettre à jour l’interface de ligne de commande Azure, utilisez la même 
 
 ### <a name="update-with-homebrew"></a>Mettre à jour avec Homebrew
 
-1. Mettez à jour vos informations de référentiel Homebrew locales.
+1. Si vous avez précédemment effectué l’installation manuellement, suivez les instructions relatives à l’[installation avec Homebrew](#macOS).
+
+2. Mettez à jour vos informations de référentiel Homebrew locales.
 
    ```bash
    brew update
    ```
 
-2. Mettez à niveau les packages installés.
+3. Mettez à niveau les packages installés.
 
    ```bash
    brew upgrade
@@ -291,7 +303,7 @@ Pour mettre à jour l’interface de ligne de commande Azure, utilisez la même 
 
 ### <a name="update-with-msi"></a>Mettre à jour avec MSI
 
-Exécutez de nouveau le [MSI](https://aka.ms/InstallAzureCliWindows) .
+Exécutez de nouveau le [Programme d’installation d’Azure CLI (MSI)](https://aka.ms/InstallAzureCliWindows).
 
 ### <a name="update-with-apt-get"></a>Mettre à jour avec apt-get
 
@@ -396,7 +408,7 @@ Si vous avez installé une image docker, vous devez supprimer tous les conteneur
 > [!NOTE]
 > Si vous avez installé une version spécifique de l’image, vous devez ajouter `:<version>` à la fin du nom de l’image.
 
-### <a name="uninstall-manually"></a>Désinstaller manuellement
+###<a name="a-nameuninstallmanuallyuninstall-manually"></a><a name="UninstallManually"/>Désinstaller manuellement
 
 Si vous avez installé l’interface de ligne de commande en utilisant le script accessible à l’adresse https://aka.ms/InstallAzureCli, vous pouvez désinstaller l’interface à l’aide de la procédure suivante.
 
