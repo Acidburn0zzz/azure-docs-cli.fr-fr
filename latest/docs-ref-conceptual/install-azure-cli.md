@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ea5c0ee1-c530-4a1e-a83f-e1be71f6d416
-ms.openlocfilehash: 935814d56d0a6be00f626da860dc643adbf14804
-ms.sourcegitcommit: 9f38efbb7efd800ee5cab80d6641770d268c5a68
+ms.openlocfilehash: 1b47bd5603f5214dd11d772caaebe8cf380df5c0
+ms.sourcegitcommit: 5e862fd0a93cf668fa76a74ae1c7505d3c8c45f2
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/22/2017
+ms.lasthandoff: 10/09/2017
 ---
 # <a name="install-azure-cli-20"></a>Installer Azure CLI 2.0
 
@@ -104,7 +104,10 @@ Pour installer CLI sur Windows et l’utiliser dans la ligne de commande, télé
 
 ## <a name="install-on-debianubuntu-with-apt-get"></a>Installer sous Debian/Ubuntu avec apt-get
 
-Dans le cas des systèmes Debian/Ubuntu, vous pouvez installer Azure CLI 2.0 par le biais de la commande `apt-get`.
+Pour les distributions qui utilisent le gestionnaire de package `apt`, vous pouvez installer Azure CLI 2.0 via `apt-get`.
+
+> [!NOTE]
+> Votre distribution doit prendre en charge Python 2.7.x ou Python 3.x pour utiliser l’interface CLI.
 
 1. Modifiez votre liste de sources :
  
@@ -134,7 +137,10 @@ Dans le cas des systèmes Debian/Ubuntu, vous pouvez installer Azure CLI 2.0 par
 
 ## <a name="install-on-rhel-fedora-and-centos-with-yum"></a>Installer sur RHEL, Fedora et CentOS avec yum
 
-Pour une distribution basée sur RedHat et qui contient le gestionnaire de package `yum`, vous pouvez installer Azure CLI 2.0 via `yum`.
+Pour les distributions qui utilisent le gestionnaire de package `yum`, vous pouvez installer Azure CLI 2.0 via `yum`.
+
+> [!NOTE]
+> Votre distribution doit prendre en charge Python 2.7.x ou Python 3.x pour utiliser l’interface CLI.
 
 1. Importer la clé de référentiel Microsoft :
 
@@ -158,6 +164,11 @@ Pour une distribution basée sur RedHat et qui contient le gestionnaire de packa
 4. Exécutez l’interface de ligne de commande Azure 2.0 à partir de l’invite de commandes avec la commande `az` .
 
 ## <a name="install-on-opensuse-and-sle-with-zypper"></a>Installer sur openSUSE et SLE avec zypper
+
+Pour les distributions qui utilisent le gestionnaire de package `zypper`, vous pouvez installer Azure CLI 2.0 via `zypper`.
+
+> [!NOTE]
+> Votre distribution doit prendre en charge Python 2.7.x ou Python 3.x pour utiliser l’interface CLI.
 
 1. Importer la clé de référentiel Microsoft :
 
@@ -201,9 +212,9 @@ L’interface de ligne de commande est installé sur l’image en tant que comma
 > docker run -v ${HOME}:/root azuresdk/azure-cli-python:<version>
 > ```
 
-## <a name="a-namelinuxinstall-on-linux-without-apt-get"></a><a name="Linux"/>Installer sous Linux sans apt-get
+## <a name="a-namelinuxinstall-on-linux-without-a-package-manager"></a><a name="Linux"/>Installer sous Linux sans gestionnaire de package
 
-Il est recommandé d’installer l’interface de ligne de commande avec un gestionnaire de package si possible. Pour les distributions ne disposant pas de gestionnaire de package, vous pouvez procéder à une installation manuelle.
+Il est recommandé d’installer l’interface de ligne de commande avec un gestionnaire de package si possible. Si vous ne voulez pas ajouter les référentiels Microsoft, ou que vous travaillez avec une distribution qui ne dispose pas d’un package fourni, vous pouvez installer l’interface CLI manuellement.
 
 1. Installez les composants requis en fonction de votre distribution Linux.
 
@@ -219,7 +230,7 @@ Il est recommandé d’installer l’interface de ligne de commande avec un gest
    SUSE OpenSUSE 13.2    | sudo zypper refresh && sudo zypper --non-interactive install curl gcc python python-xml libffi-devel python-devel openssl-devel
    ```
 
-Si votre distribution ne figure pas ci-dessus, vous devez installer [Python](https://www.python.org/downloads/), [libffi](https://sourceware.org/libffi/), et [OpenSSL](https://www.openssl.org/source/).
+Si votre distribution n’est pas répertoriée ci-dessus, vous devez installer [Python 2.7 ou version ultérieure](https://www.python.org/downloads/), [libffi](https://sourceware.org/libffi/), et [OpenSSL](https://www.openssl.org/source/).
 
 2. Installez l’interface de ligne de commande à l’aide de `curl`.
 
@@ -420,6 +431,12 @@ Si vous avez installé l’interface de ligne de commande en utilisant le script
    ```
 
 2. Supprimez la ligne `<install location>/lib/azure-cli/az.completion` de `<install location>/.bash_profile`.
+
+3. Si votre interpréteur de commandes utilise un cache de commande, rechargez-le.
+
+   ```bash
+   hash -r
+   ```
 
 > [!Note]
 > L’emplacement d’installation par défaut est `/Users/<username>`.

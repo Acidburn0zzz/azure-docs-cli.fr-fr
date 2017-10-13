@@ -12,13 +12,71 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ce0428f7-0a59-4e72-9237-d907b171af51
-ms.openlocfilehash: 72630c52b5e6afd69809ff19145717c0d65e0252
-ms.sourcegitcommit: 3a490ae3a2a1b2e63a062806f9b720fa4c6be01e
+ms.openlocfilehash: 2ea9daa558200204750f19b5d22685587ff097ef
+ms.sourcegitcommit: 376bc0601aba890630dadd55908c1a65ddf40f5a
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="october-9-2017"></a>9 octobre 2017
+
+Version 2.0.19
+
+### <a name="core"></a>Principal
+
+* Ajout de la gestion des URL d’autorisation AD FS avec une barre oblique à Azure Stack
+
+### <a name="appservice"></a>AppService
+
+* Ajout de la mise à jour générique avec la nouvelle commande `webapp update`
+
+### <a name="batch"></a>Batch
+
+* Mis à jour du kit de développement logiciel (SDK) à la version 4.0.0
+* Mise à jour de l’option `--image` de VirtualMachineConfiguration pour prendre en charge les références d’image ARM en plus de publish:offre:sku:version
+* Ajout de la prise en charge du nouveau modèle d’extension CLI pour les commandes d’extension Batch
+* Suppression de la prise en charge Batch des modèles de composants
+
+### <a name="batchai"></a>Batchai
+
+* Version initiale du module Batch AI
+
+### <a name="keyvault"></a>KeyVault
+
+* Résolution du problème d’authentification Key Vault lors de l’utilisation d’AD FS sur Azure Stack. [(#4448)](https://github.com/Azure/azure-cli/issues/4448)
+
+### <a name="network"></a>Réseau
+
+* La modification de l’argument `--server` de `application-gateway address-pool create` devient facultative, permettant les pools d’adresses vides
+* Mise à jour de `traffic-manager` pour prendre en charge les fonctionnalités les plus récentes
+
+### <a name="resource"></a>Ressource
+
+* Ajout de la prise en charge des options `--resource-group/-g` pour le nom du groupe de ressources dans `group`
+* Ajout des commandes à `account lock` pour travailler avec des verrous au niveau de l’abonnement
+* Ajout des commandes à `group lock` pour travailler avec des verrous au niveau du groupe
+* Ajout des commandes à `resource lock` pour travailler avec des verrous au niveau des ressources
+
+### <a name="sql"></a>SQL
+
+* Ajout de la prise en charge pour le Chiffrement transparent des données (TDE) SQL et le chiffrement transparent des données avec Bring Your Own Key
+* Ajout de la commande `db list-deleted` et du paramètre `db restore --deleted-time`, ce qui offre la possibilité de rechercher et de restaurer les bases de données supprimées
+* Ajout de `db op list` et `db op cancel`, ce qui offre la capacité de répertorier et d’annuler des opérations en cours sur la base de données
+
+### <a name="storage"></a>Storage
+
+* Ajout de la prise en charge d’instantané de partage de fichiers
+
+### <a name="vm"></a>Machine virtuelle
+
+* Correction d’un bogue dans `vm show` où l’utilisation de `-d` a provoqué un incident dans les adresses IP privées manquantes
+* [VERSION PRÉLIMINAIRE] Ajout de la prise en charge de la mise à niveau propagée pour `vmss create`
+* Ajout de la prise en charge de la mise à jour des paramètres de chiffrement avec `vm encryption enable`
+* Ajout du paramètre `--os-disk-size-gb` pour `vm create`
+* Ajout du paramètre `--license-type` de Windows pour `vmss create`
+
 
 ## <a name="september-22-2017"></a>22 septembre 2017
 
