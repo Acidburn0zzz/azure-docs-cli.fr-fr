@@ -5,18 +5,18 @@ keywords: Azure CLI 2.0, Azure Active Directory, Azure Active Directory, AD, RBA
 author: rloutlaw
 ms.author: routlaw
 manager: douge
-ms.date: 02/27/2017
+ms.date: 10/12/2017
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: fab89cb8-dac1-4e21-9d34-5eadd5213c05
-ms.openlocfilehash: f37df762a9a605ea649b215f38f2e9866614f4ac
-ms.sourcegitcommit: f107cf927ea1ef51de181d87fc4bc078e9288e47
+ms.openlocfilehash: 5ae8af014b821fe5297ea44056ef33c4570d1d47
+ms.sourcegitcommit: 5cfbea569fef193044da712708bc6957d3fb557c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/04/2017
+ms.lasthandoff: 10/14/2017
 ---
 # <a name="create-an-azure-service-principal-with-azure-cli-20"></a>Créer un principal du service avec Azure CLI 2.0
 
@@ -31,7 +31,7 @@ Cette rubrique vous guide tout au long de la création d’une entité de sécur
 
 Un principal du service Azure est une identité de sécurité utilisée par les applications, les services et les outils d’automatisation créés par l’utilisateur pour accéder à des ressources Azure spécifiques. Il équivaut un peu à une identité d’utilisateur (connexion et mot de passe ou certificat) avec un rôle spécifique et des autorisations d’accès à vos ressources étroitement contrôlées. Il doit pouvoir effectuer uniquement des opérations spécifiques, contrairement à une identité d’utilisateur. Il améliore la sécurité si vous lui octroyez seulement le niveau d’autorisation minimal nécessaire pour effectuer ses tâches de gestion. 
 
-À l’heure actuelle, Azure CLI 2.0 prend en charge uniquement la création d’informations d’identification d’authentification basées sur mot de passe. Dans cette rubrique, nous abordons la création d’un principal du service avec un mot de passe spécifique et l’affectation éventuelle de rôles spécifiques.
+Azure CLI 2.0 prend en charge la création d’informations d’authentification basées sur un mot de passe et d’informations d’identification de certificat. Dans cette rubrique, nous traitons les deux types d’informations d’identification.
 
 ## <a name="verify-your-own-permission-level"></a>Vérifier votre propre niveau d’autorisation
 
@@ -76,9 +76,9 @@ az ad app list --display-name MyDemoWebApp
 
 L’option `--display-name` filtre la liste des applications retournées pour afficher celles dont le `displayName` commence par MyDemoWebApp.
 
-### <a name="create-the-service-principal"></a>Créer le principal du service
+### <a name="create-a-service-principal-with-a-password"></a>Créer un principal du service avec un mot de passe
 
-Utilisez [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) pour créer le principal du service. 
+Utilisez [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) et le paramètre `--password` pour créer le principal du service avec un mot de passe. Lorsque vous ne fournissez pas de rôle ou d’étendue, le rôle **Collaborateur** est défini par défaut pour l’abonnement actuel. Si vous créez un principal du service sans utiliser les paramètres `--password` ou `--cert`, l’authentification par mot de passe est employée et un mot de passe est généré.
 
 ```azurecli-interactive
 az ad sp create-for-rbac --name {appId} --password "{strong password}" 
@@ -96,6 +96,29 @@ az ad sp create-for-rbac --name {appId} --password "{strong password}"
 
  > [!WARNING] 
  > Ne créez pas un mot de passe non sécurisé.  Suivez les conseils en matière de [Stratégies et restrictions de mot de passe dans Azure Active Directory](/azure/active-directory/active-directory-passwords-policy).
+
+### <a name="create-a-service-principal-with-a-self-signed-certificate"></a>Créer un principal du service avec un certificat auto-signé
+
+Utilisez [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) et le paramètre `--create-cert` pour créer un certificat auto-signé.
+
+```azurecli-interactive
+az ad sp create-for-rbac --name {appId} --create-cert
+```
+
+```json
+{
+  "appId": "c495db57-82e0-4e2e-9369-069dff176858",
+  "displayName": "azure-cli-2017-10-12-22-15-38",
+  "fileWithCertAndPrivateKey": "<path>/<file-name>.pem",
+  "name": "http://MyDemoWebApp",
+  "password": null,
+  "tenant": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+}
+```
+
+Copiez la valeur de la réponse `fileWithCertAndPrivateKey`. Il s’agit du fichier de certificat qui sera utilisé pour l’authentification.
+
+Pour plus d’options lors de l’utilisation de certificats, consultez [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac).
 
 ### <a name="get-information-about-the-service-principal"></a>Obtenir des informations sur le principal du service
 
@@ -116,12 +139,12 @@ az ad sp show --id a487e0c1-82af-47d9-9a0b-af184eb87646d
 }
 ```
 
-### <a name="sign-in-using-the-service-principal"></a>Se connecter à l’aide du principal du service
+### <a name="sign-in-using-the-service-principal"></a>Se connecter en tant que principal du service
 
-Vous pouvez maintenant vous connecter en tant que nouveau principal du service pour votre application en utilisant l’*appId* et le *password* fournis par la commande `az ad sp show`.  Fournissez la valeur *tenant* indiquée dans les résultats de `az ad sp create-for-rbac`.
+Vous pouvez à présent vous connecter en tant que nouveau principal du service pour votre application à l’aide de l’*appId* de `az ad sp show` et du *mot de passe* ou du chemin d’accès au certificat créé.  Fournissez la valeur *tenant* indiquée dans les résultats de `az ad sp create-for-rbac`.
 
 ```azurecli-interactive
-az login --service-principal -u a487e0c1-82af-47d9-9a0b-af184eb87646d --password {password} --tenant {tenant}
+az login --service-principal -u a487e0c1-82af-47d9-9a0b-af184eb87646d --password {password-or-path-to-cert} --tenant {tenant}
 ``` 
 
 Après une ouverture de session réussie, la sortie suivante s’affiche :
