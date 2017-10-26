@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ea5c0ee1-c530-4a1e-a83f-e1be71f6d416
-ms.openlocfilehash: 1b47bd5603f5214dd11d772caaebe8cf380df5c0
-ms.sourcegitcommit: 5e862fd0a93cf668fa76a74ae1c7505d3c8c45f2
+ms.openlocfilehash: 4703a192e23b04d0ad42daf60e415d798610cce0
+ms.sourcegitcommit: 932cc86172ab55c00346f62504787c096ed7b2bd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/09/2017
+ms.lasthandoff: 10/24/2017
 ---
 # <a name="install-azure-cli-20"></a>Installer Azure CLI 2.0
 
@@ -95,7 +95,7 @@ Pour installer CLI sur Windows et l’utiliser dans la ligne de commande, télé
 4. Exécutez les commandes sudo suivantes :
 
    ```bash
-   sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 417A0893
+   sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
    sudo apt-get install apt-transport-https
    sudo apt-get update && sudo apt-get install azure-cli
    ```
@@ -128,7 +128,7 @@ Pour les distributions qui utilisent le gestionnaire de package `apt`, vous pouv
 2. Exécutez les commandes sudo suivantes :
 
    ```bash
-   sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 417A0893
+   sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
    sudo apt-get install apt-transport-https
    sudo apt-get update && sudo apt-get install azure-cli
    ```
@@ -198,7 +198,7 @@ Nous fournissons une image Docker pré-configurée avec l’interface de ligne d
 Installez l’interface de ligne de commande à l’aide de `docker run`.
 
    ```bash
-   docker run azuresdk/azure-cli-python:<version>
+   docker run -it azuresdk/azure-cli-python:<version>
    ```
 
 Consultez nos [balises Docker](https://hub.docker.com/r/azuresdk/azure-cli-python/tags/) pour connaître les versions disponibles.
@@ -209,7 +209,7 @@ L’interface de ligne de commande est installé sur l’image en tant que comma
 > Si vous souhaitez sélectionner les clés SSH à partir de votre environnement utilisateur, vous pouvez utiliser `-v ${HOME}:/root` pour monter $HOME en tant que `/root`.
 
 > ```bash
-> docker run -v ${HOME}:/root azuresdk/azure-cli-python:<version>
+> docker run -it -v ${HOME}:/root azuresdk/azure-cli-python:<version>
 > ```
 
 ## <a name="a-namelinuxinstall-on-linux-without-a-package-manager"></a><a name="Linux"/>Installer sous Linux sans gestionnaire de package
