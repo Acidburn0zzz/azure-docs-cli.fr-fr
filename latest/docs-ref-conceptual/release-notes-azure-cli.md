@@ -12,13 +12,54 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ce0428f7-0a59-4e72-9237-d907b171af51
-ms.openlocfilehash: 2ea9daa558200204750f19b5d22685587ff097ef
-ms.sourcegitcommit: 376bc0601aba890630dadd55908c1a65ddf40f5a
+ms.openlocfilehash: 429b099dabd27d9356e88791f955ec52acd2a5f9
+ms.sourcegitcommit: 9b36c15dc0e10024e23b8018604f5ef63c025de1
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 10/24/2017
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="october-24-2017"></a>24 octobre 2017
+
+Version 2.0.20
+
+### <a name="core"></a>Principal
+
+* Mise à jour de `2017-03-09-profile` pour consommer l’API `MGMT_STORAGE` version `2016-01-01`
+
+### <a name="acr"></a>ACR
+
+* Mise à jour de la gestion des ressources pour pointer vers la version d’API `2017-10-01`
+* Modification de la référence SKU « Bring Your Own Storage » en Classique
+* Changement des noms des références SKU de registre en De base, Standard, et Premium
+
+### <a name="acs"></a>ACS
+
+* [PRÉVERSION] Ajout des commandes `az aks`
+* Réparation de Kubernetes `get-credentials`
+
+### <a name="appservice"></a>AppService
+
+* Résolution d’une erreur où le téléchargement des journaux `webapp` était incorrect
+
+### <a name="component"></a>Composant
+
+* Ajout de clarté dans les messages visant à déconseiller de tous les programmes d’installation et des invites de confirmation
+
+### <a name="monitor"></a>Surveiller
+
+* Ajout des commandes `action-group`
+
+### <a name="resource"></a>Ressource
+
+* Résolution d’une incompatibilité de la dépendance msrest dans `group export` avec les versions les plus récentes
+* Résolution de `policy assignment create` pour qu’il fonctionne avec les définitions de stratégie et les définitions d’ensemble de stratégie intégrées
+
+### <a name="vm"></a>Machine virtuelle
+
+* Ajout de l’argument `--accelerated-networking` à `vmss create`
+
 
 ## <a name="october-9-2017"></a>9 octobre 2017
 

@@ -4,6 +4,9 @@
 ## [Cloud Shell](/azure/cloud-shell/overview)
 ## [Se connecter](authenticate-azure-cli.md)
 ### [Créer un principal du service](create-an-azure-service-principal-azure-cli.md)
+### À l’aide d’identité de service géré
+#### [Configurer MSI pour une machine virtuelle Azure](/azure/active-directory/msi-qs-configure-cli-windows-vm?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
+#### [Se connecter à une machine virtuelle Azure à l’aide de MSI](/azure/active-directory/msi-how-to-get-access-token-using-msi?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
 ## [Mode interactif](interactive-azure-cli.md)
 ## Modèles de déploiement
 ### [Utiliser des modèles de déploiement](/azure/azure-resource-manager/resource-group-template-deploy-cli?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
