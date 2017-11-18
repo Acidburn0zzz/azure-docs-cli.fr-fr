@@ -12,15 +12,17 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 65becd3a-9d69-4415-8a30-777d13a0e7aa
-ms.openlocfilehash: 4ab4f0de38614eff00f55bad96ea886bb007f3c0
-ms.sourcegitcommit: f107cf927ea1ef51de181d87fc4bc078e9288e47
+ms.openlocfilehash: 3ba1dd840102c738ccd9eb62a0b9db612cec48d1
+ms.sourcegitcommit: 5cfbea569fef193044da712708bc6957d3fb557c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/04/2017
+ms.lasthandoff: 10/14/2017
 ---
 # <a name="log-in-with-azure-cli-20"></a>Se connecter avec Azure CLI 2.0
 
-Il existe plusieurs manières de se connecter et de s’authentifier auprès d’Azure CLI. Le plus simple est de vous connecter de manière interactive par l’intermédiaire de votre navigateur, ou de vous connecter à la ligne de commande. Nous vous recommandons d’utiliser des principaux du service, qui offrent un moyen de créer des comptes non interactifs que vous pouvez utiliser pour manipuler les ressources. En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir que vos scripts d’automatisation sont encore plus sûrs.
+Il existe plusieurs manières de se connecter et de s’authentifier auprès d’Azure CLI. Le plus simple est de vous connecter de manière interactive par l’intermédiaire de votre navigateur, ou de vous connecter à la ligne de commande. Nous vous recommandons d’utiliser des principaux du service, qui offrent un moyen de créer des comptes non interactifs que vous pouvez utiliser pour manipuler les ressources. En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir que vos scripts d’automatisation sont encore plus sûrs. 
+
+Aucune des informations d’identification privées n’est stockée localement. Au lieu de cela, un jeton d’authentification est généré par Azure, puis stocké. Une fois connecté, votre jeton de connexion locale est valide jusqu’à 14 jours sans être utilisé. Au-delà, vous devrez vous authentifier de nouveau.
 
 Les commandes que vous exécutez avec l’interface de ligne de commande sont exécutées sur votre abonnement par défaut.  Si vous avez plusieurs abonnements, vous souhaiterez peut-être [confirmer votre abonnement par défaut](manage-azure-subscriptions-azure-cli.md) et le changer en conséquence.
 

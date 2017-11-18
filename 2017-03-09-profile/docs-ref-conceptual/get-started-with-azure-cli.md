@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 85c418a8-6177-4833-bb8d-ff4ce2233c1a
-ms.openlocfilehash: 5d6d7abb34fa2be571a9a49f0f84380538592807
-ms.sourcegitcommit: f107cf927ea1ef51de181d87fc4bc078e9288e47
+ms.openlocfilehash: 11153c13fb9868897b0bb21dac9d64072c3af16e
+ms.sourcegitcommit: 70c4d7a14591e5b761e261105cd2d376753f2a54
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/04/2017
+ms.lasthandoff: 09/19/2017
 ---
 # <a name="get-started-with-azure-cli-20"></a>Bien démarrer avec Azure CLI 2.0
 
@@ -40,7 +40,7 @@ La façon la plus simple de commencer est de [lancer Cloud Shell](/azure/cloud-s
 
    ![Créez un compte de stockage.](media/get-started-with-azure-cli/storage-prompt.png)
 
-Vous pouvez également [installer](install-azure-cli.md) l’interface de ligne de commande et l’exécuter localement à partir de la ligne de commande.
+Vous pouvez également [installer](install-azure-cli.md) l’interface de ligne de commande et l’exécuter localement à partir de la ligne de commande. Après avoir installé l’interface CLI, exécutez `az login` pour vous connecter avec votre abonnement par défaut.
 
 ## <a name="create-a-resource-group"></a>Créer un groupe de ressources
 
