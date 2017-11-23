@@ -3,30 +3,28 @@ title: "La gestion de plusieurs clouds avec l’interface de ligne de commande A
 description: "Créer, se connecter et gérer plusieurs clouds avec l’interface de ligne de commande Azure 2.0."
 keywords: "Interface de ligne de commande Azure 2.0, Azure, clouds, centres de données, gouvernement, région, Chine, Allemagne"
 author: sptramer
-manager: douge
+manager: routlaw
 ms.author: sttramer
-ms.date: 06/27/2017
+ms.date: 10/20/2017
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
-ms.openlocfilehash: 0222b7339e46346ef6c7e9ad98616d9b71129942
-ms.sourcegitcommit: f107cf927ea1ef51de181d87fc4bc078e9288e47
+ms.openlocfilehash: cb470d179daf7cb4ecf535903adb12071602034e
+ms.sourcegitcommit: 5db22de971cf3983785cb209d92cbed1bbd69ecf
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/04/2017
+ms.lasthandoff: 11/14/2017
 ---
-# <a name="managing-multiple-clouds-with-azure-cli-20"></a><span data-ttu-id="dcee8-104">La gestion de plusieurs clouds avec l’interface de ligne de commande Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="dcee8-104">Managing multiple clouds with Azure CLI 2.0</span></span>
+# <a name="managing-multiple-clouds-with-azure-cli-20"></a><span data-ttu-id="46030-104">La gestion de plusieurs clouds avec l’interface de ligne de commande Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="46030-104">Managing multiple clouds with Azure CLI 2.0</span></span>
 
-<span data-ttu-id="dcee8-105">Si vous avez plusieurs abonnements associés à Azure, il se peut que vous ayez plusieurs cloud disponibles.</span><span class="sxs-lookup"><span data-stu-id="dcee8-105">If you have multiple subscriptions associated with Azure, you may have more than one cloud available.</span></span> <span data-ttu-id="dcee8-106">Chaque cloud a ses propres points de terminaison associés et ses propres capacités. Ils sont souvent associés à une région particulière qui a des normes de protection de données ou des configurations différentes.</span><span class="sxs-lookup"><span data-stu-id="dcee8-106">Each cloud has its own associated endpoints and capabilities, and is often associated with a particular region that has different data protection standards or requirements.</span></span>
+<span data-ttu-id="46030-105">Si vous travaillez sur différentes régions ou utilisez [Azure Stack](https://docs.microsoft.com/en-us/azure/azure-stack/user/), vous devrez peut-être utiliser plusieurs clouds.</span><span class="sxs-lookup"><span data-stu-id="46030-105">If you work across different regions or use [Azure Stack](https://docs.microsoft.com/en-us/azure/azure-stack/user/), you may need to use more than one cloud.</span></span> <span data-ttu-id="46030-106">Microsoft fournit des clouds conformes aux lois régionales, qui sont à votre disposition.</span><span class="sxs-lookup"><span data-stu-id="46030-106">Microsoft provides clouds for compliance with regional laws, which are available for your use.</span></span> <span data-ttu-id="46030-107">Cet article explique comment obtenir des informations sur les clouds disponibles sur votre compte, modifier le cloud actuel, et inscrire ou annuler désinscrire nouveaux clouds à utiliser avec Azure Stack.</span><span class="sxs-lookup"><span data-stu-id="46030-107">This article shows you how to get information on clouds available to your account, change the current cloud, and register or unregister new clouds for use with Azure Stack.</span></span>
 
-<span data-ttu-id="dcee8-107">Pour travailler efficacement avec plusieurs clouds, vous devez être en mesure de basculer entre ceux qui sont actuellement actifs et éventuellement créer de nouveaux clouds.</span><span class="sxs-lookup"><span data-stu-id="dcee8-107">To effectively work with multiple clouds, you will need to be able to switch between which is currently active, and possibly create new clouds.</span></span>
+## <a name="listing-clouds"></a><span data-ttu-id="46030-108">Énumération des clouds</span><span class="sxs-lookup"><span data-stu-id="46030-108">Listing clouds</span></span>
 
-## <a name="listing-clouds"></a><span data-ttu-id="dcee8-108">Énumération des clouds</span><span class="sxs-lookup"><span data-stu-id="dcee8-108">Listing clouds</span></span>
+<span data-ttu-id="46030-109">Vous pouvez lister les clouds disponibles avec la commande [cloud list](/cli/azure/cloud#list).</span><span class="sxs-lookup"><span data-stu-id="46030-109">You can list available clouds with the [cloud list](/cli/azure/cloud#list) command.</span></span> <span data-ttu-id="46030-110">Elle indique quel cloud est actuellement actif, son profil actuel, et fournit des informations sur les noms d’hôte et les suffixes régionaux.</span><span class="sxs-lookup"><span data-stu-id="46030-110">This tells you which cloud is currently active, what its current profile is, and information on regional suffixes and host names.</span></span>
 
-<span data-ttu-id="dcee8-109">Vous pouvez énumérer vos clouds disponibles avec la commande [liste des clouds](/cli/azure/cloud#list) .</span><span class="sxs-lookup"><span data-stu-id="dcee8-109">You may list your available clouds with the [cloud list](/cli/azure/cloud#list) command.</span></span> <span data-ttu-id="dcee8-110">Cela indique le cloud actuellement actif, son profil actuel et vous fournit des informations sur les noms d’hôte et les suffixes régionaux.</span><span class="sxs-lookup"><span data-stu-id="dcee8-110">This will tell you which cloud is currently active, what its current profile is, and can provide information on regional suffixes and host names.</span></span>
-
-<span data-ttu-id="dcee8-111">Pour obtenir une liste des clouds disponibles et de celui qui est actuellement actif :</span><span class="sxs-lookup"><span data-stu-id="dcee8-111">To get a list of the available clouds and the currently active one:</span></span>
+<span data-ttu-id="46030-111">Pour obtenir le cloud actif et une liste de tous les clouds disponibles :</span><span class="sxs-lookup"><span data-stu-id="46030-111">To get the active cloud and a list of all the available clouds:</span></span>
 
 ```azurecli
 az cloud list --output table
@@ -41,32 +39,68 @@ True        AzureCloud         latest
             AzureGermanCloud   latest
 ```
 
-## <a name="switching-the-active-cloud"></a><span data-ttu-id="dcee8-112">Changement du cloud actif</span><span class="sxs-lookup"><span data-stu-id="dcee8-112">Switching the active cloud</span></span>
+<span data-ttu-id="46030-112">Le cloud actuellement actif a `True` dans la colonne `IsActive`.</span><span class="sxs-lookup"><span data-stu-id="46030-112">The currently active cloud has `True` in the `IsActive` column.</span></span> <span data-ttu-id="46030-113">Un seul cloud peut être actif à tout moment.</span><span class="sxs-lookup"><span data-stu-id="46030-113">Only one cloud can be active at any time.</span></span> <span data-ttu-id="46030-114">Pour obtenir des informations plus détaillées sur un cloud, y compris sur les points de terminaison qu’il utilise pour les services Azure, utilisez la commande `cloud show` :</span><span class="sxs-lookup"><span data-stu-id="46030-114">To get more detailed information on a cloud, including the endpoints that it uses for Azure services, use the `cloud show` command:</span></span>
 
-<span data-ttu-id="dcee8-113">Pour basculer le cloud actuellement actif, vous devez exécuter la commande [ensemble de clouds](/cli/azure/cloud#set) .</span><span class="sxs-lookup"><span data-stu-id="dcee8-113">In order to switch the currently active cloud, you run the [cloud set](/cli/azure/cloud#set) command.</span></span> <span data-ttu-id="dcee8-114">Cette commande accepte un argument obligatoire, qui est le nom du cloud.</span><span class="sxs-lookup"><span data-stu-id="dcee8-114">This command takes one required argument, the name of the cloud.</span></span>
+```azurecli
+az cloud show --name AzureChinaCloud --output json
+```
+
+```output
+{
+  "endpoints": {
+    "activeDirectory": "https://login.chinacloudapi.cn",
+    "activeDirectoryDataLakeResourceId": null,
+    "activeDirectoryGraphResourceId": "https://graph.chinacloudapi.cn/",
+    "activeDirectoryResourceId": "https://management.core.chinacloudapi.cn/",
+    "batchResourceId": "https://batch.chinacloudapi.cn/",
+    "gallery": "https://gallery.chinacloudapi.cn/",
+    "management": "https://management.core.chinacloudapi.cn/",
+    "resourceManager": "https://management.chinacloudapi.cn",
+    "sqlManagement": "https://management.core.chinacloudapi.cn:8443/",
+    "vmImageAliasDoc": "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/arm-compute/quickstart-templates/aliases.json"
+  },
+  "isActive": false,
+  "name": "AzureChinaCloud",
+  "profile": "latest",
+  "suffixes": {
+    "azureDatalakeAnalyticsCatalogAndJobEndpoint": null,
+    "azureDatalakeStoreFileSystemEndpoint": null,
+    "keyvaultDns": ".vault.azure.cn",
+    "sqlServerHostname": ".database.chinacloudapi.cn",
+    "storageEndpoint": "core.chinacloudapi.cn"
+  }
+}
+```
+
+## <a name="switching-the-active-cloud"></a><span data-ttu-id="46030-115">Changement du cloud actif</span><span class="sxs-lookup"><span data-stu-id="46030-115">Switching the active cloud</span></span>
+
+<span data-ttu-id="46030-116">Pour changer le cloud actuellement actif, exécutez la commande [cloud set](/cli/azure/cloud#set).</span><span class="sxs-lookup"><span data-stu-id="46030-116">To switch the currently active cloud, run the [cloud set](/cli/azure/cloud#set) command.</span></span> <span data-ttu-id="46030-117">Cette commande accepte un argument obligatoire, qui est le nom du cloud.</span><span class="sxs-lookup"><span data-stu-id="46030-117">This command takes one required argument, the name of the cloud.</span></span>
 
 ```azurecli
 az cloud set --name AzureChinaCloud
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="dcee8-115">Si vous n’avez jamais effectué d’authentification pour le cloud actif, vous devez le faire avant d’effectuer d’autres opérations de l’interface de ligne de commande.</span><span class="sxs-lookup"><span data-stu-id="dcee8-115">If you have never authenticated for the active cloud, you will need to do so before performing any other CLI operations.</span></span> <span data-ttu-id="dcee8-116">Pour obtenir des instructions sur l’authentification, consultez [Se connecter avec l’interface de ligne de commande Azure 2.0](/cli/azure/authenticate-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="dcee8-116">For instructions on authenticating, see [Log in with Azure CLI 2.0](/cli/azure/authenticate-azure-cli).</span></span>
+> <span data-ttu-id="46030-118">Si l’authentification pour le cloud activé a expiré, vous devez vous authentifier de nouveau avant d’effectuer d’autres tâches CLI.</span><span class="sxs-lookup"><span data-stu-id="46030-118">If your authentication for the activated cloud has expired, you need to re-authenticate before performing any other CLI tasks.</span></span> <span data-ttu-id="46030-119">S’il s’agit de la première fois que vous changez vers le nouveau cloud, vous devez également configurer l’abonnement actif.</span><span class="sxs-lookup"><span data-stu-id="46030-119">If this is your first time switching to the new cloud, you also need to set the active subscription.</span></span>
+> <span data-ttu-id="46030-120">Pour obtenir des instructions sur l’authentification, consultez [Se connecter avec l’interface de ligne de commande Azure 2.0](authenticate-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="46030-120">For instructions on authenticating, see [Log in with Azure CLI 2.0](authenticate-azure-cli.md).</span></span> <span data-ttu-id="46030-121">Pour plus d’informations sur la gestion des abonnements, consultez [Gestion des abonnements Azure avec Azure CLI 2.0](manage-azure-subscriptions-azure-cli.md)</span><span class="sxs-lookup"><span data-stu-id="46030-121">For information on subscription management, see [Manage Azure subscriptions with Azure CLI 2.0](manage-azure-subscriptions-azure-cli.md)</span></span>
 
-## <a name="register-or-unregister-a-cloud"></a><span data-ttu-id="dcee8-117">Inscrire ou désinscrire un cloud</span><span class="sxs-lookup"><span data-stu-id="dcee8-117">Register or unregister a cloud</span></span>
+## <a name="register-a-cloud"></a><span data-ttu-id="46030-122">Inscrire un cloud</span><span class="sxs-lookup"><span data-stu-id="46030-122">Register a cloud</span></span>
 
-<span data-ttu-id="dcee8-118">Inscrire un nouveau cloud si vous avez vos propres points de terminaison ou si vous avez besoin d’un profil différent.</span><span class="sxs-lookup"><span data-stu-id="dcee8-118">Register a new cloud if you have your own endpoints or require a different profile.</span></span> <span data-ttu-id="dcee8-119">La création d’un cloud s’effectue avec la commande [cloud register](/cli/azure/cloud#register) .</span><span class="sxs-lookup"><span data-stu-id="dcee8-119">Creating a cloud is done with the [cloud register](/cli/azure/cloud#register) command.</span></span> <span data-ttu-id="dcee8-120">Cette commande nécessite un nom et éventuellement un ensemble de configurations et de désignations de point de terminaison.</span><span class="sxs-lookup"><span data-stu-id="dcee8-120">This command requires a name, and optionally a set of capabilities and endpoint designations.</span></span>
+<span data-ttu-id="46030-123">Inscrivez un nouveau cloud si vous disposez de vos propres points de terminaison pour Azure Stack.</span><span class="sxs-lookup"><span data-stu-id="46030-123">Register a new cloud if you have your own endpoints for Azure Stack.</span></span> <span data-ttu-id="46030-124">La création d’un cloud s’effectue avec la commande [cloud register](/cli/azure/cloud#register) .</span><span class="sxs-lookup"><span data-stu-id="46030-124">Creating a cloud is done with the [cloud register](/cli/azure/cloud#register) command.</span></span> <span data-ttu-id="46030-125">Cette commande nécessite un nom et un ensemble de fonctionnalités avec les points de terminaison associés.</span><span class="sxs-lookup"><span data-stu-id="46030-125">This command requires a name and a set of capabilities with associated endpoints.</span></span> <span data-ttu-id="46030-126">Pour savoir comment inscrire un cloud pour une utilisation avec Azure Stack, consultez [Installer et configurer CLI pour une utilisation avec Azure Stack](/azure/azure-stack/user/azure-stack-connect-cli#connect-to-azure-stack).</span><span class="sxs-lookup"><span data-stu-id="46030-126">To learn how to register a cloud for use with Azure Stack, see [Install and configure CLI for use with Azure Stack](/azure/azure-stack/user/azure-stack-connect-cli#connect-to-azure-stack).</span></span>  
 
-<span data-ttu-id="dcee8-121">Pour créer un cloud avec un point de terminaison spécialisé pour le gestionnaire de ressources, avec un profil spécifique :</span><span class="sxs-lookup"><span data-stu-id="dcee8-121">To create a cloud with a specialized endpoint for the resource manager, with a specific profile:</span></span>
+<span data-ttu-id="46030-127">Vous n’avez pas besoin d’inscrire votre propre cloud pour les régions de la Chine, du Gouvernement des États-Unis ou de l’Allemagne.</span><span class="sxs-lookup"><span data-stu-id="46030-127">You do not need to register your own cloud for China, US Government, or German regions.</span></span> <span data-ttu-id="46030-128">Celles-ci sont gérées par Microsoft et disponibles par défaut.</span><span class="sxs-lookup"><span data-stu-id="46030-128">These are managed by Microsoft and available by default.</span></span>  <span data-ttu-id="46030-129">Pour plus d’informations sur tous les paramètres de point de terminaison disponibles, consultez la [documentation pour `az cloud register`](/cli/azure/cloud?view=azure-cli-latest#az_cloud_register).</span><span class="sxs-lookup"><span data-stu-id="46030-129">For more information on all of the available endpoint settings, see the [documentation for `az cloud register`](/cli/azure/cloud?view=azure-cli-latest#az_cloud_register).</span></span>
 
-```azurecli
-az cloud register --name MyCloud --endpoint-resource-manager "https://my.endpoint.manager" --profile 2017-03-09-profile
-```
+<span data-ttu-id="46030-130">L’inscription d’un cloud n’active pas automatiquement ce dernier.</span><span class="sxs-lookup"><span data-stu-id="46030-130">Registering a cloud does not automatically switch to it.</span></span> <span data-ttu-id="46030-131">Utilisez la commande `az cloud set` pour sélectionner le cloud qui vient d’être créé comme décrit ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="46030-131">Use the `az cloud set` command to select the newly created cloud as described above.</span></span>
 
-<span data-ttu-id="dcee8-122">Cela crée le cloud, mais ne le sélectionne _pas_ automatiquement.</span><span class="sxs-lookup"><span data-stu-id="dcee8-122">This creates the cloud, but does _not_ automatically select it.</span></span>
+## <a name="update-an-existing-cloud"></a><span data-ttu-id="46030-132">Mettre à jour un cloud existant</span><span class="sxs-lookup"><span data-stu-id="46030-132">Update an existing cloud</span></span>
 
-<span data-ttu-id="dcee8-123">Si vous n’avez plus besoin du cloud créé, il peut être annulé avec la commande [cloud unregister](/cli/azure/cloud#unregister) :</span><span class="sxs-lookup"><span data-stu-id="dcee8-123">If you no longer require the created cloud, it can be unregistered with the [cloud unregister](/cli/azure/cloud#unregister) command:</span></span>
+<span data-ttu-id="46030-133">Si vous disposez des autorisations, vous pouvez également mettre à jour un cloud existant.</span><span class="sxs-lookup"><span data-stu-id="46030-133">If you have permissions, you can also update an existing cloud.</span></span> <span data-ttu-id="46030-134">Faites-le lorsque vous avez besoin de basculer vers un autre profil Azure, ou d’ajouter ou de modifier un point de terminaison.</span><span class="sxs-lookup"><span data-stu-id="46030-134">Do this when you need to switch to a different Azure profile, add an endpoint, or change an endpoint.</span></span>
+<span data-ttu-id="46030-135">Faites-le avec la commande `az cloud update`, qui accepte les mêmes arguments que `az cloud register`.</span><span class="sxs-lookup"><span data-stu-id="46030-135">You do this with the `az cloud update` command, which takes the same arguments as `az cloud register`.</span></span> <span data-ttu-id="46030-136">Pour plus d’informations, consultez la [documentation pour `az cloud update`](/cli/azure/cloud?view=azure-cli-latest#az_cloud_update).</span><span class="sxs-lookup"><span data-stu-id="46030-136">For more information, see the [documentation for `az cloud update`](/cli/azure/cloud?view=azure-cli-latest#az_cloud_update).</span></span>
+
+## <a name="unregister-a-cloud"></a><span data-ttu-id="46030-137">Désinscrire un cloud</span><span class="sxs-lookup"><span data-stu-id="46030-137">Unregister a cloud</span></span>
+
+<span data-ttu-id="46030-138">Si vous n’avez plus besoin d’un cloud inscrit, vous pouvez le désinscrire avec la commande [cloud unregister](/cli/azure/cloud#unregister) :</span><span class="sxs-lookup"><span data-stu-id="46030-138">If you no longer require a registered cloud, it can be unregistered with the [cloud unregister](/cli/azure/cloud#unregister) command:</span></span>
 
 ```azurecli
 az cloud unregister --name MyCloud
 ```
-
