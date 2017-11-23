@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 85c418a8-6177-4833-bb8d-ff4ce2233c1a
-ms.openlocfilehash: 11153c13fb9868897b0bb21dac9d64072c3af16e
-ms.sourcegitcommit: 70c4d7a14591e5b761e261105cd2d376753f2a54
+ms.openlocfilehash: 3354d1c6518ea2d0ef0db227a13b86cb59d0575e
+ms.sourcegitcommit: 905939cc44764b4d1cc79a9b36c0793f7055a686
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/19/2017
+ms.lasthandoff: 11/20/2017
 ---
 # <a name="get-started-with-azure-cli-20"></a>Bien démarrer avec Azure CLI 2.0
 
@@ -328,7 +328,7 @@ Pour des requêtes encore plus poussées, vous pouvez utiliser le paramètre `--
 Par exemple, exécutez la commande suivante pour rechercher les ressources de machine virtuelle dans tous les groupes de ressources qui contiennent les lettres « My » :
 
 ```azurecli-interactive
-az vm list --output table --query "[?contains(resourceGroup,'MY')]" 
+az vm list --output table --query "[?contains(resourceGroup, 'MY')]" 
 ```
 
 ```Output
@@ -341,7 +341,7 @@ MYRESOURCEGROUP  Succeeded            MyWinVM    westus2     XXXXXXXX-XXXX-XXXX-
 Ensuite, nous pouvons choisir d’affiner davantage la sortie en exploitant la fonctionnalité de mise en forme des requêtes JMESPath pour générer des valeurs différentes.  Par exemple, la commande suivante récupère le type de disque de système d’exploitation utilisé par la machine virtuelle afin de déterminer s’il s’agit d’un système d’exploitation Linux ou Windows :
 
 ```azurecli-interactive
-az vm list --output table --query "[?contains(resourceGroup,'MY')].{ VMName:name,OSType:storageProfile.osDisk.osType }" 
+az vm list --output table --query "[?contains(resourceGroup, 'MY')].{ VMName:name, OSType:storageProfile.osDisk.osType }" 
 ```
 
 ```Output

@@ -12,13 +12,119 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ce0428f7-0a59-4e72-9237-d907b171af51
-ms.openlocfilehash: 429b099dabd27d9356e88791f955ec52acd2a5f9
-ms.sourcegitcommit: 9b36c15dc0e10024e23b8018604f5ef63c025de1
+ms.openlocfilehash: 761bd61474e7c72fb2daeb756828f00196b56c3a
+ms.sourcegitcommit: bb649ebd7e7fce8fb5008ac1e2e2c33481a45df9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/24/2017
+ms.lasthandoff: 11/16/2017
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="november-14-2017"></a>14 novembre 2017
+
+Version 2.0.21
+
+### <a name="acr"></a>ACR
+
+* Ajout de la prise en charge pour la création de webhooks dans les régions de réplication
+
+
+### <a name="acs"></a>ACS
+
+* Modification de toutes les mentions « agent » en « nœud » dans AKS
+* Option `--orchestrator-release` déconseillée pour `acs create`
+* Changement de la taille de machine virtuelle par défaut pour AKS à `Standard_D1_v2`
+* Résolution de `az aks browse` sur Windows
+* Résolution de `az aks get-credentials` sur Windows
+
+### <a name="appservice"></a>AppService
+
+* Ajout de la source de déploiement `config-zip` pour les applications Web et de fonction
+* Ajout de l’option `--docker-container-logging` à `az webapp log config`
+* Suppression de l’option `storage` du paramètre `--web-server-logging` de `az webapp log config`
+* Amélioration des messages d’erreur pour `deployment user set`
+* Ajout de la prise en charge pour la création d’applications de fonction Linux
+* `list-locations` fixe
+
+### <a name="batch"></a>Batch
+
+* Correction du bogue dans la commande de création de pool lorsqu’un ID ressource a été utilisé avec l’indicateur `--image`
+
+### <a name="batchai"></a>Batchai
+
+* Ajout de l’option courte, `-s`, pour `--vm-size` quand la taille de machine virtuelle est fournie dans la commande `file-server create`
+* Ajout du nom de compte de stockage et des arguments de clé dans les paramètres `cluster create`
+* Résolution de la documentation pour `job list-files` et `job stream-file`
+* Ajout de l’option courte, `-r`, pour `--cluster-name` quand le nom du cluster est fourni dans la commande `job create`
+
+### <a name="cloud"></a>Cloud
+
+* Modification de `cloud [register|update]` pour empêcher l’inscription des clouds qui ne disposent pas de tous les points de terminaison requis
+
+### <a name="container"></a>Conteneur
+
+* Ajout de la prise en charge pour ouvrir plusieurs ports
+* Ajout de la stratégie de redémarrage du groupe de conteneurs
+* Ajout de la prise en charge pour monter le partage de fichier Azure en tant que volume
+* Mise à jour des documents d’assistance
+
+### <a name="data-lake-analytics"></a>Data Lake Analytics
+
+* Modification de `[job|account] list` pour retourner des informations plus concises
+
+### <a name="data-lake-store"></a>Data Lake Store
+
+* Modification de `account list` pour retourner des informations plus concises
+
+### <a name="extension"></a>Extension
+
+* Ajout de `extension list-available` pour permettre l’affichage de la liste des extensions officielles Microsoft
+* Ajout de `--name` à `extension [add|update]` pour permettre l’installation des extensions par nom
+
+### <a name="iot"></a>IoT
+
+* Ajout de la prise en charge pour les autorités de certification (CA) et les chaînes d’approbation
+
+### <a name="monitor"></a>Surveiller
+
+* Ajout des commandes `activity-log alert`
+
+### <a name="network"></a>Réseau
+
+* Ajout de la prise en charge pour les enregistrements DNS CAA
+* Résolution d’un problème empêchant la mise à jour des points de terminaison avec `traffic-manager profile update`
+* Résolution d’un problème où `vnet update --dns-servers` ne fonctionnait pas, en fonction de la façon dont avait été créé le réseau virtuel
+* Résolution d’un problème où les noms DNS relatifs n’étaient pas importés correctement par `dns zone import`
+
+### <a name="reservations"></a>Réservations
+
+* Version préliminaire initiale
+
+### <a name="resource"></a>Ressource
+
+* Ajout de la prise en charge pour les ID de ressource au paramètre `--resource` et pour les verrous au niveau des ressources
+
+### <a name="sql"></a>SQL
+
+* Ajout du paramètre `--ignore-missing-vnet-service-endpoint` pour `sql server vnet-rule [create|update]`
+
+### <a name="storage"></a>Storage
+
+* Modification de `storage account create` pour utiliser la référence SKU `Standard_RAGRS` par défaut
+* Correction du bogue lors du traitement des noms d’objets blob/de fichier qui incluent des caractères non-ascii
+* Correction du bogue qui empêchait l’utilisation de `--source-uri` avec `storage [blob|file] copy start-batch`
+* Ajout de commandes pour paramétrer et supprimer plusieurs objets avec `storage [blob|file] delete-batch`
+* Résolution du problème de l’activation des métriques avec `storage metrics update`
+* Résolution du problème des fichiers de plus de 200 Go lors de l’utilisation de `storage blob upload-batch`
+* Résolution du problème où `--bypass` et `--default-action` étaient ignorés par `storage account [create|update]`
+
+### <a name="vm"></a>Machine virtuelle
+
+* Correction d’un bogue avec `vmss create` qui empêchait l’utilisation du niveau de taille `Basic`
+* Ajout d’arguments `--plan` à `[vm|vmss] create` pour les images personnalisées avec des informations de facturation
+* Ajout des commandes `vm secret `[add|remove|list]
+* Renommage de `vm format-secret` en `vm secret format`
+* Ajout de l’argument `--encrypt format` à `vm encryption enable`
 
 ## <a name="october-24-2017"></a>24 octobre 2017
 

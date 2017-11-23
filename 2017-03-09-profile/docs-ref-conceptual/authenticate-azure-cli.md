@@ -1,22 +1,22 @@
 ---
 title: Se connecter avec Azure CLI 2.0
 description: Se connecter avec Azure CLI 2.0 sur Linux, Mac ou Windows.
-keywords: Azure CLI 2.0, Linux, Mac, Windows, OS X, Ubuntu, Debian, CentOS, RHEL, SUSE, CoreOS, Docker, Windows, Python, PIP
-author: rloutlaw
-ms.author: routlaw
-manager: douge
-ms.date: 02/27/2017
+keywords: Azure CLI 2.0, connexion, Azure CLI, authentification, autorisation, se connecter
+author: sptramer
+ms.author: stttramer
+manager: routlaw
+ms.date: 11/13/2017
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 65becd3a-9d69-4415-8a30-777d13a0e7aa
-ms.openlocfilehash: 3ba1dd840102c738ccd9eb62a0b9db612cec48d1
-ms.sourcegitcommit: 5cfbea569fef193044da712708bc6957d3fb557c
+ms.openlocfilehash: dd05868f7378673836f47e743ed4088f2efd3dca
+ms.sourcegitcommit: 5db22de971cf3983785cb209d92cbed1bbd69ecf
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/14/2017
+ms.lasthandoff: 11/14/2017
 ---
 # <a name="log-in-with-azure-cli-20"></a>Se connecter avec Azure CLI 2.0
 
@@ -24,7 +24,7 @@ Il existe plusieurs manières de se connecter et de s’authentifier auprès d�
 
 Aucune des informations d’identification privées n’est stockée localement. Au lieu de cela, un jeton d’authentification est généré par Azure, puis stocké. Une fois connecté, votre jeton de connexion locale est valide jusqu’à 14 jours sans être utilisé. Au-delà, vous devrez vous authentifier de nouveau.
 
-Les commandes que vous exécutez avec l’interface de ligne de commande sont exécutées sur votre abonnement par défaut.  Si vous avez plusieurs abonnements, vous souhaiterez peut-être [confirmer votre abonnement par défaut](manage-azure-subscriptions-azure-cli.md) et le changer en conséquence.
+Une fois connecté, les commandes CLI sont exécutées sur votre abonnement par défaut. Si vous avez plusieurs abonnements, vous souhaiterez peut-être [modifier votre abonnement par défaut](manage-azure-subscriptions-azure-cli.md).
 
 ## <a name="interactive-log-in"></a>Connexion interactive
 
@@ -46,35 +46,18 @@ az login -u <username> -p <password>
 ## <a name="logging-in-with-a-service-principal"></a>Connexion avec un principal du service
 
 Les principaux du service sont comme des comptes d’utilisateur auxquels vous pouvez appliquer des règles à l’aide d’Azure Active Directory.
-L’authentification avec un principal du service est le meilleur moyen de sécuriser l’utilisation de vos ressources Azure à partir de vos applications ou scripts qui manipulent des ressources.
-Vous définissez les rôles dont vous souhaitez que vos utilisateurs disposent par l’intermédiaire de l’ensemble de commandes `az role`.
-Pour en savoir plus et pour obtenir des exemples de rôles de principal du service, consultez nos [articles de référence de rôle az](https://docs.microsoft.com/cli/azure/role.md).
+L’authentification avec un principal du service est le meilleur moyen de sécuriser l’utilisation de vos ressources Azure à partir de vos applications ou scripts qui manipulent des ressources. Si vous n’avez pas encore de principal du service disponible et que vous souhaitez en créer un, consultez [Créer un principal du service Azure avec Azure CLI](create-an-azure-service-principal-azure-cli.md).
 
-1. Si vous n’avez pas encore de principal du service, [créez-en un](create-an-azure-service-principal-azure-cli.md).
+Pour vous connecter avec un principal du service, renseignez le nom d’utilisateur, le mot de passe ou fichier de certificat PEM, et le locataire associé au principal du service :
 
-1. Connectez-vous avec un principal du service.
+```azurecli-interactive
+az login --service-principal -u <user> -p <password-or-cert> --tenant <tenant>
+```
 
-   ```azurecli-interactive
-   az login --service-principal -u "http://my-app" -p <password> --tenant <tenant>
-   ```
+La valeur du locataire est le locataire Azure Active Directory associé au principal du service. Il peut s’agir d’un domaine .onmicrosoft.com, ou de l’ID objet Azure du locataire.
+Vous pouvez obtenir l’ID objet du locataire pour votre connexion actuelle à l’aide de la commande suivante :
 
-   Pour obtenir votre locataire, connectez-vous de manière interactive, puis obtenez l’ID de locataire de votre abonnement.
+```azurecli
+az account show --query 'tenanatId' -o tsv
+```
 
-   ```azurecli
-   az account show
-   ```
-
-   ```json
-   {
-       "environmentName": "AzureCloud",
-       "id": "********-****-****-****-************",
-       "isDefault": true,
-       "name": "Pay-As-You-Go",
-       "state": "Enabled",
-       "tenantId": "********-****-****-****-************",
-       "user": {
-       "name": "********",
-       "type": "user"
-       }
-   }
-   ```
