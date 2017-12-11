@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ea5c0ee1-c530-4a1e-a83f-e1be71f6d416
-ms.openlocfilehash: 22c92aae5b836599d2f29b9f03fbf88c0ca6c2b8
-ms.sourcegitcommit: 905939cc44764b4d1cc79a9b36c0793f7055a686
+ms.openlocfilehash: 36429bb23f392ff6210a9c99885df83f53768386
+ms.sourcegitcommit: 5fc7d8ccf2304c5a12fb99a80f0b00a0ad2c34e9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/20/2017
+ms.lasthandoff: 12/01/2017
 ---
 # <a name="install-azure-cli-20"></a>Installer Azure CLI 2.0
 
@@ -26,7 +26,7 @@ Elle peut être utilisée sur macOS, Linux et Windows.
 Pour plus d’informations sur la version la plus récente, consultez les [Notes de publication](release-notes-azure-cli.md).
 
 > [!NOTE]
-> Si vous devez utiliser la version précédente d’Azure CLI, voici comment [installer Azure 1.0](/azure/cli-install-nodejs).
+> Si vous utilisez le modèle Azure Service Management (ASM), [installez Azure CLI 1.0](/azure/cli-install-nodejs).
 
 ## <a name="a-namemacosinstall-on-macos"></a><a name="macOS"/>Installer sur macOS
 
@@ -270,7 +270,7 @@ et vérifier si le problème est résolu. Il est possible que la commande ne se 
 
 ## <a name="uninstall-cli-1x-versions"></a>Désinstaller les versions 1.x de l’interface de ligne de commande
 
-Si vous votre système dispose d’une version 1.x antérieure de l’interface de ligne de commande, vous pouvez la désinstaller en fonction du type d’installation utilisé.
+Si votre système dispose d’une version 1.x antérieure de l’interface de ligne de commande, vous pouvez la désinstaller en fonction du type d’installation utilisé.
 
 ### <a name="uninstall-with-npm"></a>Désinstaller avec npm
 

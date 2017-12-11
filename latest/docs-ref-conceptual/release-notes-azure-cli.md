@@ -12,13 +12,71 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ce0428f7-0a59-4e72-9237-d907b171af51
-ms.openlocfilehash: 761bd61474e7c72fb2daeb756828f00196b56c3a
-ms.sourcegitcommit: 905939cc44764b4d1cc79a9b36c0793f7055a686
+ms.openlocfilehash: e02b84891f4bf60cde12591b8e85987f4b3c9e79
+ms.sourcegitcommit: a3c8e15eafac1ddc2289110d513b39714a23353b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/20/2017
+ms.lasthandoff: 12/07/2017
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="december-5-2017"></a>5 décembre 2017
+
+Version 2.0.22
+
+* Suppression des commandes `az component`. Utilisation de `az extension` à la place
+
+### <a name="core"></a>Principal
+* Modification du point de terminaison de l’autorité AAD `AZURE_US_GOV_CLOUD` pour le faire passer de login.microsoftonline.com à login.microsoftonline.us
+* Résolution du problème au cours duquel les données de télémétrie étaient constamment renvoyées
+
+### <a name="acs"></a>ACS
+
+* Ajout des commandes `aks install-connector` et `aks remove-connector`
+* Amélioration des rapports d’erreurs pour `acs create`
+* Correction de l’utilisation de `aks get-credentials -f` sans chemin d’accès complet
+
+### <a name="advisor"></a>Advisor
+
+* Version initiale
+
+### <a name="appservice"></a>AppService
+
+* Correction de la génération du nom de certificat avec `webapp config ssl upload`
+* Correction de `webapp [list|show]` et `functionapp [list|show]` de manière à afficher les applications correctes
+* Ajout de la valeur par défaut pour `WEBSITE_NODE_DEFAULT_VERSION`
+
+### <a name="consumption"></a>Consommation
+
+* Ajout de la prise en charge de l’API version 2017-11-30
+
+### <a name="container"></a>Conteneur
+
+* Correction de la régression des ports par défaut
+
+### <a name="monitor"></a>Surveiller
+
+* Ajout de la prise en charge de plusieurs dimensions à la commande des mesures
+
+### <a name="resource"></a>Ressource
+
+* Ajout de l’argument `--include-response-body` à `resource show`
+
+### <a name="role"></a>Rôle
+
+* Ajout de l’affichage des affectations par défaut pour les administrateurs « classiques » à `role assignment list`
+* Ajout de la prise en charge à `ad sp reset-credentials` pour l’ajout d’informations d’identification au lieu de leur remplacement
+* Amélioration des rapports d’erreurs pour `ad sp create-for-rbac`
+
+### <a name="sql"></a>SQL
+
+* Ajout des commandes `sql db list-usages` et `sql db show-usage`
+* Ajout des commandes `sql server conn-policy show` et `sql server conn-policy update`
+
+### <a name="vm"></a>Machine virtuelle
+
+* Ajout des informations de zone à `az vm list-skus`
+
 
 ## <a name="november-14-2017"></a>14 novembre 2017
 
@@ -98,7 +156,7 @@ Version 2.0.21
 
 ### <a name="reservations"></a>Réservations
 
-* Préversion initiale
+* Version préliminaire initiale
 
 ### <a name="resource"></a>Ressource
 
@@ -325,7 +383,7 @@ Version 2.0.17
 
 ### <a name="resource"></a>Ressource
 
-* Autoriser le passages dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
+* Autoriser le passage dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
 * Autoriser le passage dans les valeurs de paramètres pour `policy assignment create`
 * Autoriser le passage de JSON ou d’un fichier pour tous les paramètres
 * Incrémentation de la version de l’API
@@ -408,7 +466,7 @@ Version 2.0.15
 
 * Paramétrage du niveau blob activé
 * Ajout des arguments `--bypass` et `--default-action` à `storage account [create|update]` pour la prise en charge du tunneling de service
-* Ajout de commandes permettant d’ajouter des règles de réseau virtuel et des règles basées sur IP à `storage account network-rule`  
+* Ajout de commandes permettant d’ajouter des règles de réseau virtuel et des règles basées sur IP à `storage account network-rule`
 * Activation du chiffrement du service par la clé gérée du client
 * [MODIFICATION CRITIQUE] Renommage de l’option `--encryption` en `--encryption-services` pour `az storage account create and az storage account update` la commande
 * Problème résolu #4220 : `az storage account update encryption` - incompatibilité de syntaxe
@@ -416,8 +474,8 @@ Version 2.0.15
 ### <a name="vm"></a>Machine virtuelle
 
 * Correction d’un problème qui entraînait l’affichage d’informations supplémentaires erronées pour `vmss get-instance-view` lors de l’utilisation `--instance-id *`
-* Ajout de la prise en charge de `--lb-sku` pour `vmss create`: 
-* Suppression des noms humains de la liste rouge du nom de l’administrateur pour `[vm|vmss] create` 
+* Ajout de la prise en charge de `--lb-sku` pour `vmss create`:
+* Suppression des noms humains de la liste rouge du nom de l’administrateur pour `[vm|vmss] create`
 * Correction d’un problème qui entraînait `[vm|vmss] create` la levée d’une erreur si la commande ne parvenait pas à extraire des informations de plan à partir d’une image
 * Correction d’un incident qui se produisait lors de la création d’un groupe identique VMMD avec un équilibrage de charge (LB) interne
 * Correction d’un problème qui empêchait `--no-wait` le fonctionnement d’un argument avec `vm availability-set create`
@@ -478,7 +536,7 @@ Version 2.0.13
 * `lb` : correction d’un problème qui empêchait certains noms de ressources enfant d’être résolus correctement lorsqu’ils étaient omis
 * `application-gateway {subresource} delete` : correction d’un problème en raison duquel `--no-wait` n’était pas honorée
 * `application-gateway http-settings update` : correction d’un problème `--connection-draining-timeout` qui empêchait la désactivation de
-* Correction de erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
+* Correction de l’erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
 
 ### <a name="profile"></a>Profil
 
@@ -505,43 +563,43 @@ Version 2.0.12
 * Ajout de modules de facturation et de consommation
 
 ```
-azure-cli (2.0.12)  
+azure-cli (2.0.12)
 
-acr (2.0.9)  
-acs (2.0.11)  
-appservice (0.1.11)  
-batch (3.0.3)  
-billing (0.1.3)  
-cdn (0.0.6)  
-cloud (2.0.7)  
-cognitiveservices (0.1.6)  
-command-modules-nspkg (2.0.1)  
-component (2.0.6)  
-configure (2.0.10)  
-consumption (0.1.3)  
-container (0.1.7)  
-core (2.0.12)  
-cosmosdb (0.1.11)  
-dla (0.0.10)  
-dls (0.0.11)  
-feedback (2.0.6)  
-find (0.2.6)  
-interactive (0.3.7)  
-iot (0.1.10)  
-keyvault (2.0.8)  
-lab (0.0.9)  
-monitor (0.0.8)  
-network (2.0.11)  
-nspkg (3.0.1)  
-profile (2.0.9)  
-rdbms (0.0.5)  
-redis (0.2.7)  
-resource (2.0.11)  
-role (2.0.9)  
-sf (1.0.5)  
-sql (2.0.8)  
-storage (2.0.11)  
-vm (2.0.11) 
+acr (2.0.9)
+acs (2.0.11)
+appservice (0.1.11)
+batch (3.0.3)
+billing (0.1.3)
+cdn (0.0.6)
+cloud (2.0.7)
+cognitiveservices (0.1.6)
+command-modules-nspkg (2.0.1)
+component (2.0.6)
+configure (2.0.10)
+consumption (0.1.3)
+container (0.1.7)
+core (2.0.12)
+cosmosdb (0.1.11)
+dla (0.0.10)
+dls (0.0.11)
+feedback (2.0.6)
+find (0.2.6)
+interactive (0.3.7)
+iot (0.1.10)
+keyvault (2.0.8)
+lab (0.0.9)
+monitor (0.0.8)
+network (2.0.11)
+nspkg (3.0.1)
+profile (2.0.9)
+rdbms (0.0.5)
+redis (0.2.7)
+resource (2.0.11)
+role (2.0.9)
+sf (1.0.5)
+sql (2.0.8)
+storage (2.0.11)
+vm (2.0.11)
 ```
 
 ### <a name="core"></a>Principal
@@ -754,8 +812,8 @@ vm (2.0.11)
 * Suppression d’une `--marker` option à partir des commandes `storage blob list`, `storage container list`et `storage share list` (#3745)
 * Activation de la création d’un compte de stockage https-only
 * Mise à jour des métriques de stockage, de la journalisation et des commandes cors (#3495)
-* Reformulation d’un message d’exception de l’ajout CORS (#3638) (#3362)  
-* Conversion du générateur à une liste en mode exécution d’essai de la commande de téléchargement de lot (#3592) 
+* Reformulation d’un message d’exception de l’ajout CORS (#3638) (#3362)
+* Conversion du générateur à une liste en mode exécution d’essai de la commande de téléchargement de lot (#3592)
 * Correction du problème d’essai associé au lot de téléchargement du blob (#3640) (#3592)
 
 ### <a name="vm"></a>Machine virtuelle
@@ -821,7 +879,7 @@ vm (2.0.6)
 
 ### <a name="core"></a>Principal
 
-* principal : capturer les exceptions provoquées par un fournisseur non enregistré et l’enregistrer automatiquement   
+* principal : capturer les exceptions provoquées par un fournisseur non enregistré et l’enregistrer automatiquement
 * performance : conserver le cache de jeton adal en mémoire jusqu’à la fin du processus ([#2603](https://github.com/Azure/azure-cli/issues/2603))
 * Corriger les octets retournés par l’empreinte digitale hex -o tsv ([#3053](https://github.com/Azure/azure-cli/issues/3053))
 * Téléchargement du certificat Key Vault et intégration AAD SP améliorés ([#3003](https://github.com/Azure/azure-cli/issues/3003))
@@ -915,7 +973,7 @@ vm (2.0.6)
 * Corriger le bogue avec `vpn-connection create` lors de l’utilisation des paramètres `--no-wait` ou `--validate`.
 * Ajouter la prise en charge des passerelles de réseau virtuel actif-actif
 * Supprimer les valeurs NULL de la sortie des commandes `network vpn-connection list/show`.
-* BC : résoudre un bogue dans la sortie de `vpn-connection create` 
+* BC : résoudre un bogue dans la sortie de `vpn-connection create`
 * Corriger le bogue où l’argument « --key-length » de « vpn-connection create » n’était pas analysé correctement.
 * Corriger le bogue dans `dns zone import` où les enregistrements n’étaient pas été importés correctement.
 * Corriger le bogue où `traffic-manager endpoint update` ne fonctionnait pas.
@@ -981,7 +1039,7 @@ Nous avons publié les composants ACR, Batch, KeyVault et SQL dans cette version
 
 ```
 azure-cli (2.0.2)
- 
+
 acr (2.0.0)
 acs (2.0.2)
 appservice (0.1.2)
@@ -1019,26 +1077,26 @@ vm (2.0.2)
 * Ajout d’une invite pour les paramètres de modèle manquants. ([#2364](https://github.com/Azure/azure-cli/pull/2364))
 * Prise en charge de la définition de valeurs par défaut pour des arguments courants tels que le groupe de ressources par défaut, le site web par défaut et la machine virtuelle par défaut
 * Prise en charge de la connexion à un locataire spécifique
- 
+
 ### <a name="acs"></a>ACS
 
 * [ACS] Ajout de la prise en charge de la configuration d’un cluster ACS par défaut ([#2554](https://github.com/Azure/azure-cli/pull/2554))
 * Ajout de la prise en charge de l’invite de mot de passe de clé ssh. ([#2044](https://github.com/Azure/azure-cli/pull/2044))
 * Ajout de la prise en charge des clusters Windows. ([#2211](https://github.com/Azure/azure-cli/pull/2211))
 * Basculement du rôle Propriétaire au rôle Contributeur. ([#2321](https://github.com/Azure/azure-cli/pull/2321))
- 
+
 ### <a name="appservice"></a>AppService
 
 * appservice : prise en charge de l’obtention de l’adresse IP externe utilisée pour les enregistrements A DNS ([#2627](https://github.com/Azure/azure-cli/pull/2627))
 * appservice : prise en charge de la liaison des certificats avec caractères génériques ([#2625](https://github.com/Azure/azure-cli/pull/2625))
 * appservice : prise en charge des profils de publication de liste ([#2504](https://github.com/Azure/azure-cli/pull/2504))
 * AppService : déclenchement de la synchronisation de contrôle de code source après la configuration ([#2326](https://github.com/Azure/azure-cli/pull/2326))
- 
+
 ### <a name="datalake"></a>DataLake
 
 * Version initiale du module Data Lake Analytics.
 * Version initiale du module Data Lake Store.
- 
+
 ### <a name="docuemntdb"></a>DocumentDB
 
 * DocumentDB : ajout de la prise en charge de l’énumération des chaînes de connexion ([#2580](https://github.com/Azure/azure-cli/pull/2580))
@@ -1097,8 +1155,8 @@ role (2.0.0)
 sql (0.1.1b5)
 storage (2.0.0)
 vm (2.0.0)
- 
-Python (Darwin) 2.7.10 (default, Jul 30 2016, 19:40:32) 
+
+Python (Darwin) 2.7.10 (default, Jul 30 2016, 19:40:32)
 [GCC 4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.34)]
 ```
 
