@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 85c418a8-6177-4833-bb8d-ff4ce2233c1a
-ms.openlocfilehash: 3354d1c6518ea2d0ef0db227a13b86cb59d0575e
-ms.sourcegitcommit: 905939cc44764b4d1cc79a9b36c0793f7055a686
+ms.openlocfilehash: 689b8f4d77af5a6f398c0dd85e922baa398f767a
+ms.sourcegitcommit: 2e4d0bdd94c626e061434883032367b5619de4fe
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/20/2017
+ms.lasthandoff: 12/09/2017
 ---
 # <a name="get-started-with-azure-cli-20"></a>Bien démarrer avec Azure CLI 2.0
 
@@ -51,7 +51,7 @@ Nous devons d’abord créer un groupe de ressources.  Les groupes de ressources
 Nous allons créer un groupe de ressources nommé « MyResourceGroup » dans la région *westus2* d’Azure.  Pour ce faire, tapez la commande suivante :
 
 ```azurecli-interactive
-az group create -n MyResourceGroup -l westus2 
+az group create -n MyResourceGroup -l westus2
 ```
 
 Une fois le groupe de ressources créé, la commande `az group create` génère plusieurs propriétés de la ressource nouvellement créée :
@@ -141,7 +141,7 @@ my-login@MyLinuxVM:~$
 
 Nous allons maintenant créer une machine virtuelle Windows Server 2016 Datacenter à l’aide de la commande `az vm create`, puis l’ajouter au groupe de ressources « MyResourceGroup » que nous avons utilisé pour notre machine virtuelle Linux.  Comme pour l’exemple de machine virtuelle Linux, nous allons attacher deux disques de stockage à l’aide du paramètre `--data-disk-sizes-gb`.
 
-Azure vous demande d’éviter d’utiliser des noms d’utilisateur/mots de passe faciles à deviner. Il existe des règles spécifiques sur les caractères pouvant être utilisés et sur la longueur minimale du nom d’utilisateur et du mot de passe.  
+Azure vous demande d’éviter d’utiliser des noms d’utilisateur/mots de passe faciles à deviner. Il existe des règles spécifiques sur les caractères pouvant être utilisés et sur la longueur minimale du nom d’utilisateur et du mot de passe.
 
 > [!NOTE]
 > Vous serez invité à entrer votre nom d’utilisateur et votre mot de passe lors de l’exécution de cette commande.
@@ -165,7 +165,7 @@ La commande `az vm create` retourne un résultat une fois la machine virtuelle e
 }
 ```
 
-Connectez-vous maintenant à la machine virtuelle Windows Server que vous venez de créer à l’aide du Bureau à distance et de l’adresse IP publique de la machine virtuelle (qui est retournée dans la sortie de `az vm create`).  
+Connectez-vous maintenant à la machine virtuelle Windows Server que vous venez de créer à l’aide du Bureau à distance et de l’adresse IP publique de la machine virtuelle (qui est retournée dans la sortie de `az vm create`).
 Si vous êtes sur un système Windows, vous pouvez pour cela exécuter la commande `mstsc` à partir de la ligne de commande :
 
 ```azurecli-interactive
@@ -176,7 +176,7 @@ Fournissez la même combinaison de nom d’utilisateur/mot de passe que celle qu
 
 ## <a name="creating-other-resources-in-azure"></a>Création d’autres ressources dans Azure
 
-Nous avons vu comment créer un groupe de ressources, une machine virtuelle Linux et une machine virtuelle Windows Server. Vous pouvez créer de nombreux autres types de ressources Azure.  
+Nous avons vu comment créer un groupe de ressources, une machine virtuelle Linux et une machine virtuelle Windows Server. Vous pouvez créer de nombreux autres types de ressources Azure.
 
 Toutes les nouvelles ressources sont créées à l’aide d’un modèle de nommage `az <resource type name> create` cohérent.  Par exemple, pour créer un équilibreur de charge réseau Azure que nous pourrions ensuite associer avec nos nouvelles machines virtuelles, nous pouvons utiliser la commande create suivante :
 
@@ -199,8 +199,8 @@ Par exemple, vous pouvez utiliser Azure CLI pour créer un service Azure App Ser
 az appservice plan create -n MyAppServicePlan -g MyResourceGroup
 
 # Create Two Web Apps within the AppService (note: name param must be a unique DNS entry)
-az webapp create -n MyWebApp43432 -g MyResourceGroup --plan MyAppServicePlan 
-az webapp create -n MyWebApp43433 -g MyResourceGroup --plan MyAppServicePlan 
+az webapp create -n MyWebApp43432 -g MyResourceGroup --plan MyAppServicePlan
+az webapp create -n MyWebApp43433 -g MyResourceGroup --plan MyAppServicePlan
 ```
 
 Une fois que vous avez compris les principes fondamentaux du modèle `az <resource type name> create`, il devient facile de créer tout ce que vous voulez. Voici quelques types de ressources Azure populaires et les commandes create Azure CLI correspondantes pour les créer :
@@ -221,7 +221,7 @@ SQL Database Server         az sql server create
 Document DB                 az documentdb create
 ```
 
-Consultez la [documentation de référence](/cli/azure) pour en savoir plus sur les paramètres propres aux ressources supplémentaires que vous pouvez passer à chacune des commandes précédentes et sur les types de ressources que vous pouvez créer. 
+Consultez la [documentation de référence](/cli/azure) pour en savoir plus sur les paramètres propres aux ressources supplémentaires que vous pouvez passer à chacune des commandes précédentes et sur les types de ressources que vous pouvez créer.
 
 ## <a name="useful-tip-optimizing-create-operations-using---no-wait"></a>Astuce : Optimisation des opérations de création à l’aide de --no-wait
 
@@ -241,14 +241,14 @@ az vm create -n MyLinuxVM2 -g MyResourceGroup --image UbuntuLTS --no-wait
 
 ## <a name="listing-resources-and-formatting-output"></a>Liste des ressources et mise en forme de la sortie
 
-Vous pouvez utiliser la commande `list` dans Azure CLI pour rechercher et lister les ressources en cours d’exécution dans Azure. 
+Vous pouvez utiliser la commande `list` dans Azure CLI pour rechercher et lister les ressources en cours d’exécution dans Azure.
 
 Comme avec la commande create, vous pouvez lister les ressources à l’aide d’Azure CLI 2.0 avec un modèle de nommage `az <resource type name> list` commun et cohérent entre tous les types de ressources.  Différents formats de sortie et options de requête sont disponibles pour filtrer et trier la liste des ressources à votre goût.
 
-Par exemple, `az vm list` affiche la liste de toutes vos machines virtuelles.   
+Par exemple, `az vm list` affiche la liste de toutes vos machines virtuelles.
 
 ```azurecli-interactive
-az vm list 
+az vm list
 ```
 Les valeurs retournées sont par défaut au format JSON (affichant uniquement une sortie partielle, par souci de clarté).
 
@@ -276,7 +276,7 @@ Les valeurs retournées sont par défaut au format JSON (affichant uniquement un
     },
           ...
           ...
-          ...   
+          ...
 ]
 ```
 
@@ -293,7 +293,7 @@ MyLinuxVM  MyResourceGroup  westus2
 MyWinVM    MyResourceGroup  westus2
 ```
 
-Vous pouvez utiliser l’option de sortie *tsv* pour obtenir un format textuel de valeurs séparées par des tabulations, sans en-tête.  Ce format est utile quand vous souhaitez diriger la sortie vers un autre outil texte comme grep. 
+Vous pouvez utiliser l’option de sortie *tsv* pour obtenir un format textuel de valeurs séparées par des tabulations, sans en-tête.  Ce format est utile quand vous souhaitez diriger la sortie vers un autre outil texte comme grep.
 
 ```azurecli-interactive
 az vm list --output tsv
@@ -307,7 +307,7 @@ Consultez l’article sur les [formats de sortie](format-output-azure-cli.md) po
 
 ## <a name="querying-resources-and-shaping-outputs"></a>Interrogation de ressources et mise en forme des sorties
 
-Souvent, vous souhaitez pouvoir interroger uniquement les ressources qui remplissent une condition spécifique.  
+Souvent, vous souhaitez pouvoir interroger uniquement les ressources qui remplissent une condition spécifique.
 
 La commande `list` offre une prise en charge intégrée qui simplifie le filtrage des ressources par nom de groupe de ressources.  Par exemple, vous pouvez passer un paramètre `--ResourceGroup` ou `-g` à une commande `list` pour récupérer uniquement les ressources appartenant à un groupe de ressources spécifique :
 
@@ -328,7 +328,7 @@ Pour des requêtes encore plus poussées, vous pouvez utiliser le paramètre `--
 Par exemple, exécutez la commande suivante pour rechercher les ressources de machine virtuelle dans tous les groupes de ressources qui contiennent les lettres « My » :
 
 ```azurecli-interactive
-az vm list --output table --query "[?contains(resourceGroup, 'MY')]" 
+az vm list --output table --query "[?contains(resourceGroup, 'MY')]"
 ```
 
 ```Output
@@ -341,7 +341,7 @@ MYRESOURCEGROUP  Succeeded            MyWinVM    westus2     XXXXXXXX-XXXX-XXXX-
 Ensuite, nous pouvons choisir d’affiner davantage la sortie en exploitant la fonctionnalité de mise en forme des requêtes JMESPath pour générer des valeurs différentes.  Par exemple, la commande suivante récupère le type de disque de système d’exploitation utilisé par la machine virtuelle afin de déterminer s’il s’agit d’un système d’exploitation Linux ou Windows :
 
 ```azurecli-interactive
-az vm list --output table --query "[?contains(resourceGroup, 'MY')].{ VMName:name, OSType:storageProfile.osDisk.osType }" 
+az vm list --output table --query "[?contains(resourceGroup, 'MY')].{ VMName:name, OSType:storageProfile.osDisk.osType }"
 ```
 
 ```Output

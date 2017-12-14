@@ -12,23 +12,22 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ROBOTS: NOINDEX,NOFOLLOW
-ms.openlocfilehash: 93d947d91973def1c05e2f5b2e7511bc1c5704a2
-ms.sourcegitcommit: 905939cc44764b4d1cc79a9b36c0793f7055a686
+ms.openlocfilehash: 75c531a13a4b730158cd2e874cb6c5d581a27598
+ms.sourcegitcommit: 2e4d0bdd94c626e061434883032367b5619de4fe
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/20/2017
+ms.lasthandoff: 12/09/2017
 ---
 # <a name="install-azure-cli-20-with-apt"></a>Installer Azure CLI 2.0 avec apt
 
 Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu ou Debian, vous pouvez installer un package pour l’interface de ligne de commande Azure sur votre système.
 
-> [!NOTE]
-> Vous devez disposer de Python 2.7.x ou Python 3.x pour pouvoir utiliser l’interface CLI. Si votre distribution ne dispose pas d’un package pour l’un ou l’autre, [installez Python](https://www.python.org/downloads/).
+[!INCLUDE [linux-install-requirements.md](includes/linux-install-requirements.md)]
 
 ## <a name="install"></a>Installer
 
 1. Modifiez votre liste de sources :
- 
+
    - Système 32 bits
 
      ```bash

@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 5979acc5-21a5-41e2-a4b6-3183bfe6aa22
-ms.openlocfilehash: 8ab4a5e38f06199c5f044b8526c581828ba61927
-ms.sourcegitcommit: 0149f195a0d9f0ea9b7ff5c6e00ad4242223a1a8
+ms.openlocfilehash: b086785f7b20622111e0a05e7cc7c27ddb5449b5
+ms.sourcegitcommit: 2e4d0bdd94c626e061434883032367b5619de4fe
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/18/2017
+ms.lasthandoff: 12/09/2017
 ---
 # <a name="using-jmespath-queries-with-azure-cli-20"></a>Utilisation de requêtes JMESPath avec Azure CLI 2.0
 
@@ -111,7 +111,7 @@ KBDemo020    Linux
 ## <a name="filter-with-the-contains-function"></a>Filtrer avec la fonction contains
 
 Vous pouvez utiliser la fonction `contains` de JMESPath pour affiner les résultats retournés par la requête.
-Dans l’exemple suivant, la commande sélectionne uniquement les machines virtuelles dont le nom contient le texte « RGD ».  
+Dans l’exemple suivant, la commande sélectionne uniquement les machines virtuelles dont le nom contient le texte « RGD ».
 
 ```azurecli-interactive
 az vm list \

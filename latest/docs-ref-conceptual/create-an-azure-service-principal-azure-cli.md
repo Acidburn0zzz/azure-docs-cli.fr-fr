@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: fab89cb8-dac1-4e21-9d34-5eadd5213c05
-ms.openlocfilehash: a6ad5611f3e507b65e160122c87e22ec44546588
-ms.sourcegitcommit: e8fe15e4f7725302939d726c75ba0fb3cad430be
+ms.openlocfilehash: 9c2b693c356be78893d0893221d99a23beb5f38b
+ms.sourcegitcommit: 2e4d0bdd94c626e061434883032367b5619de4fe
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 12/09/2017
 ---
 # <a name="create-an-azure-service-principal-with-azure-cli-20"></a>Créer un principal du service avec Azure CLI 2.0
 
@@ -29,13 +29,13 @@ Cette rubrique vous guide tout au long de la création d’une entité de sécur
 
 ## <a name="what-is-a-service-principal"></a>Qu’est-ce qu’un « principal du service » ?
 
-Un principal du service Azure est une identité de sécurité utilisée par les applications, les services et les outils d’automatisation créés par l’utilisateur pour accéder à des ressources Azure spécifiques. Il équivaut un peu à une identité d’utilisateur (connexion et mot de passe ou certificat) avec un rôle spécifique et des autorisations d’accès à vos ressources étroitement contrôlées. Il doit pouvoir effectuer uniquement des opérations spécifiques, contrairement à une identité d’utilisateur. Il améliore la sécurité si vous lui octroyez seulement le niveau d’autorisation minimal nécessaire pour effectuer ses tâches de gestion. 
+Un principal du service Azure est une identité de sécurité utilisée par les applications, les services et les outils d’automatisation créés par l’utilisateur pour accéder à des ressources Azure spécifiques. Il équivaut un peu à une identité d’utilisateur (connexion et mot de passe ou certificat) avec un rôle spécifique et des autorisations d’accès à vos ressources étroitement contrôlées. Il doit pouvoir effectuer uniquement des opérations spécifiques, contrairement à une identité d’utilisateur. Il améliore la sécurité si vous lui octroyez seulement le niveau d’autorisation minimal nécessaire pour effectuer ses tâches de gestion.
 
 Azure CLI 2.0 prend en charge la création d’informations d’authentification basées sur un mot de passe et d’informations d’identification de certificat. Dans cette rubrique, nous traitons les deux types d’informations d’identification.
 
 ## <a name="verify-your-own-permission-level"></a>Vérifier votre propre niveau d’autorisation
 
-Tout d’abord, vous devez avoir les autorisations suffisantes dans votre annuaire Azure Active Directory et votre abonnement Azure. Plus précisément, vous devez pouvoir créer une application dans l’annuaire Active Directory et affecter un rôle au principal du service. 
+Tout d’abord, vous devez avoir les autorisations suffisantes dans votre annuaire Azure Active Directory et votre abonnement Azure. Plus précisément, vous devez pouvoir créer une application dans l’annuaire Active Directory et affecter un rôle au principal du service.
 
 Le moyen le plus simple pour vérifier que votre compte dispose des autorisations adéquates est d’utiliser le portail. Consultez [Vérifier l’autorisation requise dans le portail](/azure/azure-resource-manager/resource-group-create-service-principal-portal#required-permissions).
 
@@ -81,8 +81,8 @@ L’option `--display-name` filtre la liste des applications retournées pour af
 Utilisez [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) et le paramètre `--password` pour créer le principal du service avec un mot de passe. Lorsque vous ne fournissez pas de rôle ou d’étendue, le rôle **Contributeur** est défini par défaut pour l’abonnement actuel. Si vous créez un principal du service sans utiliser les paramètres `--password` ou `--cert`, l’authentification par mot de passe est employée et un mot de passe est généré.
 
 ```azurecli-interactive
-az ad sp create-for-rbac --name {appId} --password "{strong password}" 
-``` 
+az ad sp create-for-rbac --name {appId} --password "{strong password}"
+```
 
 ```json
 {
@@ -94,7 +94,7 @@ az ad sp create-for-rbac --name {appId} --password "{strong password}"
 }
 ```
 
- > [!WARNING] 
+ > [!WARNING]
  > Ne créez pas un mot de passe non sécurisé.  Suivez les conseils en matière de [Stratégies et restrictions de mot de passe dans Azure Active Directory](/azure/active-directory/active-directory-passwords-policy).
 
 ### <a name="create-a-service-principal-with-a-self-signed-certificate"></a>Créer un principal du service avec un certificat auto-signé
@@ -145,7 +145,7 @@ Vous pouvez à présent vous connecter en tant que nouveau principal du service 
 
 ```azurecli-interactive
 az login --service-principal -u a487e0c1-82af-47d9-9a0b-af184eb87646d --password {password-or-path-to-cert} --tenant {tenant}
-``` 
+```
 
 Après une ouverture de session réussie, la sortie suivante s’affiche :
 
@@ -165,9 +165,9 @@ Après une ouverture de session réussie, la sortie suivante s’affiche :
 ]
 ```
 
-Utilisez les valeurs `id`, `password` et `tenant` comme informations d’identification pour exécuter votre application. 
+Utilisez les valeurs `id`, `password` et `tenant` comme informations d’identification pour exécuter votre application.
 
-## <a name="managing-roles"></a>Gestion des rôles 
+## <a name="managing-roles"></a>Gestion des rôles
 
 > [!NOTE]
 > Le contrôle d’accès en fonction du rôle (RBAC) dans Azure est un modèle utilisé pour définir et gérer les rôles des principaux de l’utilisateur et du service.
@@ -210,10 +210,10 @@ az role assignment list --assignee a487e0c1-82af-47d9-9a0b-af184eb87646d
 }
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > Si votre compte ne dispose pas des autorisations suffisantes pour affecter un rôle, un message d’erreur s’affiche.
 > Le message indique que votre compte « n’est pas autorisé à effectuer l’action ’Microsoft.Authorization/roleAssignments/write’ sur l’étendue ’/subscriptions/{guid}’ ».
-   
+
 ## <a name="change-the-credentials-of-a-security-principal"></a>Changer les informations d’identification d’une entité de sécurité
 
 Nous vous recommandons de passer en revue les autorisations et de mettre régulièrement à jour les mots de passe. Vous pouvez également gérer et modifier les informations d’identification de sécurité à mesure que votre application change.

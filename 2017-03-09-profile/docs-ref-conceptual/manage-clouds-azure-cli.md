@@ -10,11 +10,11 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
-ms.openlocfilehash: cb470d179daf7cb4ecf535903adb12071602034e
-ms.sourcegitcommit: 905939cc44764b4d1cc79a9b36c0793f7055a686
+ms.openlocfilehash: 0eb07d2919f6e640e1d594db9e18f9ada4d9f59f
+ms.sourcegitcommit: 2e4d0bdd94c626e061434883032367b5619de4fe
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/20/2017
+ms.lasthandoff: 12/09/2017
 ---
 # <a name="managing-multiple-clouds-with-azure-cli-20"></a>La gestion de plusieurs clouds avec l’interface de ligne de commande Azure 2.0
 
@@ -86,7 +86,7 @@ az cloud set --name AzureChinaCloud
 
 ## <a name="register-a-cloud"></a>Inscrire un cloud
 
-Inscrivez un nouveau cloud si vous disposez de vos propres points de terminaison pour Azure Stack. La création d’un cloud s’effectue avec la commande [cloud register](/cli/azure/cloud#register) . Cette commande nécessite un nom et un ensemble de fonctionnalités avec les points de terminaison associés. Pour savoir comment inscrire un cloud pour une utilisation avec Azure Stack, consultez [Installer et configurer CLI pour une utilisation avec Azure Stack](/azure/azure-stack/user/azure-stack-connect-cli#connect-to-azure-stack).  
+Inscrivez un nouveau cloud si vous disposez de vos propres points de terminaison pour Azure Stack. La création d’un cloud s’effectue avec la commande [cloud register](/cli/azure/cloud#register) . Cette commande nécessite un nom et un ensemble de fonctionnalités avec les points de terminaison associés. Pour savoir comment inscrire un cloud pour une utilisation avec Azure Stack, consultez [Installer et configurer CLI pour une utilisation avec Azure Stack](/azure/azure-stack/user/azure-stack-connect-cli#connect-to-azure-stack).
 
 Vous n’avez pas besoin d’inscrire votre propre cloud pour les régions de la Chine, du Gouvernement des États-Unis ou de l’Allemagne. Celles-ci sont gérées par Microsoft et disponibles par défaut.  Pour plus d’informations sur tous les paramètres de point de terminaison disponibles, consultez la [documentation pour `az cloud register`](/cli/azure/cloud?view=azure-cli-latest#az_cloud_register).
 

@@ -12,15 +12,15 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 65becd3a-9d69-4415-8a30-777d13a0e7aa
-ms.openlocfilehash: dd05868f7378673836f47e743ed4088f2efd3dca
-ms.sourcegitcommit: 905939cc44764b4d1cc79a9b36c0793f7055a686
+ms.openlocfilehash: 0a8ec3541783ae19961f2acf1192c0ee061a465f
+ms.sourcegitcommit: 2e4d0bdd94c626e061434883032367b5619de4fe
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/20/2017
+ms.lasthandoff: 12/09/2017
 ---
 # <a name="log-in-with-azure-cli-20"></a>Se connecter avec Azure CLI 2.0
 
-Il existe plusieurs manières de se connecter et de s’authentifier auprès d’Azure CLI. Le plus simple est de vous connecter de manière interactive par l’intermédiaire de votre navigateur, ou de vous connecter à la ligne de commande. Nous vous recommandons d’utiliser des principaux du service, qui offrent un moyen de créer des comptes non interactifs que vous pouvez utiliser pour manipuler les ressources. En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir que vos scripts d’automatisation sont encore plus sûrs. 
+Il existe plusieurs manières de se connecter et de s’authentifier auprès d’Azure CLI. Le plus simple est de vous connecter de manière interactive par l’intermédiaire de votre navigateur, ou de vous connecter à la ligne de commande. Nous vous recommandons d’utiliser des principaux du service, qui offrent un moyen de créer des comptes non interactifs que vous pouvez utiliser pour manipuler les ressources. En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir que vos scripts d’automatisation sont encore plus sûrs.
 
 Aucune des informations d’identification privées n’est stockée localement. Au lieu de cela, un jeton d’authentification est généré par Azure, puis stocké. Une fois connecté, votre jeton de connexion locale est valide jusqu’à 14 jours sans être utilisé. Au-delà, vous devrez vous authentifier de nouveau.
 
@@ -58,6 +58,6 @@ La valeur du locataire est le locataire Azure Active Directory associé au princ
 Vous pouvez obtenir l’ID objet du locataire pour votre connexion actuelle à l’aide de la commande suivante :
 
 ```azurecli
-az account show --query 'tenanatId' -o tsv
+az account show --query 'tenantId' -o tsv
 ```
 

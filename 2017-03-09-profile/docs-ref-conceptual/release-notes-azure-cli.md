@@ -13,10 +13,10 @@ ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ce0428f7-0a59-4e72-9237-d907b171af51
 ms.openlocfilehash: e02b84891f4bf60cde12591b8e85987f4b3c9e79
-ms.sourcegitcommit: a3c8e15eafac1ddc2289110d513b39714a23353b
+ms.sourcegitcommit: 2e4d0bdd94c626e061434883032367b5619de4fe
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/07/2017
+ms.lasthandoff: 12/09/2017
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
 
@@ -383,7 +383,7 @@ Version 2.0.17
 
 ### <a name="resource"></a>Ressource
 
-* Autoriser le passage dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
+* Autoriser le passages dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
 * Autoriser le passage dans les valeurs de paramètres pour `policy assignment create`
 * Autoriser le passage de JSON ou d’un fichier pour tous les paramètres
 * Incrémentation de la version de l’API
@@ -536,7 +536,7 @@ Version 2.0.13
 * `lb` : correction d’un problème qui empêchait certains noms de ressources enfant d’être résolus correctement lorsqu’ils étaient omis
 * `application-gateway {subresource} delete` : correction d’un problème en raison duquel `--no-wait` n’était pas honorée
 * `application-gateway http-settings update` : correction d’un problème `--connection-draining-timeout` qui empêchait la désactivation de
-* Correction de l’erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
+* Correction de erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
 
 ### <a name="profile"></a>Profil
 
