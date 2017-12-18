@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: ea5c0ee1-c530-4a1e-a83f-e1be71f6d416
-ms.openlocfilehash: 36429bb23f392ff6210a9c99885df83f53768386
-ms.sourcegitcommit: 5fc7d8ccf2304c5a12fb99a80f0b00a0ad2c34e9
+ms.openlocfilehash: 5a667ad8720100b45ff714601225535ef442545c
+ms.sourcegitcommit: 2e4d0bdd94c626e061434883032367b5619de4fe
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2017
+ms.lasthandoff: 12/09/2017
 ---
 # <a name="install-azure-cli-20"></a>Installer Azure CLI 2.0
 
@@ -70,12 +70,12 @@ Sur macOS, vous avez le choix de procéder à l’installation avec [Homebrew](h
    ```bash
    exec -l $SHELL
    ```
-   
+
 3. Exécutez l’interface de ligne de commande Azure 2.0 à partir de l’invite de commandes avec la commande `az` .
 
 ## <a name="install-on-windows"></a>Installer sur Windows
 
-### <a name="install-with-msi-for-the-windows-command-line"></a>Installer avec MSI pour la ligne de commande Windows 
+### <a name="install-with-msi-for-the-windows-command-line"></a>Installer avec MSI pour la ligne de commande Windows
 
 Pour installer CLI sur Windows et l’utiliser dans la ligne de commande, téléchargez et exécutez le [Programme d’installation d’Azure CLI (MSI)](https://aka.ms/InstallAzureCliWindows).
 
@@ -102,15 +102,14 @@ Pour installer CLI sur Windows et l’utiliser dans la ligne de commande, télé
 
 5.  Exécutez l’interface de ligne de commande Azure 2.0 à partir de l’invite de commandes avec la commande `az` .
 
-## <a name="install-with-apt-package-manager"></a>Installer avec le gestionnaire de package apt 
+## <a name="install-with-apt-package-manager"></a>Installer avec le gestionnaire de package apt
 
 Pour les distributions qui utilisent le `apt`gestionnaire de package, telles que Ubuntu ou Debian, vous pouvez installer Azure CLI 2.0 via `apt-get`.
 
-> [!NOTE]
-> Vous devez disposer de Python 2.7.x ou Python 3.x pour pouvoir utiliser l’interface CLI. Si votre distribution ne dispose pas d’un package pour l’un ou l’autre, [installez Python](https://www.python.org/downloads/).
+[!INCLUDE [linux-install-requirements.md](includes/linux-install-requirements.md)]
 
 1. Modifiez votre liste de sources :
- 
+
    - Système 32 bits
 
      ```bash
@@ -139,8 +138,7 @@ Pour les distributions qui utilisent le `apt`gestionnaire de package, telles que
 
 Pour les distributions qui utilisent le `yum` gestionnaire de package, telles que Red Hat Enterprise Linux (RHEL), Fedora, ou CentOS, vous pouvez installer Azure CLI 2.0 via `yum`.
 
-> [!NOTE]
-> Vous devez disposer de Python 2.7.x ou Python 3.x pour pouvoir utiliser l’interface CLI. Si votre distribution ne dispose pas d’un package pour l’un ou l’autre, [installez Python](https://www.python.org/downloads/).
+[!INCLUDE [linux-install-requirements.md](includes/linux-install-requirements.md)]
 
 1. Importer la clé de référentiel Microsoft :
 
@@ -167,8 +165,7 @@ Pour les distributions qui utilisent le `yum` gestionnaire de package, telles qu
 
 Pour les distributions qui utilisent le `zypper`gestionnaire de package, telles que OpenSUSE ou SLE, vous pouvez installer Azure CLI 2.0 via `zypper`.
 
-> [!NOTE]
-> Vous devez disposer de Python 2.7.x ou Python 3.x pour pouvoir utiliser l’interface CLI. Si votre distribution ne dispose pas d’un package pour l’un ou l’autre, [installez Python](https://www.python.org/downloads/).
+[!INCLUDE [linux-install-requirements.md](includes/linux-install-requirements.md)]
 
 1. Importer la clé de référentiel Microsoft :
 
@@ -230,7 +227,7 @@ Il est recommandé d’installer l’interface de ligne de commande avec un gest
    SUSE OpenSUSE 13.2    | sudo zypper refresh && sudo zypper --non-interactive install curl gcc python python-xml libffi-devel python-devel openssl-devel
    ```
 
-Si votre distribution n’est pas répertoriée ci-dessus, vous devez installer [Python 2.7 ou version ultérieure](https://www.python.org/downloads/), [libffi](https://sourceware.org/libffi/), et [OpenSSL](https://www.openssl.org/source/).
+Si votre distribution n’est pas répertoriée ci-dessus, vous devez installer [Python 2.7 ou version ultérieure](https://www.python.org/downloads/), [libffi](https://sourceware.org/libffi/) et [OpenSSL 1.0.2](https://www.openssl.org/source/).
 
 2. Installez l’interface de ligne de commande à l’aide de `curl`.
 
