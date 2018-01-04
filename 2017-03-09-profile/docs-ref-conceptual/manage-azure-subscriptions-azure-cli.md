@@ -3,46 +3,56 @@ title: "Gérer les abonnements Azure avec Azure CLI 2.0"
 description: "Gérer les abonnements Azure avec Azure CLI 2.0 sur Linux, Mac ou Windows."
 keywords: Azure CLI 2.0, Linux, Mac, Windows, OS X, subscription
 author: kamaljit
-ms.author: routlaw
-manager: douge
-ms.date: 02/27/2017
+ms.author: sttramer
+manager: routlaw
+ms.date: 10/30/2017
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 98fb955e-6dbf-47e2-80ac-170d6d95cb70
-ms.openlocfilehash: c3538077e05d61f3c40880bb8b804226eb99dc85
-ms.sourcegitcommit: bcf93ad8ed8802072249cd8187cd4420da89b4c6
+ms.openlocfilehash: 0f453ad1bff621250c8aa3147b5f5e916e712e30
+ms.sourcegitcommit: 16426a08c0f2f62d0b9dca3df8132cece659acff
 ms.translationtype: HT
 ms.contentlocale: fr-FR
+ms.lasthandoff: 12/21/2017
 ---
-# <a name="manage-multiple-azure-subscriptions"></a><span data-ttu-id="d42a9-104">Gérer plusieurs abonnements Azure</span><span class="sxs-lookup"><span data-stu-id="d42a9-104">Manage multiple Azure subscriptions</span></span>
+# <a name="manage-multiple-azure-subscriptions"></a><span data-ttu-id="ac0b6-104">Gérer plusieurs abonnements Azure</span><span class="sxs-lookup"><span data-stu-id="ac0b6-104">Manage multiple Azure subscriptions</span></span>
 
-<span data-ttu-id="d42a9-105">Si vous débutez avec Azure, vous avez probablement un seul abonnement.</span><span class="sxs-lookup"><span data-stu-id="d42a9-105">If you are brand new to Azure, you probably only have a single subscription.</span></span>
-<span data-ttu-id="d42a9-106">Si vous utilisez Azure depuis un moment déjà, vous avez peut-être créé plusieurs abonnements Azure.</span><span class="sxs-lookup"><span data-stu-id="d42a9-106">But if you have been using Azure for a while, you may have created multiple Azure subscriptions.</span></span>
-<span data-ttu-id="d42a9-107">Dans ce cas, vous pouvez configurer Azure CLI 2.0 pour exécuter les commandes sur un abonnement spécifique.</span><span class="sxs-lookup"><span data-stu-id="d42a9-107">If so, you can configure Azure CLI 2.0 to execute commands against a particular subscription.</span></span>
+<span data-ttu-id="ac0b6-105">La plupart des utilisateurs Azure ne possèdent qu’un seul abonnement.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-105">Most Azure users will only ever have a single subscription.</span></span> <span data-ttu-id="ac0b6-106">Toutefois, si vous faites partie de plusieurs organisations ou si votre organisation a divisé l’accès à certaines ressources dans les regroupements, vous pouvez avoir plusieurs abonnements dans Azure.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-106">However, if you are part of multiple organizations or your organization has divided up access to certain resources across groupings, you may have multiple subscriptions within Azure.</span></span> <span data-ttu-id="ac0b6-107">Il est facile de gérer plusieurs abonnements avec l’interface CLI et les opérations peuvent être effectuées en sélectionnant un abonnement.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-107">Multiple subscriptions can be easily managed with the CLI, and operations can be performed by selecting a subscription.</span></span>
 
-1. <span data-ttu-id="d42a9-108">Obtenez la liste de tous les abonnements créés dans votre compte.</span><span class="sxs-lookup"><span data-stu-id="d42a9-108">Get a list of all subscriptions in your account.</span></span>
+## <a name="tenants-users-and-subscriptions"></a><span data-ttu-id="ac0b6-108">Locataires, utilisateurs et abonnements</span><span class="sxs-lookup"><span data-stu-id="ac0b6-108">Tenants, users, and subscriptions</span></span>
 
-   ```azurecli
-   az account list --output table
-   ```
+<span data-ttu-id="ac0b6-109">La différence entre les locataires, les utilisateurs et les abonnements dans Azure peut prêter à confusion.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-109">You might have some confusion over the difference between tenants, users, and subscriptions within Azure.</span></span> <span data-ttu-id="ac0b6-110">En règle générale, un _locataire_ est l’entité d’Azure Active Directory qui comprend une organisation complète.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-110">In general, a _tenant_ is the Azure Active Directory entity which encompasses a whole organization.</span></span> <span data-ttu-id="ac0b6-111">Ce locataire possède au moins un _abonnement_ et _utilisateur_.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-111">This tenant has at least one _subscription_ and _user_.</span></span> <span data-ttu-id="ac0b6-112">Un utilisateur est un individu qui n’est associé qu’à un seul locataire, c’est-à-dire à l’organisation auquel il appartient.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-112">A user is an individual, and is associated with only one tenant, the organization that they belong to.</span></span> <span data-ttu-id="ac0b6-113">Les utilisateurs sont les comptes qui se connectent à Azure pour configurer et utiliser les ressources.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-113">Users are those accounts which log in to Azure to provision and use resources.</span></span> <span data-ttu-id="ac0b6-114">Un utilisateur peut avoir accès à plusieurs _abonnements_, qui sont les contrats avec Microsoft pour utiliser les services de cloud, y compris Azure.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-114">A user may have access to multiple _subscriptions_, which are the agreements with Microsoft to use cloud services, including Azure.</span></span> <span data-ttu-id="ac0b6-115">Chaque ressource est associée à un abonnement.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-115">Every resource is associated with a subscription.</span></span>
 
-   ```Output
-   Name                                         CloudName    SubscriptionId                        State     IsDefault
-   -------------------------------------------  -----------  ------------------------------------  --------  -----------
-   My Production Subscription                   AzureCloud   XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX  Enabled
-   My DevTest Subscription                      AzureCloud   XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX  Enabled   True
-   My Demos                                     AzureCloud   XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX  Enabled
-   ```
+<span data-ttu-id="ac0b6-116">Pour en savoir plus sur les différences entre les locataires, les utilisateurs et les abonnements, consultez le [Dictionnaire de terminologie cloud Azure](/azure/azure-glossary-cloud-terminology).</span><span class="sxs-lookup"><span data-stu-id="ac0b6-116">To learn more about the differences between tenants, users, and subscriptions, see the [Azure cloud terminology dictionary](/azure/azure-glossary-cloud-terminology).</span></span>
+<span data-ttu-id="ac0b6-117">Pour savoir comment ajouter un nouvel abonnement à votre locataire Azure Active Directory, consultez [Comment ajouter un abonnement Azure à Azure Active Directory](/azure/active-directory/active-directory-how-subscriptions-associated-directory).</span><span class="sxs-lookup"><span data-stu-id="ac0b6-117">To learn how to add a new subscription to your Azure Active Directory tenant, see [How to add an Azure subscription to Azure Active Directory](/azure/active-directory/active-directory-how-subscriptions-associated-directory).</span></span>
 
-1. <span data-ttu-id="d42a9-109">Définissez l’abonnement par défaut.</span><span class="sxs-lookup"><span data-stu-id="d42a9-109">Set the default.</span></span>
- 
-   ```azurecli
-   az account set --subscription "My Demos"
-   ```
+## <a name="working-with-multiple-subscriptions"></a><span data-ttu-id="ac0b6-118">Utilisation de plusieurs abonnements</span><span class="sxs-lookup"><span data-stu-id="ac0b6-118">Working with multiple subscriptions</span></span>
 
-<span data-ttu-id="d42a9-110">Vous pouvez vérifier que cette modification a été prise en compte en réexécutant la commande `az account list --output table`.</span><span class="sxs-lookup"><span data-stu-id="d42a9-110">You can verify the change by running the `az account list --output table` command again.</span></span>
+<span data-ttu-id="ac0b6-119">Pour accéder aux ressources contenues dans un abonnement, vous devez basculer vers votre abonnement actif.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-119">To access the resources contained within a subscription, you need to switch your active subscription.</span></span> <span data-ttu-id="ac0b6-120">Toute utilisation d’abonnements s’effectue via la commande `az account`, qui fait référence au contrat de service qu’un abonnement représente, et pas à votre compte individuel.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-120">All work with subscriptions is done through the `az account` command, which refers to the service agreement that a subscription represents and not your individual account.</span></span>
 
-<span data-ttu-id="d42a9-111">Une fois que vous avez défini votre abonnement par défaut, toutes les commandes Azure CLI ultérieures s’exécuteront sur cet abonnement.</span><span class="sxs-lookup"><span data-stu-id="d42a9-111">Once you set your default subscription, all subsequent Azure CLI commands run against this subscription.</span></span>
+[!INCLUDE [cloud-shell-try-it.md](includes/cloud-shell-try-it.md)]
+
+<span data-ttu-id="ac0b6-121">Pour commencer à utiliser vos abonnements disponibles, obtenez une liste de ceux qui sont disponibles dans votre compte :</span><span class="sxs-lookup"><span data-stu-id="ac0b6-121">To start working with your available subscriptions, get a list of those available in your account:</span></span>
+
+```azurecli-interactive
+az account list --output table
+```
+
+```Output
+Name                                         CloudName    SubscriptionId                        State     IsDefault
+-------------------------------------------  -----------  ------------------------------------  --------  -----------
+My Production Subscription                   AzureCloud   XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX  Enabled
+My DevTest Subscription                      AzureCloud   XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX  Enabled   True
+My Demos                                     AzureCloud   XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX  Enabled
+```
+
+<span data-ttu-id="ac0b6-122">Pour modifier l’abonnement actif, vous pouvez utiliser `az account set` :</span><span class="sxs-lookup"><span data-stu-id="ac0b6-122">In order to change the active subscription, you can use `az account set`:</span></span>
+
+```azurecli-interactive
+az account set --subscription "My Demos"
+```
+
+<span data-ttu-id="ac0b6-123">Vous pouvez utiliser l’ID ou le nom de l’abonnement pour le sélectionner.</span><span class="sxs-lookup"><span data-stu-id="ac0b6-123">You can use either the subscription ID or the subscription name to select the subscription.</span></span>
