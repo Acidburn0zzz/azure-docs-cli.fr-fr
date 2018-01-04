@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 98fb955e-6dbf-47e2-80ac-170d6d95cb70
-ms.openlocfilehash: b4544d75aa279b5477f8497257d39182472fae71
-ms.sourcegitcommit: 5db22de971cf3983785cb209d92cbed1bbd69ecf
+ms.openlocfilehash: 0f453ad1bff621250c8aa3147b5f5e916e712e30
+ms.sourcegitcommit: 16426a08c0f2f62d0b9dca3df8132cece659acff
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/21/2017
 ---
 # <a name="manage-multiple-azure-subscriptions"></a>Gérer plusieurs abonnements Azure
 
@@ -27,7 +27,7 @@ La plupart des utilisateurs Azure ne possèdent qu’un seul abonnement. Toutefo
 La différence entre les locataires, les utilisateurs et les abonnements dans Azure peut prêter à confusion. En règle générale, un _locataire_ est l’entité d’Azure Active Directory qui comprend une organisation complète. Ce locataire possède au moins un _abonnement_ et _utilisateur_. Un utilisateur est un individu qui n’est associé qu’à un seul locataire, c’est-à-dire à l’organisation auquel il appartient. Les utilisateurs sont les comptes qui se connectent à Azure pour configurer et utiliser les ressources. Un utilisateur peut avoir accès à plusieurs _abonnements_, qui sont les contrats avec Microsoft pour utiliser les services de cloud, y compris Azure. Chaque ressource est associée à un abonnement.
 
 Pour en savoir plus sur les différences entre les locataires, les utilisateurs et les abonnements, consultez le [Dictionnaire de terminologie cloud Azure](/azure/azure-glossary-cloud-terminology).
-Pour savoir comment ajouter un nouvel abonnement à votre locataire Azure Active Directory, consultez [Comment ajouter un abonnement Azure à Azure Active Directory](/en-us/azure/active-directory/active-directory-how-subscriptions-associated-directory).
+Pour savoir comment ajouter un nouvel abonnement à votre locataire Azure Active Directory, consultez [Comment ajouter un abonnement Azure à Azure Active Directory](/azure/active-directory/active-directory-how-subscriptions-associated-directory).
 
 ## <a name="working-with-multiple-subscriptions"></a>Utilisation de plusieurs abonnements
 
