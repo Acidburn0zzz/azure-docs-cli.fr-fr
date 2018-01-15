@@ -13,16 +13,16 @@ ms.devlang: azurecli
 ms.service: multiple
 ROBOTS: NOINDEX,NOFOLLOW
 ms.openlocfilehash: cf1405cae70762146f63bc6629edc0dd1d949fff
-ms.sourcegitcommit: 2e4d0bdd94c626e061434883032367b5619de4fe
+ms.sourcegitcommit: 3eef136ae752eb90c67af604d4ddd298d70b1c9d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/09/2017
+ms.lasthandoff: 01/06/2018
 ---
 # <a name="install-azure-cli-20-on-linux-manually"></a>Installer manuellement Azure CLI 2.0 sur Linux
 
 Si vous n’avez pas de package disponible sur votre distribution pour l’interface de ligne de commande Azure, vous pouvez toujours installer l’interface de ligne de commande manuellement en exécutant un script d’installation. Si vous disposez d’un package disponible, il s’agit toujours de la méthode d’installation recommandée.
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Conditions préalables
 
 Pour installer l’interface de ligne de commande, vous devrez disposer des logiciels suivants sur votre système :
 
@@ -40,7 +40,7 @@ curl -L https://aka.ms/InstallAzureCli | bash
 
 Si vous préférez, ou si vous n’avez pas `curl` sur votre système, vous pouvez télécharger le script et l’exécuter localement à la place. Vous devrez peut-être redémarrer votre interpréteur de commandes pour que certaines modifications soient prises en compte. Après l’installation, exécutez l’interface de ligne de commande avec la commande `az`.
 
-## <a name="troubleshooting"></a>Résolution des problèmes
+## <a name="troubleshooting"></a>Résolution de problèmes
 
 ### <a name="curl-object-moved-error"></a>erreur curl « Objet déplacé »
 
