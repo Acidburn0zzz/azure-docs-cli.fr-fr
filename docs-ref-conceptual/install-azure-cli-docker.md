@@ -12,11 +12,11 @@ ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
 ROBOTS: NOINDEX,NOFOLLOW
-ms.openlocfilehash: 76ecf2c9cd0e6e694a31ac160112d1348863f118
-ms.sourcegitcommit: 3eef136ae752eb90c67af604d4ddd298d70b1c9d
+ms.openlocfilehash: 7a12da712cd2aad5bb5fb56e27267a8e05df34a6
+ms.sourcegitcommit: c95a0cde5819cfe8a4f6b058a52f09a8f87c9696
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/06/2018
+ms.lasthandoff: 01/23/2018
 ---
 # <a name="install-azure-cli-20-with-docker"></a>Installer Azure CLI 2.0 avec Docker
 
@@ -27,10 +27,10 @@ Vous pouvez utiliser Docker pour installer un conteneur Linux autonome avec Azur
 Installez l’interface de ligne de commande à l’aide de `docker run`.
 
    ```bash
-   docker run -it azuresdk/azure-cli-python:<version>
+   docker run -it microsoft/azure-cli:<version>
    ```
 
-Consultez nos [balises Docker](https://hub.docker.com/r/azuresdk/azure-cli-python/tags/) pour connaître les versions disponibles.
+Consultez nos [balises Docker](https://hub.docker.com/r/microsoft/azure-cli/tags/) pour connaître les versions disponibles.
 
 L’interface de ligne de commande est installé sur l’image en tant que commande `az` dans `/usr/local/bin`.
 
@@ -38,7 +38,7 @@ L’interface de ligne de commande est installé sur l’image en tant que comma
 > Si vous souhaitez sélectionner les clés SSH à partir de votre environnement utilisateur, vous pouvez utiliser `-v ${HOME}:/root` pour monter $HOME en tant que `/root`.
 
 > ```bash
-> docker run -it -v ${HOME}:/root azuresdk/azure-cli-python:<version>
+> docker run -it -v ${HOME}:/root microsoft/azure-cli:<version>
 > ```
 
 ### <a name="update-with-docker"></a>Mettre à jour avec Docker
@@ -48,18 +48,18 @@ La mise à jour avec Docker nécessite l’extraction de la nouvelle image et la
 1. Mettre à jour votre image locale avec `docker pull`.
 
    ```bash
-   docker pull azuresdk/azure-cli-python
+   docker pull microsoft/azure-cli
    ```
 
 2. Obtenir les conteneurs qui utilisent actuellement l’image de l’interface de ligne de commande.
 
    ```bash
-   docker container ls -a --filter 'ancestor=azuresdk/azure-cli-python'
+   docker container ls -a --filter 'ancestor=microsoft/azure-cli'
    ```
 
    ```output
    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS                        PORTS               NAMES
-   34a868beb2ab        azuresdk/azure-cli-python:latest      "/bin/sh -c bash"   8 minutes ago       Exited (0) 8 minutes ago                       inspiring_benz
+   34a868beb2ab        microsoft/azure-cli:latest      "/bin/sh -c bash"   8 minutes ago       Exited (0) 8 minutes ago                       inspiring_benz
    ```
 
   > [!NOTE]
@@ -70,7 +70,7 @@ La mise à jour avec Docker nécessite l’extraction de la nouvelle image et la
    ```bash
    docker stop inspiring_benz
    docker rm inspiring_benz
-   docker run azuresdk/azure-cli-python
+   docker run microsoft/azure-cli
    ```
 
 ### <a name="uninstall-with-docker"></a>Désinstaller avec Docker
@@ -82,12 +82,12 @@ Pour désinstaller correctement l’image Docker de l’interface de ligne de co
 1. Obtenez les conteneurs exécutant l’image de l’interface de ligne de commande Azure.
 
    ```bash
-   docker container ls -a --filter 'ancestor=azuresdk/azure-cli-python'
+   docker container ls -a --filter 'ancestor=microsoft/azure-cli'
    ```
 
    ```output
    CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS                        PORTS               NAMES
-   34a868beb2ab        azuresdk/azure-cli-python:latest      "/bin/sh -c bash"   8 minutes ago       Exited (0) 8 minutes ago                       inspiring_benz
+   34a868beb2ab        microsoft/azure-cli:latest      "/bin/sh -c bash"   8 minutes ago       Exited (0) 8 minutes ago                       inspiring_benz
    ```
   > [!NOTE]
   > Si vous avez installé une version spécifique de l’image, vous devez ajouter `:<version>` à la fin du nom de l’image.
@@ -101,6 +101,6 @@ Pour désinstaller correctement l’image Docker de l’interface de ligne de co
 3. Supprimez l’image de l’interface de ligne de commande installée localement.
 
    ```bash
-   docker rmi azuresdk/azure-cli-python
+   docker rmi microsoft/azure-cli
    ```
 
