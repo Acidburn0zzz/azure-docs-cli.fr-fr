@@ -13,10 +13,10 @@ ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 85c418a8-6177-4833-bb8d-ff4ce2233c1a
 ms.openlocfilehash: 689b8f4d77af5a6f398c0dd85e922baa398f767a
-ms.sourcegitcommit: 2e4d0bdd94c626e061434883032367b5619de4fe
+ms.sourcegitcommit: dd5b2c7b0b56608ef9ea8730c7dc76e6c532d5ea
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/09/2017
+ms.lasthandoff: 01/26/2018
 ---
 # <a name="get-started-with-azure-cli-20"></a>Bien démarrer avec Azure CLI 2.0
 
@@ -26,7 +26,7 @@ Vous pouvez l’utiliser dans votre navigateur avec [Azure Cloud Shell](/azure/c
 Azure CLI 2.0 est optimisé pour la gestion et l’administration des ressources Azure à partir de la ligne de commande, et pour la création de scripts d’automatisation qui opèrent sur Azure Resource Manager.
 Cet article vous aide à bien démarrer et explique les concepts de base.
 
-Pour plus d’informations sur la version la plus récente, consultez les [notes de publication](release-notes-azure-cli.md).
+Pour plus d’informations sur la version la plus récente, consultez les [Notes de publication](release-notes-azure-cli.md).
 
 ## <a name="connect"></a>Connecter
 
@@ -42,7 +42,7 @@ La façon la plus simple de commencer est de [lancer Cloud Shell](/azure/cloud-s
 
 Vous pouvez également [installer](install-azure-cli.md) l’interface de ligne de commande et l’exécuter localement à partir de la ligne de commande. Après avoir installé l’interface CLI, exécutez `az login` pour vous connecter avec votre abonnement par défaut.
 
-## <a name="create-a-resource-group"></a>Créer un groupe de ressources
+## <a name="create-a-resource-group"></a>Création d’un groupe de ressources
 
 Maintenant que tout est configuré, nous allons utiliser Azure CLI pour créer des ressources dans Azure.
 
@@ -388,7 +388,7 @@ Pour plus d’informations sur les différentes façons d’utiliser Azure CLI, 
 
 [Informations de référence sur les API](/cli/azure)
 
-## <a name="get-help"></a>Obtenir de l'aide
+## <a name="get-help"></a>Obtenir de l’aide
 
 Azure CLI contient une documentation d’aide intégrée, qui correspond à notre documentation web que vous pouvez exécuter à partir de la ligne de commande :
 

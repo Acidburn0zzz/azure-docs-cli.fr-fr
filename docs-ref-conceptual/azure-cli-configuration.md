@@ -11,11 +11,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 71d9f57846cb83591ca5e3d338735b3c525987af
-ms.sourcegitcommit: 3eef136ae752eb90c67af604d4ddd298d70b1c9d
+ms.openlocfilehash: d60ede5b971ee2489482fb5a72bde9bf5389d37c
+ms.sourcegitcommit: 8606f36963e8daa6448d637393d1e4ef2c9859a0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/06/2018
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="azure-cli-20-configuration"></a>Configuration d’Azure CLI 2.0
 
@@ -30,7 +30,7 @@ Les valeurs de configuration utilisées par l’interface CLI sont évaluées da
 ## <a name="cli-configuration-with-az-configure"></a>Configuration de l’interface CLI avec az configure
 
 La commande [az configure](/cli/azure/?view=azure-cli-latest#az_configure) permet de définir les valeurs par défaut de l’interface CLI.
-Cette commande accepte un seul argument, `--defaults`, qui est une liste séparée par des espaces de paires `key=value`. Les valeurs fournies sont utilisées par l’interface CLI à la place des arguments requis. 
+Cette commande accepte un seul argument, `--defaults`, qui est une liste séparée par des espaces de paires `key=value`. Les valeurs fournies sont utilisées par l’interface CLI à la place des arguments requis.
 
 Voici une liste des touches disponibles que vous pouvez utiliser.
 
@@ -52,7 +52,7 @@ az configure --defaults "location=westus2 group=MyResourceGroup"
 
 ## <a name="cli-configuration-file"></a>Fichier de configuration de l’interface CLI
 
-Le fichier de configuration de l’interface CLI contient d’autres paramètres utilisés pour gérer le comportement de l’interface CLI. Le fichier de configuration se trouve sous `$AZURE_CONFIG_DIR/config`. La valeur par défaut `AZURE_CONFIG_DIR` est `$HOME/.azure/config` sur Linux et macOS, et `%USERPROFILE%\.azure\config` sous Windows. 
+Le fichier de configuration de l’interface CLI contient d’autres paramètres utilisés pour gérer le comportement de l’interface CLI. Le fichier de configuration se trouve sous `$AZURE_CONFIG_DIR/config`. La valeur par défaut `AZURE_CONFIG_DIR` est `$HOME/.azure/config` sur Linux et macOS, et `%USERPROFILE%\.azure\config` sous Windows.
 
 Les fichiers de configuration sont écrits sous le format de fichier INI. Ces fichiers sont composés de sections qui commencent par un en-tête `[section-name]`, suivi d’une liste d’entrées `key=value`. Les noms de section respectent la casse, mais pas les noms de clés.
 Les commentaires sont n’importe quelle ligne commençant par un `#` ou `;`. Les commentaires inclus ne sont pas autorisés. Les valeurs booléennes ne respectent pas la casse et sont représentées par les valeurs suivantes.

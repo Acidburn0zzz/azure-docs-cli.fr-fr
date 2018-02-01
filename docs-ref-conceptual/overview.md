@@ -1,5 +1,5 @@
 ---
-title: Azure CLI 2.0
+title: "Azure CLI 2.0"
 description: "Vue d’ensemble d’Azure CLI 2.0."
 keywords: Azure CLI 2.0, Linux, Mac, Windows, OS X, Ubuntu, Debian, CentOS, RHEL, SUSE, CoreOS, Docker, Windows, Python, PIP
 author: rloutlaw
@@ -13,12 +13,12 @@ ms.devlang: azurecli
 ms.service: multiple
 ms.assetid: 80ae9f6c-adb7-483c-bfb4-fbb958e075ba
 ms.openlocfilehash: 92079f3fa17f69a560e937101aa9e6f09c3080eb
-ms.sourcegitcommit: 2e4d0bdd94c626e061434883032367b5619de4fe
+ms.sourcegitcommit: dd5b2c7b0b56608ef9ea8730c7dc76e6c532d5ea
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/09/2017
+ms.lasthandoff: 01/26/2018
 ---
-# <a name="azure-cli-20"></a>Azure CLI 2.0
+# <a name="azure-cli-20"></a>Azure CLI 2.0
 
 Azure CLI 2.0 est la nouvelle expérience de ligne de commande Azure pour la gestion des ressources Azure.
 Vous pouvez l’utiliser dans votre navigateur avec [Azure Cloud Shell](/azure/cloud-shell/overview) ou [l’installer](install-azure-cli.md) sur macOS, Linux et Windows et l’exécuter à partir de la ligne de commande.
