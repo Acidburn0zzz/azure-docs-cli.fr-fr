@@ -5,33 +5,39 @@ keywords: "Azure CLI, installation d’Azure CLI, installation Azure Windows, Az
 author: sptramer
 ms.author: sttramer
 manager: routlaw
-ms.date: 11/01/2017
+ms.date: 01/29/18
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ROBOTS: NOINDEX,NOFOLLOW
-ms.openlocfilehash: 247ae43813ca9ca7b7b98ebd8e933e02989c6649
-ms.sourcegitcommit: 3eef136ae752eb90c67af604d4ddd298d70b1c9d
+ms.openlocfilehash: f2745c05c12a4ed5fb5a25e86a5dec1664651066
+ms.sourcegitcommit: 8606f36963e8daa6448d637393d1e4ef2c9859a0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/06/2018
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="install-azure-cli-20-on-windows"></a>Installation d’Azure CLI 2.0 sur Windows
 
-Sous Windows, vous pouvez installer un fichier binaire natif à partir d’un fichier MSI, que vous pouvez utiliser à l’invite de commandes Windows ou de PowerShell. Si vous exécutez le sous-système Windows pour Linux, des packages sont disponibles pour la distribution que vous exécutez. Consultez la [page d’installation principale](install-azure-cli.md) pour obtenir la liste des gestionnaires de packages pris en charge ou pour savoir comment installer manuellement avec le sous-système Windows pour Linux.
+Sur Windows, le fichier binaire Azure CLI est installé via un fichier MSI, qui vous donne accès à l’interface de ligne de commande via l’Invite de commandes Windows (CMD) ou PowerShell.
+Si vous exécutez le Sous-système Windows pour Linux, des packages sont disponibles pour votre distribution Linux. Consultez la [page d’installation principale](install-azure-cli.md) pour obtenir la liste des gestionnaires de packages pris en charge ou pour savoir comment installer manuellement avec le sous-système Windows pour Linux.
 
-## <a name="install-or-update-with-msi"></a>Installer ou mettre à jour avec MSI
+## <a name="install-or-update"></a>Installation ou mise à jour
 
-Le fichier MSI distribuable est utilisé pour l’installation, la mise à jour et la désinstallation de la commande `az` sous Windows. Vous pouvez [télécharger le programme d’installation MSI](https://aka.ms/InstallAzureCliWindows), exécutez-le ensuite pour installer ou mettre à jour.
+Le fichier MSI distribuable est utilisé pour l’installation, la mise à jour et la désinstallation de la commande `az` sous Windows.
+
+> [!div class="nextstepaction"]
+> [Téléchargez le programme d’installation MSI](https://aka.ms/InstallAzureCliWindows)
 
 Lorsque le programme d’installation vous demande s’il peut apporter des modifications à votre ordinateur, cliquez sur la case « Oui ».
 
-Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec la commande `az` à partir de l’invite de commandes Windows ou PowerShell.
+Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec la commande `az` à partir de l’invite de commandes Windows ou PowerShell. PowerShell offre des fonctionnalité de saisie semi-automatique via la touche TAB non disponibles à partir de CMD.
 
-## <a name="uninstall-with-msi"></a>Désinstaller avec MSI
+## <a name="uninstall"></a>Désinstaller l’interface
 
-Si jamais vous décidez de désinstaller l’interface de ligne de commande Azure, nous sommes désolés de vous voir partir. Avant de désinstaller, utilisez la commande `az feedback`, afin de nous donner quelques raisons pour lesquelles vous avez choisi de désinstaller et nous aider à améliorer l’expérience CLI. Nous souhaitons nous assurer que l’interface de ligne de commande Azure est aussi conviviale et exempte de bogues que possible. Vous pouvez également [signaler un problème lié à GitHub](https://github.com/Azure/azure-cli/issues).
+[!INCLUDE [uninstall-boilerplate.md](includes/uninstall-boilerplate.md)]
 
-La désinstallation peut être réalisée en exécutant le fichier MSI à nouveau, en choisissant l’option « Désinstaller ». Vous pouvez [télécharger le programme d’installation MSI](https://aka.ms/InstallAzureCliWindows) si vous n’y avez plus accès.
+La désinstallation peut être réalisée en exécutant le fichier MSI à nouveau, en choisissant l’option « Désinstaller ». 
+
+> [!div class="nextstepaction"]
+> [Téléchargez le programme d’installation MSI](https://aka.ms/InstallAzureCliWindows)

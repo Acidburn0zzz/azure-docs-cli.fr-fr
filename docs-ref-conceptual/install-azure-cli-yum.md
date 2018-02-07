@@ -1,26 +1,25 @@
 ---
-title: Installer Azure CLI 2.0 avec yum
+title: "Installation d’Azure CLI 2.0 pour Linux avec yum"
 description: "Installation d’Azure CLI 2.0 avec yum"
 keywords: "Azure CLI, installation d’Azure CLI, Azure yum, Azure RHEL, Azure Fedora, Azure CentOS"
 author: sptramer
 ms.author: sttramer
 manager: routlaw
-ms.date: 11/01/2017
+ms.date: 01/29/18
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ROBOTS: NOINDEX,NOFOLLOW
-ms.openlocfilehash: f0d5effcd8315094b30050a35119e41eddf89961
-ms.sourcegitcommit: 3eef136ae752eb90c67af604d4ddd298d70b1c9d
+ms.openlocfilehash: 9d11c3cf5d9e7ba58c3e2edd830e0d12669f5b91
+ms.sourcegitcommit: 8606f36963e8daa6448d637393d1e4ef2c9859a0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/06/2018
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="install-azure-cli-20-with-yum"></a>Installer Azure CLI 2.0 avec yum
 
-Si vous exécutez une distribution qui est fournie avec `yum`, telle que RHEL, Fedora, ou CentOS, vous pouvez installer un package pour l’interface de ligne de commande Azure sur votre système.
+Si vous exécutez une distribution qui est fournie avec `yum`, telle que RHEL, Fedora, ou CentOS, un package est disponible pour l’interface de ligne de commande Azure. Ce package a été testé avec RHEL 7, Fedora 19 et versions ultérieures et CentOS 7.
 
 [!INCLUDE [linux-install-requirements.md](includes/linux-install-requirements.md)]
 
@@ -58,7 +57,7 @@ sudo yum update azure-cli
 
 ## <a name="uninstall"></a>Désinstaller l’interface
 
-Si jamais vous décidez de désinstaller l’interface de ligne de commande Azure, nous sommes désolés de vous voir partir. Avant de désinstaller, utilisez la commande `az feedback`, afin de nous donner quelques raisons pour lesquelles vous avez choisi de désinstaller et nous aider à améliorer l’expérience CLI. Nous souhaitons nous assurer que l’interface de ligne de commande Azure est aussi conviviale et exempte de bogues que possible. Vous pouvez également [signaler un problème lié à GitHub](https://github.com/Azure/azure-cli/issues).
+[!INCLUDE [uninstall-boilerplate.md](includes/uninstall-boilerplate.md)]
 
 1. Supprimez le package de votre système.
 

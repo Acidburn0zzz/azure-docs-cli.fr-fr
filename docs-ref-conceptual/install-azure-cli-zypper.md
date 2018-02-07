@@ -1,26 +1,25 @@
 ---
-title: Installer Azure CLI 2.0 avec zypper
+title: "Installation d’Azure CLI 2.0 pour Linux avec zypper"
 description: "Installation d’Azure CLI 2.0 avec zypper"
 keywords: "Azure CLI, installation d’Azure CLI, Azure CLI zypper, Azure CLI opensuse, Azure CLI sle"
 author: sptramer
 ms.author: sttramer
 manager: routlaw
-ms.date: 11/01/2017
+ms.date: 01/29/18
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ROBOTS: NOINDEX,NOFOLLOW
-ms.openlocfilehash: 6b9a97e73f45c8271f1e8f19d5a8cf5f9f748d07
-ms.sourcegitcommit: 3eef136ae752eb90c67af604d4ddd298d70b1c9d
+ms.openlocfilehash: c0b566f96e47d34d20f7bf85db0fae32913ed596
+ms.sourcegitcommit: 8606f36963e8daa6448d637393d1e4ef2c9859a0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/06/2018
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="install-azure-cli-20-with-zypper"></a>Installer Azure CLI 2.0 avec zypper
 
-Si vous exécutez une distribution qui est fournie avec `zypper`, telle que OpenSUSE ou SLE, vous pouvez installer un package pour l’interface de ligne de commande Azure sur votre système.
+Si vous exécutez une distribution qui est fournie avec `zypper`, telle que openSUSE ou SLES, un package est disponible pour l’interface de ligne de commande Azure. Ce package a été testé avec openSUSE 42.2 et SLES 12 SP 2.
 
 [!INCLUDE [linux-install-requirements.md](includes/linux-install-requirements.md)]
 
@@ -65,7 +64,7 @@ sudo zypper update azure-cli
 
 ## <a name="uninstall"></a>Désinstaller l’interface
 
-Si jamais vous décidez de désinstaller l’interface de ligne de commande Azure, nous sommes désolés de vous voir partir. Avant de désinstaller, utilisez la commande `az feedback`, afin de nous donner quelques raisons pour lesquelles vous avez choisi de désinstaller et nous aider à améliorer l’expérience CLI. Nous souhaitons nous assurer que l’interface de ligne de commande Azure est aussi conviviale et exempte de bogues que possible. Vous pouvez également [signaler un problème lié à GitHub](https://github.com/Azure/azure-cli/issues).
+[!INCLUDE [uninstall-boilerplate.md](includes/uninstall-boilerplate.md)]
 
 1. Supprimez le package de votre système.
 

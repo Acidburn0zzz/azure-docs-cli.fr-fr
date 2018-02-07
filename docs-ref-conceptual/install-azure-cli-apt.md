@@ -1,26 +1,25 @@
 ---
-title: Installer Azure CLI 2.0 avec apt
+title: "Installation d’Azure CLI 2.0 pour Linux avec apt"
 description: "Installation d’Azure CLI 2.0 avec le gestionnaire de package apt"
 keywords: "Azure CLI, installation d’Azure CLI, Azure apt, Azure Debian, Azure Ubuntu"
 author: sptramer
 ms.author: sttramer
 manager: routlaw
-ms.date: 11/01/2017
+ms.date: 01/29/18
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ROBOTS: NOINDEX,NOFOLLOW
-ms.openlocfilehash: 65e8e78275b0f40a2298934fe8bc9368bbf796a7
-ms.sourcegitcommit: 59f0b667f2202bae8914e6fc8dc5c9dc79fef91c
+ms.openlocfilehash: fdd9f0061d5d38ed5a349b11eb0f5f27786bc1ab
+ms.sourcegitcommit: 8606f36963e8daa6448d637393d1e4ef2c9859a0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/25/2018
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="install-azure-cli-20-with-apt"></a>Installer Azure CLI 2.0 avec apt
 
-Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu ou Debian, vous pouvez installer un package pour l’interface de ligne de commande Azure sur votre système.
+Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu ou Debian, un package est disponible pour l’interface de ligne de commande Azure. Ce package a été testé avec Ubuntu Wheezy et Ubuntu Xenial.
 
 [!INCLUDE [linux-install-requirements.md](includes/linux-install-requirements.md)]
 
@@ -54,9 +53,11 @@ Vous pouvez exécuter l’interface de ligne de commande Azure avec la commande 
 
 ## <a name="troubleshooting"></a>Résolution de problèmes
 
+Voici certains problèmes courants lors de l’installation avec `apt`. Si votre problème ne figure pas ici, veuillez [signaler le problème sur Github](https://github.com/Azure/azure-cli/issues).
+
 ### <a name="apt-key-fails-with-no-dirmngr"></a>Clé apt échoue avec le message « No dirmngr »
 
-Lorsque vous exécutez la commande `apt-key`, vous pouvez voir une sortie similaire à l’erreur suivante.
+Lorsque vous exécutez la commande `apt-key`, vous pouvez voir une sortie similaire à l’erreur suivante :
 
 ```output
 gpg: failed to start the dirmngr '/usr/bin/dirmngr': No such file or directory
@@ -64,7 +65,7 @@ gpg: connecting dirmngr at '/tmp/apt-key-gpghome.kt5zo27tp1/S.dirmngr' failed: N
 gpg: keyserver receive failed: No dirmngr
 ```
 
-Cela est dû à un composant manquant requis par `apt-key`. Vous pouvez résoudre ce problème en installant le package `dirmngr`.
+Cette erreur est due à un composant manquant requis par `apt-key`. Vous pouvez résoudre ce problème en installant le package `dirmngr`.
 
 ```bash
 sudo apt-get install dirmngr
@@ -79,15 +80,15 @@ Utilisez `apt-get upgrade` pour mettre à jour le package de l’interface de li
    ```
 
 > [!NOTE]
-> Cela met à niveau tous les packages installés sur votre système n’ayant pas de modification de dépendance.
-> Pour ne mettre à niveau que l’interface de ligne de commande, utilisez `apt-get install`.
+> Cette commande met à niveau tous les packages installés sur votre système n’ayant pas de modification de dépendance.
+> Pour mettre à niveau uniquement l’interface CLI, utilisez `apt-get install`.
 > ```bash
 > sudo apt-get update && sudo apt-get install --only-upgrade -y azure-cli
 > ```
 
-### <a name="uninstall"></a>Désinstaller l’interface
+## <a name="uninstall"></a>Désinstaller l’interface
 
-Si jamais vous décidez de désinstaller l’interface de ligne de commande Azure, nous sommes désolés de vous voir partir. Avant de désinstaller, utilisez la commande `az feedback`, afin de nous donner quelques raisons pour lesquelles vous avez choisi de désinstaller et nous aider à améliorer l’expérience CLI. Nous souhaitons nous assurer que l’interface de ligne de commande Azure est aussi conviviale et exempte de bogues que possible. Vous pouvez également [signaler un problème lié à GitHub](https://github.com/Azure/azure-cli/issues).
+[!INCLUDE [uninstall-boilerplate.md](includes/uninstall-boilerplate.md)]
 
 1. Désinstaller avec `apt-get remove`.
 

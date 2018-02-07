@@ -5,43 +5,46 @@ keywords: "Azure CLI, Installation d’Azure CLI, Azure Linux, installation Azur
 author: sptramer
 ms.author: sttramer
 manager: routlaw
-ms.date: 11/01/2017
+ms.date: 01/29/18
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ROBOTS: NOINDEX,NOFOLLOW
-ms.openlocfilehash: cf1405cae70762146f63bc6629edc0dd1d949fff
-ms.sourcegitcommit: 3eef136ae752eb90c67af604d4ddd298d70b1c9d
+ms.openlocfilehash: d8c88d111c50a3cbb6b643a14dcd2a9773699657
+ms.sourcegitcommit: 8606f36963e8daa6448d637393d1e4ef2c9859a0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/06/2018
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="install-azure-cli-20-on-linux-manually"></a>Installer manuellement Azure CLI 2.0 sur Linux
 
-Si vous n’avez pas de package disponible sur votre distribution pour l’interface de ligne de commande Azure, vous pouvez toujours installer l’interface de ligne de commande manuellement en exécutant un script d’installation. Si vous disposez d’un package disponible, il s’agit toujours de la méthode d’installation recommandée.
+Si vous n’avez pas de package disponible sur votre distribution pour l’interface de ligne de commande Azure, vous pouvez toujours installer l’interface de ligne de commande manuellement en exécutant un script d’installation.
 
-## <a name="prerequisites"></a>Conditions préalables
+> [!NOTE]
+> Il est fortement recommandé d’utiliser un gestionnaire de package pour l’interface CLI. Un gestionnaire de package permet de s’assurer que vous obtenez toujours les dernières mises à jour et garantit la stabilité des composants de l’interface CLI. Vérifiez s’il existe un package pour votre distribution avant d’installer manuellement.
 
-Pour installer l’interface de ligne de commande, vous devrez disposer des logiciels suivants sur votre système :
+## <a name="prerequisites"></a>configuration requise
+
+Pour installer l’interface de ligne de commande, vous avez besoin des logiciels suivants sur votre système :
 
 * [Python 2.7 ou Python 3.x](https://www.python.org/downloads/)
 * [libffi](https://sourceware.org/libffi/)
 * [OpenSSL 1.0.2](https://www.openssl.org/source/)
 
-## <a name="install-or-update-manually"></a>Installation ou mise à jour manuelle
+## <a name="install-or-update"></a>Installation ou mise à jour 
 
-Que vous installiez ou que vous mettiez à jour l’interface de ligne de commande, vous devrez effectuer une installation complète. Une fois que vous disposez de la configuration requise, vous pouvez installer l’interface de ligne de commande en exécutant `curl`.
+Que vous installiez ou que vous mettiez à jour l’interface de ligne de commande, vous devez effectuer une installation complète. Une fois que vous disposez de la configuration requise, vous pouvez installer l’interface de ligne de commande en exécutant `curl`.
 
 ```bash
 curl -L https://aka.ms/InstallAzureCli | bash
 ```
 
-Si vous préférez, ou si vous n’avez pas `curl` sur votre système, vous pouvez télécharger le script et l’exécuter localement à la place. Vous devrez peut-être redémarrer votre interpréteur de commandes pour que certaines modifications soient prises en compte. Après l’installation, exécutez l’interface de ligne de commande avec la commande `az`.
+Au lieu de cela, vous pouvez également télécharger le script et l’exécuter localement. Vous devrez peut-être redémarrer votre interpréteur de commandes pour que certaines modifications soient prises en compte. Après l’installation, exécutez l’interface de ligne de commande avec la commande `az`.
 
 ## <a name="troubleshooting"></a>Résolution de problèmes
 
+Voici certains problèmes courants rencontrés pendant une installation manuelle. Si votre problème ne figure pas ici, veuillez [signaler le problème sur Github](https://github.com/Azure/azure-cli/issues).
 ### <a name="curl-object-moved-error"></a>erreur curl « Objet déplacé »
 
 Si la commande `curl` renvoie une erreur concernant le `-L` paramètre ou un message d’erreur indiquant « Objet déplacé », essayez d’utiliser l’URL complète plutôt que la `aka.ms` redirection :
@@ -52,43 +55,40 @@ curl https://azurecliprod.blob.core.windows.net/install | bash
 
 ### <a name="az-command-not-found"></a>`az` commande introuvable
 
-Après l’installation, si vous ne pouvez pas exécuter la commande, vous devrez peut-être effacer le cache de hachage de commande de l’interpréteur de commandes. Exécuter
+Si vous ne pouvez pas exécuter la commande après l’installation et après avoir utilisé `bash` et `zsh`, effacez le cache de hachage de commande de votre interpréteur de commandes. Exécuter
 
 ```bash
 hash -r
 ```
 
-et vérifier si le problème est résolu.
+et vérifiez si le problème est résolu.
 
-Cela peut également se produire si vous n’avez pas redémarré votre interpréteur de commandes après l’installation. Assurez-vous que l’emplacement de la commande `az` se trouve dans votre `$PATH`.
-
-Si vous avez exécuté le script d’installation, il s’agira de :
+Le problème peut également se produire si vous n’avez pas redémarré votre interpréteur de commandes après l’installation. Assurez-vous que l’emplacement de la commande `az` se trouve dans votre `$PATH`. L’emplacement de la commande `az` est
 
 ```bash
 <install path>/bin
 ```
 
-## <a name="unstinall-manually"></a>Désinstaller manuellement
+## <a name="uninstall"></a>Désinstaller l’interface
 
-Si jamais vous décidez de désinstaller l’interface de ligne de commande Azure, nous sommes désolés de vous voir partir. Avant de désinstaller, utilisez la commande `az feedback`, afin de nous donner quelques raisons pour lesquelles vous avez choisi de désinstaller et nous aider à améliorer l’expérience CLI. Nous souhaitons nous assurer que l’interface de ligne de commande Azure est aussi conviviale et exempte de bogues que possible. Vous pouvez également [signaler un problème lié à GitHub](https://github.com/Azure/azure-cli/issues).
+[!INCLUDE [uninstall-boilerplate.md](includes/uninstall-boilerplate.md)]
 
-Vous pouvez désinstaller l’interface de ligne de commande en supprimant directement les fichiers de l’emplacement d’installation. Votre emplacement d’installation doit être spécifié au moment de l’installation, si vous avez installé via le script `https://aka.ms/InstallAzureCLI`. L’emplacement d’installation par défaut est `$HOME`.
+Désinstallez l’interface de ligne de commande en supprimant directement les fichiers de l’emplacement spécifié lors de l’installation. L’emplacement d’installation par défaut est `$HOME`.
 
-Tout d’abord, supprimez les fichiers CLI installés :
+1. Supprimez les fichiers CLI installés.
+  
+  ```bash
+  rm -r <install location>/lib/azure-cli
+  rm <install location>/bin/az
+  ```
+2. Modifiez votre fichier `$HOME/.bash_profile` pour supprimer la ligne suivante :
+  
+  ```
+  <install location>/lib/azure-cli/az.completion
+  ```
 
-```bash
-rm -r <install location>/lib/azure-cli
-rm <install location>/bin/az
-```
-
-Modifiez ensuite votre fichier `$HOME/.bash_profile` pour supprimer la ligne :
-
-```
-<install location>/lib/azure-cli/az.completion
-```
-
-Enfin, rechargez le cache de commande de l’interpréteur de commandes s’il en utilise un. Les utilisateurs `bash`et `zsh` devront effectuer cette étape :
-
-```bash
-hash -r
-```
+3. Si vous utilisez `bash` ou `zsh`, rechargez le cache de commande de l’interpréteur de commandes.
+  
+  ```bash
+  hash -r
+  ```

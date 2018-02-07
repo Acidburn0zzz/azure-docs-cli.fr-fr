@@ -1,0 +1,37 @@
+---
+title: Installer Azure CLI 2.0
+description: "Référence pour l’installation de l’interface de ligne de commande Azure 2.0"
+keywords: "Azure CLI, Installation d’Azure CLI"
+author: sptramer
+ms.author: sttramer
+manager: routlaw
+ms.date: 01/29/18
+ms.topic: article
+ms.prod: azure
+ms.technology: azure
+ms.devlang: azurecli
+ms.service: multiple
+ms.openlocfilehash: 4baccff993dd80832e5472903ab77269fec0c324
+ms.sourcegitcommit: 8606f36963e8daa6448d637393d1e4ef2c9859a0
+ms.translationtype: HT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 02/01/2018
+---
+# <a name="install-azure-cli-20"></a>Installer Azure CLI 2.0
+
+Azure CLI 2.0 est un outil de ligne de commande offrant une expérience exceptionnelle pour la gestion des ressources Azure. L’interface CLI est conçue pour simplifier le script, interroger les données avec flexibilité, prendre en charge les opérations de longue durée en tant que processus non bloquant et bien plus encore. Essayez dès aujourd’hui et découvrez les avantages de l’interface CLI !
+
+Pour plus d’informations sur la version la plus récente, consultez les [Notes de publication](release-notes-azure-cli.md).
+
+* [Installer sur Windows](install-azure-cli-windows.md)
+* [Installer sur macOS](install-azure-cli-macos.md)
+* Installer sur Linux ou le Sous-système Windows pour Linux (WSL)
+  * [Installer avec apt sur Debian ou Ubuntu](install-azure-cli-apt.md)
+  * [Installer avec yum sur RHEL, Fedora ou CentOS ](install-azure-cli-yum.md)
+  * [Installer avec zypper sur openSUSE ou SLE ](install-azure-cli-zypper.md)
+  * [Installer à partir du script](install-azure-cli-linux.md)
+* [Exécuter dans un conteneur Docker](run-azure-cli-docker.md)
+
+> [!NOTE]
+> Si vous utilisez le modèle de déploiement Azure Classic, [installez Azure CLI 1.0](/azure/cli-install-nodejs).
+
