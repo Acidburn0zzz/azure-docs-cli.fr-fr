@@ -1,21 +1,20 @@
 ---
 title: Installer manuellement Azure CLI 2.0 pour Linux
 description: "Installation manuelle d’Azure CLI 2.0 pour Linux"
-keywords: "Azure CLI, Installation d’Azure CLI, Azure Linux, installation Azure Linux"
 author: sptramer
 ms.author: sttramer
 manager: routlaw
-ms.date: 01/29/18
+ms.date: 01/29/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: d8c88d111c50a3cbb6b643a14dcd2a9773699657
-ms.sourcegitcommit: 8606f36963e8daa6448d637393d1e4ef2c9859a0
+ms.openlocfilehash: 4ab1f70308810e045b9a1d923fd809ad9848f6c6
+ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 02/15/2018
 ---
 # <a name="install-azure-cli-20-on-linux-manually"></a>Installer manuellement Azure CLI 2.0 sur Linux
 
@@ -32,7 +31,7 @@ Pour installer l’interface de ligne de commande, vous avez besoin des logiciel
 * [libffi](https://sourceware.org/libffi/)
 * [OpenSSL 1.0.2](https://www.openssl.org/source/)
 
-## <a name="install-or-update"></a>Installation ou mise à jour 
+## <a name="install-or-update"></a>Installation ou mise à jour
 
 Que vous installiez ou que vous mettiez à jour l’interface de ligne de commande, vous devez effectuer une installation complète. Une fois que vous disposez de la configuration requise, vous pouvez installer l’interface de ligne de commande en exécutant `curl`.
 
@@ -76,19 +75,19 @@ Le problème peut également se produire si vous n’avez pas redémarré votre 
 Désinstallez l’interface de ligne de commande en supprimant directement les fichiers de l’emplacement spécifié lors de l’installation. L’emplacement d’installation par défaut est `$HOME`.
 
 1. Supprimez les fichiers CLI installés.
-  
+
   ```bash
   rm -r <install location>/lib/azure-cli
   rm <install location>/bin/az
   ```
 2. Modifiez votre fichier `$HOME/.bash_profile` pour supprimer la ligne suivante :
-  
+
   ```
   <install location>/lib/azure-cli/az.completion
   ```
 
 3. Si vous utilisez `bash` ou `zsh`, rechargez le cache de commande de l’interpréteur de commandes.
-  
+
   ```bash
   hash -r
   ```

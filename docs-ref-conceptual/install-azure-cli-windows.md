@@ -1,21 +1,20 @@
 ---
 title: "Installer l’interface de ligne de commande Azure pour Windows"
 description: "Installation d’Azure CLI 2.0 sur Windows"
-keywords: "Azure CLI, installation d’Azure CLI, installation Azure Windows, Azure CLI Windows, Azure Windows"
 author: sptramer
 ms.author: sttramer
 manager: routlaw
-ms.date: 01/29/18
+ms.date: 01/29/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: fc84b80e44a994495ef97cf9d7ec4e4a79a5c5b3
-ms.sourcegitcommit: b41c5ed4a26c771a1a32b4560131f7a65b80fd33
+ms.openlocfilehash: 3e732ea7fae118ddb1564bed28d54d15bab4f7f0
+ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 02/15/2018
 ---
 # <a name="install-azure-cli-20-on-windows"></a>Installation d’Azure CLI 2.0 sur Windows
 
@@ -37,7 +36,7 @@ Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec l
 
 [!INCLUDE [uninstall-boilerplate.md](includes/uninstall-boilerplate.md)]
 
-La désinstallation peut être réalisée en exécutant le fichier MSI à nouveau, en choisissant l’option « Désinstaller ». 
+La désinstallation peut être réalisée en exécutant le fichier MSI à nouveau, en choisissant l’option « Désinstaller ».
 
 > [!div class="nextstepaction"]
 > [Téléchargez le programme d’installation MSI](https://azurecliprod.blob.core.windows.net/msi/azure-cli-latest.msi)
