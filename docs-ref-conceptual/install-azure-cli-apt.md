@@ -1,43 +1,35 @@
 ---
 title: "Installation d’Azure CLI 2.0 pour Linux avec apt"
 description: "Installation d’Azure CLI 2.0 avec le gestionnaire de package apt"
-keywords: "Azure CLI, installation d’Azure CLI, Azure apt, Azure Debian, Azure Ubuntu"
 author: sptramer
 ms.author: sttramer
 manager: routlaw
-ms.date: 01/29/18
+ms.date: 02/06/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: fdd9f0061d5d38ed5a349b11eb0f5f27786bc1ab
-ms.sourcegitcommit: 8606f36963e8daa6448d637393d1e4ef2c9859a0
+ms.openlocfilehash: 4076fefb902a324f77f97bc042b9f5ba3e787734
+ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 02/15/2018
 ---
 # <a name="install-azure-cli-20-with-apt"></a>Installer Azure CLI 2.0 avec apt
 
-Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu ou Debian, un package est disponible pour l’interface de ligne de commande Azure. Ce package a été testé avec Ubuntu Wheezy et Ubuntu Xenial.
+Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu ou Debian, un package 64 bits est disponible pour l’interface de ligne de commande Azure. Ce package a été testé avec :
 
-[!INCLUDE [linux-install-requirements.md](includes/linux-install-requirements.md)]
+* Ubuntu wheezy, xenial, et artful
+* Debian wheezy, jessie, et stretch
 
 ## <a name="install"></a>Installer
 
 1. Modifiez votre liste de sources :
 
-   - Système 32 bits
-
      ```bash
-     echo "deb https://packages.microsoft.com/repos/azure-cli/ wheezy main" | \
-          sudo tee /etc/apt/sources.list.d/azure-cli.list
-     ```
-
-   - Système 64 bits
-
-     ```bash
-     echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ wheezy main" | \
+     AZ_REPO=$(lsb_release -cs)
+     echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | \
           sudo tee /etc/apt/sources.list.d/azure-cli.list
      ```
 

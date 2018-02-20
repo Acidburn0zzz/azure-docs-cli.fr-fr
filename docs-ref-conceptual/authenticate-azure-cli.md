@@ -1,30 +1,29 @@
 ---
 title: Se connecter avec Azure CLI 2.0
-description: Se connecter avec Azure CLI 2.0 sur Linux, Mac ou Windows.
-keywords: Azure CLI 2.0, connexion, Azure CLI, authentification, autorisation, se connecter
+description: "Se connecter avec Azure CLI 2.0 de façon interactive avec des informations d’identification locales"
 author: sptramer
-ms.author: stttramer
+ms.author: sttramer
 manager: routlaw
-ms.date: 11/13/2017
+ms.date: 02/13/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.assetid: 65becd3a-9d69-4415-8a30-777d13a0e7aa
-ms.openlocfilehash: 0a8ec3541783ae19961f2acf1192c0ee061a465f
-ms.sourcegitcommit: dd5b2c7b0b56608ef9ea8730c7dc76e6c532d5ea
+ms.openlocfilehash: a140f8f54ad72f7f3b5e2d63e2300d0aa2c061ac
+ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/26/2018
+ms.lasthandoff: 02/15/2018
 ---
 # <a name="log-in-with-azure-cli-20"></a>Se connecter avec Azure CLI 2.0
 
-Il existe plusieurs manières de se connecter et de s’authentifier auprès d’Azure CLI. Le plus simple est de vous connecter de manière interactive par l’intermédiaire de votre navigateur, ou de vous connecter à la ligne de commande. Nous vous recommandons d’utiliser des principaux du service, qui offrent un moyen de créer des comptes non interactifs que vous pouvez utiliser pour manipuler les ressources. En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir que vos scripts d’automatisation sont encore plus sûrs.
+Il existe plusieurs manières de se connecter et de s’authentifier auprès d’Azure CLI. Le plus simple est de vous connecter de manière interactive par l’intermédiaire de votre navigateur, via Azure Cloud Shell ou la commande `az login`.
+L’approche recommandée consiste à utiliser des principaux du service, qui sont des comptes à autorisations restreintes. En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir que vos scripts d’automatisation sont encore plus sûrs.
 
-Aucune des informations d’identification privées n’est stockée localement. Au lieu de cela, un jeton d’authentification est généré par Azure, puis stocké. Une fois connecté, votre jeton de connexion locale est valide jusqu’à 14 jours sans être utilisé. Au-delà, vous devrez vous authentifier de nouveau.
+Aucune des informations d’identification privées n’est stockée localement. Au lieu de cela, un jeton d’authentification est généré par Azure, puis stocké. Une fois connecté, votre jeton de connexion est valide jusqu’à 14 jours sans être utilisé. Au-delà, vous devez vous authentifier de nouveau.
 
-Une fois connecté, les commandes CLI sont exécutées sur votre abonnement par défaut. Si vous avez plusieurs abonnements, vous souhaiterez peut-être [modifier votre abonnement par défaut](manage-azure-subscriptions-azure-cli.md).
+Une fois connecté, les commandes CLI sont exécutées sur votre abonnement par défaut. Si vous avez plusieurs abonnements, vous pouvez [modifier votre abonnement par défaut](manage-azure-subscriptions-azure-cli.md).
 
 ## <a name="interactive-log-in"></a>Connexion interactive
 
@@ -39,18 +38,17 @@ Fournissez vos informations d’identification sur la ligne de commande.
 > [!Note]
 > Cette approche ne fonctionne pas avec les comptes Microsoft ou les comptes pour lesquels l’authentification à deux facteurs est activée.
 
-```azurecli-interactive
+```azurecli
 az login -u <username> -p <password>
 ```
 
 ## <a name="logging-in-with-a-service-principal"></a>Connexion avec un principal du service
 
-Les principaux du service sont comme des comptes d’utilisateur auxquels vous pouvez appliquer des règles à l’aide d’Azure Active Directory.
-L’authentification avec un principal du service est le meilleur moyen de sécuriser l’utilisation de vos ressources Azure à partir de vos applications ou scripts qui manipulent des ressources. Si vous n’avez pas encore de principal du service disponible et que vous souhaitez en créer un, consultez [Créer un principal du service Azure avec Azure CLI](create-an-azure-service-principal-azure-cli.md).
+Les principaux de service sont des comptes non liés à un utilisateur spécifique, qui peuvent détenir des autorisations sur ces derniers par le biais de rôles prédéfinis. L’authentification avec un principal de service est la meilleure façon d’écrire des scripts ou des programmes sécurisés, ce qui vous permet d’appliquer des restrictions d’autorisation et des informations d’identification statiques stockées localement. Pour en savoir plus sur les principaux de service, consultez [Créer un principal du service avec Azure CLI](create-an-azure-service-principal-azure-cli.md).
 
 Pour vous connecter avec un principal du service, renseignez le nom d’utilisateur, le mot de passe ou fichier de certificat PEM, et le locataire associé au principal du service :
 
-```azurecli-interactive
+```azurecli
 az login --service-principal -u <user> -p <password-or-cert> --tenant <tenant>
 ```
 

@@ -1,22 +1,20 @@
 ---
 title: Formats de sortie pour Azure CLI 2.0
-description: Utilisez --output pour mettre la sortie des commandes Azure CLI 2.0 au format liste, table ou json.
-keywords: Azure CLI 2.0, sortie, format, table, liste, json, Linux, Mac, Windows, OS X
-author: rloutlaw
-ms.author: routlaw
-manager: douge
-ms.date: 02/27/2017
+description: "Apprenez à mettre la sortie des commandes Azure CLI 2.0 au format liste, table ou json."
+author: sptramer
+ms.author: sttramer
+manager: carmonm
+ms.date: 02/15/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.assetid: 74bdb727-481d-45f7-a44e-15d18dc55483
-ms.openlocfilehash: 3e99c2533031dc063a50996f26712d4df92f65c9
-ms.sourcegitcommit: dd5b2c7b0b56608ef9ea8730c7dc76e6c532d5ea
+ms.openlocfilehash: a5d629675b468421e3abee41b9c8bffd7e96e5b0
+ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/26/2018
+ms.lasthandoff: 02/15/2018
 ---
 # <a name="output-formats-for-azure-cli-20-commands"></a>Formats de sortie pour les commandes Azure CLI 2.0
 

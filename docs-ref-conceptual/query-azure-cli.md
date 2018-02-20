@@ -1,7 +1,6 @@
 ---
 title: "Interroger des résultats de commande avec Azure CLI 2.0"
-description: "Utilisez --query pour exécuter des requêtes JMESPath sur la sortie des commandes Azure CLI 2.0."
-keywords: "Azure CLI 2.0, JMESPath, requête, Linux, Mac, Windows, OS X"
+description: "Apprenez à exécuter des requêtes JMESPath sur la sortie des commandes Azure CLI 2.0."
 author: rloutlaw
 ms.author: routlaw
 manager: douge
@@ -11,20 +10,19 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.assetid: 5979acc5-21a5-41e2-a4b6-3183bfe6aa22
-ms.openlocfilehash: 0de18adc91589377d4f96a306a70c9adfeabdcab
-ms.sourcegitcommit: 8606f36963e8daa6448d637393d1e4ef2c9859a0
+ms.openlocfilehash: 98bc35c1e8136231011a2303901f42c68c9a7758
+ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/01/2018
+ms.lasthandoff: 02/15/2018
 ---
-# <a name="using-jmespath-queries-with-azure-cli-20"></a>Utilisation de requêtes JMESPath avec Azure CLI 2.0
+# <a name="use-jmespath-queries-with-azure-cli-20"></a>Utiliser des requêtes JMESPath avec Azure CLI 2.0
 
 Azure CLI 2.0 utilise le paramètre `--query` pour exécuter une [requête JMESPath](http://jmespath.org) sur les résultats de votre commande `az`. JMESPath est un langage de requête puissant pour les sorties JSON.  Si vous n’avez pas une bonne connaissance des requêtes JMESPath, vous trouverez un didacticiel à l’adresse [JMESPath.org/tutorial](http://JMESPath.org/tutorial.html).
 
 Le paramètre `Query` est pris en charge par chaque type de ressource (conteneur de services, applications web, machines virtuelles, etc.) dans Azure CLI 2.0, et peut servir à différentes fins.  Nous avons répertorié plusieurs exemples ci-dessous.
 
-## <a name="selecting-simple-properties"></a>Sélection de propriété simple
+## <a name="select-simple-properties"></a>Sélectionner des propriétés simples
 
 La commande `list` simple avec le format de sortie `table` retourne un ensemble organisé des propriétés les plus simples pour chaque type de ressource dans un format tabulaire facile à lire.
 
@@ -85,7 +83,7 @@ RGDEMO001  KBDemo001VM
 RGDEMO001  KBDemo020
 ```
 
-## <a name="selecting-complex-nested-properties"></a>Sélection de propriétés imbriquées complexes
+## <a name="select-complex-nested-properties"></a>Sélectionner des propriétés imbriquées complexes
 
 Si la propriété que vous souhaitez sélectionner est imbriquée en profondeur dans la sortie JSON, vous devez fournir le chemin complet à cette propriété imbriquée. L’exemple suivant montre comment sélectionner le nom de la machine virtuelle et le type de système d’exploitation à partir de la commande vm list.
 

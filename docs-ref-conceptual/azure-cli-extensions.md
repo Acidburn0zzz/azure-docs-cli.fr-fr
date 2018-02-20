@@ -5,31 +5,31 @@ keywords: Azure CLI, extensions
 author: sptramer
 ms.author: sttramer
 manager: routlaw
-ms.date: 10/30/2017
+ms.date: 02/13/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: a76e58c4430a184d133cca0ef0623f325aeb2f27
-ms.sourcegitcommit: 3eef136ae752eb90c67af604d4ddd298d70b1c9d
+ms.openlocfilehash: 548c06c64cc98598a2bd24bcc5959e59bffb4930
+ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/06/2018
+ms.lasthandoff: 02/15/2018
 ---
 # <a name="using-extensions-with-the-azure-cli-20"></a>Utilisation d’extensions avec Azure CLI 2.0
 
-Les extensions sont des modules individuels non fournis avec Azure CLI, qui vous permettent d’ajouter des fonctionnalités via de nouvelles commandes. Il peut s’agir d’offres expérimentales ou en version préliminaire, d’outils spécialisés de Microsoft correspondant à vos besoins ou encore d’extensions que vous avez vous-même écrites. Les extensions vous offrent un certain degré de flexibilité avec la CLI, ce qui vous permet de la modifier en fonction de vos besoins, sans avoir à fournir de nombreux packages supplémentaires n’étant pas considérés comme composants de l’ensemble de fonctionnalités principal.
+Les extensions sont des modules individuels non fournis avec Azure CLI, qui ajoutent des fonctionnalités via de nouvelles commandes. Il peut s’agir d’offres expérimentales ou en version préliminaire, d’outils spécialisés de Microsoft, ou de fonctionnalités personnalisées que vous écrivez vous-même. Les extensions vous offrent un certain degré de flexibilité avec la CLI, ce qui vous permet de la modifier en fonction de vos besoins, sans avoir à fournir de nombreux packages supplémentaires n’étant pas considérés comme composants de l’ensemble de fonctionnalités principal.
 
-Cet article va vous aider à comprendre comment installer, mettre à jour et supprimer des extensions pour la CLI. Il doit également apporter des réponses à des questions courantes sur le comportement des extensions.
+Cet article va vous aider à comprendre comment installer, mettre à jour et supprimer des extensions pour l’interface CLI. Il doit également apporter des réponses à des questions courantes sur le comportement des extensions.
 
 ## <a name="finding-extensions"></a>Recherche d’extensions
 
-Pour savoir quelles sont les extensions disponibles, vous pouvez utiliser `az extension list-available`. Cette commande répertorie les extensions officielles et disponibles qui sont fournies et prises en charge par Microsoft.
+Pour savoir quelles sont les extensions disponibles, vous pouvez utiliser la commande [az extension list-available](/cli/azure/extension?view=azure-cli-latest#az_extension_list_available). Cette commande répertorie les extensions officielles et disponibles qui sont fournies et prises en charge par Microsoft.
 
 ## <a name="installing-extensions"></a>Installation des extensions
 
-Une fois que vous avez trouvé une extension à installer, utilisez `az extension add` pour l’obtenir. Si l’extension est une extension Microsoft officielle répertoriée dans `az extension list-available`, vous pouvez installer l’extension par nom.
+Une fois que vous avez trouvé une extension à installer, utilisez la commande [az extension add](https://docs.microsoft.com/en-us/cli/azure/extension?view=azure-cli-latest#az_extension_add) pour l’obtenir. Si l’extension est répertoriée dans `az extension list-available`, vous pouvez installer l’extension par nom.
 
 ```azurecli
 az extension add --name <extension-name>
@@ -45,7 +45,7 @@ Une fois qu’une extension est installée, elle se trouve sous la valeur de la 
 
 ## <a name="updating-extensions"></a>Mise à jour des extensions
 
-Les extensions peuvent uniquement être mises à jour par nom :
+Les extensions ne peuvent être mises à jour que par nom, à l’aide de la commande [az extension update](https://docs.microsoft.com/en-us/cli/azure/extension?view=azure-cli-latest#az_extension_update).
 
 ```azurecli
 az extension update --name <extension-name>
@@ -55,7 +55,7 @@ Si le nom d’une extension ne peut pas être résolu par la CLI pour une raison
 
 ## <a name="uninstalling-extensions"></a>Désinstallation des extensions
 
-Si vous n’avez plus besoin d’une extension, elle peut être supprimée avec `az extension remove`.
+Si vous n’avez plus besoin d’une extension, elle peut être supprimée avec la commande [az extension remove](https://docs.microsoft.com/en-us/cli/azure/extension?view=azure-cli-latest#az_extension_remove).
 
 ```azurecli
 az extension remove --name <extension-name>
