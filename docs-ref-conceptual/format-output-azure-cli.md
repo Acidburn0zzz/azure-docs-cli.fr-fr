@@ -10,34 +10,32 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: a5d629675b468421e3abee41b9c8bffd7e96e5b0
-ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
+ms.openlocfilehash: ec96d1cb21b32cd982dbec5e4bf38110f8686c25
+ms.sourcegitcommit: f82774a6f92598c41da9956284f563757f402774
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/15/2018
+ms.lasthandoff: 02/19/2018
 ---
-# <a name="output-formats-for-azure-cli-20-commands"></a><span data-ttu-id="649ed-103">Formats de sortie pour les commandes Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="649ed-103">Output formats for Azure CLI 2.0 commands</span></span>
+# <a name="output-formats-for-azure-cli-20-commands"></a><span data-ttu-id="f9a68-103">Formats de sortie pour les commandes Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="f9a68-103">Output formats for Azure CLI 2.0 commands</span></span>
 
-<span data-ttu-id="649ed-104">Azure CLI 2.0 utilise json comme option de sortie par défaut, mais vous pouvez mettre en forme la sortie des commandes de différentes façons.</span><span class="sxs-lookup"><span data-stu-id="649ed-104">Azure CLI 2.0 uses json as its default output option, but offers various ways for you to format the output of any command.</span></span>  <span data-ttu-id="649ed-105">Utilisez le paramètre `--output` (ou `--out` ou `-o`) pour mettre en forme la sortie de la commande avec l’un des types de sortie indiqués dans le tableau suivant.</span><span class="sxs-lookup"><span data-stu-id="649ed-105">Use the `--output` (or `--out` or `-o`) parameter to format the output of the command into one of the output types noted in the following table.</span></span>
+<span data-ttu-id="f9a68-104">Azure CLI 2.0 utilise json comme option de sortie par défaut, mais vous pouvez mettre en forme la sortie des commandes de différentes façons.</span><span class="sxs-lookup"><span data-stu-id="f9a68-104">Azure CLI 2.0 uses json as its default output option, but offers various ways for you to format the output of any command.</span></span>  <span data-ttu-id="f9a68-105">Utilisez le paramètre `--output` (ou `--out` ou `-o`) pour formater la sortie de la commande avec l’un des types de sortie indiqués dans le tableau suivant :</span><span class="sxs-lookup"><span data-stu-id="f9a68-105">Use the `--output` (or `--out` or `-o`) parameter to format the output of the command into one of the output types noted in the following table:</span></span>
 
-<span data-ttu-id="649ed-106">--output</span><span class="sxs-lookup"><span data-stu-id="649ed-106">--output</span></span> | <span data-ttu-id="649ed-107">DESCRIPTION</span><span class="sxs-lookup"><span data-stu-id="649ed-107">Description</span></span>
+<span data-ttu-id="f9a68-106">--output</span><span class="sxs-lookup"><span data-stu-id="f9a68-106">--output</span></span> | <span data-ttu-id="f9a68-107">DESCRIPTION</span><span class="sxs-lookup"><span data-stu-id="f9a68-107">Description</span></span>
 ---------|-------------------------------
-`json`   | <span data-ttu-id="649ed-108">Chaîne JSON.</span><span class="sxs-lookup"><span data-stu-id="649ed-108">json string.</span></span> <span data-ttu-id="649ed-109">`json` est la valeur par défaut.</span><span class="sxs-lookup"><span data-stu-id="649ed-109">`json` is the default.</span></span>
-`jsonc`  | <span data-ttu-id="649ed-110">Chaîne json colorée.</span><span class="sxs-lookup"><span data-stu-id="649ed-110">colorized json string.</span></span>
-`table`  | <span data-ttu-id="649ed-111">Table avec en-têtes de colonnes.</span><span class="sxs-lookup"><span data-stu-id="649ed-111">table with column headings.</span></span>
-`tsv`    | <span data-ttu-id="649ed-112">Valeurs séparées par des tabulations.</span><span class="sxs-lookup"><span data-stu-id="649ed-112">tab-separated values.</span></span>
+`json`   | <span data-ttu-id="f9a68-108">Chaîne JSON.</span><span class="sxs-lookup"><span data-stu-id="f9a68-108">JSON string.</span></span> <span data-ttu-id="f9a68-109">Il s’agit du paramètre par défaut.</span><span class="sxs-lookup"><span data-stu-id="f9a68-109">This setting is the default.</span></span>
+`jsonc`  | <span data-ttu-id="f9a68-110">JSON coloré.</span><span class="sxs-lookup"><span data-stu-id="f9a68-110">Colorized JSON.</span></span>
+`table`  | <span data-ttu-id="f9a68-111">Table ASCII avec des clés en tant qu’en-têtes de colonne.</span><span class="sxs-lookup"><span data-stu-id="f9a68-111">ASCII table with keys as column headings.</span></span>
+`tsv`    | <span data-ttu-id="f9a68-112">Valeurs séparées par des tabulations, sans clés</span><span class="sxs-lookup"><span data-stu-id="f9a68-112">Tab-separated values, with no keys</span></span>
 
-[!INCLUDE [cloud-shell-try-it.md](includes/cloud-shell-try-it.md)]
+## <a name="json-output-format"></a><span data-ttu-id="f9a68-113">Format de sortie JSON</span><span class="sxs-lookup"><span data-stu-id="f9a68-113">JSON output format</span></span>
 
-## <a name="using-the-json-option"></a><span data-ttu-id="649ed-113">Utilisation de l’option json</span><span class="sxs-lookup"><span data-stu-id="649ed-113">Using the json option</span></span>
+<span data-ttu-id="f9a68-114">L’exemple suivant affiche la liste des machines virtuelles dans vos abonnements au format json par défaut.</span><span class="sxs-lookup"><span data-stu-id="f9a68-114">The following example displays the list of virtual machines in your subscriptions in the default json format.</span></span>
 
-<span data-ttu-id="649ed-114">L’exemple suivant affiche la liste des machines virtuelles dans vos abonnements au format json par défaut.</span><span class="sxs-lookup"><span data-stu-id="649ed-114">The following example displays the list of virtual machines in your subscriptions in the default json format.</span></span>
-
-```azurecli-interactive
+```azurecli
 az vm list --output json
 ```
 
-<span data-ttu-id="649ed-115">Les résultats sont affichés au format suivant (affiche uniquement des résultats partiels, par souci de clarté).</span><span class="sxs-lookup"><span data-stu-id="649ed-115">The results are in this form (only showing partial output for sake of brevity).</span></span>
+<span data-ttu-id="f9a68-115">Certains champs de la sortie suivante ont été omis par souci de concision et des informations d’identification ont été remplacées.</span><span class="sxs-lookup"><span data-stu-id="f9a68-115">The following output has some fields omitted for brevity, and identifying information replaced.</span></span>
 
 ```json
 [
@@ -47,7 +45,7 @@ az vm list --output json
     "hardwareProfile": {
       "vmSize": "Standard_DS1"
     },
-    "id": "/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/DemoVM010",
+    "id": "/subscriptions/.../resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/DemoVM010",
     "instanceView": null,
     "licenseType": null,
     "location": "westus",
@@ -55,7 +53,7 @@ az vm list --output json
     "networkProfile": {
       "networkInterfaces": [
         {
-          "id": "/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/demorg1/providers/Microsoft.Network/networkInterfaces/DemoVM010VMNic",
+          "id": "/subscriptions/.../resourceGroups/demorg1/providers/Microsoft.Network/networkInterfaces/DemoVM010VMNic",
           "primary": null,
           "resourceGroup": "demorg1"
         }
@@ -67,15 +65,15 @@ az vm list --output json
 ]
 ```
 
-## <a name="using-the-table-option"></a><span data-ttu-id="649ed-116">Utilisation de l’option table</span><span class="sxs-lookup"><span data-stu-id="649ed-116">Using the table option</span></span>
+## <a name="table-output-format"></a><span data-ttu-id="f9a68-116">Format de sortie de la table</span><span class="sxs-lookup"><span data-stu-id="f9a68-116">Table output format</span></span>
 
-<span data-ttu-id="649ed-117">L’option table fournit une sortie facile à lire, mais notez que les objets imbriqués ne sont pas inclus dans la sortie avec la commande simple `--output table`, contrairement à l’exemple .json précédent.</span><span class="sxs-lookup"><span data-stu-id="649ed-117">The table option provides an easy to read set of output, but note that nested objects are not included in the output with the simple `--output table`, unlike the preceding .json example.</span></span>  <span data-ttu-id="649ed-118">L’utilisation du même exemple avec le format de sortie « table » fournit une liste organisée des valeurs de propriété les plus courantes.</span><span class="sxs-lookup"><span data-stu-id="649ed-118">Using the same example with 'table' output format provides a curated list of most common property values.</span></span>
+<span data-ttu-id="f9a68-117">Le format de sortie `table` fournit une sortie brute formatée en tant que lignes et colonnes de données assemblées, ce qui facilite la lecture et l’analyse.</span><span class="sxs-lookup"><span data-stu-id="f9a68-117">The `table` output format provides plain output formatted as rows and columns of collated data, making it easy to read and scan.</span></span> <span data-ttu-id="f9a68-118">Les objets imbriqués ne sont pas inclus dans la sortie de la table, mais peuvent toujours être filtrés dans le cadre d’une requête.</span><span class="sxs-lookup"><span data-stu-id="f9a68-118">Nested objects are not included in table output, but can still be filtered as part of a query.</span></span> <span data-ttu-id="f9a68-119">Certains champs sont également omis des données de table. Ce format est donc conseillé lorsque vous souhaitez un aperçu des données rapide et consultable à l’échelle humaine.</span><span class="sxs-lookup"><span data-stu-id="f9a68-119">Some fields are also omitted from the table data, so this format is best when you want a quick, human-searchable overview of data.</span></span>
 
-```azurecli-interactive
+```azurecli
 az vm list --out table
 ```
 
-```
+```output
 Name         ResourceGroup    Location
 -----------  ---------------  ----------
 DemoVM010    DEMORG1          westus
@@ -84,11 +82,10 @@ demovm213    DEMORG1          westus
 KBDemo001VM  RGDEMO001        westus
 KBDemo020    RGDEMO001        westus
 ```
+<span data-ttu-id="f9a68-120">Vous pouvez utiliser le paramètre `--query` pour personnaliser les propriétés et les colonnes à afficher dans la liste générée.</span><span class="sxs-lookup"><span data-stu-id="f9a68-120">You can use the `--query` parameter to customize the properties and columns you want to show in the list output.</span></span> <span data-ttu-id="f9a68-121">L’exemple suivant montre comment sélectionner uniquement le nom de la machine virtuelle et le nom du groupe de ressources dans la commande `list`.</span><span class="sxs-lookup"><span data-stu-id="f9a68-121">The following example shows how to select just the VM Name and the Resource Group Name in the `list` command.</span></span>
 
-<span data-ttu-id="649ed-119">Vous pouvez utiliser le paramètre `--query` pour personnaliser les propriétés et les colonnes à afficher dans la liste générée.</span><span class="sxs-lookup"><span data-stu-id="649ed-119">You can use the `--query` parameter to customize the properties and columns you want to show in the list output.</span></span> <span data-ttu-id="649ed-120">L’exemple suivant montre comment sélectionner uniquement le nom de la machine virtuelle et le nom du groupe de ressources dans la commande `list`.</span><span class="sxs-lookup"><span data-stu-id="649ed-120">The following example shows how to select just the VM Name and the Resource Group Name in the `list` command.</span></span>
-
-```azurecli-interactive
-az vm list --query "[].{ resource: resourceGroup, name: name }" -o table
+```azurecli
+az vm list --query "[].{resource:resourceGroup, name:name}" -o table
 ```
 
 ```
@@ -101,42 +98,70 @@ RGDEMO001   KBDemo001VM
 RGDEMO001   KBDemo020
 ```
 
-## <a name="using-the-tsv-option"></a><span data-ttu-id="649ed-121">Utilisation de l’option tsv</span><span class="sxs-lookup"><span data-stu-id="649ed-121">Using the tsv option</span></span>
+> [!NOTE]
+> <span data-ttu-id="f9a68-122">Certaines clés sont filtrées et non pas imprimées dans l’affichage de table.</span><span class="sxs-lookup"><span data-stu-id="f9a68-122">Certain keys are filtered out and not printed in the table view.</span></span> <span data-ttu-id="f9a68-123">Il s’agit de `id`, `type`, et `etag`.</span><span class="sxs-lookup"><span data-stu-id="f9a68-123">These are `id`, `type`, and `etag`.</span></span> <span data-ttu-id="f9a68-124">Si vous avez besoin de les voir dans votre sortie, vous pouvez utiliser la fonction JMESPath de régénération des clés pour modifier le nom de clé et éviter le filtrage.</span><span class="sxs-lookup"><span data-stu-id="f9a68-124">If you need to see these in your output, you can use the JMESPath re-keying feature to change the key name and avoid filtering.</span></span>
+>
+> ```azurecli
+> az vm list --query "[].{objectID:id}" -o table
+> ```
 
-<span data-ttu-id="649ed-122">Le format de sortie « tsv » retourne une sortie texte simple et séparée par des tabulations, sans en-tête ni tiret.</span><span class="sxs-lookup"><span data-stu-id="649ed-122">'tsv' output format returns a simple text-based and tab-separated output with no headings and dashes.</span></span> <span data-ttu-id="649ed-123">Avec ce format, il est facile de consommer la sortie dans d’autres commandes et outils qui ont besoin de traiter le texte dans une forme donnée.</span><span class="sxs-lookup"><span data-stu-id="649ed-123">This format makes it easy to consume the output into other commands and tools that need to process the text in some form.</span></span> <span data-ttu-id="649ed-124">L’exécution de l’exemple précédent avec l’option `tsv` retourne le résultat séparé par des tabulations.</span><span class="sxs-lookup"><span data-stu-id="649ed-124">Using the preceding example with the `tsv` option outputs the tab-separated result.</span></span>
+<span data-ttu-id="f9a68-125">Pour plus d’informations sur l’utilisation des requêtes pour filtrer les données, consultez [Utiliser des requêtes JMESPath avec Azure CLI 2.0](/cli/azure/query-azure-cli).</span><span class="sxs-lookup"><span data-stu-id="f9a68-125">For more about using queries to filter data, see [Use JMESPath queries with Azure CLI 2.0](/cli/azure/query-azure-cli).</span></span>
 
-```azurecli-interactive
+## <a name="tsv-output-format"></a><span data-ttu-id="f9a68-126">Format de sortie TSV</span><span class="sxs-lookup"><span data-stu-id="f9a68-126">TSV output format</span></span>
+
+<span data-ttu-id="f9a68-127">Le format de sortie `tsv` retourne des valeurs séparées par des tabulations et des sauts de ligne sans mise en forme, clés ou autres symboles supplémentaires.</span><span class="sxs-lookup"><span data-stu-id="f9a68-127">The `tsv` output format returns tab- and newline-separated values without additional formatting, keys, or other symbols.</span></span> <span data-ttu-id="f9a68-128">Avec ce format, il est facile de consommer la sortie dans d’autres commandes et outils qui ont besoin de traiter le texte dans une forme donnée.</span><span class="sxs-lookup"><span data-stu-id="f9a68-128">This format makes it easy to consume the output into other commands and tools that need to process the text in some form.</span></span> <span data-ttu-id="f9a68-129">Comme pour le format `table`, l’option de sortie `tsv` n’imprime pas les objets imbriqués.</span><span class="sxs-lookup"><span data-stu-id="f9a68-129">Like the `table` format, the `tsv` output option does not print nested objects.</span></span>
+
+<span data-ttu-id="f9a68-130">L’exécution de l’exemple précédent avec l’option `tsv` retourne le résultat séparé par des tabulations.</span><span class="sxs-lookup"><span data-stu-id="f9a68-130">Using the preceding example with the `tsv` option outputs the tab-separated result.</span></span>
+
+```azurecli
 az vm list --out tsv
 ```
 
-```
-None    None        /subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/DemoVM010    None    None    westus  DemoVM010           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   cbd56d9b-9340-44bc-a722-25f15b578444
-None    None        /subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/demovm212    None    None    westus  demovm212           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   4bdac85d-c2f7-410f-9907-ca7921d930b4
-None    None        /subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/demovm213    None    None    westus  demovm213           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   2131c664-221a-4b7f-9653-f6d542fbfa34
-None    None        /subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/RGDEMO001/providers/Microsoft.Compute/virtualMachines/KBDemo001VM    None    None    westus  KBDemo001VM         None    Succeeded   RGDEMO001   None            Microsoft.Compute/virtualMachines   14e74761-c17e-4530-a7be-9e4ff06ea74b
-None    None        /subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/RGDEMO001/providers/Microsoft.Compute/virtualMachines/KBDemo02None   None    westus  KBDemo020           None    Succeeded   RGDEMO001   None            Microsoft.Compute/virtualMachinesed36baa9-9b80-48a8-b4a9-854c7a858ece
+```output
+None    None        /subscriptions/.../resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/DemoVM010 None    None    westus  DemoVM010           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   cbd56d9b-9340-44bc-a722-25f15b578444
+None    None        /subscriptions/.../resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/demovm212 None    None    westus  demovm212           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   4bdac85d-c2f7-410f-9907-ca7921d930b4
+None    None        /subscriptions/.../resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/demovm213 None    None    westus  demovm213           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   2131c664-221a-4b7f-9653-f6d542fbfa34
+None    None        /subscriptions/.../resourceGroups/RGDEMO001/providers/Microsoft.Compute/virtualMachines/KBDemo001VM None    None    westus  KBDemo001VM         None    Succeeded   RGDEMO001   None            Microsoft.Compute/virtualMachines   14e74761-c17e-4530-a7be-9e4ff06ea74b
+None    None        /subscriptions/.../resourceGroups/RGDEMO001/providers/Microsoft.Compute/virtualMachines/KBDemo02None    None    westus  KBDemo020           None    Succeeded   RGDEMO001   None            Microsoft.Compute/virtualMachines    36baa9-9b80-48a8-b4a9-854c7a858ece
 ```
 
-<span data-ttu-id="649ed-125">L’exemple suivant montre comment la sortie `tsv` peut être dirigée vers des commandes telles que `grep` et `cut` pour analyser plus en détail des valeurs spécifiques de la sortie `list`.</span><span class="sxs-lookup"><span data-stu-id="649ed-125">The next example shows how the `tsv` output can be piped to commands like `grep` and `cut` to further parse specific values out of the `list` output.</span></span> <span data-ttu-id="649ed-126">La commande `grep` sélectionne uniquement les éléments contenant le texte « RGD », puis la commande `cut` sélectionne uniquement la valeur du huitième champ (séparé par des tabulations) pour l’afficher dans la sortie.</span><span class="sxs-lookup"><span data-stu-id="649ed-126">The `grep` command selects only items that have text "RGD" in them and then the `cut` command selects only the eighth field (separated by tabs) value to show in the output.</span></span>
+<span data-ttu-id="f9a68-131">L’exemple suivant montre comment la sortie `tsv` peut être redirigée vers d’autres commandes sur les systèmes UNIX pour extraire des données plus spécifiques.</span><span class="sxs-lookup"><span data-stu-id="f9a68-131">The next example shows how the `tsv` output can be piped to other commands on UNIX systems to extract more specific data.</span></span> <span data-ttu-id="f9a68-132">La commande `grep` sélectionne les éléments contenant le texte « RGD », puis la commande `cut` sélectionne le huitième champ (séparé par des tabulations) pour afficher le nom de la machine virtuelle dans la sortie.</span><span class="sxs-lookup"><span data-stu-id="f9a68-132">The `grep` command selects items that have text "RGD" in them, and then the `cut` command selects the eighth field (separated by tabs) to show the name of the VM in output.</span></span>
 
-```azurecli
+```bash
 az vm list --out tsv | grep RGD | cut -f8
 ```
 
-```
+```output
 KBDemo001VM
 KBDemo020
 ```
 
-## <a name="setting-the-default-output-format"></a><span data-ttu-id="649ed-127">Définition du format de sortie par défaut</span><span class="sxs-lookup"><span data-stu-id="649ed-127">Setting the default output format</span></span>
+<span data-ttu-id="f9a68-133">Dans le cadre du traitement des champs séparés par des tabulations, les valeurs sont dans le même ordre que dans l’objet JSON imprimé.</span><span class="sxs-lookup"><span data-stu-id="f9a68-133">For the purposes of processing tab-separated fields, the values are in the same order that they appear in the printed JSON object.</span></span> <span data-ttu-id="f9a68-134">Cette commande est garantie comme étant cohérente entre les exécutions de la commande.</span><span class="sxs-lookup"><span data-stu-id="f9a68-134">This order is guaranteed to be consistent between runs of the command.</span></span>
 
-<span data-ttu-id="649ed-128">Vous pouvez utiliser la commande `az configure` pour configurer votre environnement ou établir des préférences telles que les paramètres par défaut pour les formats de sortie.</span><span class="sxs-lookup"><span data-stu-id="649ed-128">You can use the `az configure` command to set up your environment or establish preferences such as default settings for output formats.</span></span> <span data-ttu-id="649ed-129">Pour une utilisation courante, le format de sortie par défaut le plus simple est le format « table » : sélectionnez **3** quand vous êtes invité à choisir le format de sortie.</span><span class="sxs-lookup"><span data-stu-id="649ed-129">For common use, the easiest output format default is the "table" format - select **3** when prompted for output format choices.</span></span>
+## <a name="set-the-default-output-format"></a><span data-ttu-id="f9a68-135">Définir le format de sortie par défaut</span><span class="sxs-lookup"><span data-stu-id="f9a68-135">Set the default output format</span></span>
 
+<span data-ttu-id="f9a68-136">Utilisez la commande interactive `az configure` pour configurer votre environnement et établir des paramètres par défaut pour les formats de sortie.</span><span class="sxs-lookup"><span data-stu-id="f9a68-136">Use the interactive `az configure` command to set up your environment and establish default settings for output formats.</span></span> <span data-ttu-id="f9a68-137">Le format de sortie par défaut est `json`.</span><span class="sxs-lookup"><span data-stu-id="f9a68-137">The default output format is `json`.</span></span> 
+
+```azurecli
+az configure
 ```
+
+```output
+Welcome to the Azure CLI! This command will guide you through logging in and setting some default values.
+
+Your settings can be found at /home/defaultuser/.azure/config
+Your current configuration is as follows:
+
+  ...
+
+Do you wish to change your settings? (y/N): y
+
 What default output format would you like?
  [1] json - JSON formatted output that most closely matches API responses
  [2] jsonc - Colored JSON formatted output that most closely matches API responses
  [3] table - Human-readable output format
- [4] tsv - Tab and Newline delimited, great for GREP, AWK, etc.
-Please enter a choice [3]:
+ [4] tsv - Tab- and Newline-delimited, great for GREP, AWK, etc.
+Please enter a choice [1]:
 ```
+
+<span data-ttu-id="f9a68-138">Pour en savoir plus sur la configuration de votre environnement, consultez [Configuration Azure CLI 2.0](/cli/azure/azure-cli-configuration).</span><span class="sxs-lookup"><span data-stu-id="f9a68-138">To learn more about configuring your environment, see [Azure CLI 2.0 configuration](/cli/azure/azure-cli-configuration).</span></span>
