@@ -10,34 +10,32 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: a5d629675b468421e3abee41b9c8bffd7e96e5b0
-ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
+ms.openlocfilehash: ec96d1cb21b32cd982dbec5e4bf38110f8686c25
+ms.sourcegitcommit: f82774a6f92598c41da9956284f563757f402774
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/15/2018
+ms.lasthandoff: 02/19/2018
 ---
 # <a name="output-formats-for-azure-cli-20-commands"></a>Formats de sortie pour les commandes Azure CLI 2.0
 
-Azure CLI 2.0 utilise json comme option de sortie par défaut, mais vous pouvez mettre en forme la sortie des commandes de différentes façons.  Utilisez le paramètre `--output` (ou `--out` ou `-o`) pour mettre en forme la sortie de la commande avec l’un des types de sortie indiqués dans le tableau suivant.
+Azure CLI 2.0 utilise json comme option de sortie par défaut, mais vous pouvez mettre en forme la sortie des commandes de différentes façons.  Utilisez le paramètre `--output` (ou `--out` ou `-o`) pour formater la sortie de la commande avec l’un des types de sortie indiqués dans le tableau suivant :
 
 --output | DESCRIPTION
 ---------|-------------------------------
-`json`   | Chaîne JSON. `json` est la valeur par défaut.
-`jsonc`  | Chaîne json colorée.
-`table`  | Table avec en-têtes de colonnes.
-`tsv`    | Valeurs séparées par des tabulations.
+`json`   | Chaîne JSON. Il s’agit du paramètre par défaut.
+`jsonc`  | JSON coloré.
+`table`  | Table ASCII avec des clés en tant qu’en-têtes de colonne.
+`tsv`    | Valeurs séparées par des tabulations, sans clés
 
-[!INCLUDE [cloud-shell-try-it.md](includes/cloud-shell-try-it.md)]
-
-## <a name="using-the-json-option"></a>Utilisation de l’option json
+## <a name="json-output-format"></a>Format de sortie JSON
 
 L’exemple suivant affiche la liste des machines virtuelles dans vos abonnements au format json par défaut.
 
-```azurecli-interactive
+```azurecli
 az vm list --output json
 ```
 
-Les résultats sont affichés au format suivant (affiche uniquement des résultats partiels, par souci de clarté).
+Certains champs de la sortie suivante ont été omis par souci de concision et des informations d’identification ont été remplacées.
 
 ```json
 [
@@ -47,7 +45,7 @@ Les résultats sont affichés au format suivant (affiche uniquement des résulta
     "hardwareProfile": {
       "vmSize": "Standard_DS1"
     },
-    "id": "/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/DemoVM010",
+    "id": "/subscriptions/.../resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/DemoVM010",
     "instanceView": null,
     "licenseType": null,
     "location": "westus",
@@ -55,7 +53,7 @@ Les résultats sont affichés au format suivant (affiche uniquement des résulta
     "networkProfile": {
       "networkInterfaces": [
         {
-          "id": "/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/demorg1/providers/Microsoft.Network/networkInterfaces/DemoVM010VMNic",
+          "id": "/subscriptions/.../resourceGroups/demorg1/providers/Microsoft.Network/networkInterfaces/DemoVM010VMNic",
           "primary": null,
           "resourceGroup": "demorg1"
         }
@@ -67,15 +65,15 @@ Les résultats sont affichés au format suivant (affiche uniquement des résulta
 ]
 ```
 
-## <a name="using-the-table-option"></a>Utilisation de l’option table
+## <a name="table-output-format"></a>Format de sortie de la table
 
-L’option table fournit une sortie facile à lire, mais notez que les objets imbriqués ne sont pas inclus dans la sortie avec la commande simple `--output table`, contrairement à l’exemple .json précédent.  L’utilisation du même exemple avec le format de sortie « table » fournit une liste organisée des valeurs de propriété les plus courantes.
+Le format de sortie `table` fournit une sortie brute formatée en tant que lignes et colonnes de données assemblées, ce qui facilite la lecture et l’analyse. Les objets imbriqués ne sont pas inclus dans la sortie de la table, mais peuvent toujours être filtrés dans le cadre d’une requête. Certains champs sont également omis des données de table. Ce format est donc conseillé lorsque vous souhaitez un aperçu des données rapide et consultable à l’échelle humaine.
 
-```azurecli-interactive
+```azurecli
 az vm list --out table
 ```
 
-```
+```output
 Name         ResourceGroup    Location
 -----------  ---------------  ----------
 DemoVM010    DEMORG1          westus
@@ -84,11 +82,10 @@ demovm213    DEMORG1          westus
 KBDemo001VM  RGDEMO001        westus
 KBDemo020    RGDEMO001        westus
 ```
-
 Vous pouvez utiliser le paramètre `--query` pour personnaliser les propriétés et les colonnes à afficher dans la liste générée. L’exemple suivant montre comment sélectionner uniquement le nom de la machine virtuelle et le nom du groupe de ressources dans la commande `list`.
 
-```azurecli-interactive
-az vm list --query "[].{ resource: resourceGroup, name: name }" -o table
+```azurecli
+az vm list --query "[].{resource:resourceGroup, name:name}" -o table
 ```
 
 ```
@@ -101,42 +98,70 @@ RGDEMO001   KBDemo001VM
 RGDEMO001   KBDemo020
 ```
 
-## <a name="using-the-tsv-option"></a>Utilisation de l’option tsv
+> [!NOTE]
+> Certaines clés sont filtrées et non pas imprimées dans l’affichage de table. Il s’agit de `id`, `type`, et `etag`. Si vous avez besoin de les voir dans votre sortie, vous pouvez utiliser la fonction JMESPath de régénération des clés pour modifier le nom de clé et éviter le filtrage.
+>
+> ```azurecli
+> az vm list --query "[].{objectID:id}" -o table
+> ```
 
-Le format de sortie « tsv » retourne une sortie texte simple et séparée par des tabulations, sans en-tête ni tiret. Avec ce format, il est facile de consommer la sortie dans d’autres commandes et outils qui ont besoin de traiter le texte dans une forme donnée. L’exécution de l’exemple précédent avec l’option `tsv` retourne le résultat séparé par des tabulations.
+Pour plus d’informations sur l’utilisation des requêtes pour filtrer les données, consultez [Utiliser des requêtes JMESPath avec Azure CLI 2.0](/cli/azure/query-azure-cli).
 
-```azurecli-interactive
+## <a name="tsv-output-format"></a>Format de sortie TSV
+
+Le format de sortie `tsv` retourne des valeurs séparées par des tabulations et des sauts de ligne sans mise en forme, clés ou autres symboles supplémentaires. Avec ce format, il est facile de consommer la sortie dans d’autres commandes et outils qui ont besoin de traiter le texte dans une forme donnée. Comme pour le format `table`, l’option de sortie `tsv` n’imprime pas les objets imbriqués.
+
+L’exécution de l’exemple précédent avec l’option `tsv` retourne le résultat séparé par des tabulations.
+
+```azurecli
 az vm list --out tsv
 ```
 
-```
-None    None        /subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/DemoVM010    None    None    westus  DemoVM010           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   cbd56d9b-9340-44bc-a722-25f15b578444
-None    None        /subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/demovm212    None    None    westus  demovm212           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   4bdac85d-c2f7-410f-9907-ca7921d930b4
-None    None        /subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/demovm213    None    None    westus  demovm213           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   2131c664-221a-4b7f-9653-f6d542fbfa34
-None    None        /subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/RGDEMO001/providers/Microsoft.Compute/virtualMachines/KBDemo001VM    None    None    westus  KBDemo001VM         None    Succeeded   RGDEMO001   None            Microsoft.Compute/virtualMachines   14e74761-c17e-4530-a7be-9e4ff06ea74b
-None    None        /subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/RGDEMO001/providers/Microsoft.Compute/virtualMachines/KBDemo02None   None    westus  KBDemo020           None    Succeeded   RGDEMO001   None            Microsoft.Compute/virtualMachinesed36baa9-9b80-48a8-b4a9-854c7a858ece
+```output
+None    None        /subscriptions/.../resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/DemoVM010 None    None    westus  DemoVM010           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   cbd56d9b-9340-44bc-a722-25f15b578444
+None    None        /subscriptions/.../resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/demovm212 None    None    westus  demovm212           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   4bdac85d-c2f7-410f-9907-ca7921d930b4
+None    None        /subscriptions/.../resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/demovm213 None    None    westus  demovm213           None    Succeeded   DEMORG1 None            Microsoft.Compute/virtualMachines   2131c664-221a-4b7f-9653-f6d542fbfa34
+None    None        /subscriptions/.../resourceGroups/RGDEMO001/providers/Microsoft.Compute/virtualMachines/KBDemo001VM None    None    westus  KBDemo001VM         None    Succeeded   RGDEMO001   None            Microsoft.Compute/virtualMachines   14e74761-c17e-4530-a7be-9e4ff06ea74b
+None    None        /subscriptions/.../resourceGroups/RGDEMO001/providers/Microsoft.Compute/virtualMachines/KBDemo02None    None    westus  KBDemo020           None    Succeeded   RGDEMO001   None            Microsoft.Compute/virtualMachines    36baa9-9b80-48a8-b4a9-854c7a858ece
 ```
 
-L’exemple suivant montre comment la sortie `tsv` peut être dirigée vers des commandes telles que `grep` et `cut` pour analyser plus en détail des valeurs spécifiques de la sortie `list`. La commande `grep` sélectionne uniquement les éléments contenant le texte « RGD », puis la commande `cut` sélectionne uniquement la valeur du huitième champ (séparé par des tabulations) pour l’afficher dans la sortie.
+L’exemple suivant montre comment la sortie `tsv` peut être redirigée vers d’autres commandes sur les systèmes UNIX pour extraire des données plus spécifiques. La commande `grep` sélectionne les éléments contenant le texte « RGD », puis la commande `cut` sélectionne le huitième champ (séparé par des tabulations) pour afficher le nom de la machine virtuelle dans la sortie.
 
-```azurecli
+```bash
 az vm list --out tsv | grep RGD | cut -f8
 ```
 
-```
+```output
 KBDemo001VM
 KBDemo020
 ```
 
-## <a name="setting-the-default-output-format"></a>Définition du format de sortie par défaut
+Dans le cadre du traitement des champs séparés par des tabulations, les valeurs sont dans le même ordre que dans l’objet JSON imprimé. Cette commande est garantie comme étant cohérente entre les exécutions de la commande.
 
-Vous pouvez utiliser la commande `az configure` pour configurer votre environnement ou établir des préférences telles que les paramètres par défaut pour les formats de sortie. Pour une utilisation courante, le format de sortie par défaut le plus simple est le format « table » : sélectionnez **3** quand vous êtes invité à choisir le format de sortie.
+## <a name="set-the-default-output-format"></a>Définir le format de sortie par défaut
 
+Utilisez la commande interactive `az configure` pour configurer votre environnement et établir des paramètres par défaut pour les formats de sortie. Le format de sortie par défaut est `json`. 
+
+```azurecli
+az configure
 ```
+
+```output
+Welcome to the Azure CLI! This command will guide you through logging in and setting some default values.
+
+Your settings can be found at /home/defaultuser/.azure/config
+Your current configuration is as follows:
+
+  ...
+
+Do you wish to change your settings? (y/N): y
+
 What default output format would you like?
  [1] json - JSON formatted output that most closely matches API responses
  [2] jsonc - Colored JSON formatted output that most closely matches API responses
  [3] table - Human-readable output format
- [4] tsv - Tab and Newline delimited, great for GREP, AWK, etc.
-Please enter a choice [3]:
+ [4] tsv - Tab- and Newline-delimited, great for GREP, AWK, etc.
+Please enter a choice [1]:
 ```
+
+Pour en savoir plus sur la configuration de votre environnement, consultez [Configuration Azure CLI 2.0](/cli/azure/azure-cli-configuration).
