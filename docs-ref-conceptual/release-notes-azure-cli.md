@@ -3,20 +3,80 @@ title: "Notes de publication d’Azure CLI 2.0"
 description: "En savoir plus sur les dernières mises à jour d’Azure CLI 2.0"
 author: sptramer
 ms.author: sttramer
-manager: routlaw
-ms.date: 02/13/2018
+manager: carmonm
+ms.date: 02/27/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 480b646b7230c8fb22f10b28a9204287cd0acc19
-ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
+ms.openlocfilehash: 01078b7a3665f563f0a6b1d809c9a41f18d136d6
+ms.sourcegitcommit: f3ab5da6019083ef2482b62c7355817e6170dcfb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/15/2018
+ms.lasthandoff: 02/28/2018
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="february-27-2018"></a>27 février 2018
+
+Version 2.0.28
+
+### <a name="core"></a>Principal
+
+* Résolu [#5184](https://github.com/Azure/azure-cli/issues/5184) : Problème d’installation d’Homebrew
+* Ajout de la prise en charge de télémétrie d’extension avec des clés personnalisées
+* Ajout de la connexion HTTP à `--debug`
+
+### <a name="acs"></a>ACS
+
+* Modification pour utiliser le graphique Helm `virtual-kubelet-for-aks` pour `aks install-connector` par défaut
+* Problème résolu : autorisation insuffisante des principaux de service à créer des groupes de conteneur ACI
+* Ajout des paramètres `--aci-container-group`, `--location` et `--image-tag` à `aks install-connector`
+* Suppression de l’avis de désapprobation de `aks get-versions`
+
+### <a name="appservice"></a>AppService
+
+* Mises à jour pour la nouvelle version du kit de développement logiciel (SDK) (azure-mgmt-web 0.35.0)
+* Résolu [#5538](https://github.com/Azure/azure-cli/issues/5538) : `Free` défini comme une SKU invalide
+
+### <a name="cognitive-services"></a>Cognitive Services
+
+* Mise à jour de l’avis lors de la création d’un compte Cognitive Services
+
+### <a name="consumption"></a>Consommation
+
+* Ajout de nouvelles commandes pour l’API priceSheet
+* Mise à jour des formats existants Détails d’utilisations et Détails de la réservation
+
+### <a name="container"></a>Conteneur
+
+* Ajout des arguments `--secrets` et `--secrets-mount-path` à `container create` pour utiliser des secrets dans ACI
+
+### <a name="network"></a>Réseau
+
+* Résolu [#5559](https://github.com/Azure/azure-cli/issues/5559) : client manquant dans `network vnet-gateway vpn-client generate`
+
+### <a name="resource"></a>Ressource
+
+* Modification de `group deployment export` pour afficher un modèle et des erreurs partiels sur échec
+
+### <a name="role"></a>Rôle
+
+* Ajout de `role assignment list-changelogs` pour permettre l’audit des rôles du principal de service
+
+### <a name="sql"></a>SQL
+
+* Ajout de la prise en charge de la redondance de zone pour les bases de données et les pools élastiques lors de création et mise à jour
+
+### <a name="storage"></a>Stockage
+
+* Activation de la spécification de préfixe/destination pour `storage blob [upload-batch|download-batch]`
+
+### <a name="vm"></a>Machine virtuelle
+
+* Ajout de prise en charge de jonction / séparation de disques sur une instance de groupe de machines virtuelles identiques uniques
+
 
 ## <a name="february-13-2018"></a>13 février 2018
 
@@ -672,7 +732,7 @@ Version 2.0.17
 
 ### <a name="resource"></a>Ressource
 
-* Autoriser le passage dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
+* Autoriser le passages dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
 * Autoriser le passage dans les valeurs de paramètres pour `policy assignment create`
 * Autoriser le passage de JSON ou d’un fichier pour tous les paramètres
 * Incrémentation de la version de l’API
