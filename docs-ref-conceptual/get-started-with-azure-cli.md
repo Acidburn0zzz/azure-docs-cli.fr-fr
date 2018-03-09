@@ -11,11 +11,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: c2758922d74080d3a3110b1e3a507ddf0f8d85d1
-ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
+ms.openlocfilehash: 3f5fe1b01a8ce691846126a6c03e7222e9b20e0d
+ms.sourcegitcommit: 29d7366a0902488f4f4d39c2cb0e89368d5186ea
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/15/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="get-started-with-azure-cli-20"></a>Bien démarrer avec Azure CLI 2.0
 
@@ -25,7 +25,7 @@ Bienvenue dans Azure CLI 2.0 ! L’interface CLI est un outil conçu pour vous a
 
 Si ce n’est pas déjà fait, [installez l’interface CLI](install-azure-cli.md) ou essayez [Azure Cloud Shell](/azure/cloud-shell/overview).
 
-Avant d’utiliser les commandes CLI avec une installation locale, vous devez vous connecter avec la commande [az login](/cli/azure/index#az_login).
+Avant d’utiliser les commandes CLI avec une installation locale, vous devez vous connecter avec la commande [az login](/cli/azure/reference-index#az_login).
 
 ```azurecli
 az login
@@ -53,7 +53,7 @@ Toutes les sous-commandes de ces groupes et leur documentation peuvent être con
 Les commandes de l’interface CLI sont fournies en tant que _sous-commandes_ de _groupes_.
 Chaque groupe représente un service fourni par Azure, et les sous-groupes divisent les commandes pour ces services en regroupements logiques.
 
-Pour rechercher des commandes, utilisez la commande [az find](/cli/azure/index#az_find). Par exemple, pour rechercher des noms de commandes contenant `secret`, utilisez la commande suivante :
+Pour rechercher des commandes, utilisez la commande [az find](/cli/azure/reference-index#az_find). Par exemple, pour rechercher des noms de commandes contenant `secret`, utilisez la commande suivante :
 
 ```azurecli
 az find -q secret
@@ -95,8 +95,8 @@ Pour vous aider à démarrer avec l’interface Azure CLI 2.0, essayez un didact
 
 Si vous préférez vous concentrer sur d’autres services, il existe plusieurs Démarrages rapides pour les services Azure qui utilisent l’interface CLI.
 
-* [Créer un compte de stockage à l’aide d’Azure CLI](/azure/storage/common/storage-quickstart-create-storage-account-cl)
-* [Transférer des objets vers/à partir du stockage blob Azure à l’aide de l’interface CLI](/storage/blobs/storage-quickstart-blobs-cli)
+* [Créer un compte de stockage à l’aide d’Azure CLI](/azure/storage/common/storage-quickstart-create-storage-account-cli)
+* [Transférer des objets vers/à partir du stockage blob Azure à l’aide de l’interface CLI](/azure/storage/blobs/storage-quickstart-blobs-cli)
 * [Créer une base de données SQL Azure unique à l’aide d’Azure CLI](/azure/sql-database/sql-database-get-started-cli)
 * [Créer un serveur de base de données Azure pour MySQL à l’aide d’Azure CLI](/azure/mysql/quickstart-create-mysql-server-database-using-azure-cli)
 * [Création d’une instance d’Azure Database pour PostgreSQL à l’aide de la CLI Azure](/azure/postgresql/quickstart-create-server-database-azure-cli)
