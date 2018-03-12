@@ -10,11 +10,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 9f03e52fa72a8dbd5753904839a833db01ffb59b
-ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
+ms.openlocfilehash: b0c0b3f5e4d9bc651ad4781cb0906dc98d8531a3
+ms.sourcegitcommit: 29d7366a0902488f4f4d39c2cb0e89368d5186ea
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/15/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="manage-multiple-azure-subscriptions"></a>Gérer plusieurs abonnements Azure
 
@@ -26,6 +26,7 @@ La différence entre les locataires, les utilisateurs et les abonnements dans Az
 
 Pour en savoir plus sur les différences entre les locataires, les utilisateurs et les abonnements, consultez le [Dictionnaire de terminologie cloud Azure](/azure/azure-glossary-cloud-terminology).
 Pour savoir comment ajouter un nouvel abonnement à votre locataire Azure Active Directory, consultez [Comment ajouter un abonnement Azure à Azure Active Directory](/azure/active-directory/active-directory-how-subscriptions-associated-directory).
+Si vous travaillez avec plusieurs locataires, vous devrez peut-être vous connecter à un locataire spécifique. Pour ce faire, consultez [Se connecter avec Azure CLI 2.0](/cli/azure/authenticate-azure-cli).
 
 ## <a name="working-with-multiple-subscriptions"></a>Utilisation de plusieurs abonnements
 

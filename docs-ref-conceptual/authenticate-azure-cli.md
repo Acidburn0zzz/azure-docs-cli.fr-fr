@@ -10,11 +10,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: a140f8f54ad72f7f3b5e2d63e2300d0aa2c061ac
-ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
+ms.openlocfilehash: 92c96b7e969de686689ef02bf068392b9f565698
+ms.sourcegitcommit: 29d7366a0902488f4f4d39c2cb0e89368d5186ea
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/15/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="log-in-with-azure-cli-20"></a>Se connecter avec Azure CLI 2.0
 
@@ -42,6 +42,14 @@ Fournissez vos informations d’identification sur la ligne de commande.
 az login -u <username> -p <password>
 ```
 
+## <a name="log-in-with-a-specific-tenant"></a>Se connecter avec un locataire spécifique
+
+Si vous travaillez avec plusieurs locataires, vous pouvez sélectionner le locataire auquel vous connecter avec l’argument `--tenant`. La valeur de cet argument peut être un domaine `.onmicrosoft.com`, ou l’ID d’objet Azure du locataire. Vous pouvez vous connecter de manière interactive, ou fournir vos informations d’identification avec les arguments `--user` et `--password`. 
+
+```
+az login --tenant <tenant>
+```
+
 ## <a name="logging-in-with-a-service-principal"></a>Connexion avec un principal du service
 
 Les principaux de service sont des comptes non liés à un utilisateur spécifique, qui peuvent détenir des autorisations sur ces derniers par le biais de rôles prédéfinis. L’authentification avec un principal de service est la meilleure façon d’écrire des scripts ou des programmes sécurisés, ce qui vous permet d’appliquer des restrictions d’autorisation et des informations d’identification statiques stockées localement. Pour en savoir plus sur les principaux de service, consultez [Créer un principal du service avec Azure CLI](create-an-azure-service-principal-azure-cli.md).
@@ -52,10 +60,9 @@ Pour vous connecter avec un principal du service, renseignez le nom d’utilisat
 az login --service-principal -u <user> -p <password-or-cert> --tenant <tenant>
 ```
 
-La valeur du locataire est le locataire Azure Active Directory associé au principal du service. Il peut s’agir d’un domaine .onmicrosoft.com, ou de l’ID objet Azure du locataire.
+La valeur du locataire est le locataire Azure Active Directory associé au principal du service. Il peut s’agir d’un domaine `.onmicrosoft.com`, ou de l’ID d’objet Azure du locataire.
 Vous pouvez obtenir l’ID objet du locataire pour votre connexion actuelle à l’aide de la commande suivante :
 
 ```azurecli
 az account show --query 'tenantId' -o tsv
 ```
-
