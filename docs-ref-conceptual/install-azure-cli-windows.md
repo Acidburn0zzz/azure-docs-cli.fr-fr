@@ -10,11 +10,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 3e732ea7fae118ddb1564bed28d54d15bab4f7f0
-ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
+ms.openlocfilehash: df1c2b33589c160525710845cc81d076082a9ecc
+ms.sourcegitcommit: def1a07bfccf26a4178ba6dd836764a1df205929
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/15/2018
+ms.lasthandoff: 03/09/2018
 ---
 # <a name="install-azure-cli-20-on-windows"></a>Installation d’Azure CLI 2.0 sur Windows
 
@@ -26,7 +26,7 @@ Si vous exécutez le Sous-système Windows pour Linux, des packages sont disponi
 Le fichier MSI distribuable est utilisé pour l’installation, la mise à jour et la désinstallation de la commande `az` sous Windows.
 
 > [!div class="nextstepaction"]
-> [Téléchargez le programme d’installation MSI](https://azurecliprod.blob.core.windows.net/msi/azure-cli-latest.msi)
+> [Téléchargez le programme d’installation MSI](https://aka.ms/installazurecliwindows)
 
 Lorsque le programme d’installation vous demande s’il peut apporter des modifications à votre ordinateur, cliquez sur la case « Oui ».
 
@@ -39,4 +39,4 @@ Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec l
 La désinstallation peut être réalisée en exécutant le fichier MSI à nouveau, en choisissant l’option « Désinstaller ».
 
 > [!div class="nextstepaction"]
-> [Téléchargez le programme d’installation MSI](https://azurecliprod.blob.core.windows.net/msi/azure-cli-latest.msi)
+> [Téléchargez le programme d’installation MSI](https://aka.ms/installazurecliwindows)
