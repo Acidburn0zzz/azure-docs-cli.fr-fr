@@ -10,11 +10,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 840e5e7d6531fe92d30235f621e381589266d1d3
-ms.sourcegitcommit: f82774a6f92598c41da9956284f563757f402774
+ms.openlocfilehash: 188e7dfded21bb5c7036b3a950b3e4cb10bc1d33
+ms.sourcegitcommit: 5c004b455eff196d853bfbe12901c6114a1652d7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/19/2018
+ms.lasthandoff: 03/15/2018
 ---
 # <a name="install-azure-cli-20-with-apt"></a>Installer Azure CLI 2.0 avec apt
 
@@ -62,6 +62,16 @@ Cette erreur est due à un composant manquant requis par `apt-key`. Vous pouvez 
 ```bash
 sudo apt-get install dirmngr
 ```
+
+### <a name="apt-key-hangs"></a>apt-key se bloque
+
+Lorsqu’un pare-feu bloque les connexions sortantes au port 11371, la commande `apt-key` peut se bloquer indéfiniment. Votre pare-feu peut nécessiter l’utilisation d’un proxy HTTP pour les connexions sortantes :
+
+```bash
+sudo apt-key adv --keyserver-options http-proxy=http://<USER>:<PASSWORD>@<PROXY-HOST>:<PROXY-PORT>/ --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
+```
+
+Si vous ne savez pas si vous disposez d’un proxy, contactez votre administrateur système. Si votre proxy ne nécessite pas de connexion, ignorez l’utilisateur, le mot de passe, et le jeton `@`.
 
 ## <a name="update"></a>Mettre à jour
 
