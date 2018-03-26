@@ -1,6 +1,6 @@
 ---
-title: "Notes de publication d’Azure CLI 2.0"
-description: "En savoir plus sur les dernières mises à jour d’Azure CLI 2.0"
+title: Notes de publication d’Azure CLI 2.0
+description: En savoir plus sur les dernières mises à jour d’Azure CLI 2.0
 author: sptramer
 ms.author: sttramer
 manager: carmonm
@@ -10,13 +10,100 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 01078b7a3665f563f0a6b1d809c9a41f18d136d6
-ms.sourcegitcommit: f3ab5da6019083ef2482b62c7355817e6170dcfb
+ms.openlocfilehash: 116fa95e51399b9b97c1b35c38445f30db7efc94
+ms.sourcegitcommit: fefb5bb6a21cab30c44592c0577408a8d1a2ccc7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="march-13-2018"></a>13 mars 2018
+
+Version 2.0.29
+
+### <a name="acr"></a>ACR
+
+* Ajout de la prise en charge du paramètre `--image` pour `repository delete`
+* Paramètres `--manifest` et `--tag` de la commande `repository delete` déconseillés
+* Ajout de la commande `repository untag` pour supprimer une balise sans supprimer les données
+
+### <a name="acs"></a>ACS
+
+* Ajout de la commande `aks upgrade-connector` pour mettre à niveau un connecteur existant
+* Modification des fichiers de configuration `kubectl` pour utiliser un YAML de style bloc plus lisible
+
+### <a name="advisor"></a>Advisor
+
+* [MODIFICATION CRITIQUE] Renommage `advisor configuration get` à `advisor configuration list`
+* [MODIFICATION CRITIQUE] Renommage `advisor configuration set` à `advisor configuration update`
+* [MODIFICATION CRITIQUE] Suppression de `advisor recommendation generate` 
+* Ajout du paramètre `--refresh` pour `advisor recommendation list`
+* Ajout de la commande `advisor recommendation show`
+
+### <a name="appservice"></a>AppService
+
+* `[webapp|functionapp] assign-identity` déconseillé
+* Ajout des commandes d’identité gérée `webapp identity [assign|show]` et `functionapp identity [assign|show]`
+
+### <a name="eventhubs"></a>Eventhubs
+
+* Version initiale
+
+### <a name="extension"></a>Extension
+
+* Ajout d’un contrôle supplémentaire pour avertir l’utilisateur si le distributeur utilisé est différent de celui stocké dans le fichier source du package, car cela peut entraîner des erreurs
+
+### <a name="interactive"></a>Interactive
+
+* Résolu [#5625](https://github.com/Azure/azure-cli/issues/5625) : conservation de l’historique entre différentes sessions
+* Résolu [#3016](https://github.com/Azure/azure-cli/issues/3016) : historique non enregistré alors qu’il était dans la portée
+* Résolu [#5688](https://github.com/Azure/azure-cli/issues/5688) : la saisie automatique n’apparaît pas si le chargement de la table de commande a rencontré une exception
+* Résolu : indicateur de progression pour les opérations à long terme
+
+### <a name="monitor"></a>Surveiller
+
+* Les commandes `monitor autoscale-settings` ont été déconseillées
+* Ajout des commandes `monitor autoscale`
+* Ajout des commandes `monitor autoscale profile`
+* Ajout des commandes `monitor autoscale rule`
+
+### <a name="network"></a>Réseau
+
+* [MODIFICATION CRITIQUE] Suppression du paramètre `--tags` de `route-filter rule create`
+* Suppression de certaines valeurs par défaut erronées pour les commandes suivantes :
+  * `network express-route update`
+  * `network nsg rule update`
+  * `network public-ip update`
+  * `traffic-manager profile update`
+  * `network vnet-gateway update`
+* Ajout des commandes `network watcher connection-monitor`
+* Ajout des paramètres `--vnet` et `--subnet` à `network watcher show-topology`
+
+### <a name="profile"></a>Profil
+
+* Paramètre `--msi` déconseillé pour `az login`
+* Ajout du paramètre `--identity` pour `az login` afin de remplacer `--msi`
+
+### <a name="rdbms"></a>SGBDR
+
+* [PRÉVERSION] Modifiée pour utiliser l’API 2017-12-01-préversion
+
+### <a name="service-bus"></a>Service Bus
+
+* Version initiale
+
+### <a name="storage"></a>Stockage
+
+* Résolu [#4971](https://github.com/Azure/azure-cli/issues/4971) : `storage blob copy` prend désormais en charge les autres clouds Azure.
+* Résolu [#5286](https://github.com/Azure/azure-cli/issues/5286) : Les lots de commandes `storage blob [delete-batch|download-batch|upload-batch]` ne génèrent plus une erreur lors d’échecs de la condition préalable
+
+### <a name="vm"></a>Machine virtuelle
+
+* Ajout de prise en charge de `[vm|vmss] create` pour attacher des disques de données non gérées et configurer la mise en cache
+* `[vm|vmss] assign-identity` et `[vm|vmss] remove-identity` sont déconseillés
+* Ajout des commandes `vm identity [assign|remove|show]` et `vmss identity [assign|remove|show]` pour remplacer des commandes déconseillées
+* Modification de la priorité par défaut dans `vmss create` à None
 
 ## <a name="february-27-2018"></a>27 février 2018
 
@@ -1457,7 +1544,7 @@ vm (2.0.2)
 * VM/VMSS : intégration de la logique de validation des informations d’identification utilisée par le portail ([#2537](https://github.com/Azure/azure-cli/pull/2537))
 * Ajout de la prise en charge des commandes wait et de --no-wait ([#2524](https://github.com/Azure/azure-cli/pull/2524))
 * Groupe de machines virtuelles identiques : prise en charge de * pour énumérer les vues d’instance parmi les machines virtuelles ([#2467](https://github.com/Azure/azure-cli/pull/2467))
-* Ajout de --secrets pour les machines virtuelles et les groupes de machines virtuelles identiques ([#2212} (https://github.com/Azure/azure-cli/pull/2212))
+* Ajout --secrets pour machine virtuelle et groupe de machines virtuelles identiques ([#2212}(https://github.com/Azure/azure-cli/pull/2212))
 * Autorisation de la création de machines virtuelles avec un disque dur virtuel spécialisé ([#2256](https://github.com/Azure/azure-cli/pull/2256))
 
 ## <a name="february-27-2017"></a>27 février 2017
