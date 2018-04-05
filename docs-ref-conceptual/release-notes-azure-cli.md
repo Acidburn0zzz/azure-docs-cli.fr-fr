@@ -10,13 +10,120 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 116fa95e51399b9b97c1b35c38445f30db7efc94
-ms.sourcegitcommit: fefb5bb6a21cab30c44592c0577408a8d1a2ccc7
+ms.openlocfilehash: 0e81f5723af47242f908b854045deb7d74c50c17
+ms.sourcegitcommit: b5a6296c006e3a44f66892729e47d7a967267d3e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 03/28/2018
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="march-27-2018"></a>27 mars 2018
+
+Version 2.0.30
+
+### <a name="core"></a>Principal
+
+* Afficher le message pour les extensions marquées en tant que préversions dans l’aide
+
+### <a name="acs"></a>ACS
+
+* Corriger l’erreur de vérification de certificat SSL pour `aks install-cli` dans Cloud Shell
+
+### <a name="appservice"></a>AppService
+
+* Ajout de la prise en charge HTTPS exclusive à `webapp update`
+* Ajout de la prise en charge des emplacements à `az webapp identity [assign|show]` et `az functionapp identity [assign|show]`
+
+### <a name="backup"></a>Sauvegarde
+
+* Ajout de la commande `az backup protection isenabled-for-vm` Cette commande peut être utilisée pour vérifier si une machine virtuelle est sauvegardée par un coffre dans l’abonnement
+* Activation des ID d’objet Azure pour les paramètres `--resource-group` et `--vault-name`, pour les commandes suivantes :
+  * `backup container show`
+  * `backup item set-policy`
+  * `backup item show`
+  * `backup job show`
+  * `backup job stop`
+  * `backup job wait`
+  * `backup policy delete`
+  * `backup policy get-default-for-vm`
+  * `backup policy list-associated-items`
+  * `backup policy set`
+  * `backup policy show`
+  * `backup protection backup-now`
+  * `backup protection disable`
+  * `backup protection enable-for-vm`
+  * `backup recoverypoint show`
+  * `backup restore files mount-rp`
+  * `backup restore files unmount-rp`
+  * `backup restore restore-disks`
+  * `backup vault delete`
+  * `backup vault show`
+* Modification des paramètres `--name` pour accepter le format de sortie des commandes `backup ... show`
+
+### <a name="container"></a>Conteneur
+
+* Ajout de la commande `container exec` Exécute les commandes dans un conteneur, pour un groupe de conteneurs en exécution.
+* Autoriser la sortie de table pour la création et la mise à jour d’un groupe de conteneurs
+
+### <a name="extension"></a>Extension
+
+* Ajout d’un message pour `extension add` si l’extension est en préversion
+* Modification de `extension list-available` afin d’afficher les données complètes d’extension avec `--show-details`
+* [CHANGEMENT CASSANT] Modification de `extension list-available` afin d’afficher les données simplifiées d’extension par défaut
+
+### <a name="interactive"></a>Interactive
+
+* Modification des saisies semi-automatiques pour procéder à l’activation dès le chargement de la table de commande
+* Correction du bogue par l’exécution du paramètre `--style`
+* Analyseur lexical interactif instancié après le vidage de la table de commande, si manquant
+* Amélioration de la prise en charge de Completer
+
+### <a name="lab"></a>Laboratoire
+
+* Correction des bogues avec la commande `create environment`
+
+### <a name="monitor"></a>Surveiller
+
+* Ajout de la prise en charge de `--top`, `--orderby` et `--namespace` à `metrics list` [#5785](https://github.com/Azure/azure-cli/issues/5785)
+* Résolution de [#4529](https://github.com/Azure/azure-cli/issues/5785) : `metrics list` Accepte une liste de mesures séparées par des espaces à récupérer
+* Ajout de la prise en charge de `--namespace` à `metrics list-definitions` [#5785](https://github.com/Azure/azure-cli/issues/5785)
+
+### <a name="network"></a>Réseau
+
+* Ajout de la prise en charge des zones de DNS privé
+
+### <a name="profile"></a>Profil
+
+* Ajout d’un avertissement pour `--identity-port` et `--msi-port` à `login`
+
+### <a name="rdbms"></a>SGBDR
+
+* Ajout de la version d’API mise à la disposition générale du modèle d’entreprise 2017-12-01
+
+### <a name="resource"></a>Ressource
+
+* [CHANGEMENT CASSANT]: Changed `provider operation [list|show]` to not require `--api-version`
+
+### <a name="role"></a>Rôle
+
+* Ajout de la prise en charge des configurations d’accès et des clients natifs requis à `az ad app create`
+* Modification des commandes `rbac` afin de renvoyer moins de 1 000 ID sur la résolution d’objet
+* Ajout des commandes de gestion des informations d’identification `ad sp credential [reset|list|delete]`
+* [CHANGEMENT CASSANT] Suppression des propriétés de la sortie `az role assignment [list|show]`
+* Ajout de la prise en charge des autorisations `dataActions` et `notDataActions` à `role definition`
+
+### <a name="storage"></a>Stockage
+
+* Résolution du problème lié au chargement des fichiers présentant une taille comprise entre 195 Go et 200 Go
+* Résolution de [#4049](https://github.com/Azure/azure-cli/issues/4049) : Problèmes avec les chargements d’objets blob d’ajout ignorant les paramètres de condition
+
+### <a name="vm"></a>Machine virtuelle
+
+* Ajout d’un avertissement à `vmss create` concernant les changements cassants à venir pour les ensembles comprenant plus de 100 instances
+* Ajout de la prise en charge de la résilience dans la zone à `vm [snapshot|image]`
+* Modification de la vue d’instance de disque pour signaler un meilleur état de chiffrement
+* [CHANGEMENT CASSANT] Modification de `vm extension delete` afin d’annuler la capacité de génération de sortie
 
 ## <a name="march-13-2018"></a>13 mars 2018
 
@@ -35,9 +142,9 @@ Version 2.0.29
 
 ### <a name="advisor"></a>Advisor
 
-* [MODIFICATION CRITIQUE] Renommage `advisor configuration get` à `advisor configuration list`
-* [MODIFICATION CRITIQUE] Renommage `advisor configuration set` à `advisor configuration update`
-* [MODIFICATION CRITIQUE] Suppression de `advisor recommendation generate` 
+* [CHANGEMENT CASSANT] Renommage de `advisor configuration get` en `advisor configuration list`
+* [CHANGEMENT CASSANT] Renommage de `advisor configuration set` en `advisor configuration update`
+* [CHANGEMENT CASSANT] Suppression de `advisor recommendation generate` 
 * Ajout du paramètre `--refresh` pour `advisor recommendation list`
 * Ajout de la commande `advisor recommendation show`
 
@@ -70,7 +177,7 @@ Version 2.0.29
 
 ### <a name="network"></a>Réseau
 
-* [MODIFICATION CRITIQUE] Suppression du paramètre `--tags` de `route-filter rule create`
+* [CHANGEMENT CASSANT] Suppression du paramètre `--tags` de `route-filter rule create`
 * Suppression de certaines valeurs par défaut erronées pour les commandes suivantes :
   * `network express-route update`
   * `network nsg rule update`
@@ -95,7 +202,7 @@ Version 2.0.29
 
 ### <a name="storage"></a>Stockage
 
-* Résolu [#4971](https://github.com/Azure/azure-cli/issues/4971) : `storage blob copy` prend désormais en charge les autres clouds Azure.
+* Résolution de [#4971](https://github.com/Azure/azure-cli/issues/4971) : `storage blob copy` prend désormais en charge les autres clouds Azure
 * Résolu [#5286](https://github.com/Azure/azure-cli/issues/5286) : Les lots de commandes `storage blob [delete-batch|download-batch|upload-batch]` ne génèrent plus une erreur lors d’échecs de la condition préalable
 
 ### <a name="vm"></a>Machine virtuelle
@@ -175,7 +282,7 @@ Version 2.0.27
 
 ### <a name="acs"></a>ACS
 
-* [CHANGEMENT] `aks get-versions` renommé en `aks get-upgrades` pour des raisons de précision
+* [CHANGEMENT CASSANT] Renommage de `aks get-versions` en `aks get-upgrades` pour des raisons de précision
 * Modification de `aks get-versions` pour afficher les versions Kubernetes disponibles pour `aks create`
 * Modification des valeurs par défaut de `aks create` de manière à laisser le serveur choisir la version de Kubernetes
 * Mise à jour des messages d’aide faisant référence au principal du service généré par AKS
@@ -218,8 +325,8 @@ Version 2.0.27
 
 ### <a name="iot"></a>IoT
 
-* Résolution du problème dans lequel `iot dps access policy [create|update]` renvoie une erreur « introuvable » en cas de réussite.
-* Résolution du problème dans lequel `iot dps linked-hub [create|update]` renvoie une erreur « introuvable » en cas de réussite.
+* Résolution du problème dans lequel `iot dps access policy [create|update]` renvoie une erreur « introuvable » en cas de réussite
+* Résolution du problème dans lequel `iot dps linked-hub [create|update]` renvoie une erreur « introuvable » en cas de réussite
 * Ajout de la prise en charge de `--no-wait` pour `iot dps access policy [create|update]` et `iot dps linked-hub [create|update]`
 * Modification de `iot hub create` pour autoriser la spécification du nombre de partitions
 
@@ -378,9 +485,9 @@ Version 2.0.25
 
 ### <a name="event-grid"></a>Event Grid
 
-* [MODIFICATION CRITIQUE] Déplacement des commandes `az eventgrid topic event-subscription` vers `eventgrid event-subscription`
-* [MODIFICATION CRITIQUE] Déplacement des commandes `az eventgrid resource event-subscription` vers `eventgrid event-subscription`
-* [MODIFICATION CRITIQUE] Suppression de la commande `eventgrid event-subscription show-endpoint-url`. Utilisation de `eventgrid event-subscription show --include-full-endpoint-url` à la place
+* [CHANGEMENT CASSANT] Déplacement des commandes `az eventgrid topic event-subscription` vers `eventgrid event-subscription`
+* [CHANGEMENT CASSANT] Déplacement des commandes `az eventgrid resource event-subscription` vers `eventgrid event-subscription`
+* [CHANGEMENT CASSANT] Suppression de la commande `eventgrid event-subscription show-endpoint-url` Utilisation de `eventgrid event-subscription show --include-full-endpoint-url` à la place
 * Ajout de la commande `eventgrid topic update`
 * Ajout de la commande `eventgrid event-subscription update`
 * Ajout du paramètre `--ids` pour les commandes `eventgrid topic`
@@ -424,8 +531,8 @@ Version 2.0.25
 ### <a name="vm"></a>Machine virtuelle
 
 * [PRÉVERSION] Prise en charge interzone pour `vmss`
-* [MODIFICATION CRITIQUE] Modification de zone unique `vmss` par défaut en équilibreur de charge « Standard »
-* [MODIFICATION CRITIQUE] Modification de `externalIdentities` en `userAssignedIdentities` pour EMSI
+* [CHANGEMENT CASSANT] Modification de la valeur par défaut `vmss` de zone unique en équilibreur de charge « Standard »
+* [CHANGEMENT CASSANT] Modification de `externalIdentities` en `userAssignedIdentities` pour EMSI
 * [PRÉVERSION] Ajout de la prise en charge de l’échange de disque du système d’exploitation
 * Ajout de la prise en charge de l’utilisation des images de machine virtuelle à partir d’autres abonnements
 * Ajout des arguments `--plan-name`, `--plan-product`, `--plan-promotion-code` et `--plan-publisher` à `[vm|vmss] create`
@@ -728,7 +835,7 @@ Version 2.0.18
 * Ajout de la prise en charge de l’affichage des définitions de stratégie intégrée
 * Ajout de la prise en charge du paramètre de mode pour la création de définitions de stratégie
 * Ajout de la prise en charge des définitions d’interface utilisateur et des modèles pour `managedapp definition create`
-* [CHANGEMENT RÉCENT] Modification du type de ressource `managedapp` de `appliances` en `applications` et de `applianceDefinitions` en `applicationDefinitions`
+* [CHANGEMENT CASSANT] Modification du type de ressource `managedapp` de `appliances` en `applications` et de `applianceDefinitions` en `applicationDefinitions`
 
 ### <a name="network"></a>Réseau
 
@@ -799,15 +906,15 @@ Version 2.0.17
 
 ### <a name="cdn"></a>CDN
 
-* Correction du bogue « CustomDomain n’est pas itérable » pour `cdn custom-domain create`.
+* Correction du bogue « CustomDomain n’est pas itérable » pour `cdn custom-domain create`
 
 ### <a name="extension"></a>Extension
 
-* Version initiale.
+* Version initiale
 
 ### <a name="keyvault"></a>KeyVault
 
-* Résolution du problème, où les autorisations étaient sensibles à la casse pour `keyvault set-policy`.
+* Résolution du problème où les autorisations étaient sensibles à la casse pour `keyvault set-policy`
 
 ### <a name="network"></a>Réseau
 
@@ -859,17 +966,17 @@ Version 2.0.15
 
 ### <a name="cli"></a>Interface de ligne de commande
 
-* Ajout d’une remarque juridique pour `--version`.
+* Ajout d’une remarque juridique pour `--version`
 
 ### <a name="acs"></a>ACS
 
-* Correction des régions d’aperçu.
-* Mise en forme par défaut `dns_name_prefix` correctement.
-* Sortie de commande des services ACS optimisée.
+* Correction des régions d’aperçu
+* Mise en forme par défaut `dns_name_prefix` correctement
+* Optimisation de la sortie de commande des services ACS
 
 ### <a name="appservice"></a>AppService
 
-* [MODIFICATION CRITIQUE] Fixation des incohérences dans la sortie de `az webapp config appsettings [delete|set]`
+* [CHANGEMENT CASSANT] Fixation des incohérences dans la sortie de `az webapp config appsettings [delete|set]`
 * Ajout d’un nouvel alias de `-i` pour `az webapp config container set --docker-custom-image-name`
 * Exposé `az webapp log show`
 * Exposition de nouveaux arguments à partir de `az webapp delete` pour conserver le plan de service d'application, les métriques ou l’inscription DNS
@@ -881,8 +988,8 @@ Version 2.0.15
 
 ### <a name="network"></a>Réseau
 
-* [MODIFICATION CRITIQUE] Renommage `vnet list-private-access-services` à `vnet list-endpoint-services`
-* [MODIFICATION CRITIQUE] Renommage de l’option `--private-access-services` en `--service-endpoints` pour `vnet subnet [create|update]`
+* [CHANGEMENT CASSANT] Renommage de `vnet list-private-access-services` en `vnet list-endpoint-services`
+* [CHANGEMENT CASSANT] Renommage de l’option `--private-access-services` en `--service-endpoints` pour `vnet subnet [create|update]`
 * Ajout de la prise en charge de plusieurs IP et de plusieurs pages de port pour `nsg rule [create|update]`
 * Ajout de la prise en charge de la référence (SKU) pour `lb create`
 * Ajout de la prise en charge de la référence (SKU) pour `public-ip create`
@@ -904,7 +1011,7 @@ Version 2.0.15
 * Ajout des arguments `--bypass` et `--default-action` à `storage account [create|update]` pour la prise en charge du tunneling de service
 * Ajout de commandes permettant d’ajouter des règles de réseau virtuel et des règles basées sur IP à `storage account network-rule`
 * Activation du chiffrement du service par la clé gérée du client
-* [MODIFICATION CRITIQUE] Renommage de l’option `--encryption` en `--encryption-services` pour `az storage account create and az storage account update` la commande
+* [CHANGEMENT CASSANT] Renommage de l’option `--encryption` en `--encryption-services` pour la commande `az storage account create and az storage account update`
 * Problème résolu #4220 : `az storage account update encryption` - incompatibilité de syntaxe
 
 ### <a name="vm"></a>Machine virtuelle
@@ -1090,7 +1197,7 @@ vm (2.0.11)
 
 ### <a name="cdn"></a>CDN
 
-* Fourni un meilleur message d’erreur pour `cdn endpoint list` quand le profil spécifié par `--profile-name` n’existe pas.
+* Fourniture d’un meilleur message d’erreur pour `cdn endpoint list` quand le profil spécifié par `--profile-name` n’existe pas
 
 ### <a name="cloud"></a>Cloud
 
@@ -1103,7 +1210,7 @@ vm (2.0.11)
 ### <a name="cosmosdb"></a>CosmosDB
 
 * Correction relative à la permission de la création de collection avec une clé de partition personnalisée
-* Ajout de la prise en charge de la durée de vie par défaut de la collection.
+* Ajout de la prise en charge de la durée de vie par défaut de la collection
 
 ### <a name="data-lake-analytics"></a>Data Lake Analytics
 
@@ -1257,7 +1364,7 @@ vm (2.0.11)
 * Prise en charge de la configuration du groupe de sécurité réseau
 * Correction d’un bogue qui entraînait une configuration incorrecte du serveur DNS
 * Prise en charge des identités de service géré
-* Correction d’un problème à cause duquel `cmss create` avec un équilibreur de charge existant exigeait `--backend-pool-name`.
+* Correction d’un problème à cause duquel `cmss create` avec un équilibreur de charge existant exigeait `--backend-pool-name`
 * Les disques de données créés avec le numéro d’unité logique `vm image create` commencent à 0
 
 
@@ -1267,12 +1374,12 @@ Version 2.0.6
 
 * documentdb renommé en cosmosdb
 * Ajouter rdbms (mysql, postgres)
-* Inclure les modules Data Lake Analytics et Data Lake Store.
-* Inclure le module Cognitive Services.
-* Inclure le module Service Fabric.
-* Inclure le module Interactive (az-shell renommé).
-* Ajouter la prise en charge des commandes CDN.
-* Supprimer le module Container.
+* Inclure les modules Data Lake Analytics et Data Lake Store
+* Inclure le module Cognitive Services
+* Inclure le module Service Fabric
+* Inclure le module Interactive (az-shell renommé)
+* Ajouter la prise en charge des commandes CDN
+* Supprimer le module Container
 * Ajouter « az -v » comme raccourci pour « az --version » ([#2926](https://github.com/Azure/azure-cli/issues/2926))
 * Améliorer les performances de chargement de paquet et d’exécution de commande ([#2819](https://github.com/Azure/azure-cli/issues/2819))
 
@@ -1349,25 +1456,25 @@ vm (2.0.6)
 
 ### <a name="cosmosdb"></a>CosmosDB
 
-* Renommer le module documentdb en cosmosdb.
+* Renommer le module documentdb en cosmosdb
 * Prise en charge ajoutée pour les API de plan de données documentdb : gestion de base de données et de collecte
 * Prise en charge ajoutée pour activer le basculement automatique sur les comptes de base de données
 * Prise en charge ajoutée pour la nouvelle stratégie de cohérence ConsistentPrefix
 
 ### <a name="data-lake-analytics"></a>Data Lake Analytics
 
-* Corriger un bogue dans lequel le filtrage sur le résultat et l’état des listes de travaux lève une erreur.
+* Corriger un bogue dans lequel le filtrage sur le résultat et l’état des listes de travaux lève une erreur
 * Ajouter la prise en charge d’un nouveau type d’élément de catalogue : paquet. accessible via : `az dla catalog package`
 * A rendu possible le fait de répertorier les éléments de catalogue suivants à partir d’une base de données (aucune spécification de schéma requise) :
 
   * Table
   * Fonction table
   * Affichage
-  * Statistiques de table. Cela peut également être répertorié avec un schéma, mais sans spécifier un nom de table.
+  * Statistiques de table. Cela peut également être répertorié avec un schéma, mais sans spécifier un nom de table
 
 ### <a name="data-lake-store"></a>Data Lake Store
 
-* Mettre à jour la version du Kit de développement logiciel (SDK) du système de fichiers sous-jacent, qui offre une meilleure prise en charge pour gérer les scénarios de limitation côté serveur.
+* Mettre à jour la version du Kit de développement logiciel (SDK) du système de fichiers sous-jacent, qui offre une meilleure prise en charge pour gérer les scénarios de limitation côté serveur
 * Améliorer les performances de chargement de paquet et d’exécution de commande ([#2819](https://github.com/Azure/azure-cli/issues/2819))
 * aide manquante pour afficher l’accès. ajout en cours. ([#2743](https://github.com/Azure/azure-cli/issues/2743))
 
@@ -1378,18 +1485,18 @@ vm (2.0.6)
 ### <a name="keyvault"></a>KeyVault
 
 * BC : `az keyvault certificate download` remplacer -e dans chaîne ou élément binaire par PEM ou DER afin de mieux représenter les options
-* BC : Supprimer --expires et --not-before dans `keyvault certificate create` car ces paramètres ne sont pas pris en charge par le service.
+* BC : Supprimer --expires et --not-before dans `keyvault certificate create` car ces paramètres ne sont pas pris en charge par le service
 * Ajoute le paramètre --validity à `keyvault certificate create` pour substituer de manière sélective la valeur dans --policy
-* Résout le problème dans `keyvault certificate get-default-policy` où « expires » et « not_before » étaient exposés mais « validity_in_months » ne l’était pas.
+* Résout le problème dans `keyvault certificate get-default-policy` où « expires » et « not_before » étaient exposés mais « validity_in_months » ne l’était pas
 * correction de keyvault pour l’importation de pem et pfx ([#2754](https://github.com/Azure/azure-cli/issues/2754))
 
 ### <a name="lab"></a>Laboratoire
 
-* Ajout des commandes créer, afficher, supprimer et liste pour l’environnement dans le laboratoire.
-* Ajout des commandes afficher et liste pour afficher les modèles ARM dans le laboratoire.
-* Ajout de l’indicateur --environment dans `az lab vm list` pour filtrer les machines virtuelles selon l’environnement du laboratoire.
-* Ajout de la commande pratique `az lab formula export-artifacts` pour exporter une structure d’artefact dans une formule de laboratoire.
-* Ajout de commandes pour gérer les secrets dans un laboratoire.
+* Ajout des commandes créer, afficher, supprimer et liste pour l’environnement dans le laboratoire
+* Ajout des commandes afficher et liste pour afficher les modèles ARM dans le laboratoire
+* Ajout de l’indicateur --environment dans `az lab vm list` pour filtrer les machines virtuelles selon l’environnement du laboratoire
+* Ajout de la commande pratique `az lab formula export-artifacts` pour exporter une structure d’artefact dans une formule de laboratoire
+* Ajout de commandes pour gérer les secrets dans un laboratoire
 
 ### <a name="monitor"></a>Surveiller
 
@@ -1398,22 +1505,22 @@ vm (2.0.6)
 
 ### <a name="network"></a>Réseau
 
-* Ajouter la commande `network watcher test-connectivity`.
-* Ajouter la prise en charge du paramètre `--filters` pour `network watcher packet-capture create`.
-* Ajouter la prise en charge pour le drainage de connexion Application Gateway.
-* Ajouter la prise en charge pour la configuration du jeu de règles WAF d’Application Gateway.
-* Ajouter la prise en charge des règles et des filtres de routage ExpressRoute.
-* Ajouter la prise en charge pour le routage géographique TrafficManager.
-* Ajouter la prise en charge des sélecteurs de trafic basés sur la stratégie de connexion VPN.
-* Ajouter la prise en charge pour les stratégies IPSec de la connexion VPN.
-* Corriger le bogue avec `vpn-connection create` lors de l’utilisation des paramètres `--no-wait` ou `--validate`.
+* Ajouter la commande `network watcher test-connectivity`
+* Ajouter la prise en charge du paramètre `--filters` pour `network watcher packet-capture create`
+* Ajouter la prise en charge pour le drainage de connexion Application Gateway
+* Ajouter la prise en charge pour la configuration du jeu de règles WAF d’Application Gateway
+* Ajouter la prise en charge des règles et des filtres de routage ExpressRoute
+* Ajouter la prise en charge pour le routage géographique TrafficManager
+* Ajouter la prise en charge des sélecteurs de trafic basés sur la stratégie de connexion VPN
+* Ajouter la prise en charge pour les stratégies IPSec de la connexion VPN
+* Corriger le bogue avec `vpn-connection create` lors de l’utilisation des paramètres `--no-wait` ou `--validate`
 * Ajouter la prise en charge des passerelles de réseau virtuel actif-actif
-* Supprimer les valeurs NULL de la sortie des commandes `network vpn-connection list/show`.
+* Supprimer les valeurs NULL de la sortie des commandes `network vpn-connection list/show`
 * BC : résoudre un bogue dans la sortie de `vpn-connection create`
-* Corriger le bogue où l’argument « --key-length » de « vpn-connection create » n’était pas analysé correctement.
-* Corriger le bogue dans `dns zone import` où les enregistrements n’étaient pas été importés correctement.
-* Corriger le bogue où `traffic-manager endpoint update` ne fonctionnait pas.
-* Ajouter des commandes d’aperçu « network watcher ».
+* Corriger le bogue où l’argument « --key-length » de « vpn-connection create » n’était pas analysé correctement
+* Corriger le bogue dans `dns zone import` où les enregistrements n’étaient pas été importés correctement
+* Corriger le bogue où `traffic-manager endpoint update` ne fonctionnait pas
+* Ajouter des commandes d’aperçu « network watcher »
 
 ### <a name="profile"></a>Profil
 
@@ -1423,7 +1530,7 @@ vm (2.0.6)
 ### <a name="redis"></a>Redis
 
 * Ajout d’une commande de mise à jour qui ajoute également la possibilité de mettre à l’échelle pour le cache redis
-* Commande « update-settings » déconseillée.
+* Commande « update-settings » déconseillée
 
 ### <a name="resource"></a>Ressource
 
@@ -1445,12 +1552,12 @@ vm (2.0.6)
 
 ### <a name="sql"></a>SQL
 
-* Commandes az sql server list-usages et az sql db list-usages ajoutées.
+* Ajout des commandes az sql server list-usages et az sql db list-usages
 * SQL : possibilité de se connecter directement au fournisseur de ressources ([#2832](https://github.com/Azure/azure-cli/issues/2832))
 
 ### <a name="storage"></a>Stockage
 
-* Définir l’emplacement par défaut sur l’emplacement du groupe de ressources pour `storage account create`.
+* Définir l’emplacement par défaut sur l’emplacement du groupe de ressources pour `storage account create`
 * Ajouter la prise en charge de la copie incrémentielle d’objet blob
 * Ajouter la prise en charge du chargement d’objet blob de blocs volumineux
 * Modifier la taille de bloc à 100 Mo lorsque le fichier à charger est supérieur à 200 Go
@@ -1471,7 +1578,7 @@ vm (2.0.6)
 
 Version 2.0.2
 
-Nous avons publié les composants ACR, Batch, KeyVault et SQL dans cette version.
+Nous avons publié les composants ACR, Batch, KeyVault et SQL dans cette version
 
 ```
 azure-cli (2.0.2)
@@ -1505,7 +1612,7 @@ vm (2.0.2)
 
 ### <a name="core"></a>Principal
 
-* Ajout des modules acr, lab, monitor et find à la liste par défaut.
+* Ajout des modules acr, lab, monitor et find à la liste par défaut
 * Connexion : ignorer les locataires erronés ([#2634](https://github.com/Azure/azure-cli/pull/2634))
 * login : définition de l’abonnement par défaut à la valeur « un » avec l’état « Activé » ([#2575](https://github.com/Azure/azure-cli/pull/2575))
 * Ajout de la prise en charge des commandes wait et de --no-wait à davantage de commandes ([#2524](https://github.com/Azure/azure-cli/pull/2524))
@@ -1530,8 +1637,8 @@ vm (2.0.2)
 
 ### <a name="datalake"></a>DataLake
 
-* Version initiale du module Data Lake Analytics.
-* Version initiale du module Data Lake Store.
+* Version initiale du module Data Lake Analytics
+* Version initiale du module Data Lake Store
 
 ### <a name="docuemntdb"></a>DocumentDB
 
@@ -1551,21 +1658,17 @@ vm (2.0.2)
 
 Version 2.0.0
 
-Cette version d’Azure CLI 2.0 est la première version en « Disponibilité générale ».
-La disponibilité générale s’applique à ces modules de commande :
+Cette version d’Azure CLI 2.0 est la première instance mise à la disposition générale. La disponibilité générale s’applique à ces modules de commande :
 - Container Service (acs)
 - Compute (notamment Resource Manager, machine virtuelle, groupes de machines virtuelles identiques, Managed Disks)
 - Réseau
 - Stockage
 
-Ces modules de commande peuvent être utilisés en production et sont pris en charge par le contrat SLA Microsoft standard.
-Vous pouvez ouvrir des incidents directement auprès du support technique de Microsoft ou dans notre [liste d’incidents github](https://github.com/azure/azure-cli/issues/).
-Vous pouvez poser des questions sur [StackOverflow à l’aide du mot clé azure-cli](http://stackoverflow.com/questions/tagged/azure-cli) ou contacter l’équipe produit à l’adresse [azfeedback@microsoft.com](mailto:azfeedback@microsoft.com). Vous pouvez fournir des commentaires à partir de la ligne de commande avec la commande `az feedback`.
+Ces modules de commande, pouvant être utilisés en production, sont pris en charge par le contrat de niveau de service (SLA) Microsoft standard. Vous pouvez ouvrir des incidents directement auprès du support technique Microsoft ou dans notre [liste d’incidents github](https://github.com/azure/azure-cli/issues/). Vous pouvez poser des questions sur [StackOverflow à l’aide du mot-clé azure-cli](http://stackoverflow.com/questions/tagged/azure-cli), ou contacter l’équipe produit à l’adresse [azfeedback@microsoft.com](mailto:azfeedback@microsoft.com). Vous pouvez fournir des commentaires à partir de la ligne de commande avec la commande `az feedback`.
 
 Les commandes de ces modules sont stables et il n’est pas prévu que la syntaxe change dans les mises à jour ultérieures de cette version d’Azure CLI.
 
-Pour vérifier la version de l’interface CLI, utilisez `az --version`.
-La sortie indique la version de l’interface CLI proprement dite (2.0.0 dans cette version), les différents modules de commande et les versions de Python et de GCC que vous utilisez.
+Pour vérifier la version de l’interface CLI, utilisez `az --version`. La sortie indique la version de l’interface CLI proprement dite (2.0.0 dans cette version), les différents modules de commande et les versions de Python et de GCC que vous utilisez.
 
 ```
 azure-cli (2.0.0)
@@ -1597,11 +1700,9 @@ Python (Darwin) 2.7.10 (default, Jul 30 2016, 19:40:32)
 ```
 
 > [!Note]
-> Certains des modules de commande ont un suffixe « b*n* » ou « rc*n* ».
-> Ces modules de commande sont toujours en préversion et seront à la disposition générale ultérieurement.
+> Certains de ces modules de commande présentent un suffixe « b*n* » ou « rc*n* ». Ces modules de commande, encore en préversion, seront mis à la disposition générale à l’avenir.
 
-Nous avons également des versions d’évaluation nocturnes de l’interface CLI.
-Pour plus d’informations, consultez ces instructions sur [l’obtention des builds nocturnes](https://github.com/Azure/azure-cli#nightly-builds) et ces instructions sur [la contribution au code et la configuration d’un environnement de développement](https://github.com/Azure/azure-cli#developer-setup).
+Nous avons également des versions d’évaluation nocturnes de l’interface CLI. Pour plus d’informations, consultez ces instructions sur l’[obtention des builds nocturnes](https://github.com/Azure/azure-cli#nightly-builds), ainsi que ces instructions sur [la contribution au code et la configuration d’un environnement de développement](https://github.com/Azure/azure-cli#developer-setup).
 
 Vous pouvez signaler des problèmes liés aux versions d’évaluation nocturnes comme suit :
 - Signalez des problèmes dans notre [liste d’incidents github](https://github.com/azure/azure-cli/issues/)
