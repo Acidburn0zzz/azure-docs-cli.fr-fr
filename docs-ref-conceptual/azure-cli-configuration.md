@@ -11,11 +11,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 6970844bf9eba5ccf18b7603115de629e995f2c4
-ms.sourcegitcommit: f57b5666523ef3642bee644eb0e0fe7085b3194a
+ms.openlocfilehash: 7ef6175815014ac3f822e8c1038b4f5af8bba9dc
+ms.sourcegitcommit: c9da729f4a42a839f13106f7589deaa0ca19cc4e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/23/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="azure-cli-20-configuration"></a>Configuration d’Azure CLI 2.0
 
@@ -29,7 +29,7 @@ Les valeurs de configuration utilisées par l’interface CLI sont évaluées da
 
 ## <a name="cli-configuration-with-az-configure"></a>Configuration de l’interface CLI avec az configure
 
-La commande [az configure](/cli/azure/reference-index#az_configure) permet de définir les valeurs par défaut de l’interface CLI.
+La commande [az configure](/cli/azure/reference-index#az-configure) permet de définir les valeurs par défaut de l’interface CLI.
 Cette commande accepte un seul argument, `--defaults`, qui est une liste séparée par des espaces de paires `key=value`. Les valeurs fournies sont utilisées par l’interface CLI à la place des arguments requis.
 
 Voici une liste des touches disponibles que vous pouvez utiliser.
