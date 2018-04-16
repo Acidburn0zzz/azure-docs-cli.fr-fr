@@ -1,7 +1,7 @@
 ---
-title: "Bien démarrer avec Azure CLI 2.0"
-description: "Commencez à utiliser Azure CLI 2.0 en apprenant les commandes de base."
-keywords: "Azure CLI, aide CLI, aide Azure, requête, automatisation,"
+title: Bien démarrer avec Azure CLI 2.0
+description: Commencez à utiliser Azure CLI 2.0 en apprenant les commandes de base.
+keywords: Azure CLI, aide CLI, aide Azure, requête, automatisation,
 author: sptramer
 ms.author: sttramer
 manager: routlaw
@@ -11,11 +11,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 3f5fe1b01a8ce691846126a6c03e7222e9b20e0d
-ms.sourcegitcommit: 29d7366a0902488f4f4d39c2cb0e89368d5186ea
+ms.openlocfilehash: 9eec3161a726d6cca53d92f80992059bfd056bf7
+ms.sourcegitcommit: c9da729f4a42a839f13106f7589deaa0ca19cc4e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="get-started-with-azure-cli-20"></a>Bien démarrer avec Azure CLI 2.0
 
@@ -25,7 +25,7 @@ Bienvenue dans Azure CLI 2.0 ! L’interface CLI est un outil conçu pour vous a
 
 Si ce n’est pas déjà fait, [installez l’interface CLI](install-azure-cli.md) ou essayez [Azure Cloud Shell](/azure/cloud-shell/overview).
 
-Avant d’utiliser les commandes CLI avec une installation locale, vous devez vous connecter avec la commande [az login](/cli/azure/reference-index#az_login).
+Avant d’utiliser les commandes CLI avec une installation locale, vous devez vous connecter avec la commande [az login](/cli/azure/reference-index#az-login).
 
 ```azurecli
 az login
@@ -53,7 +53,7 @@ Toutes les sous-commandes de ces groupes et leur documentation peuvent être con
 Les commandes de l’interface CLI sont fournies en tant que _sous-commandes_ de _groupes_.
 Chaque groupe représente un service fourni par Azure, et les sous-groupes divisent les commandes pour ces services en regroupements logiques.
 
-Pour rechercher des commandes, utilisez la commande [az find](/cli/azure/reference-index#az_find). Par exemple, pour rechercher des noms de commandes contenant `secret`, utilisez la commande suivante :
+Pour rechercher des commandes, utilisez la commande [az find](/cli/azure/reference-index#az-find). Par exemple, pour rechercher des noms de commandes contenant `secret`, utilisez la commande suivante :
 
 ```azurecli
 az find -q secret
@@ -80,7 +80,7 @@ Certains arguments sont disponibles pour chaque commande.
 
 ## <a name="interactive-mode"></a>Mode interactif
 
-L’interface CLI propose un mode interactif qui affiche automatiquement les informations d’aide et qui facilite la sélection de sous-commandes. Vous pouvez entrer en mode interactif avec la commande `az interactive`. Pour plus d’informations sur le mode interactif et la manière dont il peut vous aider à utiliser l’interface CLI, consultez [Mode interactif Azure CLI 2.0](interactive-azure-cli.md).
+L’interface CLI propose un mode interactif qui affiche automatiquement les informations d’aide et qui facilite la sélection de sous-commandes. Vous pouvez entrer en mode interactif avec la commande [az interactive](/cli/azure/reference-index#az-interactive). Pour plus d’informations sur le mode interactif et la manière dont il peut vous aider à utiliser l’interface CLI, consultez [Mode interactif Azure CLI 2.0](interactive-azure-cli.md).
 
 Il existe également un [plug-in Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli) qui propose une expérience interactive, comprenant la saisie semi-automatique et le survol de la documentation.
 
@@ -105,7 +105,7 @@ Si vous préférez vous concentrer sur d’autres services, il existe plusieurs 
 
 ## <a name="give-feedback"></a>Envoyer des commentaires
 
-N’hésitez pas à nous faire part de vos commentaires au sujet de l’interface CLI pour nous aider à l’améliorer et à résoudre les bogues. Vous pouvez [signaler un problème sur Github](https://github.com/azure/azure-cli/issues) ou utiliser les fonctionnalités intégrées de l’interface CLI pour laisser un commentaire général avec la commande `az feedback`.
+N’hésitez pas à nous faire part de vos commentaires au sujet de l’interface CLI pour nous aider à l’améliorer et à résoudre les bogues. Vous pouvez [signaler un problème sur Github](https://github.com/azure/azure-cli/issues) ou utiliser les fonctionnalités intégrées de l’interface CLI pour laisser un commentaire général avec la commande [az feedback](/cli/azure/reference-index#az-feedback).
 
 ```azurecli
 az feedback

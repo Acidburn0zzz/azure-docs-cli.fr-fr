@@ -1,6 +1,6 @@
 ---
-title: "La gestion de plusieurs clouds avec l’interface de ligne de commande Azure 2.0"
-description: "Créer, se connecter et gérer plusieurs clouds avec l’interface de ligne de commande Azure 2.0."
+title: La gestion de plusieurs clouds avec l’interface de ligne de commande Azure 2.0
+description: Créer, se connecter et gérer plusieurs clouds avec l’interface de ligne de commande Azure 2.0.
 author: sptramer
 manager: routlaw
 ms.author: sttramer
@@ -9,11 +9,11 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
-ms.openlocfilehash: ee6b1b6b1e611229ba6e6e0c4b2ca2de6f7ceaee
-ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
+ms.openlocfilehash: c17506cc81adc859ff5778b109c1832c857764e6
+ms.sourcegitcommit: c9da729f4a42a839f13106f7589deaa0ca19cc4e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/15/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="managing-multiple-clouds-with-azure-cli-20"></a>La gestion de plusieurs clouds avec l’interface de ligne de commande Azure 2.0
 
@@ -21,7 +21,7 @@ Si vous travaillez sur différentes régions ou utilisez [Azure Stack](https://d
 
 ## <a name="listing-clouds"></a>Énumération des clouds
 
-Vous pouvez lister les clouds disponibles avec la commande [cloud list](/cli/azure/cloud#list). Elle indique quel cloud est actuellement actif, son profil actuel, et fournit des informations sur les noms d’hôte et les suffixes régionaux.
+Vous pouvez lister les clouds disponibles avec la commande [az cloud list](/cli/azure/cloud#az-cloud-list). Elle indique quel cloud est actuellement actif, son profil actuel, et fournit des informations sur les noms d’hôte et les suffixes régionaux.
 
 Pour obtenir le cloud actif et une liste de tous les clouds disponibles :
 
@@ -73,7 +73,7 @@ az cloud show --name AzureChinaCloud --output json
 
 ## <a name="switching-the-active-cloud"></a>Changement du cloud actif
 
-Pour changer le cloud actuellement actif, exécutez la commande [cloud set](/cli/azure/cloud#set). Cette commande accepte un argument obligatoire, qui est le nom du cloud.
+Pour changer le cloud actuellement actif, exécutez la commande [az cloud set](/cli/azure/cloud#az-cloud-set). Cette commande accepte un argument obligatoire, qui est le nom du cloud.
 
 ```azurecli
 az cloud set --name AzureChinaCloud
@@ -85,20 +85,20 @@ az cloud set --name AzureChinaCloud
 
 ## <a name="register-a-cloud"></a>Inscrire un cloud
 
-Inscrivez un nouveau cloud si vous disposez de vos propres points de terminaison pour Azure Stack. La création d’un cloud s’effectue avec la commande [cloud register](/cli/azure/cloud#register) . Cette commande nécessite un nom et un ensemble de fonctionnalités avec les points de terminaison associés. Pour savoir comment inscrire un cloud pour une utilisation avec Azure Stack, consultez [Installer et configurer CLI pour une utilisation avec Azure Stack](/azure/azure-stack/user/azure-stack-connect-cli#connect-to-azure-stack).
+Inscrivez un nouveau cloud si vous disposez de vos propres points de terminaison pour Azure Stack. La création d’un cloud s’effectue avec la commande [az cloud register](/cli/azure/cloud#az-cloud-register). Cette commande nécessite un nom et un ensemble de fonctionnalités avec les points de terminaison associés. Pour savoir comment inscrire un cloud pour une utilisation avec Azure Stack, consultez [Installer et configurer CLI pour une utilisation avec Azure Stack](/azure/azure-stack/user/azure-stack-connect-cli#connect-to-azure-stack).
 
-Vous n’avez pas besoin d’inscrire votre propre cloud pour les régions de la Chine, du Gouvernement des États-Unis ou de l’Allemagne. Celles-ci sont gérées par Microsoft et disponibles par défaut.  Pour plus d’informations sur tous les paramètres de point de terminaison disponibles, consultez la [documentation pour `az cloud register`](/cli/azure/cloud?view=azure-cli-latest#az_cloud_register).
+Vous n’avez pas besoin d’inscrire votre propre cloud pour les régions de la Chine, du Gouvernement des États-Unis ou de l’Allemagne. Celles-ci sont gérées par Microsoft et disponibles par défaut.  Pour plus d’informations sur tous les paramètres de point de terminaison disponibles, consultez la [documentation pour `az cloud register`](/cli/azure/cloud#az-cloud-register).
 
 L’inscription d’un cloud n’active pas automatiquement ce dernier. Utilisez la commande `az cloud set` pour sélectionner le cloud qui vient d’être créé comme décrit ci-dessus.
 
 ## <a name="update-an-existing-cloud"></a>Mettre à jour un cloud existant
 
 Si vous disposez des autorisations, vous pouvez également mettre à jour un cloud existant. Faites-le lorsque vous avez besoin de basculer vers un autre profil Azure, ou d’ajouter ou de modifier un point de terminaison.
-Faites-le avec la commande `az cloud update`, qui accepte les mêmes arguments que `az cloud register`. Pour plus d’informations, consultez la [documentation pour `az cloud update`](/cli/azure/cloud?view=azure-cli-latest#az_cloud_update).
+Faites-le avec la commande [az cloud update](/cli/azure/cloud#az-cloud-update), qui accepte les mêmes arguments que `az cloud register`.
 
 ## <a name="unregister-a-cloud"></a>Désinscrire un cloud
 
-Si vous n’avez plus besoin d’un cloud inscrit, vous pouvez le désinscrire avec la commande [cloud unregister](/cli/azure/cloud#unregister) :
+Si vous n’avez plus besoin d’un cloud inscrit, vous pouvez le désinscrire avec la commande [az cloud unregister](/cli/azure/cloud#az-cloud-unregister) :
 
 ```azurecli
 az cloud unregister --name MyCloud
