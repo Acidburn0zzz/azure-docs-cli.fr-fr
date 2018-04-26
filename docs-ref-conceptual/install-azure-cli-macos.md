@@ -1,6 +1,6 @@
 ---
-title: "Installer l’interface de ligne de commande Azure pour macOS"
-description: "Installation d’Azure CLI 2.0 sur macOS"
+title: Installer l’interface de ligne de commande Azure pour macOS
+description: Installation d’Azure CLI 2.0 sur macOS
 author: sptramer
 ms.author: sttramer
 manager: routlaw
@@ -10,11 +10,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 0295846abc2fe6091940824c6efc47b8fd64ce9f
-ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
+ms.openlocfilehash: 295e84d2d30365aac4334e1e962f23c7b8e38d37
+ms.sourcegitcommit: 0e9aafa07311526f43661c8bd3a7eba7cbc2caed
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/15/2018
+ms.lasthandoff: 04/20/2018
 ---
 # <a name="install-azure-cli-20-on-macos"></a>Installation d’Azure CLI 2.0 sur macOS
 
@@ -31,7 +31,13 @@ Vous pouvez installer l’interface de ligne de commande en mettant à jour vos 
 brew update && brew install azure-cli
 ```
 
-Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`.
+Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, exécutez la commande `az login`.
+
+```azurecli
+az login
+```
+
+Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 
 ## <a name="troubleshooting"></a>Résolution de problèmes
 

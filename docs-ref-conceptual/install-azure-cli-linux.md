@@ -1,6 +1,6 @@
 ---
 title: Installer manuellement Azure CLI 2.0 pour Linux
-description: "Installation manuelle d’Azure CLI 2.0 pour Linux"
+description: Installation manuelle d’Azure CLI 2.0 pour Linux
 author: sptramer
 ms.author: sttramer
 manager: routlaw
@@ -10,11 +10,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 4ab1f70308810e045b9a1d923fd809ad9848f6c6
-ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
+ms.openlocfilehash: a74a4d30709f5d10fc3a3f2b63c9df931ab0516b
+ms.sourcegitcommit: 0e9aafa07311526f43661c8bd3a7eba7cbc2caed
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/15/2018
+ms.lasthandoff: 04/20/2018
 ---
 # <a name="install-azure-cli-20-on-linux-manually"></a>Installer manuellement Azure CLI 2.0 sur Linux
 
@@ -23,7 +23,8 @@ Si vous n’avez pas de package disponible sur votre distribution pour l’inter
 > [!NOTE]
 > Il est fortement recommandé d’utiliser un gestionnaire de package pour l’interface CLI. Un gestionnaire de package permet de s’assurer que vous obtenez toujours les dernières mises à jour et garantit la stabilité des composants de l’interface CLI. Vérifiez s’il existe un package pour votre distribution avant d’installer manuellement.
 
-## <a name="prerequisites"></a>configuration requise
+## <a name="prerequisites"></a>Prérequis
+
 
 Pour installer l’interface de ligne de commande, vous avez besoin des logiciels suivants sur votre système :
 
@@ -39,7 +40,15 @@ Que vous installiez ou que vous mettiez à jour l’interface de ligne de comman
 curl -L https://aka.ms/InstallAzureCli | bash
 ```
 
-Au lieu de cela, vous pouvez également télécharger le script et l’exécuter localement. Vous devrez peut-être redémarrer votre interpréteur de commandes pour que certaines modifications soient prises en compte. Après l’installation, exécutez l’interface de ligne de commande avec la commande `az`.
+Au lieu de cela, vous pouvez également télécharger le script et l’exécuter localement. Vous devrez peut-être redémarrer votre interpréteur de commandes pour que certaines modifications soient prises en compte. 
+
+Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, exécutez la commande `az login`.
+
+```azurecli
+az login
+```
+
+Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 
 ## <a name="troubleshooting"></a>Résolution de problèmes
 

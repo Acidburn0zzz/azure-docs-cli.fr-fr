@@ -9,11 +9,11 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
-ms.openlocfilehash: c17506cc81adc859ff5778b109c1832c857764e6
-ms.sourcegitcommit: c9da729f4a42a839f13106f7589deaa0ca19cc4e
+ms.openlocfilehash: 1a01dde9381e40065299a4165d649fc85af7ca2e
+ms.sourcegitcommit: 0e9aafa07311526f43661c8bd3a7eba7cbc2caed
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 04/20/2018
 ---
 # <a name="managing-multiple-clouds-with-azure-cli-20"></a>La gestion de plusieurs clouds avec l’interface de ligne de commande Azure 2.0
 
@@ -85,7 +85,7 @@ az cloud set --name AzureChinaCloud
 
 ## <a name="register-a-cloud"></a>Inscrire un cloud
 
-Inscrivez un nouveau cloud si vous disposez de vos propres points de terminaison pour Azure Stack. La création d’un cloud s’effectue avec la commande [az cloud register](/cli/azure/cloud#az-cloud-register). Cette commande nécessite un nom et un ensemble de fonctionnalités avec les points de terminaison associés. Pour savoir comment inscrire un cloud pour une utilisation avec Azure Stack, consultez [Installer et configurer CLI pour une utilisation avec Azure Stack](/azure/azure-stack/user/azure-stack-connect-cli#connect-to-azure-stack).
+Inscrivez un nouveau cloud si vous disposez de vos propres points de terminaison pour Azure Stack. La création d’un cloud s’effectue avec la commande [az cloud register](/cli/azure/cloud#az-cloud-register). Cette commande nécessite un nom et un ensemble de fonctionnalités avec les points de terminaison associés. Pour savoir comment inscrire un cloud pour une utilisation avec Azure Stack, consultez [Utiliser des profils de version des API avec Azure CLI 2.0 dans Azure Stack](/azure/azure-stack/user/azure-stack-version-profiles-azurecli2#connect-to-azure-stack).
 
 Vous n’avez pas besoin d’inscrire votre propre cloud pour les régions de la Chine, du Gouvernement des États-Unis ou de l’Allemagne. Celles-ci sont gérées par Microsoft et disponibles par défaut.  Pour plus d’informations sur tous les paramètres de point de terminaison disponibles, consultez la [documentation pour `az cloud register`](/cli/azure/cloud#az-cloud-register).
 

@@ -4,19 +4,136 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI 2.0
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 02/27/2018
+ms.date: 04/10/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 0e81f5723af47242f908b854045deb7d74c50c17
-ms.sourcegitcommit: b5a6296c006e3a44f66892729e47d7a967267d3e
+ms.openlocfilehash: 1e6bd4cd8bab853fb417ed9c4dd71d56e5de7cdc
+ms.sourcegitcommit: 204fd027d3668959b98b936969ccb41eada0fd29
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/28/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="april-10-2018"></a>10 avril 2018
+
+Version 2.0.31
+
+### <a name="acr"></a>ACR
+
+* Gestion améliorée des erreurs de secours wincred
+
+### <a name="acs"></a>ACS
+
+* Modification de la durée de validité des SPN créés par AKS à 5 ans
+
+### <a name="appservice"></a>AppService
+
+* [CHANGEMENT CASSANT]: Removed `assign-identity`
+* Correction d’une exception non interceptée pour les plans webapp inexistants
+
+### <a name="batchai"></a>Batch AI
+
+* Ajout de la prise en charge de l’API 2018-03-01
+
+ - Montage au niveau du travail
+ - Variables d’environnement avec les valeurs des secrets
+ - Paramètres des compteurs de performances
+ - Création de rapports de segments de ligne spécifiques à un travail
+ - Prise en charge des sous-dossiers dans les listes de fichiers de l’API
+ - Création de rapports d’utilisation et de limites
+ - Autorisation de la spécification du type de mise en cache pour les serveurs NFS
+ - Prise en charge des images personnalisées
+ - Ajout de la prise en charge de la boîte à outils pyTorch
+
+* Ajout de la commande `job wait` qui permet d’attendre la fin du travail et d’obtenir le code de sortie du travail
+* Ajout de la commande `usage show` pour répertorier l’utilisation actuelle des ressources Batch AI et les limites pour les différentes régions
+* Prise en charge des clouds nationaux
+* Ajout d’arguments de ligne de commande de travail pour monter des systèmes de fichiers au niveau du travail en plus des fichiers de configuration
+* Ajout de plus d’options pour personnaliser les clusters : priorité des machines virtuelles, sous-réseau, nombre de nœuds initial pour les clusters avec mise à l’échelle automatique, spécification d’une image personnalisée
+* Ajout d’une option de ligne de commande pour spécifier le type de mise en cache pour les NFS gérés par Batch AI
+* Simplification de la spécification du montage du système de fichiers dans les fichiers config. Il est désormais possible d’omettre les informations d’identification pour les partages de fichiers Azure et les conteneurs d’objets blob Azure : CLI remplira les informations d’identification manquantes à l’aide de la clé du compte de stockage fournie par le biais des paramètres de ligne de commande ou spécifiée via la variable d’environnement, ou interrogera la clé à partir du stockage Azure (si le compte de stockage appartient à l’abonnement actuel)
+* La commande de flux de fichiers de travail se remplit désormais automatiquement lorsque le travail est terminé (réussite, échec, terminé ou supprimé)
+* Amélioration de la sortie `table` pour les opérations `show`
+* Ajout de l’option `--use-auto-storage` pour la création du cluster. Cette option simplifie la gestion des comptes de stockage et le montage de partages de fichiers Azure et de conteneurs d’objets blob Azure vers des clusters
+* Ajout de l’option `--generate-ssh-keys` à `cluster create` et `file-server create`
+* Ajout de la possibilité de fournir la tâche de configuration de nœud via la ligne de commande
+* [CHANGEMENT CASSANT] Déplacement des commandes `job stream-file` et `job list-files` sous le groupe `job file`
+* [CHANGEMENT CASSANT] Renommage de `--admin-user-name` en `--user-name` dans la commande `file-server create` pour être cohérent avec la commande `cluster create`
+
+### <a name="billing"></a>Facturation
+
+* Ajout de commandes d’inscription de compte
+
+### <a name="consumption"></a>Consommation
+
+* Ajout des commandes `marketplace`
+* [CHANGEMENT CASSANT] Renommage de `reservations summaries` en `reservation summary`
+* [CHANGEMENT CASSANT] Renommage de `reservations details` en `reservation detail`
+* [CHANGEMENT CASSANT] Suppression des options abrégées de `--reservation-order-id` et `--reservation-id` pour les commandes `reservation`
+* [CHANGEMENT CASSANT] Suppression des options abrégées de `--grain` pour les commandes `reservation summary`
+* [CHANGEMENT CASSANT] Suppression des options abrégées de `--include-meter-details` pour les commandes `pricesheet`
+
+### <a name="container"></a>Conteneur
+
+* Ajout des paramètres de montage de volume de référentiel Git `--gitrepo-url` `--gitrepo-dir` `--gitrepo-revision` et `--gitrepo-mount-path`
+* Résolution de [#5926](https://github.com/Azure/azure-cli/issues/5926) : `az container exec` échoue lorsque le nom du conteneur -- est spécifié
+
+### <a name="extension"></a>Extension
+
+* Modification du message de vérification de distribution pour qu’il soit au niveau du débogage
+
+### <a name="interactive"></a>Interactive
+
+* Modification pour arrêter la saisie semi-automatique sur les commandes non reconnues
+* Ajout d’événements de raccordement avant et après la création du sous-arbre de commande
+* Ajout de la saisie semi-automatique pour les paramètres `--ids`
+
+### <a name="network"></a>Réseau
+
+* Résolution de [#5936](https://github.com/Azure/azure-cli/issues/5936) : les balises `application-gateway create` n’ont pas pu déterminer l’ensemble
+* Ajout de l’argument `--auth-certs` pour joindre des certificats d’authentification pour `application-gateway http-settings [create|update]`. [#4910](https://github.com/Azure/azure-cli/issues/4910)
+* Ajout de commandes `ddos-protection` pour créer des plans de protection DDoS 
+* Prise en charge de `--ddos-protection-plan` pour `vnet [create|update]` pour associer un réseau virtuel à un plan de protection DDoS
+* Résolution du problème avec l’ indicateur `--disable-bgp-route-propagation` dans `network route-table [create|update]`
+* Suppression des arguments factices `--public-ip-address-type` et `--subnet-type` pour `network lb [create|update]`
+* Ajout de la prise en charge des enregistrements TXT avec les séquences d’échappement RFC 1035 à `network dns zone [import|export]` et `network dns record-set txt add-record`
+
+### <a name="profile"></a>Profil
+
+* Ajout de la prise en charge des comptes Azure Classic dans `account list`
+* [CHANGEMENT CASSANT] Suppression des arguments `--msi` & `--msi-port`
+
+### <a name="rdbms"></a>SGBDR
+
+* Ajout de la commande `georestore`
+* Suppression de la restriction de taille de stockage de la commande `create`
+
+### <a name="resource"></a>Ressource
+
+* Ajout de la prise en charge de `--metadata` pour `policy definition create`
+* Ajout de la prise en charge de `--metadata`, `--set`, `--add` et `--remove` à `policy definition update`
+
+### <a name="sql"></a>SQL
+
+* Ajout de `sql elastic-pool op list` et `sql elastic-pool op cancel`
+
+### <a name="storage"></a>Stockage
+
+* Amélioration des messages d’erreur pour les chaînes de connexion incorrectes
+
+### <a name="vm"></a>Machine virtuelle
+
+* Ajout de la prise en charge pour configurer le nombre de domaines d’erreur de plateforme sur `vmss create`
+* Modification de `vmss create` sur la valeur par défaut de l’équilibreur de charge Standard pour les groupes identiques désactivés zonaux, grands ou avec un seul groupe de placement
+* [CHANGEMENT CASSANT]: Removed `vm assign-identity`, `vm remove-identity and `vm format-secret`
+* Ajout de la prise en charge des références SKU d’IP public à `vm create`
+* Ajout des arguments `--keyvault` et `--resource-group` à `vm secret format` pour prendre en charge des scénarios où la commande ne parvient pas à résoudre l’ID de coffre. [#5718](https://github.com/Azure/azure-cli/issues/5718)
+* Amélioration des erreurs pour `[vm|vmss create]` lorsque l’emplacement d’un groupe de ressources ne possède aucune prise en charge de zone
+
 
 ## <a name="march-27-2018"></a>27 mars 2018
 

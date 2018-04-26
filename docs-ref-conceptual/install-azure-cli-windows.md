@@ -1,6 +1,6 @@
 ---
-title: "Installer l’interface de ligne de commande Azure pour Windows"
-description: "Installation d’Azure CLI 2.0 sur Windows"
+title: Installer l’interface de ligne de commande Azure pour Windows
+description: Installation d’Azure CLI 2.0 sur Windows
 author: sptramer
 ms.author: sttramer
 manager: routlaw
@@ -10,11 +10,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: df1c2b33589c160525710845cc81d076082a9ecc
-ms.sourcegitcommit: def1a07bfccf26a4178ba6dd836764a1df205929
+ms.openlocfilehash: 30b9621c82af259e3de762127fd20b31eb249234
+ms.sourcegitcommit: 0e9aafa07311526f43661c8bd3a7eba7cbc2caed
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/09/2018
+ms.lasthandoff: 04/20/2018
 ---
 # <a name="install-azure-cli-20-on-windows"></a>Installation d’Azure CLI 2.0 sur Windows
 
@@ -30,7 +30,13 @@ Le fichier MSI distribuable est utilisé pour l’installation, la mise à jour 
 
 Lorsque le programme d’installation vous demande s’il peut apporter des modifications à votre ordinateur, cliquez sur la case « Oui ».
 
-Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec la commande `az` à partir de l’invite de commandes Windows ou PowerShell. PowerShell offre des fonctionnalité de saisie semi-automatique via la touche TAB non disponibles à partir de CMD.
+Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec la commande `az` à partir de l’invite de commandes Windows ou PowerShell. PowerShell offre des fonctionnalités de saisie semi-automatique via la touche TAB non disponibles à partir de l’invite de commandes Windows. Pour vous connecter, exécutez la commande `az login`.
+
+```azurecli
+az login
+```
+
+Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 
 ## <a name="uninstall"></a>Désinstaller l’interface
 

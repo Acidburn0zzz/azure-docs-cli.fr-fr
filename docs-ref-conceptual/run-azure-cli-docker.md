@@ -1,6 +1,6 @@
 ---
-title: "Exécuter Azure CLI 2.0 dans un conteneur Docker"
-description: "Exécution d’un conteneur Docker hébergeant l’interface Azure CLI 2.0"
+title: Exécuter Azure CLI 2.0 dans un conteneur Docker
+description: Exécution d’un conteneur Docker hébergeant l’interface Azure CLI 2.0
 author: sptramer
 ms.author: sttramer
 manager: routlaw
@@ -10,11 +10,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 3a09eb6d83bb5401628bd952d199a03ecbb8216e
-ms.sourcegitcommit: b93a19222e116d5880bbe64c03507c64e190331e
+ms.openlocfilehash: e394dc5cd375ec6d3393f45f38694f71369379d4
+ms.sourcegitcommit: 0e9aafa07311526f43661c8bd3a7eba7cbc2caed
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/15/2018
+ms.lasthandoff: 04/20/2018
 ---
 # <a name="run-azure-cli-20-in-a-docker-container"></a>Exécuter Azure CLI 2.0 dans un conteneur Docker
 
@@ -28,7 +28,13 @@ Installez l’interface de ligne de commande à l’aide de `docker run`.
    docker run -it microsoft/azure-cli
    ```
 
-L’interface de ligne de commande est installé sur l’image en tant que commande `az` dans `/usr/local/bin`.
+L’interface de ligne de commande est installé sur l’image en tant que commande `az` dans `/usr/local/bin`. Pour vous connecter, exécutez la commande `az login`.
+
+```azurecli
+az login
+```
+
+Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 
 > [!NOTE]
 > Si vous souhaitez sélectionner les clés SSH à partir de votre environnement utilisateur, vous pouvez utiliser `-v ${HOME}:/root` pour monter $HOME en tant que `/root`.

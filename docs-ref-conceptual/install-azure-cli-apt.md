@@ -1,6 +1,6 @@
 ---
-title: "Installation d’Azure CLI 2.0 pour Linux avec apt"
-description: "Installation d’Azure CLI 2.0 avec le gestionnaire de package apt"
+title: Installation d’Azure CLI 2.0 pour Linux avec apt
+description: Installation d’Azure CLI 2.0 avec le gestionnaire de package apt
 author: sptramer
 ms.author: sttramer
 manager: routlaw
@@ -10,11 +10,11 @@ ms.prod: azure
 ms.technology: azure
 ms.devlang: azurecli
 ms.service: multiple
-ms.openlocfilehash: 188e7dfded21bb5c7036b3a950b3e4cb10bc1d33
-ms.sourcegitcommit: 5c004b455eff196d853bfbe12901c6114a1652d7
+ms.openlocfilehash: a2578c79ba961cb12f3f49e77a9eaa73c4fe97a2
+ms.sourcegitcommit: 0e9aafa07311526f43661c8bd3a7eba7cbc2caed
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/15/2018
+ms.lasthandoff: 04/20/2018
 ---
 # <a name="install-azure-cli-20-with-apt"></a>Installer Azure CLI 2.0 avec apt
 
@@ -33,15 +33,33 @@ Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu 
           sudo tee /etc/apt/sources.list.d/azure-cli.list
      ```
 
-2. Exécutez les commandes sudo suivantes :
+2. Obtenir la clé de signature Microsoft :
 
    ```bash
    sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
+   ```
+
+  > [!WARNING]
+  > Cette clé de signature est déconseillée et sera remplacée fin mai 2018. Afin de continuer à recevoir les mises à jour avec `apt`, veillez à installer également la nouvelle clé :
+  > 
+  > ```bash
+  > curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+  > ``` 
+
+3. Installer l’interface de ligne de commande :
+
+   ```bash
    sudo apt-get install apt-transport-https
    sudo apt-get update && sudo apt-get install azure-cli
    ```
 
-Vous pouvez exécuter l’interface de ligne de commande Azure avec la commande `az`.
+Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, exécutez la commande `az login`.
+
+```azurecli
+az login
+```
+
+Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 
 ## <a name="troubleshooting"></a>Résolution de problèmes
 
