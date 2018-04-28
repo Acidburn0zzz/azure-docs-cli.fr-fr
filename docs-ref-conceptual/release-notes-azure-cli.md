@@ -7,14 +7,13 @@ manager: carmonm
 ms.date: 04/10/2018
 ms.topic: article
 ms.prod: azure
-ms.technology: azure
-ms.devlang: azurecli
-ms.service: multiple
-ms.openlocfilehash: 1e6bd4cd8bab853fb417ed9c4dd71d56e5de7cdc
-ms.sourcegitcommit: 204fd027d3668959b98b936969ccb41eada0fd29
+ms.technology: azure-cli
+ms.devlang: azure-cli
+ms.openlocfilehash: fd5d82e34089a9a884c25c9a5620526f9d30577a
+ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 04/28/2018
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
 

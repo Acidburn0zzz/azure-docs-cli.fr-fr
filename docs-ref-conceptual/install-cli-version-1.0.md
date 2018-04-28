@@ -1,25 +1,19 @@
 ---
-title: Installer l’interface de ligne de commande Azure CLI 1.0 | Documents Microsoft
+title: Installer l’interface de ligne de commande Azure CLI 1.0
 description: Installation de l’interface de ligne de commande Azure CLI 1.0 pour Mac, Linux et Windows afin d’utiliser les services Azure
-editor: ''
-manager: timlt
-documentationcenter: ''
-author: squillace
-services: virtual-machines-linux,virtual-network,storage,azure-resource-manager
-tags: azure-resource-manager,azure-service-management
-ms.assetid: bdb776c8-7a76-4f3a-887c-236b4fffee10
-ms.service: multiple
-ms.workload: multiple
-ms.tgt_pltfrm: command-line-interface
-ms.devlang: na
-ms.topic: article
+author: sptramer
+ms.author: sttramer
+manager: carmonm
 ms.date: 03/20/2017
-ms.author: rasquill
-ms.openlocfilehash: fa468a0b39b933b5778574a41aa29e0d60d050a8
-ms.sourcegitcommit: d461e73abb09c3c85064c532b53a2efb25833b01
+ms.topic: conceptual
+ms.prod: azure
+ms.technology: azure-cli
+ms.devlang: azure-cli
+ms.openlocfilehash: 92714f32736e0a1a0ea7c8dd4a615b158c955931
+ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/27/2018
+ms.lasthandoff: 04/28/2018
 ---
 # <a name="install-the-azure-cli-10"></a>Installer l’interface de ligne de commande Azure CLI 1.0
 

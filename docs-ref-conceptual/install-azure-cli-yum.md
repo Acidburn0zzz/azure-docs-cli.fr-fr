@@ -3,18 +3,17 @@ title: Installation d’Azure CLI 2.0 pour Linux avec yum
 description: Installation d’Azure CLI 2.0 avec yum
 author: sptramer
 ms.author: sttramer
-manager: routlaw
+manager: carmonm
 ms.date: 01/29/2018
-ms.topic: article
+ms.topic: conceptual
 ms.prod: azure
-ms.technology: azure
-ms.devlang: azurecli
-ms.service: multiple
-ms.openlocfilehash: 6a63d1ccd6b182b0c7144101f7efbf3264a6cb72
-ms.sourcegitcommit: 0e9aafa07311526f43661c8bd3a7eba7cbc2caed
+ms.technology: azure-cli
+ms.devlang: azure-cli
+ms.openlocfilehash: b3c82825af3d1d2420b0111d1a370a17f37d9426
+ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/20/2018
+ms.lasthandoff: 04/28/2018
 ---
 # <a name="install-azure-cli-20-with-yum"></a>Installer Azure CLI 2.0 avec yum
 

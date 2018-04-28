@@ -1,26 +1,25 @@
 ---
 title: Formats de sortie pour Azure CLI 2.0
-description: "Apprenez à mettre la sortie des commandes Azure CLI 2.0 au format liste, table ou json."
+description: Apprenez à mettre la sortie des commandes Azure CLI 2.0 au format liste, table ou json.
 author: sptramer
 ms.author: sttramer
 manager: carmonm
 ms.date: 02/15/2018
-ms.topic: article
+ms.topic: conceptual
 ms.prod: azure
-ms.technology: azure
-ms.devlang: azurecli
-ms.service: multiple
-ms.openlocfilehash: ec96d1cb21b32cd982dbec5e4bf38110f8686c25
-ms.sourcegitcommit: f82774a6f92598c41da9956284f563757f402774
+ms.technology: azure-cli
+ms.devlang: azure-cli
+ms.openlocfilehash: 1eb0fa1421fc2a5f52ccebec7d535824c2434ed2
+ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/19/2018
+ms.lasthandoff: 04/28/2018
 ---
 # <a name="output-formats-for-azure-cli-20-commands"></a>Formats de sortie pour les commandes Azure CLI 2.0
 
 Azure CLI 2.0 utilise json comme option de sortie par défaut, mais vous pouvez mettre en forme la sortie des commandes de différentes façons.  Utilisez le paramètre `--output` (ou `--out` ou `-o`) pour formater la sortie de la commande avec l’un des types de sortie indiqués dans le tableau suivant :
 
---output | DESCRIPTION
+--output | Description
 ---------|-------------------------------
 `json`   | Chaîne JSON. Il s’agit du paramètre par défaut.
 `jsonc`  | JSON coloré.
