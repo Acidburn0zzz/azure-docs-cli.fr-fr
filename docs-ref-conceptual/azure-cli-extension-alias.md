@@ -5,35 +5,34 @@ author: sptramer
 ms.author: sttramer
 manager: carmonm
 ms.date: 03/14/2018
-ms.topic: article
+ms.topic: conceptual
 ms.prod: azure
-ms.technology: azure
-ms.devlang: azurecli
-ms.service: multiple
-ms.openlocfilehash: d6eae7f5a6ca30af7214e77ae561c3a53a2cee26
-ms.sourcegitcommit: 204fd027d3668959b98b936969ccb41eada0fd29
+ms.technology: azure-cli
+ms.devlang: azure-cli
+ms.openlocfilehash: 40a43f5013a5dd0d7bb65b21140bb4fc82769267
+ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 04/28/2018
 ---
-# <a name="the-azure-cli-20-alias-extension"></a><span data-ttu-id="4851d-103">L’extension d’alias Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="4851d-103">The Azure CLI 2.0 alias extension</span></span>
+# <a name="the-azure-cli-20-alias-extension"></a><span data-ttu-id="2d29a-103">L’extension d’alias Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="2d29a-103">The Azure CLI 2.0 alias extension</span></span>
 
-<span data-ttu-id="4851d-104">L’extension d’alias permet aux utilisateurs de définir des commandes personnalisées pour l’interface Azure CLI, à l’aide des commandes existantes.</span><span class="sxs-lookup"><span data-stu-id="4851d-104">The alias extension allows users to define custom commands for the Azure CLI by using existing commands.</span></span> <span data-ttu-id="4851d-105">Avec les alias, votre workflow demeure concis et simple grâce aux raccourcis. De plus, vous être en mesure de recourir à des arguments positionnels.</span><span class="sxs-lookup"><span data-stu-id="4851d-105">Aliases help keep your workflow concise and simple by allowing shortcuts and giving you the ability to use positional arguments.</span></span> <span data-ttu-id="4851d-106">Comme les alias sont alimentés par le moteur de modèles Jinja2, ils prennent bien souvent en charge le traitement avancé des arguments.</span><span class="sxs-lookup"><span data-stu-id="4851d-106">Since aliases are powered by the Jinja2 template engine, they even offer advanced argument processing.</span></span>
+<span data-ttu-id="2d29a-104">L’extension d’alias permet aux utilisateurs de définir des commandes personnalisées pour l’interface Azure CLI, à l’aide des commandes existantes.</span><span class="sxs-lookup"><span data-stu-id="2d29a-104">The alias extension allows users to define custom commands for the Azure CLI by using existing commands.</span></span> <span data-ttu-id="2d29a-105">Avec les alias, votre workflow demeure concis et simple grâce aux raccourcis. De plus, vous être en mesure de recourir à des arguments positionnels.</span><span class="sxs-lookup"><span data-stu-id="2d29a-105">Aliases help keep your workflow concise and simple by allowing shortcuts and giving you the ability to use positional arguments.</span></span> <span data-ttu-id="2d29a-106">Comme les alias sont alimentés par le moteur de modèles Jinja2, ils prennent bien souvent en charge le traitement avancé des arguments.</span><span class="sxs-lookup"><span data-stu-id="2d29a-106">Since aliases are powered by the Jinja2 template engine, they even offer advanced argument processing.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="4851d-107">L’extension d’alias est en préversion publique.</span><span class="sxs-lookup"><span data-stu-id="4851d-107">The Alias Extension is in public preview.</span></span> <span data-ttu-id="4851d-108">Les fonctionnalités et le format du fichier de configuration peuvent changer.</span><span class="sxs-lookup"><span data-stu-id="4851d-108">The features and configuration file format may change.</span></span>
+> <span data-ttu-id="2d29a-107">L’extension d’alias est en préversion publique.</span><span class="sxs-lookup"><span data-stu-id="2d29a-107">The Alias Extension is in public preview.</span></span> <span data-ttu-id="2d29a-108">Les fonctionnalités et le format du fichier de configuration peuvent changer.</span><span class="sxs-lookup"><span data-stu-id="2d29a-108">The features and configuration file format may change.</span></span>
 
-## <a name="install-the-alias-extension"></a><span data-ttu-id="4851d-109">Installer l’extension d’alias</span><span class="sxs-lookup"><span data-stu-id="4851d-109">Install the alias extension</span></span>
+## <a name="install-the-alias-extension"></a><span data-ttu-id="2d29a-109">Installer l’extension d’alias</span><span class="sxs-lookup"><span data-stu-id="2d29a-109">Install the alias extension</span></span>
 
-<span data-ttu-id="4851d-110">La version minimale requise de l’interface Azure CLI pour utiliser l’extension d’alias est **2.0.28**.</span><span class="sxs-lookup"><span data-stu-id="4851d-110">The minimum required Azure CLI version to use the alias extension is **2.0.28**.</span></span> <span data-ttu-id="4851d-111">Pour vérifier votre version de l’interface CLI, exécutez `az --version`.</span><span class="sxs-lookup"><span data-stu-id="4851d-111">To check your CLI version, run `az --version`.</span></span> <span data-ttu-id="4851d-112">Si vous devez mettre à jour votre installation, suivez les instructions de la section [Installer Azure CLI 2.0](./install-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="4851d-112">If you need to update your installation,  follow the instructions in [Install the Azure CLI 2.0](./install-azure-cli.md).</span></span>
+<span data-ttu-id="2d29a-110">La version minimale requise de l’interface Azure CLI pour utiliser l’extension d’alias est **2.0.28**.</span><span class="sxs-lookup"><span data-stu-id="2d29a-110">The minimum required Azure CLI version to use the alias extension is **2.0.28**.</span></span> <span data-ttu-id="2d29a-111">Pour vérifier votre version de l’interface CLI, exécutez `az --version`.</span><span class="sxs-lookup"><span data-stu-id="2d29a-111">To check your CLI version, run `az --version`.</span></span> <span data-ttu-id="2d29a-112">Si vous devez mettre à jour votre installation, suivez les instructions de la section [Installer Azure CLI 2.0](./install-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="2d29a-112">If you need to update your installation,  follow the instructions in [Install the Azure CLI 2.0](./install-azure-cli.md).</span></span>
 
-<span data-ttu-id="4851d-113">Installez l’extension avec la commande [az extension add](/cli/azure/extension#az-extension-add).</span><span class="sxs-lookup"><span data-stu-id="4851d-113">Install the extension with the [az extension add](/cli/azure/extension#az-extension-add) command.</span></span>
+<span data-ttu-id="2d29a-113">Installez l’extension avec la commande [az extension add](/cli/azure/extension#az-extension-add).</span><span class="sxs-lookup"><span data-stu-id="2d29a-113">Install the extension with the [az extension add](/cli/azure/extension#az-extension-add) command.</span></span>
 
 ```azurecli
 az extension add --name alias
 ```
 
-<span data-ttu-id="4851d-114">Vérifiez l’installation de l’extension avec [az extension list](/cli/azure/extension#az-extension-list).</span><span class="sxs-lookup"><span data-stu-id="4851d-114">Verify the installation of the extension with [az extension list](/cli/azure/extension#az-extension-list).</span></span> <span data-ttu-id="4851d-115">Si l’extension d’alias a été correctement installée, elle est répertoriée dans la sortie de la commande.</span><span class="sxs-lookup"><span data-stu-id="4851d-115">If the alias extension was installed properly, it's listed in the command output.</span></span>
+<span data-ttu-id="2d29a-114">Vérifiez l’installation de l’extension avec [az extension list](/cli/azure/extension#az-extension-list).</span><span class="sxs-lookup"><span data-stu-id="2d29a-114">Verify the installation of the extension with [az extension list](/cli/azure/extension#az-extension-list).</span></span> <span data-ttu-id="2d29a-115">Si l’extension d’alias a été correctement installée, elle est répertoriée dans la sortie de la commande.</span><span class="sxs-lookup"><span data-stu-id="2d29a-115">If the alias extension was installed properly, it's listed in the command output.</span></span>
 
 ```azurecli
 az extension list --output table --query '[].{Name:name}'
@@ -46,34 +45,34 @@ alias
 ```
 
 
-## <a name="keep-the-extension-up-to-date"></a><span data-ttu-id="4851d-116">Maintenir l’extension à jour</span><span class="sxs-lookup"><span data-stu-id="4851d-116">Keep the extension up to date</span></span>
+## <a name="keep-the-extension-up-to-date"></a><span data-ttu-id="2d29a-116">Maintenir l’extension à jour</span><span class="sxs-lookup"><span data-stu-id="2d29a-116">Keep the extension up to date</span></span>
 
-<span data-ttu-id="4851d-117">L’extension d’alias est en cours de développement actif ; de nouvelles versions sont régulièrement publiées.</span><span class="sxs-lookup"><span data-stu-id="4851d-117">The alias extension is under active development and new versions are released regularly.</span></span> <span data-ttu-id="4851d-118">Ces nouvelles versions ne sont pas automatiquement installées lors des mises à jour de l’interface CLI.</span><span class="sxs-lookup"><span data-stu-id="4851d-118">New versions are not automatically installed whenever you update the CLI.</span></span> <span data-ttu-id="4851d-119">Installez les mises à jour de l’extension avec [az extension update](/cli/azure/extension#az-extension-update).</span><span class="sxs-lookup"><span data-stu-id="4851d-119">Install the updates for the extension with [az extension update](/cli/azure/extension#az-extension-update).</span></span>
+<span data-ttu-id="2d29a-117">L’extension d’alias est en cours de développement actif ; de nouvelles versions sont régulièrement publiées.</span><span class="sxs-lookup"><span data-stu-id="2d29a-117">The alias extension is under active development and new versions are released regularly.</span></span> <span data-ttu-id="2d29a-118">Ces nouvelles versions ne sont pas automatiquement installées lors des mises à jour de l’interface CLI.</span><span class="sxs-lookup"><span data-stu-id="2d29a-118">New versions are not automatically installed whenever you update the CLI.</span></span> <span data-ttu-id="2d29a-119">Installez les mises à jour de l’extension avec [az extension update](/cli/azure/extension#az-extension-update).</span><span class="sxs-lookup"><span data-stu-id="2d29a-119">Install the updates for the extension with [az extension update](/cli/azure/extension#az-extension-update).</span></span>
 
 ```azurecli
 az extension update --name alias
 ```
 
 
-## <a name="manage-aliases-for-the-azure-cli"></a><span data-ttu-id="4851d-120">Gestion des alias pour Azure CLI</span><span class="sxs-lookup"><span data-stu-id="4851d-120">Manage aliases for the Azure CLI</span></span>
+## <a name="manage-aliases-for-the-azure-cli"></a><span data-ttu-id="2d29a-120">Gestion des alias pour Azure CLI</span><span class="sxs-lookup"><span data-stu-id="2d29a-120">Manage aliases for the Azure CLI</span></span>
 
-<span data-ttu-id="4851d-121">L’extension de l’alias fournit des commandes pratiques et familières pour gérer les alias.</span><span class="sxs-lookup"><span data-stu-id="4851d-121">The alias extension provides convenient and familiar commands to manage aliases.</span></span> <span data-ttu-id="4851d-122">Pour afficher toutes les commandes disponibles et les détails de paramètres, appelez la commande de l’alias avec `--help`.</span><span class="sxs-lookup"><span data-stu-id="4851d-122">To view all the available commands and parameter details, invoke the alias command with `--help`.</span></span>
+<span data-ttu-id="2d29a-121">L’extension de l’alias fournit des commandes pratiques et familières pour gérer les alias.</span><span class="sxs-lookup"><span data-stu-id="2d29a-121">The alias extension provides convenient and familiar commands to manage aliases.</span></span> <span data-ttu-id="2d29a-122">Pour afficher toutes les commandes disponibles et les détails de paramètres, appelez la commande de l’alias avec `--help`.</span><span class="sxs-lookup"><span data-stu-id="2d29a-122">To view all the available commands and parameter details, invoke the alias command with `--help`.</span></span>
 
 ```azurecli
 az alias --help
 ```
 
 
-## <a name="create-simple-alias-commands"></a><span data-ttu-id="4851d-123">Créer des commandes alias simples</span><span class="sxs-lookup"><span data-stu-id="4851d-123">Create simple alias commands</span></span>
+## <a name="create-simple-alias-commands"></a><span data-ttu-id="2d29a-123">Créer des commandes alias simples</span><span class="sxs-lookup"><span data-stu-id="2d29a-123">Create simple alias commands</span></span>
 
-<span data-ttu-id="4851d-124">Les alias peuvent par exemple servir à raccourcir les noms existants des groupes de commandes ou des commandes.</span><span class="sxs-lookup"><span data-stu-id="4851d-124">One use of aliases is for shortening existing command groups or command names.</span></span> <span data-ttu-id="4851d-125">Par exemple, vous pouvez raccourcir le nom du groupe de commandes `group` en le ramenant à `rg` et le nom de la commande `list` en `ls`.</span><span class="sxs-lookup"><span data-stu-id="4851d-125">For example, you can shorten the `group` command group to `rg` and the `list` command to `ls`.</span></span>
+<span data-ttu-id="2d29a-124">Les alias peuvent par exemple servir à raccourcir les noms existants des groupes de commandes ou des commandes.</span><span class="sxs-lookup"><span data-stu-id="2d29a-124">One use of aliases is for shortening existing command groups or command names.</span></span> <span data-ttu-id="2d29a-125">Par exemple, vous pouvez raccourcir le nom du groupe de commandes `group` en le ramenant à `rg` et le nom de la commande `list` en `ls`.</span><span class="sxs-lookup"><span data-stu-id="2d29a-125">For example, you can shorten the `group` command group to `rg` and the `list` command to `ls`.</span></span>
 
 ```azurecli
 az alias create --name rg --command group
 az alias create --name ls --command list
 ```
 
-<span data-ttu-id="4851d-126">Ces alias nouvellement définis peuvent désormais être utilisés dans l’ensemble des emplacements pouvant héberger leur définition.</span><span class="sxs-lookup"><span data-stu-id="4851d-126">These newly defined aliases can now be used anywhere that their definition would be.</span></span>
+<span data-ttu-id="2d29a-126">Ces alias nouvellement définis peuvent désormais être utilisés dans l’ensemble des emplacements pouvant héberger leur définition.</span><span class="sxs-lookup"><span data-stu-id="2d29a-126">These newly defined aliases can now be used anywhere that their definition would be.</span></span>
 
 ```azurecli
 az rg list
@@ -81,30 +80,30 @@ az rg ls
 az vm ls
 ```
 
-<span data-ttu-id="4851d-127">N’incluez pas `az` dans la commande.</span><span class="sxs-lookup"><span data-stu-id="4851d-127">Do not include `az` as part of the command.</span></span>
+<span data-ttu-id="2d29a-127">N’incluez pas `az` dans la commande.</span><span class="sxs-lookup"><span data-stu-id="2d29a-127">Do not include `az` as part of the command.</span></span>
 
-<span data-ttu-id="4851d-128">Les alias peuvent également être des raccourcis de commandes complètes.</span><span class="sxs-lookup"><span data-stu-id="4851d-128">Aliases can also be shortcuts for complete commands.</span></span> <span data-ttu-id="4851d-129">Le prochain exemple répertorie les groupes de ressources disponibles et leur emplacement dans la sortie de table :</span><span class="sxs-lookup"><span data-stu-id="4851d-129">The next example lists available resource groups and their locations in table output:</span></span>
+<span data-ttu-id="2d29a-128">Les alias peuvent également être des raccourcis de commandes complètes.</span><span class="sxs-lookup"><span data-stu-id="2d29a-128">Aliases can also be shortcuts for complete commands.</span></span> <span data-ttu-id="2d29a-129">Le prochain exemple répertorie les groupes de ressources disponibles et leur emplacement dans la sortie de table :</span><span class="sxs-lookup"><span data-stu-id="2d29a-129">The next example lists available resource groups and their locations in table output:</span></span>
 
 ```azurecli
 az alias create --name ls-groups --command "group list --query '[].{Name:name, Location:location}' --output table"
 ```
 
-<span data-ttu-id="4851d-130">Désormais, `ls-groups` peut être exécutée comme toute autre commande CLI.</span><span class="sxs-lookup"><span data-stu-id="4851d-130">Now `ls-groups` can be run like any other CLI command.</span></span>
+<span data-ttu-id="2d29a-130">Désormais, `ls-groups` peut être exécutée comme toute autre commande CLI.</span><span class="sxs-lookup"><span data-stu-id="2d29a-130">Now `ls-groups` can be run like any other CLI command.</span></span>
 
 ```azurecli
 az ls-groups
 ```
 
 
-## <a name="create-an-alias-command-with-arguments"></a><span data-ttu-id="4851d-131">Créer une commande d’alias avec des arguments</span><span class="sxs-lookup"><span data-stu-id="4851d-131">Create an alias command with arguments</span></span>
+## <a name="create-an-alias-command-with-arguments"></a><span data-ttu-id="2d29a-131">Créer une commande d’alias avec des arguments</span><span class="sxs-lookup"><span data-stu-id="2d29a-131">Create an alias command with arguments</span></span>
 
-<span data-ttu-id="4851d-132">Il est également possible d’ajouter des arguments positionnels à une commande d’alias en les incluant en tant que `{{ arg_name }}` dans le nom d’alias.</span><span class="sxs-lookup"><span data-stu-id="4851d-132">You can also add positional arguments to an alias command by including them as `{{ arg_name }}` in the alias name.</span></span> <span data-ttu-id="4851d-133">L’espace à l’intérieur des accolades est requis.</span><span class="sxs-lookup"><span data-stu-id="4851d-133">The whitespace inside the braces is required.</span></span>
+<span data-ttu-id="2d29a-132">Il est également possible d’ajouter des arguments positionnels à une commande d’alias en les incluant en tant que `{{ arg_name }}` dans le nom d’alias.</span><span class="sxs-lookup"><span data-stu-id="2d29a-132">You can also add positional arguments to an alias command by including them as `{{ arg_name }}` in the alias name.</span></span> <span data-ttu-id="2d29a-133">L’espace à l’intérieur des accolades est requis.</span><span class="sxs-lookup"><span data-stu-id="2d29a-133">The whitespace inside the braces is required.</span></span>
 
 ```azurecli
 az alias create --name "alias_name {{ arg1 }} {{ arg2 }} ..." --command "invoke_including_args"
 ```
 
-<span data-ttu-id="4851d-134">Le prochain exemple d’alias indique comment utiliser des arguments positionnels afin de récupérer l’adresse IP publique d’une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="4851d-134">The next example alias shows how to use positional arguments to get the public IP address for a VM.</span></span>
+<span data-ttu-id="2d29a-134">Le prochain exemple d’alias indique comment utiliser des arguments positionnels afin de récupérer l’adresse IP publique d’une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="2d29a-134">The next example alias shows how to use positional arguments to get the public IP address for a VM.</span></span>
 
 ```azurecli
 az alias create \
@@ -113,13 +112,13 @@ az alias create \
         --query [0].virtualMachine.network.publicIpAddresses[0].ipAddress"
 ```
 
-<span data-ttu-id="4851d-135">Lorsque vous exécutez cette commande, vous octroyez des valeurs aux arguments positionnels.</span><span class="sxs-lookup"><span data-stu-id="4851d-135">When running this command, you give values to the positional arguments.</span></span>
+<span data-ttu-id="2d29a-135">Lorsque vous exécutez cette commande, vous octroyez des valeurs aux arguments positionnels.</span><span class="sxs-lookup"><span data-stu-id="2d29a-135">When running this command, you give values to the positional arguments.</span></span>
 
 ```azurecli
 az get-vm-ip MyResourceGroup MyVM
 ```
 
-<span data-ttu-id="4851d-136">Vous pouvez également utiliser des variables d’environnement dans les commandes appelées par alias, qui sont évaluées au moment de l’exécution.</span><span class="sxs-lookup"><span data-stu-id="4851d-136">You can also use environment variables in commands invoked by aliases, which are evaluated at runtime.</span></span> <span data-ttu-id="4851d-137">Le prochain exemple ajoute l’alias `create-rg`, qui crée un groupe de ressources dans `eastus` et ajoute une balise `owner`.</span><span class="sxs-lookup"><span data-stu-id="4851d-137">The next example adds the `create-rg` alias, which creates a resource group in `eastus` and adds an `owner` tag.</span></span> <span data-ttu-id="4851d-138">Cette balise se voit affecter la valeur de la variable d’environnement local `USER`.</span><span class="sxs-lookup"><span data-stu-id="4851d-138">This tag is assigned the value of the local environment variable `USER`.</span></span>
+<span data-ttu-id="2d29a-136">Vous pouvez également utiliser des variables d’environnement dans les commandes appelées par alias, qui sont évaluées au moment de l’exécution.</span><span class="sxs-lookup"><span data-stu-id="2d29a-136">You can also use environment variables in commands invoked by aliases, which are evaluated at runtime.</span></span> <span data-ttu-id="2d29a-137">Le prochain exemple ajoute l’alias `create-rg`, qui crée un groupe de ressources dans `eastus` et ajoute une balise `owner`.</span><span class="sxs-lookup"><span data-stu-id="2d29a-137">The next example adds the `create-rg` alias, which creates a resource group in `eastus` and adds an `owner` tag.</span></span> <span data-ttu-id="2d29a-138">Cette balise se voit affecter la valeur de la variable d’environnement local `USER`.</span><span class="sxs-lookup"><span data-stu-id="2d29a-138">This tag is assigned the value of the local environment variable `USER`.</span></span>
 
 ```azurecli
 az alias create \
@@ -127,14 +126,14 @@ az alias create \
     --command "group create --name {{ groupName }} --location eastus --tags owner=\$USER"
 ```
 
-<span data-ttu-id="4851d-139">Pour enregistrer les variables d’environnement à l’intérieur de la commande de l’alias, le signe dollar `$` doit être placé dans une séquence d’échappement.</span><span class="sxs-lookup"><span data-stu-id="4851d-139">To register the environment variables inside the command of the alias, the dollar sign `$` must be escaped.</span></span>
+<span data-ttu-id="2d29a-139">Pour enregistrer les variables d’environnement à l’intérieur de la commande de l’alias, le signe dollar `$` doit être placé dans une séquence d’échappement.</span><span class="sxs-lookup"><span data-stu-id="2d29a-139">To register the environment variables inside the command of the alias, the dollar sign `$` must be escaped.</span></span>
 
 
-## <a name="process-arguments-using-jinja2-templates"></a><span data-ttu-id="4851d-140">Traiter les arguments à l’aide des modèles Jinja2</span><span class="sxs-lookup"><span data-stu-id="4851d-140">Process arguments using Jinja2 templates</span></span>
+## <a name="process-arguments-using-jinja2-templates"></a><span data-ttu-id="2d29a-140">Traiter les arguments à l’aide des modèles Jinja2</span><span class="sxs-lookup"><span data-stu-id="2d29a-140">Process arguments using Jinja2 templates</span></span>
 
-<span data-ttu-id="4851d-141">La substitution d’argument dans l’extension d’alias est effectuée par [Jinja2](http://jinja.pocoo.org/docs/2.10/), ce qui vous donne un accès illimité aux fonctionnalités du moteur de modèles Jinja2.</span><span class="sxs-lookup"><span data-stu-id="4851d-141">Argument substitution in the alias extension is performed by [Jinja2](http://jinja.pocoo.org/docs/2.10/), giving you full access to the capabilities of the Jinja2 template engine.</span></span> <span data-ttu-id="4851d-142">Les modèles prennent en charge différentes actions, comme l’extraction et la substitution des données sur les chaînes.</span><span class="sxs-lookup"><span data-stu-id="4851d-142">Templates allow you to perform actions like data extraction and substitution on strings.</span></span>
+<span data-ttu-id="2d29a-141">La substitution d’argument dans l’extension d’alias est effectuée par [Jinja2](http://jinja.pocoo.org/docs/2.10/), ce qui vous donne un accès illimité aux fonctionnalités du moteur de modèles Jinja2.</span><span class="sxs-lookup"><span data-stu-id="2d29a-141">Argument substitution in the alias extension is performed by [Jinja2](http://jinja.pocoo.org/docs/2.10/), giving you full access to the capabilities of the Jinja2 template engine.</span></span> <span data-ttu-id="2d29a-142">Les modèles prennent en charge différentes actions, comme l’extraction et la substitution des données sur les chaînes.</span><span class="sxs-lookup"><span data-stu-id="2d29a-142">Templates allow you to perform actions like data extraction and substitution on strings.</span></span>
 
-<span data-ttu-id="4851d-143">Avec les modèles Jinja2, vous pouvez écrire des alias qui acceptent des types d’arguments supplémentaires par rapport à la commande sous-jacente.</span><span class="sxs-lookup"><span data-stu-id="4851d-143">With Jinja2 templates, you can write aliases which take different types of arguments than the underlying command.</span></span> <span data-ttu-id="4851d-144">Par exemple, vous pouvez développer un alias acceptant une URL de stockage.</span><span class="sxs-lookup"><span data-stu-id="4851d-144">For example, you can make an alias which takes a storage URL.</span></span> <span data-ttu-id="4851d-145">Par la suite, cette URL est analysée afin de transmettre les noms de compte et de conteneur à la commande de stockage.</span><span class="sxs-lookup"><span data-stu-id="4851d-145">Then this URL is parsed to pass the account and container names to the storage command.</span></span>
+<span data-ttu-id="2d29a-143">Avec les modèles Jinja2, vous pouvez écrire des alias qui acceptent des types d’arguments supplémentaires par rapport à la commande sous-jacente.</span><span class="sxs-lookup"><span data-stu-id="2d29a-143">With Jinja2 templates, you can write aliases which take different types of arguments than the underlying command.</span></span> <span data-ttu-id="2d29a-144">Par exemple, vous pouvez développer un alias acceptant une URL de stockage.</span><span class="sxs-lookup"><span data-stu-id="2d29a-144">For example, you can make an alias which takes a storage URL.</span></span> <span data-ttu-id="2d29a-145">Par la suite, cette URL est analysée afin de transmettre les noms de compte et de conteneur à la commande de stockage.</span><span class="sxs-lookup"><span data-stu-id="2d29a-145">Then this URL is parsed to pass the account and container names to the storage command.</span></span>
 
 ```azurecli
 az alias create \
@@ -144,19 +143,19 @@ az alias create \
         --container-name {{ url.replace('https://', '').split('/')[1] }}"
 ```
 
-<span data-ttu-id="4851d-146">Pour en savoir plus sur le moteur de modèles Jinja2, consultez la [documentation Jinja2](http://jinja.pocoo.org/docs/2.10/templates/).</span><span class="sxs-lookup"><span data-stu-id="4851d-146">To learn about the Jinja2 template engine, see [the Jinja2 documentation](http://jinja.pocoo.org/docs/2.10/templates/).</span></span>
+<span data-ttu-id="2d29a-146">Pour en savoir plus sur le moteur de modèles Jinja2, consultez la [documentation Jinja2](http://jinja.pocoo.org/docs/2.10/templates/).</span><span class="sxs-lookup"><span data-stu-id="2d29a-146">To learn about the Jinja2 template engine, see [the Jinja2 documentation](http://jinja.pocoo.org/docs/2.10/templates/).</span></span>
 
 
-## <a name="alias-configuration-file"></a><span data-ttu-id="4851d-147">Fichier de configuration d’alias</span><span class="sxs-lookup"><span data-stu-id="4851d-147">Alias configuration file</span></span>
+## <a name="alias-configuration-file"></a><span data-ttu-id="2d29a-147">Fichier de configuration d’alias</span><span class="sxs-lookup"><span data-stu-id="2d29a-147">Alias configuration file</span></span>
 
-<span data-ttu-id="4851d-148">Une autre façon de créer et de modifier des alias est de modifier le fichier de configuration d’alias.</span><span class="sxs-lookup"><span data-stu-id="4851d-148">Another way to create and modify aliases is to alter the alias configuration file.</span></span> <span data-ttu-id="4851d-149">Les définitions des commandes alias sont consignées dans un fichier de configuration, qui se situe sur `$AZURE_USER_CONFIG/alias`.</span><span class="sxs-lookup"><span data-stu-id="4851d-149">Alias command definitions are written into a configuration file, located at `$AZURE_USER_CONFIG/alias`.</span></span> <span data-ttu-id="4851d-150">La valeur par défaut de `AZURE_USER_CONFIG` est `$HOME/.azure` sous macOS et Linux, et `%USERPROFILE%\.azure` sous Windows.</span><span class="sxs-lookup"><span data-stu-id="4851d-150">The default value of `AZURE_USER_CONFIG` is `$HOME/.azure` on macOS and Linux, and `%USERPROFILE%\.azure` on Windows.</span></span> <span data-ttu-id="4851d-151">Le fichier de configuration d’alias est consigné au format du fichier de configuration INI.</span><span class="sxs-lookup"><span data-stu-id="4851d-151">The alias configuration file is written in the INI configuration file format.</span></span> <span data-ttu-id="4851d-152">Le format des commandes alias est le suivant :</span><span class="sxs-lookup"><span data-stu-id="4851d-152">The format for alias commands is:</span></span>
+<span data-ttu-id="2d29a-148">Une autre façon de créer et de modifier des alias est de modifier le fichier de configuration d’alias.</span><span class="sxs-lookup"><span data-stu-id="2d29a-148">Another way to create and modify aliases is to alter the alias configuration file.</span></span> <span data-ttu-id="2d29a-149">Les définitions des commandes alias sont consignées dans un fichier de configuration, qui se situe sur `$AZURE_USER_CONFIG/alias`.</span><span class="sxs-lookup"><span data-stu-id="2d29a-149">Alias command definitions are written into a configuration file, located at `$AZURE_USER_CONFIG/alias`.</span></span> <span data-ttu-id="2d29a-150">La valeur par défaut de `AZURE_USER_CONFIG` est `$HOME/.azure` sous macOS et Linux, et `%USERPROFILE%\.azure` sous Windows.</span><span class="sxs-lookup"><span data-stu-id="2d29a-150">The default value of `AZURE_USER_CONFIG` is `$HOME/.azure` on macOS and Linux, and `%USERPROFILE%\.azure` on Windows.</span></span> <span data-ttu-id="2d29a-151">Le fichier de configuration d’alias est consigné au format du fichier de configuration INI.</span><span class="sxs-lookup"><span data-stu-id="2d29a-151">The alias configuration file is written in the INI configuration file format.</span></span> <span data-ttu-id="2d29a-152">Le format des commandes alias est le suivant :</span><span class="sxs-lookup"><span data-stu-id="2d29a-152">The format for alias commands is:</span></span>
 
 ```ini
 [alias_name]
 command = invoked_commands
 ```
 
-<span data-ttu-id="4851d-153">Pour les alias qui contiennent les arguments de position, le format des commandes alias est :</span><span class="sxs-lookup"><span data-stu-id="4851d-153">For aliases that contain positional arguments, the format for alias commands is:</span></span>
+<span data-ttu-id="2d29a-153">Pour les alias qui contiennent les arguments de position, le format des commandes alias est :</span><span class="sxs-lookup"><span data-stu-id="2d29a-153">For aliases that contain positional arguments, the format for alias commands is:</span></span>
 
 ```ini
 [alias_name {{ arg1 }} {{ arg2 }} ...]
@@ -164,9 +163,9 @@ command = invoked_commands_including_args
 ```
 
 
-## <a name="create-an-alias-command-with-arguments-via-the-alias-configuration-file"></a><span data-ttu-id="4851d-154">Créer une commande alias avec des arguments via le fichier de configuration d’alias</span><span class="sxs-lookup"><span data-stu-id="4851d-154">Create an alias command with arguments via the alias configuration file</span></span>
+## <a name="create-an-alias-command-with-arguments-via-the-alias-configuration-file"></a><span data-ttu-id="2d29a-154">Créer une commande alias avec des arguments via le fichier de configuration d’alias</span><span class="sxs-lookup"><span data-stu-id="2d29a-154">Create an alias command with arguments via the alias configuration file</span></span>
 
-<span data-ttu-id="4851d-155">Voici un fichier de configuration d’alias contenant un exemple de commande alias avec des arguments, qui obtient l’adresse IP publique pour une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="4851d-155">Below is an alias configuration file that contains an example alias command with arguments, which gets the public IP address for a VM.</span></span> <span data-ttu-id="4851d-156">Assurez-vous que la commande appelée est dans une ligne unique et contient les mêmes arguments définis dans l’alias.</span><span class="sxs-lookup"><span data-stu-id="4851d-156">Ensure that the invoked command is in a single line, and contains the same arguments defined in the alias.</span></span>
+<span data-ttu-id="2d29a-155">Voici un fichier de configuration d’alias contenant un exemple de commande alias avec des arguments, qui obtient l’adresse IP publique pour une machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="2d29a-155">Below is an alias configuration file that contains an example alias command with arguments, which gets the public IP address for a VM.</span></span> <span data-ttu-id="2d29a-156">Assurez-vous que la commande appelée est dans une ligne unique et contient les mêmes arguments définis dans l’alias.</span><span class="sxs-lookup"><span data-stu-id="2d29a-156">Ensure that the invoked command is in a single line, and contains the same arguments defined in the alias.</span></span>
 
 ```ini
 [get-vm-ip {{ resourceGroup }} {{ vmName }}]
@@ -174,12 +173,12 @@ command = vm list-ip-addresses --resource-group {{ resourceGroup }} --name {{ vm
 ```
 
 
-## <a name="uninstall-the-alias-extension"></a><span data-ttu-id="4851d-157">Désinstaller l’extension d’alias</span><span class="sxs-lookup"><span data-stu-id="4851d-157">Uninstall the alias extension</span></span>
+## <a name="uninstall-the-alias-extension"></a><span data-ttu-id="2d29a-157">Désinstaller l’extension d’alias</span><span class="sxs-lookup"><span data-stu-id="2d29a-157">Uninstall the alias extension</span></span>
 
-<span data-ttu-id="4851d-158">Pour désinstaller l’extension, utilisez la commande [az extension remove](/cli/azure/extension#az-extension-remove).</span><span class="sxs-lookup"><span data-stu-id="4851d-158">To uninstall the extension, use the [az extension remove](/cli/azure/extension#az-extension-remove) command.</span></span>
+<span data-ttu-id="2d29a-158">Pour désinstaller l’extension, utilisez la commande [az extension remove](/cli/azure/extension#az-extension-remove).</span><span class="sxs-lookup"><span data-stu-id="2d29a-158">To uninstall the extension, use the [az extension remove](/cli/azure/extension#az-extension-remove) command.</span></span>
 
 ```azurecli
 az extension remove --name alias
 ```
 
-<span data-ttu-id="4851d-159">Si vous procédez à la désinstallation en raison d’un bogue ou d’un problème lié à l’extension, veuillez [signaler un incident GitHub](https://github.com/Azure/azure-cli-extensions/issues) afin que nous puissions réfléchir à la correction.</span><span class="sxs-lookup"><span data-stu-id="4851d-159">If you uninstalled due to a bug or other problem with the extension, please [file a GitHub issue](https://github.com/Azure/azure-cli-extensions/issues) so that we can provide a fix.</span></span>
+<span data-ttu-id="2d29a-159">Si vous procédez à la désinstallation en raison d’un bogue ou d’un problème lié à l’extension, veuillez [signaler un incident GitHub](https://github.com/Azure/azure-cli-extensions/issues) afin que nous puissions réfléchir à la correction.</span><span class="sxs-lookup"><span data-stu-id="2d29a-159">If you uninstalled due to a bug or other problem with the extension, please [file a GitHub issue](https://github.com/Azure/azure-cli-extensions/issues) so that we can provide a fix.</span></span>
