@@ -32,11 +32,6 @@ ms.lasthandoff: 05/09/2018
           sudo tee /etc/apt/sources.list.d/azure-cli.list
      ```
 
-2. <span data-ttu-id="6dcc8-110">Obtenir la clé de signature Microsoft :</span><span class="sxs-lookup"><span data-stu-id="6dcc8-110">Get the Microsoft signing key:</span></span>
-
-   ```bash
-   sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
-   ```
 
   > [!WARNING]
   > <span data-ttu-id="6dcc8-111">Cette clé de signature est déconseillée et sera remplacée fin mai 2018.</span><span class="sxs-lookup"><span data-stu-id="6dcc8-111">This signing key is deprecated, and will be replaced at the end of May 2018.</span></span> <span data-ttu-id="6dcc8-112">Afin de continuer à recevoir les mises à jour avec `apt`, veillez à installer également la nouvelle clé :</span><span class="sxs-lookup"><span data-stu-id="6dcc8-112">In order to keep getting updates with `apt`, make sure that you also install the new key:</span></span>
