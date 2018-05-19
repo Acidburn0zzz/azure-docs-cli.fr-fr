@@ -10,11 +10,11 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: be5938dcee360932342b4867728516e8ddd4a7cf
-ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
+ms.openlocfilehash: dac383fa0dbd785f9448514e3d0a3242e4853038
+ms.sourcegitcommit: 42f1ba77b2f562d89dadd302655d1f02ee4b6130
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/28/2018
+ms.lasthandoff: 05/17/2018
 ---
 # <a name="azure-cli-20-configuration"></a>Configuration d’Azure CLI 2.0
 
