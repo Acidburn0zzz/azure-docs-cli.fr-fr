@@ -4,16 +4,16 @@ description: Apprenez à exécuter des requêtes JMESPath sur la sortie des comm
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 02/22/2018
+ms.date: 05/16/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: eb9311686bf950a450db4bc450da363bbe409f49
-ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
+ms.openlocfilehash: ed8f8ac160dd8225170ffcfff9619d94b92e456a
+ms.sourcegitcommit: 8b4629a42ceecf30c1efbc6fdddf512f4dddfab0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/28/2018
+ms.lasthandoff: 05/18/2018
 ---
 # <a name="use-jmespath-queries-with-azure-cli-20"></a>Utiliser des requêtes JMESPath avec Azure CLI 2.0
 
@@ -25,13 +25,13 @@ L’argument `--query` est pris en charge par toutes les commandes dans Azure CL
 
 Les commandes qui retournent un dictionnaire JSON ne peuvent être analysées que par leurs noms de clé. Les chemins d’accès de clé utilisent le caractère `.` comme séparateur. L’exemple suivant extrait une liste des clés SSH publiques autorisées à se connecter à une machine virtuelle Linux :
 
-```azurecli
+```azurecli-interactive
 az vm show -g QueryDemo -n TestVM --query osProfile.linuxConfiguration.ssh.publicKeys
 ```
 
 Vous pouvez également obtenir plusieurs valeurs et les placer dans un tableau ordonné. Le tableau ne dispose d’aucune information de clé, mais l’ordre des éléments qu’il contient correspond à l’ordre des clé demandées. L’exemple suivant montre comment récupérer l’image Azure en donnant le nom et la taille du disque du système d’exploitation :
 
-```azurecli
+```azurecli-interactive
 az vm show -g QueryDemo -n TestVM --query 'storageProfile.[imageReference.offer, osDisk.diskSizeGb]'
 ```
 
@@ -44,7 +44,7 @@ az vm show -g QueryDemo -n TestVM --query 'storageProfile.[imageReference.offer,
 
 Si vous voulez des clés dans vos sorties, vous pouvez utiliser une syntaxe de dictionnaire alternative. La sélection d’éléments multiples dans un dictionnaire utilise le format `{displayKey:keyPath, ...}` pour filtrer dans l’expression JMESPath `keyPath`. Cela s’affiche dans la sortie en tant que `{displayKey: value}`. L’exemple suivant reprend la requête de l’exemple précédent, et la rend plus claire en assignant des clés à la sortie :
 
-```azurecli
+```azurecli-interactive
 az vm show -g QueryDemo -n TestVM --query 'storageProfile.{image:imageReference.offer, diskSize:osDisk.diskSizeGb}'
 ```
 
@@ -68,7 +68,7 @@ Lors de l’affichage des informations dans le format de sortie `table`, l’aff
 
 Les commandes CLI qui peuvent retourner plus d’une valeur renvoient toujours un tableau. Il est possible d’accéder aux éléments des tableaux avec l’index, mais le même ordre n’est jamais garanti depuis la CLI. La meilleure façon de demander un tableau de valeurs est de les aplatir avec l’opérateur `[]`. L’opérateur est écrit dans le tableau après la clé, ou comme le premier élément de l’expression. L’aplanissement exécute la requête contre chaque élément individuel du tableau, et place les valeurs résultantes dans un nouveau tableau. L’exemple suivant imprime le nom et le système d’exploitation exécutés sur chaque machine virtuelle d’un groupe de ressources. 
 
-```azurecli
+```azurecli-interactive
 az vm list -g QueryDemo --query '[].{name:name, image:storageProfile.imageReference.offer}'
 ```
 
@@ -99,7 +99,7 @@ az vm list -g QueryDemo --query '[].{name:name, image:storageProfile.imageRefere
 
 Les tableaux qui font partie d’un chemin d’accès de clé peuvent également être aplatis. Cet exemple montre une requête qui obtient les ID d’objet Azure pour les cartes d’interface réseau auxquelles une machine virtuelle est connectée.
 
-```azurecli
+```azurecli-interactive
 az vm show -g QueryDemo -n TestVM --query 'networkProfile.networkInterfaces[].id'
 ```
 
@@ -107,7 +107,7 @@ az vm show -g QueryDemo -n TestVM --query 'networkProfile.networkInterfaces[].id
 
 JMESPath offre [des expressions de filtrage](http://jmespath.org/specification.html#filterexpressions) pour filtrer les données affichées. Ces expressions sont puissantes, surtout lorsqu’elles sont combinées avec des [fonctions intégrées JMESPath](http://jmespath.org/specification.html#built-in-functions) pour réaliser des correspondances partielles ou pour manipuler des données dans un format standard. Le filtrage des expressions n’est possible que pour des données de tableau, et renvoie la valeur `null` lorsqu’il est utilisé dans d’autres situations. Par exemple, vous pouvez choisir la sortie de commandes telle que `vm list` et la filtrer pour chercher des types spécifiques de machines virtuelles. L’exemple suivant développe le précédent en filtrant le type de machine virtuelle pour obtenir uniquement les machines virtuelles Windows et imprimer leur nom.
 
-```azurecli
+```azurecli-interactive
 az vm list --query '[?osProfile.windowsConfiguration!=null].name'
 ```
 

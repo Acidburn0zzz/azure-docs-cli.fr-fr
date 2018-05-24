@@ -4,16 +4,16 @@ description: Comment utiliser l’extension d’alias Azure CLI 2.0
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 03/14/2018
+ms.date: 05/16/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 40a43f5013a5dd0d7bb65b21140bb4fc82769267
-ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
+ms.openlocfilehash: 39996693d6b796c2d9a45cd909121829f00291a8
+ms.sourcegitcommit: 8b4629a42ceecf30c1efbc6fdddf512f4dddfab0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/28/2018
+ms.lasthandoff: 05/18/2018
 ---
 # <a name="the-azure-cli-20-alias-extension"></a>L’extension d’alias Azure CLI 2.0
 
@@ -28,13 +28,13 @@ La version minimale requise de l’interface Azure CLI pour utiliser l’extensi
 
 Installez l’extension avec la commande [az extension add](/cli/azure/extension#az-extension-add).
 
-```azurecli
+```azurecli-interactive
 az extension add --name alias
 ```
 
 Vérifiez l’installation de l’extension avec [az extension list](/cli/azure/extension#az-extension-list). Si l’extension d’alias a été correctement installée, elle est répertoriée dans la sortie de la commande.
 
-```azurecli
+```azurecli-interactive
 az extension list --output table --query '[].{Name:name}'
 ```
 
@@ -44,37 +44,34 @@ Name
 alias
 ```
 
-
 ## <a name="keep-the-extension-up-to-date"></a>Maintenir l’extension à jour
 
 L’extension d’alias est en cours de développement actif ; de nouvelles versions sont régulièrement publiées. Ces nouvelles versions ne sont pas automatiquement installées lors des mises à jour de l’interface CLI. Installez les mises à jour de l’extension avec [az extension update](/cli/azure/extension#az-extension-update).
 
-```azurecli
+```azurecli-interactive
 az extension update --name alias
 ```
-
 
 ## <a name="manage-aliases-for-the-azure-cli"></a>Gestion des alias pour Azure CLI
 
 L’extension de l’alias fournit des commandes pratiques et familières pour gérer les alias. Pour afficher toutes les commandes disponibles et les détails de paramètres, appelez la commande de l’alias avec `--help`.
 
-```azurecli
+```azurecli-interactive
 az alias --help
 ```
-
 
 ## <a name="create-simple-alias-commands"></a>Créer des commandes alias simples
 
 Les alias peuvent par exemple servir à raccourcir les noms existants des groupes de commandes ou des commandes. Par exemple, vous pouvez raccourcir le nom du groupe de commandes `group` en le ramenant à `rg` et le nom de la commande `list` en `ls`.
 
-```azurecli
+```azurecli-interactive
 az alias create --name rg --command group
 az alias create --name ls --command list
 ```
 
 Ces alias nouvellement définis peuvent désormais être utilisés dans l’ensemble des emplacements pouvant héberger leur définition.
 
-```azurecli
+```azurecli-interactive
 az rg list
 az rg ls
 az vm ls
@@ -84,28 +81,27 @@ N’incluez pas `az` dans la commande.
 
 Les alias peuvent également être des raccourcis de commandes complètes. Le prochain exemple répertorie les groupes de ressources disponibles et leur emplacement dans la sortie de table :
 
-```azurecli
+```azurecli-interactive
 az alias create --name ls-groups --command "group list --query '[].{Name:name, Location:location}' --output table"
 ```
 
 Désormais, `ls-groups` peut être exécutée comme toute autre commande CLI.
 
-```azurecli
+```azurecli-interactive
 az ls-groups
 ```
-
 
 ## <a name="create-an-alias-command-with-arguments"></a>Créer une commande d’alias avec des arguments
 
 Il est également possible d’ajouter des arguments positionnels à une commande d’alias en les incluant en tant que `{{ arg_name }}` dans le nom d’alias. L’espace à l’intérieur des accolades est requis.
 
-```azurecli
+```azurecli-interactive
 az alias create --name "alias_name {{ arg1 }} {{ arg2 }} ..." --command "invoke_including_args"
 ```
 
 Le prochain exemple d’alias indique comment utiliser des arguments positionnels afin de récupérer l’adresse IP publique d’une machine virtuelle.
 
-```azurecli
+```azurecli-interactive
 az alias create \
     --name "get-vm-ip {{ resourceGroup }} {{ vmName }}" \
     --command "vm list-ip-addresses --resource-group {{ resourceGroup }} --name {{ vmName }}
@@ -114,13 +110,13 @@ az alias create \
 
 Lorsque vous exécutez cette commande, vous octroyez des valeurs aux arguments positionnels.
 
-```azurecli
+```azurecli-interactive
 az get-vm-ip MyResourceGroup MyVM
 ```
 
 Vous pouvez également utiliser des variables d’environnement dans les commandes appelées par alias, qui sont évaluées au moment de l’exécution. Le prochain exemple ajoute l’alias `create-rg`, qui crée un groupe de ressources dans `eastus` et ajoute une balise `owner`. Cette balise se voit affecter la valeur de la variable d’environnement local `USER`.
 
-```azurecli
+```azurecli-interactive
 az alias create \
     --name "create-rg {{ groupName }}" \
     --command "group create --name {{ groupName }} --location eastus --tags owner=\$USER"
@@ -128,14 +124,13 @@ az alias create \
 
 Pour enregistrer les variables d’environnement à l’intérieur de la commande de l’alias, le signe dollar `$` doit être placé dans une séquence d’échappement.
 
-
 ## <a name="process-arguments-using-jinja2-templates"></a>Traiter les arguments à l’aide des modèles Jinja2
 
 La substitution d’argument dans l’extension d’alias est effectuée par [Jinja2](http://jinja.pocoo.org/docs/2.10/), ce qui vous donne un accès illimité aux fonctionnalités du moteur de modèles Jinja2. Les modèles prennent en charge différentes actions, comme l’extraction et la substitution des données sur les chaînes.
 
 Avec les modèles Jinja2, vous pouvez écrire des alias qui acceptent des types d’arguments supplémentaires par rapport à la commande sous-jacente. Par exemple, vous pouvez développer un alias acceptant une URL de stockage. Par la suite, cette URL est analysée afin de transmettre les noms de compte et de conteneur à la commande de stockage.
 
-```azurecli
+```azurecli-interactive
 az alias create \
     --name 'storage-ls {{ url }}' \
     --command "storage blob list
@@ -144,7 +139,6 @@ az alias create \
 ```
 
 Pour en savoir plus sur le moteur de modèles Jinja2, consultez la [documentation Jinja2](http://jinja.pocoo.org/docs/2.10/templates/).
-
 
 ## <a name="alias-configuration-file"></a>Fichier de configuration d’alias
 
@@ -162,7 +156,6 @@ Pour les alias qui contiennent les arguments de position, le format des commande
 command = invoked_commands_including_args
 ```
 
-
 ## <a name="create-an-alias-command-with-arguments-via-the-alias-configuration-file"></a>Créer une commande alias avec des arguments via le fichier de configuration d’alias
 
 Voici un fichier de configuration d’alias contenant un exemple de commande alias avec des arguments, qui obtient l’adresse IP publique pour une machine virtuelle. Assurez-vous que la commande appelée est dans une ligne unique et contient les mêmes arguments définis dans l’alias.
@@ -172,12 +165,11 @@ Voici un fichier de configuration d’alias contenant un exemple de commande ali
 command = vm list-ip-addresses --resource-group {{ resourceGroup }} --name {{ vmName }} --query [0].virtualMachine.network.publicIpAddresses[0].ipAddress
 ```
 
-
 ## <a name="uninstall-the-alias-extension"></a>Désinstaller l’extension d’alias
 
 Pour désinstaller l’extension, utilisez la commande [az extension remove](/cli/azure/extension#az-extension-remove).
 
-```azurecli
+```azurecli-interactive
 az extension remove --name alias
 ```
 

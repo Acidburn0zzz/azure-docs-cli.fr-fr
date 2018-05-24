@@ -4,16 +4,16 @@ description: Créer, se connecter et gérer plusieurs clouds avec l’interface 
 author: sptramer
 manager: carmonm
 ms.author: sttramer
-ms.date: 10/20/2017
+ms.date: 05/16/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 98915fb43f2ad3eb45164f7e47c1a41345f3f9c5
-ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
+ms.openlocfilehash: 7ccee3a336f4c596f29783a70ba0cd4398e20b95
+ms.sourcegitcommit: 8b4629a42ceecf30c1efbc6fdddf512f4dddfab0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/28/2018
+ms.lasthandoff: 05/18/2018
 ---
 # <a name="managing-multiple-clouds-with-azure-cli-20"></a>La gestion de plusieurs clouds avec l’interface de ligne de commande Azure 2.0
 
@@ -25,7 +25,7 @@ Vous pouvez lister les clouds disponibles avec la commande [az cloud list](/cli/
 
 Pour obtenir le cloud actif et une liste de tous les clouds disponibles :
 
-```azurecli
+```azurecli-interactive
 az cloud list --output table
 ```
 
@@ -40,7 +40,7 @@ True        AzureCloud         latest
 
 Le cloud actuellement actif a `True` dans la colonne `IsActive`. Un seul cloud peut être actif à tout moment. Pour obtenir des informations plus détaillées sur un cloud, y compris sur les points de terminaison qu’il utilise pour les services Azure, utilisez la commande `cloud show` :
 
-```azurecli
+```azurecli-interactive
 az cloud show --name AzureChinaCloud --output json
 ```
 
@@ -75,7 +75,7 @@ az cloud show --name AzureChinaCloud --output json
 
 Pour changer le cloud actuellement actif, exécutez la commande [az cloud set](/cli/azure/cloud#az-cloud-set). Cette commande accepte un argument obligatoire, qui est le nom du cloud.
 
-```azurecli
+```azurecli-interactive
 az cloud set --name AzureChinaCloud
 ```
 
@@ -100,6 +100,6 @@ Faites-le avec la commande [az cloud update](/cli/azure/cloud#az-cloud-update), 
 
 Si vous n’avez plus besoin d’un cloud inscrit, vous pouvez le désinscrire avec la commande [az cloud unregister](/cli/azure/cloud#az-cloud-unregister) :
 
-```azurecli
+```azurecli-interactive
 az cloud unregister --name MyCloud
 ```
