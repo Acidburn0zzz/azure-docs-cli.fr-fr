@@ -5,16 +5,17 @@ keywords: Azure CLI, configuration, paramètres, Azure
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 12/13/2017
+ms.date: 05/16/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: dac383fa0dbd785f9448514e3d0a3242e4853038
-ms.sourcegitcommit: 42f1ba77b2f562d89dadd302655d1f02ee4b6130
+ms.openlocfilehash: b0d26beac83a7ce3bba44d5e64d129a211c82836
+ms.sourcegitcommit: 8b4629a42ceecf30c1efbc6fdddf512f4dddfab0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/17/2018
+ms.lasthandoff: 05/18/2018
+ms.locfileid: "34305874"
 ---
 # <a name="azure-cli-20-configuration"></a>Configuration d’Azure CLI 2.0
 
@@ -45,7 +46,7 @@ Voici une liste des touches disponibles que vous pouvez utiliser.
 
 Par exemple, voici comment vous devez définir le groupe de ressources et l’emplacement par défaut pour toutes les commandes.
 
-```azurecli
+```azurecli-interactive
 az configure --defaults location=westus2 group=MyResourceGroup
 ```
 
@@ -61,7 +62,7 @@ Les commentaires sont n’importe quelle ligne commençant par un `#` ou `;`. Le
 
 Voici un exemple de fichier de configuration d’interface CLI qui désactive les invites de confirmation et définit la journalisation sur le répertoire `/var/log/azure` actif.
 
-```
+```ini
 [core]
 disable_confirm_prompt=Yes
 

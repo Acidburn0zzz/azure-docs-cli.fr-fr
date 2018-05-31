@@ -2,12 +2,13 @@
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 03/16/2018
+ms.date: 05/16/2018
 ms.topic: include
-ms.openlocfilehash: d97f8b3b63b7227b01b0605a225b82c8efcdd2bf
-ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
+ms.openlocfilehash: 24127042e7c44071616d46c967c84fb648f5e353
+ms.sourcegitcommit: 8b4629a42ceecf30c1efbc6fdddf512f4dddfab0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/28/2018
+ms.lasthandoff: 05/18/2018
+ms.locfileid: "34307632"
 ---
-Si vous décidez de désinstaller l’interface de ligne de commande Azure, nous sommes désolés de vous voir partir. Avant de désinstaller, utilisez la commande `az feedback`, afin de donner quelques raisons pour lesquelles vous avez choisi de désinstaller et de spécifier comment l’interface CLI peut être améliorée pour vous aider. Notre objectif est de rendre l’interface Azure CLI conviviale et exempte de bogues. Si vous avez rencontré un bogue, veuillez [créer un problème sur GitHub](https://github.com/Azure/azure-cli/issues).
+Si vous décidez de désinstaller l’interface de ligne de commande Azure, nous sommes désolés de vous voir partir. Avant de procéder à la désinstallation, utilisez la commande `az feedback` afin de préciser pourquoi vous avez fait ce choix et comment l’interface CLI pourrait être améliorée. Notre objectif est de rendre l’interface Azure CLI conviviale et exempte de bogues. Si vous avez rencontré un bogue, nous vous serions reconnaissants de bien vouloir [signaler un problème lié à GitHub](https://github.com/Azure/azure-cli/issues).
