@@ -4,18 +4,153 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI 2.0
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 04/10/2018
+ms.date: 06/01/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 254c7b306440d921cef6b611268839150fdf3196
-ms.sourcegitcommit: 15d6dfaee2075d0abceb2aa2423f0b6ef7b2ac9b
+ms.openlocfilehash: 57f13c7d17e2d248132e2e9c49bb0b4994f041f5
+ms.sourcegitcommit: 80189ff103c91f8c47ab8ebf586df815fff5dd5d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/07/2018
+ms.lasthandoff: 06/05/2018
+ms.locfileid: "34799258"
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="june-5-2018"></a>5 juin 2018
+
+Version 2.0.34
+
+### <a name="core"></a>Principal
+
+* Prise en charge supplémentaire pour les références de ressources inter-client
+* Amélioration de la fiabilité de téléchargement des données de télémétrie
+
+### <a name="acr"></a>ACR
+
+* Prise en charge supplémentaire pour VSTS en tant qu’emplacement source distant
+* Ajout de la commande `acr import`
+
+### <a name="aks"></a>AKS
+
+* `aks get-credentials` a été modifié pour créer le fichier de configuration kube avec des autorisations de système de fichiers plus sécurisées
+
+### <a name="batch"></a>Batch
+
+* Résolution du bogue concernant la mise en forme dans la table de liste de pool [[problème #4378](https://github.com/Azure/azure-cli/issues/4378)]
+
+### <a name="iot"></a>IOT
+
+* Prise en charge ajoutée pour la création de IoT Hubs de niveau de base
+
+### <a name="network"></a>Réseau
+
+* `network vnet peering` amélioré
+
+### <a name="policy-insights"></a>Policy Insights
+
+* Version initiale
+
+### <a name="arm"></a>ARM
+
+* Ajout des commandes `account management-group`.
+
+### <a name="sql"></a>SQL
+
+* Ajout de nouvelles commandes d’instance gérée :
+  * `sql mi create`
+  * `sql mi show`
+  * `sql mi list`
+  * `sql mi update`
+  * `sql mi delete`
+* Ajout de nouvelles commandes de base de données gérée :
+  * `sql midb create`
+  * `sql midb show`
+  * `sql midb list`
+  * `sql midb restore`
+  * `sql midb delete`
+
+### <a name="storage"></a>Stockage
+
+* Ajout de types MimeTypes supplémentaires pour les formats json et javascript pour être déduit à partir des extensions de fichier
+
+### <a name="vm"></a>Machine virtuelle
+
+* `vm list-skus` a été modifié pour utiliser des colonnes corrigées et ajouter l’avertissement que `Tier` et `Size` seront supprimés
+* Ajout de l’option `--accelerated-networking` à `vm create`
+* Ajout de `--tags` à `identity create`
+
+## <a name="may-22-2018"></a>22 mai 2018
+
+Version 2.0.33
+
+### <a name="core"></a>Principal
+
+* Ajout de la prise en charge pour le développement de `@` dans les noms de fichiers
+
+### <a name="acs"></a>ACS
+
+* Ajout de nouvelles commandes Dev Spaces `aks use-dev-spaces` et `aks remove-dev-spaces`
+* Faute de frappe corrigée dans un message d’aide
+
+### <a name="appservice"></a>AppService
+
+* Amélioration des commandes de mise à jour générique
+* Ajout de la prise en charge asynchrone pour `webapp deployment source config-zip`
+
+### <a name="container"></a>Conteneur
+
+* Prise en charge ajoutée pour l’exportation d’un groupe de conteneurs au format yaml
+* Prise en charge ajoutée pour l’utilisation d’un fichier yaml afin de créer/mettre à jour un groupe de conteneurs
+
+### <a name="extension"></a>Extension
+
+* Amélioration de la suppression des extensions
+
+### <a name="interactive"></a>Interactive
+
+* La journalisation a été modifiée pour désactiver l’analyseur pour les saisies semi-automatiques
+* Gestion améliorée des caches d’aide incorrects
+
+### <a name="keyvault"></a>KeyVault
+
+* Commandes keyvault corrigées afin de fonctionner dans Cloud Shell ou dans des machines virtuelles avec l’identité
+
+### <a name="network"></a>Réseau
+
+* Résolution d’un problème où `network watcher show-topology` ne fonctionnait pas avec le nom de réseau virtuel et/ou de sous-réseau [#6326](https://github.com/Azure/azure-cli/issues/6326)
+* Correction d’un problème où certaines commandes `network watcher` revendiquaient que Network Watcher n’était pas activé pour certaines régions alors qu’il l’était [#6264](https://github.com/Azure/azure-cli/issues/6264)
+
+### <a name="sql"></a>SQL
+
+* [CHANGEMENT CASSANT] Objets de réponse retournés modifiés à partir des commandes `db` et `dw`
+    * Propriété `serviceLevelObjective` renommée en `currentServiceObjectiveName`
+    * Suppression des propriétés `currentServiceObjectiveId` et `requestedServiceObjectiveId` 
+    * Propriété `maxSizeBytes` modifiée en valeur entière au lieu d’une chaîne
+* [CHANGEMENT CASSANT] Les propriétés `db` et `dw` suivantes ont été modifiées pour être en lecture seule :
+    * `requestedServiceObjectiveName`.  Pour mettre à jour, utilisez le paramètre `--service-objective` ou définissez la propriété `sku.name`
+    * `edition`. Pour mettre à jour, utilisez le paramètre `--edition` ou définissez la propriété `sku.tier`
+    * `elasticPoolName`. Pour mettre à jour, utilisez le paramètre `--elastic-pool` ou définissez la propriété `elasticPoolId`
+* [CHANGEMENT CASSANT] Les propriétés `elastic-pool` suivantes ont été modifiées pour être en lecture seule :
+    * `edition`. Pour mettre à jour, utilisez le paramètre `--edition`
+    * `dtu`. Pour mettre à jour, utilisez le paramètre `--capacity`
+    *  `databaseDtuMin`. Pour mettre à jour, utilisez le paramètre `--db-min-capacity`
+    *  `databaseDtuMax`. Pour mettre à jour, utilisez le paramètre `--db-max-capacity`
+* Ajout des paramètres `--family` et `--capacity` aux commandes `db`, `dw` et `elastic-pool`
+* Ajout de formateurs de table aux commandes `db`, `dw` et `elastic-pool`
+
+### <a name="storage"></a>Stockage
+
+* Ajout d’un compléteur pour l’argument `--account-name`
+* Correction d’un problème avec `storage entity query`
+
+### <a name="vm"></a>Machine virtuelle
+
+* [CHANGEMENT CASSANT] Suppression de `--write-accelerator` de `vm create`. La même prise en charge est accessible via `vm update` ou `vm disk attach`
+* Correction de l’image de l’extension efficace dans `[vm|vmss] extension`
+* Ajout de`--boot-diagnostics-storage` à `vm create` pour capturer le journal de démarrage
+* Ajout de `--license-type` à `[vm|vmss] update`
 
 ## <a name="may-7-2018"></a>7 mai 2018
 
@@ -1352,7 +1487,7 @@ Version 2.0.12
 * Ajout de commandes de conteneur
 * Ajout de modules de facturation et de consommation
 
-```
+```text
 azure-cli (2.0.12)
 
 acr (2.0.9)
@@ -1630,7 +1765,7 @@ Version 2.0.6
 * Ajouter « az -v » comme raccourci pour « az --version » ([#2926](https://github.com/Azure/azure-cli/issues/2926))
 * Améliorer les performances de chargement de paquet et d’exécution de commande ([#2819](https://github.com/Azure/azure-cli/issues/2819))
 
-```
+```text
 azure-cli (2.0.6)
 
 acr (2.0.4)
@@ -1827,7 +1962,7 @@ Version 2.0.2
 
 Nous avons publié les composants ACR, Batch, KeyVault et SQL dans cette version
 
-```
+```text
 azure-cli (2.0.2)
 
 acr (2.0.0)
@@ -1917,7 +2052,7 @@ Les commandes de ces modules sont stables et il n’est pas prévu que la syntax
 
 Pour vérifier la version de l’interface CLI, utilisez `az --version`. La sortie indique la version de l’interface CLI proprement dite (2.0.0 dans cette version), les différents modules de commande et les versions de Python et de GCC que vous utilisez.
 
-```
+```text
 azure-cli (2.0.0)
 
 acs (2.0.0)

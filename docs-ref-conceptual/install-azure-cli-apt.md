@@ -4,16 +4,17 @@ description: Installation d’Azure CLI 2.0 avec le gestionnaire de package apt
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 02/06/2018
+ms.date: 05/24/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 7eb04b408f403264f3951bf663d43686601c4ab8
-ms.sourcegitcommit: 1d18f667af28b59f5524a3499a4b7dc12af5163d
+ms.openlocfilehash: 7b5835581bf1e14e2d9fdc7c9584c704d1a5d82f
+ms.sourcegitcommit: 38549f60d76d4b6b65d180367e83749769fe6e43
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/09/2018
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "34703177"
 ---
 # <a name="install-azure-cli-20-with-apt"></a>Installer Azure CLI 2.0 avec apt
 
@@ -24,26 +25,19 @@ Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu 
 
 ## <a name="install"></a>Installer
 
-1. Modifiez votre liste de sources :
+1. <a name="install-step-1"/> Modifier votre liste de sources :
 
-     ```bash
-     AZ_REPO=$(lsb_release -cs)
-     echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | \
-          sudo tee /etc/apt/sources.list.d/azure-cli.list
-     ```
+    ```bash
+    AZ_REPO=$(lsb_release -cs)
+    echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | \
+        sudo tee /etc/apt/sources.list.d/azure-cli.list
+    ```
 
-2. Obtenir la clé de signature Microsoft :
+2. <a name="signingKey"></a>Obtenir la clé de signature Microsoft :
 
    ```bash
-   sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
+   curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
    ```
-
-  > [!WARNING]
-  > Cette clé de signature est déconseillée et sera remplacée fin mai 2018. Afin de continuer à recevoir les mises à jour avec `apt`, veillez à installer également la nouvelle clé :
-  > 
-  > ```bash
-  > curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-  > ``` 
 
 3. Installer l’interface de ligne de commande :
 
@@ -51,6 +45,9 @@ Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu 
    sudo apt-get install apt-transport-https
    sudo apt-get update && sudo apt-get install azure-cli
    ```
+
+   > [!WARNING]
+   > La clé de signature a été mise à jour en mai 2018 et a été remplacée. Si vous recevez des erreurs de clé de signature, assurez-vous d’avoir [acquis la clé de signature la plus récente](#signingKey).
 
 Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, exécutez la commande `az login`.
 
@@ -77,6 +74,10 @@ L’erreur est due au fait que lsb_release n’est pas installé. Vous pouvez r�
 ```bash
 sudo apt-get install lsb-release
 ```
+
+### <a name="lsbrelease-does-not-return-the-base-distribution-version"></a>lsb_release ne renvoie pas la version de la distribution de base
+
+Certaines distributions Ubuntu ou Debian dérivées, telles que Linux Mint peuvent ne pas retourner le nom de version correct de `lsb_release`. Cette valeur est utilisée dans le processus d’installation pour déterminer le package à installer. Si vous connaissez le nom de la version dont votre distribution est dérivée, vous pouvez définir la valeur `AZ_REPO` manuellement dans [installation de l’étape 1](#install-step-1). Dans le cas contraire, recherchez des informations concernant votre distribution, sur la façon de déterminer le nom de la distribution de base et de définir `AZ_REPO` sur la valeur correcte.
 
 ### <a name="apt-key-fails-with-no-dirmngr"></a>Clé apt échoue avec le message « No dirmngr »
 
@@ -112,6 +113,9 @@ Utilisez `apt-get upgrade` pour mettre à jour le package de l’interface de li
    sudo apt-get update && sudo apt-get upgrade
    ```
 
+> [!WARNING]
+> La clé de signature a été mise à jour en mai 2018 et a été remplacée. Si vous recevez des erreurs de clé de signature, assurez-vous d’avoir [acquis la clé de signature la plus récente](#signingKey).
+   
 > [!NOTE]
 > Cette commande met à niveau tous les packages installés sur votre système n’ayant pas de modification de dépendance.
 > Pour mettre à niveau uniquement l’interface CLI, utilisez `apt-get install`.
