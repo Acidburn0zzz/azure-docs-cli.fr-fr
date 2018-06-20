@@ -14,6 +14,7 @@ ms.sourcegitcommit: 8b4629a42ceecf30c1efbc6fdddf512f4dddfab0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 05/18/2018
+ms.locfileid: "34306265"
 ---
 # <a name="the-azure-cli-20-alias-extension"></a><span data-ttu-id="a6613-103">L’extension d’alias Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="a6613-103">The Azure CLI 2.0 alias extension</span></span>
 

@@ -14,6 +14,7 @@ ms.sourcegitcommit: 8b4629a42ceecf30c1efbc6fdddf512f4dddfab0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 05/18/2018
+ms.locfileid: "34306180"
 ---
 # <a name="managing-multiple-clouds-with-azure-cli-20"></a><span data-ttu-id="e503f-103">La gestion de plusieurs clouds avec l’interface de ligne de commande Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="e503f-103">Managing multiple clouds with Azure CLI 2.0</span></span>
 
