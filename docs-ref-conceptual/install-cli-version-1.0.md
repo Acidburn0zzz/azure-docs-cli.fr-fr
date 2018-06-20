@@ -14,6 +14,7 @@ ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
 ms.translationtype: HT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 04/28/2018
+ms.locfileid: "32044007"
 ---
 # <a name="install-the-azure-cli-10"></a>Installer l’interface de ligne de commande Azure CLI 1.0
 
