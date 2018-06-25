@@ -9,14 +9,109 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 72e667d74ff8d55f26ecbf3b3c8845c9c03b56be
-ms.sourcegitcommit: 5c80e96e96f9608c92a94fa4a9c4afb25099f3fc
+ms.openlocfilehash: 64db2b58ca883518757d8e189bf7263ed818b283
+ms.sourcegitcommit: 1a38729d6ae93c49137b3d49b6a9ec8a75eff190
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/13/2018
-ms.locfileid: "35512901"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36262656"
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="june-19-2018"></a>19 juin 2018
+
+Version 2.0.38
+
+### <a name="core"></a>Principal
+
+* Ajout de la prise en charge globale de `--subscription` pour la plupart des commandes
+
+### <a name="acr"></a>ACR
+
+* Ajout de `azure-storage-blob` comme dépendance
+* Modification de la configuration de l’UC par défaut avec `acr build-task create` pour utiliser 2 cœurs
+
+### <a name="acs"></a>ACS
+
+* Mise à jour des options de la commande `aks use-dev-spaces`. Ajout de la prise en charge de `--update`
+* Modification de `aks get-credentials --admin` pour ne pas remplacer le contexte utilisateur dans `$HOME/.kube/config`
+* Exposition de la propriété en lecture seule `nodeResourceGroup` sur les clusters managés
+* Correction de l’erreur de commande `acs browse`
+* `--connector-name` rendu facultatif pour `aks install-connector`, `aks upgrade-connector` et `aks remove-connector`
+* Ajout de nouvelles régions Azure Container Instance pour `aks install-connector`
+* Ajout de l’emplacement normalisé dans le nom de mise en production Helm et le nom du nœud pour `aks install-connector` 
+
+### <a name="appservice"></a>AppService
+
+* Ajout de la prise en charge des versions urllib plus récentes
+* Ajout de la prise en charge pour `functionapp create` pour utiliser un plan App Service à partir de groupes de ressources externes
+
+### <a name="batch"></a>Batch
+
+* Suppression de la dépendance `azure-batch-extensions`
+
+### <a name="batch-ai"></a>Batch AI
+
+* Ajout de la prise en charge des espaces de travail. Les espaces de travail permettent de regrouper les clusters, serveurs de fichiers et expériences, supprimant la limitation du nombre de ressources qui peuvent être créées
+* Ajout de la prise en charge des expériences. Les expériences permettent de regrouper les tâches dans des collections, supprimant la limitation du nombre de tâches créées
+* Ajout de la prise en charge pour configurer `/dev/shm` pour les travaux en cours d’exécution dans un conteneur docker
+* Ajout des commandes `batchai cluster node exec` et `batchai job node exec`. Ces commandes permettent d’exécuter des commandes directement sur les nœuds et fournissent la fonctionnalité de réacheminement de port.
+* Ajout de la prise en charge des commandes `--ids` et `batchai` 
+* [CHANGEMENT CASSANT] Tous les clusters et serveurs de fichiers doivent être créés dans des espaces de travail
+* [CHANGEMENT CASSANT] Les travaux doivent être créés dans des expériences
+* [CHANGEMENT CASSANT] Suppression de `--nfs-resource-group` des commandes `cluster create` et `job create`. Pour monter un NFS appartenant à un autre espace de travail/groupe de ressources, indiquez l’ID ARM du serveur de fichiers via l’option `--nfs`
+* [CHANGEMENT CASSANT] Suppression de `--cluster-resource-group` de la commande `job create`. Pour soumettre un travail sur un cluster appartenant à un autre espace de travail/groupe de ressources, indiquez l’ID ARM du cluster via l’option `--cluster`
+* [CHANGEMENT CASSANT] Suppression de l’attribut `location` des travaux, clusters et serveurs de fichiers. L’emplacement est maintenant un attribut d’espace de travail.
+* [CHANGEMENT CASSANT] Suppression de `--location` des commandes `job create`, `cluster create` et `file-server create`
+* [CHANGEMENT CASSANT] Modification des noms des options courtes pour rendre l’interface plus cohérente :
+ - [`--config`, `-c`] renommé en [`--config-file`, `-f`]
+ - [`--cluster`, `-r`] renommé en [`--cluster`, `-c`]
+ - [`--cluster`, `-n`] renommé en [`--cluster`, `-c`]
+ - [`--job`, `-n`] renommé en [`--job`, `-j`]
+
+### <a name="maps"></a>Cartes
+
+* [CHANGEMENT CASSANT] Modification de `maps account create` pour accepter les Conditions d’utilisation, soit par l’invite interactive ou par l’indicateur `--accept-tos`
+
+### <a name="network"></a>Réseau
+
+* Ajout de la prise en charge de `https` à `network lb probe create` [#6571](https://github.com/Azure/azure-cli/issues/6571)
+* Correction d’un problème où `--endpoint-status` était sensible à la casse. [#6502](https://github.com/Azure/azure-cli/issues/6502)
+
+### <a name="reservations"></a>Réservations
+
+* [CHANGEMENT CASSANT] Ajout du paramètre obligatoire `ReservedResourceType` à `reservations catalog show`
+* Ajout du paramètre `Location` à `reservations catalog show`
+* [CHANGEMENT CASSANT] Suppression de `kind` de `ReservationProperties`
+* [CHANGEMENT CASSANT] `capabilities` renommé en `sku_properties` dans `Catalog`
+* [CHANGEMENT CASSANT] Suppression des propriétés `size` et `tier` de `Catalog`
+* Ajout du paramètre `InstanceFlexibility` à `reservations reservation update`
+
+### <a name="role"></a>Rôle
+
+* Amélioration de la gestion des erreurs
+
+### <a name="sql"></a>SQL
+
+* Correction de l’erreur déroutante lors de l’exécution de `az sql db list-editions` pour un emplacement qui n’est pas disponible pour votre abonnement
+
+### <a name="storage"></a>Stockage
+
+* Modification de la sortie de table pour que `storage blob download` soit plus lisible
+
+### <a name="vm"></a>Machine virtuelle
+
+* Amélioration de la vérification de la taille de la machine virtuelle pour la prise en charge de la mise en réseau accélérée dans `vm create`
+* Ajout d’un avertissement pour `vmss create` indiquant que la taille de la machine virtuelle par défaut va passer de `Standard_D1_v2` à `Standard_DS1_v2`
+* Ajout de `--force-update` à `[vm|vmss] extension set` pour mettre à jour l’extension, même lorsque la configuration n’a pas changé
+
+## <a name="june-13-2018"></a>13 juin 2018
+
+Version 2.0.37
+
+### <a name="core"></a>Principal
+
+* Amélioration de la télémétrie interactive
 
 ## <a name="june-13-2018"></a>13 juin 2018
 
@@ -1332,7 +1427,7 @@ Version 2.0.17
 
 ### <a name="resource"></a>Ressource
 
-* Autoriser le passages dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
+* Autoriser les passages dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
 * Autoriser le passage dans les valeurs de paramètres pour `policy assignment create`
 * Autoriser le passage de JSON ou d’un fichier pour tous les paramètres
 * Incrémentation de la version de l’API
