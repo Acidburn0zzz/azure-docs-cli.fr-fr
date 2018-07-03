@@ -9,18 +9,18 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 7b5835581bf1e14e2d9fdc7c9584c704d1a5d82f
-ms.sourcegitcommit: 38549f60d76d4b6b65d180367e83749769fe6e43
+ms.openlocfilehash: abbffb1c474d752130dfffa8e60937b3d632fa14
+ms.sourcegitcommit: c6c3058254974b3a1d5d2fa2cd231a900c53d321
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34703177"
+ms.lasthandoff: 06/29/2018
+ms.locfileid: "37126580"
 ---
 # <a name="install-azure-cli-20-with-apt"></a>Installer Azure CLI 2.0 avec apt
 
 Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu ou Debian, un package 64 bits est disponible pour l’interface de ligne de commande Azure. Ce package a été testé avec :
 
-* Ubuntu trusty, xenial, et artful
+* Ubuntu trusty, xenial, artful et bionic
 * Debian wheezy, jessie, et stretch
 
 ## <a name="install"></a>Installer
