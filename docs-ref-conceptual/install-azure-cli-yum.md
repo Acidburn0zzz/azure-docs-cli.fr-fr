@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: b3c82825af3d1d2420b0111d1a370a17f37d9426
-ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
+ms.openlocfilehash: 7729077d9240f09e0ad93ad8ab154d1477d8c3fd
+ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/28/2018
-ms.locfileid: "32043701"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37439888"
 ---
 # <a name="install-azure-cli-20-with-yum"></a>Installer Azure CLI 2.0 avec yum
 
@@ -42,11 +42,9 @@ Si vous exécutez une distribution qui est fournie avec `yum`, telle que RHEL, F
    sudo yum install azure-cli
    ```
 
-Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, exécutez la commande `az login`.
+Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).
 
-```azurecli
-az login
-```
+[!INCLUDE [interactive-login](includes/interactive-login.md)]
 
 Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 

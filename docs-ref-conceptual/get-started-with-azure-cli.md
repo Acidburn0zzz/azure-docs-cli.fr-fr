@@ -10,28 +10,26 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: dbb6233e8fed15b440282b8396d3b3bd056e80f7
-ms.sourcegitcommit: 5c80e96e96f9608c92a94fa4a9c4afb25099f3fc
+ms.openlocfilehash: c973d31312fbe0f9232bf3f0f3ed5f3b70b6559a
+ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/13/2018
-ms.locfileid: "35512935"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37439939"
 ---
 # <a name="get-started-with-azure-cli-20"></a>Bien démarrer avec Azure CLI 2.0
 
 Bienvenue dans Azure CLI 2.0 ! L’interface CLI est un outil conçu pour vous aider à utiliser rapidement et efficacement les services Azure, en mettant l’accent sur l’automatisation. Cet article présente les fonctionnalités de l’interface CLI et des liens vers des ressources qui vous aideront à être productif.
 
-## <a name="install-and-log-in"></a>Installer et se connecter
+## <a name="install-and-sign-in"></a>Installation et connexion
 
 Si ce n’est pas déjà fait, [installez l’interface CLI](install-azure-cli.md) ou essayez [Azure Cloud Shell](/azure/cloud-shell/overview).
 
 Avant d’utiliser les commandes CLI avec une installation locale, vous devez vous connecter avec la commande [az login](/cli/azure/reference-index#az-login).
 
-```azurecli
-az login
-```
+[!INCLUDE [interactive-login](includes/interactive-login.md)]
 
-Cette commande vous invite à vous connecter avec un code d’authentification via un site Web. Il existe des méthodes pour se connecter de manière non interactive, qui sont traitées en détail dans [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
+Il existe des méthodes pour se connecter de manière non interactive, qui sont traitées en détail dans [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 
 ## <a name="common-commands"></a>Commandes courantes
 

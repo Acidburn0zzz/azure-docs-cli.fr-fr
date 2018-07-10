@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: d88dbcec947372aa154bce939edd99f65cd9480f
-ms.sourcegitcommit: ae72b6c8916aeb372a92188090529037e63930ba
+ms.openlocfilehash: 0eb3694c8dcb085e1aeb8cde54a21ac16157b26b
+ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/28/2018
-ms.locfileid: "32043718"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37439824"
 ---
 # <a name="run-azure-cli-20-in-a-docker-container"></a>Exécuter Azure CLI 2.0 dans un conteneur Docker
 
@@ -28,20 +28,19 @@ Installez l’interface de ligne de commande à l’aide de `docker run`.
    docker run -it microsoft/azure-cli
    ```
 
-L’interface de ligne de commande est installé sur l’image en tant que commande `az` dans `/usr/local/bin`. Pour vous connecter, exécutez la commande `az login`.
-
-```azurecli
-az login
-```
-
-Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
-
 > [!NOTE]
 > Si vous souhaitez sélectionner les clés SSH à partir de votre environnement utilisateur, vous pouvez utiliser `-v ${HOME}:/root` pour monter $HOME en tant que `/root`.
 
 > ```bash
 > docker run -it -v ${HOME}:/root microsoft/azure-cli
 > ```
+
+L’interface de ligne de commande est installé sur l’image en tant que commande `az` dans `/usr/local/bin`. Pour vous connecter, exécutez la commande [az login](/cli/azure/reference-index#az-login).
+
+[!INCLUDE [interactive-login](includes/interactive-login.md)]
+
+Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
+
 
 ## <a name="update-docker-image"></a>Mise à jour d’une image Docker
 

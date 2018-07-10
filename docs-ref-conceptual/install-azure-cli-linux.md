@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: b11ab99626227cb53a604d429fa32c560e4255d9
-ms.sourcegitcommit: 38549f60d76d4b6b65d180367e83749769fe6e43
+ms.openlocfilehash: dade772f178ed9fd321ff45727aea991acd6d311
+ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34703126"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37439633"
 ---
 # <a name="install-azure-cli-20-on-linux-manually"></a>Installer manuellement Azure CLI 2.0 sur Linux
 
@@ -24,7 +24,6 @@ Si vous n’avez pas de package disponible sur votre distribution pour l’inter
 > Il est fortement recommandé d’utiliser un gestionnaire de package pour l’interface CLI. Un gestionnaire de package permet de s’assurer que vous obtenez toujours les dernières mises à jour et garantit la stabilité des composants de l’interface CLI. Vérifiez s’il existe un package pour votre distribution avant d’installer manuellement.
 
 ## <a name="prerequisites"></a>Prérequis
-
 
 Pour installer l’interface de ligne de commande, vous avez besoin des logiciels suivants sur votre système :
 
@@ -42,11 +41,9 @@ curl -L https://aka.ms/InstallAzureCli | bash
 
 Au lieu de cela, vous pouvez également télécharger le script et l’exécuter localement. Vous devrez peut-être redémarrer votre interpréteur de commandes pour que certaines modifications soient prises en compte. 
 
-Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, exécutez la commande `az login`.
+Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).
 
-```azurecli
-az login
-```
+[!INCLUDE [interactive-login](includes/interactive-login.md)]
 
 Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 

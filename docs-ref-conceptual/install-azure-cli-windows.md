@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: c3ed3585b601ee55b267ea6cfc43ce41c54f084a
-ms.sourcegitcommit: 15d6dfaee2075d0abceb2aa2423f0b6ef7b2ac9b
+ms.openlocfilehash: d662333f828c65fa709fa622de7de3a18bea58d8
+ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33815974"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37439826"
 ---
 # <a name="install-azure-cli-20-on-windows"></a>Installation d’Azure CLI 2.0 sur Windows
 
@@ -30,11 +30,9 @@ Le fichier MSI distribuable est utilisé pour l’installation, la mise à jour 
 
 Lorsque le programme d’installation vous demande s’il peut apporter des modifications à votre ordinateur, cliquez sur la case « Oui ».
 
-Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec la commande `az` à partir de l’invite de commandes Windows ou PowerShell. PowerShell offre des fonctionnalités de saisie semi-automatique via la touche TAB non disponibles à partir de l’invite de commandes Windows. Pour vous connecter, exécutez la commande `az login`.
+Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec la commande `az` à partir de l’invite de commandes Windows ou PowerShell. PowerShell offre des fonctionnalités de saisie semi-automatique via la touche TAB non disponibles à partir de l’invite de commandes Windows. Pour vous connecter, exécutez la commande [az login](/cli/azure/reference-index#az-login).
 
-```azurecli
-az login
-```
+[!INCLUDE [interactive-login](includes/interactive-login.md)]
 
 Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 

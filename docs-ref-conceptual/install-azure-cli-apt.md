@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: abbffb1c474d752130dfffa8e60937b3d632fa14
-ms.sourcegitcommit: c6c3058254974b3a1d5d2fa2cd231a900c53d321
+ms.openlocfilehash: 3f52f1545dc4bad44280c7e58ad17ec2302fd436
+ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/29/2018
-ms.locfileid: "37126580"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37439616"
 ---
 # <a name="install-azure-cli-20-with-apt"></a>Installer Azure CLI 2.0 avec apt
 
@@ -49,11 +49,9 @@ Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu 
    > [!WARNING]
    > La clé de signature a été mise à jour en mai 2018 et a été remplacée. Si vous recevez des erreurs de clé de signature, assurez-vous d’avoir [acquis la clé de signature la plus récente](#signingKey).
 
-Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, exécutez la commande `az login`.
+Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).
 
-```azurecli
-az login
-```
+[!INCLUDE [interactive-login](includes/interactive-login.md)]
 
 Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 

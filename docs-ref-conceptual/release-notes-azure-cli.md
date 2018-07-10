@@ -4,19 +4,100 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI 2.0
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 06/01/2018
+ms.date: 07/03/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 64db2b58ca883518757d8e189bf7263ed818b283
-ms.sourcegitcommit: 1a38729d6ae93c49137b3d49b6a9ec8a75eff190
+ms.openlocfilehash: 102152b7d99de253ccb2fea09b99be91e3c9135e
+ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36262656"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37439667"
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="july-3-2018"></a>3 juillet 2018
+
+Version 2.0.41
+
+### <a name="aks"></a>AKS
+
+* Modification de la surveillance pour utiliser l’ID d’abonnement
+
+## <a name="july-3-2018"></a>3 juillet 2018
+
+Version 2.0.40
+
+### <a name="core"></a>Principal
+
+* Ajout d’un nouveau flux de code d’autorisation pour une connexion interactive
+
+### <a name="acr"></a>ACR
+
+* Ajout de l’interrogation de l’état du build
+* Ajout de la prise en charge des valeurs d’énumération ne respectant pas la casse
+* Ajout des paramètres `--top` et `--orderby` pour `show-manifests`
+
+### <a name="acs"></a>ACS
+
+* [CHANGEMENT CASSANT] Active le contrôle d’accès en fonction du rôle Kubernetes par défaut
+* Ajout de l’argument `--disable-rbac` et dépréciation de `--enable-rbac` dans la mesure où il s’agit actuellement de la valeur par défaut
+* Mise à jour des options de la commande `aks browse`. Ajout de la prise en charge de `--listen-port`
+* Mise à jour du package de graphique Helm par défaut pour la commande `aks install-connector`. Use virtual-kubelet-for-aks-latest.tgz
+* Ajout des commandes `aks enable-addons` et `aks disable-addons` pour mettre à jour un cluster existant
+
+### <a name="appservice"></a>AppService
+
+* Ajout de la prise en charge de la désactivation d’identité via `webapp identity remove`
+* Suppression de la balise `preview` pour la fonctionnalité Identité
+
+### <a name="backup"></a>Sauvegarde
+
+* Mise à jour de la définition du module
+
+### <a name="batchai"></a>Batch AI
+
+* Correction de la sortie de table pour les commandes `batchai cluster node list` et `batchai job node list`
+
+### <a name="cloud"></a>Cloud
+
+* Ajout du suffixe de serveur `acr login` à la configuration du cloud
+
+### <a name="container"></a>Conteneur
+
+* Modification de `container create` sur valeur par défaut en opération à long terme
+* Ajout des paramètres Log Analytics `--log-analytics-workspace` et `--log-analytics-workspace-key`
+* Ajout du paramètre `--protocol` pour spécifier le protocole réseau à utiliser
+
+### <a name="extension"></a>Extension
+
+* Modification de `extension list-available` pour afficher uniquement les extensions compatibles avec la version CLI
+
+### <a name="network"></a>Réseau
+
+* Résolution du problème où les types d’enregistrement étaient sensibles à la casse pour ([#6602](https://github.com/Azure/azure-cli/issues/6602))
+
+### <a name="rdbms"></a>Rdbms
+
+* Ajout des commandes `[postgres|myql] server vnet-rule`
+
+### <a name="resource"></a>Ressource
+
+* Ajout d’un nouveau groupe d’opérations `deployment`
+
+### <a name="vm"></a>Machine virtuelle
+
+* Ajout de la prise en charge de la suppression de l’identité affectée au système
+
+## <a name="june-25-2018"></a>25 juin 2018
+
+Version 2.0.39
+
+### <a name="cli"></a>Interface de ligne de commande
+
+* Mise à jour de la suppression du fichier dans le programme d’installation MSI pour résoudre le problème d’installation de l’extension
 
 ## <a name="june-19-2018"></a>19 juin 2018
 
@@ -1427,7 +1508,7 @@ Version 2.0.17
 
 ### <a name="resource"></a>Ressource
 
-* Autoriser les passages dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
+* Autoriser le passage dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
 * Autoriser le passage dans les valeurs de paramètres pour `policy assignment create`
 * Autoriser le passage de JSON ou d’un fichier pour tous les paramètres
 * Incrémentation de la version de l’API
@@ -1580,7 +1661,7 @@ Version 2.0.13
 * `lb` : correction d’un problème qui empêchait certains noms de ressources enfant d’être résolus correctement lorsqu’ils étaient omis
 * `application-gateway {subresource} delete` : correction d’un problème en raison duquel `--no-wait` n’était pas honorée
 * `application-gateway http-settings update` : correction d’un problème `--connection-draining-timeout` qui empêchait la désactivation de
-* Correction de erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
+* Correction d’une erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
 
 ### <a name="profile"></a>Profil
 

@@ -10,12 +10,12 @@ ms.technology: azure-cli
 ms.devlang: azurecli
 ms.service: active-directory
 ms.component: authentication
-ms.openlocfilehash: 4d5bee6514477c494ec53d2bd7bba778301ba490
-ms.sourcegitcommit: 38549f60d76d4b6b65d180367e83749769fe6e43
+ms.openlocfilehash: bbd64458b49d3e6c6a533a489d5c8105f364d3d7
+ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34703143"
+ms.lasthandoff: 07/03/2018
+ms.locfileid: "37439871"
 ---
 # <a name="log-in-with-azure-cli-20"></a>Se connecter avec Azure CLI 2.0
 
@@ -26,9 +26,9 @@ Aucune des informations d’identification privées n’est stockée localement.
 
 Une fois connecté, les commandes CLI sont exécutées sur votre abonnement par défaut. Si vous avez plusieurs abonnements, vous pouvez [modifier votre abonnement par défaut](manage-azure-subscriptions-azure-cli.md).
 
-## <a name="interactive-log-in"></a>Connexion interactive
+## <a name="interactive-sign-in"></a>Connexion interactive
 
-Connectez-vous de manière interactive à partir de votre navigateur web.
+La méthode d’authentification par défaut Azure CLI consiste à se connecter interactivement à partir de votre navigateur web.
 
 [!INCLUDE [interactive_login](includes/interactive-login.md)]
 
