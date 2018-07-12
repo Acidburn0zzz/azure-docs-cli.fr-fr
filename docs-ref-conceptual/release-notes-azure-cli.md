@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 102152b7d99de253ccb2fea09b99be91e3c9135e
-ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
+ms.openlocfilehash: b44a387a144b9d7daca8d87309d8a5e1a47b078a
+ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37439667"
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38967875"
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
 
@@ -120,7 +120,7 @@ Version 2.0.38
 * Correction de l’erreur de commande `acs browse`
 * `--connector-name` rendu facultatif pour `aks install-connector`, `aks upgrade-connector` et `aks remove-connector`
 * Ajout de nouvelles régions Azure Container Instance pour `aks install-connector`
-* Ajout de l’emplacement normalisé dans le nom de mise en production Helm et le nom du nœud pour `aks install-connector` 
+* Ajout de l’emplacement normalisé dans le nom de mise en production Helm et le nom du nœud pour `aks install-connector`
 
 ### <a name="appservice"></a>AppService
 
@@ -137,7 +137,7 @@ Version 2.0.38
 * Ajout de la prise en charge des expériences. Les expériences permettent de regrouper les tâches dans des collections, supprimant la limitation du nombre de tâches créées
 * Ajout de la prise en charge pour configurer `/dev/shm` pour les travaux en cours d’exécution dans un conteneur docker
 * Ajout des commandes `batchai cluster node exec` et `batchai job node exec`. Ces commandes permettent d’exécuter des commandes directement sur les nœuds et fournissent la fonctionnalité de réacheminement de port.
-* Ajout de la prise en charge des commandes `--ids` et `batchai` 
+* Ajout de la prise en charge des commandes `--ids` et `batchai`
 * [CHANGEMENT CASSANT] Tous les clusters et serveurs de fichiers doivent être créés dans des espaces de travail
 * [CHANGEMENT CASSANT] Les travaux doivent être créés dans des expériences
 * [CHANGEMENT CASSANT] Suppression de `--nfs-resource-group` des commandes `cluster create` et `job create`. Pour monter un NFS appartenant à un autre espace de travail/groupe de ressources, indiquez l’ID ARM du serveur de fichiers via l’option `--nfs`
@@ -201,7 +201,7 @@ Version 2.0.36
 ### <a name="aks"></a>AKS
 
 * Ajout d’options réseau avancées à `aks create`
-* Ajout d’arguments à `aks create` pour permettre la surveillance et le routage HTTP 
+* Ajout d’arguments à `aks create` pour permettre la surveillance et le routage HTTP
 * Ajout de l’argument `--no-ssh-key` à `aks create`
 * Ajout de l’argument `--enable-rbac` à `aks create`
 * [PRÉVERSION] Ajout de la prise en charge pour l’authentification basée sur Azure Active Directory à `aks create`
@@ -326,7 +326,7 @@ Version 2.0.33
 
 * [CHANGEMENT CASSANT] Objets de réponse retournés modifiés à partir des commandes `db` et `dw`
     * Propriété `serviceLevelObjective` renommée en `currentServiceObjectiveName`
-    * Suppression des propriétés `currentServiceObjectiveId` et `requestedServiceObjectiveId` 
+    * Suppression des propriétés `currentServiceObjectiveId` et `requestedServiceObjectiveId`
     * Propriété `maxSizeBytes` modifiée en valeur entière au lieu d’une chaîne
 * [CHANGEMENT CASSANT] Les propriétés `db` et `dw` suivantes ont été modifiées pour être en lecture seule :
     * `requestedServiceObjectiveName`.  Pour mettre à jour, utilisez le paramètre `--service-objective` ou définissez la propriété `sku.name`
@@ -432,7 +432,7 @@ Version 2.0.32
 
 ### <a name="network"></a>Réseau
 
-* [CHANGEMENT CASSANT] Suppression du paramètre `--ids` pour : 
+* [CHANGEMENT CASSANT] Suppression du paramètre `--ids` pour :
   * `express-route auth list`
   * `express-route peering list`
   * `nic ip-config list`
@@ -477,7 +477,7 @@ Version 2.0.32
   * `vm secret list`
   * `vm unmanaged-disk list`
   * `vmss nic list`
-* Ajout de la prise en charge des accélérateurs d’écriture 
+* Ajout de la prise en charge des accélérateurs d’écriture
 * Ajout de `vmss perform-maintenance`
 * Correction de `vm diagnostics set` pour détecter la fiabilité du type de système d’exploitation de la machine virtuelle
 * Modification de `vm resize` pour vérifier si la taille demandée est différente de celle actuellement définie et pour mettre à jour uniquement en cas de modifications
@@ -561,7 +561,7 @@ Version 2.0.31
 
 * Résolution de [#5936](https://github.com/Azure/azure-cli/issues/5936) : les balises `application-gateway create` n’ont pas pu déterminer l’ensemble
 * Ajout de l’argument `--auth-certs` pour joindre des certificats d’authentification pour `application-gateway http-settings [create|update]`. [#4910](https://github.com/Azure/azure-cli/issues/4910)
-* Ajout de commandes `ddos-protection` pour créer des plans de protection DDoS 
+* Ajout de commandes `ddos-protection` pour créer des plans de protection DDoS
 * Prise en charge de `--ddos-protection-plan` pour `vnet [create|update]` pour associer un réseau virtuel à un plan de protection DDoS
 * Résolution du problème avec l’ indicateur `--disable-bgp-route-propagation` dans `network route-table [create|update]`
 * Suppression des arguments factices `--public-ip-address-type` et `--subnet-type` pour `network lb [create|update]`
@@ -726,7 +726,7 @@ Version 2.0.29
 
 * [CHANGEMENT CASSANT] Renommage de `advisor configuration get` en `advisor configuration list`
 * [CHANGEMENT CASSANT] Renommage de `advisor configuration set` en `advisor configuration update`
-* [CHANGEMENT CASSANT] Suppression de `advisor recommendation generate` 
+* [CHANGEMENT CASSANT] Suppression de `advisor recommendation generate`
 * Ajout du paramètre `--refresh` pour `advisor recommendation list`
 * Ajout de la commande `advisor recommendation show`
 
@@ -998,7 +998,7 @@ Version 2.0.26
 * Les problèmes suivants liés à `dns zone export` ont été résolus :
   * Résolution du problème dans lequel des enregistrements TXT longs ont été mal exportés
   * Résolution du problème dans lequel des enregistrements TXT entre guillemets ont été mal exportés sans guillemets placés dans une séquence d’échappement.
-* Résolution du problème où certains enregistrements ont été importés à deux reprises avec `dns zone import` 
+* Résolution du problème où certains enregistrements ont été importés à deux reprises avec `dns zone import`
 * Restauration des commandes `vnet-gateway root-cert` et `vnet-gateway revoked-cert`
 
 ### <a name="profile"></a>Profil
@@ -1013,7 +1013,7 @@ Version 2.0.26
 
 * Résolution du problème lié à la migration des comptes Storage V1 vers Storage V2
 * Ajout de la création progressive de rapports pour toutes les commandes de chargement/téléchargement
-* Résolution du bogue empêchant l’option d’argument « -n » avec `storage account check-name`  
+* Résolution du bogue empêchant l’option d’argument « -n » avec `storage account check-name`
 * Ajout de la colonne de « snapshot » ajouté à la sortie de table pour `blob [list|show]`
 * Résolution des bogues dans lesquels différents paramètres devaient être analysés en tant qu’entiers
 
@@ -1508,7 +1508,7 @@ Version 2.0.17
 
 ### <a name="resource"></a>Ressource
 
-* Autoriser le passage dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
+* Autoriser le passages dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
 * Autoriser le passage dans les valeurs de paramètres pour `policy assignment create`
 * Autoriser le passage de JSON ou d’un fichier pour tous les paramètres
 * Incrémentation de la version de l’API
@@ -1661,7 +1661,7 @@ Version 2.0.13
 * `lb` : correction d’un problème qui empêchait certains noms de ressources enfant d’être résolus correctement lorsqu’ils étaient omis
 * `application-gateway {subresource} delete` : correction d’un problème en raison duquel `--no-wait` n’était pas honorée
 * `application-gateway http-settings update` : correction d’un problème `--connection-draining-timeout` qui empêchait la désactivation de
-* Correction d’une erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
+* Correction de erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
 
 ### <a name="profile"></a>Profil
 

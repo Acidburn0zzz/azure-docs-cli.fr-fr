@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: ed8f8ac160dd8225170ffcfff9619d94b92e456a
-ms.sourcegitcommit: 8b4629a42ceecf30c1efbc6fdddf512f4dddfab0
+ms.openlocfilehash: 97fcd9d5b5a65480957734cec0ead68029918a49
+ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2018
-ms.locfileid: "34306163"
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38967790"
 ---
 # <a name="use-jmespath-queries-with-azure-cli-20"></a>Utiliser des requêtes JMESPath avec Azure CLI 2.0
 
@@ -67,7 +67,7 @@ Lors de l’affichage des informations dans le format de sortie `table`, l’aff
 
 ## <a name="work-with-list-output"></a>Utiliser la sortie de liste
 
-Les commandes CLI qui peuvent retourner plus d’une valeur renvoient toujours un tableau. Il est possible d’accéder aux éléments des tableaux avec l’index, mais le même ordre n’est jamais garanti depuis la CLI. La meilleure façon de demander un tableau de valeurs est de les aplatir avec l’opérateur `[]`. L’opérateur est écrit dans le tableau après la clé, ou comme le premier élément de l’expression. L’aplanissement exécute la requête contre chaque élément individuel du tableau, et place les valeurs résultantes dans un nouveau tableau. L’exemple suivant imprime le nom et le système d’exploitation exécutés sur chaque machine virtuelle d’un groupe de ressources. 
+Les commandes CLI qui peuvent retourner plus d’une valeur renvoient toujours un tableau. Il est possible d’accéder aux éléments des tableaux avec l’index, mais le même ordre n’est jamais garanti depuis la CLI. La meilleure façon de demander un tableau de valeurs est de les aplatir avec l’opérateur `[]`. L’opérateur est écrit dans le tableau après la clé, ou comme le premier élément de l’expression. L’aplanissement exécute la requête contre chaque élément individuel du tableau, et place les valeurs résultantes dans un nouveau tableau. L’exemple suivant imprime le nom et le système d’exploitation exécutés sur chaque machine virtuelle d’un groupe de ressources.
 
 ```azurecli-interactive
 az vm list -g QueryDemo --query '[].{name:name, image:storageProfile.imageReference.offer}'

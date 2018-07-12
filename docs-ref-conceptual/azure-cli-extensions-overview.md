@@ -10,12 +10,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 1b983faef4c1678763b3483192e94a6c96e24f32
-ms.sourcegitcommit: 80189ff103c91f8c47ab8ebf586df815fff5dd5d
+ms.openlocfilehash: b503c51ffc55ceda30738e34171c7da92532f328
+ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/07/2018
-ms.locfileid: "34479470"
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38967722"
 ---
 # <a name="using-extensions-with-the-azure-cli-20"></a>Utilisation d’extensions avec Azure CLI 2.0
 
@@ -59,7 +59,7 @@ az extension update --name <extension-name>
 
 Sinon, il est possible de mettre à jour une extension à partir de la source, en suivant les instructions de la section [Installer les extensions](#install-extensions).
 
-Si un nom d’extension ne peut pas être résolu par l’interface CLI, désinstallez-la et tentez de procéder à une réinstallation. Il est également possible que l’extension ait été déplacée de la version préliminaire pour devenir une commande intégrée pour l’interface CLI. Tentez de mettre à jour l’interface CLI en suivant les instructions de la section [Installer Azure CLI 2.0](install-azure-cli.md) et observez si les commandes de l’extension ont été ajoutées. 
+Si un nom d’extension ne peut pas être résolu par l’interface CLI, désinstallez-la et tentez de procéder à une réinstallation. Il est également possible que l’extension ait été déplacée de la version préliminaire pour devenir une commande intégrée pour l’interface CLI. Tentez de mettre à jour l’interface CLI en suivant les instructions de la section [Installer Azure CLI 2.0](install-azure-cli.md) et observez si les commandes de l’extension ont été ajoutées.
 
 ## <a name="uninstall-extensions"></a>Désinstaller les extensions
 
@@ -69,7 +69,8 @@ Si vous n’avez plus besoin d’une extension, elle peut être supprimée avec 
 az extension remove --name <extension-name>
 ```
 
-Vous pouvez également supprimer une extension manuellement en la supprimant de l’emplacement où elle a été installée. Il s’agit de la valeur de la variable d’interpréteur de commandes `$AZURE_EXTENSION_DIR`. Si cette variable n’est pas définie, par défaut la valeur est `$HOME/.azure/cliextensions` sur Linux et macOS, et `%USERPROFILE%\.azure\cliextensions` sur Windows.
+Vous pouvez également supprimer une extension manuellement en la supprimant de l’emplacement où elle a été installée. Il s’agit de la valeur de la variable d’interpréteur de commandes `$AZURE_EXTENSION_DIR`.
+Si cette variable n’est pas définie, par défaut la valeur est `$HOME/.azure/cliextensions` sur Linux et macOS, et `%USERPROFILE%\.azure\cliextensions` sur Windows.
 
 ```bash
 rm -rf $AZURE_EXTENSION_DIR/<extension-name>
