@@ -9,70 +9,70 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 7729077d9240f09e0ad93ad8ab154d1477d8c3fd
-ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
+ms.openlocfilehash: 03276af8fc9640b6c74f7417ecdaecfe48762782
+ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37439888"
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38967518"
 ---
-# <a name="install-azure-cli-20-with-yum"></a><span data-ttu-id="c2766-103">Installer Azure CLI 2.0 avec yum</span><span class="sxs-lookup"><span data-stu-id="c2766-103">Install Azure CLI 2.0 with yum</span></span>
+# <a name="install-azure-cli-20-with-yum"></a><span data-ttu-id="3f7a3-103">Installer Azure CLI 2.0 avec yum</span><span class="sxs-lookup"><span data-stu-id="3f7a3-103">Install Azure CLI 2.0 with yum</span></span>
 
-<span data-ttu-id="c2766-104">Si vous exécutez une distribution qui est fournie avec `yum`, telle que RHEL, Fedora, ou CentOS, un package est disponible pour l’interface de ligne de commande Azure.</span><span class="sxs-lookup"><span data-stu-id="c2766-104">If you are running a distribution that comes with `yum`, such as RHEL, Fedora, or CentOS, there is a package available for the Azure CLI.</span></span> <span data-ttu-id="c2766-105">Ce package a été testé avec RHEL 7, Fedora 19 et versions ultérieures et CentOS 7.</span><span class="sxs-lookup"><span data-stu-id="c2766-105">This package has been tested with RHEL 7, Fedora 19 and higher, and CentOS 7.</span></span>
+<span data-ttu-id="3f7a3-104">Si vous exécutez une distribution qui est fournie avec `yum`, telle que RHEL, Fedora, ou CentOS, un package est disponible pour l’interface de ligne de commande Azure.</span><span class="sxs-lookup"><span data-stu-id="3f7a3-104">If you are running a distribution that comes with `yum`, such as RHEL, Fedora, or CentOS, there is a package available for the Azure CLI.</span></span> <span data-ttu-id="3f7a3-105">Ce package a été testé avec RHEL 7, Fedora 19 et versions ultérieures et CentOS 7.</span><span class="sxs-lookup"><span data-stu-id="3f7a3-105">This package has been tested with RHEL 7, Fedora 19 and higher, and CentOS 7.</span></span>
 
 [!INCLUDE [linux-install-requirements.md](includes/linux-install-requirements.md)]
 
-## <a name="install"></a><span data-ttu-id="c2766-106">Installer</span><span class="sxs-lookup"><span data-stu-id="c2766-106">Install</span></span>
+## <a name="install"></a><span data-ttu-id="3f7a3-106">Installer</span><span class="sxs-lookup"><span data-stu-id="3f7a3-106">Install</span></span>
 
-1. <span data-ttu-id="c2766-107">Importez la clé de référentiel Microsoft.</span><span class="sxs-lookup"><span data-stu-id="c2766-107">Import the Microsoft repository key.</span></span>
+1. <span data-ttu-id="3f7a3-107">Importez la clé de référentiel Microsoft.</span><span class="sxs-lookup"><span data-stu-id="3f7a3-107">Import the Microsoft repository key.</span></span>
 
    ```bash
    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
    ```
 
-2. <span data-ttu-id="c2766-108">Créez des informations de référentiel `azure-cli` locales.</span><span class="sxs-lookup"><span data-stu-id="c2766-108">Create local `azure-cli` repository information.</span></span>
+2. <span data-ttu-id="3f7a3-108">Créez des informations de référentiel `azure-cli` locales.</span><span class="sxs-lookup"><span data-stu-id="3f7a3-108">Create local `azure-cli` repository information.</span></span>
 
    ```bash
    sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
    ```
 
-3. <span data-ttu-id="c2766-109">Installez avec la commande `yum install`.</span><span class="sxs-lookup"><span data-stu-id="c2766-109">Install with the `yum install` command.</span></span> 
+3. <span data-ttu-id="3f7a3-109">Installez avec la commande `yum install`.</span><span class="sxs-lookup"><span data-stu-id="3f7a3-109">Install with the `yum install` command.</span></span>
 
    ```bash
    sudo yum install azure-cli
    ```
 
-<span data-ttu-id="c2766-110">Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`.</span><span class="sxs-lookup"><span data-stu-id="c2766-110">You can then run the Azure CLI with the `az` command.</span></span> <span data-ttu-id="c2766-111">Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).</span><span class="sxs-lookup"><span data-stu-id="c2766-111">To sign in, use [az login](/cli/azure/reference-index#az-login) command.</span></span>
+<span data-ttu-id="3f7a3-110">Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`.</span><span class="sxs-lookup"><span data-stu-id="3f7a3-110">You can then run the Azure CLI with the `az` command.</span></span> <span data-ttu-id="3f7a3-111">Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).</span><span class="sxs-lookup"><span data-stu-id="3f7a3-111">To sign in, use [az login](/cli/azure/reference-index#az-login) command.</span></span>
 
 [!INCLUDE [interactive-login](includes/interactive-login.md)]
 
-<span data-ttu-id="c2766-112">Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="c2766-112">To learn more about different login methods, see [Log in with Azure CLI 2.0](authenticate-azure-cli.md).</span></span>
+<span data-ttu-id="3f7a3-112">Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="3f7a3-112">To learn more about different authentication methods, see [Sign in with Azure CLI 2.0](authenticate-azure-cli.md).</span></span>
 
-## <a name="update"></a><span data-ttu-id="c2766-113">Mettre à jour</span><span class="sxs-lookup"><span data-stu-id="c2766-113">Update</span></span>
+## <a name="update"></a><span data-ttu-id="3f7a3-113">Mettre à jour</span><span class="sxs-lookup"><span data-stu-id="3f7a3-113">Update</span></span>
 
-<span data-ttu-id="c2766-114">Mettre à jour Azure CLI avec la commande `yum update`.</span><span class="sxs-lookup"><span data-stu-id="c2766-114">Update the Azure CLI with the `yum update` command.</span></span>
+<span data-ttu-id="3f7a3-114">Mettre à jour Azure CLI avec la commande `yum update`.</span><span class="sxs-lookup"><span data-stu-id="3f7a3-114">Update the Azure CLI with the `yum update` command.</span></span>
 
 ```bash
 sudo yum update azure-cli
 ```
 
-## <a name="uninstall"></a><span data-ttu-id="c2766-115">Désinstaller l’interface</span><span class="sxs-lookup"><span data-stu-id="c2766-115">Uninstall</span></span>
+## <a name="uninstall"></a><span data-ttu-id="3f7a3-115">Désinstaller l’interface</span><span class="sxs-lookup"><span data-stu-id="3f7a3-115">Uninstall</span></span>
 
 [!INCLUDE [uninstall-boilerplate.md](includes/uninstall-boilerplate.md)]
 
-1. <span data-ttu-id="c2766-116">Supprimez le package de votre système.</span><span class="sxs-lookup"><span data-stu-id="c2766-116">Remove the package from your system.</span></span>
+1. <span data-ttu-id="3f7a3-116">Supprimez le package de votre système.</span><span class="sxs-lookup"><span data-stu-id="3f7a3-116">Remove the package from your system.</span></span>
 
    ```bash
    sudo yum remove azure-cli
    ```
 
-2. <span data-ttu-id="c2766-117">Si vous ne souhaitez pas réinstaller l’interface CLI, supprimez les informations de référentiel.</span><span class="sxs-lookup"><span data-stu-id="c2766-117">If you do not plan to reinstall the CLI, remove the repository information.</span></span>
+2. <span data-ttu-id="3f7a3-117">Si vous ne souhaitez pas réinstaller l’interface CLI, supprimez les informations de référentiel.</span><span class="sxs-lookup"><span data-stu-id="3f7a3-117">If you do not plan to reinstall the CLI, remove the repository information.</span></span>
 
    ```bash
    sudo rm /etc/yum.repos.d/azure-cli.repo
    ```
 
-3. <span data-ttu-id="c2766-118">Si vous avez supprimé les informations de référentiel, supprimez également la clé de signature Microsoft GPG.</span><span class="sxs-lookup"><span data-stu-id="c2766-118">If you removed the repository information, also remove the Microsoft GPG signature key.</span></span>
+3. <span data-ttu-id="3f7a3-118">Si vous avez supprimé les informations de référentiel, supprimez également la clé de signature Microsoft GPG.</span><span class="sxs-lookup"><span data-stu-id="3f7a3-118">If you removed the repository information, also remove the Microsoft GPG signature key.</span></span>
 
   ```bash
   MSFT_KEY=`rpm -qa gpg-pubkey /* --qf "%{version}-%{release} %{summary}\n" | grep Microsoft | awk '{print $1}'`
