@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 3f52f1545dc4bad44280c7e58ad17ec2302fd436
-ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
+ms.openlocfilehash: a0908c5b5bda7ec903b702eecb61eabbbedaf533
+ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37439616"
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38967841"
 ---
 # <a name="install-azure-cli-20-with-apt"></a>Installer Azure CLI 2.0 avec apt
 
@@ -25,7 +25,7 @@ Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu 
 
 ## <a name="install"></a>Installer
 
-1. <a name="install-step-1"/> Modifier votre liste de sources :
+1. <div id="install-step-1"/>Modifiez votre liste de sources :
 
     ```bash
     AZ_REPO=$(lsb_release -cs)
@@ -33,7 +33,7 @@ Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu 
         sudo tee /etc/apt/sources.list.d/azure-cli.list
     ```
 
-2. <a name="signingKey"></a>Obtenir la clé de signature Microsoft :
+2. <div id="signingKey"/>Obtenir la clé de signature Microsoft :
 
    ```bash
    curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
@@ -53,7 +53,7 @@ Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la c
 
 [!INCLUDE [interactive-login](includes/interactive-login.md)]
 
-Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
+Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 
 ## <a name="troubleshooting"></a>Résolution de problèmes
 
@@ -113,7 +113,7 @@ Utilisez `apt-get upgrade` pour mettre à jour le package de l’interface de li
 
 > [!WARNING]
 > La clé de signature a été mise à jour en mai 2018 et a été remplacée. Si vous recevez des erreurs de clé de signature, assurez-vous d’avoir [acquis la clé de signature la plus récente](#signingKey).
-   
+>
 > [!NOTE]
 > Cette commande met à niveau tous les packages installés sur votre système n’ayant pas de modification de dépendance.
 > Pour mettre à niveau uniquement l’interface CLI, utilisez `apt-get install`.

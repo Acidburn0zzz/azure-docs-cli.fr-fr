@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.technology: azure-cli
 ms.devlang: azure-cli
 ms.service: role-based-access-control
-ms.openlocfilehash: cd9a41b66d18410afa091ede50ca24e7d4b5e9ed
-ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
+ms.openlocfilehash: 956a1c10c3e4321651df58f86f6f2c21ede5061f
+ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37439956"
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38967909"
 ---
 # <a name="create-an-azure-service-principal-with-azure-cli-20"></a>Créer un principal du service avec Azure CLI 2.0
 
@@ -33,7 +33,7 @@ Utilisez [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac) p
 * `--cert` est utilisé pour l’authentification basée sur les certificats pour un certificat existant, soit en tant que chaîne publique PEM ou DER, ou `@{file}` pour charger un fichier.
 
   ```azurecli-interactive
-  az ad sp create-for-rbac --name ServicePrincipalName --cert {CertStringOrFile} 
+  az ad sp create-for-rbac --name ServicePrincipalName --cert {CertStringOrFile}
   ```
 
   L’argument `--keyvault` peut être ajouté pour indiquer que le certificat est stocké dans Azure Key Vault. Dans ce cas, la valeur `--cert` fait référence au nom du certificat dans le coffre de clés.
@@ -73,7 +73,7 @@ Les valeurs `appId`, `tenant`, et `password` sont utilisées pour l’authentifi
 > [!NOTE]
 > Si votre compte ne dispose pas des autorisations suffisantes pour créer un principal du service, un message d’erreur contenant « Privilèges insuffisants pour effectuer l’opération. » s’affiche. Contactez votre administrateur Azure Active Directory pour créer un principal de service.
 
-## <a name="manage-service-principal-roles"></a>Gérer les rôles du principal du service 
+## <a name="manage-service-principal-roles"></a>Gérer les rôles du principal du service
 
 Azure CLI 2.0 fournit les commandes suivantes pour gérer les attributions de rôle.
 
@@ -98,12 +98,12 @@ Les modifications peuvent être vérifiées en répertoriant les rôles attribu�
 az role assignment list --assignee APP_ID
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > Le message indique que votre compte « n’est pas autorisé à effectuer l’action ’Microsoft.Authorization/roleAssignments/write’ sur l’étendue ’/subscriptions/{guid}’ » lorsque votre compte ne dispose pas d’autorisations suffisantes pour affecter un rôle. Contactez votre administrateur Azure Active Directory pour gérer les rôles.
 
 ## <a name="sign-in-using-the-service-principal"></a>Se connecter en tant que principal du service
 
-Vous pouvez tester la connexion et les autorisations du principal du service en ouvrant une session sous ce dernier dans Azure CLI. Connectez-vous en tant que nouveau principal du service à l’aide de `appId`, `tenant`et des valeurs des informations d’identification. Les informations d’authentification que vous fournissez changent selon que vous avez choisi de créer le principal du service avec un mot de passe ou un certificat.
+Vous pouvez tester les informations d’identification et les autorisations du principal du service en vous connectant sous ce dernier dans Azure CLI. Connectez-vous en tant que nouveau principal du service à l’aide de `appId`, `tenant`et des valeurs des informations d’identification. Les informations d’authentification que vous fournissez changent selon que vous avez choisi de créer le principal du service avec un mot de passe ou un certificat.
 
 Pour vous connecter avec un mot de passe, vous devez le fournir en tant que paramètre d’argument.
 

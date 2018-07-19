@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 7ccee3a336f4c596f29783a70ba0cd4398e20b95
-ms.sourcegitcommit: 8b4629a42ceecf30c1efbc6fdddf512f4dddfab0
+ms.openlocfilehash: 836bf920adaae7bff8482c697bf105f0d457c658
+ms.sourcegitcommit: fb3fed8701aff6c46af856e8fdc3e56ff9a678bc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2018
-ms.locfileid: "34306180"
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38228935"
 ---
 # <a name="managing-multiple-clouds-with-azure-cli-20"></a>La gestion de plusieurs clouds avec l’interface de ligne de commande Azure 2.0
 

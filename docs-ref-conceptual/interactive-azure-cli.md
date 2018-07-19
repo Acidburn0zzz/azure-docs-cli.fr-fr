@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 3538569631718943e2575cd9c607eb9f79b47271
-ms.sourcegitcommit: 8b4629a42ceecf30c1efbc6fdddf512f4dddfab0
+ms.openlocfilehash: 1ee7da8dfdde402d4d536f7ab4bb0599a8f3fa1d
+ms.sourcegitcommit: fb3fed8701aff6c46af856e8fdc3e56ff9a678bc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2018
-ms.locfileid: "34306010"
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38229190"
 ---
 # <a name="interactive-azure-cli-20"></a>Azure CLI 2.0 interactive
 
@@ -26,7 +26,7 @@ Cette commande vous place dans un shell interactif où vos commandes sont automa
 > [!NOTE]
 > Ici, nous n’utilisons pas le style par défaut, qui ne se lit pas aussi bien sur un arrière-plan noir.
 
-Si vous n'êtes pas déjà connecté à votre compte, utilisez la commande `login` pour ce faire.
+Si vous n’êtes pas déjà connecté à votre compte, utilisez la commande `login`.
 
 ## <a name="configure"></a>Configuration
 

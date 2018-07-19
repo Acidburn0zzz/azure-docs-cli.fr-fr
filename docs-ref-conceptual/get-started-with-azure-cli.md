@@ -10,12 +10,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: c973d31312fbe0f9232bf3f0f3ed5f3b70b6559a
-ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
+ms.openlocfilehash: f45c3acfdb4edb82cde755472d240ae18d82aba2
+ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37439939"
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38967739"
 ---
 # <a name="get-started-with-azure-cli-20"></a>Bien démarrer avec Azure CLI 2.0
 
@@ -74,7 +74,6 @@ Certains arguments sont disponibles pour chaque commande.
 * `--query` utilise le [langage de requête JMESPath](http://jmespath.org/) pour filtrer la sortie retournée à partir des services Azure. Pour en savoir plus sur les requêtes, consultez [Interroger des résultats de commande avec Azure CLI 2.0](query-azure-cli.md) et le [didacticiel JMESPath](http://jmespath.org/tutorial.html).
 * `--verbose` imprime les informations sur les ressources créées dans Azure pendant une opération, et d’autres informations utiles.
 * `--debug` imprime davantage d’informations sur les opérations CLI, utilisées pour le débogage. Si vous rencontrez un bogue, fournissez la sortie générée avec l’indicateur `--debug` lors de l’envoi d’un rapport de bogue.
-
 
 ## <a name="interactive-mode"></a>Mode interactif
 

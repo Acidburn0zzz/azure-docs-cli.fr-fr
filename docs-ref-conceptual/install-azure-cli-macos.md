@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: e8190ba91006bd6d83eb0ef90b492ee7df4dda4c
-ms.sourcegitcommit: 308f9eb433a05b814999ac404f63d181169fffeb
+ms.openlocfilehash: 76b9afec92aa3da916382b85d2261547b6877e03
+ms.sourcegitcommit: fb3fed8701aff6c46af856e8fdc3e56ff9a678bc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37439905"
+ms.lasthandoff: 07/11/2018
+ms.locfileid: "38228918"
 ---
 # <a name="install-azure-cli-20-on-macos"></a>Installation d’Azure CLI 2.0 sur macOS
 
@@ -35,7 +35,7 @@ Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la c
 
 [!INCLUDE [interactive-login](includes/interactive-login.md)]
 
-Pour en savoir plus sur les différentes méthodes de connexion, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
+Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
 
 ## <a name="troubleshooting"></a>Résolution de problèmes
 
