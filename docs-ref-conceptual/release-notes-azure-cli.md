@@ -9,14 +9,83 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: b44a387a144b9d7daca8d87309d8a5e1a47b078a
-ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
+ms.openlocfilehash: 8d4f0879a18d2cf99ea7a284155bec86413406f8
+ms.sourcegitcommit: da34d0eecf19c676826bd32ab254a92bd0976124
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2018
-ms.locfileid: "38967875"
+ms.lasthandoff: 07/19/2018
+ms.locfileid: "39138234"
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="july-18-2018"></a>18 juillet 2018
+
+Version 2.0.42
+
+### <a name="core"></a>Principal
+
+* Ajout de la prise en charge de la connexion basée sur le navigateur dans la fenêtre d’interpréteur de commandes Windows pour Linux
+* Ajout de l’indicateur `--force-string` pour toutes les commandes de mise à jour générique
+* [CHANGEMENT CASSANT] Modification des commandes « d’affichage » pour connecter le message d’erreur et échec avec un code de sortie de 3 sur une ressource manquante
+
+### <a name="acr"></a>ACR
+
+* [CHANGEMENT CASSANT] Mise à jour de « --no-push » vers un indicateur pur dans la commande « ACR Build »
+* Ajout des commandes `show` et `update` sous le groupe `acr repository`
+* Ajout de l’indicateur `--detail` à `show-manifests` et `show-tags` pour afficher des informations plus détaillées
+* Ajout du paramètre `--image` pour prendre en charge l’obtention des détails de build ou des journaux par une image
+
+### <a name="acs"></a>ACS
+
+* Modification de `az aks create` en sortie d’erreur si `--max-pods` est inférieur à 5
+
+### <a name="appservice"></a>AppService
+
+* Ajout de la prise en charge pour les références (SKU) PremiumV2
+
+### <a name="batch"></a>Batch
+
+* Correction d’un bogue relatif à l’utilisation des informations d’identification de jeton dans le mode Cloud Shell
+* Modification de l’entrée JSON pour respecter la casse
+
+### <a name="batch-ai"></a>Batch AI
+
+* Correction de la commande `az batchai job exec`
+
+### <a name="container"></a>Conteneur
+
+* Suppression des exigences pour le nom d’utilisateur et le mot de passe pour les registres non dockerhub
+* Correction de l’erreur lors de la création de groupes de conteneur à partir du fichier yaml
+
+### <a name="network"></a>Réseau
+
+* Ajout de la prise en charge de `--no-wait` pour `network nic [create|update|delete]` 
+* Ajout de `network nic wait`
+* Argument `--ids` déconseillé pour `network vnet [subnet|peering] list`
+* Ajout de l’indicateur `--include-default` pour inclure les règles de sécurité par défaut dans la sortie de `network nsg rule list`  
+
+### <a name="resource"></a>Ressource
+
+* Ajout de la prise en charge de `--no-wait` pour `group deployment delete`
+* Ajout de la prise en charge de `--no-wait` pour `deployment delete`
+* Ajout de la commande `deployment wait`
+* Résolution du problème qui causait l’affichage par erreur des commandes `az deployment` du niveau de l’abonnement pour le profil 2017-03-09-profile
+
+### <a name="sql"></a>SQL
+
+* Résolution de l’erreur « Le nom du groupe de ressources fourni ne correspond pas au nom de l’URL » lors de la spécification du nom du pool élastique pour les commandes `sql db copy` et `sql db replica create`
+* Autoriser la configuration de SQL Server par défaut en exécutant `az configure --defaults sql-server=<name>`
+* Implémentation de formateurs de table pour les commandes `sql server`, `sql server firewall-rule`, `sql list-usages` et `sql show-usage`
+
+### <a name="storage"></a>Stockage
+
+* Ajout de la propriété `pageRanges` à la sortie `storage blob show` qui sera renseignée pour les objets blob de pages
+
+### <a name="vm"></a>Machine virtuelle
+
+* [CHANGEMENT CASSANT] Modification de `vmss create` pour utiliser `Standard_DS1_v2` comme taille d’instance par défaut
+* Ajout de la prise en charge de `--no-wait` pour `vm extension [set|delete]` et `vmss extension [set|delete]`
+* Ajout de `vm extension wait`
 
 ## <a name="july-3-2018"></a>3 juillet 2018
 
