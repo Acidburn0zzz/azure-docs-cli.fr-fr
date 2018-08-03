@@ -9,14 +9,72 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 8d4f0879a18d2cf99ea7a284155bec86413406f8
-ms.sourcegitcommit: da34d0eecf19c676826bd32ab254a92bd0976124
+ms.openlocfilehash: d0f8c01495cc95ecfbf6a41d510eb4bc54d47ba2
+ms.sourcegitcommit: 8019690502e9f89c083839d83a0a245cc812e8b6
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39138234"
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39392351"
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="july-31-2018"></a>31 juillet 2018
+
+Version 2.0.43
+
+### <a name="acr"></a>ACR
+
+* Ajout de l’indicateur `--with-secure-properties` à la commande `acr build-task show`
+* Ajout de la commande `acr build-task update-build`
+
+### <a name="acs"></a>ACS
+
+* Retour au return 0 (réussite) à la fin de `az aks browse` en appuyant sur [Ctrl + C]
+
+### <a name="batch"></a>Batch
+
+* Correction du bug lors de l’affichage des jetons AAD dans le Cloud Shell
+
+### <a name="container"></a>Conteneur
+
+* Suppression de l’exigence pour `--log-analytics-workspace-key` pour le nom ou l’identifiant lors de l’abonnement standard
+
+### <a name="network"></a>Réseau
+
+* Ajout du serveur DNS au profil du 09/03/2017 pour Azure Stack 
+
+### <a name="resource"></a>Ressource
+
+* Ajout de `--rollback-on-error` à `group deployment create` pour exécuter un déploiement correct et connu en cas d’erreur
+* Correction d’un problème où `--parameters {}` avec `group deployment create` entraînait une erreur
+
+### <a name="role"></a>Rôle
+
+* Ajout de la prise en charge du profil stack du 09/03/2017
+* Correction d’un problème où les paramètres de mise à jour génériques à `app update` ne fonctionnaient pas correctement
+
+### <a name="search"></a>Recherche
+
+* Ajout de commandes pour le service de recherches d’Azure
+
+### <a name="service-bus"></a>Service Bus
+
+* Ajout d’un groupe de commandes de migration pour migrer un espace de noms d’un Service Bus Standard à un Premium
+* Ajout de nouvelles propriétés facultatives à la file d’attente du Service Bus et à l’abonnement
+  *  `--enable-batched-operations` et `--enable-dead-lettering-on-message-expiration` dans `queue`
+  *  `--dead-letter-on-filter-exceptions` dans `subscriptions`
+
+### <a name="storage"></a>Stockage
+
+* Ajout de la prise en charge du téléchargement de fichiers volumineux à l’aide d’une connexion unique
+* Conversion des commandes `show` qui manquaient d’échouer avec le code de sortie 3 sur une ressource manquante
+
+### <a name="vm"></a>Machine virtuelle
+
+* Ajout d’une prise en charge pour lister les groupes disponibles par abonnement
+* Ajout d’une prise en charge à `StandardSSD_LRS`
+* Ajout d’une prise en charge des groupes de sécurité d’application dans la création du groupe identique de machines virtuelles
+* [CHANGEMENT CASSANT] Changement de `[vm|vmss] create`, `[vm|vmss] identity assign`, et `[vm|vmss] identity remove` pour sortir les identités des utilisateurs au format de dictionnaire
 
 ## <a name="july-18-2018"></a>18 juillet 2018
 
