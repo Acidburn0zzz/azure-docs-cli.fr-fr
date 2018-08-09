@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: d0f8c01495cc95ecfbf6a41d510eb4bc54d47ba2
-ms.sourcegitcommit: 8019690502e9f89c083839d83a0a245cc812e8b6
+ms.openlocfilehash: 549317fb3ffffbe5f392e7a2bbc5cb4ed10b7e89
+ms.sourcegitcommit: 772aad0d9696156d6e87fa00e255dfd0b6394d23
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/01/2018
-ms.locfileid: "39392351"
+ms.lasthandoff: 08/08/2018
+ms.locfileid: "39718012"
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
 
@@ -72,7 +72,7 @@ Version 2.0.43
 ### <a name="vm"></a>Machine virtuelle
 
 * Ajout d’une prise en charge pour lister les groupes disponibles par abonnement
-* Ajout d’une prise en charge à `StandardSSD_LRS`
+* Ajout de la prise en charge de `StandardSSD_LRS`
 * Ajout d’une prise en charge des groupes de sécurité d’application dans la création du groupe identique de machines virtuelles
 * [CHANGEMENT CASSANT] Changement de `[vm|vmss] create`, `[vm|vmss] identity assign`, et `[vm|vmss] identity remove` pour sortir les identités des utilisateurs au format de dictionnaire
 
