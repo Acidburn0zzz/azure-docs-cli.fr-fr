@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.technology: azure-cli
 ms.devlang: azure-cli
 ms.service: role-based-access-control
-ms.openlocfilehash: 956a1c10c3e4321651df58f86f6f2c21ede5061f
-ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
+ms.openlocfilehash: 3f20892e846bd07f8e97ccf788d05c4305fe3301
+ms.sourcegitcommit: 83826ca154c9f32c6091c63ce4b3e480694ba8d1
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2018
-ms.locfileid: "38967909"
+ms.lasthandoff: 08/09/2018
+ms.locfileid: "43144872"
 ---
 # <a name="create-an-azure-service-principal-with-azure-cli-20"></a>Créer un principal du service avec Azure CLI 2.0
 
@@ -122,5 +122,5 @@ az login --service-principal --username APP_ID --tenant TENANT_ID --password PAT
 Si vous oubliez les informations d’identification relatives à un principal de service, il est possible de les réinitialiser à l’aide de la commande [az ad sp reset-credentials](https://docs.microsoft.com/en-us/cli/azure/ad/sp#az-ad-sp-reset-credentials). Les mêmes restrictions et options de création d’un principal de service s’appliquent également ici.
 
 ```azurecli-interactive
-az ad sp reset-credentials --name APP_ID --password NEW_PASSWORD
+az ad sp credential reset --name APP_ID --password NEW_PASSWORD
 ```
