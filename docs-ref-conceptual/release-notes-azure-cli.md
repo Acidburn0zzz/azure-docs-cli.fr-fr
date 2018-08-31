@@ -4,19 +4,159 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI 2.0
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 07/03/2018
+ms.date: 08/28/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 549317fb3ffffbe5f392e7a2bbc5cb4ed10b7e89
-ms.sourcegitcommit: 772aad0d9696156d6e87fa00e255dfd0b6394d23
+ms.openlocfilehash: 62e57d048666f478b670f182bb9348dba90de6a0
+ms.sourcegitcommit: 8f060bc009278eafc0ed448bad4b7d08c742ff63
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/08/2018
-ms.locfileid: "39718012"
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43145088"
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="auguest-28-2018"></a>28 août 2018
+
+Version 2.0.45
+
+### <a name="core"></a>Principal
+
+* Résolution du problème de chargement de fichier de configuration vide
+* Ajout de la prise en charge du profil `2018-03-01-hybrid` pour Azure Stack
+
+### <a name="acr"></a>ACR
+
+* Ajout d’une solution pour les opérations d’exécution sans les requêtes ARM
+* Exclusion des fichiers de contrôle de version (par exemple, .git, .gitignore) chargés par défaut dans les fichiers tar dans la commande `build`
+
+### <a name="acs"></a>ACS
+
+* Modification de `aks create` à la valeur par défaut sur les machines virtuelles `Standard_DS2_v2`
+* Modification de `aks get-credentials` afin d’appeler de nouvelles API pour l’obtention des informations d’identification des clusters
+
+### <a name="appservice"></a>AppService
+
+* Prise en charge de CORS sur functionapp et webapp
+* Ajout de la prise en charge de la balise ARM sur les commandes de création
+* Modification `[webapp|functionapp] identity show` afin de quitter avec le code 3 en cas de ressource manquante
+
+### <a name="backup"></a>Sauvegarde
+
+* Modification `backup vault backup-properties show` afin de quitter avec le code 3 en cas de ressource manquante
+
+### <a name="bot-service"></a>Service de robot
+
+* Version initiale de l’interface CLI de Bot Service
+
+### <a name="cognitive-services"></a>Cognitive Services
+
+* Ajout du nouveau paramètre `--api-properties,` requis pour la création de certains services
+
+### <a name="iot"></a>IoT
+
+* Résolution du problème relatif à l’association de hubs liés
+
+### <a name="monitor"></a>Surveiller
+
+* Ajout des commandes `monitor metrics alert` permettant de recevoir des alertes sur les métriques quasiment en temps réel
+* Commandes `monitor alert` déconseillées
+
+### <a name="network"></a>Réseau
+
+* Modification de `network application-gateway ssl-policy predefined show` permettant de quitter avec le code 3 en cas de ressource manquante
+
+### <a name="resource"></a>Ressource
+
+* Modification de `provider operation show` permettant de quitter avec le code 3 en cas de ressource manquante
+
+### <a name="storage"></a>Stockage
+
+* Modification de `storage share policy show` permettant de quitter avec le code 3 en cas de ressource manquante
+
+### <a name="vm"></a>Machine virtuelle
+
+* Modification de `vm/vmss identity show` permettant de quitter avec le code 3 en cas de ressource manquante 
+* Remplacement de `--storage-caching` pour `vm create`
+
+## <a name="auguest-14-2018"></a>14 août 2018
+
+Version 2.0.44
+
+### <a name="core"></a>Principal
+
+* Correction de l’affichage numérique dans la sortie `table`
+* Ajout du format de sortie YAML
+
+### <a name="telemetry"></a>Télémétrie
+
+* Amélioration des rapports de télémétrie
+
+### <a name="acr"></a>ACR
+
+* Ajout des commandes `content-trust policy`
+* Résolution du problème où `.dockerignore` n’était pas honorée
+
+### <a name="acs"></a>ACS
+
+* Modification de `az acs/aks install-cli` afin d’effectuer l’installation sous `%USERPROFILE%\.azure-kubectl` sur Windows
+* Modification de `az aks install-connector` afin de détecter si le cluster dispose du contrôle RBAC et de configurer le connecteur ACI correctement
+* Remplacement par l’attribution de rôle au sous-réseau lorsque l’attribution est fournie
+* Ajout de l’option nouveau « ignorer attribution de rôle » pour le sous-réseau lorsque l’attribution est fournie                                 
+* Modification ignorant l’attribution de rôle au sous-réseau lorsque l’attribution existe déjà                
+
+### <a name="appservice"></a>AppService
+
+* Correction d’un bogue empêchant de créer une application de fonction à l’aide de comptes de stockage dans les groupes de ressources externes
+* Correction d’un incident lors du déploiement de dossier zip
+
+### <a name="batchai"></a>Batch AI
+
+* Modification de la sortie de l’enregistreur d’événements pour la création du compte de stockage automatique afin de spécifier l’information « ressource *groupe*».        
+
+### <a name="container"></a>Conteneur
+
+* Ajout de `--secure-environment-variables` pour transmettre des variables d’environnement sécurisées vers un conteneur      
+
+### <a name="iot"></a>IoT
+
+* [CHANGEMENT CASSANT] Suppression des commandes obsolètes déplacées vers l’extension iot
+* Mise à jour des éléments afin de ne pas prendre en compte le domaine `azure-devices.net`
+
+### <a name="iot-central"></a>Iot Central
+
+* Version initiale du module IoT Central
+
+### <a name="keyvault"></a>KeyVault
+
+
+* Ajout des commandes pour la gestion des comptes de stockage et les définitions SAS
+* Ajout de commandes pour les règles réseau                                                           
+* Ajout du paramètre `--id` aux opérations relatives au mots de passe confidentiels, clés et certificats
+* Ajout de la prise en charge pour la version multi-api avec gestion des coffres de clés
+* Ajout de la prise en charge pour la version multi-api avec plan de données des coffres de clés
+
+### <a name="relay"></a>Relais
+
+* Version initiale
+
+### <a name="sql"></a>SQL
+
+* Ajout des commandes `sql failover-group`
+
+### <a name="storage"></a>Stockage
+
+* [CHANGEMENT CASSANT] Modification de `storage account show-usage` afin d’exiger le paramètre `--location` et de répertorier par région
+* Modification du paramètre `--resource-group` afin de le rendre facultatif pour les commandes `storage account`
+* Suppression des avertissements concernant l’échec de la condition préalable pour les défaillances isolées dans les commandes batch pour les messages agrégés uniques
+* Modification des commandes `[blob|file] delete-batch` afin de ne plus produire des tableaux ayant la valeur null
+* Modification des commandes `blob [download|upload|delete-batch]` afin de lire le jeton de SAS à partir de l’url du conteneur
+
+### <a name="vm"></a>Machine virtuelle
+
+* Ajout des filtres courants à `vm list-skus` pour une plus grande simplicité d’utilisation
 
 ## <a name="july-31-2018"></a>31 juillet 2018
 
