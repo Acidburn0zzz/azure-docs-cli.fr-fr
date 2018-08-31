@@ -4,17 +4,17 @@ description: Une liste complète des extensions officiellement prises en charge 
 author: derekbekoe
 ms.author: debekoe
 manager: routlaw
-ms.date: 08/08/2018
+ms.date: 08/13/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 36657d29f6708bc60f7d9386ffa0671a9639edc9
-ms.sourcegitcommit: 772aad0d9696156d6e87fa00e255dfd0b6394d23
+ms.openlocfilehash: 09735708946e40fd0d515bcd43bbf4798c70673d
+ms.sourcegitcommit: 4cf5784b741dd55c0a4240443d3180d8ec83526c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/08/2018
-ms.locfileid: "39718029"
+ms.lasthandoff: 08/13/2018
+ms.locfileid: "43144911"
 ---
 # <a name="available-extensions-for-the-azure-cli-20"></a>Extensions disponibles pour l’interface Azure CLI 2.0
 
@@ -37,6 +37,7 @@ az extension list-available --output table
 | [dns](https://github.com/Azure/azure-cli-extensions) | 0.0.2 | Une extension Azure CLI pour les zones DNS |  |
 | [eventgrid](https://github.com/Azure/azure-cli-extensions) | 0.2.1 | Prise en charge des fonctionnalités d’Azure EventGrid 2018-05-01-préversion | Oui |
 | [express-route-cross-connexion](https://github.com/Azure/azure-cli-extensions/tree/master/src/express-route-cross-connection) | 0.1.0 | Gérez des circuits ExpressRoute de client à l’aide d’une interconnexion ExpressRoute. |  |
+| [find](https://github.com/Azure/azure-cli-extensions/tree/master/src/find) | 0.1.0 | Requêtes intelligentes pour l’obtention d’informations relatives l’interface CLI. | Oui |
 | [image-copy-extension](https://github.com/Azure/azure-cli-extensions) | 0.0.7 | Prise en charge de la copie d’images de machines virtuelles managées entre régions |  |
 | [keyvault-preview](https://github.com/Azure/azure-keyvault-cli-extension) | 0.1.3 | Préversion des commandes Azure Key Vault. | Oui |
 | [log-analytics](https://github.com/Azure/azure-cli-extensions/tree/master/src/log-analytics) | 0.1.2 | Prise en charge des fonctionnalités de requête d’Azure Log Analytics. | Oui |
