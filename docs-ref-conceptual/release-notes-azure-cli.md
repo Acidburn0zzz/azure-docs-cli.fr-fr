@@ -9,16 +9,16 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 62e57d048666f478b670f182bb9348dba90de6a0
-ms.sourcegitcommit: 8f060bc009278eafc0ed448bad4b7d08c742ff63
+ms.openlocfilehash: 5d179a49ad64201270be7848a72535b871081125
+ms.sourcegitcommit: c90bc90c9a2b3adf2836d7cfb84951cd3ab51317
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2018
-ms.locfileid: "43145088"
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "43828743"
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
 
-## <a name="auguest-28-2018"></a>28 août 2018
+## <a name="august-28-2018"></a>28 Août 2018
 
 Version 2.0.45
 
@@ -41,11 +41,11 @@ Version 2.0.45
 
 * Prise en charge de CORS sur functionapp et webapp
 * Ajout de la prise en charge de la balise ARM sur les commandes de création
-* Modification `[webapp|functionapp] identity show` afin de quitter avec le code 3 en cas de ressource manquante
+* Modification de `[webapp|functionapp] identity show` permettant de quitter avec le code 3 en cas de ressource manquante
 
 ### <a name="backup"></a>Sauvegarde
 
-* Modification `backup vault backup-properties show` afin de quitter avec le code 3 en cas de ressource manquante
+* Modification de `backup vault backup-properties show` permettant de quitter avec le code 3 en cas de ressource manquante
 
 ### <a name="bot-service"></a>Service de robot
 
