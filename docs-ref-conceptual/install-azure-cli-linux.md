@@ -4,28 +4,28 @@ description: Installation manuelle d’Azure CLI 2.0 pour Linux
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 01/29/2018
+ms.date: 09/09/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 7e73ae8bbbba80bf48c6f01fc1c37a3c32c6eb31
-ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
+ms.openlocfilehash: c5c7ea61a35e915760081897e88d8c43b80919e0
+ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2018
-ms.locfileid: "38967552"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44388352"
 ---
 # <a name="install-azure-cli-20-on-linux-manually"></a>Installer manuellement Azure CLI 2.0 sur Linux
 
-Si vous n’avez pas de package disponible sur votre distribution pour l’interface de ligne de commande Azure, vous pouvez toujours installer l’interface de ligne de commande manuellement en exécutant un script d’installation.
+S’il n’existe aucun package pour l’interface Azure CLI pour vous et votre distribution, installez l’interface CLI manuellement en exécutant un script.
 
 > [!NOTE]
-> Il est fortement recommandé d’utiliser un gestionnaire de package pour l’interface CLI. Un gestionnaire de package permet de s’assurer que vous obtenez toujours les dernières mises à jour et garantit la stabilité des composants de l’interface CLI. Vérifiez s’il existe un package pour votre distribution avant d’installer manuellement.
+> Il est fortement recommandé d’installer l’interface CLI avec un gestionnaire de package. Un gestionnaire de package permet de s’assurer que vous obtenez toujours les dernières mises à jour et garantit la stabilité des composants de l’interface CLI. Vérifiez s’il existe un package pour votre distribution avant d’installer manuellement.
 
 ## <a name="prerequisites"></a>Prérequis
 
-Pour installer l’interface de ligne de commande, vous avez besoin des logiciels suivants sur votre système :
+L’interface CLI requiert les logiciels suivants :
 
 * [Python 2.7 ou Python 3.x](https://www.python.org/downloads/)
 * [libffi](https://sourceware.org/libffi/)
@@ -33,13 +33,13 @@ Pour installer l’interface de ligne de commande, vous avez besoin des logiciel
 
 ## <a name="install-or-update"></a>Installation ou mise à jour
 
-Que vous installiez ou que vous mettiez à jour l’interface de ligne de commande, vous devez effectuer une installation complète. Une fois que vous disposez de la configuration requise, vous pouvez installer l’interface de ligne de commande en exécutant `curl`.
+L’installation et la mise à jour de l’interface CLI nécessitent toutes de réexécuter le script d’installation. Installez l’interface CLI en exécutant `curl`.
 
 ```bash
 curl -L https://aka.ms/InstallAzureCli | bash
 ```
 
-Au lieu de cela, vous pouvez également télécharger le script et l’exécuter localement. Vous devrez peut-être redémarrer votre interpréteur de commandes pour que certaines modifications soient prises en compte.
+Le script peut également être téléchargé et exécuté localement. Vous devrez peut-être redémarrer votre interpréteur de commandes pour que certaines modifications soient prises en compte.
 
 Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).
 
@@ -49,7 +49,7 @@ Pour en savoir plus sur les différentes méthodes d’authentification, consult
 
 ## <a name="troubleshooting"></a>Résolution de problèmes
 
-Voici certains problèmes courants rencontrés pendant une installation manuelle. Si votre problème ne figure pas ici, veuillez [signaler le problème sur Github](https://github.com/Azure/azure-cli/issues).
+Voici certains problèmes courants rencontrés pendant une installation manuelle. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
 
 ### <a name="curl-object-moved-error"></a>erreur curl « Objet déplacé »
 
@@ -69,7 +69,7 @@ hash -r
 
 et vérifiez si le problème est résolu.
 
-Le problème peut également se produire si vous n’avez pas redémarré votre interpréteur de commandes après l’installation. Assurez-vous que l’emplacement de la commande `az` se trouve dans votre `$PATH`. L’emplacement de la commande `az` est
+Le problème peut également survenir si vous n’avez pas redémarré votre interpréteur de commandes après l’installation. Assurez-vous que l’emplacement de la commande `az` se trouve dans votre `$PATH`. L’emplacement de la commande `az` est
 
 ```bash
 <install path>/bin

@@ -4,22 +4,22 @@ description: Utilisez Azure CLI 2.0 en mode interactif.
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 04/06/2017
+ms.date: 09/09/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 1ee7da8dfdde402d4d536f7ab4bb0599a8f3fa1d
-ms.sourcegitcommit: fb3fed8701aff6c46af856e8fdc3e56ff9a678bc
+ms.openlocfilehash: f07689a323314c076f1eb2a8844875d9543d4b2e
+ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2018
-ms.locfileid: "38229190"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44388573"
 ---
 # <a name="interactive-azure-cli-20"></a>Azure CLI 2.0 interactive
 
 Vous pouvez utiliser Azure CLI 2.0 en mode interactif en exécutant la commande `az interactive`.
-Cette commande vous place dans un shell interactif où vos commandes sont automatiquement renseignées et vous avez accès à des descriptions des commandes et de leurs paramètres, ainsi qu’à des exemples de commandes.
+Ce mode vous place dans un interpréteur de commandes interactif avec une saisie semi-automatique, des descriptions des commandes ainsi que des exemples.
 
 ![mode interactif](./media/interactive-azure-cli/webapp-create.png)
 
@@ -31,7 +31,7 @@ Si vous n’êtes pas déjà connecté à votre compte, utilisez la commande `lo
 ## <a name="configure"></a>Configuration
 
 Le mode interactif affiche, si vous le souhaitez, des descriptions des commandes, des descriptions des paramètres et des exemples de commandes.
-Vous pouvez activer ou désactiver les descriptions et les exemples à l’aide de `F1`.
+Activez ou désactivez les descriptions et les exemples à l’aide de `F1`.
 
 ![descriptions et exemples](./media/interactive-azure-cli/descriptions-and-examples.png)
 

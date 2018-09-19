@@ -4,21 +4,21 @@ description: Installation d’Azure CLI 2.0 avec le gestionnaire de package apt
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 05/24/2018
+ms.date: 09/07/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: a0908c5b5bda7ec903b702eecb61eabbbedaf533
-ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
+ms.openlocfilehash: 88b4570f62858ec1e12898aea51a5dbce6d677b5
+ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2018
-ms.locfileid: "38967841"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44388419"
 ---
 # <a name="install-azure-cli-20-with-apt"></a>Installer Azure CLI 2.0 avec apt
 
-Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu ou Debian, un package 64 bits est disponible pour l’interface de ligne de commande Azure. Ce package a été testé avec :
+Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu ou Debian, un package 64 bits est disponible pour Azure CLI. Ce package a été testé avec :
 
 * Ubuntu trusty, xenial, artful et bionic
 * Debian wheezy, jessie, et stretch
@@ -57,7 +57,7 @@ Pour en savoir plus sur les différentes méthodes d’authentification, consult
 
 ## <a name="troubleshooting"></a>Résolution de problèmes
 
-Voici certains problèmes courants lors de l’installation avec `apt`. Si votre problème ne figure pas ici, veuillez [signaler le problème sur Github](https://github.com/Azure/azure-cli/issues).
+Voici certains problèmes courants lors de l’installation avec `apt`. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
 
 ### <a name="lsbrelease-fails-with-command-not-found"></a>lsb_release échoue avec « Commande introuvable »
 
@@ -67,7 +67,7 @@ Lorsque vous exécutez la commande `lsb_release`, vous pouvez voir une sortie si
 -bash: lsb_release: command not found
 ```
 
-L’erreur est due au fait que lsb_release n’est pas installé. Vous pouvez résoudre ce problème en installant le package `lsb-release`.
+L’erreur est due au fait que la commande `lsb_release` n’est pas installée. Vous pouvez résoudre ce problème en installant le package `lsb-release`.
 
 ```bash
 sudo apt-get install lsb-release
@@ -101,7 +101,7 @@ Lorsqu’un pare-feu bloque les connexions sortantes au port 11371, la commande 
 sudo apt-key adv --keyserver-options http-proxy=http://<USER>:<PASSWORD>@<PROXY-HOST>:<PROXY-PORT>/ --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
 ```
 
-Si vous ne savez pas si vous disposez d’un proxy, contactez votre administrateur système. Si votre proxy ne nécessite pas de connexion, ignorez l’utilisateur, le mot de passe, et le jeton `@`.
+Pour vous assurer que vous disposez d’un proxy, contactez votre administrateur système. Si votre proxy ne nécessite pas de connexion, ignorez l’utilisateur, le mot de passe, et le jeton `@`.
 
 ## <a name="update"></a>Mettre à jour
 
@@ -131,7 +131,7 @@ Utilisez `apt-get upgrade` pour mettre à jour le package de l’interface de li
     sudo apt-get remove -y azure-cli
     ```
 
-2. Si vous ne souhaitez pas réinstaller l’interface de ligne de commande, supprimez les informations de référentiel Azure CLI.
+2. Si vous ne prévoyez pas de réinstaller l’interface CLI, supprimez les informations de référentiel Azure CLI.
 
    ```bash
    sudo rm /etc/apt/sources.list.d/azure-cli.list

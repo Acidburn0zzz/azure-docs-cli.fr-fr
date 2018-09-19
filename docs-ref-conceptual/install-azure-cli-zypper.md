@@ -4,21 +4,21 @@ description: Installation d’Azure CLI 2.0 avec zypper
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 01/29/2018
+ms.date: 09/09/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: a7329784f26edfaeebc3520b63d12faed11fe38f
-ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
+ms.openlocfilehash: ed92443b6de4e538eaf5da41376e836aa2c771a0
+ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2018
-ms.locfileid: "38967535"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44388301"
 ---
 # <a name="install-azure-cli-20-with-zypper"></a>Installer Azure CLI 2.0 avec zypper
 
-Si vous exécutez une distribution qui est fournie avec `zypper`, telle que openSUSE ou SLES, un package est disponible pour l’interface de ligne de commande Azure. Ce package a été testé avec openSUSE 42.2 et SLES 12 SP 2.
+Pour les distributions Linux avec `zypper`, telles que openSUSE ou SLES, un package est disponible pour l’Azure CLI. Ce package a été testé avec openSUSE 42.2 et SLES 12 SP 2.
 
 [!INCLUDE [linux-install-requirements.md](includes/linux-install-requirements.md)]
 
@@ -73,7 +73,7 @@ sudo zypper update azure-cli
     sudo zypper remove -y azure-cli
     ```
 
-2. Si vous ne souhaitez pas réinstaller l’interface CLI, supprimez les informations de référentiel.
+2. Si vous ne prévoyez pas de réinstaller l’interface CLI, supprimez les informations de référentiel.
 
   ```bash
   sudo zypper removerepo azure-cli

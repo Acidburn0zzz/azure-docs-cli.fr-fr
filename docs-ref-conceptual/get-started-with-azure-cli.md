@@ -5,17 +5,17 @@ keywords: Azure CLI, aide CLI, aide Azure, requête, automatisation,
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 05/16/2018
+ms.date: 09/07/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: f45c3acfdb4edb82cde755472d240ae18d82aba2
-ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
+ms.openlocfilehash: 165da295d187edf7dbc19a332670fd49d8f8bdd5
+ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2018
-ms.locfileid: "38967739"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44388556"
 ---
 # <a name="get-started-with-azure-cli-20"></a>Bien démarrer avec Azure CLI 2.0
 
@@ -33,8 +33,7 @@ Il existe des méthodes pour se connecter de manière non interactive, qui sont 
 
 ## <a name="common-commands"></a>Commandes courantes
 
-Ce tableau répertorie quelques commandes courantes utilisées dans les liens CLI vers leurs pages de documentation dans la référence.
-Toutes les sous-commandes de ces groupes et leur documentation peuvent être consultées dans la référence en ligne ou avec l’argument `--help`.
+Ce tableau répertorie certaines commandes courantes utilisées dans l’interface CLI ainsi que des liens vers leur documentation de référence.
 
 | Type de ressource | Groupe de commandes Azure CLI |
 |---------------|-------------------------|
@@ -48,8 +47,7 @@ Toutes les sous-commandes de ces groupes et leur documentation peuvent être con
 
 ## <a name="finding-commands"></a>Recherche de commandes
 
-Les commandes de l’interface CLI sont fournies en tant que _sous-commandes_ de _groupes_.
-Chaque groupe représente un service fourni par Azure, et les sous-groupes divisent les commandes pour ces services en regroupements logiques.
+Les commandes dans l’interface CLI sont classées par _commandes_ de _groupes_. Chaque groupe représente un service Azure, et les commandes agissent sur ce service.
 
 Pour rechercher des commandes, utilisez la commande [az find](/cli/azure/reference-index#az-find). Par exemple, pour rechercher des noms de commandes contenant `secret`, utilisez la commande suivante :
 
@@ -57,7 +55,7 @@ Pour rechercher des commandes, utilisez la commande [az find](/cli/azure/referen
 az find -q secret
 ```
 
-Si vous savez avec quel groupe de commandes vous souhaitez travailler, l’argument `--help` constitue peut-être un meilleur choix. Il n’affiche pas que des informations détaillées pour une commande, mais lorsqu’il est utilisé avec un groupe de commandes, il affiche toutes les sous-commandes disponibles. Par exemple, lorsque vous travaillez avec des groupes de sécurité réseau (NSG), vous pouvez trouver les sous-groupes et commandes NSG disponibles.
+Utilisez l’argument `--help` pour obtenir une liste complète des commandes et des sous-groupes d’un groupe. Par exemple, pour trouver les commandes CLI pour fonctionner avec des groupes de sécurité réseau (NSG) :
 
 ```azurecli-interactive
 az network nsg --help
@@ -85,7 +83,7 @@ az interactive
 
 Pour plus d’informations sur le mode interactif, consultez [Mode interactif Azure CLI 2.0](interactive-azure-cli.md).
 
-Il existe également un [plug-in Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli) qui propose une expérience interactive, comprenant la saisie semi-automatique et le survol de la documentation.
+Il existe également un [plug-in Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli) qui propose une expérience interactive, comprenant l’autocomplétion et le survol de la documentation.
 
 ## <a name="learn-cli-basics-with-quickstarts-and-tutorials"></a>Apprendre les concepts de base CLI à l’aide des démarrages rapides et des didacticiels
 
@@ -94,7 +92,7 @@ Pour vous aider à démarrer avec l’interface Azure CLI 2.0, essayez un didact
 > [!div class="nextstepaction"]
 > [Créer des machines virtuelles avec le didacticiel Azure CLI 2.0](azure-cli-vm-tutorial.yml)
 
-Si vous préférez vous concentrer sur d’autres services, il existe plusieurs Démarrages rapides pour les services Azure qui utilisent l’interface CLI.
+Il existe également des guides de démarrage rapide pour les autres services populaires.
 
 * [Créer un compte de stockage à l’aide d’Azure CLI](/azure/storage/common/storage-quickstart-create-storage-account-cli)
 * [Transférer des objets vers/à partir du stockage blob Azure à l’aide de l’interface CLI](/azure/storage/blobs/storage-quickstart-blobs-cli)

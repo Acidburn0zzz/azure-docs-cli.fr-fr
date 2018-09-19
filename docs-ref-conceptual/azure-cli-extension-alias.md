@@ -4,21 +4,21 @@ description: Comment utiliser l’extension d’alias Azure CLI 2.0
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 05/16/2018
+ms.date: 09/07/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 39996693d6b796c2d9a45cd909121829f00291a8
-ms.sourcegitcommit: 8b4629a42ceecf30c1efbc6fdddf512f4dddfab0
+ms.openlocfilehash: a2cd277640ab0a55d2e1da5ecb491e72eee1e0df
+ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2018
-ms.locfileid: "34306265"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44388624"
 ---
 # <a name="the-azure-cli-20-alias-extension"></a>L’extension d’alias Azure CLI 2.0
 
-L’extension d’alias permet aux utilisateurs de définir des commandes personnalisées pour l’interface Azure CLI, à l’aide des commandes existantes. Avec les alias, votre workflow demeure concis et simple grâce aux raccourcis. De plus, vous être en mesure de recourir à des arguments positionnels. Comme les alias sont alimentés par le moteur de modèles Jinja2, ils prennent bien souvent en charge le traitement avancé des arguments.
+L’extension d’alias permet aux utilisateurs de définir des commandes personnalisées pour l’interface Azure CLI, à l’aide des commandes existantes. Les alias aident à garantir une simplicité dans votre flux de travail en y autorisant les raccourcis. Comme les alias sont alimentés par le moteur de modèles Jinja2, ils prennent bien souvent en charge le traitement avancé des arguments.
 
 > [!NOTE]
 > L’extension d’alias est en préversion publique. Les fonctionnalités et le format du fichier de configuration peuvent changer.
@@ -45,9 +45,9 @@ Name
 alias
 ```
 
-## <a name="keep-the-extension-up-to-date"></a>Maintenir l’extension à jour
+## <a name="keep-the-extension-up-to-date"></a>Maintenez l’extension à jour
 
-L’extension d’alias est en cours de développement actif ; de nouvelles versions sont régulièrement publiées. Ces nouvelles versions ne sont pas automatiquement installées lors des mises à jour de l’interface CLI. Installez les mises à jour de l’extension avec [az extension update](/cli/azure/extension#az-extension-update).
+L’extension d’alias est en cours de développement actif ; de nouvelles versions sont régulièrement publiées. Les nouvelles versions ne sont pas installées lorsque vous mettez à jour l’interface CLI. Installez les mises à jour de l’extension avec [az extension update](/cli/azure/extension#az-extension-update).
 
 ```azurecli-interactive
 az extension update --name alias
@@ -55,7 +55,7 @@ az extension update --name alias
 
 ## <a name="manage-aliases-for-the-azure-cli"></a>Gestion des alias pour Azure CLI
 
-L’extension de l’alias fournit des commandes pratiques et familières pour gérer les alias. Pour afficher toutes les commandes disponibles et les détails de paramètres, appelez la commande de l’alias avec `--help`.
+L’extension d’alias vous permet de créer et de gérer les alias pour d’autres commandes CLI. Pour afficher toutes les commandes disponibles et les détails de paramètres, exécutez la commande de l’alias avec `--help`.
 
 ```azurecli-interactive
 az alias --help
@@ -115,7 +115,7 @@ Lorsque vous exécutez cette commande, vous octroyez des valeurs aux arguments p
 az get-vm-ip MyResourceGroup MyVM
 ```
 
-Vous pouvez également utiliser des variables d’environnement dans les commandes appelées par alias, qui sont évaluées au moment de l’exécution. Le prochain exemple ajoute l’alias `create-rg`, qui crée un groupe de ressources dans `eastus` et ajoute une balise `owner`. Cette balise se voit affecter la valeur de la variable d’environnement local `USER`.
+Vous pouvez également utiliser des variables d’environnement dans les commandes alias, qui sont évaluées au moment de l’exécution. Le prochain exemple ajoute l’alias `create-rg`, qui crée un groupe de ressources dans `eastus` et ajoute une balise `owner`. Cette balise se voit affecter la valeur de la variable d’environnement local `USER`.
 
 ```azurecli-interactive
 az alias create \
@@ -127,7 +127,7 @@ Pour enregistrer les variables d’environnement à l’intérieur de la command
 
 ## <a name="process-arguments-using-jinja2-templates"></a>Traiter les arguments à l’aide des modèles Jinja2
 
-La substitution d’argument dans l’extension d’alias est effectuée par [Jinja2](http://jinja.pocoo.org/docs/2.10/), ce qui vous donne un accès illimité aux fonctionnalités du moteur de modèles Jinja2. Les modèles prennent en charge différentes actions, comme l’extraction et la substitution des données sur les chaînes.
+La substitution d’argument dans l’extension d’alias est effectuée par [Jinja2](http://jinja.pocoo.org/docs/2.10/). Les modèles Jinja2 permettent de manipuler les arguments.
 
 Avec les modèles Jinja2, vous pouvez écrire des alias qui acceptent des types d’arguments supplémentaires par rapport à la commande sous-jacente. Par exemple, vous pouvez développer un alias acceptant une URL de stockage. Par la suite, cette URL est analysée afin de transmettre les noms de compte et de conteneur à la commande de stockage.
 
@@ -150,7 +150,7 @@ Une autre façon de créer et de modifier des alias est de modifier le fichier d
 command = invoked_commands
 ```
 
-Pour les alias qui contiennent les arguments de position, le format des commandes alias est :
+Pour les alias qui possèdent des arguments de position, le format des commandes alias est :
 
 ```ini
 [alias_name {{ arg1 }} {{ arg2 }} ...]
@@ -159,7 +159,7 @@ command = invoked_commands_including_args
 
 ## <a name="create-an-alias-command-with-arguments-via-the-alias-configuration-file"></a>Créer une commande alias avec des arguments via le fichier de configuration d’alias
 
-Voici un fichier de configuration d’alias contenant un exemple de commande alias avec des arguments, qui obtient l’adresse IP publique pour une machine virtuelle. Assurez-vous que la commande appelée est dans une ligne unique et contient les mêmes arguments définis dans l’alias.
+L’exemple suivant illustre un alias pour une commande avec des arguments. Cette commande obtient l’adresse IP publique pour une machine virtuelle. Les commandes d’un alias doivent toutes se trouver sur une seule ligne et utiliser tous les arguments dans le nom d’alias.
 
 ```ini
 [get-vm-ip {{ resourceGroup }} {{ vmName }}]
@@ -174,4 +174,4 @@ Pour désinstaller l’extension, utilisez la commande [az extension remove](/cl
 az extension remove --name alias
 ```
 
-Si vous procédez à la désinstallation en raison d’un bogue ou d’un problème lié à l’extension, veuillez [signaler un incident GitHub](https://github.com/Azure/azure-cli-extensions/issues) afin que nous puissions réfléchir à la correction.
+Si vous avez procédé à la désinstallation en raison d’un bogue ou d’un problème lié à l’extension, veuillez [signaler un incident GitHub](https://github.com/Azure/azure-cli-extensions/issues) afin que nous puissions réfléchir à la correction.

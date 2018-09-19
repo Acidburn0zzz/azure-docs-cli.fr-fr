@@ -9,16 +9,16 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 7a50682d549f6383e68128f2c2aef02dc2877a8e
-ms.sourcegitcommit: 83826ca154c9f32c6091c63ce4b3e480694ba8d1
+ms.openlocfilehash: 277d9d3423af4941fb7f7fb57130fa1b7af7d32e
+ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/09/2018
-ms.locfileid: "43144892"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44388335"
 ---
 # <a name="run-azure-cli-20-in-a-docker-container"></a>Exécuter Azure CLI 2.0 dans un conteneur Docker
 
-Vous pouvez utiliser Docker pour exécuter un conteneur Linux autonome avec Azure CLI 2.0 préinstallé. Docker vous permet de commencer rapidement avec un environnement dans lequel vous pouvez essayer l’interface de ligne de commande pour décider si elle vous convient, ou utiliser notre image comme une base pour votre propre déploiement.
+Vous pouvez utiliser Docker pour exécuter un conteneur Linux autonome avec Azure CLI 2.0 préinstallé. Docker vous permet de vous familiariser rapidement avec un environnement isolé pour pouvoir y exécuter l’interface CLI. L’image peut également être utilisée comme base pour vos propres déploiements.
 
 ## <a name="run-in-a-docker-container"></a>Exécution dans un conteneur Docker
 
@@ -29,7 +29,7 @@ Installez l’interface de ligne de commande à l’aide de `docker run`.
    ```
 
 > [!NOTE]
-> Si vous souhaitez sélectionner les clés SSH à partir de votre environnement utilisateur, vous pouvez utiliser `-v ${HOME}/.ssh:/root/.ssh` pour monter vos clés SSH dans l’environnement.
+> Si vous souhaitez sélectionner les clés SSH à partir de votre environnement utilisateur, utilisez `-v ${HOME}/.ssh:/root/.ssh` pour monter vos clés SSH dans l’environnement.
 >
 > ```bash
 > docker run -it -v ${HOME}/.ssh:/root/.ssh microsoft/azure-cli
@@ -43,7 +43,7 @@ Pour en savoir plus sur les différentes méthodes d’authentification, consult
 
 ## <a name="update-docker-image"></a>Mise à jour d’une image Docker
 
-La mise à jour avec Docker nécessite l’extraction de la nouvelle image et la recréation de tous les conteneurs existants. Pour cette raison, évitez d’utiliser un conteneur hébergeant l’interface de ligne de commande comme magasin de données.
+La mise à jour avec Docker nécessite l’extraction de la nouvelle image et la recréation de tous les conteneurs existants. Pour cette raison, évitez d’utiliser un conteneur hébergeant l’interface CLI comme magasin de données.
 
 Mettre à jour votre image locale avec `docker pull`.
 

@@ -4,17 +4,17 @@ description: Découvrez comment créer et utiliser un principal du service avec 
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 05/16/2018
+ms.date: 09/07/2018
 ms.topic: conceptual
 ms.technology: azure-cli
 ms.devlang: azure-cli
 ms.service: role-based-access-control
-ms.openlocfilehash: 3f20892e846bd07f8e97ccf788d05c4305fe3301
-ms.sourcegitcommit: 83826ca154c9f32c6091c63ce4b3e480694ba8d1
+ms.openlocfilehash: 5f98fd8d3897b11a9b37eefa6295b8b25b2b1c95
+ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/09/2018
-ms.locfileid: "43144872"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44388437"
 ---
 # <a name="create-an-azure-service-principal-with-azure-cli-20"></a>Créer un principal du service avec Azure CLI 2.0
 
@@ -81,7 +81,7 @@ Azure CLI 2.0 fournit les commandes suivantes pour gérer les attributions de r�
 * [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create)
 * [az role assignment delete](/cli/azure/role/assignment#az-role-assignment-delete)
 
-Un principal du service a le rôle **Contributor** (Collaborateur) par défaut. Ce rôle dispose des autorisations complètes de lecture et d’écriture dans un compte Azure et n’est généralement pas approprié pour les applications. Le rôle **Reader** est plus restrictif et constitue un accès en lecture seule.  Pour plus d’informations sur le contrôle d’accès en fonction du rôle (RBAC) et les rôles, consultez [RBAC : rôles intégrés](/azure/active-directory/role-based-access-built-in-roles).
+Un principal du service a le rôle **Contributor** (Collaborateur) par défaut. Ce rôle dispose des autorisations complètes de lecture et d’écriture dans un compte Azure et n’est pas approprié pour les applications. Le rôle **Reader** est plus restrictif et constitue un accès en lecture seule.  Pour plus d’informations sur le contrôle d’accès en fonction du rôle (RBAC) et les rôles, consultez [RBAC : rôles intégrés](/azure/active-directory/role-based-access-built-in-roles).
 
 Cet exemple ajoute le rôle **Lecteur** et supprime le rôle **Contributeur**.
 
@@ -103,7 +103,7 @@ az role assignment list --assignee APP_ID
 
 ## <a name="sign-in-using-the-service-principal"></a>Se connecter en tant que principal du service
 
-Vous pouvez tester les informations d’identification et les autorisations du principal du service en vous connectant sous ce dernier dans Azure CLI. Connectez-vous en tant que nouveau principal du service à l’aide de `appId`, `tenant`et des valeurs des informations d’identification. Les informations d’authentification que vous fournissez changent selon que vous avez choisi de créer le principal du service avec un mot de passe ou un certificat.
+Vous pouvez tester les informations d’identification et les autorisations du principal du service en vous connectant sous ce dernier dans Azure CLI. Connectez-vous en tant que nouveau principal du service à l’aide de `appId`, `tenant`et des valeurs des informations d’identification. Utilisez le type d’authentification avec lequel le principal de service à été créé.
 
 Pour vous connecter avec un mot de passe, vous devez le fournir en tant que paramètre d’argument.
 
@@ -119,7 +119,7 @@ az login --service-principal --username APP_ID --tenant TENANT_ID --password PAT
 
 ## <a name="reset-credentials"></a>Réinitialiser les informations d’identification
 
-Si vous oubliez les informations d’identification relatives à un principal de service, il est possible de les réinitialiser à l’aide de la commande [az ad sp reset-credentials](https://docs.microsoft.com/en-us/cli/azure/ad/sp#az-ad-sp-reset-credentials). Les mêmes restrictions et options de création d’un principal de service s’appliquent également ici.
+Si vous oubliez les informations d’identification relatives à un principal de service, il est possible de les réinitialiser à l’aide de la commande [az ad sp credential reset](/cli/azure/ad/sp/credential#az-ad-sp-credential-reset). Les mêmes restrictions et options de création d’un principal de service s’appliquent également ici.
 
 ```azurecli-interactive
 az ad sp credential reset --name APP_ID --password NEW_PASSWORD

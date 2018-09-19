@@ -4,17 +4,17 @@ description: Installation de l’interface de ligne de commande Azure CLI 1.0 p
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 03/20/2017
+ms.date: 09/09/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 5f185e02217d6a3b54a9c252825c0f3fed3ab09e
-ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
+ms.openlocfilehash: dd2d8658819c03742ae65c639717837ca940659e
+ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2018
-ms.locfileid: "38967671"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44388607"
 ---
 # <a name="install-the-azure-cli-10"></a>Installer l’interface de ligne de commande Azure CLI 1.0
 
@@ -67,7 +67,7 @@ Si vous utilisez un ordinateur Mac ou Windows, les programmes d’installation d
 
 ## <a name="option-3-use-a-docker-container"></a>Option 3 : Utiliser un conteneur Docker
 
-Si vous avez configuré votre ordinateur comme hôte [Docker](https://docs.docker.com/engine/understanding-docker/) , vous pouvez exécuter la dernière interface de ligne de commande Azure CLI 1.0 dans un conteneur Docker. Exécutez la commande suivante (sur les distributions Linux, vous devrez peut-être utiliser **sudo**.) :
+Si vous avez configuré votre ordinateur comme hôte [Docker](https://docs.docker.com/engine/understanding-docker/) , vous pouvez exécuter la dernière interface de ligne de commande Azure CLI 1.0 dans un conteneur Docker. Exécutez la commande (sur les distributions Linux, vous devrez peut-être utiliser **sudo**) :
 
 ```bash
 docker run -it microsoft/azure-cli:0.10.17
@@ -75,7 +75,7 @@ docker run -it microsoft/azure-cli:0.10.17
 
 ## <a name="run-azure-cli-10-commands"></a>Exécution des commandes Azure CLI 1.0
 
-Une fois l’interface de ligne de commande Azure CLI 1.0 installée, exécutez la commande **azure** depuis l’interface de ligne de commande utilisateur (Bash, Terminal, invite de ligne de commande, etc.). Par exemple, pour exécuter la commande d’aide, saisissez ce qui suit :
+Une fois Azure CLI 1.0 installée, exécutez la commande **azure** depuis votre interface utilisateur de ligne de commande. Par exemple, pour exécuter la commande d’aide :
 
 ```azurecli
 azure help
@@ -88,13 +88,13 @@ azure help
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 ```
 
-Pour afficher la version de l’interface Azure CLI 1.0 que vous avez installée, saisissez la commande suivante :
+Pour afficher la version de l’interface Azure CLI 1.0 que vous avez installée, saisissez la commande :
 
 ```azurecli
 azure --version
 ```
 
-Vous avez terminé l’installation. Pour accéder à toutes les commandes de l’interface de ligne de commande et travailler avec vos propres ressources, [connectez-vous à votre abonnement Azure à partir de l’interface de ligne de commande Azure](/cli/azure/authenticate-azure-cli).
+Pour accéder à toutes les commandes de l’interface de ligne de commande, [connectez-vous sur votre abonnement Azure à partir de Azure CLI](/cli/azure/authenticate-azure-cli).
 
 > [!NOTE]
 > Lorsque vous utilisez l’interface de ligne de commande Azure pour la première fois, vous voyez un message vous demandant si vous souhaitez autoriser Microsoft à recueillir des informations d’utilisation. La participation se fait sur la base du volontariat. Si vous choisissez de participer, vous pouvez arrêter à tout moment en exécutant `azure telemetry --disable`. Pour activer la participation, exécutez `azure telemetry --enable`.
@@ -130,8 +130,8 @@ echo 'source ~/azure.completion.sh' >> ~/.bash_profile
 * Pour plus d'informations sur l'interface de ligne de commande Azure, télécharger un code source, signaler des problèmes ou contribuer au projet, voir [Référentiel GitHub pour l'interface de ligne de commande Azure](https://github.com/azure/azure-xplat-cli)(en anglais).
 * Si vous avez des questions sur l’utilisation de l’interface de ligne de commande Azure ou sur l’utilisation d’Azure, consultez les [forums Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurescripting).
 
-[mac-installer]: http://aka.ms/mac-azure-cli
-[windows-installer]: http://aka.ms/webpi-azure-cli
-[linux-installer]: http://aka.ms/linux-azure-cli
+[mac-installer]: https://aka.ms/mac-azure-cli
+[windows-installer]: https://aka.ms/webpi-azure-cli
+[linux-installer]: https://aka.ms/linux-azure-cli
 [cliasm]: /cli/azure/get-started-with-az-cli2
 [cliarm]: ./virtual-machines/azure-cli-arm-commands.md

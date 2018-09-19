@@ -4,21 +4,21 @@ description: Apprenez à mettre la sortie des commandes Azure CLI 2.0 au format 
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 05/16/2018
+ms.date: 09/07/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: b402ce89cbf51adb3d521a604e992dd1fb5a42fa
-ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
+ms.openlocfilehash: 07a5e9d913257d6aeb20a68263a6256ffadbe627
+ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2018
-ms.locfileid: "38967603"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44388505"
 ---
 # <a name="output-formats-for-azure-cli-20-commands"></a>Formats de sortie pour les commandes Azure CLI 2.0
 
-Azure CLI 2.0 utilise json comme option de sortie par défaut, mais vous pouvez mettre en forme la sortie des commandes de différentes façons.  Utilisez le paramètre `--output` (ou `--out` ou `-o`) pour formater la sortie de la commande avec l’un des types de sortie indiqués dans le tableau suivant :
+Azure CLI 2.0 utilise JSON comme format de sortie par défaut, mais il offre d’autres formats.  Utilisez le paramètre `--output` (`--out` ou `-o`) pour formater la sortie de l’interface CLI. Les valeurs d’argument et les types de sortie sont :
 
 --output | Description
 ---------|-------------------------------
@@ -67,7 +67,7 @@ Certains champs de la sortie suivante ont été omis par souci de concision et d
 
 ## <a name="table-output-format"></a>Format de sortie de la table
 
-Le format de sortie `table` fournit une sortie brute formatée en tant que lignes et colonnes de données assemblées, ce qui facilite la lecture et l’analyse. Les objets imbriqués ne sont pas inclus dans la sortie de la table, mais peuvent toujours être filtrés dans le cadre d’une requête. Certains champs sont également omis des données de table. Ce format est donc conseillé lorsque vous souhaitez un aperçu des données rapide et consultable à l’échelle humaine.
+Le format `table` imprime la sortie sous forme de tableau ASCII, ce qui la rend facile à lire et à analyser. Les objets imbriqués ne sont pas inclus dans le tableau de sortie, mais peuvent toujours être filtrés dans le cadre d’une requête. Certains champs ne sont pas compris dans le tableau. Ainsi, ce format est le plus approprié si vous souhaitez obtenir un aperçu des données rapide et consultable pour un être humain.
 
 ```azurecli-interactive
 az vm list --out table
@@ -100,7 +100,7 @@ RGDEMO001   KBDemo020
 ```
 
 > [!NOTE]
-> Certaines clés sont filtrées et non pas imprimées dans l’affichage de table. Il s’agit de `id`, `type`, et `etag`. Si vous avez besoin de les voir dans votre sortie, vous pouvez utiliser la fonction JMESPath de régénération des clés pour modifier le nom de clé et éviter le filtrage.
+> Certaines clés ne sont pas imprimées dans l’affichage du tableau par défaut. Il s’agit de `id`, `type`, et `etag`. Si vous avez besoin de les voir dans votre sortie, vous pouvez utiliser la fonction JMESPath de régénération des clés pour modifier le nom de clé et éviter le filtrage.
 >
 > ```azurecli
 > az vm list --query "[].{objectID:id}" -o table
@@ -110,7 +110,7 @@ Pour plus d’informations sur l’utilisation des requêtes pour filtrer les do
 
 ## <a name="tsv-output-format"></a>Format de sortie TSV
 
-Le format de sortie `tsv` retourne des valeurs séparées par des tabulations et des sauts de ligne sans mise en forme, clés ou autres symboles supplémentaires. Avec ce format, il est facile de consommer la sortie dans d’autres commandes et outils qui ont besoin de traiter le texte dans une forme donnée. Comme pour le format `table`, l’option de sortie `tsv` n’imprime pas les objets imbriqués.
+Le format de sortie `tsv` retourne des valeurs séparées par des tabulations et des sauts de ligne sans mise en forme, clés ou autres symboles supplémentaires. Avec ce format, il est facile de consommer la sortie dans d’autres commandes et outils qui ont besoin de traiter le texte dans une forme donnée. Comme pour le format `table`, le format `tsv` n’imprime pas les objets imbriqués.
 
 L’exécution de l’exemple précédent avec l’option `tsv` retourne le résultat séparé par des tabulations.
 
@@ -126,7 +126,7 @@ None    None        /subscriptions/.../resourceGroups/RGDEMO001/providers/Micros
 None    None        /subscriptions/.../resourceGroups/RGDEMO001/providers/Microsoft.Compute/virtualMachines/KBDemo02None    None    westus    KBDemo020            None    Succeeded    RGDEMO001    None            Microsoft.Compute/virtualMachines    36baa9-9b80-48a8-b4a9-854c7a858ece
 ```
 
-L’exemple suivant montre comment la sortie `tsv` peut être redirigée vers d’autres commandes sur les systèmes UNIX pour extraire des données plus spécifiques. La commande `grep` sélectionne les éléments contenant le texte « RGD », puis la commande `cut` sélectionne le huitième champ (séparé par des tabulations) pour afficher le nom de la machine virtuelle dans la sortie.
+L’exemple suivant montre comment la sortie `tsv` peut être transmise à d’autres commandes dans Bash. La commande `grep` sélectionne les éléments contenant le texte « RGD », puis la commande `cut` sélectionne le huitième champ pour afficher le nom de la machine virtuelle dans la sortie.
 
 ```bash
 az vm list --out tsv | grep RGD | cut -f8

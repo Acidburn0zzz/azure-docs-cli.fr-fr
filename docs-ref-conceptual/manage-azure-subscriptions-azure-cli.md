@@ -4,48 +4,49 @@ description: Gérez les abonnements Azure avec Azure CLI.
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 06/15/2018
+ms.date: 09/09/2018
 ms.topic: conceptual
 ms.produdct: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
 ms.service: active-directory
-ms.openlocfilehash: f5fdfba785d849b1fd4f5919870ec9c341bb9c7d
-ms.sourcegitcommit: 64f2c628e83d687d0e172c01f13d71c8c39a8040
+ms.openlocfilehash: 53bfa3ed61c13f2b8716a56af8741d03f669a522
+ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2018
-ms.locfileid: "38967807"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44388284"
 ---
-# <a name="manage-multiple-azure-subscriptions"></a>Gérer plusieurs abonnements Azure
+# <a name="use-multiple-azure-subscriptions"></a>Utilisez plusieurs abonnements Azure
 
-La plupart des utilisateurs Azure ne possèdent qu’un seul abonnement. Toutefois, si vous faites partie de plusieurs organisations ou si votre organisation a divisé l’accès à certaines ressources dans les regroupements, vous pouvez avoir plusieurs abonnements dans Azure. Plusieurs abonnements peuvent être facilement gérés avec l’interface CLI, soit en définissant un abonnement global pour toutes les commandes, ou en sélectionnant un abonnement sur une base par commande.
+La plupart des utilisateurs Azure ne possèdent qu’un seul abonnement. Toutefois, si vous faites partie de plus d’une organisation, ou si votre organisation a divisé l’accès à certaines ressources dans les regroupements, vous pouvez avoir plusieurs abonnements dans Azure. L’interface CLI prend en charge la sélection d’un abonnement à la fois au niveau global et par commande.
 
 ## <a name="tenants-users-and-subscriptions"></a>Locataires, utilisateurs et abonnements
 
-La différence entre les locataires, les utilisateurs et les abonnements dans Azure peut prêter à confusion. Un _locataire_ est l’entité d’Azure Active Directory qui comprend une organisation complète. Ce locataire possède au moins un _abonnement_ et _utilisateur_. Un utilisateur est un individu qui n’est associé qu’à un seul locataire, c’est-à-dire à l’organisation auquel il appartient. Les utilisateurs sont les comptes qui se connectent à Azure pour configurer et utiliser les ressources.
+La différence entre les locataires, les utilisateurs et les abonnements dans Azure peut prêter à confusion. Un _locataire_ correspond à l’entité d’Azure Active Directory qui inclut une organisation complète. Ce locataire possède au moins un _abonnement_ et _utilisateur_. Un utilisateur est un individu qui n’est associé qu’à un seul locataire, c’est-à-dire à l’organisation auquel il appartient. Les utilisateurs correspondent aux comptes qui se connectent à Azure afin de configurer, de gérer et d’utiliser des ressources.
 Un utilisateur peut avoir accès à plusieurs _abonnements_, qui sont les contrats avec Microsoft pour utiliser les services de cloud, y compris Azure. Chaque ressource est associée à un abonnement.
 
 Pour en savoir plus sur les différences entre les locataires, les utilisateurs et les abonnements, consultez le [Dictionnaire de terminologie cloud Azure](/azure/azure-glossary-cloud-terminology).  Pour savoir comment ajouter un nouvel abonnement à votre locataire Azure Active Directory, consultez [Comment ajouter un abonnement Azure à Azure Active Directory](/azure/active-directory/active-directory-how-subscriptions-associated-directory).
-Si vous travaillez avec plusieurs locataires, vous devrez peut-être vous connecter à un locataire spécifique. Pour ce faire, consultez [Se connecter avec Azure CLI](/cli/azure/authenticate-azure-cli).
+Pour savoir comment se connecter à un client en particulier, consultez la rubrique [Se connecter avec Azure CLI](/cli/azure/authenticate-azure-cli).
 
-## <a name="work-with-multiple-subscriptions"></a>Utilisation de plusieurs abonnements
+## <a name="change-the-active-subscription"></a>Modifier l’abonnement actif 
 
-Pour accéder aux ressources contenues dans un abonnement, vous devez basculer vers votre abonnement actif. Un basculement de votre abonnement peut être effectué pour toutes les commandes Azure CLI avec [az account set](/cli/azure/account#az-account-set), ou par commande à l’aide de l’argument `--subscription`.
+Pour accéder aux ressources dédiées à un abonnement, vous devez changer votre abonnement actif, ou bien utiliser l’argument `--subscription`. Le changement de votre abonnement pour toutes les commandes s’effectue avec [az account set](/cli/azure/account#az-account-set).
 
-Pour commencer, vous avec besoin d’une liste de vos abonnements disponibles. Pour l’obtenir, utilisez la commande [az account list](/cli/azure/account#az-account-list) :
+Pour changer votre abonnement actif :
 
-```azurecli-interactive
-az account list --output table
-```
+1. Obtenez une liste de vos abonnements à l’aide de la commande [az account list](/cli/azure/account#az-account-list) :
 
-Pour modifier l’abonnement actif au niveau global, utilisez `az account set` avec l’ID d’abonnement ou le nom de l’abonnement :
+    ```azurecli-interactive
+    az account list --output table
+    ```
+2. Utilisez `az account set` avec l’ID d’abonnement ou le nom avec lequel vous souhaitez effectuer le changement.
 
-```azurecli-interactive
-az account set --subscription "My Demos"
-```
+    ```azurecli-interactive
+    az account set --subscription "My Demos"
+    ```
 
-Pour utiliser un abonnement spécifique pour une commande, utilisez simplement l’argument `--subscription`. Cet argument accepte soit un ID d’abonnement, soit un nom d’abonnement :
+Pour exécuter une seule commande avec un autre abonnement, utilisez l’argument `--subscription`. Cet argument accepte soit un ID d’abonnement, soit un nom d’abonnement :
 
 ```azurecli-interactive
 az vm create --subscription "My Demos" --resource-group MyGroup --name NewVM --image Ubuntu
