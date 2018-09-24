@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 277d9d3423af4941fb7f7fb57130fa1b7af7d32e
-ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
+ms.openlocfilehash: f22962717ec6a623dd69a266f660b67f2523b204
+ms.sourcegitcommit: d93b0a2bcfb0d164ef90d6d4618f0552609a8ea6
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44388335"
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "46470029"
 ---
 # <a name="run-azure-cli-20-in-a-docker-container"></a>Exécuter Azure CLI 2.0 dans un conteneur Docker
 
@@ -60,3 +60,10 @@ Après l’arrêt de tous les conteneurs exécutant l’image de l’interface C
 ```bash
 docker rmi microsoft/azure-cli
 ```
+
+## <a name="next-steps"></a>Étapes suivantes
+
+Maintenant que vous êtes prêt à utiliser l’interface CLI, découvrez ses fonctionnalités et ses commandes courantes.
+
+> [!div class="nextstepaction"]
+> [Prise en main de l’interface Azure CLI](get-started-with-azure-cli.md)

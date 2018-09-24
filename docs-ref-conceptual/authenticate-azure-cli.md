@@ -10,18 +10,18 @@ ms.technology: azure-cli
 ms.devlang: azurecli
 ms.service: active-directory
 ms.component: authentication
-ms.openlocfilehash: ef77f407284752ad4f4a1585f8a4036b32b3eb1b
-ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
+ms.openlocfilehash: f6f3e8bc015420795dda48da093bc92bbf246529
+ms.sourcegitcommit: 8e6e3129f8f4824a8acfa12edb5dae52466d4be8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44388318"
+ms.lasthandoff: 09/15/2018
+ms.locfileid: "45626922"
 ---
 # <a name="sign-in-with-azure-cli-20"></a>Se connecter avec Azure CLI 2.0
 
 Il existe plusieurs types d’authentification pour l’interface Azure CLI. Le moyen le plus simple pour commencer est d’utiliser [Azure Cloud Shell](/azure/cloud-shell/overview), qui vous connecte automatiquement. Localement, vous pouvez vous connecter de manière interactive via votre navigateur avec la commande `az login`. Lors de l’écriture de scripts, l’approche recommandée consiste à utiliser des principaux du service. En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir la sécurité de votre automatisation.
 
-Aucune de vos informations de connexion n’est stockée par l’interface CLI. Au lieu de cela, un jeton d’authentification est généré par Azure, puis stocké. Une fois connecté, votre jeton d’authentification est valide jusqu’à 90 jours sans être utilisé.
+Aucune de vos informations de connexion n’est stockée par l’interface CLI. Au lieu de cela, un [jeton d’actualisation d’authentification](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-id-and-access-tokens#refresh-tokens) est généré par Azure, puis stocké. Depuis août 2018, ce jeton est révoqué après 90 jours d’inactivité, mais cette valeur peut être modifiée par Microsoft ou votre administrateur client. Une fois le jeton révoqué, vous recevez un message de l’interface CLI indiquant que vous devez vous reconnecter.
 
 Une fois connecté, les commandes CLI sont exécutées sur votre abonnement par défaut. Si vous possédez plusieurs abonnements, vous pouvez [modifier votre abonnement par défaut](manage-azure-subscriptions-azure-cli.md).
 

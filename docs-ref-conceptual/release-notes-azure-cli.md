@@ -4,19 +4,123 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI 2.0
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 08/28/2018
+ms.date: 09/21/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 5d179a49ad64201270be7848a72535b871081125
-ms.sourcegitcommit: c90bc90c9a2b3adf2836d7cfb84951cd3ab51317
+ms.openlocfilehash: f6dd04e088651527b1ac13e719b7fc3c5522b310
+ms.sourcegitcommit: d93b0a2bcfb0d164ef90d6d4618f0552609a8ea6
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/06/2018
-ms.locfileid: "43828743"
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "46470063"
 ---
 # <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+
+## <a name="september-21-2018"></a>21 septembre 2018
+
+Version 20.46
+
+### <a name="acr"></a>ACR
+* Ajout de commandes de tâche ACR
+* Ajout de la commande d’exécution rapide
+* Groupe de commandes `build-task` déconseillé
+* Ajout du groupe de commandes `helm` pour prendre en charge la gestion des graphiques Helm avec ACR
+* Ajout de la prise en charge de la création idempotent pour les registres managés
+* Ajout d’un indicateur de non-format pour l’affichage des journaux de génération
+
+### <a name="acs"></a>ACS
+* Modification de la commande `install-connector` pour configurer le nom de domaine complet maître AKS
+* Correction de la création d’attribution de rôle pour vnet-subnet-id lorsque le principal de service n’est pas spécifié, et pour skip-role-assignemnt
+
+### <a name="appservice"></a>AppService
+
+* Ajout de la prise en charge de la gestion des opérations (continues et déclenchées) des Webjobs
+* az webapp config set prend en charge la propriété FTS-state. Aussi ajout de la prise en charge de az functionapp config set & show
+* Ajout de la prise en charge de Bring Your Own Storage pour les applications web
+* Ajout de la prise en charge du référencement et de la restauration des applications web supprimées
+
+### <a name="batch"></a>Batch
+* Modification de l’ajout des tâches via `--json-file` pour prendre en charge la syntaxe AddTaskCollectionParameter
+* Mise à jour de la documentation des formats `--json-file` acceptés
+* Ajout de `--max-tasks-per-node-option` à `batch pool create`
+* Modification du comportement de `batch account` pour afficher la connexion au compte si aucune option n’est spécifiée
+
+### <a name="batch-ai"></a>Batch AI 
+* Correction de l’échec de création de compte de stockage automatique dans la commande `batchai cluster create`
+
+### <a name="cognitive-services"></a>Cognitive Services
+* Ajout de Completer pour les arguments `--sku`, `--kind` et `--location`
+* Ajout de la commande `cognitiveservices account list-usage`
+* Ajout de la commande `cognitiveservices account list-kinds`
+* Ajout de la commande `cognitiveservices account list`
+* `cognitiveservices list` déconseillé
+* Modification de `--name` afin de le rendre facultatif pour `cognitiveservices account list-skus`
+
+### <a name="container"></a>Conteneur
+* Ajout de la possibilité de redémarrer et d’arrêter un groupe de conteneurs en cours d’exécution
+* Ajout de `--network-profile` pour autoriser le passage dans un profil réseau
+* Ajout de `--subnet` et `--vnet_name` pour autoriser la création de groupes de conteneurs dans un réseau virtuel
+* Modification de la sortie de table pour afficher l’état du groupe de conteneurs
+
+### <a name="datalake"></a>DataLake
+* Ajout de commandes pour les règles de réseau virtuel
+
+### <a name="interactive-shell"></a>Shell interactif
+* Correction des erreurs sur Windows où les commandes ne s’exécutent pas correctement
+* Correction du problème de chargement de commande dans le Shell interactif provoqué par les objets déconseillés
+
+### <a name="iot"></a>IoT
+* Ajout de la prise en charge du routage des hubs IoT
+
+### <a name="key-vault"></a>Key Vault
+* Correction de l’importation de la clé Key Vault pour les clés RSA
+
+### <a name="network"></a>Réseau
+* Ajout des commandes `network public-ip prefix` pour prendre en charge les fonctionnalités de préfixes d’adresses IP publiques
+* Ajout des commandes `network service-endpoint` pour prendre en charge les fonctionnalités de stratégie de point de terminaison de service
+* Ajout des commandes `network lb outbound-rule` pour prendre en charge la création de règles de trafic sortant d’un équilibreur de charge standard
+* Ajout de `--public-ip-prefix` à `network lb frontend-ip create/update` pour prendre en charge les configurations IP frontales à l’aide de préfixes d’adresses IP publiques
+* Ajout de `--enable-tcp-reset` à `network lb rule/inbound-nat-rule/inbound-nat-pool create/update`
+* Ajout de `--disable-outbound-snat` à `network lb rule create/update`
+* Autoriser `network watcher flow-log show/configure` à être utilisé avec des groupes de sécurité réseau classiques
+* Ajouter la commande `network watcher run-configuration-diagnostic`
+* Correction de la commande `network watcher test-connectivity` et ajout des propriétés `--method`, `--valid-status-codes` et `--headers`
+* `network express-route create/update` : ajout de l’indicateur `--allow-global-reach`
+* `network vnet subnet create/update` : ajout de la prise en charge de `--delegation`
+* Ajout de la commande `network vnet subnet list-available-delegations`
+* `network traffic-manager profile create/update` : ajout de la prise en charge de `--interval`, `--timeout` et `--max-failures` pour les options Deprecated de configuration du moniteur `--monitor-path`, `--monitor-port` et `--monitor-protocol` en faveur de `--path`, `--port`, `--protocol`
+* `network lb frontend-ip create/update` : correction de la logique de réglage de la méthode d’allocation d’adresses IP privées. Si une adresse IP privée est fournie, l’allocation sera statique. Si aucune adresse IP privée n’est fournie, ou qu’une chaîne vide est fournie pour l’adresse IP privée, l’allocation est dynamique.
+* `dns record-set * create/update` : ajout de la prise en charge de `--target-resource`
+* Ajout des commandes `network interface-endpoint` pour interroger les objets de point de terminaison de l’interface
+* Ajout de `network profile show/list/delete` pour la gestion partielle des profils de réseau
+* Ajout des commandes `network express-route peering connection` pour gérer les connexions d’appairage entre les routes ExpressRoutes
+
+### <a name="rdbms"></a>SGBDR
+* Ajout de la prise en charge du service MariaDB
+
+### <a name="reservation"></a>Réservation
+* Ajout de CosmosDb dans le type d’énumération des ressources réservées
+* Ajout de la propriété de nom dans un modèle Patch
+
+### <a name="manage-app"></a>Gérer l’application
+* Correction du bogue dans `managedapp create --kind MarketPlace` à l’origine du blocage de la création d’instance d’une application Marketplace gérée
+* Modification des commandes `feature` afin qu’elles soient limitées aux profils pris en charge
+
+### <a name="role"></a>Rôle
+* Ajout de la prise en charge pour répertorier les appartenances de l’utilisateur à des groupes
+
+### <a name="signalr"></a>SignalR
+* Première version
+
+### <a name="storage"></a>Stockage
+* Ajout du paramètre `--auth-mode login` pour l’utilisation des informations d’identification de l’utilisateur pour autoriser les objets blob et les files d’attente
+* Ajout de `storage container immutability-policy/legal-hold` pour gérer le stockage immuable
+
+### <a name="vm"></a>Machine virtuelle
+* Correction d’un problème `vm create --generate-ssh-keys` qui remplace le fichier de clé privée si le fichier de clé publique est manquant (#4725, #6780)
+* Ajout de la prise en charge pour la galerie d’images partagée via `az sig`
 
 ## <a name="august-28-2018"></a>28 Août 2018
 

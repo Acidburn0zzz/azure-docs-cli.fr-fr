@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 07a5e9d913257d6aeb20a68263a6256ffadbe627
-ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
+ms.openlocfilehash: 1430d817a7e6c10a8f8021cf9d763f62d560ba71
+ms.sourcegitcommit: 8318ce761c279afa4cd45a81a58d83fc38c616bc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44388505"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45561556"
 ---
 # <a name="output-formats-for-azure-cli-20-commands"></a>Formats de sortie pour les commandes Azure CLI 2.0
 
@@ -24,6 +24,7 @@ Azure CLI 2.0 utilise JSON comme format de sortie par défaut, mais il offre d�
 ---------|-------------------------------
 `json`   | Chaîne JSON. Il s’agit du paramètre par défaut.
 `jsonc`  | JSON coloré.
+`yaml`   | YAML, une alternative à JSON pouvant être lue par la machine.
 `table`  | Table ASCII avec des clés en tant qu’en-têtes de colonne.
 `tsv`    | Valeurs séparées par des tabulations, sans clés
 
@@ -63,6 +64,36 @@ Certains champs de la sortie suivante ont été omis par souci de concision et d
           ...
           ...
 ]
+```
+
+## <a name="yaml-output-format"></a>Format de sortie YAML
+
+Le format `yaml` affiche la sortie en tant que [YAML](http://yaml.org/), un format de sérialisation de données en texte brut. YAML est souvent plus simple à lire que JSON et se mappe facilement vers ce format. Certaines applications et commandes CLI utilisent YAML en tant qu’entrée de configuration, plutôt que JSON.
+
+```azurecli-interactive
+az vm list --out yaml
+```
+
+Certains champs de la sortie suivante ont été omis par souci de concision et des informations d’identification ont été remplacées.
+
+```yaml
+- availabilitySet: null
+  diagnosticsProfile: null
+  hardwareProfile:
+    vmSize: Standard_DS1_v2
+  id: /subscriptions/.../resourceGroups/DEMORG1/providers/Microsoft.Compute/virtualMachines/DemoVM010
+  identity: null
+  instanceView: null
+  licenseType: null
+  location: westus
+  name: ExampleVM1
+  networkProfile:
+    networkInterfaces:
+    - id: /subscriptions/.../resourceGroups/DemoRG1/providers/Microsoft.Network/networkInterfaces/DemoVM010Nic
+      primary: null
+      resourceGroup: DemoRG1
+  ...
+...
 ```
 
 ## <a name="table-output-format"></a>Format de sortie de la table
