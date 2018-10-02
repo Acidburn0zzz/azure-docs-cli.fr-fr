@@ -1,6 +1,6 @@
 ---
-title: Se connecter avec Azure CLI 2.0
-description: Se connecter avec Azure CLI 2.0 de façon interactive avec des informations d’identification locales
+title: Se connecter avec Azure CLI
+description: Se connecter avec Azure CLI de façon interactive ou avec des informations d’identification locales
 author: sptramer
 ms.author: sttramer
 manager: carmonm
@@ -8,48 +8,47 @@ ms.date: 09/07/2018
 ms.topic: conceptual
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.service: active-directory
 ms.component: authentication
-ms.openlocfilehash: f6f3e8bc015420795dda48da093bc92bbf246529
-ms.sourcegitcommit: 8e6e3129f8f4824a8acfa12edb5dae52466d4be8
+ms.openlocfilehash: 6176fbbbe58e72ae45fc9769514478ffe4a8fea5
+ms.sourcegitcommit: f7554c00b5d5dca0ec716cbf996eb6654183ec37
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/15/2018
-ms.locfileid: "45626922"
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47237627"
 ---
-# <a name="sign-in-with-azure-cli-20"></a><span data-ttu-id="c6a7a-103">Se connecter avec Azure CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="c6a7a-103">Sign in with Azure CLI 2.0</span></span>
+# <a name="sign-in-with-azure-cli"></a><span data-ttu-id="46dd0-103">Se connecter avec Azure CLI</span><span class="sxs-lookup"><span data-stu-id="46dd0-103">Sign in with Azure CLI</span></span> 
 
-<span data-ttu-id="c6a7a-104">Il existe plusieurs types d’authentification pour l’interface Azure CLI.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-104">There are several authentication types for the Azure CLI.</span></span> <span data-ttu-id="c6a7a-105">Le moyen le plus simple pour commencer est d’utiliser [Azure Cloud Shell](/azure/cloud-shell/overview), qui vous connecte automatiquement.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-105">The easiest way to get started is with [Azure Cloud Shell](/azure/cloud-shell/overview), which automatically logs you in.</span></span> <span data-ttu-id="c6a7a-106">Localement, vous pouvez vous connecter de manière interactive via votre navigateur avec la commande `az login`.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-106">Locally, you can sign in interactively through your browser with the `az login` command.</span></span> <span data-ttu-id="c6a7a-107">Lors de l’écriture de scripts, l’approche recommandée consiste à utiliser des principaux du service.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-107">When writing scripts, the recommended approach is to use service principals.</span></span> <span data-ttu-id="c6a7a-108">En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir la sécurité de votre automatisation.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-108">By granting just the appropriate permissions needed to a service principal, you can keep your automation secure.</span></span>
+<span data-ttu-id="46dd0-104">Il existe plusieurs types d’authentification pour l’interface Azure CLI.</span><span class="sxs-lookup"><span data-stu-id="46dd0-104">There are several authentication types for the Azure CLI.</span></span> <span data-ttu-id="46dd0-105">Le moyen le plus simple pour commencer est d’utiliser [Azure Cloud Shell](/azure/cloud-shell/overview), qui vous connecte automatiquement.</span><span class="sxs-lookup"><span data-stu-id="46dd0-105">The easiest way to get started is with [Azure Cloud Shell](/azure/cloud-shell/overview), which automatically logs you in.</span></span> <span data-ttu-id="46dd0-106">Localement, vous pouvez vous connecter de manière interactive via votre navigateur avec la commande `az login`.</span><span class="sxs-lookup"><span data-stu-id="46dd0-106">Locally, you can sign in interactively through your browser with the `az login` command.</span></span> <span data-ttu-id="46dd0-107">Lors de l’écriture de scripts, l’approche recommandée consiste à utiliser des principaux du service.</span><span class="sxs-lookup"><span data-stu-id="46dd0-107">When writing scripts, the recommended approach is to use service principals.</span></span> <span data-ttu-id="46dd0-108">En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir la sécurité de votre automatisation.</span><span class="sxs-lookup"><span data-stu-id="46dd0-108">By granting just the appropriate permissions needed to a service principal, you can keep your automation secure.</span></span>
 
-<span data-ttu-id="c6a7a-109">Aucune de vos informations de connexion n’est stockée par l’interface CLI.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-109">None of your sign-in information is stored by the CLI.</span></span> <span data-ttu-id="c6a7a-110">Au lieu de cela, un [jeton d’actualisation d’authentification](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-id-and-access-tokens#refresh-tokens) est généré par Azure, puis stocké.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-110">Instead, an [authentication refresh token](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-id-and-access-tokens#refresh-tokens) is generated by Azure and stored.</span></span> <span data-ttu-id="c6a7a-111">Depuis août 2018, ce jeton est révoqué après 90 jours d’inactivité, mais cette valeur peut être modifiée par Microsoft ou votre administrateur client.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-111">As of August 2018 this token is revoked after 90 days of inactivity, but this value can be changed by Microsoft or your tenant administrator.</span></span> <span data-ttu-id="c6a7a-112">Une fois le jeton révoqué, vous recevez un message de l’interface CLI indiquant que vous devez vous reconnecter.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-112">Once the token is revoked you get a message from the CLI saying you need to sign in again.</span></span>
+<span data-ttu-id="46dd0-109">Aucune de vos informations de connexion n’est stockée par l’interface CLI.</span><span class="sxs-lookup"><span data-stu-id="46dd0-109">None of your sign-in information is stored by the CLI.</span></span> <span data-ttu-id="46dd0-110">Au lieu de cela, un [jeton d’actualisation d’authentification](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-id-and-access-tokens#refresh-tokens) est généré par Azure, puis stocké.</span><span class="sxs-lookup"><span data-stu-id="46dd0-110">Instead, an [authentication refresh token](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-id-and-access-tokens#refresh-tokens) is generated by Azure and stored.</span></span> <span data-ttu-id="46dd0-111">Depuis août 2018, ce jeton est révoqué après 90 jours d’inactivité, mais cette valeur peut être modifiée par Microsoft ou votre administrateur client.</span><span class="sxs-lookup"><span data-stu-id="46dd0-111">As of August 2018 this token is revoked after 90 days of inactivity, but this value can be changed by Microsoft or your tenant administrator.</span></span> <span data-ttu-id="46dd0-112">Une fois le jeton révoqué, vous recevez un message de l’interface CLI indiquant que vous devez vous reconnecter.</span><span class="sxs-lookup"><span data-stu-id="46dd0-112">Once the token is revoked you get a message from the CLI saying you need to sign in again.</span></span>
 
-<span data-ttu-id="c6a7a-113">Une fois connecté, les commandes CLI sont exécutées sur votre abonnement par défaut.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-113">After signing in, CLI commands are run against your default subscription.</span></span> <span data-ttu-id="c6a7a-114">Si vous possédez plusieurs abonnements, vous pouvez [modifier votre abonnement par défaut](manage-azure-subscriptions-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="c6a7a-114">If you have multiple subscriptions, you can [change your default subscription](manage-azure-subscriptions-azure-cli.md).</span></span>
+<span data-ttu-id="46dd0-113">Une fois connecté, les commandes CLI sont exécutées sur votre abonnement par défaut.</span><span class="sxs-lookup"><span data-stu-id="46dd0-113">After signing in, CLI commands are run against your default subscription.</span></span> <span data-ttu-id="46dd0-114">Si vous possédez plusieurs abonnements, vous pouvez [modifier votre abonnement par défaut](manage-azure-subscriptions-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="46dd0-114">If you have multiple subscriptions, you can [change your default subscription](manage-azure-subscriptions-azure-cli.md).</span></span>
 
-## <a name="sign-in-interactively"></a><span data-ttu-id="c6a7a-115">Connexion interactive</span><span class="sxs-lookup"><span data-stu-id="c6a7a-115">Sign in interactively</span></span>
+## <a name="sign-in-interactively"></a><span data-ttu-id="46dd0-115">Connexion interactive</span><span class="sxs-lookup"><span data-stu-id="46dd0-115">Sign in interactively</span></span>
 
-<span data-ttu-id="c6a7a-116">La méthode d’authentification par défaut Azure CLI utilise un navigateur web et un jeton d’accès pour la connexion.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-116">The Azure CLI's default authentication method uses a web browser and access token to sign in.</span></span>
+<span data-ttu-id="46dd0-116">La méthode d’authentification par défaut Azure CLI utilise un navigateur web et un jeton d’accès pour la connexion.</span><span class="sxs-lookup"><span data-stu-id="46dd0-116">The Azure CLI's default authentication method uses a web browser and access token to sign in.</span></span>
 
 [!INCLUDE [interactive_login](includes/interactive-login.md)]
 
-## <a name="sign-in-with-credentials-on-the-command-line"></a><span data-ttu-id="c6a7a-117">Connectez-vous à l’aide de vos informations d’identification sur la ligne de commande</span><span class="sxs-lookup"><span data-stu-id="c6a7a-117">Sign in with credentials on the command line</span></span>
+## <a name="sign-in-with-credentials-on-the-command-line"></a><span data-ttu-id="46dd0-117">Connectez-vous à l’aide de vos informations d’identification sur la ligne de commande</span><span class="sxs-lookup"><span data-stu-id="46dd0-117">Sign in with credentials on the command line</span></span>
 
-<span data-ttu-id="c6a7a-118">Fournissez vos informations d’identification d’utilisateur Azure dans la ligne de commande.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-118">Provide your Azure user credentials on the command line.</span></span>
+<span data-ttu-id="46dd0-118">Fournissez vos informations d’identification d’utilisateur Azure dans la ligne de commande.</span><span class="sxs-lookup"><span data-stu-id="46dd0-118">Provide your Azure user credentials on the command line.</span></span>
 
 > [!Note]
-> <span data-ttu-id="c6a7a-119">Cette approche ne fonctionne pas avec les comptes Microsoft ou les comptes pour lesquels l’authentification à deux facteurs est activée.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-119">This approach doesn't work with Microsoft accounts or accounts that have two-factor authentication enabled.</span></span>
+> <span data-ttu-id="46dd0-119">Cette approche ne fonctionne pas avec les comptes Microsoft ou les comptes pour lesquels l’authentification à deux facteurs est activée.</span><span class="sxs-lookup"><span data-stu-id="46dd0-119">This approach doesn't work with Microsoft accounts or accounts that have two-factor authentication enabled.</span></span>
 
 ```azurecli
 az login -u <username> -p <password>
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="c6a7a-120">Si vous souhaitez éviter l’affichage de votre mot de passe sur la console et que vous utilisez `az login` de manière interactive, utilisez la commande `read -s` sous `bash`.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-120">If you want to avoid displaying your password on console and are using `az login` interactively, use the `read -s` command under `bash`.</span></span>
+> <span data-ttu-id="46dd0-120">Si vous souhaitez éviter l’affichage de votre mot de passe sur la console et que vous utilisez `az login` de manière interactive, utilisez la commande `read -s` sous `bash`.</span><span class="sxs-lookup"><span data-stu-id="46dd0-120">If you want to avoid displaying your password on console and are using `az login` interactively, use the `read -s` command under `bash`.</span></span>
 >
 > ```bash
 > read -sp "Azure password: " AZ_PASS && echo && az login -u <username> -p $AZ_PASS
 > ```
 >
-> <span data-ttu-id="c6a7a-121">Dans PowerShell, utilisez la cmdlet `Read-Host -AsSecureString` et la conversion de chaînes sécurisée.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-121">Under PowerShell, use the `Read-Host -AsSecureString` cmdlet and secure string conversion.</span></span>
+> <span data-ttu-id="46dd0-121">Dans PowerShell, utilisez la cmdlet `Read-Host -AsSecureString` et la conversion de chaînes sécurisée.</span><span class="sxs-lookup"><span data-stu-id="46dd0-121">Under PowerShell, use the `Read-Host -AsSecureString` cmdlet and secure string conversion.</span></span>
 >
 > ```powershell
 > $securePass =  Read-Host "Azure password: " -AsSecureString;
@@ -58,36 +57,28 @@ az login -u <username> -p <password>
 > $AzPass = ""
 > ```
 
-## <a name="sign-in-with-a-specific-tenant"></a><span data-ttu-id="c6a7a-122">Se connecter avec un locataire spécifique</span><span class="sxs-lookup"><span data-stu-id="c6a7a-122">Sign in with a specific tenant</span></span>
+## <a name="sign-in-with-a-service-principal"></a><span data-ttu-id="46dd0-122">Connexion avec un principal de service</span><span class="sxs-lookup"><span data-stu-id="46dd0-122">Sign in with a service principal</span></span>
 
-<span data-ttu-id="c6a7a-123">Vous pouvez sélectionner un locataire pour vous connecter avec l’argument `--tenant`.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-123">You can select a tenant to sign in under with the `--tenant` argument.</span></span> <span data-ttu-id="c6a7a-124">La valeur de cet argument peut être un domaine `.onmicrosoft.com`, ou l’ID d’objet Azure du locataire.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-124">The value of this argument can either be an `.onmicrosoft.com` domain or the Azure object ID for the tenant.</span></span> <span data-ttu-id="c6a7a-125">Les méthodes de connexion interactive et avec une ligne de commande fonctionnent toutes les deux avec `--tenant`.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-125">Both interactive and command-line sign in methods work with `--tenant`.</span></span>
+<span data-ttu-id="46dd0-123">Les principaux de service sont des comptes non liés à un utilisateur spécifique, qui peuvent détenir des autorisations sur ces derniers par le biais de rôles prédéfinis.</span><span class="sxs-lookup"><span data-stu-id="46dd0-123">Service principals are accounts not tied to any particular user, which can have permissions on them assigned through pre-defined roles.</span></span> <span data-ttu-id="46dd0-124">L’authentification avec un principal de service est la meilleure façon d’écrire des scripts ou des programmes sécurisés, ce qui vous permet d’appliquer des restrictions d’autorisation et des informations d’identification statiques stockées localement.</span><span class="sxs-lookup"><span data-stu-id="46dd0-124">Authenticating with a service principal is the best way to write secure scripts or programs, allowing you to apply both permissions restrictions and locally stored static credential information.</span></span> <span data-ttu-id="46dd0-125">Pour en savoir plus sur les principaux de service, consultez [Créer un principal du service avec Azure CLI](create-an-azure-service-principal-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="46dd0-125">To learn more about service principals, see [Create an Azure service principal with the Azure CLI](create-an-azure-service-principal-azure-cli.md).</span></span>
 
-```azurecli
-az login --tenant <tenant>
-```
+<span data-ttu-id="46dd0-126">Pour vous connecter avec un principal de service, il vous faut :</span><span class="sxs-lookup"><span data-stu-id="46dd0-126">To sign in with a service principal, you need:</span></span>
 
-## <a name="sign-in-with-a-service-principal"></a><span data-ttu-id="c6a7a-126">Connexion avec un principal de service</span><span class="sxs-lookup"><span data-stu-id="c6a7a-126">Sign in with a service principal</span></span>
-
-<span data-ttu-id="c6a7a-127">Les principaux de service sont des comptes non liés à un utilisateur spécifique, qui peuvent détenir des autorisations sur ces derniers par le biais de rôles prédéfinis.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-127">Service principals are accounts not tied to any particular user, which can have permissions on them assigned through pre-defined roles.</span></span> <span data-ttu-id="c6a7a-128">L’authentification avec un principal de service est la meilleure façon d’écrire des scripts ou des programmes sécurisés, ce qui vous permet d’appliquer des restrictions d’autorisation et des informations d’identification statiques stockées localement.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-128">Authenticating with a service principal is the best way to write secure scripts or programs, allowing you to apply both permissions restrictions and locally stored static credential information.</span></span> <span data-ttu-id="c6a7a-129">Pour en savoir plus sur les principaux de service, consultez [Créer un principal du service avec Azure CLI](create-an-azure-service-principal-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="c6a7a-129">To learn more about service principals, see [Create an Azure service principal with the Azure CLI](create-an-azure-service-principal-azure-cli.md).</span></span>
-
-<span data-ttu-id="c6a7a-130">Pour vous connecter avec un principal de service, il vous faut :</span><span class="sxs-lookup"><span data-stu-id="c6a7a-130">To sign in with a service principal, you need:</span></span>
-
-* <span data-ttu-id="c6a7a-131">L’URL ou le nom associé au principal du service</span><span class="sxs-lookup"><span data-stu-id="c6a7a-131">The URL or name associated with the service principal</span></span>
-* <span data-ttu-id="c6a7a-132">Le mot de passe du principal de service ou le certificat X509 utilisé pour créer le principal du service au format PEM</span><span class="sxs-lookup"><span data-stu-id="c6a7a-132">The service principal password, or the X509 certificate used to create the service principal in PEM format</span></span>
-* <span data-ttu-id="c6a7a-133">Le locataire associé au principal du service, comme un domaine `.onmicrosoft.com` ou un ID d’objet Azure</span><span class="sxs-lookup"><span data-stu-id="c6a7a-133">The tenant associated with the service principal, as either an `.onmicrosoft.com` domain or Azure object ID</span></span>
+* <span data-ttu-id="46dd0-127">L’URL ou le nom associé au principal du service</span><span class="sxs-lookup"><span data-stu-id="46dd0-127">The URL or name associated with the service principal</span></span>
+* <span data-ttu-id="46dd0-128">Le mot de passe du principal de service ou le certificat X509 utilisé pour créer le principal du service au format PEM</span><span class="sxs-lookup"><span data-stu-id="46dd0-128">The service principal password, or the X509 certificate used to create the service principal in PEM format</span></span>
+* <span data-ttu-id="46dd0-129">Le locataire associé au principal du service, comme un domaine `.onmicrosoft.com` ou un ID d’objet Azure</span><span class="sxs-lookup"><span data-stu-id="46dd0-129">The tenant associated with the service principal, as either an `.onmicrosoft.com` domain or Azure object ID</span></span>
 
 ```azurecli
 az login --service-principal -u <app-url> -p <password-or-cert> --tenant <tenant>
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="c6a7a-134">Si vous souhaitez éviter l’affichage de votre mot de passe sur la console et que vous utilisez `az login` de manière interactive, utilisez la commande `read -s` sous `bash`.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-134">If you want to avoid displaying your password on console and are using `az login` interactively, use the `read -s` command under `bash`.</span></span>
+> <span data-ttu-id="46dd0-130">Si vous souhaitez éviter l’affichage de votre mot de passe sur la console et que vous utilisez `az login` de manière interactive, utilisez la commande `read -s` sous `bash`.</span><span class="sxs-lookup"><span data-stu-id="46dd0-130">If you want to avoid displaying your password on console and are using `az login` interactively, use the `read -s` command under `bash`.</span></span>
 >
 > ```bash
 > read -sp "Azure password: " AZ_PASS && echo && az login --service-principal -u <app-url> -p $AZ_PASS --tenant <tenant>
 > ```
 >
-> <span data-ttu-id="c6a7a-135">Dans PowerShell, utilisez la cmdlet `Read-Host -AsSecureString` et la conversion de chaînes sécurisée.</span><span class="sxs-lookup"><span data-stu-id="c6a7a-135">Under PowerShell, use the `Read-Host -AsSecureString` cmdlet and secure string conversion.</span></span>
+> <span data-ttu-id="46dd0-131">Dans PowerShell, utilisez la cmdlet `Read-Host -AsSecureString` et la conversion de chaînes sécurisée.</span><span class="sxs-lookup"><span data-stu-id="46dd0-131">Under PowerShell, use the `Read-Host -AsSecureString` cmdlet and secure string conversion.</span></span>
 >
 > ```powershell
 > $securePass =  Read-Host "Azure password: " -AsSecureString;
@@ -95,3 +86,21 @@ az login --service-principal -u <app-url> -p <password-or-cert> --tenant <tenant
 > az login --service-principal -u <app-url> -p $AzPass --tenant <tenant>;
 > $AzPass = ""
 > ```
+
+## <a name="sign-in-with-a-different-tenant"></a><span data-ttu-id="46dd0-132">Connectez-vous avec un autre abonné</span><span class="sxs-lookup"><span data-stu-id="46dd0-132">Sign in with a different tenant</span></span>
+
+<span data-ttu-id="46dd0-133">Vous pouvez sélectionner un locataire pour vous connecter avec l’argument `--tenant`.</span><span class="sxs-lookup"><span data-stu-id="46dd0-133">You can select a tenant to sign in under with the `--tenant` argument.</span></span> <span data-ttu-id="46dd0-134">La valeur de cet argument peut être un domaine `.onmicrosoft.com`, ou l’ID d’objet Azure du locataire.</span><span class="sxs-lookup"><span data-stu-id="46dd0-134">The value of this argument can either be an `.onmicrosoft.com` domain or the Azure object ID for the tenant.</span></span> <span data-ttu-id="46dd0-135">Les méthodes de connexion interactive et avec une ligne de commande fonctionnent toutes les deux avec `--tenant`.</span><span class="sxs-lookup"><span data-stu-id="46dd0-135">Both interactive and command-line sign in methods work with `--tenant`.</span></span>
+
+```azurecli
+az login --tenant <tenant>
+```
+
+## <a name="sign-in-with-a-managed-identity"></a><span data-ttu-id="46dd0-136">Connectez-vous avec une identité gérée</span><span class="sxs-lookup"><span data-stu-id="46dd0-136">Sign in with a managed identity</span></span>
+
+<span data-ttu-id="46dd0-137">Sur les ressources configurées pour des identités managées pour les ressources Azure, vous pouvez vous connecter avec l’identité managée.</span><span class="sxs-lookup"><span data-stu-id="46dd0-137">On resources configured for managed identities for Azure resources, you can sign in using the managed identity.</span></span> <span data-ttu-id="46dd0-138">La connexion avec l’identité de la ressource s’effectue via l’indicateur `--identity`.</span><span class="sxs-lookup"><span data-stu-id="46dd0-138">Signing in with the resource's identity is done through the `--identity` flag.</span></span>
+
+```azurecli
+az login --identity
+```
+
+<span data-ttu-id="46dd0-139">Pour en savoir plus sur les identités managées pour les ressources Azure, consultez [Configurer des identités managées pour les ressources Azure](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/qs-configure-cli-windows-vm) et [Utiliser des identités managées pour les ressources Azure pour se connecter](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-sign-in).</span><span class="sxs-lookup"><span data-stu-id="46dd0-139">To learn more about managed identities for Azure resources, see [Configure managed identities for Azure resources](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/qs-configure-cli-windows-vm) and [Use managed identities for Azure resources for sign in](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-sign-in).</span></span>
