@@ -1,6 +1,6 @@
 ---
-title: Sélectionnez les clouds avec Azure CLI 2.0
-description: Créer, se connecter et gérer plusieurs clouds avec l’interface de ligne de commande Azure 2.0.
+title: Sélectionnez des clouds avec Azure CLI
+description: Créez, connectez-vous et gérez plusieurs clouds avec Azure CLI.
 author: sptramer
 manager: carmonm
 ms.author: sttramer
@@ -9,14 +9,14 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 26b9f414ddaba3cc3f834b4749dee9807d84aa79
-ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
+ms.openlocfilehash: 92910e68a52fad3b3577db1bd01e918b69a895d7
+ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44388403"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47177706"
 ---
-# <a name="select-clouds-with-azure-cli-20"></a>Sélectionnez les clouds avec Azure CLI 2.0
+# <a name="select-clouds-with-the-azure-cli"></a>Sélectionnez des clouds avec Azure CLI 
 
 Si vous travaillez sur différentes régions ou utilisez [Azure Stack](https://docs.microsoft.com/azure/azure-stack/user/), vous devrez peut-être utiliser plusieurs clouds. Microsoft fournit des clouds conformes aux lois régionales, qui sont à votre disposition. Cet article vous explique comment obtenir des informations sur les clouds, modifier le cloud actuel, et inscrire ou désinscrire de nouveaux clouds.
 
@@ -82,11 +82,11 @@ az cloud set --name AzureChinaCloud
 
 > [!IMPORTANT]
 > Si l’authentification pour le cloud activé a expiré, vous devez vous authentifier de nouveau avant d’effectuer d’autres tâches CLI. S’il s’agit de la première fois que vous changez vers le nouveau cloud, vous devez également configurer l’abonnement actif.
-> Pour obtenir des instructions sur l’authentification, consultez [Se connecter avec l’interface de ligne de commande Azure 2.0](authenticate-azure-cli.md). Pour plus d’informations sur la gestion des abonnements, consultez [Gestion des abonnements Azure avec Azure CLI 2.0](manage-azure-subscriptions-azure-cli.md)
+> Pour obtenir des instructions sur l’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md). Pour plus d’informations sur la gestion des abonnements, consultez [Gestion des abonnements Azure avec Azure CLI](manage-azure-subscriptions-azure-cli.md)
 
 ## <a name="register-a-new-cloud"></a>Inscrire un nouveau cloud
 
-Inscrivez un nouveau cloud si vous disposez de vos propres points de terminaison pour Azure Stack. La création d’un cloud s’effectue avec la commande [az cloud register](/cli/azure/cloud#az-cloud-register). Cette commande nécessite un nom et un ensemble de points de terminaison de service. Pour savoir comment inscrire un cloud pour une utilisation avec Azure Stack, consultez [Utiliser des profils de version des API avec Azure CLI 2.0 dans Azure Stack](/azure/azure-stack/user/azure-stack-version-profiles-azurecli2#connect-to-azure-stack).
+Inscrivez un nouveau cloud si vous disposez de vos propres points de terminaison pour Azure Stack. La création d’un cloud s’effectue avec la commande [az cloud register](/cli/azure/cloud#az-cloud-register). Cette commande nécessite un nom et un ensemble de points de terminaison de service. Pour savoir comment inscrire un cloud pour utilisation avec Azure Stack, consultez [Utiliser des profils de version d’API avec Azure CLI dans Azure Stack](/azure/azure-stack/user/azure-stack-version-profiles-azurecli2#connect-to-azure-stack).
 
 Vous n’avez pas besoin d’inscrire votre propre cloud pour les régions de la Chine, du gouvernement des États-Unis ou de l’Allemagne. Ces clouds sont gérés par Microsoft et disponibles par défaut.  Pour plus d’informations sur tous les paramètres de point de terminaison disponibles, consultez la [documentation pour `az cloud register`](/cli/azure/cloud#az-cloud-register).
 

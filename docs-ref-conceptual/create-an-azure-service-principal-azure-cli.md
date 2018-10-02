@@ -1,6 +1,6 @@
 ---
-title: Utiliser des principaux du service avec Azure CLI 2.0
-description: Découvrez comment créer et utiliser un principal du service avec Azure CLI 2.0.
+title: Utilisez des principaux du service Azure avec Azure CLI
+description: Découvrez comment créer et utiliser un principal du service avec Azure CLI.
 author: sptramer
 ms.author: sttramer
 manager: carmonm
@@ -8,15 +8,14 @@ ms.date: 09/07/2018
 ms.topic: conceptual
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.service: role-based-access-control
-ms.openlocfilehash: 5f98fd8d3897b11a9b37eefa6295b8b25b2b1c95
-ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
+ms.openlocfilehash: 5ba7d8b0bf313a8d8ea1b20fb861c2ac0086b2be
+ms.sourcegitcommit: f7554c00b5d5dca0ec716cbf996eb6654183ec37
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44388437"
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47237610"
 ---
-# <a name="create-an-azure-service-principal-with-azure-cli-20"></a>Créer un principal du service avec Azure CLI 2.0
+# <a name="create-an-azure-service-principal-with-azure-cli"></a>Créez un principal du service avec Azure CLI
 
 Si vous souhaitez créer une connexion distincte avec des restrictions d’accès, vous pouvez le faire via un principal du service. Les principaux de service sont des identités distinctes qui peuvent être associées à un compte. Ils sont utiles pour travailler avec des applications et des tâches devant être automatisées. Cet article vous guide tout au long du processus de création d’un principal de service.
 
@@ -75,7 +74,7 @@ Les valeurs `appId`, `tenant`, et `password` sont utilisées pour l’authentifi
 
 ## <a name="manage-service-principal-roles"></a>Gérer les rôles du principal du service
 
-Azure CLI 2.0 fournit les commandes suivantes pour gérer les attributions de rôle.
+Azure CLI fournit les commandes suivantes pour la gestion d’attributions de rôle.
 
 * [az role assignment list](/cli/azure/role/assignment#az-role-assignment-list)
 * [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create)

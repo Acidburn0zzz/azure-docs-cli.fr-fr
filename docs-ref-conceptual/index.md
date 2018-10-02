@@ -1,6 +1,6 @@
 ---
-title: Vue d’ensemble d’Azure CLI 2.0
-description: Vue d’ensemble d’Azure CLI 2.0.
+title: Vue d’ensemble d’Azure CLI
+description: Vue d’ensemble d’Azure CLI.
 author: sptramer
 ms.author: sttramer
 manager: carmonm
@@ -9,19 +9,19 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 55c5ea3ad69df60d211cc076e3570e9f07040af7
-ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
+ms.openlocfilehash: 047a953a0ab8ccaf145d56e4d774d2bf9852ed6f
+ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44388383"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47177723"
 ---
-# <a name="azure-cli-20"></a>Azure CLI 2.0
+# <a name="azure-cli"></a>Azure CLI
 
-Azure CLI 2.0 est l’interface de ligne de commande multiplateforme de Microsoft pour la gestion des ressources Azure.
+Azure CLI est l’interface de ligne de commande multiplateforme de Microsoft pour la gestion de ressources Azure.
 Vous pouvez l’utiliser dans votre navigateur avec [Azure Cloud Shell](/azure/cloud-shell/overview) ou l’[installer](install-azure-cli.md) sur macOS, Linux ou Windows et l’exécuter à partir de la ligne de commande.
 
-Azure CLI 2.0 est simple à prendre en main et convient parfaitement pour la création de scripts d’automatisation qui opèrent sur Azure Resource Manager. Pour créer des machines virtuelles dans Azure avec Azure CLI 2.0, il vous suffit de taper la commande suivante :
+Azure CLI est simple à prendre en main et convient parfaitement pour la création de scripts d’automatisation qui fonctionnent sur Azure Resource Manager. Pour créer des machines virtuelles dans Azure, avec Azure CLI, il vous suffit de taper la commande suivante :
 
 ```azurecli-interactive
 az vm create -n MyLinuxVM -g MyResourceGroup --image UbuntuLTS
@@ -32,8 +32,14 @@ az vm create -n MyLinuxVM -g MyResourceGroup --image UbuntuLTS
 Vous pouvez installer l’interface CLI localement, et l’exécuter dans le navigateur avec Azure Cloud Shell, ou bien de l’exécuter dans un conteneur Docker.
 
 * Pour l’exécuter dans votre navigateur avec Azure Cloud Shell, consultez le [démarrage rapide de Bash dans Azure Cloud Shell](/azure/cloud-shell/quickstart) ou le [démarrage rapide de PowerShell dans Azure Cloud Shell](/azure/cloud-shell/quickstart-powershell).
-* Pour installer Azure CLI, consultez la section [Installer l’interface Azure CLI 2.0](install-azure-cli.md).
-* Pour s’exécuter comme un conteneur Docker, consultez la section [Exécuter Azure CLI 2.0 dans un conteneur Docker](run-azure-cli-docker.md)
+* Pour installer l’interface de ligne de commande, consultez la section [Installer Azure CLI](install-azure-cli.md).
+* Pour exécuter cette interface comme un conteneur Docker, consultez [Exécuter Azure CLI dans un conteneur Docker](run-azure-cli-docker.md)
+
+## <a name="build-your-skills-with-microsoft-learn"></a>Développer vos compétences avec Microsoft Learn
+
+- [Gérer des machines virtuelles avec Azure CLI](/learn/modules/manage-virtual-machines-with-azure-cli/)
+- [Contrôler des services Azure avec l’interface CLI](/learn/modules/control-azure-services-with-cli/)
+- [Plus de formations interactives...](/learn/browse/?products=azure-clis)
 
 ## <a name="get-started"></a>Prise en main
 
@@ -44,9 +50,9 @@ Lisez l’article [Bien démarrer](get-started-with-azure-cli.md) pour apprendre
 - [Web Apps](/azure/app-service-web/app-service-cli-samples?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
 - [Base de données SQL](/azure/sql-database/sql-database-cli-samples?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
 
-Une [référence](/cli/azure/reference-index) détaillée est également disponible. Elle explique comment utiliser chacune des commandes Azure CLI 2.0.
+Une [référence](/cli/azure/reference-index) détaillée est également disponible. Elle explique comment utiliser chacune des commandes Azure CLI.
 
 > [!NOTE]
-> Si vous utilisez la version précédente de l’interface de ligne de commande (Azure CLI 1.0), vous pouvez continuer à l’utiliser.
-> Cependant, nous vous recommandons de la mettre à jour pour utiliser la dernière version (Azure CLI 2.0) afin de bénéficier d’une expérience optimale.
-> Si vous utilisez les deux interfaces de ligne de commande, n’oubliez pas que `azure` est l’ancienne interface CLI (Azure CLI) et que `az` est la nouvelle interface CLI (Azure CLI 2.0).
+> Si vous utilisez la version précédente de l’interface de ligne de commande (Azure CLI Classic), vous pouvez continuer à l’utiliser.
+> Cependant, nous vous recommandons de la mettre à jour pour utiliser la dernière version d’Azure CLI afin de bénéficier d’une expérience optimale.
+> Si vous utilisez les deux interfaces de ligne de commande, n’oubliez pas que `azure` correspond à l’interface CLI classique et que `az` correspond l’interface CLI la plus récente.

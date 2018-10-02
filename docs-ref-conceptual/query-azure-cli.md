@@ -1,6 +1,6 @@
 ---
-title: Interroger des résultats de commande avec Azure CLI 2.0
-description: Apprenez à exécuter des requêtes JMESPath sur la sortie des commandes Azure CLI 2.0.
+title: Interroger des résultats de commande avec Azure CLI
+description: Apprenez à exécuter des requêtes JMESPath sur la sortie des commandes Azure CLI.
 author: sptramer
 ms.author: sttramer
 manager: carmonm
@@ -9,16 +9,16 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 55880b87e1bffc37bbdeaeb84206deb5b9b7b227
-ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
+ms.openlocfilehash: 4522242952e5d257449c9c593885c62de2f56d0f
+ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44388369"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47178029"
 ---
-# <a name="use-jmespath-queries-with-azure-cli-20"></a>Utiliser des requêtes JMESPath avec Azure CLI 2.0
+# <a name="use-jmespath-queries-with-azure-cli"></a>Utiliser des requêtes JMESPath avec Azure CLI 
 
-Azure CLI 2.0 utilise l’argument `--query` pour exécuter une [requête JMESPath](http://jmespath.org) sur les résultats des commandes. JMESPath est un langage de requête pour JSON, qui vous permet de sélectionner et de présenter des données depuis une sortie CLI. Ces requêtes sont exécutées sur la sortie JSON, avant toute mise en forme de l’affichage.
+Azure CLI utilise l’argument `--query` pour exécuter une [requête JMESPath](http://jmespath.org) sur les résultats des commandes. JMESPath est un langage de requête pour JSON, qui vous permet de sélectionner et de présenter des données depuis une sortie CLI. Ces requêtes sont exécutées sur la sortie JSON, avant toute mise en forme de l’affichage.
 
 L’argument `--query` est pris en charge par toutes les commandes dans Azure CLI. Les exemples de cet article détaillent les cas d’usage courants et montrent comment utiliser les fonctionnalités de JMESPath.
 
@@ -56,7 +56,7 @@ az vm show -g QueryDemo -n TestVM --query 'storageProfile.{image:imageReference.
 }
 ```
 
-Lors de l’affichage des informations dans le format de sortie `table`, l’affichage du dictionnaire vous permet de paramétrer vos propres en-têtes de colonnes. Pour en savoir plus sur les formats de sortie, consultez l’article [Formats de sortie pour les commandes Azure CLI 2.0](/cli/azure/format-output-azure-cli).
+Lors de l’affichage des informations dans le format de sortie `table`, l’affichage du dictionnaire vous permet de paramétrer vos propres en-têtes de colonnes. Pour en savoir plus sur les formats de sortie, consultez l’article [Formats de sortie pour les commandes Azure CLI](/cli/azure/format-output-azure-cli).
 
 > [!NOTE]
 > Certaines clés sont filtrées et non pas imprimées dans l’affichage de table. Il s’agit des clés `id`, `type` et `etag`. Si vous avez besoin de voir ces informations, vous pouvez changer le nom de clé et éviter de filtrer.

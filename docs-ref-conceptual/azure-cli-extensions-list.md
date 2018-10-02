@@ -1,24 +1,24 @@
 ---
-title: Extensions disponibles pour l’interface Azure CLI 2.0
-description: Une liste complète des extensions officiellement prises en charge pour l’interface Azure CLI 2.0
+title: Extensions disponibles pour Azure CLI
+description: Une liste complète des extensions officiellement prises en charge pour Azure CLI
 author: derekbekoe
 ms.author: debekoe
 manager: routlaw
-ms.date: 09/06/2018
+ms.date: 09/24/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 24134d9769f7e89afe82f74490c6b49c81c7883f
-ms.sourcegitcommit: 46d4040eae1923c59caaac22aedab303b3116dad
+ms.openlocfilehash: 97f682b95df3f080b5661ee361e75ef3e759d388
+ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/06/2018
-ms.locfileid: "44048746"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47177791"
 ---
-# <a name="available-extensions-for-the-azure-cli-20"></a>Extensions disponibles pour l’interface Azure CLI 2.0
+# <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
-Cet article comporte une liste complète des extensions disponibles pour l’interface Azure CLI 2.0 qui sont proposées et prises en charge par Microsoft.
+Cet article comporte une liste complète des extensions disponibles pour Azure CLI qui sont proposées et prises en charge par Microsoft.
 
 La liste des extensions est également disponibles directement à partir de l’interface CLI. Pour l’obtenir, exécutez [az extension list-available](/cli/azure/extension?view=azure-cli-latest#az-extension-list-available) :
 
@@ -34,10 +34,11 @@ az extension list-available --output table
 | [azure-cli-iot-ext](https://github.com/azure/azure-iot-cli-extension) | 0.5.2 | Fourniture de la couche de commandes du plan de données pour Azure IoT Hub, IoT Edge et le service de provisionnement d’appareils IoT |  |
 | [botservice](https://github.com/Azure/azure-cli-extensions) | 0.4.0 | Résolution de bogues concernant les problèmes dans le module de commande cli du botservice natif. | Oui |
 | [dev-spaces-preview](https://github.com/Azure/azure-cli-extensions) | 0.1.6 | Dev Spaces offre aux équipes une expérience de développement Kubernetes rapide et itérative. | Oui |
+| [dms-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/dms-preview) | 0.4.0 | Prise en charge de nouveaux scénarios de Database Migration Service. | Oui |
 | [dns](https://github.com/Azure/azure-cli-extensions) | 0.0.2 | Une extension Azure CLI pour les zones DNS |  |
 | [eventgrid](https://github.com/Azure/azure-cli-extensions) | 0.2.1 | Prise en charge des fonctionnalités d’Azure EventGrid 2018-05-01-préversion | Oui |
 | [express-route-cross-connexion](https://github.com/Azure/azure-cli-extensions/tree/master/src/express-route-cross-connection) | 0.1.0 | Gérez des circuits ExpressRoute de client à l’aide d’une interconnexion ExpressRoute. |  |
-| [find](https://github.com/Azure/azure-cli-extensions/tree/master/src/find) | 0.1.0 | Requêtes intelligentes pour l’obtention d’informations relatives l’interface CLI. | Oui |
+| [find](https://github.com/Azure/azure-cli-extensions/tree/master/src/find) | 0.2.0 | Requêtes intelligentes pour l’obtention d’informations relatives l’interface CLI. | Oui |
 | [image-copy-extension](https://github.com/Azure/azure-cli-extensions) | 0.0.8 | Prise en charge de la copie d’images de machines virtuelles managées entre régions |  |
 | [keyvault-preview](https://github.com/Azure/azure-keyvault-cli-extension) | 0.1.3 | Préversion des commandes Azure Key Vault. | Oui |
 | [log-analytics](https://github.com/Azure/azure-cli-extensions/tree/master/src/log-analytics) | 0.1.2 | Prise en charge des fonctionnalités de requête d’Azure Log Analytics. | Oui |
@@ -45,6 +46,8 @@ az extension list-available --output table
 | [managementpartner](https://github.com/Azure/azure-cli-extensions) | 0.1.2 | Prise en charge de la préversion des groupes d’administration |  |
 | [mesh](https://github.com/Azure/azure-cli-extensions) | 0.9.1 | Prise en charge de Microsoft Azure Service Fabric Mesh - préversion publique | Oui |
 | [rdbms-vnet](https://github.com/Azure/azure-cli-extensions) | 10.0.0 | Prise en charge des règles de réseau virtuel pour les ressources Azure MySQL et Azure PostgreSQL |  |
+| [resource-graph](https://github.com/Azure/azure-cli-extensions/tree/master/src/resource-graph) | 0.1.8 | Assistance pour interroger des ressources Azure avec Resource Graph. | Oui |
+| [sap-hana](https://github.com/Azure/azure-hanaonazure-cli-extension) | 0.1.6 | Commandes supplémentaires pour travailler avec les instances SAP HanaOnAzure. |  |
 | [signalr](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Prise en charge de la préversion de gestion de signalr. | Oui |
 | [storage-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/storage-preview) | 0.1.4 | Fournit un aperçu des fonctionnalités de stockage à venir. | Oui |
 | [abonnement](https://github.com/Azure/azure-cli-extensions) | 0.1.1 | Prise en charge de la préversion des définitions d’abonnement. |  |

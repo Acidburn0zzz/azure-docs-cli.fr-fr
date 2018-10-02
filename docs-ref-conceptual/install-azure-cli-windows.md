@@ -1,6 +1,6 @@
 ---
 title: Installer l’interface de ligne de commande Azure pour Windows
-description: Installation d’Azure CLI 2.0 sur Windows
+description: Comment installer Azure CLI sur Windows
 author: sptramer
 ms.author: sttramer
 manager: carmonm
@@ -9,14 +9,14 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 6e57837313faf0edd95d822132ae282ed416aae7
-ms.sourcegitcommit: d93b0a2bcfb0d164ef90d6d4618f0552609a8ea6
+ms.openlocfilehash: c65cff52211b4c77e32c2992cd71392c8b0e44d6
+ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/20/2018
-ms.locfileid: "46469961"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47177961"
 ---
-# <a name="install-azure-cli-20-on-windows"></a>Installation d’Azure CLI 2.0 sur Windows
+# <a name="install-azure-cli-on-windows"></a>Installer Azure CLI sur Windows
 
 Sur Windows, Azure CLI est installée via un fichier MSI, ce qui vous donne accès à l’interface CLI via l’Invite de commande Windows (CMD) ou PowerShell.
 Lors de son installation sur le sous-système Windows pour Linux (WSL), des packages sont disponibles pour votre distribution Linux. Consultez la [page d’installation principale](install-azure-cli.md) pour obtenir la liste des gestionnaires de packages pris en charge ou pour savoir comment installer manuellement avec le sous-système Windows pour Linux.
@@ -34,7 +34,7 @@ Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec l
 
 [!INCLUDE [interactive-login](includes/interactive-login.md)]
 
-Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
+Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md).
 
 ## <a name="uninstall"></a>Désinstaller l’interface
 

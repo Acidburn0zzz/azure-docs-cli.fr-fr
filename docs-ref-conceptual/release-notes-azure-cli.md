@@ -1,6 +1,6 @@
 ---
-title: Notes de publication d’Azure CLI 2.0
-description: En savoir plus sur les dernières mises à jour d’Azure CLI 2.0
+title: Notes de publication d’Azure CLI
+description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
@@ -9,14 +9,14 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: f6dd04e088651527b1ac13e719b7fc3c5522b310
-ms.sourcegitcommit: d93b0a2bcfb0d164ef90d6d4618f0552609a8ea6
+ms.openlocfilehash: f0ee84c3f70cf168818de447289d6c7ab5a40c9e
+ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/20/2018
-ms.locfileid: "46470063"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47178080"
 ---
-# <a name="azure-cli-20-release-notes"></a>Notes de publication d’Azure CLI 2.0
+# <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 ## <a name="september-21-2018"></a>21 septembre 2018
 

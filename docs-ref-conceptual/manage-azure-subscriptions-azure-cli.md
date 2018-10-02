@@ -1,6 +1,6 @@
 ---
-title: Gérer les abonnements Azure avec Azure CLI
-description: Gérez les abonnements Azure avec Azure CLI.
+title: Gérer des abonnements Azure avec Azure CLI
+description: Gérez des abonnements Azure avec Azure CLI.
 author: sptramer
 ms.author: sttramer
 manager: carmonm
@@ -9,13 +9,12 @@ ms.topic: conceptual
 ms.produdct: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.service: active-directory
-ms.openlocfilehash: 53bfa3ed61c13f2b8716a56af8741d03f669a522
-ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
+ms.openlocfilehash: 7bffd91fc31452fc745bc572262f10645e4179eb
+ms.sourcegitcommit: f7554c00b5d5dca0ec716cbf996eb6654183ec37
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44388284"
+ms.lasthandoff: 09/26/2018
+ms.locfileid: "47237593"
 ---
 # <a name="use-multiple-azure-subscriptions"></a>Utilisez plusieurs abonnements Azure
 

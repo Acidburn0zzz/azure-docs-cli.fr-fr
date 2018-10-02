@@ -1,6 +1,6 @@
 ---
-title: Extensions Azure CLI 2.0
-description: Utilisation d’extensions avec Azure CLI 2.0
+title: Extensions Azure CLI
+description: Utilisation d’extensions avec Azure CLI
 keywords: Azure CLI, extensions
 author: sptramer
 ms.author: sttramer
@@ -10,16 +10,16 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 8df4c82253e958fdad37ef1551c051f3d17fb191
-ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
+ms.openlocfilehash: 0ba204063c00bf706f6af5a14dc59ba317385f95
+ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44388539"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47178114"
 ---
-# <a name="use-extensions-with-azure-cli-20"></a>Utiliser des extensions avec Azure CLI 2.0
+# <a name="use-extensions-with-azure-cli"></a>Utilisez des extensions avec Azure CLI 
 
-Azure CLI 2.0 offre la possibilité de charger des extensions. Les extensions sont des roues Python qui ne sont pas fournies comme partie de la CLI mais qui sont exécutées en tant que commandes CLI.
+L’interface de ligne de commande Azure offre la possibilité de charger des extensions. Les extensions sont des roues Python qui ne sont pas fournies comme partie de la CLI mais qui sont exécutées en tant que commandes CLI.
 Avec les extensions, vous obtenez l’accès aux commandes expérimentales et préliminaires, ainsi que la capacité d’écrire vos propres interfaces CLI. Cet article explique comment gérer les extensions et répond aux questions courantes concernant leur utilisation.
 
 ## <a name="find-extensions"></a>Rechercher des extensions
@@ -59,7 +59,7 @@ az extension update --name <extension-name>
 Sinon, il est possible de mettre à jour une extension à partir de la source, en suivant les instructions de la section [Installer les extensions](#install-extensions).
 
 Si un nom d’extension ne peut pas être résolu par l’interface CLI, désinstallez cette extension et tentez de procéder à une réinstallation. L’extension aurait également pu faire partie de l’interface CLI de base.
-Tentez de mettre à jour l’interface CLI en suivant les instructions de la section [Installer Azure CLI 2.0](install-azure-cli.md) et observez si les commandes de l’extension ont été ajoutées.
+Essayez de mettre à jour l’interface de ligne de commande en suivant les instructions de la section [Installer Azure CLI](install-azure-cli.md) et vérifiez que les commandes de l’extension ont été ajoutées.
 
 ## <a name="uninstall-extensions"></a>Désinstaller les extensions
 

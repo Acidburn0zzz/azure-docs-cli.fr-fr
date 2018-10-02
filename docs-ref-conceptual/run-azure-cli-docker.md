@@ -1,6 +1,6 @@
 ---
-title: Exécuter Azure CLI 2.0 dans un conteneur Docker
-description: Exécution d’un conteneur Docker hébergeant l’interface Azure CLI 2.0
+title: Exécuter Azure CLI dans un conteneur Docker
+description: Comment exécuter un conteneur Docker hébergeant Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
@@ -9,16 +9,16 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: f22962717ec6a623dd69a266f660b67f2523b204
-ms.sourcegitcommit: d93b0a2bcfb0d164ef90d6d4618f0552609a8ea6
+ms.openlocfilehash: 40e6865ce07b6ccb8e84a2666f0bcd6df3b5cfcf
+ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/20/2018
-ms.locfileid: "46470029"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47177757"
 ---
-# <a name="run-azure-cli-20-in-a-docker-container"></a>Exécuter Azure CLI 2.0 dans un conteneur Docker
+# <a name="run-azure-cli-in-a-docker-container"></a>Exécuter Azure CLI dans un conteneur Docker
 
-Vous pouvez utiliser Docker pour exécuter un conteneur Linux autonome avec Azure CLI 2.0 préinstallé. Docker vous permet de vous familiariser rapidement avec un environnement isolé pour pouvoir y exécuter l’interface CLI. L’image peut également être utilisée comme base pour vos propres déploiements.
+Vous pouvez utiliser Docker pour exécuter un conteneur Linux autonome avec Azure CLI préinstallée. Docker vous permet de vous familiariser rapidement avec un environnement isolé pour pouvoir y exécuter l’interface CLI. L’image peut également être utilisée comme base pour vos propres déploiements.
 
 ## <a name="run-in-a-docker-container"></a>Exécution dans un conteneur Docker
 
@@ -39,7 +39,7 @@ L’interface de ligne de commande est installé sur l’image en tant que comma
 
 [!INCLUDE [interactive-login](includes/interactive-login.md)]
 
-Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI 2.0](authenticate-azure-cli.md).
+Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md).
 
 ## <a name="update-docker-image"></a>Mise à jour d’une image Docker
 

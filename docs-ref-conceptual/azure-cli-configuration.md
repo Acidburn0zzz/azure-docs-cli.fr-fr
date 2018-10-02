@@ -1,25 +1,25 @@
 ---
 title: Options de configuration d’Azure CLI
-description: Comment configurer Azure CLI 2.0
+description: Comment configurer Azure CLI
 keywords: Azure CLI, configuration, paramètres, Azure
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 05/16/2018
+ms.date: 06/11/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 75ea347b0d4d018142a26bf985ee3639f2b79924
-ms.sourcegitcommit: 0e688704889fc88b91588bb6678a933c2d54f020
+ms.openlocfilehash: f4f1e89e5541d741ef4e02f309a49eece033af5d
+ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44388590"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47177978"
 ---
-# <a name="azure-cli-20-configuration"></a>Configuration d’Azure CLI 2.0
+# <a name="azure-cli-configuration"></a>Configuration d’Azure CLI
 
-Azure CLI 2.0 autorise une configuration utilisateur pour les paramètres tels que la journalisation, la collecte de données et les valeurs d’argument par défaut.
+Azure CLI autorise une configuration utilisateur pour des paramètres tels que la journalisation, la collecte de données et les valeurs d’argument par défaut.
 L’interface CLI propose une commande satisfaisante pour la gestion de certains paramètres par défaut, `az configure`. D’autres valeurs peuvent être définies dans un fichier de configuration ou avec des variables d’environnement.
 
 Les valeurs de configuration utilisées par l’interface CLI sont évaluées dans l’ordre suivant. Les éléments situés en haut de la liste sont prioritaires.
@@ -88,7 +88,7 @@ Lorsque vous fournissez une valeur par défaut, cet argument n’est plus néces
 |---------|-----------|------|------------|
 | __core__ | sortie | chaîne | Format de sortie par défaut. Peut être `json`, `jsonc`, `tsv` ou `table`. |
 | | disable\_confirm\_prompt | booléenne | Active/Désactive les invites de confirmation. |
-| | collect\_telemetry | booléenne | Autorise Microsoft à recueillir des données anonymes sur l’utilisation de l’interface CLI. Pour plus d’informations sur la confidentialité, consultez les [conditions d’utilisation d’Azure CLI 2.0](https://aka.ms/AzureCliLegal). |
+| | collect\_telemetry | booléenne | Autorise Microsoft à recueillir des données anonymes sur l’utilisation de l’interface CLI. Pour plus d’informations sur la confidentialité, consultez les [conditions d’utilisation d’Azure CLI](http://aka.ms/AzureCliLegal). |
 | __logging__ | enable\_log\_file | booléenne | Active/Désactive la journalisation. |
 | | log\_dir | chaîne | Répertoire dans lequel écrire les journaux. Par défaut, cette valeur est `${AZURE_CONFIG_DIR}/logs`. |
 | __storage__ | connection\_string | chaîne | Chaîne de connexion par défaut à utiliser pour les commandes `az storage`. |
