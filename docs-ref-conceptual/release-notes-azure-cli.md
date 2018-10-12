@@ -4,23 +4,85 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 09/21/2018
+ms.date: 10/09/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: f0ee84c3f70cf168818de447289d6c7ab5a40c9e
-ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
+ms.openlocfilehash: 0aec9dce0eda007c71df3693b39c7ec8cc9856cd
+ms.sourcegitcommit: 0fc354c24454f5c9c5ff4b7296ad7b18ffdf31b1
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2018
-ms.locfileid: "47178080"
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "48904784"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
+## <a name="october-9-2018"></a>9 octobre 2018
+
+Version 2.0.47
+
+### <a name="core"></a>Principal
+* Gestion améliorée des erreurs « Demande incorrecte »
+
+### <a name="acr"></a>ACR
+* Prise en charge de format de tableau similaire, comme le client helm
+
+### <a name="acs"></a>ACS
+* Ajout de `aks [create|scale] --nodepool-name` pour configurer le nom du pool de nœuds, tronqué à 12 caractères, par défaut : nodepool1 
+* Correction d’une erreur pour revenir à « scp » lorsque Parimiko échoue
+* Modification de `aks create` pour ne plus nécessiter `--aad-tenant-id`
+* Fusion améliorée des informations d'identification Kubernetes lorsque des entrées dupliquées sont présentes
+
+### <a name="container"></a>Conteneur
+* Modification de `functionapp create` pour prendre en charge la création d’un type de plan de consommation Linux avec un runtime spécifique
+* [PRÉVERSION] Prise en charge de l’hébergement d’applications web sur les conteneurs Windows
+
+### <a name="event-hub"></a>Event Hub
+* Correction de la commande `eventhub update`
+* [CHANGEMENT CASSANT] Modification des commandes `list` pour gérer des erreurs resource(s) NotFound(404) d’une manière habituelle au lieu d’afficher une liste vide
+
+### <a name="extensions"></a>Extensions
+* Correction d’une erreur de tentative d’ajout d’une extension déjà installée
+
+### <a name="hdinsight"></a>HDInsight
+* Version initiale
+
+### <a name="iot"></a>IoT
+* Ajout de la commande d’installation de l’extension à une bannière pour la première exécution
+
+### <a name="keyvault"></a>KeyVault
+* Modification pour restreindre les commandes de stockage keyvault au dernier profil API
+
+### <a name="network"></a>Réseau
+* Correction de `network dns zone create` : la commande réussit même si l’utilisateur a configuré un emplacement par défaut. Voir #6052
+* Remplacement de `--remote-vnet-id` pour `network vnet peering create`
+* Ajout de `--remote-vnet` à `network vnet peering create`, qui accepte un nom ou ID
+* Prise en charge de multiples préfixes de sous-réseau pour `network vnet create` avec `--subnet-prefixes`
+* Prise en charge de multiple préfixes de sous-réseau pour `network vnet subnet [create|update]` avec `--address-prefixes`
+* Correction d’une erreur relative à `network application-gateway create` qui empêchait la création de passerelles avec les références SKU `WAF_v2` ou `Standard_v2`
+* Ajout de l’argument d’usage `--service-endpoint-policy` à `network vnet subnet update`
+
+### <a name="role"></a>Rôle
+* Prise en charge du listing des propriétaires d’applications Azure AD à `ad app owner`
+* Prise en charge du listing des propriétaires de principaux de service Azure AD à `ad sp owner`
+* Modification pour garantir que les commandes de mise à jour et de création de définition de rôle acceptent les configurations à autorisations multiples
+* Modification de `ad sp create-for-rbac` pour garantir que l’URI de la page d’accueil est toujours « https »
+
+### <a name="service-bus"></a>Service Bus
+* [CHANGEMENT CASSANT] Modification des commandes `list` pour gérer des erreurs resource(s) NotFound(404) d’une manière habituelle au lieu d’afficher une liste vide
+
+### <a name="vm"></a>Machine virtuelle
+* Correction du champ vide `accessSas` dans `disk grant-access`
+* Modification de `vmss create` pour réserver une plage de port de frontend assez large pour gérer le surprovisionnement
+* Correction des commandes de mise à jour pour `sig`
+* Prise en charge `--no-wait` de la gestion de versions d’images dans `sig`
+* Modification de `vm list-ip-addresses` pour afficher la zone de disponibilité des adresses IP publiques
+* Modification de `[vm|vmss] disk attach` pour définir le numéro d’identité logique (LUN) par défaut du disque sur le premier emplacement disponible
+
 ## <a name="september-21-2018"></a>21 septembre 2018
 
-Version 20.46
+Version 2.0.46
 
 ### <a name="acr"></a>ACR
 * Ajout de commandes de tâche ACR
