@@ -4,17 +4,17 @@ description: Liste complète des extensions officiellement prises en charge pour
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 10/09/2018
+ms.date: 10/11/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 44f640f59b8796d5778e20a0e013e69ce2546550
-ms.sourcegitcommit: 0fc354c24454f5c9c5ff4b7296ad7b18ffdf31b1
+ms.openlocfilehash: 76512c665728ada85edebc867edfcd772be6237c
+ms.sourcegitcommit: f0e00f09db87617328a081d43cd53bb8b16db0fb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48904716"
+ms.lasthandoff: 10/11/2018
+ms.locfileid: "49113320"
 ---
 # <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
@@ -35,7 +35,7 @@ az extension list-available --output table
 | [azure-firewall](https://github.com/Azure/azure-cli-extensions/tree/master/src/azure-firewall) | 0.1.0 | Gérez les ressources de pare-feu Azure. | Oui |
 | [botservice](https://github.com/Azure/azure-cli-extensions) | 0.4.1 | Résolution de bogues concernant les problèmes dans le module de commande cli du botservice natif. | Oui |
 | [dev-spaces-preview](https://github.com/Azure/azure-cli-extensions) | 0.1.6 | Dev Spaces offre aux équipes une expérience de développement Kubernetes rapide et itérative. | Oui |
-| [dms-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/dms-preview) | 0.4.0 | Prise en charge de nouveaux scénarios de Database Migration Service. | Oui |
+| [dms-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/dms-preview) | 0.5.0 | Prise en charge de nouveaux scénarios de Database Migration Service. | Oui |
 | [dns](https://github.com/Azure/azure-cli-extensions) | 0.0.2 | Une extension Azure CLI pour les zones DNS |  |
 | [eventgrid](https://github.com/Azure/azure-cli-extensions) | 0.2.1 | Prise en charge des fonctionnalités d’Azure EventGrid 2018-05-01-préversion | Oui |
 | [express-route](https://github.com/Azure/azure-cli-extensions/tree/master/src/express-route) | 0.1.0 | Gérez les instances ExpressRoute avec les fonctionnalités d’évaluation. | Oui |
