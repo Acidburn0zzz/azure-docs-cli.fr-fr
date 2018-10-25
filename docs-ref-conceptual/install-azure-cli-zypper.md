@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 201cce81046d5039a313b918ac48b2849352995c
-ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
+ms.openlocfilehash: a73576a9caeb7d016f49bb1d90f1903cbd515c63
+ms.sourcegitcommit: 6d9169ed547df151f99e5a3ac86578634486419a
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2018
-ms.locfileid: "47177672"
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49652445"
 ---
 # <a name="install-azure-cli-with-zypper"></a>Installez Azure CLI avec zypper
 
@@ -75,17 +75,17 @@ sudo zypper update azure-cli
 
 2. Si vous ne prévoyez pas de réinstaller l’interface CLI, supprimez les informations de référentiel.
 
-  ```bash
-  sudo zypper removerepo azure-cli
-  ```
+   ```bash
+   sudo zypper removerepo azure-cli
+   ```
 
 3. Si vous avez supprimé les informations de référentiel, supprimez également la clé de signature Microsoft GPG.
 
-  ```bash
-  MSFT_KEY=`rpm -qa gpg-pubkey /* --qf "%{version}-%{release} %{summary}\n" | grep Microsoft | awk '{print $1}'`
-  sudo rpm -e --allmatches gpg-pubkey-$MSFT_KEY
-  ```
-## <a name="next-steps"></a>Étapes suivantes
+   ```bash
+   MSFT_KEY=`rpm -qa gpg-pubkey /* --qf "%{version}-%{release} %{summary}\n" | grep Microsoft | awk '{print $1}'`
+   sudo rpm -e --allmatches gpg-pubkey-$MSFT_KEY
+   ```
+   ## <a name="next-steps"></a>Étapes suivantes
 
 Maintenant que vous avez installé l’interface CLI, découvrez ses fonctionnalités et ses commandes courantes.
 
