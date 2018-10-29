@@ -1,3 +1,4 @@
-# microsoft.docs
+## <a name="microsoft-open-source-code-of-conduct"></a><span data-ttu-id="c6b5a-101">Code de conduite de Microsoft Open Source</span><span class="sxs-lookup"><span data-stu-id="c6b5a-101">Microsoft Open Source Code of Conduct</span></span>
 
-TODO: Create a file called LICENSE (not LICENSE.TXT, LICENSE.md, etc.)…
+<span data-ttu-id="c6b5a-102">Ce projet a adopté le [Code de conduite open source de Microsoft](https://opensource.microsoft.com/codeofconduct/).</span><span class="sxs-lookup"><span data-stu-id="c6b5a-102">This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).</span></span>
+<span data-ttu-id="c6b5a-103">Pour plus d’informations, consultez la [FAQ sur le code de conduite](https://opensource.microsoft.com/codeofconduct/faq/) ou envoyez vos questions ou vos commentaires à [opencode@microsoft.com](mailto:opencode@microsoft.com).</span><span class="sxs-lookup"><span data-stu-id="c6b5a-103">For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.</span></span>
