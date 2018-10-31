@@ -4,19 +4,90 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 10/09/2018
+ms.date: 10/23/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 0aec9dce0eda007c71df3693b39c7ec8cc9856cd
-ms.sourcegitcommit: 0fc354c24454f5c9c5ff4b7296ad7b18ffdf31b1
+ms.openlocfilehash: 65e34ab6014c47ae92a6d4bae8cdc30d4a1413dc
+ms.sourcegitcommit: aec89531c938781b4724f43b5bb4b878e106a26a
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "48904784"
+ms.lasthandoff: 10/23/2018
+ms.locfileid: "49952483"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="october-23-2018"></a>23 octobre 2018
+
+Version 2.0.49
+
+### <a name="core"></a>Principal
+* Correction du problème avec `--ids` où `--subscription` serait prioritaire sur l’abonnement dans `--ids`
+* Ajout d’avertissements explicites lorsque les paramètres sont ignorés par `--ids`
+
+### <a name="acr"></a>ACR
+* Correction d’un problème de codage ACR Build dans Python2
+
+### <a name="cdn"></a>CDN
+* [CHANGEMENT CASSANT] Modification du comportement de mise en cache de chaîne de requête par défaut de `cdn endpoint create` afin que ce ne soit plus « IgnoreQueryString » par défaut. Il est maintenant défini par le service
+
+### <a name="container"></a>Conteneur
+* Ajout de `Private` comme un type valide pour passer à «--ip-address»
+* Modification pour permettre l’utilisation d’un seul ID de sous-réseau pour configurer un réseau virtuel pour le groupe de conteneurs
+* Modification pour permettre l’utilisation d’un nom de réseau virtuel ou d’un ID de ressource pour permettre l’utilisation de réseaux virtuels à partir de groupes de ressources différents
+* Ajout de `--assign-identity` pour ajouter une identité MSI à un groupe de conteneurs
+* Ajout de `--scope` pour créer une attribution de rôle pour l’identité MSI attribuée par le système
+* Ajout d’un avertissement lors de la création d’un groupe de conteneurs avec une image sans processus à long terme
+* Correction de problèmes de sortie de table pour les commandes `list` et `show`
+
+### <a name="cosmosdb"></a>CosmosDB
+* Ajout de la prise en charge de `--enable-multiple-write-locations` pour `cosmosdb create`
+
+### <a name="interactive"></a>Interactive
+* Modifié pour assurer l’apparition du paramètre d’abonnement global dans les paramètres
+
+### <a name="iot-central"></a>IoT Central
+* Ajout d’options de modèle et de nom d’affichage pour la création de l’application IoT central
+* [CHANGEMENT CASSANT] Suppression de la prise en charge de la référence SKU F1, utilisez la référence SKU S1 à la place
+
+### <a name="monitor"></a>Surveiller
+* Change en `monitor activity-log list` :
+  * Prise en charge ajoutée pour répertorier tous les événements au niveau de l’abonnement
+  * Ajout du paramètre `--offset` pour créer plus facilement des requêtes de temps
+  * Amélioration de la validation pour `--start-time` et `--end-time` pour utiliser des plages de formats ISO8601 plus larges et des formats dateHeure plus conviviaux
+  * Ajout de `--namespace` comme alias pour l’option déconseillée `--resource-provider`
+  * `--filters` déconseillé, car aucune valeur autre que celles avec des options fortement typées ne sont prises en charge par le service
+* Change en `monitor metrics list` :
+  * Ajout du paramètre `--offset` pour créer plus facilement des requêtes de temps
+  * Amélioration de la validation pour `--start-time` et `--end-time` pour utiliser des plages de formats ISO8601 plus larges et des formats dateHeure plus conviviaux
+* Amélioration de la validation pour les arguments `--event-hub` et `--event-hub-rule` à `monitor diagnostic-settings create`
+
+### <a name="network"></a>Réseau
+* Ajout des arguments `--app-gateway-address-pools` et `--gateway-name` à `nic create`, pour prendre en charge l’ajout de pools d’adresses principaux Application Gateway à une carte réseau
+* Ajout des arguments `--app-gateway-address-pools` et `--gateway-name` à `nic ip-config create/update`, pour prendre en charge l’ajout de pools d’adresses principaux Application Gateway à une carte réseau
+
+### <a name="servicebus"></a>ServiceBus
+* Ajout de `migration_state` en lecture seule à MigrationConfigProperties pour afficher l’état actuel de migration d’espace de noms Standard à Premium de Service Bus
+
+### <a name="sql"></a>SQL
+* `sql failover-group create` et `sql failover-group update` corrigés pour fonctionner avec la stratégie de basculement manuel
+
+### <a name="storage"></a>Stockage
+* Formatage de sortie de `az storage cors list` corrigé, tous les éléments affichent une clé de « Service » correcte
+* Ajout du paramètre `--bypass-immutability-policy` pour la suppression du conteneur de stratégie d’immuabilité bloquée
+
+### <a name="vm"></a>Machine virtuelle
+* Mode de mise en cache configuré sur `None` pour la série de machines Lv/Lv2 dans `[vm|vmss] create`
+* Mise à jour de la liste des tailles prises en charge, prenant en charge l’accélérateur de mise en réseau pour `vm create`
+* Ajout des arguments fortement typés pour les configurations d’E/S et Mbits/s Ultrassd pour `disk create`
+
+## <a name="october-16-2018"></a>16 octobre 2018
+
+Version 2.0.48
+
+### <a name="vm"></a>Machine virtuelle
+* Résolution du problème de kit de développement logiciel qui a provoqué l’échec d’installation de Homebrew
 
 ## <a name="october-9-2018"></a>9 octobre 2018
 
@@ -300,7 +371,7 @@ Version 2.0.44
 
 * Ajout des commandes pour la gestion des comptes de stockage et les définitions SAS
 * Ajout de commandes pour les règles réseau                                                           
-* Ajout du paramètre `--id` aux opérations relatives au mots de passe confidentiels, clés et certificats
+* Ajout du paramètre `--id` aux opérations relatives aux mots de passe confidentiels, clés et certificats
 * Ajout de la prise en charge pour la version multi-api avec gestion des coffres de clés
 * Ajout de la prise en charge pour la version multi-api avec plan de données des coffres de clés
 
@@ -578,10 +649,10 @@ Version 2.0.38
 * [CHANGEMENT CASSANT] Suppression de l’attribut `location` des travaux, clusters et serveurs de fichiers. L’emplacement est maintenant un attribut d’espace de travail.
 * [CHANGEMENT CASSANT] Suppression de `--location` des commandes `job create`, `cluster create` et `file-server create`
 * [CHANGEMENT CASSANT] Modification des noms des options courtes pour rendre l’interface plus cohérente :
- - [`--config`, `-c`] renommé en [`--config-file`, `-f`]
- - [`--cluster`, `-r`] renommé en [`--cluster`, `-c`]
- - [`--cluster`, `-n`] renommé en [`--cluster`, `-c`]
- - [`--job`, `-n`] renommé en [`--job`, `-j`]
+  - [`--config`, `-c`] renommé en [`--config-file`, `-f`]
+  - [`--cluster`, `-r`] renommé en [`--cluster`, `-c`]
+  - [`--cluster`, `-n`] renommé en [`--cluster`, `-c`]
+  - [`--job`, `-n`] renommé en [`--job`, `-j`]
 
 ### <a name="maps"></a>Cartes
 
@@ -937,15 +1008,15 @@ Version 2.0.31
 
 * Ajout de la prise en charge de l’API 2018-03-01
 
- - Montage au niveau du travail
- - Variables d’environnement avec les valeurs des secrets
- - Paramètres des compteurs de performances
- - Création de rapports de segments de ligne spécifiques à un travail
- - Prise en charge des sous-dossiers dans les listes de fichiers de l’API
- - Création de rapports d’utilisation et de limites
- - Autorisation de la spécification du type de mise en cache pour les serveurs NFS
- - Prise en charge des images personnalisées
- - Ajout de la prise en charge de la boîte à outils pyTorch
+  - Montage au niveau du travail
+  - Variables d’environnement avec les valeurs des secrets
+  - Paramètres des compteurs de performances
+  - Création de rapports de segments de ligne spécifiques à un travail
+  - Prise en charge des sous-dossiers dans les listes de fichiers de l’API
+  - Création de rapports d’utilisation et de limites
+  - Autorisation de la spécification du type de mise en cache pour les serveurs NFS
+  - Prise en charge des images personnalisées
+  - Ajout de la prise en charge de la boîte à outils pyTorch
 
 * Ajout de la commande `job wait` qui permet d’attendre la fin du travail et d’obtenir le code de sortie du travail
 * Ajout de la commande `usage show` pour répertorier l’utilisation actuelle des ressources Batch AI et les limites pour les différentes régions
@@ -996,7 +1067,7 @@ Version 2.0.31
 * Ajout de l’argument `--auth-certs` pour joindre des certificats d’authentification pour `application-gateway http-settings [create|update]`. [#4910](https://github.com/Azure/azure-cli/issues/4910)
 * Ajout de commandes `ddos-protection` pour créer des plans de protection DDoS
 * Prise en charge de `--ddos-protection-plan` pour `vnet [create|update]` pour associer un réseau virtuel à un plan de protection DDoS
-* Résolution du problème avec l’ indicateur `--disable-bgp-route-propagation` dans `network route-table [create|update]`
+* Résolution du problème avec l’indicateur `--disable-bgp-route-propagation` dans `network route-table [create|update]`
 * Suppression des arguments factices `--public-ip-address-type` et `--subnet-type` pour `network lb [create|update]`
 * Ajout de la prise en charge des enregistrements TXT avec les séquences d’échappement RFC 1035 à `network dns zone [import|export]` et `network dns record-set txt add-record`
 
@@ -1941,7 +2012,7 @@ Version 2.0.17
 
 ### <a name="resource"></a>Ressource
 
-* Autoriser le passages dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
+* Autoriser le passage dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
 * Autoriser le passage dans les valeurs de paramètres pour `policy assignment create`
 * Autoriser le passage de JSON ou d’un fichier pour tous les paramètres
 * Incrémentation de la version de l’API
@@ -2094,7 +2165,7 @@ Version 2.0.13
 * `lb` : correction d’un problème qui empêchait certains noms de ressources enfant d’être résolus correctement lorsqu’ils étaient omis
 * `application-gateway {subresource} delete` : correction d’un problème en raison duquel `--no-wait` n’était pas honorée
 * `application-gateway http-settings update` : correction d’un problème `--connection-draining-timeout` qui empêchait la désactivation de
-* Correction de erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
+* Correction de l’erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
 
 ### <a name="profile"></a>Profil
 
@@ -2666,7 +2737,7 @@ vm (2.0.2)
 * VM/VMSS : intégration de la logique de validation des informations d’identification utilisée par le portail ([#2537](https://github.com/Azure/azure-cli/pull/2537))
 * Ajout de la prise en charge des commandes wait et de --no-wait ([#2524](https://github.com/Azure/azure-cli/pull/2524))
 * Groupe de machines virtuelles identiques : prise en charge de * pour énumérer les vues d’instance parmi les machines virtuelles ([#2467](https://github.com/Azure/azure-cli/pull/2467))
-* Ajout --secrets pour machine virtuelle et groupe de machines virtuelles identiques ([#2212}(https://github.com/Azure/azure-cli/pull/2212))
+* Ajout --secrets pour machine virtuelle et groupe de machines virtuelles identiques ([#2212}(<https://github.com/Azure/azure-cli/pull/2212>))
 * Autorisation de la création de machines virtuelles avec un disque dur virtuel spécialisé ([#2256](https://github.com/Azure/azure-cli/pull/2256))
 
 ## <a name="february-27-2017"></a>27 février 2017
