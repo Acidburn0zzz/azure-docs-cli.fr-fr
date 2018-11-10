@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 5b5d962e244037d9c904fc5c75314661130d1910
-ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
+ms.openlocfilehash: 1a3e7a632cc9931a4fe16c780d2706e52a1aa5c2
+ms.sourcegitcommit: 0d6b08048b5b35bf0bb3d7b91ff567adbaab2a8b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2018
-ms.locfileid: "47178063"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51222342"
 ---
 # <a name="output-formats-for-azure-cli-commands"></a>Formats de sortie pour les commandes Azure CLI
 
@@ -116,7 +116,7 @@ KBDemo020    RGDEMO001        westus
 
 Vous pouvez utiliser le paramètre `--query` pour personnaliser les propriétés et les colonnes à afficher dans la liste générée. L’exemple suivant montre comment sélectionner uniquement le nom de la machine virtuelle et le nom du groupe de ressources dans la commande `list`.
 
-```azurecli
+```azurecli-interactive
 az vm list --query "[].{resource:resourceGroup, name:name}" -o table
 ```
 
@@ -133,7 +133,7 @@ RGDEMO001   KBDemo020
 > [!NOTE]
 > Certaines clés ne sont pas imprimées dans l’affichage du tableau par défaut. Il s’agit de `id`, `type`, et `etag`. Si vous avez besoin de les voir dans votre sortie, vous pouvez utiliser la fonction JMESPath de régénération des clés pour modifier le nom de clé et éviter le filtrage.
 >
-> ```azurecli
+> ```azurecli-interactive
 > az vm list --query "[].{objectID:id}" -o table
 > ```
 

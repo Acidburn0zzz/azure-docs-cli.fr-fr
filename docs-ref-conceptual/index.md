@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 047a953a0ab8ccaf145d56e4d774d2bf9852ed6f
-ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
+ms.openlocfilehash: 8ab8435f2d8337f63a73aef39472646dc8ebcd74
+ms.sourcegitcommit: 0d6b08048b5b35bf0bb3d7b91ff567adbaab2a8b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2018
-ms.locfileid: "47177723"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51222291"
 ---
 # <a name="azure-cli"></a>Azure CLI
 
@@ -26,6 +26,10 @@ Azure CLI est simple à prendre en main et convient parfaitement pour la créati
 ```azurecli-interactive
 az vm create -n MyLinuxVM -g MyResourceGroup --image UbuntuLTS
 ```
+
+> [!NOTE]
+>
+> Dans les scripts et sur le site de documentation de Microsoft, les exemples Azure CLI sont écrits pour l’interpréteur de commandes `bash`. Les exemples d’une ligne seront exécutés sur n’importe quelle plateforme. Les exemples plus longs ou plus complexes qui se répartissent sur plusieurs lignes (`\`) ou incluent l’attribution de variables doivent être modifiés pour fonctionner sur d’autres interpréteurs de commandes, y compris PowerShell.
 
 ## <a name="run-or-install"></a>Exécuter ou installer
 
