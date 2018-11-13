@@ -9,16 +9,17 @@ ms.topic: conceptual
 ms.technology: azure-cli
 ms.devlang: azurecli
 ms.component: authentication
-ms.openlocfilehash: 6176fbbbe58e72ae45fc9769514478ffe4a8fea5
-ms.sourcegitcommit: f7554c00b5d5dca0ec716cbf996eb6654183ec37
+ms.openlocfilehash: 05a4ef87fcf23af21ec6dc1d6cd9daa82369d5b9
+ms.sourcegitcommit: 0d6b08048b5b35bf0bb3d7b91ff567adbaab2a8b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/26/2018
-ms.locfileid: "47237627"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51222444"
 ---
 # <a name="sign-in-with-azure-cli"></a>Se connecter avec Azure CLI 
 
-Il existe plusieurs types d’authentification pour l’interface Azure CLI. Le moyen le plus simple pour commencer est d’utiliser [Azure Cloud Shell](/azure/cloud-shell/overview), qui vous connecte automatiquement. Localement, vous pouvez vous connecter de manière interactive via votre navigateur avec la commande `az login`. Lors de l’écriture de scripts, l’approche recommandée consiste à utiliser des principaux du service. En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir la sécurité de votre automatisation.
+Il existe plusieurs types d’authentification pour l’interface Azure CLI. Le moyen le plus simple pour commencer est d’utiliser [Azure Cloud Shell](/azure/cloud-shell/overview), qui vous connecte automatiquement.
+Localement, vous pouvez vous connecter de manière interactive via votre navigateur avec la commande [az login](/cli/azure/reference-index#az-login). Lors de l’écriture de scripts, l’approche recommandée consiste à utiliser des principaux du service. En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir la sécurité de votre automatisation.
 
 Aucune de vos informations de connexion n’est stockée par l’interface CLI. Au lieu de cela, un [jeton d’actualisation d’authentification](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-id-and-access-tokens#refresh-tokens) est généré par Azure, puis stocké. Depuis août 2018, ce jeton est révoqué après 90 jours d’inactivité, mais cette valeur peut être modifiée par Microsoft ou votre administrateur client. Une fois le jeton révoqué, vous recevez un message de l’interface CLI indiquant que vous devez vous reconnecter.
 
@@ -37,7 +38,7 @@ Fournissez vos informations d’identification d’utilisateur Azure dans la lig
 > [!Note]
 > Cette approche ne fonctionne pas avec les comptes Microsoft ou les comptes pour lesquels l’authentification à deux facteurs est activée.
 
-```azurecli
+```azurecli-interactive
 az login -u <username> -p <password>
 ```
 
@@ -67,7 +68,7 @@ Pour vous connecter avec un principal de service, il vous faut :
 * Le mot de passe du principal de service ou le certificat X509 utilisé pour créer le principal du service au format PEM
 * Le locataire associé au principal du service, comme un domaine `.onmicrosoft.com` ou un ID d’objet Azure
 
-```azurecli
+```azurecli-interactive
 az login --service-principal -u <app-url> -p <password-or-cert> --tenant <tenant>
 ```
 
@@ -91,7 +92,7 @@ az login --service-principal -u <app-url> -p <password-or-cert> --tenant <tenant
 
 Vous pouvez sélectionner un locataire pour vous connecter avec l’argument `--tenant`. La valeur de cet argument peut être un domaine `.onmicrosoft.com`, ou l’ID d’objet Azure du locataire. Les méthodes de connexion interactive et avec une ligne de commande fonctionnent toutes les deux avec `--tenant`.
 
-```azurecli
+```azurecli-interactive
 az login --tenant <tenant>
 ```
 
@@ -99,7 +100,7 @@ az login --tenant <tenant>
 
 Sur les ressources configurées pour des identités managées pour les ressources Azure, vous pouvez vous connecter avec l’identité managée. La connexion avec l’identité de la ressource s’effectue via l’indicateur `--identity`.
 
-```azurecli
+```azurecli-interactive
 az login --identity
 ```
 

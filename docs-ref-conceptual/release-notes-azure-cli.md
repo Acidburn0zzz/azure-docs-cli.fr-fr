@@ -4,19 +4,110 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 10/23/2018
+ms.date: 11/06/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 65e34ab6014c47ae92a6d4bae8cdc30d4a1413dc
-ms.sourcegitcommit: aec89531c938781b4724f43b5bb4b878e106a26a
+ms.openlocfilehash: 51b8b8cad6d25f916006b8e68b8f300587f5d45b
+ms.sourcegitcommit: 0d6b08048b5b35bf0bb3d7b91ff567adbaab2a8b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/23/2018
-ms.locfileid: "49952483"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51222563"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="november-6-2018"></a>6 novembre 2018
+
+Version 2.0.50
+
+### <a name="core"></a>Principal
+* Ajout de la prise en charge pour le principal de service sn+issuer auth
+
+### <a name="acr"></a>ACR
+* Ajout de la prise en charge pour les événements git de demande d’envoi et de tirage pour le déclencheur de tâche source
+* Modification de l’utilisation de fichiers Dockerfile par défaut s’il n’est pas spécifié dans la commande build
+
+### <a name="acs"></a>ACS
+* [Changement cassant] : `enable_cloud_console_aks_browse` supprimé pour activer « az aks browse » par défaut
+
+### <a name="advisor"></a>Advisor
+* Version mise à la disposition générale
+
+### <a name="ams"></a>AMS
+* Ajout de nouveaux groupes de commandes :
+  *  `ams account-filter`
+  *  `ams asset-filter`
+  *  `ams content-key-policy`
+  *  `ams live-event`
+  *  `ams live-output`
+  *  `ams streaming-endpoint`
+  *  `ams mru`
+* Ajout de nouvelles commandes :
+  * `ams account check-name`
+  * `ams job update`
+  * `ams asset get-encryption-key`
+  * `ams asset get-streaming-locators`
+  * `ams streaming-locator get-content-keys`
+* Ajout de la prise en charge des paramètres de chiffrement de `ams streaming-policy create`
+* Ajout de la prise en charge de `ams transform output remove` qui peut désormais être effectuée en transmettant le chemin de l’index pour le supprimer
+* Ajout des arguments `--correlation-data` et `--label` au groupe de commandes `ams job`
+* Ajout des arguments `--storage-account` et `--container` au groupe de commandes `ams asset`
+* Ajout des valeurs par défaut pour le délai d’expiration (présent + 23h) et les autorisations (lecture) dans la commande `ams asset get-sas-url` 
+* [Changement cassant] : commande `ams streaming locator` remplacée par `ams streaming-locator`
+* [Changement cassant] : mise à jour de l’argument `--content-keys` de `ams streaming locator`
+* [Changement cassant] : `--content-policy-name` renommé en `--content-key-policy-name` dans la commande `ams streaming locator`
+* [Changement cassant] : remplacer la commande `ams streaming policy` par `ams streaming-policy`
+* [Changement cassant] : argument `--preset-names` remplacé par `--preset` dans le groupe de commandes `ams transform`. À présent vous ne pouvez définir qu’une sortie/présélection à la fois (pour en ajouter d’autres, vous devez exécuter `ams transform output add`). En outre, vous pouvez définir StandardEncoderPreset de façon personnalisée en transmettant le chemin à votre JSON personnalisé
+* [Changement cassant] : `--output-asset-names ` renommé en `--output-assets` dans la commande `ams job start`. Il accepte désormais une liste de ressources séparée par des espaces au format « assetName=label ». Une ressource sans étiquette peut être envoyée comme ceci : « assetName= »
+
+### <a name="appservice"></a>AppService
+* Correction d’un bogue dans `az webapp config backup update` qui empêche de définir une planification de sauvegarde si elle n’est pas déjà définie
+
+### <a name="configure"></a>Configuration
+* Ajout de YAML aux options de format de sortie
+
+### <a name="container"></a>Conteneur
+* Modification pour afficher l’identité lors de l’exportation d’un groupe de conteneurs vers yaml
+
+### <a name="eventhub"></a>Event Hub
+* Ajout d’un indicateur `--enable-kafka` pour prendre en charge Kafka dans `eventhub namespace [create|update]`
+
+### <a name="interactive"></a>Interactive
+* Interactive installe maintenant l’extension `interactive`, ce qui permettra des mises à jour et prises en charge plus rapides
+
+### <a name="monitor"></a>Surveiller
+* Ajout de la prise en charge pour les noms de métriques qui incluent les caractères barre oblique (/) et point (.) à `--condition` dans `monitor metrics alert [create|update]`
+
+### <a name="network"></a>Réseau
+* Noms de commande `network interface-endpoint` déconseillés en faveur de `network private-endpoint`
+* Problème résolu à l’endroit où l’argument `--peer-circuit` n’accepte pas d’ID dans `express-route peering connection create`
+* Problème résolu à l’endroit où `--ip-tags` ne fonctionnait pas correctement avec `public-ip create` 
+
+### <a name="profile"></a>Profil
+* Ajout de `--use-cert-sn-issuer` à `az login` pour la connexion principale du service à l’aide du certificat de déploiement automatique
+
+### <a name="rdbms"></a>SGBDR
+* Ajout de commandes de réplica mysql
+
+### <a name="resource"></a>Ressource
+* Ajout de la prise en charge pour les groupes d’administration et les abonnements aux commandes `policy definition|set-definition`
+
+### <a name="role"></a>Rôle
+* Ajout de la prise en charge pour la gestion d’autorisation API, les utilisateurs connectés ainsi que la gestion des mots de passe et informations d’identification des certificats de l’application
+* Modification de `ad sp create-for-rbac` pour clarifier la confusion entre displayName et le nom de principal du service
+* Ajout de la prise en charge pour attribuer les autorisations aux applications AAD
+
+### <a name="storage"></a>Stockage
+* Ajout de la prise en charge pour vous connecter aux services de stockage uniquement avec les signatures d’accès partagé et les points de terminaison (sans nom de compte ou clé), comme décrit dans `Configure Azure Storage connection strings <https://docs.microsoft.com/azure/storage/common/storage-configure-connection-string>`
+
+### <a name="vm"></a>Machine virtuelle
+* Ajout de l’argument `storage-sku` à `image create` pour définir le type de compte de stockage par défaut de l’image
+* Correction du bogue avec `vm resize` à l’endroit où l’option `--no-wait` a entraîné un incident avec la commande
+* Modification du format de sortie de la table `vm encryption show` pour afficher l’état
+* Modification de `vm secret format` pour exiger la sortie json/jsonc Avertit l’utilisateur et les valeurs par défaut à la sortie json si un format de sortie indésirable est sélectionné
+* Amélioration de la validation de l’argument pour `vm create --image`
 
 ## <a name="october-23-2018"></a>23 octobre 2018
 
@@ -371,7 +462,7 @@ Version 2.0.44
 
 * Ajout des commandes pour la gestion des comptes de stockage et les définitions SAS
 * Ajout de commandes pour les règles réseau                                                           
-* Ajout du paramètre `--id` aux opérations relatives aux mots de passe confidentiels, clés et certificats
+* Ajout du paramètre `--id` aux opérations relatives au mots de passe confidentiels, clés et certificats
 * Ajout de la prise en charge pour la version multi-api avec gestion des coffres de clés
 * Ajout de la prise en charge pour la version multi-api avec plan de données des coffres de clés
 
@@ -1067,7 +1158,7 @@ Version 2.0.31
 * Ajout de l’argument `--auth-certs` pour joindre des certificats d’authentification pour `application-gateway http-settings [create|update]`. [#4910](https://github.com/Azure/azure-cli/issues/4910)
 * Ajout de commandes `ddos-protection` pour créer des plans de protection DDoS
 * Prise en charge de `--ddos-protection-plan` pour `vnet [create|update]` pour associer un réseau virtuel à un plan de protection DDoS
-* Résolution du problème avec l’indicateur `--disable-bgp-route-propagation` dans `network route-table [create|update]`
+* Résolution du problème avec l’ indicateur `--disable-bgp-route-propagation` dans `network route-table [create|update]`
 * Suppression des arguments factices `--public-ip-address-type` et `--subnet-type` pour `network lb [create|update]`
 * Ajout de la prise en charge des enregistrements TXT avec les séquences d’échappement RFC 1035 à `network dns zone [import|export]` et `network dns record-set txt add-record`
 
@@ -2012,7 +2103,7 @@ Version 2.0.17
 
 ### <a name="resource"></a>Ressource
 
-* Autoriser le passage dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
+* Autoriser le passages dans les définitions de paramètres de stratégie de ressource dans `policy definition create`, et`policy definition update`
 * Autoriser le passage dans les valeurs de paramètres pour `policy assignment create`
 * Autoriser le passage de JSON ou d’un fichier pour tous les paramètres
 * Incrémentation de la version de l’API
@@ -2165,7 +2256,7 @@ Version 2.0.13
 * `lb` : correction d’un problème qui empêchait certains noms de ressources enfant d’être résolus correctement lorsqu’ils étaient omis
 * `application-gateway {subresource} delete` : correction d’un problème en raison duquel `--no-wait` n’était pas honorée
 * `application-gateway http-settings update` : correction d’un problème `--connection-draining-timeout` qui empêchait la désactivation de
-* Correction de l’erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
+* Correction de erreur argument du mot-clé inattendu `sa_data_size_kilobyes` avec`az network vpn-connection ipsec-policy add`
 
 ### <a name="profile"></a>Profil
 
