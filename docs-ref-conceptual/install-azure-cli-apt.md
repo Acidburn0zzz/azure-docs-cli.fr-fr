@@ -4,17 +4,17 @@ description: Comment installer Azure CLI avec le gestionnaire de package apt
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 09/07/2018
+ms.date: 11/12/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: b388d3ecaf2d978aed11f925b9a479d8e95fb101
-ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
+ms.openlocfilehash: 0d4311e88fec9903c1aab1410cc71328f896dc65
+ms.sourcegitcommit: 728a050f13d3682122be4a8993596cc4185a45ce
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2018
-ms.locfileid: "47178097"
+ms.lasthandoff: 11/15/2018
+ms.locfileid: "51680932"
 ---
 # <a name="install-azure-cli-with-apt"></a>Installer Azure CLI avec apt
 
@@ -28,6 +28,7 @@ Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu 
 1. <div id="install-step-1"/>Modifiez votre liste de sources :
 
     ```bash
+    sudo apt-get install apt-transport-https lsb-release software-properties-common -y
     AZ_REPO=$(lsb_release -cs)
     echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | \
         sudo tee /etc/apt/sources.list.d/azure-cli.list
@@ -36,18 +37,20 @@ Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu 
 2. <div id="signingKey"/>Obtenir la clé de signature Microsoft :
 
    ```bash
-   curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+   sudo apt-key --keyring /etc/apt/trusted.gpg.d/Microsoft.gpg adv \
+        --keyserver packages.microsoft.com \
+        --recv-keys BC528686B50D79E339D3721CEB3E94ADBE1229CF
    ```
 
 3. Installer l’interface de ligne de commande :
 
    ```bash
    sudo apt-get update
-   sudo apt-get install apt-transport-https azure-cli
+   sudo apt-get install azure-cli
    ```
 
    > [!WARNING]
-   > La clé de signature a été mise à jour en mai 2018 et a été remplacée. Si vous recevez des erreurs de clé de signature, assurez-vous d’avoir [acquis la clé de signature la plus récente](#signingKey).
+   > La clé de signature a été mise à jour en mai 2018 et a été remplacée. Si vous recevez des erreurs de signature, veillez à disposer de la [dernière clé de signature](#signingKey).
 
 Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).
 
@@ -58,20 +61,6 @@ Pour en savoir plus sur les différentes méthodes d’authentification, consult
 ## <a name="troubleshooting"></a>Résolution de problèmes
 
 Voici certains problèmes courants lors de l’installation avec `apt`. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
-
-### <a name="lsbrelease-fails-with-command-not-found"></a>lsb_release échoue avec « Commande introuvable »
-
-Lorsque vous exécutez la commande `lsb_release`, vous pouvez voir une sortie similaire à l’erreur suivante :
-
-```output
--bash: lsb_release: command not found
-```
-
-L’erreur est due au fait que la commande `lsb_release` n’est pas installée. Vous pouvez résoudre ce problème en installant le package `lsb-release`.
-
-```bash
-sudo apt-get install lsb-release
-```
 
 ### <a name="lsbrelease-does-not-return-the-base-distribution-version"></a>lsb_release ne renvoie pas la version de la distribution de base
 
@@ -95,13 +84,17 @@ sudo apt-get install dirmngr
 
 ### <a name="apt-key-hangs"></a>apt-key se bloque
 
-Lorsqu’un pare-feu bloque les connexions sortantes au port 11371, la commande `apt-key` peut se bloquer indéfiniment. Votre pare-feu peut nécessiter l’utilisation d’un proxy HTTP pour les connexions sortantes :
+Lorsqu’un pare-feu bloque les connexions sortantes au port 11371, la commande `apt-key` peut se bloquer indéfiniment.
+Votre pare-feu peut nécessiter l’utilisation d’un proxy HTTP pour les connexions sortantes :
 
 ```bash
-sudo apt-key adv --keyserver-options http-proxy=http://<USER>:<PASSWORD>@<PROXY-HOST>:<PROXY-PORT>/ --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/Microsoft.gpg adv \
+    --keyserver-options http-proxy=http://<USER>:<PASSWORD>@<PROXY-HOST>:<PROXY-PORT>/ \
+    --keyserver packages.microsoft.com \
+    --recv-keys BC528686B50D79E339D3721CEB3E94ADBE1229CF
 ```
 
-Pour vous assurer que vous disposez d’un proxy, contactez votre administrateur système. Si votre proxy ne nécessite pas de connexion, ignorez l’utilisateur, le mot de passe, et le jeton `@`.
+Pour vous assurer que vous disposez d’un proxy, contactez votre administrateur système. Si votre proxy ne nécessite pas de connexion, ignorez les informations d’utilisateur et de mot de passe.
 
 ## <a name="update"></a>Mettre à jour
 
@@ -112,11 +105,12 @@ Utilisez `apt-get upgrade` pour mettre à jour le package de l’interface de li
    ```
 
 > [!WARNING]
-> La clé de signature a été mise à jour en mai 2018 et a été remplacée. Si vous recevez des erreurs de clé de signature, assurez-vous d’avoir [acquis la clé de signature la plus récente](#signingKey).
+> La clé de signature a été mise à jour en mai 2018 et a été remplacée. Si vous recevez des erreurs de signature, veillez à disposer de la [dernière clé de signature](#signingKey).
 >
 > [!NOTE]
 > Cette commande met à niveau tous les packages installés sur votre système n’ayant pas de modification de dépendance.
 > Pour mettre à niveau uniquement l’interface CLI, utilisez `apt-get install`.
+> 
 > ```bash
 > sudo apt-get update && sudo apt-get install --only-upgrade -y azure-cli
 > ```
@@ -125,19 +119,25 @@ Utilisez `apt-get upgrade` pour mettre à jour le package de l’interface de li
 
 [!INCLUDE [uninstall-boilerplate.md](includes/uninstall-boilerplate.md)]
 
-1. Désinstaller avec `apt-get remove`.
+1. Désinstaller avec `apt-get remove` :
 
     ```bash
     sudo apt-get remove -y azure-cli
     ```
 
-2. Si vous ne prévoyez pas de réinstaller l’interface CLI, supprimez les informations de référentiel Azure CLI.
+2. Si vous ne prévoyez pas de réinstaller l’interface CLI, supprimez les informations de référentiel Azure CLI :
 
    ```bash
    sudo rm /etc/apt/sources.list.d/azure-cli.list
    ```
 
-3. Supprimez tous les packages inutiles.
+3. Supprimer la clé de signature :
+
+    ```bash
+    sudo rm /etc/apt/trusted.gpg.d/Microsoft.gpg
+    ```
+
+4. Supprimer tous les packages inutiles :
 
    ```bash
    sudo apt autoremove
