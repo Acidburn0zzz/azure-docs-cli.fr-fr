@@ -4,17 +4,17 @@ description: Liste complète des extensions officiellement prises en charge pour
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 11/08/2018
+ms.date: 11/19/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: ad57a08cab342aeb85982fb232b901f9ea3fc7ab
-ms.sourcegitcommit: ab8cffd1cc9f057316be87c9cb202fe215a34890
+ms.openlocfilehash: 39271b393e8fbc08bb33fd1843b78745437d0385
+ms.sourcegitcommit: f92d5b3ccd409be126f1e7c06b9f1adc98dad78b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51296784"
+ms.lasthandoff: 11/20/2018
+ms.locfileid: "52159352"
 ---
 # <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
@@ -58,4 +58,4 @@ az extension list-available --output table
 | [abonnement](https://github.com/Azure/azure-cli-extensions) | 0.1.1 | Prise en charge de la préversion des définitions d’abonnement. |  |
 | [virtual-network-tap](https://github.com/Azure/azure-cli-extensions/tree/master/src/virtual-network-tap) | 0.1.0 | Gérez les taps de réseau virtuel (VTAP). | Oui |
 | [virtual-wan](https://github.com/Azure/azure-cli-extensions/tree/master/src/virtual-wan) | 0.1.0 | Gérez le WAN virtuel, les hubs, les passerelles VPN et les sites VPN. | Oui |
-| [webapp](https://github.com/Azure/azure-cli-extensions) | 0.2.15 | Commandes supplémentaires pour Azure AppService. | Oui |
+| [webapp](https://github.com/Azure/azure-cli-extensions) | 0.2.16 | Commandes supplémentaires pour Azure AppService. | Oui |
