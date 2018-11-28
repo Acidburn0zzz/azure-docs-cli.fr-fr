@@ -4,19 +4,69 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 11/06/2018
+ms.date: 11/20/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 51b8b8cad6d25f916006b8e68b8f300587f5d45b
-ms.sourcegitcommit: 0d6b08048b5b35bf0bb3d7b91ff567adbaab2a8b
+ms.openlocfilehash: 36b57d52a5851275fd317240e5c2c95171a99e7e
+ms.sourcegitcommit: 22b73d56602c1c4e647ed2c5af3d596a2f6a7ed5
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51222563"
+ms.lasthandoff: 11/21/2018
+ms.locfileid: "52267328"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+## <a name="november-20-2018"></a>20 novembre 2018
+
+Version 2.0.51
+### <a name="core"></a>Principal
+* Modification du nom de connexion MSI pour ne pas réutiliser le nom d’abonnement dans une identité
+
+### <a name="acr"></a>ACR
+* Ajout d’un jeton de contexte à l’étape de tâche
+* Ajout de prise en charge pour la configuration des secrets dans acr run pour refléter acr task
+* Amélioration de la prise en charge de `--top` et `--orderby` pour les commandes `show-tags` et `show-manifests`
+
+### <a name="appservice"></a>AppService
+* Augmentation du délai d’expiration par défaut du déploiement zip pour interroger l’état à 5 min, ce qui ajoute également une propriété de délai d’expiration pour personnaliser cette valeur
+* Mise à jour de la valeur par défaut `node_version`. La réinitialisation d’une action d’échange d’emplacements pendant un échange en deux phases conserve toutes les chaînes de connexion et paramètres d’application
+* Suppression de la vérification de référence SKU côté client pour app service plan create de Linux
+* Correction de l’erreur qui survenait lors de tentatives d’obtention de l’état zipdeploy
+
+### <a name="iotcentral"></a>IotCentral
+* Ajouter de la vérification de disponibilité du sous-domaine lors de la création d’une application IoT Central
+
+### <a name="keyvault"></a>KeyVault
+* Correction du bogue dans lequel des erreurs pouvaient avoir été ignorées
+
+### <a name="network"></a>Réseau
+* Ajout de sous-commandes `root-cert` à `application-gateway` pour traiter les certificats racine de confiance
+* Ajout des options `--min-capacity` et `--custom-error-pages` à `application-gateway [create|update]` :
+* Ajout de `--zones` pour la prise en charge de zone de disponibilité à `application-gateway create` 
+* Ajout des arguments `--file-upload-limit`, `--max-request-body-size` et `--request-body-check` à `application-gateway waf-config set`
+
+### <a name="rdbms"></a>Rdbms
+* Ajouts de commandes mariadb vnet
+
+### <a name="rbac"></a>Contrôle d’accès en fonction du rôle (RBAC)
+* Résolution d’un problème qui survenait lors de tentatives de mise à jour d’informations d’identification immuables dans `ad app update`
+* Ajout d’avertissements de sortie pour indiquer des changements cassants dans un futur proche pour `ad [app|sp] list` 
+
+### <a name="storage"></a>Stockage
+* Amélioration du traitement des « corner cases » pour les commandes de copie de stockage
+* Résolution d’un problème où `storage blob copy start-batch` n’utilisait pas les informations d’identification de connexion lorsque les comptes source et de destination étaient identiques
+* Correction du bogue avec `storage [blob|file] url` où `sas_token` n’était pas intégré dans l’URL
+* Ajout d’un avertissement de changement cassant à `[blob|container] list` : bientôt, seuls les 5 000 premiers résultats seront affichés par défaut dans la sortie
+
+### <a name="vm"></a>Machine virtuelle
+* Ajout de la prise en charge de `[vm|vmss] create --storage-sku` pour spécifier la référence SKU de compte de stockage pour les disques de données et de système d’exploitation managés de façon distincte
+* Remplacement des paramètres de nom de version `sig image-version` par `--image-version -e`
+* Version déconseillée de la valeur `--image-version-name` d’argument `sig image-version` remplacée par `--image-version`
+* Ajout de la prise en charge pour utiliser le disque de système d’exploitation local pour `[vm|vmss] create --ephemeral-os-disk`
+* Ajout de la prise en charge de `--no-wait` pour `snapshot create/update`
+* Ajout de la commande `snapshot wait`
+* Ajout de la prise en charge pour utiliser le nom d’instance avec `[vm|vmss] extension set --extension-instance-name`
 
 ## <a name="november-6-2018"></a>6 novembre 2018
 
