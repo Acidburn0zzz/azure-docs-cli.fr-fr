@@ -4,17 +4,17 @@ description: Liste complète des extensions officiellement prises en charge pour
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 11/19/2018
+ms.date: 11/27/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 39271b393e8fbc08bb33fd1843b78745437d0385
-ms.sourcegitcommit: f92d5b3ccd409be126f1e7c06b9f1adc98dad78b
+ms.openlocfilehash: 98d9919253cb8af12cb3fc83ac8c0c8eb8c5aaf3
+ms.sourcegitcommit: a8aac038e6ede0b1b352ca6163a04b61ff4eed5b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/20/2018
-ms.locfileid: "52159352"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52450324"
 ---
 # <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
@@ -32,7 +32,7 @@ az extension list-available --output table
 | [préversion ASK](https://github.com/Azure/azure-cli-extensions/tree/master/src/aks-preview) | 0.1.0 | Fournit une préversion des fonctionnalités AKS à venir | Oui |
 | [alias](https://github.com/Azure/azure-cli-extensions) | 0.5.2 | Prise en charge des alias de commande | Oui |
 | [azure-batch-cli-extensions](https://github.com/Azure/azure-batch-cli-extensions) | 2.5.1 | Commandes supplémentaires pour travailler avec le service Azure Batch |  |
-| [azure-cli-iot-ext](https://github.com/azure/azure-iot-cli-extension) | 0.6.0 | Fourniture de la couche de commandes du plan de données pour Azure IoT Hub, IoT Edge et le service de provisionnement d’appareils IoT |  |
+| [azure-cli-iot-ext](https://github.com/azure/azure-iot-cli-extension) | 0.6.1 | Fourniture de la couche de commandes du plan de données pour Azure IoT Hub, IoT Edge et le service de provisionnement d’appareils IoT |  |
 | [azure-firewall](https://github.com/Azure/azure-cli-extensions/tree/master/src/azure-firewall) | 0.1.1 | Gérez les ressources de pare-feu Azure. | Oui |
 | [botservice](https://github.com/Azure/azure-cli-extensions) | 0.4.1 | Résolution de bogues concernant les problèmes dans le module de commande cli du botservice natif. | Oui |
 | [dev-spaces-preview](https://github.com/Azure/azure-cli-extensions) | 0.1.6 | Dev Spaces offre aux équipes une expérience de développement Kubernetes rapide et itérative. | Oui |
