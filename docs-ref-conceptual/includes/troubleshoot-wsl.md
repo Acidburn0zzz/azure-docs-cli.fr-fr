@@ -5,11 +5,11 @@ manager: carmonm
 ms.date: 11/26/2018
 ms.topic: include
 ms.openlocfilehash: ee0b2b0c8c557aa54255f28429bb3a174c0e21a9
-ms.sourcegitcommit: a8aac038e6ede0b1b352ca6163a04b61ff4eed5b
+ms.sourcegitcommit: 5025f123482964dbf72dc5b4950dbc62be67ea8f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52450341"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "52954348"
 ---
 ### <a name="cli-fails-to-install-or-run-on-windows-subsystem-for-linux"></a>Échec de l’installation ou de l’exécution de l’interface de ligne de commande sur le sous-système Windows pour Linux
 
