@@ -9,14 +9,37 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 36b57d52a5851275fd317240e5c2c95171a99e7e
-ms.sourcegitcommit: 22b73d56602c1c4e647ed2c5af3d596a2f6a7ed5
+ms.openlocfilehash: 7a2ab41dd6696d658d05ab76e44abf97626761aa
+ms.sourcegitcommit: 14aa16beeec59e51890a6cba4906bdc8e19b94d0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/21/2018
-ms.locfileid: "52267328"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52892681"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+## <a name="december-4-2018"></a>4 décembre 2018
+
+Version 2.0.52
+### <a name="core"></a>Principal
+* L’approvisionnement des ressources entre locataires est désormais pris en charge pour le principal du service multi-locataire.
+* Les ID d’une commande avec sortie TSV n’étaient pas analysés correctement. Ce bogue a été corrigé.
+
+### <a name="appservice"></a>AppService
+* [APERÇU] Une commande `webapp up` a été ajoutée pour faciliter la création et le déploiement de contenu dans l’application.
+* Le bogue qui survenait sur les applications Windows basées sur des conteneurs en raison du changement de serveur principal a été corrigé.
+
+### <a name="network"></a>Réseau
+* L’argument `--exclusion` a été ajouté à `application-gateway waf-config set` pour prendre en charge les exclusions WAF
+
+### <a name="role"></a>Rôle
+* Les identificateurs personnalisés sont désormais pris en charge pour l’authentification par mot de passe. 
+
+### <a name="vm"></a>Machine virtuelle
+* [DÉCONSEILLÉ] Le paramètre `vm extension [show|wait] --expand` est déconseillé
+* Le paramètre `--force` a été ajouté à `vm restart` pour redéployer les machines virtuelles qui ne répondent pas.
+* Le paramètre `[vm|vmss] create --authentication-type` a été modifié pour accepter la valeur « all » pour créer une machine virtuelle avec à la fois un mot de passe et une authentification SSH.
+* Le paramètre `image create --os-disk-caching` a été ajouté pour définir la mise en cache du disque du système d’exploitation pour une image.
+
 ## <a name="november-20-2018"></a>20 novembre 2018
 
 Version 2.0.51
