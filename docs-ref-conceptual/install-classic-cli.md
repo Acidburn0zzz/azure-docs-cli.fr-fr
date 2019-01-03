@@ -8,13 +8,13 @@ ms.date: 06/11/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
-ms.devlang: azure-cli
-ms.openlocfilehash: 78043f9c070626545030971dea2a8fd155ac76c2
-ms.sourcegitcommit: 0d6b08048b5b35bf0bb3d7b91ff567adbaab2a8b
+ms.devlang: azurecli
+ms.openlocfilehash: 65bf8cdc4ee5d74a778d29cd96e51bad5dc6b22e
+ms.sourcegitcommit: f40bd067ece4e6ec13e259782ed8db3e33b61a75
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51222461"
+ms.lasthandoff: 12/18/2018
+ms.locfileid: "53593368"
 ---
 # <a name="install-the-azure-classic-cli"></a>Installez l’interface de ligne de commande d’Azure CLI Classic
 
@@ -32,7 +32,7 @@ Pour obtenir davantage d’options générales et de contexte, consultez le réf
 
 Une fois l’interface de ligne de commande Azure CLI Classic installée, connectez-vous à l’aide de `azure login` et exécutez les commandes `azure` depuis votre interface de ligne de commande (Bash, terminal, invite de commandes, etc.) pour travailler avec vos ressources Azure.
 
-## <a name="option-1-install-an-npm-package"></a>Option 1 : Installer un package npm
+## <a name="option-1-install-an-npm-package"></a>Option 1 : Installer un package npm
 
 Pour installer l’interface de ligne de commande classique à partir d’un package npm, vérifiez que vous avez téléchargé et installé les [derniers fichiers Node.js et npm](https://nodejs.org/en/download/package-manager/). Ensuite, exécutez `npm install` pour installer le package azure-cli :
 
@@ -55,14 +55,14 @@ Si vous préférez, vous pouvez également télécharger un fichier tar à parti
 npm install -g <path to downloaded tar file>
 ```
 
-## <a name="option-2-use-an-installer"></a>Option 2 : Utiliser un programme d’installation
+## <a name="option-2-use-an-installer"></a>Option 2 : Utilisation d’un programme d’installation
 
 Si vous utilisez un ordinateur Mac ou Windows, les programmes d’installation DMG et MSI sont disponibles depuis les [versions GitHub](https://github.com/Azure/azure-xplat-cli/releases).
 
 > [!TIP]
 > Sous Windows, vous pouvez également télécharger [Web Platform Installer](https://go.microsoft.com/?linkid=9828653) pour installer l’interface de ligne de commande classique. Ce programme d’installation vous donne la possibilité d’installer des Kits de développement logiciel (SDK) Azure et des outils de ligne de commande supplémentaires.
 
-## <a name="option-3-use-a-docker-container"></a>Option 3 : Utiliser un conteneur Docker
+## <a name="option-3-use-a-docker-container"></a>Option 3 : Utiliser un conteneur Docker
 
 Si vous avez configuré votre ordinateur comme hôte [Docker](https://docs.docker.com/engine/understanding-docker/), vous pouvez exécuter l’interface de ligne de commande Azure CLI Classic dans un conteneur Docker. Exécutez la commande suivante (sur les distributions Linux, vous devrez peut-être utiliser `sudo`) :
 
