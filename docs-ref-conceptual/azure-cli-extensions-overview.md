@@ -9,13 +9,13 @@ ms.date: 09/07/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
-ms.devlang: azure-cli
-ms.openlocfilehash: 0ba204063c00bf706f6af5a14dc59ba317385f95
-ms.sourcegitcommit: c4462456dfb17993f098d47c37bc19f4d78b8179
+ms.devlang: azurecli
+ms.openlocfilehash: 4f203f94e9b26e1219bfe69ec0ddd73228d30b64
+ms.sourcegitcommit: f40bd067ece4e6ec13e259782ed8db3e33b61a75
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2018
-ms.locfileid: "47178114"
+ms.lasthandoff: 12/18/2018
+ms.locfileid: "53593266"
 ---
 # <a name="use-extensions-with-azure-cli"></a>Utilisez des extensions avec Azure CLI 
 
@@ -94,8 +94,8 @@ Une documentation et un contrôle de version d’une extension s’afficheront s
 
 ### <a name="can-extensions-depend-upon-each-other"></a>Les extensions peuvent-elles dépendre les unes des autres ?
 
-Non. Étant donné que l’interface CLI ne garantit pas un ordre de chargement, les dépendances peuvent ne pas être satisfaites. La suppression d’une extension n’affecte pas les autres.
+ Non. Étant donné que l’interface CLI ne garantit pas un ordre de chargement, les dépendances peuvent ne pas être satisfaites. La suppression d’une extension n’affecte pas les autres.
 
 ### <a name="are-extensions-updated-along-with-the-cli"></a>Les extensions sont-elles mises à jour en même temps que la CLI ?
 
-Non. Les extensions sont à mettre à jour séparément, comme décrit dans la section [Mettre à jour les extensions](#update-extensions).
+ Non. Les extensions sont à mettre à jour séparément, comme décrit dans la section [Mettre à jour les extensions](#update-extensions).
