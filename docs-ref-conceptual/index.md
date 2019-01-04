@@ -1,6 +1,6 @@
 ---
 title: Vue d’ensemble d’Azure CLI
-description: Vue d’ensemble d’Azure CLI.
+description: Vue d’ensemble de l’interface de ligne de commande Azure (CLI).
 author: sptramer
 ms.author: sttramer
 manager: carmonm
@@ -8,20 +8,21 @@ ms.date: 09/07/2018
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
-ms.devlang: azure-cli
-ms.openlocfilehash: 8ab8435f2d8337f63a73aef39472646dc8ebcd74
-ms.sourcegitcommit: 0d6b08048b5b35bf0bb3d7b91ff567adbaab2a8b
+ms.devlang: azurecli
+ms.openlocfilehash: 285567b00d8c303af3e78a01dc80946a08e4e8f8
+ms.sourcegitcommit: 614811ea63ceb0e71bd99323846dc1b754e15255
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51222291"
+ms.lasthandoff: 12/28/2018
+ms.locfileid: "53805905"
 ---
-# <a name="azure-cli"></a>Azure CLI
+# <a name="azure-command-line-interface-cli"></a>Interface de ligne de commande Azure (CLI)
 
-Azure CLI est l’interface de ligne de commande multiplateforme de Microsoft pour la gestion de ressources Azure.
+L’interface de ligne de commande Azure (CLI) est l’interface de ligne de commande multiplateforme de Microsoft pour la gestion de ressources Azure.
 Vous pouvez l’utiliser dans votre navigateur avec [Azure Cloud Shell](/azure/cloud-shell/overview) ou l’[installer](install-azure-cli.md) sur macOS, Linux ou Windows et l’exécuter à partir de la ligne de commande.
 
-Azure CLI est simple à prendre en main et convient parfaitement pour la création de scripts d’automatisation qui fonctionnent sur Azure Resource Manager. Pour créer des machines virtuelles dans Azure, avec Azure CLI, il vous suffit de taper la commande suivante :
+L’interface Azure CLI est facile à prendre en main et convient parfaitement pour la création de scripts d’automatisation qui fonctionnent avec Azure Resource Manager.
+Pour créer des machines virtuelles dans Azure, avec Azure CLI, il vous suffit de taper la commande suivante :
 
 ```azurecli-interactive
 az vm create -n MyLinuxVM -g MyResourceGroup --image UbuntuLTS
@@ -29,7 +30,7 @@ az vm create -n MyLinuxVM -g MyResourceGroup --image UbuntuLTS
 
 > [!NOTE]
 >
-> Dans les scripts et sur le site de documentation de Microsoft, les exemples Azure CLI sont écrits pour l’interpréteur de commandes `bash`. Les exemples d’une ligne seront exécutés sur n’importe quelle plateforme. Les exemples plus longs ou plus complexes qui se répartissent sur plusieurs lignes (`\`) ou incluent l’attribution de variables doivent être modifiés pour fonctionner sur d’autres interpréteurs de commandes, y compris PowerShell.
+> Dans les scripts et sur le site de documentation de Microsoft, les exemples Azure CLI sont écrits pour l’interpréteur de commandes `bash`. Les exemples d’une ligne seront exécutés sur n’importe quelle plateforme. Les exemples plus longs qui se répartissent sur plusieurs lignes (`\`) ou incluent l’attribution de variables doivent être modifiés pour fonctionner sur d’autres interpréteurs de commandes, y compris PowerShell.
 
 ## <a name="run-or-install"></a>Exécuter ou installer
 
