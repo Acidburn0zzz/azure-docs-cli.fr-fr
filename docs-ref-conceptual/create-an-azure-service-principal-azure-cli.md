@@ -7,13 +7,13 @@ manager: carmonm
 ms.date: 09/07/2018
 ms.topic: conceptual
 ms.technology: azure-cli
-ms.devlang: azure-cli
-ms.openlocfilehash: 40ff3b54cdd1f4908b59479e317092ee62b05bb0
-ms.sourcegitcommit: f92d5b3ccd409be126f1e7c06b9f1adc98dad78b
+ms.devlang: azurecli
+ms.openlocfilehash: 6cce8fb47dd2b57180487441055333343fff8330
+ms.sourcegitcommit: 614811ea63ceb0e71bd99323846dc1b754e15255
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/20/2018
-ms.locfileid: "52159369"
+ms.lasthandoff: 12/28/2018
+ms.locfileid: "53805871"
 ---
 # <a name="create-an-azure-service-principal-with-azure-cli"></a>Créez un principal du service avec Azure CLI
 
@@ -23,10 +23,15 @@ Si vous souhaitez créer une connexion distincte avec des restrictions d’accè
 
 Utilisez [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac) pour créer un principal de service. Le nom du principal du service n’est lié à aucune application ou nom d’utilisateur existant. Vous pouvez créer un principal de service avec votre choix du type d’authentification.
 
-* `--password` est utilisé pour l’authentification par mot de passe. Vérifiez que vous créez un mot de passe fort en suivant les [règles et restrictions relatives aux mots de passe Azure Active Directory](/azure/active-directory/active-directory-passwords-policy). Si vous ne spécifiez pas de mot de passe, un mot de passe est créé pour vous.
+* `--password` est utilisé pour l’authentification par mot de passe. Si aucun argument indiquant le type d’authentification n’est inclus, --password est utilisé par défaut et un mot de passe est créé pour vous. Si vous souhaitez utiliser l’authentification par mot de passe, nous recommandons d’utiliser cette commande, via laquelle le mot de passe est créé pour vous.  
 
   ```azurecli-interactive
-  az ad sp create-for-rbac --name ServicePrincipalName --password PASSWORD
+  az ad sp create-for-rbac --name ServicePrincipalName 
+  ```
+  Si vous souhaitez choisir le mot de passe, au lieu qu’il soit créé pour vous (ce qui n’est pas recommandé, pour des raisons de sécurité), vous pouvez utiliser cette commande. Vérifiez que vous créez un mot de passe fort en suivant les [règles et restrictions relatives aux mots de passe Azure Active Directory](/azure/active-directory/active-directory-passwords-policy). Le choix du mot de passe présente le risque d’un mot de passe faible ou réutilisé. Cette option sera déconseillée dans une future version d’Azure CLI. 
+
+  ```azurecli-interactive
+  az ad sp create-for-rbac --name ServicePrincipalName --password <Choose a strong password>
   ```
 
 * `--cert` est utilisé pour l’authentification basée sur les certificats pour un certificat existant, soit en tant que chaîne publique PEM ou DER, ou `@{file}` pour charger un fichier.
@@ -80,7 +85,7 @@ Azure CLI fournit les commandes suivantes pour la gestion d’attributions de r�
 * [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create)
 * [az role assignment delete](/cli/azure/role/assignment#az-role-assignment-delete)
 
-Un principal du service a le rôle **Contributor** (Collaborateur) par défaut. Ce rôle dispose des autorisations complètes de lecture et d’écriture dans un compte Azure et n’est pas approprié pour les applications. Le rôle **Reader** est plus restrictif et constitue un accès en lecture seule.  Pour plus d’informations sur le contrôle d’accès en fonction du rôle (RBAC) et les rôles, consultez [RBAC : rôles intégrés](/azure/active-directory/role-based-access-built-in-roles).
+Un principal du service a le rôle **Contributor** (Collaborateur) par défaut. Ce rôle dispose des autorisations complètes de lecture et d’écriture dans un compte Azure et n’est pas approprié pour les applications. Le rôle **Reader** est plus restrictif et constitue un accès en lecture seule.  Pour plus d’informations sur les rôles et le contrôle d’accès en fonction du rôle, consultez [RBAC : rôles intégrés pour les ressources Azure](/azure/active-directory/role-based-access-built-in-roles).
 
 Cet exemple ajoute le rôle **Lecteur** et supprime le rôle **Contributeur**.
 
@@ -121,5 +126,5 @@ az login --service-principal --username APP_ID --tenant TENANT_ID --password PAT
 Si vous oubliez les informations d’identification relatives à un principal de service, il est possible de les réinitialiser à l’aide de la commande [az ad sp credential reset](/cli/azure/ad/sp/credential#az-ad-sp-credential-reset). Les mêmes restrictions et options de création d’un principal de service s’appliquent également ici.
 
 ```azurecli-interactive
-az ad sp credential reset --name APP_ID --password NEW_PASSWORD
+az ad sp credential reset --name APP_ID 
 ```
