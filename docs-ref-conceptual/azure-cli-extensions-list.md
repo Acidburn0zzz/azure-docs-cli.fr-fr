@@ -4,17 +4,17 @@ description: Liste complète des extensions officiellement prises en charge pour
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 12/28/2018
+ms.date: 01/06/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: ce51501343ed8300cbd685130405d928052d444d
-ms.sourcegitcommit: 9bd90875a324908ec7195fc4c4f63ebf124760f9
+ms.openlocfilehash: 276bd619408760416910c099dee2aa8377011d0d
+ms.sourcegitcommit: 2c18e8fc2da012bf8ceb2aa77e0671f2413c43c9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/02/2019
-ms.locfileid: "53982567"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54071877"
 ---
 # <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
@@ -56,7 +56,7 @@ az extension list-available --output table
 | [sap-hana](https://github.com/Azure/azure-hanaonazure-cli-extension) | 0.1.6 | Commandes supplémentaires pour travailler avec les instances SAP HanaOnAzure. |  |
 | [signalr](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Prise en charge de la préversion de gestion de signalr. | Oui |
 | [sqlvm-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/sqlvm-preview) | 0.1.0 | Outils de gestion des machines virtuelles SQL, des groupes et des écouteurs de groupe de disponibilité. | Oui |
-| [storage-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/storage-preview) | 0.2.0 | Fournit un aperçu des fonctionnalités de stockage à venir. | Oui |
+| [storage-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/storage-preview) | 0.2.1 | Fournit un aperçu des fonctionnalités de stockage à venir. | Oui |
 | [abonnement](https://github.com/Azure/azure-cli-extensions) | 0.1.1 | Prise en charge de la préversion des définitions d’abonnement. |  |
 | [virtual-network-tap](https://github.com/Azure/azure-cli-extensions/tree/master/src/virtual-network-tap) | 0.1.0 | Gérez les taps de réseau virtuel (VTAP). | Oui |
 | [virtual-wan](https://github.com/Azure/azure-cli-extensions/tree/master/src/virtual-wan) | 0.1.0 | Gérez le WAN virtuel, les hubs, les passerelles VPN et les sites VPN. | Oui |
