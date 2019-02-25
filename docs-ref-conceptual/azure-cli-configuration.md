@@ -11,11 +11,11 @@ ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
 ms.openlocfilehash: d23f576a1f7447ffab0606b4554a81ae5c536e85
-ms.sourcegitcommit: f40bd067ece4e6ec13e259782ed8db3e33b61a75
+ms.sourcegitcommit: 7f79860c799e78fd8a591d7a5550464080e07aa9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "53593776"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56158220"
 ---
 # <a name="azure-cli-configuration"></a>Configuration d’Azure CLI
 
@@ -35,7 +35,7 @@ Cette commande accepte un seul argument, `--defaults`, qui est une liste sépar�
 
 Le tableau suivant contient une liste des clés de configuration disponibles.
 
-| NOM | Description |
+| Nom | Description |
 |------|-------------|
 | group | Groupe de ressources par défaut à utiliser pour toutes les commandes. |
 | location | Emplacement par défaut à utiliser pour toutes les commandes. |
@@ -84,7 +84,7 @@ Le tableau suivant contient l’ensemble des noms d’options et de sections pou
 
 Lorsque vous fournissez une valeur par défaut, cet argument n’est plus nécessaire à aucune commande. C’est la valeur par défaut qui est alors utilisée.
 
-| Section | NOM      | type | Description|
+| Section | Nom      | type | Description|
 |---------|-----------|------|------------|
 | __core__ | sortie | chaîne | Format de sortie par défaut. Peut être `json`, `jsonc`, `tsv` ou `table`. |
 | | disable\_confirm\_prompt | booléenne | Active/Désactive les invites de confirmation. |
@@ -92,12 +92,12 @@ Lorsque vous fournissez une valeur par défaut, cet argument n’est plus néces
 | __logging__ | enable\_log\_file | booléenne | Active/Désactive la journalisation. |
 | | log\_dir | chaîne | Répertoire dans lequel écrire les journaux. Par défaut, cette valeur est `${AZURE_CONFIG_DIR}/logs`. |
 | __storage__ | connection\_string | chaîne | Chaîne de connexion par défaut à utiliser pour les commandes `az storage`. |
-| | compte | chaîne | Nom de compte par défaut à utiliser pour les commandes `az storage`. |
+| | account | chaîne | Nom de compte par défaut à utiliser pour les commandes `az storage`. |
 | | key | chaîne | Clé de compte par défaut à utiliser pour les commandes `az storage`. |
 | | sas\_token | chaîne | Jeton SAS par défaut à utiliser pour les commandes `az storage`. |
 | __batchai__ | storage\_account | chaîne | Compte de stockage par défaut à utiliser pour les commandes `az batchai`. |
 | | storage\_key | chaîne | Clé de stockage par défaut à utiliser pour les commandes `az batchai`. |
-| __batch__ | compte | chaîne | Nom de compte Azure Batch par défaut à utiliser pour les commandes `az batch`. |
+| __batch__ | account | chaîne | Nom de compte Azure Batch par défaut à utiliser pour les commandes `az batch`. |
 | | access\_key | chaîne | Clé d’accès par défaut à utiliser pour les commandes `az batch`. Uniquement utilisée avec l’autorisation `aad`. |
 | | endpoint | chaîne | Point de terminaison par défaut auquel se connecter pour les commandes `az batch`. |
 | | auth\_mode | chaîne | Mode d’autorisation à utiliser pour les commandes `az batch`. Peut être `shared_key` ou `aad`. |

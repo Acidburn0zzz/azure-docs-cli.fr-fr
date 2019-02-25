@@ -6,15 +6,15 @@ ms.author: sttramer
 manager: carmonm
 ms.date: 09/09/2018
 ms.topic: conceptual
-ms.produdct: azure
+ms.product: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 27f094b68812cb68a6a33a6977d4fd58e4178731
-ms.sourcegitcommit: f40bd067ece4e6ec13e259782ed8db3e33b61a75
+ms.openlocfilehash: 4c196b8376b0044e315cfee2b3958f2f4b476df7
+ms.sourcegitcommit: 7f79860c799e78fd8a591d7a5550464080e07aa9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "53593657"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56158321"
 ---
 # <a name="use-multiple-azure-subscriptions"></a>Utilisez plusieurs abonnements Azure
 
@@ -28,7 +28,7 @@ Un utilisateur peut avoir accès à plusieurs _abonnements_, qui sont les contra
 Pour en savoir plus sur les différences entre les locataires, les utilisateurs et les abonnements, consultez le [Dictionnaire de terminologie cloud Azure](/azure/azure-glossary-cloud-terminology).  Pour savoir comment ajouter un nouvel abonnement à votre locataire Azure Active Directory, consultez [Comment ajouter un abonnement Azure à Azure Active Directory](/azure/active-directory/active-directory-how-subscriptions-associated-directory).
 Pour savoir comment se connecter à un client en particulier, consultez la rubrique [Se connecter avec Azure CLI](/cli/azure/authenticate-azure-cli).
 
-## <a name="change-the-active-subscription"></a>Modifier l’abonnement actif 
+## <a name="change-the-active-subscription"></a>Modifier l’abonnement actif
 
 Pour accéder aux ressources dédiées à un abonnement, vous devez changer votre abonnement actif, ou bien utiliser l’argument `--subscription`. Le changement de votre abonnement pour toutes les commandes s’effectue avec [az account set](/cli/azure/account#az-account-set).
 

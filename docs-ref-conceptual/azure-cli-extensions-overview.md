@@ -11,11 +11,11 @@ ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
 ms.openlocfilehash: 4f203f94e9b26e1219bfe69ec0ddd73228d30b64
-ms.sourcegitcommit: f40bd067ece4e6ec13e259782ed8db3e33b61a75
+ms.sourcegitcommit: 7f79860c799e78fd8a591d7a5550464080e07aa9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "53593266"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56158420"
 ---
 # <a name="use-extensions-with-azure-cli"></a>Utilisez des extensions avec Azure CLI 
 

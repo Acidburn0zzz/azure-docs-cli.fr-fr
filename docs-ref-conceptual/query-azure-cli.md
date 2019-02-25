@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 1605b072a68d9aa781290fd862f1d67a847f571e
-ms.sourcegitcommit: f40bd067ece4e6ec13e259782ed8db3e33b61a75
+ms.openlocfilehash: eed121ce7ce8f8c1eba5079eb438190d3e4d13db
+ms.sourcegitcommit: 7f79860c799e78fd8a591d7a5550464080e07aa9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "53593300"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56158397"
 ---
 # <a name="query-azure-cli-command-output"></a>Interroger la sortie de commande Azure CLI
 
@@ -197,7 +197,8 @@ az vm show -g QueryDemo -n TestVM --query '{VMName:name, admin:osProfile.adminUs
 Le _filtrage_ est l’autre opération utilisée pour récupérer des données à partir d’un tableau. Il est effectué avec l’opérateur JMESPath `[?...]`.
 Cet opérateur utilise un prédicat en tant que contenus. Un prédicat est une instruction qui peut être évaluée avec les valeurs `true` ou `false`. Les expressions dans lesquelles la valeur d’évaluation du prédicat est `true` sont incluses dans la sortie.
 
-JMESPath propose la comparaison standard et des opérateurs logiques. Ces derniers comprennent `<`, `<=`, `>`, `>=`, `==` et `!=`. JMESPath prend également en charge les opérateurs logiques Et (`&&`), Ou (`||`) et Non (`!`). Les expressions peuvent être regroupées dans des parenthèses, ce qui permet d’obtenir des expressions de prédicat plus complexes. Pour plus d’informations sur les prédicats et les opérations logiques, consultez [JMESPath Specification](http://jmespath.org/specification.html) (Spécification JMESPath).
+JMESPath propose la comparaison standard et des opérateurs logiques. Ces derniers comprennent `<`, `<=`, `>`, `>=`, `==` et `!=`.
+JMESPath prend également en charge les opérateurs logiques Et (`&&`), Ou (`||`) et Non (`!`). Les expressions peuvent être regroupées dans des parenthèses, ce qui permet d’obtenir des expressions de prédicat plus complexes. Pour plus d’informations sur les prédicats et les opérations logiques, consultez [JMESPath Specification](http://jmespath.org/specification.html) (Spécification JMESPath).
 
 Dans la dernière section, nous avons aplati un tableau pour récupérer la liste complète des machines virtuelles dans un groupe de ressources. Grâce à des filtres, nous pouvons réduire cette sortie pour afficher uniquement les machines virtuelles Linux :
 
