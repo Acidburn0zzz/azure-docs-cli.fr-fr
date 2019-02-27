@@ -1,130 +1,173 @@
 ---
 title: Utilisez des principaux du service Azure avec Azure CLI
-description: Découvrez comment créer et utiliser un principal du service avec Azure CLI.
+description: Découvrez comment créer et utiliser des principaux du service avec l’interface de ligne de commande Azure.
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 09/07/2018
+ms.date: 02/15/2019
 ms.topic: conceptual
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 6cce8fb47dd2b57180487441055333343fff8330
-ms.sourcegitcommit: 614811ea63ceb0e71bd99323846dc1b754e15255
+ms.openlocfilehash: 7ead12b35cefd7cba9e06f7905c9267c569d98dd
+ms.sourcegitcommit: 014d89aa21f90561eb69792ad01947e481ea640a
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/28/2018
-ms.locfileid: "53805871"
+ms.lasthandoff: 02/23/2019
+ms.locfileid: "56741715"
 ---
 # <a name="create-an-azure-service-principal-with-azure-cli"></a>Créez un principal du service avec Azure CLI
 
-Si vous souhaitez créer une connexion distincte avec des restrictions d’accès, vous pouvez le faire via un principal du service. Les principaux de service sont des identités distinctes qui peuvent être associées à un compte. Ils sont utiles pour travailler avec des applications et des tâches devant être automatisées. Cet article vous guide tout au long du processus de création d’un principal de service.
+Les outils automatisés qui utilisent les services Azure doivent toujours avoir des autorisations restreintes. Plutôt que de faire se connecter des applications en tant qu’utilisateur entièrement privilégié, Azure offre des principaux du service.
 
-## <a name="create-the-service-principal"></a>Créer le principal du service
+Un principal de service Azure est une identité créée pour une utilisation avec les applications, des services hébergés et des outils automatisés permettant d’accéder aux ressources Azure. Cet accès est limité par les rôles assignés au principal du service, ce qui vous permet de contrôler quelles ressources sont accessibles et à quel niveau. Pour des raisons de sécurité, il est toujours recommandé d’utiliser les principaux du service avec des outils automatisés, plutôt que de leur permettre de se connecter avec une identité d’utilisateur.
 
-Utilisez [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac) pour créer un principal de service. Le nom du principal du service n’est lié à aucune application ou nom d’utilisateur existant. Vous pouvez créer un principal de service avec votre choix du type d’authentification.
+Cet article vous explique les étapes à suivre pour créer, réinitialiser et obtenir des informations sur un principal du service avec l’interface de ligne de commande Azure.
 
-* `--password` est utilisé pour l’authentification par mot de passe. Si aucun argument indiquant le type d’authentification n’est inclus, --password est utilisé par défaut et un mot de passe est créé pour vous. Si vous souhaitez utiliser l’authentification par mot de passe, nous recommandons d’utiliser cette commande, via laquelle le mot de passe est créé pour vous.  
+## <a name="create-a-service-principal"></a>Créer un principal du service
+
+Créez un principal de service à l’aide de la commande [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac). Lorsque vous créez un principal de service, vous choisissez le type d’authentification de connexion qu’il utilise. 
+
+> [!NOTE]
+>
+> Si votre compte ne dispose pas d’autorisations pour créer un principal de service, `az ad sp create-for-rbac` vous retournera un message d’erreur contenant « Privilèges insuffisants pour effectuer l’opération ». Contactez votre administrateur Azure Active Directory pour créer un principal de service.
+
+Il existe deux types d’authentification disponibles pour les principaux de service : L’authentification basée sur un mot de passe et l’authentification basée sur un certificat.
+
+### <a name="password-based-authentication"></a>L’authentification basée sur un mot de passe
+
+Sans aucun paramètre d’authentification, l’authentification basée sur un mot de passe est utilisée avec un mot de passe aléatoire créé pour vous. Si vous souhaitez une authentification basée sur un mot de passe, cette méthode est recommandée.
 
   ```azurecli-interactive
-  az ad sp create-for-rbac --name ServicePrincipalName 
+  az ad sp create-for-rbac --name ServicePrincipalName
   ```
-  Si vous souhaitez choisir le mot de passe, au lieu qu’il soit créé pour vous (ce qui n’est pas recommandé, pour des raisons de sécurité), vous pouvez utiliser cette commande. Vérifiez que vous créez un mot de passe fort en suivant les [règles et restrictions relatives aux mots de passe Azure Active Directory](/azure/active-directory/active-directory-passwords-policy). Le choix du mot de passe présente le risque d’un mot de passe faible ou réutilisé. Cette option sera déconseillée dans une future version d’Azure CLI. 
+
+Pour un mot de passe fourni par l’utilisateur, utilisez l’argument `--password`. Lorsque vous créez un mot de passe, assurez-vous de suivre les [règles et restrictions relatives aux mots de passe Azure Active Directory](/azure/active-directory/active-directory-passwords-policy). N’utilisez pas de mot de passe faible. Ne réutilisez pas de mot de passe.
 
   ```azurecli-interactive
   az ad sp create-for-rbac --name ServicePrincipalName --password <Choose a strong password>
   ```
 
-* `--cert` est utilisé pour l’authentification basée sur les certificats pour un certificat existant, soit en tant que chaîne publique PEM ou DER, ou `@{file}` pour charger un fichier.
+  > [!IMPORTANT]
+  >
+  > Pour des raisons de sécurité, l’argument `--password` pour la création d’un principal de service sera déconseillé dans une version ultérieure. Si vous souhaitez utiliser l’authentification basée sur un mot de passe, évitez `--password` et laissez l’interface de ligne de commande générer un mot de passe sécurisé pour vous.
 
-  ```azurecli-interactive
-  az ad sp create-for-rbac --name ServicePrincipalName --cert {CertStringOrFile}
-  ```
+La sortie d’un principal de service avec l’authentification par mot de passe comprend la clé `password`. __Assurez-vous__ d’avoir copié cette valeur : elle ne pourra être récupérée. Si vous oubliez le mot de passe, effectuez une [réinitialisation des informations d’identification du principal du service](#reset-credentials).
 
-  L’argument `--keyvault` peut être ajouté pour indiquer que le certificat est stocké dans Azure Key Vault. Dans ce cas, la valeur `--cert` fait référence au nom du certificat dans le coffre de clés.
+Les clés `appId` et `tenant` s’affichent dans la sortie de `az ad sp create-for-rbac` et sont utilisés dans l’authentification du principal du service.
+Enregistrez leurs valeurs, mais elles peuvent être récupérées à tout moment avec la [liste az ad sp](/cli/azure/ad/sp#az-ad-sp-list).
 
-  ```azurecli-interactive
-  az ad sp create-for-rbac --name ServicePrincipalName --cert CertName --keyvault VaultName
-  ```
+### <a name="certificate-based-authentication"></a>Authentification par certificat
 
-* `--create-cert` crée un certificat _auto-signé_ pour l’authentification. Si l’argument `--cert` n’est pas fourni, un nom de certificat aléatoire est généré.
+Pour l’authentification basée sur un certificat, utilisez l’argument `--cert`. Cet argument requiert que vous possédiez un certificat existant. Assurez-vous que n’importe quel outil qui utilise ce principal de service a accès à la clé privée du certificat. Les certificats doivent être au format ASCII tel que PEM, CER ou DER. Transmettez le certificat sous forme de chaîne, ou utilisez le format `@path` pour charger le certificat depuis un fichier.
 
-  ```azurecli-interactive
-  az ad sp create-for-rbac --name ServicePrincipalName --create-cert
-  ```
-
-  L’argument `--keyvault` peut être ajouté pour stocker le certificat dans Azure Key Vault. Lorsque vous utilisez `--keyvault`, l’argument `--cert` est également requis.
-
-  ```azurecli-interactive
-  az ad sp create-for-rbac --name ServicePrincipalName --create-cert --cert CertName --keyvault VaultName
-  ```
-
-Si un argument indiquant le type d’authentification n’est pas inclus, `--password` est utilisé par défaut.
-
-La sortie JSON de la commande `create-for-rbac` est au format suivant :
-
-```json
-{
-  "appId": "APP_ID",
-  "displayName": "ServicePrincipalName",
-  "name": "http://ServicePrincipalName",
-  "password": ...,
-  "tenant": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-}
+```azurecli-interactive
+az ad sp create-for-rbac --name ServicePrincipalName --cert "-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----"
 ```
 
-Les valeurs `appId`, `tenant`, et `password` sont utilisées pour l’authentification. La valeur `displayName` est utilisée lors de la recherche d’un principal du service existant.
+```azurecli-interactive
+az ad sp create-for-rbac --name ServicePrincipalName --cert @/path/to/cert.pem
+```
 
-> [!NOTE]
-> Si votre compte ne dispose pas des autorisations suffisantes pour créer un principal du service, un message d’erreur contenant « Privilèges insuffisants pour effectuer l’opération. » s’affiche. Contactez votre administrateur Azure Active Directory pour créer un principal de service.
+L’argument `--keyvault` peut être ajouté pour utiliser un certificat dans Azure Key Vault. Dans ce cas, la valeur `--cert` fait référence au nom du certificat.
+
+```azurecli-interactive
+az ad sp create-for-rbac --name ServicePrincipalName --cert CertName --keyvault VaultName
+```
+
+Pour créer un certificat _auto-signé_ pour l’authentification, utilisez l’argument `--create-cert` :
+
+```azurecli-interactive
+az ad sp create-for-rbac --name ServicePrincipalName --create-cert
+```
+
+L’argument `--keyvault` peut être ajouté pour stocker le certificat dans Azure Key Vault. Lorsque vous utilisez `--keyvault`, l’argument `--cert` est __requis__.
+
+```azurecli-interactive
+az ad sp create-for-rbac --name ServicePrincipalName --create-cert --cert CertName --keyvault VaultName
+```
+
+À moins que vous ne stockiez le certificat dans Key Vault, la sortie comprend la clé `fileWithCertAndPrivateKey`. La valeur de cette clé vous indique l’emplacement dans lequel le certificat généré est stocké.
+__Assurez-vous__ d’avoir copié le certificat à un emplacement sécurisé ou vous ne pourrez pas vous connecter avec ce principal de service.
+
+Pour les certificats stockés dans Key Vault, récupérez la clé privée du certificat avec l’[affichage du secret du coffre de clés az](/cli/azure/keyvault/secret#az-keyvault-secret-show). Dans Key Vault, le nom du secret du certificat est le même que le nom du certificat. Si vous perdez l’accès à la clé privée d’un certificat, effectuez la [réinitialisation des informations d’identification du principal du service](#reset-credentials).
+
+Les clés `appId` et `tenant` s’affichent dans la sortie de `az ad sp create-for-rbac` et sont utilisés dans l’authentification du principal du service.
+Enregistrez leurs valeurs, mais elles peuvent être récupérées à tout moment avec la [liste az ad sp](/cli/azure/ad/sp#az-ad-sp-list).
+
+## <a name="get-an-existing-service-principal"></a>Obtenir un principal de service existant
+
+Une liste des principaux de service dans un locataire peut être récupérée avec la [liste az ad sp](/cli/azure/ad/sp#az-ad-sp-list). Par défaut, la commande retourne les cents premiers principaux de service de votre locataire. Pour obtenir tous les principaux de service d’un locataire, utilisez l’argument `--all`. Obtenir cette liste peut prendre beaucoup de temps, il est donc recommandé de filtrer la liste avec l’un des arguments suivants :
+
+* `--display-name` demande les principaux de service ayant un _préfixe_ qui correspond au nom fourni. Le nom d’affichage d’un principal de service est la valeur définie avec le paramètre `--name` lors de la création. Si vous n’avez pas défini `--name` lors de la création du principal de service, le nom du préfixe est `azure-cli-`.
+* `--spn` filtre la correspondance exacte de nom de principal du service. Le nom de principal du service commence toujours par `https://`.
+  si la valeur que vous avez utilisé pour `--name` n’était pas un URI, cette valeur est `https://` suivie du nom d’affichage.
+* `--show-mine` demande uniquement les principaux du service créés par l’utilisateur connecté.
+* `--filter` utilise un filtre OData et effectue un filtrage _côté serveur_. Cette méthode est préférable au filtrage côté client avec l’argument `--query` de l’interface de ligne de commande. Pour en savoir plus sur les filtres OData, consultez [syntaxe d’expression de filtres OData](/rest/api/searchservice/odata-expression-syntax-for-azure-search).
+
+Les informations retournées pour les objets de principaux du service sont détaillées. Pour obtenir uniquement les informations nécessaires pour vous connecter, utilisez la chaîne de requête `[].{"id":"appId", "tenant":"appOwnerTenantId"}`. Par exemple, pour obtenir les informations de connexion de tous les principaux du service créés par l’utilisateur actuellement connecté :
+
+```azurecli-interactive
+az ad sp list --show-mine --query '[].{"id":"appId", "tenant":"appOwnerTenantId"}'
+```
+
+> [!IMPORTANT]
+>
+> `az ad sp list` ou [affichage az ad sp](/cli/azure/ad/sp#az-ad-sp-show) permettent d’obtenir l’utilisateur et le locataire, mais pas les secrets d’authentification _ou_ la méthode d’authentification.
+> Les secrets des certificats dans Key Vault peuvent être récupérés avec [affichage du secret du coffre de clés az](/cli/azure/keyvault/secret#az-keyvault-secret-show), mais aucun autre secret n’est stocké par défaut.
+> Si vous oubliez une méthode d’authentification ou un secret, effectuez la [réinitialisation des informations d’identification du principal du service](#reset-credentials).
 
 ## <a name="manage-service-principal-roles"></a>Gérer les rôles du principal du service
 
-Azure CLI fournit les commandes suivantes pour la gestion d’attributions de rôle.
+L’interface de ligne de commande Azure fournit les commandes suivantes de gestion d’attributions de rôle :
 
 * [az role assignment list](/cli/azure/role/assignment#az-role-assignment-list)
 * [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create)
 * [az role assignment delete](/cli/azure/role/assignment#az-role-assignment-delete)
 
-Un principal du service a le rôle **Contributor** (Collaborateur) par défaut. Ce rôle dispose des autorisations complètes de lecture et d’écriture dans un compte Azure et n’est pas approprié pour les applications. Le rôle **Reader** est plus restrictif et constitue un accès en lecture seule.  Pour plus d’informations sur les rôles et le contrôle d’accès en fonction du rôle, consultez [RBAC : rôles intégrés pour les ressources Azure](/azure/active-directory/role-based-access-built-in-roles).
+Un principal du service a le rôle **Contributor** (Collaborateur) par défaut. Ce rôle dispose des autorisations complètes de lecture et d’écriture dans un compte Azure. Le rôle de **Lecteur** est plus restrictif avec un accès en lecture seule.  Pour plus d’informations sur les rôles et le contrôle d’accès en fonction du rôle, consultez [RBAC : rôles intégrés pour les ressources Azure](/azure/active-directory/role-based-access-built-in-roles).
 
-Cet exemple ajoute le rôle **Lecteur** et supprime le rôle **Contributeur**.
+Cet exemple ajoute le rôle de **Lecteur** et supprime le rôle de **Contributeur** :
 
 ```azurecli-interactive
 az role assignment create --assignee APP_ID --role Reader
 az role assignment delete --assignee APP_ID --role Contributor
 ```
 
-L’ajout d’un rôle ne modifie _pas_ les autorisations précédemment affectées. Lors de la restriction des autorisations du principal du service, le rôle __Contributeur__ rôle doit toujours être supprimé.
+> [!NOTE]
+> Si votre compte ne dispose pas d’autorisations pour assigner un rôle, un message d’erreur vous indiquera que votre compte « n’est pas autorisé à effectuer l’action ’Microsoft.Authorization/roleAssignments/write’ ». Contactez votre administrateur Azure Active Directory pour gérer les rôles.
 
-Les modifications peuvent être vérifiées en répertoriant les rôles attribués.
+L’ajout d’un rôle ne restreint _pas_ les autorisations précédemment assignées. Lors de la restriction des autorisations du principal du service, le rôle de __Contributeur__ dot être supprimé.
+
+Les modifications peuvent être vérifiées en répertoriant les rôles attribués :
 
 ```azurecli-interactive
 az role assignment list --assignee APP_ID
 ```
 
-> [!NOTE]
-> Le message indique que votre compte « n’est pas autorisé à effectuer l’action ’Microsoft.Authorization/roleAssignments/write’ sur l’étendue ’/subscriptions/{guid}’ » lorsque votre compte ne dispose pas d’autorisations suffisantes pour affecter un rôle. Contactez votre administrateur Azure Active Directory pour gérer les rôles.
+## <a name="sign-in-using-a-service-principal"></a>Se connecter en tant que principal du service
 
-## <a name="sign-in-using-the-service-principal"></a>Se connecter en tant que principal du service
+Testez les informations d’identification et les autorisations du nouveau principal du service en vous connectant. Pour vous connecter avec un principal du service, vous avez besoin de `appId`, `tenant` ainsi que des informations d’identification.
 
-Vous pouvez tester les informations d’identification et les autorisations du principal du service en vous connectant sous ce dernier dans Azure CLI. Connectez-vous en tant que nouveau principal du service à l’aide de `appId`, `tenant`et des valeurs des informations d’identification. Utilisez le type d’authentification avec lequel le principal de service à été créé.
-
-Pour vous connecter avec un mot de passe, vous devez le fournir en tant que paramètre d’argument.
+Pour vous connecter avec un principal du service utilisant un mot de passe :
 
 ```azurecli-interactive
 az login --service-principal --username APP_ID --password PASSWORD --tenant TENANT_ID
 ```
 
-Pour vous connecter avec un certificat, celui-ci doit être disponible localement sous forme de fichier PEM ou DER.
+Pour vous connecter avec un certificat, celui-ci doit être disponible localement sous forme de fichier PEM ou DER, ou au format ASCII :
 
 ```azurecli-interactive
-az login --service-principal --username APP_ID --tenant TENANT_ID --password PATH_TO_CERT
+az login --service-principal --username APP_ID --tenant TENANT_ID --password /path/to/cert
 ```
+
+Pour en savoir plus sur la connexion avec un principal du service, consultez [Se connecter avec l’interface de ligne de commande Azure](authenticate-azure-cli.md).
 
 ## <a name="reset-credentials"></a>Réinitialiser les informations d’identification
 
-Si vous oubliez les informations d’identification relatives à un principal de service, il est possible de les réinitialiser à l’aide de la commande [az ad sp credential reset](/cli/azure/ad/sp/credential#az-ad-sp-credential-reset). Les mêmes restrictions et options de création d’un principal de service s’appliquent également ici.
+Si vous avez oublié les informations d’identification d’un principal du service, utilisez la [réinitialisation des informations d’identification az ad sp](/cli/azure/ad/sp/credential#az-ad-sp-credential-reset). La commande de réinitialisation utilise les mêmes arguments que `az ad sp create-for-rbac`.
 
 ```azurecli-interactive
-az ad sp credential reset --name APP_ID 
+az ad sp credential reset --name APP_ID
 ```
