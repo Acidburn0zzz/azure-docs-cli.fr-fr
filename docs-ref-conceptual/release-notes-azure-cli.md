@@ -4,19 +4,240 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 12/18/2018
+ms.date: 02/15/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 10663ad8e85a15b8fedb5ac12c5d17256d07e523
-ms.sourcegitcommit: 614811ea63ceb0e71bd99323846dc1b754e15255
+ms.openlocfilehash: 1c6b2cc57b80256faff0a174bec5f13bd84f5a1b
+ms.sourcegitcommit: 7f79860c799e78fd8a591d7a5550464080e07aa9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/28/2018
-ms.locfileid: "53805956"
+ms.lasthandoff: 02/12/2019
+ms.locfileid: "56158356"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+## <a name="february-12-2019"></a>12 février 2019
+
+Version 2.0.58
+
+### <a name="core"></a>Principal
+
+* `az --version` affiche désormais une notification si vous avez des packages qui peuvent être mis à jour
+* Correction de la régression où `--ids` ne pouvait plus être utilisé avec une sortie JSON
+
+### <a name="acr"></a>ACR
+* [CHANGEMENT CASSANT] Suppression du groupe de commandes `acr build-task`
+* [CHANGEMENT CASSANT] Suppression des options `--tag` et `--manifest` dans `acr repository delete`
+
+### <a name="acs"></a>ACS
+* Ajout de la prise en charge des noms qui ne respectent pas la casse à `aks [enable-addons|disable-addons]`
+* Ajout de la prise en charge de l’opération de mise à jour d’Azure Active Directory à l’aide de `aks update-credentials --reset-aad`
+* Ajout d’une clarification indiquant que `--output` est ignoré pour `aks get-credentials`
+
+### <a name="ams"></a>AMS
+* Ajout des commandes `ams streaming-endpoint [start | stop | create | update] wait`
+* Ajout des commandes `ams live-event [create | start | stop | reset] wait`
+
+### <a name="appservice"></a>AppService
+* Ajout des possibilités de création et de configuration de fonctions à l’aide de conteneurs ACR
+* Ajout de la prise en charge de la mise à jour des configurations d’applications web via JSON
+* Amélioration de l’aide pour `appservice-plan-update`
+* Ajout de la prise en charge d’Application Insights sur functionapp create
+* Résolution des problèmes liés à webapp SSH
+
+### <a name="botservice"></a>Botservice
+* Amélioration de l’expérience utilisateur pour `bot publish`
+* Ajout d’un avertissement pour les délais d’expiration au moment de l’exécution de `npm install` durant `az bot publish`
+* Suppression du caractère non valide `.` de `--name` dans `az bot create`
+* Changement apporté pour mettre fin aux noms de ressources aléatoires durant la création du Stockage Azure, du plan App Service, de Function App/Web App et d’Application Insights
+* [DÉPRÉCIÉ] Dépréciation de l’argument `--proj-name` en faveur de `--proj-file-path`
+* Changement apporté à `az bot publish` pour supprimer les fichiers de déploiements IIS Node.js récupérés (fetch), s’ils n’existent pas déjà
+* Ajout de l’argument `--keep-node-modules` à `az bot publish` pour éviter la suppression du dossier `node_modules` dans App Service
+* Ajout de la paire clé/valeur `"publishCommand"` à la sortie de `az bot create` au moment de la création d’une fonction Azure ou d’un bot Web App
+  * La valeur de `"publishCommand"` est une commande `az bot publish` préremplie avec les paramètres obligatoires pour publier le bot venant d’être créé
+* Mise à jour de `"WEBSITE_NODE_DEFAULT_VERSION"` dans le modèle ARM pour permettre aux bots du kit SDK v4 d’utiliser la version 10.14.1 au lieu de la version 8.9.4
+
+### <a name="key-vault"></a>Key Vault
+* Correction du problème lié à `keyvault secret backup`, où certains utilisateurs recevaient une erreur `unexpected_keyword` quand ils utilisaient `--id`
+
+### <a name="monitor"></a>Surveiller
+* Changement apporté à `monitor metrics alert [create|update]` pour autoriser la valeur de dimension `*`
+
+### <a name="network"></a>Réseau
+* Changement apporté à `dns zone export` pour que les enregistrements CNAME exportés soient des noms de domaine complets
+* Ajout du paramètre `--gateway-name` à `nic ip-config address-pool [add|remove]` pour permettre la prise en charge des pools d’adresses back-end d’Application Gateway
+* Ajout des arguments `--traffic-analytics` et `--workspace` à `network watcher flow-log configure` pour permettre la prise en charge de l’analyse du trafic via un espace de travail Log Analytics
+* Ajout de `--idle-timeout` et `--floating-ip` à `lb inbound-nat-pool [create|update]`
+
+### <a name="policy-insights"></a>Policy Insights
+* Ajout des commandes `policy remediation` pour permettre la prise en charge des fonctionnalités de correction des stratégies de ressources
+
+### <a name="rdbms"></a>SGBDR
+* Amélioration du message d’aide et des paramètres de commande
+
+### <a name="redis"></a>Redis
+* Ajout de commandes pour la gestion des règles de pare-feu (create, update, delete, show, list)
+* Ajout de commandes pour la gestion de la liaison avec le serveur (create, delete, show, list)
+* Ajout de commandes pour la gestion de la planification des correctifs (create, update, delete, show)
+* Ajout de la prise en charge des zones de disponibilité et de la version minimale de TLS dans redis create
+* [CHANGEMENT CASSANT] Suppression des commandes `redis update-settings` et `redis list-all`
+* [CHANGEMENT CASSANT] Le paramètre de `redis create` : « paramètres du locataire » n’est pas accepté au format clé[=valeur]
+* [DÉPRÉCIÉ] Ajout d’un message d’avertissement concernant la dépréciation de la commande `redis import-method`
+
+### <a name="role"></a>Rôle
+* [CHANGEMENT CASSANT] Déplacement de la commande `az identity` ici à partir des commandes `vm`
+
+### <a name="sql-vm"></a>Machine virtuelle SQL
+* [DÉPRÉCIÉ] Dépréciation de l’argument `--boostrap-acc-pwd` en raison d’une faute de frappe
+
+### <a name="vm"></a>Machine virtuelle
+* Changement de `vm list-skus` pour autoriser l’utilisation de `--all` à la place de `--all true`
+* Ajout de `vmss run-command [invoke | list | show]`
+* Correction d’un bogue qui entraînait l’échec de `vmss encryption enable`, s’il était exécuté
+* [CHANGEMENT CASSANT] Déplacement de la commande `az identity` vers les commandes `role`
+
+## <a name="january-31-2019"></a>31 janvier 2019
+
+Version 2.0.57
+
+### <a name="core"></a>Principal
+
+* Correctif pour le [problème 8399](https://github.com/Azure/azure-cli/issues/8399).
+
+## <a name="january-28-2019"></a>28 janvier 2019
+
+Version 2.0.56
+
+### <a name="acr"></a>ACR
+* Ajout de la prise en charge des règles de réseau virtuel (VNet)/d’adresses IP
+
+### <a name="acs"></a>ACS
+* Ajout de l’aperçu des nœuds virtuels
+* Ajout des commandes d’OpenShift managé
+* Ajout de la prise en charge des mises à jour du principal de service avec `aks update-credentials -reset-service-principal`
+
+### <a name="ams"></a>AMS
+* [CHANGEMENT CASSANT] Renommage de `ams asset get-streaming-locators` en `ams asset list-streaming-locators`
+* [CHANGEMENT CASSANT] Renommage de `ams streaming-locator get-content-keys` en `ams streaming-locator list-content-keys`
+
+### <a name="appservice"></a>AppService
+* Ajout de la prise en charge d’Application Insights sur `functionapp create`
+* Ajout de la prise en charge de la création de plans App Service (notamment Elastic Premium) à Function App
+* Correction de problèmes de configuration des applications avec les plans Elastic Premium
+
+### <a name="container"></a>Conteneur
+* Ajout de la commande `container start`
+* Changements apportés afin de permettre l’utilisation de valeurs décimales pour le processeur durant la création d’un conteneur
+
+### <a name="eventgrid"></a>EventGrid
+* Ajout du paramètre `--deadletter-endpoint` pour `event-subscription [create|update]`
+* Ajout de storagequeue et hybridconnection en tant que nouvelles valeurs pour « event-subscription [create|update] --endpoint-type »
+* Ajout des paramètres `--max-delivery-attempts` et `--event-ttl` à `event-subscription create` pour spécifier la stratégie de nouvelles tentatives des événements
+* Ajout d’un message d’avertissement à `event-subscription [create|update]` en cas d’utilisation de Webhook en tant que destination pour un abonnement à un événement
+* Ajout du paramètre source-resource-id pour toutes les commandes relatives à un abonnement aux événements et marquage de tous les autres paramètres relatifs aux ressources sources comme étant dépréciés
+
+### <a name="hdinsight"></a>HDInsight
+* [CHANGEMENT CASSANT] Suppression des paramètres `--virtual-network` et `--subnet-name` dans `hdinsight [application] create`
+* [CHANGEMENT CASSANT] Changement apporté à `hdinsight create --storage-account` pour accepter le nom ou l’ID du compte de stockage à la place des points de terminaison d’objet blob
+* Ajout des paramètres `--vnet-name` et `--subnet-name` à `hdinsight create`
+* Ajout de la prise en charge du Pack Sécurité Entreprise et du chiffrement de disque à `hdinsight create` 
+* Ajout de la commande `hdinsight rotate-disk-encryption-key`
+* Ajout de la commande `hdinsight update`
+
+### <a name="iot"></a>IoT
+* Ajout du format d’encodage à la commande routing-endpoint
+
+### <a name="kusto"></a>Kusto
+* Version préliminaire
+
+### <a name="monitor"></a>Surveiller
+* Changement apporté à la comparaison d’ID pour qu’elle ne respecte pas la casse
+
+### <a name="profile"></a>Profil
+* Activation du compte de niveau locataire pour la fonctionnalité Managed Service Identity pour `login`
+
+### <a name="network"></a>Réseau
+* Correction d’un problème lié à `express-route update` où l’argument `--bandwidth` était ignoré
+* Correction d’un problème lié à `ddos-protection update` où set comprehension entraînait la génération d’un rapport des appels de procédure
+
+### <a name="resource"></a>Ressource
+* Ajout de la prise en charge du fichier de paramètres d’URI à `group deployment create`
+* Ajout de la prise en charge de l’identité managée à `policy assignment [create|list|show]`
+
+### <a name="sql-virtual-machine"></a>Machine virtuelle SQL
+* Version préliminaire
+
+### <a name="storage"></a>Stockage
+* Changement d’une correction pour mettre à jour uniquement les propriétés modifiées sur le même objet
+* Correction (n° 8021). Les données binaires sont encodées au format base 64 quand elles sont retournées
+
+### <a name="vm"></a>Machine virtuelle
+* Changement apporté à `vm encryption enable` pour valider le coffre de clés de chiffrement de disque et vérifier l’existence du coffre de clés de chiffrement à clé
+* Ajout de l’indicateur `--force` à `vm encryption enable`
+
+## <a name="january-15-2019"></a>15 janvier 2019
+
+Version 2.0.55
+
+### <a name="acr"></a>ACR
+* Changement apporté pour forcer l’envoi (push) d’un chart Helm qui n’existe pas
+* changement apporté pour autoriser les opérations de runtime sans requêtes ARM
+* [DÉPRÉCIÉ] Dépréciation du paramètre `--resource-group` dans les commandes :
+  * `acr login`
+  * `acr repository`
+  * `acr helm`
+
+### <a name="acs"></a>ACS
+* Ajout de la prise en charge des nouvelles régions ACI
+
+### <a name="appservice"></a>AppService
+* Correction d’un problème lié au chargement des certificats des applications hébergées sur un ASE, où ASE RG et App RG sont différents
+* Changement apporté à `webapp up` pour utiliser la référence (SKU) P1V1 en tant que valeur par défaut pour Linux
+* Correction apporté à `[webapp|functionapp] deployment source config-zip` pour afficher le message d’erreur approprié en cas d’échec d’un déploiement 
+* Ajout de la commande `webapp ssh`
+
+### <a name="botservice"></a>Botservice
+* Ajout de mises à jour de l’état de déploiement à `bot create`
+
+### <a name="configure"></a>Configuration
+* Ajout de `none` en tant que format de sortie configurable
+
+### <a name="cosmosdb"></a>CosmosDB
+* Ajout de la prise en charge de la création d’une base de données avec débit partagé
+
+### <a name="hdinsight"></a>HDInsight
+* Ajout de commandes pour la gestion des applications
+* Ajout de commandes pour la gestion des actions de script
+* Ajout de commandes pour la gestion d’OMS (Operations Management Suite)
+* Ajout de la prise en charge permettant de lister l’utilisation régionale à `hdinsight list-usage`
+* [CHANGEMENT CASSANT] Suppression du type de cluster par défaut dans `hdinsight create`
+
+### <a name="network"></a>Réseau
+* Ajout des arguments `--custom-headers` et `--status-code-ranges` à `traffic-manager profile [create|update]`
+* Ajout de nouveaux types de routage : Sous-réseau et valeurs multiples
+* Ajout des arguments `--custom-headers` et `--subnets` à `traffic-manager endpoint [create|update]`  
+* Correction du problème où la fourniture de `--vnets ""` à `ddos-protection update` provoquait une erreur
+
+### <a name="role"></a>Rôle
+* [DÉPRÉCIÉ] Dépréciation de l’argument `--password` au profit de `create-for-rbac`. Utilisation de mots de passe sécurisés générés par l’interface CLI à la place
+
+### <a name="security"></a>Sécurité
+* Version initiale
+
+### <a name="storage"></a>Stockage
+* [CHANGEMENT CASSANT] Changement apporté à `storage [blob|file|container|share] list` pour que le nombre par défaut de résultats soit de 5 000. Utilisation de `--num-results *` pour que le comportement d’origine permette de retourner tous les résultats
+* Ajout du paramètre `--marker` pour `storage [blob|file|container|share] list`
+* Ajout du marqueur de journal de la page suivante à STDERR pour `storage [blob|file|container|share] list` 
+* Ajout de la commande `storage blob service-properties update` avec prise en charge des sites web statiques
+
+### <a name="vm"></a>Machine virtuelle
+* Changement apporté à `vm [disk|unmanaged-disk]` et `vmss disk` pour avoir des paramètres plus cohérents
+* Ajout de la prise en charge du référencement d’images entre locataires à `[vm|vmss] create`
+* Résolution d’un bogue lié à la configuration par défaut dans `vm diagnostics get-default-config --windows-os`
+* Ajout de l’argument `--provision-after-extensions` à `vmss extension set` pour définir les extensions à provisionner avant de définir l’extension
+* Ajout de l’argument `--replica-count` à `sig image-version update` pour définir le nombre de réplications par défaut
+* Résolution d’un bogue lié à `image create --source` où le disque d’OS source est confondu avec une machine virtuelle portant le même nom, même si l’ID de ressource complet est fourni
 
 ## <a name="december-20-2018"></a>20 décembre 2018
 
