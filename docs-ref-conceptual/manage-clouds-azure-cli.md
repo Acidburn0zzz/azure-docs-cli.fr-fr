@@ -9,14 +9,14 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: e62523ba310f071020f0d66042e39e6f1867c56b
-ms.sourcegitcommit: f40bd067ece4e6ec13e259782ed8db3e33b61a75
+ms.openlocfilehash: 14f51e068c4d2b332b0de93406822e148d734701
+ms.sourcegitcommit: 032f35d553754fbac78b218259a8d6a697ac220e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "53593844"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56458686"
 ---
-# <a name="select-clouds-with-the-azure-cli"></a>Sélectionnez des clouds avec Azure CLI 
+# <a name="select-clouds-with-the-azure-cli"></a>Sélectionnez des clouds avec Azure CLI
 
 Si vous travaillez sur différentes régions ou utilisez [Azure Stack](https://docs.microsoft.com/azure/azure-stack/user/), vous devrez peut-être utiliser plusieurs clouds. Microsoft fournit des clouds conformes aux lois régionales, qui sont à votre disposition. Cet article vous explique comment obtenir des informations sur les clouds, modifier le cloud actuel, et inscrire ou désinscrire de nouveaux clouds.
 
@@ -88,7 +88,7 @@ az cloud set --name AzureChinaCloud
 
 Inscrivez un nouveau cloud si vous disposez de vos propres points de terminaison pour Azure Stack. La création d’un cloud s’effectue avec la commande [az cloud register](/cli/azure/cloud#az-cloud-register). Cette commande nécessite un nom et un ensemble de points de terminaison de service. Pour savoir comment inscrire un cloud pour utilisation avec Azure Stack, consultez [Utiliser des profils de version d’API avec Azure CLI dans Azure Stack](/azure/azure-stack/user/azure-stack-version-profiles-azurecli2#connect-to-azure-stack).
 
-Vous n’avez pas besoin d’inscrire votre propre cloud pour les régions de la Chine, du gouvernement des États-Unis ou de l’Allemagne. Ces clouds sont gérés par Microsoft et disponibles par défaut.  Pour plus d’informations sur tous les paramètres de point de terminaison disponibles, consultez la [documentation pour `az cloud register`](/cli/azure/cloud#az-cloud-register).
+Vous n’avez pas besoin d’enregistrer d’informations pour les régions suivantes : Chine, Administration américaine ou Allemagne. Ces clouds sont gérés par Microsoft et disponibles par défaut.  Pour plus d’informations sur tous les paramètres de point de terminaison disponibles, consultez la [documentation pour `az cloud register`](/cli/azure/cloud#az-cloud-register).
 
 L’inscription d’un cloud n’active pas automatiquement ce dernier. Utilisez la commande `az cloud set` pour sélectionner le cloud récemment créé.
 

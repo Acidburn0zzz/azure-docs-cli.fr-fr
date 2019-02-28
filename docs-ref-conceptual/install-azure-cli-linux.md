@@ -9,16 +9,18 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: b57ddd04d41b09eb145349179e3be48d3fdd5907
-ms.sourcegitcommit: f40bd067ece4e6ec13e259782ed8db3e33b61a75
+ms.openlocfilehash: 229b109b307453c87abf260a66084c94ced33d81
+ms.sourcegitcommit: 1987a39809f9865034b27130e56f30b2bd1eb72c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "53593674"
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56421998"
 ---
 # <a name="install-azure-cli-on-linux-manually"></a>Installer manuellement Azure CLI sur Linux
 
 S’il n’existe aucun package pour l’interface Azure CLI pour vous et votre distribution, installez l’interface CLI manuellement en exécutant un script.
+
+[!INCLUDE [current-version](includes/current-version.md)]
 
 > [!NOTE]
 > Il est fortement recommandé d’installer l’interface CLI avec un gestionnaire de package. Un gestionnaire de package permet de s’assurer que vous obtenez toujours les dernières mises à jour et garantit la stabilité des composants de l’interface CLI. Vérifiez s’il existe un package pour votre distribution avant d’installer manuellement.
@@ -27,9 +29,13 @@ S’il n’existe aucun package pour l’interface Azure CLI pour vous et votre 
 
 L’interface CLI requiert les logiciels suivants :
 
-* [Python 2.7 ou Python 3.x](https://www.python.org/downloads/)
+* [Python 3.6.x ou 3.7.x](https://www.python.org/downloads/). 
 * [libffi](https://sourceware.org/libffi/)
 * [OpenSSL 1.0.2](https://www.openssl.org/source/)
+
+> [!IMPORTANT]
+>
+> L’interface CLI est également compatible avec Python 2.7.x, dont la fin de vie est prévue pour le 1er janvier 2020. C’est la raison pour laquelle nous vous recommandons d’installer Python 3 afin d’exécuter l’interface CLI.
 
 ## <a name="install-or-update"></a>Installation ou mise à jour
 
@@ -49,7 +55,7 @@ Pour en savoir plus sur les différentes méthodes d’authentification, consult
 
 ## <a name="troubleshooting"></a>Résolution de problèmes
 
-Voici certains problèmes courants rencontrés pendant une installation manuelle. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
+Voici certains problèmes courants rencontrés pendant une installation manuelle. Si vous rencontrez un problème qui n’est pas traité ici, [signalez ce problème sur GitHub](https://github.com/Azure/azure-cli/issues).
 
 ### <a name="curl-object-moved-error"></a>erreur curl « Objet déplacé »
 

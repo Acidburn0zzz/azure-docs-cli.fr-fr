@@ -16,12 +16,12 @@ metadata:
   ms.prod: azure
   ms.technology: azurecli
   clicktale: true
-  ms.openlocfilehash: d936f451bf29bae5513da16fb86bfd1b31b9727d
-  ms.sourcegitcommit: f40bd067ece4e6ec13e259782ed8db3e33b61a75
+  ms.openlocfilehash: e2c3c1a181105a86ccb8882b647f1984e32c8246
+  ms.sourcegitcommit: 7f79860c799e78fd8a591d7a5550464080e07aa9
   ms.translationtype: HT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 12/18/2018
-  ms.locfileid: "53593147"
+  ms.lasthandoff: 02/12/2019
+  ms.locfileid: "56158271"
 items:
 - durationInMinutes: 1
   content: >-
@@ -55,14 +55,15 @@ items:
 - durationInMinutes: 4
   title: Définir les variables d’environnement à partir de la sortie CLI
   content: >-
-    Maintenant que vous avez l’ID de carte réseau, exécutez `az network nic show` pour obtenir ses informations.
+    Maintenant que vous avez l’ID de carte réseau, exécutez `az network nic show` pour obtenir ses informations. Notez que vous n’avez pas besoin d’un groupe de ressources ici, car le nom du groupe de ressources est contenu dans l’ID de ressource Azure.
 
 
     ```azurecli-interactive
 
-    az network nic show --ids $NIC_ID -g TutorialResources
+    az network nic show --ids $NIC_ID
 
     ```
+
 
 
     Cette commande affiche toutes les informations de l’interface réseau de la machine virtuelle. Ces données incluent des paramètres DNS, des informations d’adresse IP, des paramètres de sécurité et l’adresse MAC. Pour le moment, l’objectif est d’obtenir l’adresse IP publique et les ID d’objet de sous-réseau.
@@ -71,7 +72,6 @@ items:
     ```azurecli-interactive
 
     az network nic show --ids $NIC_ID \
-      -g TutorialResources \
       --query '{IP:ipConfigurations[].publicIpAddress.id, Subnet:ipConfigurations[].subnet.id}' \
       -o json
     ```
@@ -100,7 +100,7 @@ items:
     ```bash
 
     read -d '' IP_ID SUBNET_ID <<< $(az network nic show \
-      --ids $NIC_ID -g TutorialResources \
+      --ids $NIC_ID \
       --query '[ipConfigurations[].publicIpAddress.id, ipConfigurations[].subnet.id]' \
       -o tsv)
     ```
@@ -112,7 +112,6 @@ items:
     ```bash
 
     VM1_IP_ADDR=$(az network public-ip show --ids $IP_ID \
-      -g TutorialResources \
       --query ipAddress \
       -o tsv)
     ```
@@ -230,7 +229,7 @@ items:
 
     * Complétez une demande de fonctionnalité ou un rapport de bogues avec l’interface CLI dans le [référentiel Azure CLI](https://github.com/Azure/azure-cli).
 
-    * Posez une question ou obtenez des précisions en signalant un problème dans le [référentiel de documentation Azure CLI](https://github.com/Azure/azure-docs-cli-python).
+    * Posez une question ou obtenez des précisions en signalant un problème dans le [référentiel de documentation Azure CLI](https://github.com/MicrosoftDocs/azure-docs-cli/issues).
 
 
     Nous espérons que vous appréciez utiliser Azure CLI !
