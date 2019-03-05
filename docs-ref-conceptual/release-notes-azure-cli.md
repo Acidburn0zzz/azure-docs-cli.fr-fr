@@ -9,14 +9,77 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 1c6b2cc57b80256faff0a174bec5f13bd84f5a1b
-ms.sourcegitcommit: 7f79860c799e78fd8a591d7a5550464080e07aa9
+ms.openlocfilehash: 9f35084eeecab491e5be63eb856b0bb64a6157d0
+ms.sourcegitcommit: 9fb008f2802ca6a58f33e01263bf55a80d01f031
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56158356"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "56891209"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+## <a name="february-26-2019"></a>26 février 2019
+
+Version 2.0.59
+
+### <a name="core"></a>Principal
+
+* Correction du problème où l’utilisation de `--subscription NAME` levait une exception dans certains cas
+
+### <a name="acr"></a>ACR
+
+* Ajout du paramètre `--target` pour les commandes `acr build`, `acr task create` et `acr task update`
+* Amélioration de la gestion des erreurs pour les commandes de runtime quand vous n’êtes pas connecté à Azure
+
+### <a name="acs"></a>ACS
+
+* Ajout de l’option `--listen-address` à `aks port-forward`
+
+### <a name="appservice"></a>AppService
+
+* Ajout de la commande `functionapp devops-build`
+
+### <a name="batch"></a>Batch
+* [CHANGEMENT CASSANT] Suppression de la commande `batch pool upgrade os`
+* [CHANGEMENT CASSANT] Suppression de la propriété `Pacakges` des réponses `Application`
+* Ajout de la commande `batch application package list` pour lister les packages d’une application
+* [CHANGEMENT CASSANT] Remplacement de `--application-id` par `--application-name` dans toutes les commandes `batch application` 
+* Ajout de l’argument `--json-file` aux commandes permettant de demander la réponse d’API brute
+* Mise à jour de la validation pour inclure automatiquement `https://` dans tous les points de terminaison si manquant
+
+### <a name="cosmosdb"></a>CosmosDB
+
+* Ajout du sous-groupe `network-rule` avec les commandes `add`, `remove` et `list` pour gérer les règles de réseau virtuel d’un compte Cosmos DB
+
+### <a name="kusto"></a>Kusto
+
+* [CHANGEMENT CASSANT] Changement des types `hot_cache_period` et `soft_delete_period` de la base de données en format de durée ISO8601
+
+### <a name="network"></a>Réseau
+
+* Ajout de l’argument `--express-route-gateway-bypass` à `vpn-connection [create|update]`
+* Ajout de groupes de commandes à partir des extensions `express-route`
+* Ajout des groupes de commandes `express-route gateway` et `express-route port`
+* Ajout d’un argument `--legacy-mode` à `express-route peering [create|update]` 
+* Ajout des arguments `--allow-classic-operations` et `--express-route-port` à `express-route [create|update]`
+* Ajout de l’argument `--gateway-default-site` à `vnet-gateway [create|update]`
+* Ajout des commandes `ipsec-policy` à `vnet-gateway`
+
+### <a name="resource"></a>Ressource
+
+* Correction du problème de `deployment create` où le champ de type n’était pas sensible à la casse
+* Ajout de la prise en charge du fichier de paramètres basé sur l’URI sur `policy assignment create`
+* Ajout de la prise en charge des définitions et des paramètres basés sur l’URI sur `policy set-definition update`
+* Correction de la gestion des paramètres et des règles pour `policy definition update`
+* Correction du problème avec `resource show/update/delete/tag/invoke-action` où les ID inter-abonnements n’honoraient pas correctement l’ID d’abonnement
+
+### <a name="role"></a>Rôle
+
+* Ajout de la prise en charge des rôles d’application sur `ad app [create|update]`
+
+### <a name="vm"></a>Machine virtuelle
+
+* Correction du problème avec `vm create where `--accelerated-networking` qui n’était pas activé par défaut pour Ubuntu 18.0
+
 ## <a name="february-12-2019"></a>12 février 2019
 
 Version 2.0.58

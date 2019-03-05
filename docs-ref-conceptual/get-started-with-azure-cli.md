@@ -10,12 +10,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: b018f41824946dca36d0b806de0dd32a335a15b5
-ms.sourcegitcommit: 1987a39809f9865034b27130e56f30b2bd1eb72c
+ms.openlocfilehash: ddee71f39500b63065a3f71d01b3bed1a7311a52
+ms.sourcegitcommit: 943598f8bf05ee058593ca0d72aec507aa26c242
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56422015"
+ms.lasthandoff: 02/28/2019
+ms.locfileid: "56963457"
 ---
 # <a name="get-started-with-azure-cli"></a>Prise en main d’Azure CLI
 
@@ -34,6 +34,8 @@ Après avoir installé l’interface CLI pour la première fois, vérifiez qu’
 Avant d’utiliser les commandes CLI avec une installation locale, vous devez vous connecter avec la commande [az login](/cli/azure/reference-index#az-login).
 
 [!INCLUDE [interactive-login](includes/interactive-login.md)]
+
+Après vous être connecté, vous voyez une liste des abonnements associés à votre compte Azure. Les informations d’abonnement avec `isDefault: true` correspond à l’abonnement actuellement activé après vous être connecté. Pour sélectionner un autre abonnement, utilisez la commande [az account set](/cli/azure/account#az-account-set) avec l’ID d’abonnement auquel vous voulez passer. Pour plus d’informations sur la sélection d’abonnements, consultez [Utiliser plusieurs abonnements Azure](manage-azure-subscriptions-azure-cli.md).
 
 Il existe des méthodes pour se connecter de manière non interactive, qui sont dévelopées en détail dans [Se connecter avec Azure CLI](authenticate-azure-cli.md).
 
