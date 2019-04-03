@@ -4,17 +4,17 @@ description: Liste complète des extensions officiellement prises en charge pour
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 03/20/2019
+ms.date: 03/27/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 5f787111d349e32ef838ab89d3f964ab484a2ac4
-ms.sourcegitcommit: 5864f72b9a6fbf82a4d98bf805b3a16a7da18556
+ms.openlocfilehash: 2422d401d174ad779f8c9244dc2c966b5a9c53ef
+ms.sourcegitcommit: d8e2fdc9b62d0a1d6b69b2483f68db31bd36e60f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/22/2019
-ms.locfileid: "58343109"
+ms.lasthandoff: 03/27/2019
+ms.locfileid: "58524300"
 ---
 # <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
@@ -36,18 +36,18 @@ az extension list-available --output table
 | [application-insights](https://github.com/Azure/azure-cli-extensions/tree/master/src/application-insights) | 0.1.0 | Prise en charge de l’interrogation des métriques, des événements et des journaux Azure Application Insights. | OUI |
 | [azure-batch-cli-extensions](https://github.com/Azure/azure-batch-cli-extensions) | 3.0.3 | Commandes supplémentaires pour travailler avec le service Azure Batch |  |
 | [azure-cli-iot-ext](https://github.com/azure/azure-iot-cli-extension) | 0.7.0 | Fourniture de la couche de commandes du plan de données pour Azure IoT Hub, IoT Edge et le service de provisionnement d’appareils IoT |  |
-| [azure-devops](https://github.com/Microsoft/azure-devops-cli-extension) | 0.3.0 | Outils de gestion Azure DevOps. | OUI |
+| [azure-devops](https://github.com/Microsoft/azure-devops-cli-extension) | 0.4.0 | Outils de gestion Azure DevOps. | OUI |
 | [azure-firewall](https://github.com/Azure/azure-cli-extensions/tree/master/src/azure-firewall) | 0.1.1 | Gérez les ressources de pare-feu Azure. | OUI |
 | [botservice](https://github.com/Azure/azure-cli-extensions) | 0.4.3 | Résolution de bogues concernant les problèmes dans le module de commande cli du botservice natif. | OUI |
-| [db-up](https://github.com/Azure/azure-cli-extensions/tree/master/src/db-up) | 0.1.9 | Commandes supplémentaires pour simplifier les workflows Azure Database. | OUI |
+| [db-up](https://github.com/Azure/azure-cli-extensions/tree/master/src/db-up) | 0.1.10 | Commandes supplémentaires pour simplifier les workflows Azure Database. | OUI |
 | [dev-spaces-preview](https://github.com/Azure/azure-cli-extensions) | 0.1.6 | Dev Spaces offre aux équipes une expérience de développement Kubernetes rapide et itérative. | OUI |
-| [dms-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/dms-preview) | 0.6.0 | Prise en charge de nouveaux scénarios de Database Migration Service. | OUI |
+| [dms-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/dms-preview) | 0.8.0 | Prise en charge de nouveaux scénarios de Database Migration Service. | OUI |
 | [dns](https://github.com/Azure/azure-cli-extensions) | 0.0.2 | Une extension Azure CLI pour les zones DNS |  |
 | [eventgrid](https://github.com/Azure/azure-cli-extensions) | 0.4.0 | Prise en charge des fonctionnalités d’évaluation d’Azure EventGrid 2018-09-15 | OUI |
 | [express-route](https://github.com/Azure/azure-cli-extensions/tree/master/src/express-route) | 0.1.3 | Gérez les instances ExpressRoute avec les fonctionnalités d’évaluation. | OUI |
-| [express-route-cross-connexion](https://github.com/Azure/azure-cli-extensions/tree/master/src/express-route-cross-connection) | 0.1.0 | Gérez des circuits ExpressRoute de client à l’aide d’une interconnexion ExpressRoute. |  |
+| [express-route-cross-connexion](https://github.com/Azure/azure-cli-extensions/tree/master/src/express-route-cross-connection) | 0.1.1 | Gérez des circuits ExpressRoute de client à l’aide d’une interconnexion ExpressRoute. |  |
 | [find](https://github.com/Azure/azure-cli-extensions/tree/master/src/find) | 0.3.0 | Requêtes intelligentes pour l’obtention d’informations relatives l’interface CLI. | OUI |
-| [front-door](https://github.com/Azure/azure-cli-extensions/tree/master/src/front-door) | 0.1.2 | Gérez les portes d’entrée réseau. | OUI |
+| [front-door](https://github.com/Azure/azure-cli-extensions/tree/master/src/front-door) | 0.1.3 | Gérez les portes d’entrée réseau. | OUI |
 | [image-copy-extension](https://github.com/Azure/azure-cli-extensions) | 0.0.9 | Prise en charge de la copie d’images de machines virtuelles managées entre régions |  |
 | [interactive](https://github.com/Azure/azure-cli) | 0.4.1 | Shell interactif de ligne de commande Microsoft Azure | OUI |
 | [keyvault-preview](https://github.com/Azure/azure-keyvault-cli-extension) | 0.1.3 | Préversion des commandes Azure Key Vault. | OUI |
@@ -62,7 +62,7 @@ az extension list-available --output table
 | [sap-hana](https://github.com/Azure/azure-hanaonazure-cli-extension) | 0.3.4 | Commandes supplémentaires pour travailler avec les instances SAP HanaOnAzure. |  |
 | [signalr](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Prise en charge de la préversion de gestion de signalr. | OUI |
 | [sqlvm-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/sqlvm-preview) | 0.1.0 | Outils de gestion des machines virtuelles SQL, des groupes et des écouteurs de groupe de disponibilité. | OUI |
-| [storage-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/storage-preview) | 0.2.2 | Fournit un aperçu des fonctionnalités de stockage à venir. | OUI |
+| [storage-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/storage-preview) | 0.2.3 | Fournit un aperçu des fonctionnalités de stockage à venir. | OUI |
 | [abonnement](https://github.com/Azure/azure-cli-extensions) | 0.1.1 | Prise en charge de la préversion des définitions d’abonnement. |  |
 | [virtual-network-tap](https://github.com/Azure/azure-cli-extensions/tree/master/src/virtual-network-tap) | 0.1.0 | Gérez les taps de réseau virtuel (VTAP). | OUI |
 | [virtual-wan](https://github.com/Azure/azure-cli-extensions/tree/master/src/virtual-wan) | 0.1.0 | Gérez le WAN virtuel, les hubs, les passerelles VPN et les sites VPN. | OUI |
