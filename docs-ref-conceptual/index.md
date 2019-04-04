@@ -9,8 +9,13 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
+ms.openlocfilehash: 3b9589c769a90e82c35aa64c583dffdac4e4f063
+ms.sourcegitcommit: 1987a39809f9865034b27130e56f30b2bd1eb72c
+ms.translationtype: HT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56421981"
 ---
-
 # <a name="azure-command-line-interface-cli"></a><span data-ttu-id="9a6ac-103">Interface de ligne de commande Azure (CLI)</span><span class="sxs-lookup"><span data-stu-id="9a6ac-103">Azure Command-Line Interface (CLI)</span></span>
 
 <span data-ttu-id="9a6ac-104">L’interface de ligne de commande Azure (CLI) est l’interface de ligne de commande multiplateforme de Microsoft pour la gestion de ressources Azure.</span><span class="sxs-lookup"><span data-stu-id="9a6ac-104">The Azure command-line interface (CLI) is Microsoft's cross-platform command-line experience for managing Azure resources.</span></span>
