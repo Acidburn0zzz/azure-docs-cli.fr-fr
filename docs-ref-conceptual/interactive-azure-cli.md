@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 7a6b89953d60fe98910f8141a606ac1fcba318ae
-ms.sourcegitcommit: 7f79860c799e78fd8a591d7a5550464080e07aa9
+ms.openlocfilehash: a325b799c7384037ae336093aa5274c7cbf53cbc
+ms.sourcegitcommit: cf47338210116437d7dc0f6037d2dabd5c5e6a4b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56158205"
+ms.lasthandoff: 04/09/2019
+ms.locfileid: "59429011"
 ---
 # <a name="azure-cli-interactive-mode"></a>Mode interactif d’Azure CLI
 
@@ -82,18 +82,20 @@ az>>
 
 ## <a name="query"></a>Requête
 
-Vous pouvez exécuter une requête JMESPath sur les résultats de la dernière commande exécutée.
-Par exemple, après avoir créé une machine virtuelle, vous pouvez vous assurer qu’elle est entièrement configurée.
+Vous pouvez exécuter une requête JMESPath sur les résultats de la dernière commande exécutée en utilisant `??` suivi d’une requête JMESPath.
+Par exemple, après avoir créé un groupe, vous pouvez récupérer l’ID du nouveau groupe.
+
+```azurecli
+az>> group create -n myRG -l westEurope
+az>> "?? id"
+```
+
+Cette syntaxe vous permet également d’utiliser le résultat de la commande précédente comme argument dans la commande suivante.* Par exemple, après avoir listé tous les groupes, vous pouvez lister toutes les ressources de type `virtualMachine` dans le premier groupe dont l’emplacement est westeurope. 
 
 ```azurecli
 az>> vm create --name myVM --resource-group myRG --image UbuntuLTS --no-wait -o json
-az>> ? [*].provisioningState
-```
-
-```json
-[
-  "Creating"
-]
+az>> group list -o json
+az>> resource list -g "?? [?location=='westeurope'].name | [0]" --query "[?type=='Microsoft.Compute/virtualMachines'].name
 ```
 
 Pour plus d’informations concernant l’interrogation des résultats de vos commandes, consultez [Interroger les résultats d’une commande avec Azure CLI](query-azure-cli.md).

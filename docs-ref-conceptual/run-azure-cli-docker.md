@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 2a4515f5301daca68f6e1a161fb2327f6caa0cf5
-ms.sourcegitcommit: 7f79860c799e78fd8a591d7a5550464080e07aa9
+ms.openlocfilehash: 346014c1890cd7aa5b4225df15078e55db908a33
+ms.sourcegitcommit: 754c550b417f26e27f2e31cd0a04826aa8ff4f64
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56158253"
+ms.lasthandoff: 04/08/2019
+ms.locfileid: "59289081"
 ---
 # <a name="run-azure-cli-in-a-docker-container"></a>Exécuter Azure CLI dans un conteneur Docker
 
@@ -22,17 +22,20 @@ Vous pouvez utiliser Docker pour exécuter un conteneur Linux autonome avec Azur
 
 ## <a name="run-in-a-docker-container"></a>Exécution dans un conteneur Docker
 
+> [!NOTE]
+> Azure CLI a été déplacé vers [Microsoft Container Registry](https://azure.microsoft.com/services/container-registry). Les balises existantes sur Docker Hub sont toujours prises en charge, mais les nouvelles versions pourront uniquement être utilisées sous la forme mcr.microsoft.com/azure-cli.
+
 Installez l’interface de ligne de commande à l’aide de `docker run`.
 
    ```bash
-   docker run -it microsoft/azure-cli
+   docker run -it mcr.microsoft.com/azure-cli
    ```
 
 > [!NOTE]
 > Si vous souhaitez sélectionner les clés SSH à partir de votre environnement utilisateur, utilisez `-v ${HOME}/.ssh:/root/.ssh` pour monter vos clés SSH dans l’environnement.
 >
 > ```bash
-> docker run -it -v ${HOME}/.ssh:/root/.ssh microsoft/azure-cli
+> docker run -it -v ${HOME}/.ssh:/root/.ssh mcr.microsoft.com/azure-cli
 > ```
 
 L’interface de ligne de commande est installé sur l’image en tant que commande `az` dans `/usr/local/bin`. Pour vous connecter, exécutez la commande [az login](/cli/azure/reference-index#az-login).
@@ -48,7 +51,7 @@ La mise à jour avec Docker nécessite l’extraction de la nouvelle image et la
 Mettre à jour votre image locale avec `docker pull`.
 
 ```bash
-docker pull microsoft/azure-cli
+docker pull mcr.microsoft.com/azure-cli
 ```
 
 ## <a name="uninstall-docker-image"></a>Désinstallation d’une image Docker
@@ -58,7 +61,7 @@ docker pull microsoft/azure-cli
 Après l’arrêt de tous les conteneurs exécutant l’image de l’interface CLI, supprimez-la.
 
 ```bash
-docker rmi microsoft/azure-cli
+docker rmi mcr.microsoft.com/azure-cli
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
@@ -66,4 +69,4 @@ docker rmi microsoft/azure-cli
 Maintenant que vous êtes prêt à utiliser l’interface CLI, découvrez ses fonctionnalités et ses commandes courantes.
 
 > [!div class="nextstepaction"]
-> [Prise en main de l’interface Azure CLI](get-started-with-azure-cli.md)
+> [Bien démarrer avec Azure CLI](get-started-with-azure-cli.md)
