@@ -11,10 +11,10 @@ ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
 ms.openlocfilehash: 003576ba22cdc4fc64977b653d0fb6859cd38446
-ms.sourcegitcommit: cf47338210116437d7dc0f6037d2dabd5c5e6a4b
+ms.sourcegitcommit: 334a1da92a73e42e715e33470057f4194f10b2ea
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/09/2019
+ms.lasthandoff: 04/17/2019
 ms.locfileid: "59429028"
 ---
 # <a name="get-started-with-azure-cli"></a>Prise en main d’Azure CLI
@@ -76,9 +76,9 @@ L’interface CLI dispose de la saisie semi-automatique via la touche Tab pour l
 Certains arguments sont disponibles pour chaque commande.
 
 * `--help` imprime les informations de référence CLI sur les commandes et leurs arguments, et répertorie les commandes et sous-groupes disponibles.
-* `--output` change le format de sortie. Les formats de sortie disponibles sont `json`, `jsonc` (JSON coloré), `tsv` (valeurs séparées par des tabulations), `table` (tables ASCII lisibles) et `yaml`. Par défaut, l’interface CLI génère `json`. Pour en savoir plus sur les formats de sortie disponibles, consultez [Formats de sortie pour Azure CLI](format-output-azure-cli.md).
+* `--output` modifie le format de sortie. Les formats de sortie disponibles sont `json`, `jsonc` (JSON coloré), `tsv` (valeurs séparées par des tabulations), `table` (tables ASCII lisibles) et `yaml`. Par défaut, l’interface CLI génère `json`. Pour en savoir plus sur les formats de sortie disponibles, consultez [Formats de sortie pour Azure CLI](format-output-azure-cli.md).
 * `--query` utilise le [langage de requête JMESPath](http://jmespath.org/) pour filtrer la sortie retournée à partir des services Azure. Pour en savoir plus sur les requêtes, consultez [Interroger des résultats de commande avec Azure CLI](query-azure-cli.md) et le [tutoriel JMESPath](http://jmespath.org/tutorial.html).
-* `--verbose` imprime les informations sur les ressources créées dans Azure pendant une opération ainsi que diverses autres informations utiles.
+* `--verbose` imprime les informations sur les ressources créées dans Azure pendant une opération, et d’autres informations utiles.
 * `--debug` imprime davantage d’informations sur les opérations CLI, utilisées pour le débogage. Si vous rencontrez un bogue, fournissez la sortie générée avec l’indicateur `--debug` lors de l’envoi d’un rapport de bogue.
 
 ## <a name="interactive-mode"></a>Mode interactif
@@ -98,16 +98,16 @@ Il existe également un [plug-in Visual Studio Code](https://marketplace.visuals
 Pour vous aider à prendre en main Azure CLI, lancez-vous dans un didacticiel approfondi de configuration des machines virtuelles, et utilisez la puissance de l’interface de ligne de commande pour interroger des ressources Azure.
 
 > [!div class="nextstepaction"]
-> [Créer des machines virtuelles avec le tutoriel Azure CLI](azure-cli-vm-tutorial.yml)
+> [Créer des machines virtuelles avec le didacticiel Azure CLI](azure-cli-vm-tutorial.yml)
 
 Il existe également des guides de démarrage rapide pour les autres services populaires.
 
 * [Créer un compte de stockage à l’aide d’Azure CLI](/azure/storage/common/storage-quickstart-create-storage-account-cli)
-* [Transférer des objets vers/à partir du stockage Blob Azure à l’aide de l’interface CLI](/azure/storage/blobs/storage-quickstart-blobs-cli)
-* [Créer une base de données SQL Azure à l’aide de l’interface de ligne de commande Azure](/azure/sql-database/sql-database-get-started-cli)
-* [Créer un serveur Azure Database pour MySQL à l’aide d’Azure CLI](/azure/mysql/quickstart-create-mysql-server-database-using-azure-cli)
+* [Transférer des objets vers/à partir du stockage blob Azure à l’aide de l’interface CLI](/azure/storage/blobs/storage-quickstart-blobs-cli)
+* [Créer une base de données SQL Azure unique à l’aide d’Azure CLI](/azure/sql-database/sql-database-get-started-cli)
+* [Créer un serveur de base de données Azure pour MySQL à l’aide d’Azure CLI](/azure/mysql/quickstart-create-mysql-server-database-using-azure-cli)
 * [Création d’une instance d’Azure Database pour PostgreSQL à l’aide de la CLI Azure](/azure/postgresql/quickstart-create-server-database-azure-cli)
-* [Créer une application web Python dans Azure](/azure/app-service/app-service-web-get-started-python)
+* [Créer une application web Python dans Azure](/azure/app-service/app-service-web-get-started-python)
 * [Exécuter une image Docker Hub personnalisée dans Azure Web App for Containers](/azure/app-service/containers/quickstart-custom-docker-image)
 
 ## <a name="give-feedback"></a>Envoyer des commentaires
