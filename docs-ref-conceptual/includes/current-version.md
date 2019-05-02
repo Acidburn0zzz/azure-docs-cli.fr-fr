@@ -2,13 +2,13 @@
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 04/09/2019
+ms.date: 04/18/2019
 ms.topic: include
-ms.openlocfilehash: af5f370aafbfb8f1657e233406577b711406112f
-ms.sourcegitcommit: 334a1da92a73e42e715e33470057f4194f10b2ea
+ms.openlocfilehash: e149d007a159e79a87412aa71fce1b93af5ceb01
+ms.sourcegitcommit: 4906c38953bdaa344b66749685dedbf2da386dab
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "59737082"
+ms.lasthandoff: 04/24/2019
+ms.locfileid: "64318609"
 ---
-La version actuelle de l’interface CLI est la version __2.0.62__. Pour plus d’informations sur la version la plus récente, consultez les [Notes de publication](../release-notes-azure-cli.md). Pour connaître la version que vous avez installée et savoir si elle nécessite d’être mise à jour, exécutez `az --version`.
+La version actuelle de l’interface CLI est __2.0.63__. Pour plus d’informations sur la version la plus récente, consultez les [Notes de publication](../release-notes-azure-cli.md). Pour connaître la version que vous avez installée et savoir si elle nécessite d’être mise à jour, exécutez `az --version`.
