@@ -4,17 +4,17 @@ description: Liste complète des extensions officiellement prises en charge pour
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 04/17/2019
+ms.date: 05/06/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: bfcd0bb57e60e698e3ac7e6edeb64d52e9eb1341
-ms.sourcegitcommit: 334a1da92a73e42e715e33470057f4194f10b2ea
+ms.openlocfilehash: 3c46257486d42fd309e99197f39fff5e1a3d3891
+ms.sourcegitcommit: 65bf8561a6e047e4eab52186e066a2e8c21f1d40
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "59724606"
+ms.lasthandoff: 05/07/2019
+ms.locfileid: "65240465"
 ---
 # <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
@@ -29,18 +29,18 @@ az extension list-available --output table
 | Nom | Version | Résumé | VERSION PRÉLIMINAIRE |
 |------|---------|---------|---------|
 | [aem](https://github.com/Azure/azure-cli-extensions) | 0.1.1 | Gestion des extensions de surveillance Azure améliorée pour SAP |  |
-| [préversion ASK](https://github.com/Azure/azure-cli-extensions/tree/master/src/aks-preview) | 0.3.1 | Fournit une préversion des fonctionnalités AKS à venir | OUI |
+| [préversion ASK](https://github.com/Azure/azure-cli-extensions/tree/master/src/aks-preview) | 0.4.0 | Fournit une préversion des fonctionnalités AKS à venir | OUI |
 | [alias](https://github.com/Azure/azure-cli-extensions) | 0.5.2 | Prise en charge des alias de commande | OUI |
-| [anf-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/anf-preview) | 0.1.0 | Fournit un aperçu des fonctionnalités Azure NetApp Files (ANF) à venir. | OUI |
-| [appconfig](https://github.com/Azure/azure-cli-extensions) | 0.4.0 | Fournit une préversion des fonctionnalités App Configuration à venir. | OUI |
+| [appconfig](https://github.com/Azure/azure-cli-extensions) | 0.5.0 | Fournit une préversion des fonctionnalités App Configuration à venir. | OUI |
 | [application-insights](https://github.com/Azure/azure-cli-extensions/tree/master/src/application-insights) | 0.1.1 | Prise en charge de la gestion des composants Application Insights et de l’interrogation des métriques, des événements et des journaux de ces composants. | OUI |
 | [azure-batch-cli-extensions](https://github.com/Azure/azure-batch-cli-extensions) | 3.0.3 | Commandes supplémentaires pour travailler avec le service Azure Batch |  |
 | [azure-cli-iot-ext](https://github.com/azure/azure-iot-cli-extension) | 0.7.0 | Fourniture de la couche de commandes du plan de données pour Azure IoT Hub, IoT Edge et le service de provisionnement d’appareils IoT |  |
-| [azure-devops](https://github.com/Microsoft/azure-devops-cli-extension) | 0.4.0 | Outils de gestion Azure DevOps. | OUI |
+| [azure-cli-ml](https://docs.microsoft.com/en-us/azure/machine-learning/service/) | 1.0.33.7 | Module de commande AzureML des outils en ligne de commande Microsoft Azure |  |
+| [azure-devops](https://github.com/Microsoft/azure-devops-cli-extension) | 0.8.0 | Outils de gestion Azure DevOps. | OUI |
 | [azure-firewall](https://github.com/Azure/azure-cli-extensions/tree/master/src/azure-firewall) | 0.1.2 | Gérez les ressources de pare-feu Azure. | OUI |
-| [botservice](https://github.com/Azure/azure-cli-extensions) | 0.4.3 | Résolution de bogues concernant les problèmes dans le module de commande cli du botservice natif. | OUI |
 | [db-up](https://github.com/Azure/azure-cli-extensions/tree/master/src/db-up) | 0.1.11 | Commandes supplémentaires pour simplifier les workflows Azure Database. | OUI |
 | [dev-spaces](https://github.com/Azure/azure-cli-extensions) | 1.0.0 | Dev Spaces offre aux équipes une expérience de développement Kubernetes rapide et itérative. |  |
+| [dev-spaces-preview](https://github.com/Azure/azure-cli-extensions) | 0.1.6 | Dev Spaces offre aux équipes une expérience de développement Kubernetes rapide et itérative. | OUI |
 | [dms-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/dms-preview) | 0.8.0 | Prise en charge de nouveaux scénarios de Database Migration Service. | OUI |
 | [dns](https://github.com/Azure/azure-cli-extensions) | 0.0.2 | Une extension Azure CLI pour les zones DNS |  |
 | [eventgrid](https://github.com/Azure/azure-cli-extensions) | 0.4.1 | Module de commande EventGrid des outils de ligne de commande Microsoft Azure. | OUI |
@@ -56,13 +56,14 @@ az extension list-available --output table
 | [managementpartner](https://github.com/Azure/azure-cli-extensions) | 0.1.2 | Prise en charge de la préversion des groupes d’administration |  |
 | [mesh](https://github.com/Azure/azure-cli-extensions) | 0.10.4 | Prise en charge de Microsoft Azure Service Fabric Mesh - préversion publique | OUI |
 | [mixed-reality](https://github.com/Azure/azure-cli-extensions) | 0.0.1 | Extension Mixed Reality d’Azure CLI. |  |
+| [netappfiles-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/netappfiles-preview) | 0.2.0 | Fournit un aperçu des fonctionnalités Azure NetApp Files (ANF) à venir. | OUI |
 | [privatedns](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Commandes permettant de gérer les zones DNS privées | OUI |
 | [rdbms-vnet](https://github.com/Azure/azure-cli-extensions) | 10.0.0 | Prise en charge des règles de réseau virtuel pour les ressources Azure MySQL et Azure PostgreSQL |  |
 | [resource-graph](https://github.com/Azure/azure-cli-extensions/tree/master/src/resource-graph) | 0.1.8 | Assistance pour interroger des ressources Azure avec Resource Graph. | OUI |
 | [sap-hana](https://github.com/Azure/azure-hanaonazure-cli-extension) | 0.3.4 | Commandes supplémentaires pour travailler avec les instances SAP HanaOnAzure. |  |
 | [signalr](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Prise en charge de la préversion de gestion de signalr. | OUI |
 | [sqlvm-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/sqlvm-preview) | 0.1.0 | Outils de gestion des machines virtuelles SQL, des groupes et des écouteurs de groupe de disponibilité. | OUI |
-| [storage-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/storage-preview) | 0.2.4 | Fournit un aperçu des fonctionnalités de stockage à venir. | OUI |
+| [storage-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/storage-preview) | 0.2.5 | Fournit un aperçu des fonctionnalités de stockage à venir. | OUI |
 | [abonnement](https://github.com/Azure/azure-cli-extensions) | 0.1.1 | Prise en charge de la préversion des définitions d’abonnement. |  |
 | [virtual-network-tap](https://github.com/Azure/azure-cli-extensions/tree/master/src/virtual-network-tap) | 0.1.0 | Gérez les taps de réseau virtuel (VTAP). | OUI |
 | [virtual-wan](https://github.com/Azure/azure-cli-extensions/tree/master/src/virtual-wan) | 0.1.0 | Gérez le WAN virtuel, les hubs, les passerelles VPN et les sites VPN. | OUI |

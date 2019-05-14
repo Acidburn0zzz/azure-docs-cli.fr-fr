@@ -4,23 +4,23 @@ description: Comment installer Azure CLI avec le gestionnaire de package apt
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 03/19/2019
+ms.date: 05/08/2019
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: fa2e1db439b4836d7506409b3abcce74fb6e6695
-ms.sourcegitcommit: 5864f72b9a6fbf82a4d98bf805b3a16a7da18556
+ms.openlocfilehash: af82eea3fd549cbca85699a3030a19bc82574b73
+ms.sourcegitcommit: c65c69bd08fd6b7632ba60dc7c8e9f2b57a9d0b7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/22/2019
-ms.locfileid: "58343143"
+ms.lasthandoff: 05/09/2019
+ms.locfileid: "65476257"
 ---
 # <a name="install-azure-cli-with-apt"></a>Installer Azure CLI avec apt
 
-Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu ou Debian, un package x86_64 est disponible pour Azure CLI. Ce package a été testé avec :
+Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu ou Debian, un package x86_64 est disponible pour Azure CLI. Ce package a été testé avec les systèmes pris en charge suivants :
 
-* Ubuntu trusty, xenial, artful et bionic
+* Ubuntu trusty, xenial, artful, bionic et disco
 * Debian wheezy, jessie, et stretch
 
 [!INCLUDE [current-version](includes/current-version.md)]
@@ -31,11 +31,29 @@ Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu 
 
 ## <a name="install"></a>Installer
 
+Pour installer Azure CLI avec les distributions prenant en charge `apt`, vous pouvez soit utiliser un script tout-en-un qui exécute les commandes d’installation pour vous, soit suivre vous-même les instructions d’un processus étape par étape.
+
+### <a name="install-with-one-command"></a>Installer avec une seule commande
+
+Nous vous proposons un script à jour qui exécute toutes les commandes d’installation en une seule étape. Pour l’exécuter, utilisez le pipe pour associer `curl` directement à `bash`, ou téléchargez le script dans un fichier et vérifiez-le avant de l’exécuter.
+
+> [!IMPORTANT]
+> Ce script a été uniquement validé sur Ubuntu 16.04 et Debian 8+. Il est possible qu’il ne fonctionne pas sur d’autres distributions.
+> Si vous utilisez une distribution dérivée telle que Linux Mint, suivez les instructions d’installation manuelle et effectuez les opérations de dépannage nécessaires.
+
+```bash
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+
+### <a name="manual-install-instructions"></a>Instructions d’installation manuelle
+
+Si vous ne souhaitez pas exécuter un script en tant que superutilisateur, suivez ces étapes manuelles pour installer Azure CLI.
+
 1. Récupérez les packages nécessaires au processus d’installation :
 
     ```bash
     sudo apt-get update
-    sudo apt-get install curl apt-transport-https lsb-release gpg
+    sudo apt-get install curl apt-transport-https lsb-release gnupg
     ```
 
 2. Téléchargez et installez la clé de signature Microsoft :
@@ -79,7 +97,7 @@ Certaines distributions Ubuntu ou Debian dérivées, telles que Linux Mint peuve
 
 Après la publication d’une distribution, il peut se passer un certain temps avant que le package Azure CLI associé ne soit disponible. Azure CLI est conçu pour résister à de futures versions de dépendances, et repose sur peu d’entre elles. Si aucun package n’est disponible pour votre distribution de base, essayez d’utiliser le package d’une distribution antérieure.
 
-Pour cela, définissez la valeur de `AZ_REPO` manuellement lors de l’[ajout du référentiel](#set-release). Pour les distributions Ubuntu, utilisez le référentiel `bionic`, et `stretch` pour les distributions Debian. Les distributions publiées avant Ubuntu Trusty et Debian Wheezy ne sont pas prises en charge.
+Pour cela, définissez la valeur de `AZ_REPO` manuellement lors de l’[ajout du référentiel](#set-release). Pour les distributions Ubuntu, utilisez le référentiel `disco`, et `stretch` pour les distributions Debian. Les distributions publiées avant Ubuntu Trusty et Debian Wheezy ne sont pas prises en charge.
 
 [!INCLUDE[troubleshoot-wsl.md](includes/troubleshoot-wsl.md)]
 

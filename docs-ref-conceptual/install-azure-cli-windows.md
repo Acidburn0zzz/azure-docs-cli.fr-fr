@@ -4,17 +4,17 @@ description: Comment installer Azure CLI sur Windows
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 09/09/2018
+ms.date: 05/01/2019
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: ffd9c279302377de6eca1b64c45749196bd99096
-ms.sourcegitcommit: 1987a39809f9865034b27130e56f30b2bd1eb72c
+ms.openlocfilehash: c5c499800e49dcdc536337e7655ec1ee280d48f2
+ms.sourcegitcommit: 65bf8561a6e047e4eab52186e066a2e8c21f1d40
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56421871"
+ms.lasthandoff: 05/07/2019
+ms.locfileid: "65240541"
 ---
 # <a name="install-azure-cli-on-windows"></a>Installer Azure CLI sur Windows
 
@@ -25,7 +25,7 @@ Lors de son installation sur le sous-système Windows pour Linux (WSL), des pack
 
 ## <a name="install-or-update"></a>Installation ou mise à jour
 
-Le fichier MSI distribuable est utilisé pour l’installation, la mise à jour et la désinstallation de la commande `az` sous Windows.
+Le fichier MSI distribuable est utilisé pour l’installation ou la mise à jour d’Azure CLI sur Windows. L’utilisation du programme d’installation MSI ne nécessite pas la désinstallation des versions actuelles.
 
 > [!div class="nextstepaction"]
 > [Téléchargez le programme d’installation MSI](https://aka.ms/installazurecliwindows)
@@ -42,10 +42,14 @@ Pour en savoir plus sur les différentes méthodes d’authentification, consult
 
 [!INCLUDE [uninstall-boilerplate.md](includes/uninstall-boilerplate.md)]
 
-La désinstallation peut être réalisée en exécutant le fichier MSI à nouveau, en choisissant l’option « Désinstaller ».
+La désinstallation d’Azure CLI s’effectue à partir de la liste « Applications et fonctionnalités » dans Windows. Pour désinstaller :
 
-> [!div class="nextstepaction"]
-> [Téléchargez le programme d’installation MSI](https://aka.ms/installazurecliwindows)
+| Plateforme | Instructions |
+|---|---|
+| Windows 10 | Démarrer > Paramètres > Applications |
+| Windows 8<br/>Windows 7 | Démarrer > Panneau de configuration > Programmes > Désinstaller un programme |
+
+Une fois sur cet écran, tapez __Azure CLI__ dans la barre de recherche du programme. Le programme à désinstaller est listé sous le nom __Microsoft CLI 2.0 pour Azure__. Sélectionnez cette application, puis cliquez sur le bouton `Uninstall`.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
