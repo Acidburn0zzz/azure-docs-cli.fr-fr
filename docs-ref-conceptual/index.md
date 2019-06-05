@@ -9,55 +9,33 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 3b9589c769a90e82c35aa64c583dffdac4e4f063
-ms.sourcegitcommit: 4906c38953bdaa344b66749685dedbf2da386dab
+ms.openlocfilehash: 0c91b8d49c7854f3963985aa64bbd3c052660f9c
+ms.sourcegitcommit: f1031052dd021ebcc253e4b3a5e6b919d862fab2
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/24/2019
-ms.locfileid: "64319502"
+ms.lasthandoff: 04/28/2019
+ms.locfileid: "64564256"
 ---
 # <a name="azure-command-line-interface-cli"></a>Interface de ligne de commande Azure (CLI)
 
-L’interface de ligne de commande Azure (CLI) est l’interface de ligne de commande multiplateforme de Microsoft pour la gestion de ressources Azure.
-Vous pouvez l’utiliser dans votre navigateur avec [Azure Cloud Shell](/azure/cloud-shell/overview) ou l’[installer](install-azure-cli.md) sur macOS, Linux ou Windows et l’exécuter à partir de la ligne de commande.
+L’interface de ligne de commande Azure (CLI) est l’interface de ligne de commande multiplateforme de Microsoft pour la gestion de ressources Azure. Azure CLI est facile à apprendre et constitue l’outil parfait pour créer une automatisation personnalisée qui fonctionne avec les ressources Azure.
 
-L’interface Azure CLI est facile à prendre en main et convient parfaitement pour la création de scripts d’automatisation qui fonctionnent avec Azure Resource Manager.
-Pour créer des machines virtuelles dans Azure, avec Azure CLI, il vous suffit de taper la commande suivante :
+| <center>![Logo Windows](./media/Windows_logo_-_2012.png)<br/>Windows 10</center> | <center>![Logo Ubuntu](./media/cof_orange_hex.png)<br/>Ubuntu 16.04+</center> | <center>![Logo macOS](./media/Apple_logo_black.png)<br/>macOS</center> | <center>![Logo Azure Cloud Shell](./media/cloud-check.png)<br/>Azure Cloud Shell</center> |
+|---|---|---|---|
+| [Téléchargez le programme d’installation MSI](https://aka.ms/installazurecliwindows) | [Instructions d’installation Ubuntu](./install-azure-cli-apt.md) | [Instructions d’installation macOS](./install-azure-cli-macos.md) | [Exécuter dans votre navigateur sur Azure Cloud Shell](https://shell.azure.com) |
 
-```azurecli-interactive
-az vm create -n MyLinuxVM -g MyResourceGroup --image UbuntuLTS
-```
+[Voir toutes les plateformes d’installation prises en charge](./install-azure-cli.md)
+
+## <a name="azure-cli-resources"></a>Ressources Azure CLI
 
 > [!NOTE]
 >
 > Dans les scripts et sur le site de documentation de Microsoft, les exemples Azure CLI sont écrits pour l’interpréteur de commandes `bash`. Les exemples d’une ligne seront exécutés sur n’importe quelle plateforme. Les exemples plus longs qui se répartissent sur plusieurs lignes (`\`) ou incluent l’attribution de variables doivent être modifiés pour fonctionner sur d’autres interpréteurs de commandes, y compris PowerShell.
 
-## <a name="run-or-install"></a>Exécuter ou installer
-
-Vous pouvez installer l’interface CLI localement, et l’exécuter dans le navigateur avec Azure Cloud Shell, ou bien de l’exécuter dans un conteneur Docker. Pour obtenir la version actuelle de l’interface CLI, exécutez `az --version`.
-
-* Pour l’exécuter dans votre navigateur avec Azure Cloud Shell, consultez le [démarrage rapide de Bash dans Azure Cloud Shell](/azure/cloud-shell/quickstart) ou le [démarrage rapide de PowerShell dans Azure Cloud Shell](/azure/cloud-shell/quickstart-powershell).
-* Pour installer l’interface de ligne de commande, consultez la section [Installer Azure CLI](install-azure-cli.md).
-* Pour exécuter cette interface comme un conteneur Docker, consultez [Exécuter Azure CLI dans un conteneur Docker](run-azure-cli-docker.md)
-
-## <a name="build-your-skills-with-microsoft-learn"></a>Développer vos compétences avec Microsoft Learn
-
-- [Gérer des machines virtuelles avec Azure CLI](/learn/modules/manage-virtual-machines-with-azure-cli/)
-- [Contrôler des services Azure avec l’interface CLI](/learn/modules/control-azure-services-with-cli/)
-- [Plus de formations interactives...](/learn/browse/?products=azure-clis)
-
-## <a name="get-started"></a>Prise en main
-
-Lisez l’article [Bien démarrer](get-started-with-azure-cli.md) pour apprendre les bases de l’interface CLI. Les exemples suivants illustrent quelques cas d’utilisations courantes :
-
-- [Machines virtuelles Linux](/azure/virtual-machines/virtual-machines-linux-cli-samples?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
-- [Machines virtuelles Windows](/azure/virtual-machines/virtual-machines-windows-cli-samples?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
-- [Web Apps](/azure/app-service-web/app-service-cli-samples?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
-- [Base de données SQL](/azure/sql-database/sql-database-cli-samples?toc=%2fcli%2fazure%2ftoc.json&bc=%2fcli%2fazure%2fbreadcrumb%2ftoc.json)
-
-Une [référence](/cli/azure/reference-index) détaillée est également disponible. Elle explique comment utiliser chacune des commandes Azure CLI.
-
-> [!NOTE]
-> Si vous utilisez la version précédente de l’interface de ligne de commande (Azure CLI Classic), vous pouvez continuer à l’utiliser.
-> Cependant, nous vous recommandons de la mettre à jour pour utiliser la dernière version d’Azure CLI afin de bénéficier d’une expérience optimale.
-> Si vous utilisez les deux interfaces de ligne de commande, n’oubliez pas que `azure` correspond à l’interface CLI classique et que `az` correspond l’interface CLI la plus récente.
+| Prise en main | Développer vos compétences avec Microsoft Learn | Nous contacter |
+|-------------|----------------------------------------|------------|
+| [Bien démarrer avec Azure CLI](get-started-with-azure-cli.md) | [Gérer des machines virtuelles avec Azure CLI](/learn/modules/manage-virtual-machines-with-azure-cli/) | [Demander des fonctionnalités](https://github.com/Azure/azure-cli/issues/new?template=Feature_request.md) |
+| [Déployer une application web depuis GitHub](/azure/app-service/scripts/cli-deploy-github?toc=%2fcli%2fazure%2ftoc.json) | [Contrôler des services Azure avec l’interface CLI](/learn/modules/control-azure-services-with-cli/) | [Obtenir de l’aide sur StackOverflow](https://stackoverflow.com/questions/tagged/azure-cli) |
+| [Créer une base de données Postgres](/azure/postgresql/quickstart-create-server-up-azure-cli?toc=%2fcli%2fazure%2ftoc.json) |  [Connecter une application au Stockage Azure](/learn/modules/connect-an-app-to-azure-storage/) | [Signaler des problèmes](https://github.com/Azure/azure-cli/issues/new?template=Bug_report.md) |
+| [Créer un cluster Kubernetes](/azure/aks/kubernetes-walkthrough?toc=%2fcli%2fazure%2ftoc.json) | [Plus de formations interactives...](/learn/browse/?products=azure-clis) | |
+| [Créer une machine virtuelle](/cli/azure/azure-cli-vm-tutorial) | | |
