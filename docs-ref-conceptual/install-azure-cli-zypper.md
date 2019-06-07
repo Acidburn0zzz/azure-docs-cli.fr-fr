@@ -9,16 +9,16 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 647b4b9518a174ad95a1eda8b17f38027182b25a
-ms.sourcegitcommit: 1987a39809f9865034b27130e56f30b2bd1eb72c
+ms.openlocfilehash: f8a3bec4fffb731c6521fa7b8a2a90798ef191e6
+ms.sourcegitcommit: 08043c47d3ccf23522b91e6bba3932e312c04c7f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56421913"
+ms.lasthandoff: 06/04/2019
+ms.locfileid: "66516241"
 ---
 # <a name="install-azure-cli-with-zypper"></a>Installez Azure CLI avec zypper
 
-Pour les distributions Linux avec `zypper`, telles que openSUSE ou SLES, un package est disponible pour l’Azure CLI. Ce package a été testé avec openSUSE 42.2 et SLES 12 SP 2.
+Pour les distributions Linux avec `zypper`, telles que openSUSE ou SLES, un package est disponible pour l’Azure CLI. Ce package a été testé avec openSUSE 42.2 et ultérieur et SLES 12 SP 2 et ultérieur.
 
 [!INCLUDE [current-version](includes/current-version.md)]
 
@@ -59,6 +59,19 @@ Pour en savoir plus sur les différentes méthodes d’authentification, consult
 ## <a name="troubleshooting"></a>Résolution de problèmes
 
 Voici certains problèmes courants lors de l’installation avec `zypper`. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
+
+### <a name="proxy-blocks-connection"></a>Le proxy bloque la connexion
+
+[!INCLUDE[configure-proxy](includes/configure-proxy.md)]
+
+Vous pouvez également configurer de manière explicite `zypper` (via `yast2`) pour utiliser ce proxy à tout moment. Pour ce faire, exécutez la commande `yast2 proxy` en tant que superutilisateur et remplissez les informations présentées dans le formulaire. Si vous avez un gestionnaire de fenêtres disponible sur votre système, vous pouvez également utiliser le volet `Network Services > Proxy` dans le `YaST Control Center`.
+
+Pour la configuration avancée ou plus d’informations, consultez la [documentation de configuration de proxy OpenSUSE](https://www.suse.com/documentation/slms1/book_slms/data/sec_wy_config_updates_proxy.html)
+
+Pour obtenir la clé de signature Microsoft et obtenir le package à partir de notre dépôt, votre proxy doit autoriser les connexions HTTPS aux adresses suivantes :
+
+* `https://packages.microsoft.com`
+* `https://download.opensuse.org`
 
 [!INCLUDE[troubleshoot-wsl.md](includes/troubleshoot-wsl.md)]
 

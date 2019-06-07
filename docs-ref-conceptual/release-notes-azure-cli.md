@@ -4,26 +4,86 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 05/06/2019
+ms.date: 05/21/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: ce11abccc23ee1f150916ef2f91dc895d4664d31
-ms.sourcegitcommit: 65bf8561a6e047e4eab52186e066a2e8c21f1d40
+ms.openlocfilehash: 5b4bcde8c4a66ccc378abc00468cbdb423f07fa4
+ms.sourcegitcommit: 3fe3502ec5af89939155285bb5e741b08af604cd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/07/2019
-ms.locfileid: "65240506"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66197794"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="may-21-2019"></a>21 mai 2019
+
+Version 2.0.65
+
+### <a name="core"></a>Principal
+* Ajout de meilleurs commentaires pour les erreurs d’authentification
+* Correction d’un problème où l’interface CLI chargeait des extensions qui n’étaient pas compatibles avec sa version principale
+* Correction d’un problème lié au lancement lorsque `clouds.config` est endommagé
+
+### <a name="acr"></a>ACR
+* Ajout de la prise en charge des identités managées aux tâches
+
+### <a name="acs"></a>ACS
+* Correction de la commande `openshift create` lorsqu’elle est utilisée avec le client AAD du client
+
+### <a name="appservice"></a>AppService
+* [DÉPRÉCIATION] Commande `functionapp devops-build` dépréciée (Elle sera supprimée de la prochaine version)
+* Changement apporté à `functionapp devops-pipeline` pour extraire un journal de génération d’Azure DevOps en mode détaillé
+* [CHANGEMENT CASSANT] Suppression de l’indicateur `--use_local_settings` de la commande `functionapp devops-pipeline` (aucune opération)
+* Changement apporté à `webapp up` pour retourner une sortie JSON si `--logs` n’est pas utilisé
+* Ajout de la prise en charge de l’écriture de ressources par défaut à la configuration locale pour `webapp up`
+* Ajout de la prise en charge à `webapp up` pour redéployer une application sans utiliser l’argument `--location`
+* Résolution d’un problème où, lors de la création ASP de la référence SKU Gratuite, la valeur de référence Gratuit ne fonctionnait pas
+
+### <a name="botservice"></a>BotService
+* Modification autorisant toutes les casses pour les paramètres `--lang` des commandes
+* Mise à jour de la description du module de commande
+
+### <a name="consumption"></a>Consommation
+* Ajout du paramètre obligatoire manquant lors de l’exécution de `consumption usage list --billing-period-name`
+
+### <a name="iot"></a>IoT
+* Ajout de la prise en charge permettant de répertorier toutes les clés
+
+### <a name="network"></a>Réseau
+* [CHANGEMENT CASSANT]: Removed `network interface-endpoints` command group - use `network private-endpoints` 
+* Ajout de l’argument `--nat-gateway` à `network vnet subnet [create|update]` pour attacher à une passerelle NAT
+* Correction d’un problème avec `dns zone import` où les noms d’enregistrement pouvaient ne pas correspondre à un type d’enregistrement
+
+### <a name="rdbms"></a>SGBDR
+* Ajout de la prise en charge de MySQL et Postgres pour la géoréplication
+
+### <a name="rbac"></a>RBAC
+* Ajout de la prise en charge de l’étendue du groupe de gestion dans `role assignment`
+
+### <a name="storage"></a>Stockage
+* `storage blob sync` : ajout de la commande de synchronisation pour le blob de stockage
+
+### <a name="compute"></a>Calcul
+* Ajout de `--computer-name` à `vm create` pour définir le nom d’une machine virtuelle
+* `--ssh-key-value` renommé en `--ssh-key-values` pour `[vm|vmss] create` - peut maintenant accepter plusieurs chemins d’accès ou valeurs de clé publique SSH
+  * __Remarque__: il ne s’agit **pas** d’un changement cassant - `--ssh-key-value` sera analysé correctement, car il correspond uniquement à `--ssh-key-values`
+* Modification de l’argument `--type` qui devient facultatif dans `ppg create`
 
 ## <a name="may-6-2019"></a>6 mai 2019
 
 Version 2.0.64
 
+### <a name="acs"></a>ACS
+* [CHANGEMENT CASSANT] Suppression de l’indicateur `--fqdn` sur les commandes `openshift`
+* Modification permettant d’utiliser la version d’API en disponibilité générale d’Azure Red Hat Openshift
+* Ajout de l’indicateur `customer-admin-group-id` à `openshift create`
+* [Mise à la disposition générale] Suppression de `(PREVIEW)` de l’option `aks create` `--network-policy`
+
 ### <a name="appservice"></a>AppService
-* Dépréciation de la commande `functionapp devops-build`
+* [DÉPRÉCIATION] Commande `functionapp devops-build` dépréciée
   * Renommée `functionapp devops-pipeline`
 * Correction du processus d’obtention du nom d’utilisateur pour Cloud Shell qui provoquait l’échec de `webapp up`
 * Mise à jour de la documentation `appservice plan --sku` pour refléter les plans App Service pris en charge
@@ -34,8 +94,61 @@ Version 2.0.64
 * Ajout de la prise en charge du runtime `powershell` à `functionapp create` sur Windows
 * Ajout de la commande `create-remote-connection`
 
+### <a name="batch"></a>Batch
+* Correction du bogue dans le validateur pour les options `--application-package-references`
+
+### <a name="botservice"></a>Botservice
+* [CHANGEMENT CASSANT] Modification apportée à `bot create -v v4 -k webapp` pour créer un bot d’application web vide par défaut (autrement dit, aucun bot n’est déployé sur App Service)
+* Ajout de l’indicateur `--echo` à `bot create` pour utiliser l’ancien comportement avec `-v v4`
+* [CHANGEMENT CASSANT] Modification de la valeur par défaut de `--version` qui devient `v4`
+  * __REMARQUE :__  `bot prepare-publish` utilise toujours l’ancienne valeur par défaut
+* [CHANGEMENT CASSANT] Modification de `--lang` qui n’a plus la valeur par défaut `Csharp`. Si la commande nécessite `--lang` et que celui-ci n’est pas fourni, la commande génère à présent une erreur
+* [CHANGEMENT CASSANT] Modification des arguments `--appid` et `--password` de `bot create` afin que ceux-ci soient requis et puisse maintenant être créés via `ad app create`
+* Ajout de la validation `--appid` et `--password`
+* [CHANGEMENT CASSANT] Modification apportée à la commande `bot create -v v4` afin qu’elle ne crée ni n’utilise un compte de stockage ou Application Insights
+* [CHANGEMENT CASSANT] Modification de `bot create -v v3` pour exiger une région où Application Insights est disponible
+* [CHANGEMENT CASSANT] Modification de `bot update` qui affecte maintenant uniquement les propriétés spécifiques d’un bot
+* [CHANGEMENT CASSANT] Modification des indicateurs `--lang` qui acceptent `Javascript` au lieu de `Node`
+* [CHANGEMENT CASSANT] Suppression de `Node` comme valeur `--lang` autorisée
+* [CHANGEMENT CASSANT] Modification de `bot create -v v4 -k webapp` afin que `SCM_DO_BUILD_DURING_DEPLOYMENT` ne soit plus défini sur True. Tous les déploiements via Kudu agissent conformément à leur comportement par défaut
+* Modification de la commande `bot download` pour des bots sans fichiers `.bot` afin de créer le fichier de configuration spécifique à une langue avec des valeurs de paramètres d’application pour le bot
+* Ajout de la prise en charge de `Typescript` pour `bot prepare-deploy`
+* Ajout du message d’avertissement à `bot prepare-deploy` pour les bots `Javascript` et `Typescript` quand `--code-dir` ne contient pas `package.json`
+* Modification de `bot prepare-deploy` qui retourne `true` en cas de réussite
+* Ajout de la journalisation commentée à `bot prepare-deploy`
+* Ajout d’un plus grand nombre de régions Application Insights disponibles dans `az bot create -v v3`
+
+### <a name="configure"></a>Configuration
+* Ajout de la prise en charge des configurations de valeur par défaut d’argument en fonction d’un dossier
+
+### <a name="eventhubs"></a>Eventhubs
+* Ajout des commandes `namespace network-rule`
+* Ajout de l’argument `--default-action` pour les règles réseau à `namespace [create|update]`
+
+### <a name="network"></a>Réseau
+* [CHANGEMENT CASSANT] Remplacement de l’argument `--cache` par `--defer` pour `vnet [create|update]` 
+
+### <a name="policy-insights"></a>Policy Insights
+* Ajout de la prise en charge pour `--expand PolicyEvaluationDetails` pour interroger les détails de l’évaluation de stratégie sur la ressource
+
 ### <a name="role"></a>Rôle
 * [DÉPRÉCIATION] Changement apporté à `create-for-rbac` concernant le masquage de l’argument '--password' - Fin de la prise en charge en mai 2019
+
+### <a name="service-bus"></a>Service Bus
+* Ajout des commandes `namespace network-rule`
+* Ajout de l’argument `--default-action` pour les règles réseau à `namespace [create|update]`
+* Correction de `topic [create|update]` qui autorise `--max-size` à prendre en charge les valeurs 10, 20, 40 et 80 Go avec la référence SKU Premium
+
+### <a name="sql"></a>SQL
+* Ajout des commandes `sql virtual-cluster [list|show|delete]`
+
+### <a name="vm"></a>Machine virtuelle
+* Ajout de `--protect-from-scale-in` et `--protect-from-scale-set-actions` à `vmss update` pour activer les mises à jour de la stratégie de protection des instances de machine virtuelle VMSS
+* Ajout de `--instance-id` à `vmss update` pour activer la mise à jour générique des instances de machine virtuelle VMSS
+* Ajout de `--instance-id` à `vmss wait`
+* Ajout du nouveau groupe de commandes `ppg` pour gérer les groupes de placements de proximité
+* Ajout de `--ppg` à `[vm|vmss] create` et `vm availability-set create` pour la gestion des groupes de placements de proximité
+* Ajout du paramètre `--hyper-v-generation` pour `image create`
 
 ## <a name="april-23-2019"></a>23 avril 2019
 
@@ -475,7 +588,7 @@ Version 2.0.56
 * Ajout du format d’encodage à la commande routing-endpoint
 
 ### <a name="kusto"></a>Kusto
-* Version préliminaire
+* Préversion
 
 ### <a name="monitor"></a>Surveiller
 * Changement apporté à la comparaison d’ID pour qu’elle ne respecte pas la casse
@@ -492,7 +605,7 @@ Version 2.0.56
 * Ajout de la prise en charge de l’identité managée à `policy assignment [create|list|show]`
 
 ### <a name="sql-virtual-machine"></a>Machine virtuelle SQL
-* Version préliminaire
+* Préversion
 
 ### <a name="storage"></a>Stockage
 * Changement d’une correction pour mettre à jour uniquement les propriétés modifiées sur le même objet
@@ -2749,7 +2862,7 @@ Version 2.0.18
 
 ### <a name="backup"></a>Sauvegarde
 
-* Version préliminaire
+* Préversion
 
 
 ## <a name="september-11-2017"></a>11 septembre 2017
@@ -2866,7 +2979,7 @@ Version 2.0.15
 
 ### <a name="service-fabric"></a>Service Fabric
 
-* Version préliminaire
+* Préversion
 * Règles d’utilisateur du Registre/de mot de passe simplifiées pour la commande
 * Invite de mot de passe fixe pour l’utilisateur, même après le passage de paramètre
 * Ajout de la prise en charge de vide `registry_cred`

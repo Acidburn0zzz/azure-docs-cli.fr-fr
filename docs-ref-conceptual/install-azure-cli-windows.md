@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: c5c499800e49dcdc536337e7655ec1ee280d48f2
-ms.sourcegitcommit: 65bf8561a6e047e4eab52186e066a2e8c21f1d40
+ms.openlocfilehash: 40810b25bf776025c82b48ba7aa424369483ceeb
+ms.sourcegitcommit: 08043c47d3ccf23522b91e6bba3932e312c04c7f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/07/2019
-ms.locfileid: "65240541"
+ms.lasthandoff: 06/04/2019
+ms.locfileid: "66516269"
 ---
 # <a name="install-azure-cli-on-windows"></a>Installer Azure CLI sur Windows
 
@@ -37,6 +37,27 @@ Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec l
 [!INCLUDE [interactive-login](includes/interactive-login.md)]
 
 Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md).
+
+## <a name="troubleshooting"></a>Résolution de problèmes
+
+Voici certains problèmes courants lors de l’installation sur Windows. Si vous rencontrez un problème qui n’est pas traité ici, [signalez ce problème sur GitHub](https://github.com/Azure/azure-cli/issues).
+
+### <a name="proxy-blocks-connection"></a>Le proxy bloque la connexion
+
+Si vous ne pouvez pas télécharger le programme d’installation MSI car votre serveur proxy bloque la connexion, vérifiez que votre proxy est configuré correctement. Pour Windows 10, ces paramètres sont gérés dans le volet `Settings > Network & Internet > Proxy`. Contactez votre administrateur système pour connaître les paramètres requis, ou les situations où votre ordinateur peut être géré par configuration ou nécessiter une configuration avancée.
+
+> [!IMPORTANT]
+> Ces paramètres sont également requis pour l’accès aux services Azure avec l’interface CLI, PowerShell ou l’invite de commandes. Dans PowerShell, pour ce faire, utilisez la commande suivante :
+>
+> ```powershell
+> (New-Object System.Net.WebClient).Proxy.Credentials = `
+>   [System.Net.CredentialCache]::DefaultNetworkCredentials
+> ```
+
+Pour obtenir le fichier MSI, votre proxy doit autoriser les connexions HTTPS aux adresses suivantes :
+
+* `https://aka.ms/`
+* `https://azurecliprod.blob.core.windows.net/`
 
 ## <a name="uninstall"></a>Désinstaller l’interface
 

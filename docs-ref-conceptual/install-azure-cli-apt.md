@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: af82eea3fd549cbca85699a3030a19bc82574b73
-ms.sourcegitcommit: c65c69bd08fd6b7632ba60dc7c8e9f2b57a9d0b7
+ms.openlocfilehash: f22ada48502602cb4d9b502cb887412a6ddcf5cf
+ms.sourcegitcommit: 08043c47d3ccf23522b91e6bba3932e312c04c7f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/09/2019
-ms.locfileid: "65476257"
+ms.lasthandoff: 06/04/2019
+ms.locfileid: "66516340"
 ---
 # <a name="install-azure-cli-with-apt"></a>Installer Azure CLI avec apt
 
@@ -97,7 +97,29 @@ Certaines distributions Ubuntu ou Debian dérivées, telles que Linux Mint peuve
 
 Après la publication d’une distribution, il peut se passer un certain temps avant que le package Azure CLI associé ne soit disponible. Azure CLI est conçu pour résister à de futures versions de dépendances, et repose sur peu d’entre elles. Si aucun package n’est disponible pour votre distribution de base, essayez d’utiliser le package d’une distribution antérieure.
 
-Pour cela, définissez la valeur de `AZ_REPO` manuellement lors de l’[ajout du référentiel](#set-release). Pour les distributions Ubuntu, utilisez le référentiel `disco`, et `stretch` pour les distributions Debian. Les distributions publiées avant Ubuntu Trusty et Debian Wheezy ne sont pas prises en charge.
+Pour cela, définissez la valeur de `AZ_REPO` manuellement lors de l’[ajout du référentiel](#set-release). Pour les distributions Ubuntu, utilisez le référentiel `bionic`, et `stretch` pour les distributions Debian. Les distributions publiées avant Ubuntu Trusty et Debian Wheezy ne sont pas prises en charge.
+
+### <a name="proxy-blocks-connection"></a>Le proxy bloque la connexion
+
+[!INCLUDE[configure-proxy](includes/configure-proxy.md)]
+
+Vous pouvez également configurer de manière explicite `apt` pour utiliser ce proxy à tout moment. Vérifiez que les lignes suivantes s’affichent dans un fichier de configuration `apt` dans `/etc/apt/apt.conf.d/`. Nous vous recommandons d’utiliser votre fichier de configuration global existant, un fichier de configuration de proxy existant, `40proxies` ou `99local`. Mais suivez vos besoins d’administration système.
+
+```apt.conf
+Acquire {
+    http::proxy "http://[username]:[password]@[proxy]:[port]";
+    https::proxy "https://[username]:[password]@[proxy]:[port]";
+}
+```
+
+Si votre proxy n’utilise pas l’authentification de base, __supprimez__ la partie `[username]:[password]@` de l’URI du proxy. Si vous avez besoin de plus d’informations sur la configuration du proxy, consultez la documentation officielle Ubuntu :
+
+* [apt.conf manpage](http://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html)
+* [Ubuntu wiki - apt-get howto](https://help.ubuntu.com/community/AptGet/Howto#Setting_up_apt-get_to_use_a_http-proxy)
+
+Pour obtenir la clé de signature Microsoft et obtenir le package à partir de notre dépôt, votre proxy doit autoriser les connexions HTTPS à l’adresse suivante :
+
+* `https://packages.microsoft.com`
 
 [!INCLUDE[troubleshoot-wsl.md](includes/troubleshoot-wsl.md)]
 
