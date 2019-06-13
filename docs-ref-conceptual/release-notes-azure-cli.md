@@ -4,19 +4,52 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 05/21/2019
+ms.date: 06/05/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 5b4bcde8c4a66ccc378abc00468cbdb423f07fa4
-ms.sourcegitcommit: 3fe3502ec5af89939155285bb5e741b08af604cd
+ms.openlocfilehash: b79d76480c3e6619427d6a7e3960f53b691889cc
+ms.sourcegitcommit: 6aca5a788b9731e6cbeeb497c83a9197ebb7d36e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66197794"
+ms.lasthandoff: 06/06/2019
+ms.locfileid: "66750236"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="june-4-2019"></a>4 juin 2019
+
+Version 2.0.66
+
+### <a name="core"></a>Principal
+* Correction du bogue où des commandes échouent si `--output yaml` est utilisé avec `--query`
+
+### <a name="acr"></a>ACR
+* Ajout du groupe de commandes « acr pack » pour la création de tâches de génération rapide à l’aide de Buildpacks.
+
+### <a name="acs"></a>ACS
+* Autoriser l’activation/la désactivation du module complémentaire kube-dashboard AKS
+* Afficher un message convivial lorsque l’abonnement n’est pas autorisé à utiliser Azure Red Hat OpenShift
+
+### <a name="batch"></a>Batch
+* Amélioration de la gestion des erreurs en l’absence de connexion à un compte \[[#9165](https://github.com/Azure/azure-cli/issues/9165)\]\[[#8978](https://github.com/Azure/azure-cli/issues/8978)\]
+
+### <a name="iot"></a>IoT
+* Ajout de la prise en charge du basculement manuel
+
+### <a name="network"></a>Réseau
+* Ajout de commandes `network application-gateway waf-policy` pour prendre en charge des règles de pare-feu d’applications web personnalisées.
+* Ajout des arguments `--waf-policy` et `--max-capacity` à `network application-gateway [create|update]` 
+
+### <a name="resource"></a>Ressource
+* Amélioration du message d’erreur émis par la commande `deployment create` quand aucun appareil TTY n’est disponible
+
+### <a name="role"></a>Rôle
+* Mise à jour du texte d’aide
+
+### <a name="compute"></a>Calcul
+* Ajout de la prise en charge dans `vm create` des machines virtuelles à partir d’une image managée avec des LUN de disque de données qui ne démarrent pas de 0 ou qui ignorent des nombres
 
 ## <a name="may-21-2019"></a>21 mai 2019
 
