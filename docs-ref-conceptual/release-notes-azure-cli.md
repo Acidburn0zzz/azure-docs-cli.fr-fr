@@ -4,19 +4,104 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 06/05/2019
+ms.date: 06/18/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: b79d76480c3e6619427d6a7e3960f53b691889cc
-ms.sourcegitcommit: 6aca5a788b9731e6cbeeb497c83a9197ebb7d36e
+ms.openlocfilehash: 8431946b169b550bfd3f5120cf26e2feeb5c9f2c
+ms.sourcegitcommit: 399f0a2997675fbb280243e4234cf63c3bbca819
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/06/2019
-ms.locfileid: "66750236"
+ms.lasthandoff: 06/18/2019
+ms.locfileid: "67194868"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="june-18-2019"></a>18 juin 2019
+
+Version 2.0.67
+
+### <a name="core"></a>Principal
+
+Cette version introduit une nouvelle étiquette [Préversion] qui permet d’indiquer plus clairement aux clients la présence d’un groupe de commandes, d’une commande ou d’un argument en préversion. Auparavant, cet état était mentionné dans le texte de l’aide ou communiqué implicitement par le numéro de version du module de commande.
+À l’avenir, l’interface CLI supprimera les numéros de version des packages individuels. Si une commande est en préversion, tous ses arguments le sont également. Si un groupe de commandes est étiqueté comme étant en préversion, toutes les commandes et tous les arguments sont également considérés comme étant en préversion.
+
+Conséquence de ce changement, plusieurs groupes de commandes peuvent « soudainement » apparaître comme étant en préversion avec cette version. En fait, la plupart des packages étaient en préversion, mais ils sont considérés comme étant dans un état de disponibilité générale avec cette version.
+
+### <a name="acr"></a>ACR
+* Ajout de la commande « acr check-health »
+* Amélioration de la gestion des erreurs pour les jetons AAD et pour la récupération des commandes externes
+
+### <a name="acs"></a>ACS
+* Les commandes ACS dépréciées sont désormais masquées de l’affichage de l’aide
+
+### <a name="ams"></a>AMS
+* [CHANGEMENT CASSANT] Changement apporté pour retourner les chaînes de temps ISO 8601 pour archive-window-length et key-frame-interval-duration
+
+### <a name="appservice"></a>AppService
+* Ajout du routage basé sur l’emplacement pour `webapp deleted list` et `webapp deleted restore`
+* Correction d’un problème lié à l’impossibilité de cliquer sur l’URL cible journalisée d’une application web (« Vous pouvez lancer l’application... ») dans Azure Cloud Shell
+* Correction d’un problème entraînant l’échec de la création d’applications avec certaines références SKU (erreur AlwaysOn)
+* Ajout d’une fonction de prévalidation à `[appservice|webapp] create`
+* Correction de `[webapp|functionapp] traffic-routing` de manière à utiliser le bon actionHostName
+* Ajout de la prise en charge de l’emplacement aux commandes `functionapp`
+
+### <a name="batch"></a>Batch
+* Correction de la régression d’authentification AAD provoquée par un rapport d’erreur trop agressif pour l’authentification par clé partagée
+
+### <a name="batchai"></a>Batch AI
+* Les commandes BatchAI sont maintenant dépréciées et masquées
+
+### <a name="botservice"></a>BotService
+* Ajout de messages d’avertissement « support interrompu »/« mode maintenance » pour les commandes prenant en charge le SDK v3
+
+### <a name="cosmosdb"></a>CosmosDB
+* [DÉPRÉCIATION] Dépréciation de la commande `cosmosdb list-keys`
+* Ajout de la commande `cosmosdb keys list` (remplace `cosmosdb list-keys`)
+* `cosmsodb create/update`: Ajout d’un nouveau format pour --location afin d’autoriser la définition de la propriété « isZoneRedundant ». Ancien format déprécié
+
+### <a name="eventgrid"></a>EventGrid
+* Ajout de commandes `eventgrid domain` pour les opérations CRUD liées aux domaines
+* Ajout de commandes `eventgrid domain topic` pour les opérations CRUD liées aux rubriques de domaine
+* Ajout de l’argument `--odata-query` à `eventgrid [topic|event-subscription] list` pour filtrer les résultats à l’aide de la syntaxe OData
+* `event-subscription create/update`: Ajout de servicebusqueue comme nouvelle valeur pour le paramètre `--endpoint-type`
+* [CHANGEMENT CASSANT] Suppression de la prise en charge de `--included-event-types All` avec `eventgrid event-subscription [create|update]`
+
+### <a name="hdinsight"></a>HDInsight
+* Ajout de la prise en charge du paramètre `--ssh-public-key` dans la commande `hdinsight create`
+
+### <a name="iot"></a>IoT
+* Ajout de la prise en charge pour régénérer les clés de stratégie d’autorisation
+* Ajout du SDK et de la prise en charge du service de provisionnement de dépôt DigitalTwin
+
+### <a name="network"></a>Réseau
+* Ajout de la prise en charge de la zone pour NAT Gateway
+* Ajout de la commande `network list-service-tags`
+* Correction d’un problème avec `dns zone import` empêchant les utilisateurs d’importer les enregistrements A génériques
+* Correction d’un problème avec `watcher flow-log configure` empêchant l’activation de la journalisation de flux dans certaines régions
+
+### <a name="resource"></a>Ressource
+* Ajout de la commande `az rest` pour passer des appels REST
+* Correction d’une erreur liée à l’utilisation de `policy assignment list` avec un groupe de ressources ou un niveau d’abonnement `--scope`
+
+### <a name="servicebus"></a>ServiceBus
+* Correction d’une erreur liée à `servicebus topic create --max-size` [#9319](https://github.com/azure/azure-cli/issues/9319)
+
+### <a name="sql"></a>SQL
+* Modification apportée à `--location` pour le rendre facultatif pour `sql [server|mi] create` : utilise l’emplacement du groupe de ressources s’il n’est pas spécifié
+* Correction de l’erreur « L’objet 'NoneType' n’est pas itérable » pour `sql db list-editions --available`
+
+### <a name="sqlvm"></a>SQLVm
+* [CHANGEMENT CASSANT] Modification de `sql vm create` pour exiger le paramètre `--license-type`
+* Modification apportée pour autoriser la définition d’une référence SKU d’image SQL lors de la création ou de la mise à jour d’une machine virtuelle SQL
+
+### <a name="storage"></a>Stockage
+* Correction d’un problème lié à une clé de compte manquante pour `storage container generate-sas`
+* Correction d’un problème lié à `storage blob sync` sur Linux
+
+### <a name="vm"></a>Machine virtuelle
+* [PRÉVERSION] Ajout de commandes `vm image template` pour générer des images de machine virtuelle
 
 ## <a name="june-4-2019"></a>4 juin 2019
 

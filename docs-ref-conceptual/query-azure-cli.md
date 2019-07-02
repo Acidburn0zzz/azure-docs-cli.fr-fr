@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 5e187025e97b1d882bc575fd51970a8250f6210e
-ms.sourcegitcommit: bf69c95abf3ed3d589b202c7ff04d8782e2a81ac
+ms.openlocfilehash: e878c467f71423cc8c9caa1f8cfe270d0019c48b
+ms.sourcegitcommit: 399f0a2997675fbb280243e4234cf63c3bbca819
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/21/2019
-ms.locfileid: "65993047"
+ms.lasthandoff: 06/18/2019
+ms.locfileid: "67194846"
 ---
 # <a name="query-azure-cli-command-output"></a>Interroger la sortie de commande Azure CLI
 
@@ -126,7 +126,7 @@ echo $USER
 "azureuser"
 ```
 
-Ce n’est probablement pas ce que vous voulez. Dans ce cas, utilisez un format de sortie qui ne place pas les valeurs retournées entre des informations de type. La meilleure option de sortie de l’interface CLI à cette fin est `tsv` (valeurs séparées par une tabulation). En particulier, lorsque vous récupérez une valeur qui n’est qu’une seule valeur (pas un dictionnaire ou une liste), vous avez la garantie que la sortie `tsv` n’est pas entre guillemets.
+Ce n’est probablement pas ce que vous voulez. Dans ce cas, utilisez un format de sortie qui ne place pas les valeurs retournées entre des informations de type. La meilleure option de sortie de l’interface CLI à cette fin est `tsv` (valeurs séparées par une tabulation). En particulier, quand vous récupérez une valeur qui n’est qu’une seule valeur (pas un dictionnaire ou une liste), vous avez la garantie que la sortie `tsv` n’est pas entre guillemets.
 
 ```azurecli-interactive
 az vm show -g QueryDemo -n TestVM --query 'osProfile.adminUsername' -o tsv
