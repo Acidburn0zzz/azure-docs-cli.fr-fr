@@ -4,25 +4,102 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 06/18/2019
+ms.date: 07/02/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 8431946b169b550bfd3f5120cf26e2feeb5c9f2c
-ms.sourcegitcommit: 399f0a2997675fbb280243e4234cf63c3bbca819
+ms.openlocfilehash: 26757193628cff65603a04e440f9e2aa7bf5a248
+ms.sourcegitcommit: e06d34682710e77840b0c51f4718184101bd8a03
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/18/2019
-ms.locfileid: "67194868"
+ms.lasthandoff: 07/02/2019
+ms.locfileid: "67527305"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="july-2-2019"></a>2 juillet 2019
+
+Version 2.0.68
+
+### <a name="core"></a>Core
+
+* Les modules de commande sont désormais consolidés en un seul distribuable Python. L’utilisation directe de nombreux packages `azure-cli-` sur PyPI est donc dépréciée.
+  Cela doit réduire la taille de l’installation et affecter uniquement les utilisateurs ayant procédé à une installation directe par le biais de `pip`.
+
+### <a name="acr"></a>ACR
+
+* Ajout de la prise en charge des déclencheurs de minuteur à la tâche
+
+### <a name="appservice"></a>AppService
+
+* Modification de `functionapp create` pour activer Application Insights par défaut
+* [CHANGEMENT CASSANT] Suppression de la commande `functionapp devops-build` dépréciée.
+  *  Utilisez la nouvelle commande `az functionapp devops-pipeline` à la place
+* Ajout de la prise en charge du plan d’application de fonction Consommation Linux à `functionapp deployment config-zip`
+
+### <a name="cosmos-db"></a>Cosmos DB
+
+* Ajout de la prise en charge de la désactivation de TTL
+
+### <a name="dls"></a>DLS
+
+* Mise à jour de la version d’ADLS (0.0.45)
+
+### <a name="feedback"></a>Commentaires
+
+* Lors du signalement d’une commande d’extension ayant échoué, `az feedback` tente à présent d’ouvrir le navigateur à l’URL du projet/dépôt de l’extension à partir de l’index
+
+### <a name="hdinsight"></a>HDInsight
+
+* [CHANGEMENT CASSANT] Remplacement du nom du groupe de commandes `oms` par `monitor`
+* [CHANGEMENT CASSANT] Paramètre `--http-password/-p` désormais obligatoire 
+* Ajout de compléteurs pour le compléteur des paramètres `--cluster-admin-account` et `cluster-users-group-dns` 
+* Paramètre `cluster-users-group-dns` désormais obligatoire quand `—esp` est présent
+* Ajout d’un délai d’expiration pour tous les compléteurs automatiques d’arguments existants
+* Ajout d’un délai d’expiration pour la transformation d’un nom de ressource en ID de ressource
+* Modification des compléteurs automatiques pour sélectionner des ressources à partir de n’importe quel groupe de ressources. Le groupe de ressources peut être différent de celui spécifié avec `-g`
+* Ajout de la prise en charge des paramètres `--sub-domain-suffix` et `--disable_gateway_auth` dans la commande `hdinsight application create`
+
+### <a name="managed-services"></a>Services gérés
+
+* Introduction du module de commande des services gérés en préversion
+
+### <a name="profile"></a>Profil
+* Suppression de l’argument `--subscription` pour la commande de déconnexion
+
+### <a name="rbac"></a>RBAC
+
+* [CHANGEMENT CASSANT] Suppression de l’argument `--password` pour `create-for-rbac`
+* Ajout du paramètre `--assignee-principal-type` à la commande `create` pour éviter les défaillances intermittentes dues à la latence de réplication du serveur de graphique AAD
+* Correction d’un incident dans `ad signed-in-user` lors de l’énumération des objets détenus
+* Correction d’un incident lié au fait que `ad sp` ne trouve pas la bonne application à partir d’un principal de service
+
+### <a name="rdbms"></a>SGBDR
+
+* Ajout de la prise en charge de la réplication pour MariaDB
+
+### <a name="sql"></a>SQL
+
+* Valeurs autorisées documentées pour `sql db create --sample-name`
+
+### <a name="storage"></a>Stockage
+
+* Ajout de la prise en charge des jetons SAS de délégation d’utilisateur avec `--as-user` à `storage blob generate-sas` 
+* Ajout de la prise en charge des jetons SAS de délégation d’utilisateur avec `--as-user` à `storage container generate-sas` 
+
+### <a name="vm"></a>Machine virtuelle
+
+* Correction d’un bogue contraignant `vmss create` à retourner un message d’erreur en cas d’exécution avec `--no-wait`
+* Suppression de la validation côté client pour `vmss create --single-placement-group`. N’échoue pas si `--single-placement-group` a la valeur `true` et si `--instance-count` est supérieur à 100 ou si des zones de disponibilité sont spécifiées, mais laisse cette validation au service de calcul
+* Correction d’un bogue entraînant l’échec de `[vm|vmss] extension image list` en cas d’utilisation avec `--latest`
+
 
 ## <a name="june-18-2019"></a>18 juin 2019
 
 Version 2.0.67
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 Cette version introduit une nouvelle étiquette [Préversion] qui permet d’indiquer plus clairement aux clients la présence d’un groupe de commandes, d’une commande ou d’un argument en préversion. Auparavant, cet état était mentionné dans le texte de l’aide ou communiqué implicitement par le numéro de version du module de commande.
 À l’avenir, l’interface CLI supprimera les numéros de version des packages individuels. Si une commande est en préversion, tous ses arguments le sont également. Si un groupe de commandes est étiqueté comme étant en préversion, toutes les commandes et tous les arguments sont également considérés comme étant en préversion.
@@ -107,7 +184,7 @@ Conséquence de ce changement, plusieurs groupes de commandes peuvent « soudai
 
 Version 2.0.66
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 * Correction du bogue où des commandes échouent si `--output yaml` est utilisé avec `--query`
 
 ### <a name="acr"></a>ACR
@@ -130,7 +207,7 @@ Version 2.0.66
 ### <a name="resource"></a>Ressource
 * Amélioration du message d’erreur émis par la commande `deployment create` quand aucun appareil TTY n’est disponible
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 * Mise à jour du texte d’aide
 
 ### <a name="compute"></a>Calcul
@@ -140,7 +217,7 @@ Version 2.0.66
 
 Version 2.0.65
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 * Ajout de meilleurs commentaires pour les erreurs d’authentification
 * Correction d’un problème où l’interface CLI chargeait des extensions qui n’étaient pas compatibles avec sa version principale
 * Correction d’un problème lié au lancement lorsque `clouds.config` est endommagé
@@ -249,7 +326,7 @@ Version 2.0.64
 ### <a name="policy-insights"></a>Policy Insights
 * Ajout de la prise en charge pour `--expand PolicyEvaluationDetails` pour interroger les détails de l’évaluation de stratégie sur la ressource
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 * [DÉPRÉCIATION] Changement apporté à `create-for-rbac` concernant le masquage de l’argument '--password' - Fin de la prise en charge en mai 2019
 
 ### <a name="service-bus"></a>Service Bus
@@ -321,7 +398,7 @@ Version 2.0.63
 
 ## <a name="april-9-2019"></a>9 avril 2019
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 * Correction du problème où certaines extensions affichaient une version `Unknown` et ne pouvaient pas être mises à jour
 
 ### <a name="acr"></a>ACR
@@ -365,7 +442,7 @@ Version 2.0.63
 ### <a name="resource"></a>Ressource
 * Correction du problème avec `deployment create` et `group deployment create` où un fichier de paramètres avec un ensemble de paramètres vide ne fonctionnait pas
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 * Correction de `create-for-rbac` pour gérer `--years` correctement
 * [CHANGEMENT CASSANT] Changement apporté à `role assignment delete` pour afficher une invite lors d’une suppression sans condition de toutes les attributions sous l’abonnement
 
@@ -381,7 +458,7 @@ Version 2.0.63
 ## <a name="march-26-2019"></a>26 mars 2019
 
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 * Résolution des problèmes d’incompatibilité des extensions de développement
 * La gestion des erreurs redirige les clients vers la page des problèmes
 
@@ -452,7 +529,7 @@ Version 2.0.63
 
 Version 2.0.60
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Correction d’une erreur dans `cloud set` concernant un abonnement introuvable
 
@@ -502,7 +579,7 @@ Version 2.0.60
 
 * Correctifs mineurs permettant d’obtenir l’emplacement par défaut du groupe de ressources lorsqu’il n’a pas été fourni, pour la création de serveurs et l’ajout d’une validation pour les jours de rétention
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * Correction de `role definition update` pour utiliser l’ID afin de résoudre correctement les définitions
 * Modification de `ad app credential reset` pour ne plus partir du principe que le principal de service de l’application existe toujours
@@ -515,7 +592,7 @@ Version 2.0.60
 
 Version 2.0.59
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Correction du problème où l’utilisation de `--subscription NAME` levait une exception dans certains cas
 
@@ -566,7 +643,7 @@ Version 2.0.59
 * Correction de la gestion des paramètres et des règles pour `policy definition update`
 * Correction du problème avec `resource show/update/delete/tag/invoke-action` où les ID inter-abonnements n’honoraient pas correctement l’ID d’abonnement
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * Ajout de la prise en charge des rôles d’application sur `ad app [create|update]`
 
@@ -578,7 +655,7 @@ Version 2.0.59
 
 Version 2.0.58
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * `az --version` affiche désormais une notification si vous avez des packages qui peuvent être mis à jour
 * Correction de la régression où `--ids` ne pouvait plus être utilisé avec une sortie JSON
@@ -642,7 +719,7 @@ Version 2.0.58
 * [CHANGEMENT CASSANT] Le paramètre de `redis create` : « paramètres du locataire » n’est pas accepté au format clé[=valeur]
 * [DÉPRÉCIATION] Ajout d’un message d’avertissement concernant la dépréciation de la commande `redis import-method`
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 * [CHANGEMENT CASSANT] Déplacement de la commande `az identity` ici à partir des commandes `vm`
 
 ### <a name="sql-vm"></a>Machine virtuelle SQL
@@ -658,7 +735,7 @@ Version 2.0.58
 
 Version 2.0.57
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Correctif pour le [problème 8399](https://github.com/Azure/azure-cli/issues/8399).
 
@@ -776,7 +853,7 @@ Version 2.0.55
 * Ajout des arguments `--custom-headers` et `--subnets` à `traffic-manager endpoint [create|update]`  
 * Correction du problème où la fourniture de `--vnets ""` à `ddos-protection update` provoquait une erreur
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 * [DÉPRÉCIATION] Dépréciation de l’argument `--password` pour `create-for-rbac`. Utilisation de mots de passe sécurisés générés par l’interface CLI à la place
 
 ### <a name="security"></a>Sécurité
@@ -807,7 +884,7 @@ Version 2.0.54
 ### <a name="iotcentral"></a>IotCentral
 * Correction de l’appel d’API des commandes de mise à jour
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 * [CHANGEMENT CASSANT] Remplacement de `ad [app|sp] list` par une liste des 100 premiers objets par défaut uniquement
 
 ### <a name="sql"></a>SQL
@@ -867,7 +944,7 @@ Version 2.0.53
 ## <a name="december-4-2018"></a>4 décembre 2018
 
 Version 2.0.52
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 * L’approvisionnement des ressources entre locataires est désormais pris en charge pour le principal du service multi-locataire.
 * Les ID d’une commande avec sortie TSV n’étaient pas analysés correctement. Ce bogue a été corrigé.
 
@@ -878,7 +955,7 @@ Version 2.0.52
 ### <a name="network"></a>Réseau
 * L’argument `--exclusion` a été ajouté à `application-gateway waf-config set` pour prendre en charge les exclusions WAF
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 * Les identificateurs personnalisés sont désormais pris en charge pour l’authentification par mot de passe. 
 
 ### <a name="vm"></a>Machine virtuelle
@@ -890,7 +967,7 @@ Version 2.0.52
 ## <a name="november-20-2018"></a>20 novembre 2018
 
 Version 2.0.51
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 * Modification du nom de connexion MSI pour ne pas réutiliser le nom d’abonnement dans une identité
 
 ### <a name="acr"></a>ACR
@@ -942,7 +1019,7 @@ Version 2.0.51
 
 Version 2.0.50
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 * Ajout de la prise en charge pour le principal de service sn+issuer auth
 
 ### <a name="acr"></a>ACR
@@ -1014,7 +1091,7 @@ Version 2.0.50
 ### <a name="resource"></a>Ressource
 * Ajout de la prise en charge pour les groupes d’administration et les abonnements aux commandes `policy definition|set-definition`
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 * Ajout de la prise en charge pour la gestion d’autorisation API, les utilisateurs connectés ainsi que la gestion des mots de passe et informations d’identification des certificats de l’application
 * Modification de `ad sp create-for-rbac` pour clarifier la confusion entre displayName et le nom de principal du service
 * Ajout de la prise en charge pour attribuer les autorisations aux applications AAD
@@ -1033,7 +1110,7 @@ Version 2.0.50
 
 Version 2.0.49
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 * Correction du problème avec `--ids` où `--subscription` serait prioritaire sur l’abonnement dans `--ids`
 * Ajout d’avertissements explicites lorsque les paramètres sont ignorés par `--ids`
 
@@ -1104,7 +1181,7 @@ Version 2.0.48
 
 Version 2.0.47
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 * Gestion améliorée des erreurs « Demande incorrecte »
 
 ### <a name="acr"></a>ACR
@@ -1145,7 +1222,7 @@ Version 2.0.47
 * Correction d’une erreur relative à `network application-gateway create` qui empêchait la création de passerelles avec les références SKU `WAF_v2` ou `Standard_v2`
 * Ajout de l’argument d’usage `--service-endpoint-policy` à `network vnet subnet update`
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 * Prise en charge du listing des propriétaires d’applications Azure AD à `ad app owner`
 * Prise en charge du listing des propriétaires de principaux de service Azure AD à `ad sp owner`
 * Modification pour garantir que les commandes de mise à jour et de création de définition de rôle acceptent les configurations à autorisations multiples
@@ -1252,7 +1329,7 @@ Version 2.0.46
 * Correction du bogue dans `managedapp create --kind MarketPlace` à l’origine du blocage de la création d’instance d’une application Marketplace gérée
 * Modification des commandes `feature` afin qu’elles soient limitées aux profils pris en charge
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 * Ajout de la prise en charge pour répertorier les appartenances de l’utilisateur à des groupes
 
 ### <a name="signalr"></a>SignalR
@@ -1270,7 +1347,7 @@ Version 2.0.46
 
 Version 2.0.45
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Résolution du problème de chargement de fichier de configuration vide
 * Ajout de la prise en charge du profil `2018-03-01-hybrid` pour Azure Stack
@@ -1333,7 +1410,7 @@ Version 2.0.45
 
 Version 2.0.44
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Correction de l’affichage numérique dans la sortie `table`
 * Ajout du format de sortie YAML
@@ -1436,7 +1513,7 @@ Version 2.0.43
 * Ajout de `--rollback-on-error` à `group deployment create` pour exécuter un déploiement correct et connu en cas d’erreur
 * Correction d’un problème où `--parameters {}` avec `group deployment create` entraînait une erreur
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * Ajout de la prise en charge du profil stack du 09/03/2017
 * Correction d’un problème où les paramètres de mise à jour génériques à `app update` ne fonctionnaient pas correctement
@@ -1468,7 +1545,7 @@ Version 2.0.43
 
 Version 2.0.42
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Ajout de la prise en charge de la connexion basée sur le navigateur dans la fenêtre d’interpréteur de commandes Windows pour Linux
 * Ajout de l’indicateur `--force-string` pour toutes les commandes de mise à jour générique
@@ -1545,7 +1622,7 @@ Version 2.0.41
 
 Version 2.0.40
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Ajout d’un nouveau flux de code d’autorisation pour une connexion interactive
 
@@ -1618,7 +1695,7 @@ Version 2.0.39
 
 Version 2.0.38
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Ajout de la prise en charge globale de `--subscription` pour la plupart des commandes
 
@@ -1683,7 +1760,7 @@ Version 2.0.38
 * [CHANGEMENT CASSANT] Suppression des propriétés `size` et `tier` de `Catalog`
 * Ajout du paramètre `InstanceFlexibility` à `reservations reservation update`
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * Amélioration de la gestion des erreurs
 
@@ -1705,7 +1782,7 @@ Version 2.0.38
 
 Version 2.0.37
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Amélioration de la télémétrie interactive
 
@@ -1737,7 +1814,7 @@ Version 2.0.35
 
 Version 2.0.34
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Prise en charge supplémentaire pour les références de ressources inter-client
 * Amélioration de la fiabilité de téléchargement des données de télémétrie
@@ -1800,7 +1877,7 @@ Version 2.0.34
 
 Version 2.0.33
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Ajout de la prise en charge pour le développement de `@` dans les noms de fichiers
 
@@ -1871,7 +1948,7 @@ Version 2.0.33
 
 Version 2.0.32
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Correction d’une exception non gérée lors de la récupération des clés secrètes à partir d’un compte de principal de service avec certificat
 * Nouvelle prise en charge limitée pour les arguments positionnels
@@ -1969,7 +2046,7 @@ Version 2.0.32
 * `redis import-method` déconseillé en faveur de `redis import`
 * Ajout de la prise en charge de `--ids` pour diverses commandes
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * [CHANGEMENT CASSANT] Suppression de `ad sp reset-credentials` déconseillé
 
@@ -2119,7 +2196,7 @@ Version 2.0.31
 
 Version 2.0.30
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Afficher le message pour les extensions marquées en tant que préversions dans l’aide
 
@@ -2202,7 +2279,7 @@ Version 2.0.30
 
 * [CHANGEMENT CASSANT]: Changed `provider operation [list|show]` to not require `--api-version`
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * Ajout de la prise en charge des configurations d’accès et des clients natifs requis à `az ad app create`
 * Modification des commandes `rbac` afin de renvoyer moins de 1 000 ID sur la résolution d’objet
@@ -2313,7 +2390,7 @@ Version 2.0.29
 
 Version 2.0.28
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Résolution de [#5184](https://github.com/Azure/azure-cli/issues/5184) : problème d’installation d’Homebrew
 * Ajout de la prise en charge de télémétrie d’extension avec des clés personnalisées
@@ -2352,7 +2429,7 @@ Version 2.0.28
 
 * Modification de `group deployment export` pour afficher un modèle et des erreurs partiels sur échec
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * Ajout de `role assignment list-changelogs` pour permettre l’audit des rôles du principal de service
 
@@ -2373,7 +2450,7 @@ Version 2.0.28
 
 Version 2.0.27
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Modification de l’authentification pour passer au système de clé sur l’ID d’abonnement et le nom sur la connexion MSI
 
@@ -2449,7 +2526,7 @@ Version 2.0.27
 
 * Rajout de `feature show`
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * Ajout de l’argument `--available-to-other-tenants` à `ad app update`
 
@@ -2474,7 +2551,7 @@ Version 2.0.27
 
 Version 2.0.26
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Ajout de la prise en charge de la récupération du jeton brut dans le contexte MSI
 * Suppression de la chaîne de l’indicateur d’interrogation après la fin de LRO sur le fichier cmd.exe de Windows
@@ -2616,7 +2693,7 @@ Version 2.0.25
 
 * Ajout de la prise en charge pour la connexion à l’aide d’identités affectées aux utilisateurs
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * Ajout de l’argument `--assignee-object-id` à `role assignment create` pour ignorer les requêtes de graphique
 
@@ -2666,7 +2743,7 @@ Version 2.0.22
 
 * Suppression des commandes `az component`. Utilisation de `az extension` à la place
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 * Modification du point de terminaison de l’autorité AAD `AZURE_US_GOV_CLOUD` pour le faire passer de login.microsoftonline.com à login.microsoftonline.us
 * Résolution du problème au cours duquel les données de télémétrie étaient constamment renvoyées
 
@@ -2702,7 +2779,7 @@ Version 2.0.22
 
 * Ajout de l’argument `--include-response-body` à `resource show`
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * Ajout de l’affichage des affectations par défaut pour les administrateurs « classiques » à `role assignment list`
 * Ajout de la prise en charge à `ad sp reset-credentials` pour l’ajout d’informations d’identification au lieu de leur remplacement
@@ -2828,7 +2905,7 @@ Version 2.0.21
 
 Version 2.0.20
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Mise à jour de `2017-03-09-profile` pour consommer l’API `MGMT_STORAGE` version `2016-01-01`
 
@@ -2869,7 +2946,7 @@ Version 2.0.20
 
 Version 2.0.19
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Ajout de la gestion des URL d’autorisation AD FS avec une barre oblique à Azure Stack
 
@@ -2987,7 +3064,7 @@ Version 2.0.18
 
 Version 2.0.17
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Module de commande activé pour définir son propre ID de corrélation dans la télémétrie
 * Résolution du problème de vidage JSON lorsque la télémétrie est définie en mode diagnostics
@@ -3242,7 +3319,7 @@ storage (2.0.11)
 vm (2.0.11)
 ```
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Informations d’authentification du Kit de développement logiciel (SDK) de sortie pour les principaux de service avec des certificats
 * Correction des exceptions de progression de déploiement
@@ -3428,7 +3505,7 @@ vm (2.0.11)
 * Ajout de la vérification de paramètre des modèles de liaison de modèle (#3629)
 * Ajout de la prise en charge de la spécification des paramètres de déploiement à l’aide de la `KEY=VALUE` syntaxe
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * Prise en charge de la sortie au format de fichier d’authentification du Kit de développement logiciel (SDK) pour `create-for-rbac`
 * Nettoyage des attributions de rôles et de l’application AAD liée lors de la suppression d’un principal de service (#3610)
@@ -3517,7 +3594,7 @@ storage (2.0.6)
 vm (2.0.6)
 ```
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * principal : capturer les exceptions provoquées par un fournisseur non enregistré et l’enregistrer automatiquement
 * performance : conserver le cache de jeton adal en mémoire jusqu’à la fin du processus ([#2603](https://github.com/Azure/azure-cli/issues/2603))
@@ -3640,7 +3717,7 @@ vm (2.0.6)
 * [Compute] Résoudre les problèmes de mise à jour de VMSS et du groupe à haute disponibilité de machines virtuelles. ([#2773](https://github.com/Azure/azure-cli/issues/2773))
 * Corriger le verrouillage des commandes créer et supprimer si parent-resource-path est None ([#2742](https://github.com/Azure/azure-cli/issues/2742))
 
-### <a name="role"></a>Rôle
+### <a name="role"></a>Role
 
 * create-for-rbac : vérifier que la date de fin du SP ne dépassera pas la date d’expiration du certificat ([#2989](https://github.com/Azure/azure-cli/issues/2989))
 * RBAC : ajouter la prise en charge complète de « ad group » ([#2016](https://github.com/Azure/azure-cli/issues/2016))
@@ -3707,7 +3784,7 @@ storage (2.0.2)
 vm (2.0.2)
 ```
 
-### <a name="core"></a>Principal
+### <a name="core"></a>Core
 
 * Ajout des modules acr, lab, monitor et find à la liste par défaut
 * Connexion : ignorer les locataires erronés ([#2634](https://github.com/Azure/azure-cli/pull/2634))

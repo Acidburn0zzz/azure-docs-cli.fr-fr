@@ -8,12 +8,12 @@ ms.date: 02/15/2019
 ms.topic: conceptual
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 7ead12b35cefd7cba9e06f7905c9267c569d98dd
-ms.sourcegitcommit: 014d89aa21f90561eb69792ad01947e481ea640a
+ms.openlocfilehash: 6d88400b8d7070cf2f9dba2f3e124edfe2e3163d
+ms.sourcegitcommit: e06d34682710e77840b0c51f4718184101bd8a03
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/23/2019
-ms.locfileid: "56741715"
+ms.lasthandoff: 07/02/2019
+ms.locfileid: "67527325"
 ---
 # <a name="create-an-azure-service-principal-with-azure-cli"></a>Créez un principal du service avec Azure CLI
 
@@ -35,21 +35,14 @@ Il existe deux types d’authentification disponibles pour les principaux de ser
 
 ### <a name="password-based-authentication"></a>L’authentification basée sur un mot de passe
 
-Sans aucun paramètre d’authentification, l’authentification basée sur un mot de passe est utilisée avec un mot de passe aléatoire créé pour vous. Si vous souhaitez une authentification basée sur un mot de passe, cette méthode est recommandée.
+Sans aucun paramètre d’authentification, l’authentification basée sur un mot de passe est utilisée avec un mot de passe aléatoire créé pour vous.
 
   ```azurecli-interactive
   az ad sp create-for-rbac --name ServicePrincipalName
   ```
 
-Pour un mot de passe fourni par l’utilisateur, utilisez l’argument `--password`. Lorsque vous créez un mot de passe, assurez-vous de suivre les [règles et restrictions relatives aux mots de passe Azure Active Directory](/azure/active-directory/active-directory-passwords-policy). N’utilisez pas de mot de passe faible. Ne réutilisez pas de mot de passe.
-
-  ```azurecli-interactive
-  az ad sp create-for-rbac --name ServicePrincipalName --password <Choose a strong password>
-  ```
-
-  > [!IMPORTANT]
-  >
-  > Pour des raisons de sécurité, l’argument `--password` pour la création d’un principal de service sera déconseillé dans une version ultérieure. Si vous souhaitez utiliser l’authentification basée sur un mot de passe, évitez `--password` et laissez l’interface de ligne de commande générer un mot de passe sécurisé pour vous.
+> [!IMPORTANT]
+> À compter d’Azure CLI 2.0.68, le paramètre `--password` permettant de créer un principal de service avec un mot de passe défini par l’utilisateur __n’est plus pris en charge__ pour empêcher l’utilisation accidentelle de mots de passe faibles.
 
 La sortie d’un principal de service avec l’authentification par mot de passe comprend la clé `password`. __Assurez-vous__ d’avoir copié cette valeur : elle ne pourra être récupérée. Si vous oubliez le mot de passe, effectuez une [réinitialisation des informations d’identification du principal du service](#reset-credentials).
 
