@@ -4,19 +4,63 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 07/02/2019
+ms.date: 07/16/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 26757193628cff65603a04e440f9e2aa7bf5a248
-ms.sourcegitcommit: e06d34682710e77840b0c51f4718184101bd8a03
+ms.openlocfilehash: 8cb0e2f43a3f40fdf15a00ebc7bdb931bf8f41f0
+ms.sourcegitcommit: 49e1dea60942fce02d9c3ce249ac633a83f303e7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2019
-ms.locfileid: "67527305"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68246918"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="july-16-2019"></a>16 juillet 2019
+
+Version 2.0.69
+
+### <a name="appservice"></a>AppService
+
+* Changement des commandes `webapp identity` pour retourner un message d’erreur approprié si le nom de ResourceGroupName ou de l’application n’est pas valide
+* Correction de `webapp list` pour retourner la valeur correcte pour le nombre de sites si aucun groupe de ressources n’a été fourni
+* Correction des effets secondaires de `appservice plan create` et de `webapp create`
+
+### <a name="core"></a>Core
+
+* Résolution du problème où `--subscription` s’affichait alors qu’il ne devait pas
+
+### <a name="batch"></a>Batch
+
+* [CHANGEMENT CASSANT] Remplacement de `batch pool node-agent-skus list` par `batch pool supported-images list`
+* Ajout de la prise en charge des règles de sécurité bloquant l’accès réseau à un pool basé sur le port source du trafic lors de l’utilisation de l’option `--json-file` de `batch pool create network`
+* Ajout de la prise en charge de l’exécution de la tâche dans le répertoire de travail du conteneur ou dans le répertoire de travail de la tâche Batch lors de l’utilisation de l’option `--json-file` de `batch task create`
+* Correction d’une erreur dans l’option `--application-package-references` de `batch pool create` où elle fonctionnait uniquement avec les valeurs par défaut
+
+### <a name="eventhubs"></a>Eventhubs
+
+* Ajout d’une validation pour le paramètre `--rights` des commandes `authorizationrule`
+
+### <a name="rdbms"></a>SGBDR
+
+* Ajout d’un paramètre facultatif pour spécifier la référence SKU de réplica pour la commande de création de réplica
+* Correction d’un problème d’échec des tests CI lors de la création du réplica MySQL
+
+### <a name="relay"></a>Relais
+
+* Correction d’un problème de connexion hybride quand l’autorisation du client est désactivée [#8775](https://github.com/azure/azure-cli/issues/8775)
+* Ajout du paramètre `--requires-transport-security` à `relay wcfrelay create`
+
+### <a name="servicebus"></a>Servicebus
+
+* Ajout d’une validation pour le paramètre `--rights` des commandes `authorizationrule`
+
+### <a name="storage"></a>Stockage
+
+* Activation des fichiers AADDS pour la mise à jour du compte de stockage
+* Problème résolu `storage blob service-properties update --set`
 
 ## <a name="july-2-2019"></a>2 juillet 2019
 
