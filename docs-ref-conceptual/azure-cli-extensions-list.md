@@ -4,17 +4,17 @@ description: Liste complète des extensions officiellement prises en charge pour
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 07/31/2019
+ms.date: 08/09/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 1c36df58acce7287da4644f8c51cbdc023ea7caa
-ms.sourcegitcommit: 61965f5d95d0dae3752ad6a0e5a93db27a623c28
+ms.openlocfilehash: fa3c0ccf69110575fd6276a1a8b1bdc134b1c284
+ms.sourcegitcommit: b00555c528697c0a6419cf23380e48c8705026db
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/06/2019
-ms.locfileid: "68830960"
+ms.lasthandoff: 08/13/2019
+ms.locfileid: "68974285"
 ---
 # <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
@@ -35,8 +35,8 @@ az extension list-available --output table
 | [application-insights](https://github.com/Azure/azure-cli-extensions/tree/master/src/application-insights) | 0.1.1 | Prise en charge de la gestion des composants Application Insights et de l’interrogation des métriques, des événements et des journaux de ces composants. | OUI |
 | [azure-batch-cli-extensions](https://github.com/Azure/azure-batch-cli-extensions) | 4.0.0 | Commandes supplémentaires pour travailler avec le service Azure Batch |  |
 | [azure-cli-iot-ext](https://github.com/azure/azure-iot-cli-extension) | 0.7.1 | Fourniture de la couche de commandes du plan de données pour Azure IoT Hub, IoT Edge et le service de provisionnement d’appareils IoT |  |
-| [azure-cli-ml](https://docs.microsoft.com/en-us/azure/machine-learning/service/) | 1.0.53.1 | Module de commande AzureML des outils en ligne de commande Microsoft Azure |  |
-| [azure-devops](https://github.com/Microsoft/azure-devops-cli-extension) | 0.11.0 | Outils de gestion Azure DevOps. |  |
+| [azure-cli-ml](https://docs.microsoft.com/en-us/azure/machine-learning/service/) | 1.0.55 | Module de commande AzureML des outils en ligne de commande Microsoft Azure |  |
+| [azure-devops](https://github.com/Microsoft/azure-devops-cli-extension) | 0.12.0 | Outils de gestion Azure DevOps. |  |
 | [azure-firewall](https://github.com/Azure/azure-cli-extensions/tree/master/src/azure-firewall) | 0.1.3 | Gérez les ressources de pare-feu Azure. | OUI |
 | [db-up](https://github.com/Azure/azure-cli-extensions/tree/master/src/db-up) | 0.1.13 | Commandes supplémentaires pour simplifier les workflows Azure Database. | OUI |
 | [dev-spaces](https://github.com/Azure/azure-cli-extensions) | 1.0.3 | Dev Spaces offre aux équipes une expérience de développement Kubernetes rapide et itérative. |  |
@@ -58,8 +58,8 @@ az extension list-available --output table
 | [mixed-reality](https://github.com/Azure/azure-cli-extensions) | 0.0.1 | Extension Mixed Reality d’Azure CLI. |  |
 | [netappfiles-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/netappfiles-preview) | 0.3.2 | Fournit un aperçu des fonctionnalités Azure NetApp Files (ANF) à venir. | OUI |
 | [privatedns](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Commandes permettant de gérer les zones DNS privées | OUI |
-| [resource-graph](https://github.com/Azure/azure-cli-extensions/tree/master/src/resource-graph) | 0.1.11 | Assistance pour interroger des ressources Azure avec Resource Graph. | OUI |
-| [sap-hana](https://github.com/Azure/azure-hanaonazure-cli-extension) | 0.5.1 | Commandes supplémentaires pour travailler avec les instances SAP HanaOnAzure. |  |
+| [resource-graph](https://github.com/Azure/azure-cli-extensions/tree/master/src/resource-graph) | 1.0.0 | Assistance pour interroger des ressources Azure avec Resource Graph. |  |
+| [sap-hana](https://github.com/Azure/azure-hanaonazure-cli-extension) | 0.5.3 | Commandes supplémentaires pour travailler avec les instances SAP HanaOnAzure. |  |
 | [storage-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/storage-preview) | 0.2.8 | Fournit un aperçu des fonctionnalités de stockage à venir. | OUI |
 | [subscription](https://github.com/Azure/azure-cli-extensions) | 0.1.3 | Prise en charge de la préversion des définitions d’abonnement. |  |
 | [virtual-network-tap](https://github.com/Azure/azure-cli-extensions/tree/master/src/virtual-network-tap) | 0.1.0 | Gérez les taps de réseau virtuel (VTAP). | OUI |

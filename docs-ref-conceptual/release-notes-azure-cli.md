@@ -4,19 +4,98 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 07/30/2019
+ms.date: 08/13/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 673014c3fd86e20148fe5ffa9fa5160e490da0cb
-ms.sourcegitcommit: d29d86d33916d5551b4aeb984b06d7a85c4f6b06
+ms.openlocfilehash: d315046287a552e89112fa415e1219f9a97d4944
+ms.sourcegitcommit: b00555c528697c0a6419cf23380e48c8705026db
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/30/2019
-ms.locfileid: "68658936"
+ms.lasthandoff: 08/13/2019
+ms.locfileid: "68974260"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="august-13-2019"></a>13 août 2019
+
+Version 2.0.71
+
+### <a name="appservice"></a>AppService
+
+* Correction d’un problème entraînant l’échec des commandes `webapp webjob continuous` pour les emplacements
+
+### <a name="botservice"></a>BotService
+
+* [CHANGEMENT CASSANT] Suppression de la prise en charge de la création de bots SDK v3
+
+### <a name="cognitiveservices"></a>CognitiveServices
+
+* Ajout des commandes `cognitiveservices account network-rule`
+
+### <a name="cosmos-db"></a>Cosmos DB
+
+* Suppression de l’avertissement lors de la mise à jour de plusieurs emplacements d’écriture
+* Ajout de commandes CRUD pour les ressources CosmosDB SQL, MongoDB, Cassandra, Gremlin et Table et le débit de la ressource
+
+### <a name="hdinsight"></a>HDInsight
+
+Cette version contient un grand nombre de modifications conséquentes.
+
+* [CHANGEMENT CASSANT] Renommage des paramètres pour `hdinsight create` :
+  * Renommage de `--storage-default-container` en `--storage-container`
+  * Renommage de `--storage-default-filesystem` en `--storage-filesystem`
+* [CHANGEMENT CASSANT] Modification de l’argument `--name` de `application create` pour représenter le nom de l’application à la place du nom du cluster
+* Ajout d’un argument `--cluster-name` à `application create` pour remplacer l’ancienne fonctionnalité `--name`
+* [CHANGEMENT CASSANT] Renommage des paramètres pour `application create` :
+  * Renommage de `--application-type` en `--type`
+  * Renommage de `--marketplace-identifier` en `--marketplace-id`
+  * Renommage de `--https-endpoint-access-mode` en `--access-mode`
+  * `--https-endpoint-destination-port` renommé en `--destination-port`
+* [CHANGEMENT CASSANT] Suppression des paramètres pour `application create` :
+  * `--https-endpoint-location`
+  * `--https-endpoint-public-port`
+  * `--ssh-endpoint-destination-port`
+  * `--ssh-endpoint-location`
+  * `--ssh-endpoint-public-port`
+* MODIFICATION CONSÉQUENTE Renommage de `--target-instance-count` en `--workernode-count` pour `hdinsight resize`
+* [CHANGEMENT CASSANT] Modification de toutes les commandes du groupe `hdinsight script-action` pour utiliser le paramètre `--name` comme nom de l’action de script.
+* Ajout d’un argument `--cluster-name` à toutes les commandes `hdinsight script-action` pour remplacer l’ancienne fonctionnalité `--name`
+* [CHANGEMENT CASSANT] Renommage de l’option `--script-execution-id` en `--execution-id` pour toutes les commandes `hdinsight script-action`
+* [CHANGEMENT CASSANT] Renommage de `hdinsight script-action show` en `hdinsight script-action show-execution-details`
+* [MODIFICATION CONSÉQUENTE] Modification des paramètres sur `hdinsight script-action execute --roles` pour qu’ils soient séparés par des espaces et non par des virgules
+* [CHANGEMENT CASSANT] Suppression du paramètre `--persisted` de `hdinsight script-action list`
+* Modification du paramètre `hdinsight create --cluster-configurations` pour qu’il accepte un chemin d’accès à un fichier JSON local ou une chaîne JSON
+* Ajout de la commande `hdinsight script-action list-execution-history`
+* Modification de `hdinsight monitor enable --workspace` pour qu’il accepte un ID ou un nom d’espace de travail Log Analytics
+* Ajout de l’argument `hdinsight monitor enable --primary-key`, qui est nécessaire si un ID d’espace de travail est fourni en tant que paramètre
+* Ajout de plus d’exemples et mise à jour des descriptions des messages d’aide
+
+### <a name="interactive"></a>Interactive
+
+* Résolution d’une erreur de chargement
+
+### <a name="kubernetes"></a>kubernetes
+
+* Modification pour utiliser `https` si le port du conteneur du tableau de bord utilise `https`
+
+### <a name="network"></a>Réseau
+
+* Ajout de l’argument `--yes` `network dns record-set cname delete`
+
+### <a name="profile"></a>Profil
+
+* Ajout de l’argument `--resource-type` à `account get-access-token` pour obtenir des jetons d’accès aux ressources
+
+### <a name="servicefabric"></a>ServiceFabric
+
+* Ajout de toutes les versions de système d’exploitation prises en charge pour sf cluster create
+* Résolution d’un bogue principal de validation de certificat
+
+### <a name="storage"></a>Stockage
+
+* Ajout de la commande `storage copy`
 
 ## <a name="july-30-2019"></a>30 juillet 2019
 
