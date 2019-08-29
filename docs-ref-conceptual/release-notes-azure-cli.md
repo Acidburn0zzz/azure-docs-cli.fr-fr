@@ -4,19 +4,71 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 08/13/2019
+ms.date: 08/27/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: d315046287a552e89112fa415e1219f9a97d4944
-ms.sourcegitcommit: b00555c528697c0a6419cf23380e48c8705026db
+ms.openlocfilehash: 156ff2e6d011104ebbb1608ff33bad8ebb6396ed
+ms.sourcegitcommit: df2be5609a6cbeecb9f8ef0928a9fabfb207e7f9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/13/2019
-ms.locfileid: "68974260"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70047276"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="august-27-2019"></a>27 août 2019
+
+Version 2.0.72
+
+### <a name="acr"></a>ACR
+
+* [CHANGEMENT CASSANT] Suppression du support pour la référence SKU `classic`
+
+### <a name="api-management"></a>Gestion des API
+
+* [PRÉVERSION] Ajout du groupe de commandes `apim`
+
+### <a name="appservice"></a>AppService
+
+* Résolution du problème avec la commande `webapp webjob continuous start` lors de la spécification d’un emplacement
+* Modification de `webapp up` pour détecter le dossier `env` et le supprimer du fichier utilisé pour le déploiement
+
+### <a name="keyvault"></a>KeyVault
+
+* Correction d’un bogue dans `keyvault secret set` qui ignorait l’argument `--expires`
+
+### <a name="network"></a>Réseau
+
+* Ajout de la prise en charge des adresses IPv6 pour les arguments `--private-ip-address-version`
+* Ajout des nouvelles commandes `network private-endpoint [create|update|list-types]` pour la gestion des points de terminaison privés
+* Ajout du groupe de commandes `network private-link-service`
+* Ajout des arguments `--private-endpoint-network-policies` et `--private-link-service-network-policies` à `network vnet subnet update`
+
+### <a name="rbac"></a>RBAC
+
+* Correction du problème `ad app update --homepage` où la page d’accueil ne se mettait pas à jour
+
+### <a name="servicefabric"></a>ServiceFabric
+
+* Ajout de la prise en charge pour les noms Key Vault en casse mixte
+* Résolution du problème lors de l’utilisation de certificats dans Key Vault
+* Résolution du problème lors de l’utilisation des fichiers de certificat PFX
+* Correction du problème avec `sf cluster certificate add` quand le groupe de ressources Key Vault n’était pas spécifié
+* Correction du problème où `sf cluster set` ne fonctionnait pas
+
+### <a name="signalr"></a>SignalR
+
+* Ajout de nouvelles commandes :
+  * `signalr cors`: Gérer SignalR CORS
+  * `signalr restart`: Redémarrer un service SignalR
+  * `signalr update`: Mettre à jour un service SignalR
+* Ajout de l’argument `--service-mode` à `signalr create`
+
+### <a name="storage"></a>Stockage
+
+* Ajout de la commande `storage account revoke-delegation-keys`
 
 ## <a name="august-13-2019"></a>13 août 2019
 

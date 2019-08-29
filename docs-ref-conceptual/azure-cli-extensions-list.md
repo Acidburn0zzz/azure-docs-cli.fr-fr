@@ -4,17 +4,17 @@ description: Liste complète des extensions officiellement prises en charge pour
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 08/14/2019
+ms.date: 08/25/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 327ed9bf96831b46450724a9e931b6f4db657992
-ms.sourcegitcommit: 5154acf27c4d4e7efde09522247f887188208312
+ms.openlocfilehash: 36a2fe84aa1f5f4e903451a48aa9f59998bafffa
+ms.sourcegitcommit: df2be5609a6cbeecb9f8ef0928a9fabfb207e7f9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/20/2019
-ms.locfileid: "69656988"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70047310"
 ---
 # <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
@@ -29,13 +29,13 @@ az extension list-available --output table
 | Nom | Version | Résumé | PRÉVERSION |
 |------|---------|---------|---------|
 | [aem](https://github.com/Azure/azure-cli-extensions) | 0.1.1 | Gestion des extensions de surveillance Azure améliorée pour SAP |  |
-| [préversion ASK](https://github.com/Azure/azure-cli-extensions/tree/master/src/aks-preview) | 0.4.8 | Fournit une préversion des fonctionnalités AKS à venir | OUI |
+| [préversion ASK](https://github.com/Azure/azure-cli-extensions/tree/master/src/aks-preview) | 0.4.10 | Fournit une préversion des fonctionnalités AKS à venir | OUI |
 | [alias](https://github.com/Azure/azure-cli-extensions) | 0.5.2 | Prise en charge des alias de commande | OUI |
 | [appconfig](https://github.com/Azure/azure-cli-extensions) | 0.5.0 | Fournit une préversion des fonctionnalités App Configuration à venir. | OUI |
 | [application-insights](https://github.com/Azure/azure-cli-extensions/tree/master/src/application-insights) | 0.1.1 | Prise en charge de la gestion des composants Application Insights et de l’interrogation des métriques, des événements et des journaux de ces composants. | OUI |
 | [azure-batch-cli-extensions](https://github.com/Azure/azure-batch-cli-extensions) | 4.0.0 | Commandes supplémentaires pour travailler avec le service Azure Batch |  |
 | [azure-cli-iot-ext](https://github.com/azure/azure-iot-cli-extension) | 0.8.0 | Fourniture de la couche de commandes du plan de données pour Azure IoT Hub, IoT Edge et le service de provisionnement d’appareils IoT |  |
-| [azure-cli-ml](https://docs.microsoft.com/en-us/azure/machine-learning/service/) | 1.0.55 | Module de commande AzureML des outils en ligne de commande Microsoft Azure |  |
+| [azure-cli-ml](https://docs.microsoft.com/en-us/azure/machine-learning/service/) | 1.0.57 | Module de commande AzureML des outils en ligne de commande Microsoft Azure |  |
 | [azure-devops](https://github.com/Microsoft/azure-devops-cli-extension) | 0.12.0 | Outils de gestion Azure DevOps. |  |
 | [azure-firewall](https://github.com/Azure/azure-cli-extensions/tree/master/src/azure-firewall) | 0.1.3 | Gérez les ressources de pare-feu Azure. | OUI |
 | [db-up](https://github.com/Azure/azure-cli-extensions/tree/master/src/db-up) | 0.1.13 | Commandes supplémentaires pour simplifier les workflows Azure Database. | OUI |
