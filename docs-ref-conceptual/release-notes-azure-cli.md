@@ -4,19 +4,66 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 08/27/2019
+ms.date: 09/05/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 156ff2e6d011104ebbb1608ff33bad8ebb6396ed
-ms.sourcegitcommit: df2be5609a6cbeecb9f8ef0928a9fabfb207e7f9
+ms.openlocfilehash: 03594fc6e7e24fd1b7d2f9c846161a40e8ea7678
+ms.sourcegitcommit: f9bfb4b063151434b3a9bff936a73b251666e775
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70047276"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70878230"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="september-5-2019"></a>5 septembre 2019
+
+### <a name="acr"></a>ACR
+
+* Ajout du groupe de commandes `acr config retention` pour configurer une stratégie de conservation
+
+### <a name="aks"></a>AKS
+
+* Ajout de la prise en charge de l’intégration ACR avec les commandes suivantes :
+  * Ajout du paramètre `--attach-acr` à `aks [create|update]` pour attacher un ACR à un cluster AKS
+  * Ajout du paramètre `--detach-acr` à `aks update` pour détacher l’ACR d’un cluster AKS
+
+### <a name="arm"></a>ARM
+
+* Mis à jour pour utiliser la version d’API 2019-05-10
+
+### <a name="batch"></a>Batch
+
+* Ajout de nouveaux paramètres de configuration JSON à `--json-file` pour `batch pool create` :
+  * Ajout de `MountConfigurations` pour les montages de système de fichiers (voir https://docs.microsoft.com/en-us/rest/api/batchservice/pool/add#request-body pour les détails)
+  * Ajout de la propriété facultative `publicIPs` sur `NetworkConfiguration` pour les adresses IP publiques sur les pools (voir https://docs.microsoft.com/en-us/rest/api/batchservice/pool/add#request-body pour les détails)
+* Ajout de la prise en charge des galeries d’images partagées à `--image`
+* [CHANGEMENT CASSANT] Changement de la valeur par défaut `--start-task-wait-for-success` sur `batch pool create` qui devient `true`
+* [CHANGEMENT CASSANT] Changement de la valeur par défaut pour `Scope` sur `AutoUserSpecification` pour qu’elle soit toujours Pool (était `Task` sur les nœuds Windows, `Pool` sur les nœuds Linux)
+  * Cet argument ne peut être défini qu’à partir d’une configuration JSON avec `--json-file`
+
+### <a name="hdinsight"></a>HDInsight
+
+* Version mise à la disposition générale
+* [CHANGEMENT CASSANT] Changement du paramètre `--workernode-count/-c` de `az hdinsight resize` pour le rendre obligatoire.
+
+### <a name="key-vault"></a>Key Vault
+
+* Résolution d’un problème où les sous-réseaux ne pouvaient pas être supprimés des règles réseau
+* Résolution d’un problème où des sous-réseaux et des adresses IP dupliqués pouvaient être ajoutés aux règles réseau
+
+### <a name="network"></a>Réseau
+
+* Ajout du paramètre `--interval` à `network watcher flow-log` pour définir la valeur d’intervalle de l’analyse du trafic
+* Ajout de `network application-gateway identity` pour gérer l’identité de la passerelle
+* Ajout de la prise en charge de la définition de l’ID Key Vault sur `network application-gateway ssl-cert`
+* Ajout de `network express-route peering peer-connection [show|list]`
+
+### <a name="policy"></a>Stratégie
+
+* Mis à jour pour utiliser la version d’API 2019-01-01
 
 ## <a name="august-27-2019"></a>27 août 2019
 
