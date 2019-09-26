@@ -9,14 +9,68 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 727f9960ce60861bbe20a649606b807efb8d9cbc
-ms.sourcegitcommit: f30b67f48b956bdc281f1a5fae96e10120ee3bba
+ms.openlocfilehash: 1f829ba3d9ecdb158e96512bde5bcf1565cc205c
+ms.sourcegitcommit: 5b9b4446c08b94256ced7f63c145b493ba8b50df
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/12/2019
-ms.locfileid: "70937095"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "71217414"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="september-24-2019"></a>24 septembre 2019
+
+Version 2.0.74
+
+### <a name="acr"></a>ACR
+
+* Ajout d’un paramètre `--type` obligatoire à `acr config retention update`
+* [CHANGEMENT CASSANT] Remplacement du paramètre `--name -n` par `--registry -r ` pour le groupe de commandes `acr config`
+
+### <a name="aks"></a>AKS
+
+* Ajout du paramètre `--load-balancer-sku` à la commande `aks create`, ce qui permet de créer un cluster AKS avec SLB
+* Ajout des paramètres `--load-balancer-managed-outbound-ip-count`, `--load-balancer-outbound-ips` et `--load-balancer-outbound-ip-prefixes` aux commandes `aks [create|update]`, ce qui permet de mettre à jour le profil d’équilibreur de charge d’un cluster AKS avec SLB
+* Ajout du paramètre `--vm-set-type` à la commande `aks create`, ce qui permet de spécifier les types de machines virtuelles d’un cluster AKS (vmas ou vmss)
+
+### <a name="arm"></a>ARM
+
+* Ajout du paramètre `--handle-extended-json-format` à la commande `group deployment create` pour prendre en charge les lignes multiples et les commentaires dans le modèle JSON
+
+### <a name="compute"></a>Calcul
+
+* Ajout du paramètre `--terminate-notification-time` aux commandes `vmss [create|update]` pour prendre en charge la configuration de l’événement planifié d’arrêt
+* Ajout du paramètre `--enable-terminate-notification` à la commande `vmss update` pour prendre en charge la configuration de l’événement planifié d’arrêt
+* Ajout des paramètres `--priority,` `--eviction-policy,` `--max-billing` aux commandes `[vm|vmss] create`
+* Modification de `disk create` pour autoriser la spécification de la taille exacte du chargement de disque
+* Ajout de la prise en charge des instantanés incrémentiels pour les disques managés à `snapshot create`
+
+### <a name="cosmos-db"></a>Cosmos DB
+
+* Ajout du paramètre `--type <key-type>` à la commande `cosmosdb keys list` pour afficher la clé, les clés en lecture seule ou les chaînes de connexion
+* Ajout de la commande `cosmosdb keys regenerate`
+* [DÉPRÉCIATION] Dépréciation des commandes `cosmosdb list-connection-strings`, `cosmosdb regenerate-key` et `cosmosdb list-read-only-keys`
+
+### <a name="eventgrid"></a>EventGrid
+
+* Correction du texte d’aide du point de terminaison de manière à faire référence au bon paramètre
+
+### <a name="key-vault"></a>Key Vault
+
+* Résolution d’un problème de connexion avec un locataire (`login -t`) qui pouvait provoquer l’échec de `keyvault create`
+
+### <a name="monitor"></a>Surveiller
+
+* Résolution d’un problème où le caractère `:` n’était pas autorisé dans l’argument `--condition` de `monitor metrics alert create`
+
+### <a name="policy"></a>Stratégie
+
+* Ajout de la prise en charge de l’API Policy version 2019-06-01
+* Ajout du paramètre `--enforcement-mode` à la commande `policy assignment create`
+
+### <a name="storage"></a>Stockage
+
+* Ajout du paramètre `--blob-type` à la commande `az storage copy`
 
 ## <a name="september-10-2019"></a>10 septembre 2019
 
@@ -71,7 +125,7 @@ Version 2.0.72
 
 ### <a name="acr"></a>ACR
 
-* [CHANGEMENT CASSANT] Suppression du support pour la référence SKU `classic`
+* [CHANGEMENT CASSANT] Suppression de la prise en charge de la référence SKU `classic`
 
 ### <a name="api-management"></a>Gestion des API
 

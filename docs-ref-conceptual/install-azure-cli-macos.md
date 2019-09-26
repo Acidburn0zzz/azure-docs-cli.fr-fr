@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 2f8ec8e82a61f11ee58fe8e509d6e5febc7d226f
-ms.sourcegitcommit: 08043c47d3ccf23522b91e6bba3932e312c04c7f
+ms.openlocfilehash: 2f572d3b59f01b22a70b7bde8a128c155dbd1a49
+ms.sourcegitcommit: 5a29ce9c0a3d7b831f22b1a13b1ae2e239e5549f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/04/2019
-ms.locfileid: "66516220"
+ms.lasthandoff: 09/19/2019
+ms.locfileid: "71144061"
 ---
 # <a name="install-azure-cli-on-macos"></a>Installer Azure CLI sur macOS
 
@@ -22,7 +22,7 @@ Pour la plateforme macOS, vous pouvez installer Azure CLI avec le [Gestionnaire 
 
 [!INCLUDE [current-version](includes/current-version.md)]
 
-## <a name="install"></a>Installer
+## <a name="install-with-homebrew"></a>Désinstaller avec Homebrew
 
 Homebrew est le moyen le plus simple pour gérer votre installation d’interface de ligne de commande. Il offre des moyens pratiques pour installer, mettre à jour et désinstaller.
 Si vous ne disposez pas de Homebrew sur votre système, [installez Homebrew](https://docs.brew.sh/Installation.html) avant de continuer.
@@ -35,7 +35,8 @@ brew update && brew install azure-cli
 
 > [!IMPORTANT]
 >
-> Azure CLI a une dépendance avec le package `python3` dans Homebrew et va l’installer sur votre système, même si Python 2 est disponible. Azure CLI offre la garantie d’être compatible avec la dernière version de `python3` publiée sur Homebrew.
+> Azure CLI a une dépendance vis-à-vis du package Homebrew `python3` et l’installe.
+> Azure CLI offre la garantie d’être compatible avec la dernière version de `python3` publiée sur Homebrew.
 
 Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).
 

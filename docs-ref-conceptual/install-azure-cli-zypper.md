@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: f8a3bec4fffb731c6521fa7b8a2a90798ef191e6
-ms.sourcegitcommit: 08043c47d3ccf23522b91e6bba3932e312c04c7f
+ms.openlocfilehash: 84946fc0562e396ef296cbe8dede5e6a65cd6614
+ms.sourcegitcommit: 5a29ce9c0a3d7b831f22b1a13b1ae2e239e5549f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/04/2019
-ms.locfileid: "66516241"
+ms.lasthandoff: 09/19/2019
+ms.locfileid: "71143956"
 ---
 # <a name="install-azure-cli-with-zypper"></a>Installez Azure CLI avec zypper
 
@@ -100,7 +100,7 @@ sudo zypper update azure-cli
    sudo zypper removerepo azure-cli
    ```
 
-3. Si vous avez supprimé les informations de référentiel, supprimez également la clé de signature Microsoft GPG.
+3. Si vous n’utilisez pas d’autres packages Microsoft, supprimez la clé de signature Microsoft.
 
    ```bash
    MSFT_KEY=`rpm -qa gpg-pubkey /* --qf "%{version}-%{release} %{summary}\n" | grep Microsoft | awk '{print $1}'`
