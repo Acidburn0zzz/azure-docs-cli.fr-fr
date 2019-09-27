@@ -1637,7 +1637,7 @@ Version 2.0.46
 * `dns record-set * create/update`: ajout de la prise en charge de `--target-resource`
 * Ajout des commandes `network interface-endpoint` pour interroger les objets de point de terminaison de l’interface
 * Ajout de `network profile show/list/delete` pour la gestion partielle des profils de réseau
-* Ajout des commandes `network express-route peering connection` pour gérer les connexions d’appairage entre les routes ExpressRoutes
+* Ajout des commandes `network express-route peering connection` pour gérer les connexions de peering entre les routes ExpressRoutes
 
 ### <a name="rdbms"></a>SGBDR
 * Ajout de la prise en charge du service MariaDB
@@ -3335,7 +3335,7 @@ Version 2.0.18
 ### <a name="network"></a>Réseau
 
 * Ajout de la prise en charge de la zone de disponibilité aux sous-commandes `network lb` et `network public-ip`
-* Ajout de la prise en charge de l’homologation Microsoft IPv6 pour `express-route`
+* Ajout de la prise en charge du peering Microsoft IPv6 pour `express-route`
 * Ajout des commandes du groupe de sécurité d’application `asg`
 * Ajout de l’argument `--application-security-groups` à `nic [create|ip-config create|ip-config update]`
 * Ajout des arguments `--source-asgs` et `--destination-asgs` à `nsg rule [create|update]`
@@ -3791,7 +3791,7 @@ vm (2.0.11)
 * Ajout de la prise en charge de `--dns-servers` pour `nic update` et `nic create` : ajout de la prise en charge de --dns-servers
 * Correction d’un bogue qui faisait `local-gateway create` ignorer `--local-address-prefixes`
 * Ajout de la prise en charge de `--dns-servers` pour `vnet update`
-* Correction d’un bogue lors de la création d’une homologation sans filtrage de l’itinéraire avec `express-route peering create`
+* Correction d’un bogue lors de la création d’un peering sans filtrage de l’itinéraire avec `express-route peering create`
 * Correction d’un bogue qui empêchait le fonctionnement des arguments `--provider` et `--bandwidth` avec `express-route update`
 * Correction d’un bogue avec `network watcher show-topology` une logique de valeurs par défaut
 * Amélioration de la mise en forme de sortie pour `network list-usages`
