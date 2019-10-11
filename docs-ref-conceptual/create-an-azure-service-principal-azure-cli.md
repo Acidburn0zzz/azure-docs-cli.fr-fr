@@ -8,12 +8,12 @@ ms.date: 02/15/2019
 ms.topic: conceptual
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 6d88400b8d7070cf2f9dba2f3e124edfe2e3163d
-ms.sourcegitcommit: e06d34682710e77840b0c51f4718184101bd8a03
+ms.openlocfilehash: 45374a29c45d8e9fa2d39aebf2d9bab556ef3b50
+ms.sourcegitcommit: b42ce26476b135bb2047c8d9d787580c858f8b6b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2019
-ms.locfileid: "67527325"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72163830"
 ---
 # <a name="create-an-azure-service-principal-with-azure-cli"></a>Créez un principal du service avec Azure CLI
 
@@ -99,10 +99,10 @@ Une liste des principaux de service dans un locataire peut être récupérée av
 * `--show-mine` demande uniquement les principaux du service créés par l’utilisateur connecté.
 * `--filter` utilise un filtre OData et effectue un filtrage _côté serveur_. Cette méthode est préférable au filtrage côté client avec l’argument `--query` de l’interface de ligne de commande. Pour en savoir plus sur les filtres OData, consultez [syntaxe d’expression de filtres OData](/rest/api/searchservice/odata-expression-syntax-for-azure-search).
 
-Les informations retournées pour les objets de principaux du service sont détaillées. Pour obtenir uniquement les informations nécessaires pour vous connecter, utilisez la chaîne de requête `[].{"id":"appId", "tenant":"appOwnerTenantId"}`. Par exemple, pour obtenir les informations de connexion de tous les principaux du service créés par l’utilisateur actuellement connecté :
+Les informations retournées pour les objets de principaux du service sont détaillées. Pour obtenir uniquement les informations nécessaires pour vous connecter, utilisez la chaîne de requête `[].{id:appId, tenant:appOwnerTenantId}`. Par exemple, pour obtenir les informations de connexion de tous les principaux du service créés par l’utilisateur actuellement connecté :
 
 ```azurecli-interactive
-az ad sp list --show-mine --query '[].{"id":"appId", "tenant":"appOwnerTenantId"}'
+az ad sp list --show-mine --query "[].{id:appId, tenant:appOwnerTenantId}"
 ```
 
 > [!IMPORTANT]
