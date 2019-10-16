@@ -22,7 +22,7 @@ Pour la plateforme macOS, vous pouvez installer Azure CLI avec le [Gestionnaire 
 
 [!INCLUDE [current-version](includes/current-version.md)]
 
-## <a name="install-with-homebrew"></a>Désinstaller avec Homebrew
+## <a name="install-with-homebrew"></a>Installer avec Homebrew
 
 Homebrew est le moyen le plus simple pour gérer votre installation d’interface de ligne de commande. Il offre des moyens pratiques pour installer, mettre à jour et désinstaller.
 Si vous ne disposez pas de Homebrew sur votre système, [installez Homebrew](https://docs.brew.sh/Installation.html) avant de continuer.
