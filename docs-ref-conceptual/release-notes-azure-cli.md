@@ -4,19 +4,78 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 09/05/2019
+ms.date: 10/15/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 1f829ba3d9ecdb158e96512bde5bcf1565cc205c
-ms.sourcegitcommit: 5b9b4446c08b94256ced7f63c145b493ba8b50df
+ms.openlocfilehash: 32137c5e6ef403461114b0e09970f93c9248c100
+ms.sourcegitcommit: 69f52b032167a01509fdf15431e3e4e89a7e20ef
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71217414"
+ms.lasthandoff: 10/15/2019
+ms.locfileid: "72324013"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="october-15-2019"></a>15 octobre 2019
+
+Version 2.0.75
+
+### <a name="aks"></a>AKS
+
+* Remplacement de la valeur par défaut `--load-balancer-sku` par `standard` si elle est prise en charge par la version kubernetes
+* Remplacement de la valeur par défaut `--vm-set-type` par `virtualmachinescalesets` si elle est prise en charge par la version kubernetes
+
+### <a name="ams"></a>AMS
+
+* [CHANGEMENT CASSANT] Remplacement du nom `job start` par `job create`
+* [CHANGEMENT CASSANT] Changement du paramètre `--ask` de `content-key-policy create` pour utiliser une chaîne hexadécimale de 32 caractères au lieu d’UTF8
+
+### <a name="appservice"></a>AppService
+
+* Ajout des commandes `webapp config access-restriction show|set|add|remove`
+* Ajout d’une meilleure gestion des erreurs à `webapp up`
+* Ajout de la prise en charge de la référence SKU `Isolated` pour `appservice plan update`
+
+### <a name="arm"></a>ARM
+
+* Ajout du paramètre `--handle-extended-json-format` à `deployment create` pour prendre en charge le format multiligne et les commentaires dans le modèle json
+
+### <a name="compute"></a>Calcul
+
+* Ajout du paramètre `--enable-agent` pour `vm create`
+* Changement de `vm create` pour utiliser automatiquement la référence SKU d’adresse IP publique standard lors de l’utilisation de zones
+* Changement de `vm create` pour créer automatiquement un nom d’ordinateur valide pour une machine virtuelle si aucun n’est fourni
+* Ajout du paramètre `--computer-name-prefix` à `vmss create` pour prendre en charge le préfixe de nom d’ordinateur personnalisé des machines virtuelles dans VMSS
+* Ajout du paramètre `--workspace` à `vm create` pour activer automatiquement l’espace de travail Log Analytics
+* Mise à jour de la version de l’API des galeries vers 2019-07-01
+
+### <a name="core"></a>Core
+
+* Ajout de la vérification de la syntaxe pour le paramètre `--set` dans la commande de mise à jour générique
+
+### <a name="iot"></a>IoT
+
+* Résolution d’un problème où `iot hub show` entraînait une erreur incorrecte « ressource introuvable »
+
+### <a name="monitor"></a>Surveiller
+
+* Ajout de la prise en charge de CRUD dans `monitor log-analytics workspace`
+
+### <a name="network"></a>Réseau
+
+* Ajout de la prise en charge de la liaison virtuelle interlocataire dans `network private-dns link vnet [create|update]`
+* [CHANGEMENT CASSANT] Changement de `network vnet subnet list` pour exiger les paramètres `--resource-group` et `--vnet-name`
+
+### <a name="sql"></a>SQL
+
+* Ajout de commandes à `sql mi ad-admin` qui prennent en charge la définition d’un administrateur AAD sur des instances managées
+
+### <a name="storage"></a>Stockage
+
+* Ajout du paramètre `--preserve-s2s-access-tier` à `storage copy` pour préserver le niveau d’accès lors d’une copie de service à service
+* Ajout du paramètre `--enable-large-file-share` à `storage account [create|update]` afin de prendre en charge les gros partages de fichiers pour le compte de stockage
 
 ## <a name="september-24-2019"></a>24 septembre 2019
 
@@ -1376,7 +1435,7 @@ Version 2.0.50
 * [Changement cassant] : commande `ams streaming locator` remplacée par `ams streaming-locator`
 * [Changement cassant] : mise à jour de l’argument `--content-keys` de `ams streaming locator`
 * [Changement cassant] : `--content-policy-name` renommé en `--content-key-policy-name` dans la commande `ams streaming locator`
-* [Changement cassant] : remplacer la commande `ams streaming policy` par `ams streaming-policy`
+* [Changement cassant] : commande `ams streaming policy` remplacée par `ams streaming-policy`
 * [Changement cassant] : argument `--preset-names` remplacé par `--preset` dans le groupe de commandes `ams transform`. À présent vous ne pouvez définir qu’une sortie/présélection à la fois (pour en ajouter d’autres, vous devez exécuter `ams transform output add`). En outre, vous pouvez définir StandardEncoderPreset de façon personnalisée en transmettant le chemin à votre JSON personnalisé
 * [Changement cassant] : `--output-asset-names ` renommé en `--output-assets` dans la commande `ams job start`. Il accepte désormais une liste de ressources séparée par des espaces au format « assetName=label ». Une ressource sans étiquette peut être envoyée comme ceci : « assetName= »
 
