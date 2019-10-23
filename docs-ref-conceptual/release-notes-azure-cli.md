@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 32137c5e6ef403461114b0e09970f93c9248c100
-ms.sourcegitcommit: 69f52b032167a01509fdf15431e3e4e89a7e20ef
+ms.openlocfilehash: 0eb1ccccdeff8c3d9b97167ee74f3380d983a552
+ms.sourcegitcommit: e99b39e2f14a38c9bcae1b2b5921c6d8b464ef31
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72324013"
+ms.lasthandoff: 10/17/2019
+ms.locfileid: "72549690"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
