@@ -4,19 +4,129 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 10/15/2019
+ms.date: 11/04/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 0eb1ccccdeff8c3d9b97167ee74f3380d983a552
-ms.sourcegitcommit: e99b39e2f14a38c9bcae1b2b5921c6d8b464ef31
+ms.openlocfilehash: 3061d4b5519cfafbde92df68ecdee4d88d0bddff
+ms.sourcegitcommit: b854f9b6acfdb814ba1d6ba87aac03e2d547d998
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/17/2019
-ms.locfileid: "72549690"
+ms.lasthandoff: 11/04/2019
+ms.locfileid: "73536783"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="november-4-2019"></a>4 novembre 2019
+
+Version 2.0.76
+
+### <a name="acr"></a>ACR
+
+* Ajout d’un paramètre d’aperçu `--pack-image-tag` à la commande `az acr pack build`.
+* Prise en charge de l’activation de l’audit lors de la création d’un registre
+* Prise en charge du contrôle RBAC délimité par le dépôt
+
+### <a name="aks"></a>AKS
+
+* Ajout de `--enable-cluster-autoscaler`, `--min-count` et `--max-count` à la commande `az aks create`, ce qui active l’autoscaler de cluster pour le pool de nœuds.
+* Ajout des indicateurs ci-dessus ainsi que de `--update-cluster-autoscaler` et `--disable-cluster-autoscaler` à la commande `az aks update`, ce qui permet d’effectuer des mises à jour de l’autoscaler de cluster.
+
+### <a name="appconfig"></a>AppConfig
+
+* Ajout du groupe de commandes de fonctionnalités appconfig pour gérer les indicateurs de fonctionnalité stockés dans une configuration d’application.
+* Correction de bogue mineur pour la commande Exporter vers un fichier appconfig kv. Arrêt de la lecture du contenu du fichier de destination pendant l’exportation.
+
+### <a name="appservice"></a>AppService
+
+* `az appservice plan create`: Ajout de la prise en charge de la définition de « persitescaling » sur appservice plan create.
+* Résolution d’un problème où l’opération de liaison SSL de la configuration webapp supprimait les balises existantes de la ressource
+* Ajout de l’indicateur `--build-remote` pour `az functionapp deployment source config-zip` afin de prendre en charge l’action de génération distante pendant le déploiement de l’application de fonction.
+* Remplacement de la version du nœud par défaut sur les applications de fonction par ~10 pour Windows
+* Ajout de la propriété `--runtime-version` à `az functionapp create`
+
+### <a name="arm"></a>ARM
+
+* `az deployment/group deployment validate`: Ajout du paramètre `--handle-extended-json-format` pour prendre en charge le format multiligne et les commentaires dans le modèle json lors du déploiement.
+* Passage d’azure-mgmt-resource à 2019-07-01
+
+### <a name="backup"></a>Sauvegarde
+
+* Ajout de la prise en charge de la sauvegarde AzureFiles
+
+### <a name="compute"></a>Calcul
+
+* `az vm create`: Ajout d’un avertissement lors de la spécification de la mise en réseau accélérée avec une carte réseau existante.
+* `az vm create`: Ajout de `--vmss` pour spécifier un groupe identique de machines virtuelles existant auquel la machine virtuelle doit être affectée.
+* `az vm/vmss create`: Ajout d’une copie locale du fichier d’alias d’image afin qu’il soit accessible dans un environnement réseau restreint.
+* `az vmss create`: Ajout de `--orchestration-mode` pour spécifier la façon dont les machines virtuelles sont gérées par le groupe identique.
+* `az vm/vmss update`: Ajout de `--ultra-ssd-enabled` pour autoriser la mise à jour du paramètre SSD Ultra.
+* [CHANGEMENT CASSANT] `az vm extension set` : Correction d’un bogue qui empêchait les utilisateurs de définir une extension sur une machine virtuelle avec `--ids`.
+* Ajout de nouvelles commandes `az vm image terms accept/cancel/show` pour gérer les termes de l’image de la Place de marché Azure.
+* Mise à jour de VMAccessForLinux vers la version 1.5
+
+### <a name="cosmosdb"></a>CosmosDB
+
+* [CHANGEMENT CASSANT] `az sql container create` : Modification de `--partition-key-path` en paramètre obligatoire
+* [CHANGEMENT CASSANT] `az gremlin graph create` : Modification de `--partition-key-path` en paramètre obligatoire
+* `az sql container create`: Ajout de `--unique-key-policy` et `--conflict-resolution-policy`
+* `az sql container create/update`: Mise à jour du schéma par défaut `--idx`
+* `gremlin graph create`: Ajout de `--conflict-resolution-policy`
+* `gremlin graph create/update`: Mise à jour du schéma par défaut `--idx`
+* Faute de frappe corrigée dans un message d’aide
+* base de données : ajout d’informations de dépréciation
+* collection : ajout d’informations de dépréciation
+
+### <a name="iot"></a>IoT
+
+* Ajout d’un nouveau type de source de routage : DigitalTwinChangeEvents
+* Correction des fonctionnalités manquantes dans `az iot hub create`
+
+### <a name="key-vault"></a>Key Vault
+
+* Correction d’une erreur inattendue lorsque le fichier de certificat n’existe pas
+* Résolution de `az keyvault recover/purge` qui ne fonctionnait pas
+
+### <a name="netappfiles"></a>NetAppFiles
+
+* Mise à niveau d’azure-mgmt-netapp vers 0.6.0 pour utiliser la version d’API 2019-07-01. Cette nouvelle version d’API comprend les éléments suivants :
+
+    - La création de volume `--protocol-types` accepte maintenant « NFSv4.1 » et non « NFSv4 »
+    - La propriété de stratégie d’exportation de volume est maintenant nommée « nfsv41 » et non « nfsv4 »
+    - Le volume `--creation-token` est renommé en `--file-path`
+    - La date de création de l’instantané porte maintenant juste le nom « créé »
+
+### <a name="network"></a>Réseau
+
+* `az network private-dns link vnet create/update`: Prise en charge de la liaison de réseau virtuel entre locataires.
+* [CHANGEMENT CASSANT] `az network vnet subnet list` : Modification de `--resource-group` et `--vnet-name` pour être maintenant nécessaires.
+* `az network public-ip prefix create`: Prise en charge de la spécification de la version d’adresse IP (IPv4, IPv6) lors de la création
+* Passage d’azure-mgmt-network à 7.0.0 et d’api-version à 2019-09-01
+* `az network vrouter`: Prise en charge du nouveau routeur virtuel de service et de l’appairage de routeur virtuel
+* `az network express-route gateway connection`: Prise en charge de `--internet-security`
+
+### <a name="profile"></a>Profil
+
+* Résolution de `az account get-access-token --resource-type ms-graph` qui ne fonctionnait pas
+* Suppression de l’avertissement de `az login`
+
+### <a name="rbac"></a>RBAC
+
+* Résolution de `az ad app update --id {} --display-name {}` qui ne fonctionnait pas
+
+### <a name="servicefabric"></a>ServiceFabric
+
+* `az sf cluster create`: Résolution d’un problème en modifiant le groupe identique de machines virtuelles de calcul template.json Service Fabric Linux et Windows de disques standard en disques managés
+
+### <a name="sql"></a>SQL
+
+* Ajout de paramètres `--compute-model`, `--auto-pause-delay` et `--min-capacity` afin de prendre en charge les opérations CRUD pour la nouvelle offre SQL Database : Modèle de calcul serverless.
+
+### <a name="storage"></a>Stockage
+
+* `az storage account create/update`: Ajout du paramètre --enable-files-adds et du groupe d’arguments de propriétés Azure Active Directory pour prendre en charge l’authentification de service de domaine Azure Files Active Directory
+* Développement de `az storage account keys list/renew` pour prendre en charge le listing ou la regénération des clés Kerberos du compte de stockage.
 
 ## <a name="october-15-2019"></a>15 octobre 2019
 
@@ -1435,7 +1545,7 @@ Version 2.0.50
 * [Changement cassant] : commande `ams streaming locator` remplacée par `ams streaming-locator`
 * [Changement cassant] : mise à jour de l’argument `--content-keys` de `ams streaming locator`
 * [Changement cassant] : `--content-policy-name` renommé en `--content-key-policy-name` dans la commande `ams streaming locator`
-* [Changement cassant] : commande `ams streaming policy` remplacée par `ams streaming-policy`
+* [Changement cassant] : remplacer la commande `ams streaming policy` par `ams streaming-policy`
 * [Changement cassant] : argument `--preset-names` remplacé par `--preset` dans le groupe de commandes `ams transform`. À présent vous ne pouvez définir qu’une sortie/présélection à la fois (pour en ajouter d’autres, vous devez exécuter `ams transform output add`). En outre, vous pouvez définir StandardEncoderPreset de façon personnalisée en transmettant le chemin à votre JSON personnalisé
 * [Changement cassant] : `--output-asset-names ` renommé en `--output-assets` dans la commande `ams job start`. Il accepte désormais une liste de ressources séparée par des espaces au format « assetName=label ». Une ressource sans étiquette peut être envoyée comme ceci : « assetName= »
 
