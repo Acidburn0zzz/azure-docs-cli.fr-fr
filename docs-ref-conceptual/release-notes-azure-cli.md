@@ -4,19 +4,130 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 11/04/2019
+ms.date: 11/26/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 3061d4b5519cfafbde92df68ecdee4d88d0bddff
-ms.sourcegitcommit: b854f9b6acfdb814ba1d6ba87aac03e2d547d998
+ms.openlocfilehash: 75a3a3ee800edc20bd1c8ed7ab1ff542f5935c6c
+ms.sourcegitcommit: 443e14098d6643cdb2e178847d1c79b1b95146ce
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/04/2019
-ms.locfileid: "73536783"
+ms.lasthandoff: 11/26/2019
+ms.locfileid: "74543462"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="november-26-2019"></a>26 novembre 2019
+
+Version 2.0.77
+
+### <a name="acr"></a>ACR
+
+* Dépréciation du paramètre `--branch` dans acr task create/update
+
+### <a name="azure-red-hat-openshift"></a>Azure Red Hat OpenShift
+
+* Ajout de l’indicateur `--workspace-resource-id` pour permettre la création d’un cluster Azure Red Hat OpenShift avec supervision
+* Ajout de `monitor_profile` pour créer un cluster Azure Red Hat OpenShift avec supervision
+
+### <a name="aks"></a>AKS
+
+* Ajout de la prise en charge de l’opération de rotation des certificats de cluster à l’aide de la commande « az aks rotate-certs ».
+
+### <a name="appconfig"></a>AppConfig
+
+* Ajout de la prise en charge de l’utilisation de « : » pour le séparateur `as az appconfig kv import`
+* Résolution du problème de listage des valeurs de clés avec plusieurs étiquettes, y compris une étiquette Null. 
+* Mise à jour du SDK du plan de gestion, azure-mgmt-appconfiguration, vers la version 0.3.0. 
+
+### <a name="appservice"></a>AppService
+
+* Résolution du problème #11100 : Erreur d’attribut pour az webapp up lors de la création du plan de service
+* az webapp up : En forçant la création ou le déploiement sur un site pour les langues prises en charge, aucune valeur par défaut n’est utilisée.
+* Ajout de la prise en charge d’App Service Environment : az appservice ase show | list | list-addresses | list-plans | create | update | delete
+
+### <a name="backup"></a>Sauvegarde
+
+* Résolution du problème dans az backup policy list-associated-items. Ajout du paramètre BackupManagementType facultatif.
+
+### <a name="compute"></a>Calcul
+
+* Mise à jour de la version de l’API de calcul, des disques et des captures instantanées vers 2019-07-01
+* vmss create : amélioration pour --orchestration-mode
+* sig image-definition create : ajout de --os-state pour permettre de spécifier si les machines virtuelles créées sous cette image sont « généralisées » ou « spécialisées »
+* sig image-definition create : ajout de --hyper-v-generation pour permettre la spécification de la génération de l’hyperviseur
+* sig image-version create : ajout de la prise en charge de --os-snapshot et de --data-snapshots
+* image create : ajout de --data-disk-caching pour autoriser la spécification du paramètre de mise en cache des disques de données
+* Mise à niveau du SDK Python Compute vers la version 10.0.0
+* vm/vmss create : ajout de « Spot » à la propriété d’énumération « Priority »
+* [Changement cassant] le paramètre « --max-billing » a été renommé « --max-price », pour les machines virtuelles et VMSS, à des fins de cohérence avec les applets de commande PowerShell et Swagger
+* vm monitor log show : ajout de la prise en charge de l’interrogation du journal via l’espace de travail Log Analytics lié.
+
+### <a name="iot"></a>IOT
+
+* Correctif #2531 : ajout d’arguments facilitant la mise à jour des hubs.
+* Correctif #8323 : ajout de paramètres manquants pour créer un point de terminaison personnalisé de stockage.
+* Correction d’un bogue de régression : restauration des modifications qui remplacent le point de terminaison de stockage par défaut.
+
+### <a name="key-vault"></a>Key Vault
+
+* Résolution du problème #11121 : lors de l’utilisation de `az keyvault certificate list`, le passage de `--include-pending` n’a plus besoin d’une valeur `true` ou `false`
+
+### <a name="netappfiles"></a>NetAppFiles
+
+* Mise à niveau d’azure-mgmt-netapp vers 0.7.0, qui comprend des propriétés de volume supplémentaires associées aux opérations de réplication à venir
+
+### <a name="network"></a>Réseau
+
+* application-gateway waf-config : déprécié
+* application-gateway waf-policy : ajout de règles managées par sous-groupes pour gérer des ensembles de règles managées et des règles d’exclusion
+* application-gateway waf-policy : ajout d’un paramètre de stratégie de sous-groupe pour gérer la configuration globale d’une stratégie WAF
+* [CHANGEMENT CASSANT] application-gateway waf-policy : règle de sous-groupe renommée en custom-rule
+* application-gateway http-listener : ajout de --firewall-policy lors de la création
+* application-gateway url-path-map rule : ajout de --firewall-policy lors de la création
+
+### <a name="packaging"></a>Packaging
+
+* Réécriture du wrapper az dans Python
+* Ajout de la prise en charge de Python 3.8
+* Remplacement par Python 3 pour le package RPM
+
+### <a name="profile"></a>Profil
+
+* Suppression d’une erreur liée à l’exécution de `az login -u {} -p {}` avec un compte Microsoft
+* Suppression de `SSLError` liée à l’exécution de `az login` derrière un proxy avec un certificat racine auto-signé
+* Résolution du problème #10578 : `az login` se bloque quand plusieurs instances sont lancées en même temps sur Windows ou WSL
+* Résolution du problème #11059 : `az login --allow-no-subscriptions` échoue s’il existe des abonnements dans le locataire
+* Résolution du problème #11238 : après avoir renommé un abonnement, la connexion avec MSI entraîne l’affichage du même abonnement deux fois
+
+### <a name="rbac"></a>RBAC
+
+* Résolution du problème #10996 : suppression de l’erreur liée à `--force-change-password-next-login` dans `az ad user update` quand `--password` n’est pas spécifié
+
+### <a name="redis"></a>Redis
+
+* Résolution de l’erreur #2902 : éviter de définir des configurations de mémoire lors de la mise à jour du cache de référence SKU de base
+
+### <a name="reservations"></a>Réservations
+
+* Mise à niveau du SDK vers 0.6.0
+* Ajout d’informations détaillées sur le plan de facturation après l’appel de Get-Gatalogs
+* Ajout d’une nouvelle commande `az reservations reservation-order calculate` pour calculer le prix d’une réservation
+* Ajout d’une nouvelle commande `az reservations reservation-order purchase` pour acheter une nouvelle réservation
+
+### <a name="rest"></a>Rest
+* `az rest` désormais mis à la disposition générale
+
+### <a name="sql"></a>SQL
+
+* Mise à jour d’azure-mgmt-sql vers la version 0.15.0.
+
+### <a name="storage"></a>Stockage
+
+* storage account create : ajout de --enable-hierarchical-namespace pour prendre en charge la sémantique du système de fichiers dans le service BLOB.
+* Suppression de l’exception non liée du message d’erreur
+* Résolution des problèmes liés à un message d’erreur incorrect « Vous ne disposez pas des autorisations nécessaires pour effectuer cette opération. » en cas de blocage par des règles de réseau ou AuthenticationFailed.
 
 ## <a name="november-4-2019"></a>4 novembre 2019
 
@@ -25,8 +136,8 @@ Version 2.0.76
 ### <a name="acr"></a>ACR
 
 * Ajout d’un paramètre d’aperçu `--pack-image-tag` à la commande `az acr pack build`.
-* Prise en charge de l’activation de l’audit lors de la création d’un registre
-* Prise en charge du contrôle RBAC délimité par le dépôt
+* Ajout de la prise en charge de l’activation de l’audit lors de la création d’un registre
+* Ajout de la prise en charge du contrôle d’accès en fonction du rôle délimité par le dépôt
 
 ### <a name="aks"></a>AKS
 
@@ -101,10 +212,10 @@ Version 2.0.76
 
 * `az network private-dns link vnet create/update`: Prise en charge de la liaison de réseau virtuel entre locataires.
 * [CHANGEMENT CASSANT] `az network vnet subnet list` : Modification de `--resource-group` et `--vnet-name` pour être maintenant nécessaires.
-* `az network public-ip prefix create`: Prise en charge de la spécification de la version d’adresse IP (IPv4, IPv6) lors de la création
+* `az network public-ip prefix create`: Ajout de la prise en charge de la spécification de la version d’adresse IP (IPv4, IPv6) lors de la création
 * Passage d’azure-mgmt-network à 7.0.0 et d’api-version à 2019-09-01
-* `az network vrouter`: Prise en charge du nouveau routeur virtuel de service et de l’appairage de routeur virtuel
-* `az network express-route gateway connection`: Prise en charge de `--internet-security`
+* `az network vrouter`: Ajout de la prise en charge du nouveau routeur virtuel de service et de l’appairage de routeur virtuel
+* `az network express-route gateway connection`: Ajout de la prise en charge de `--internet-security`
 
 ### <a name="profile"></a>Profil
 
@@ -260,8 +371,8 @@ Version 2.0.74
 ### <a name="batch"></a>Batch
 
 * Ajout de nouveaux paramètres de configuration JSON à `--json-file` pour `batch pool create` :
-  * Ajout de `MountConfigurations` pour les montages de système de fichiers (voir https://docs.microsoft.com/en-us/rest/api/batchservice/pool/add#request-body pour les détails)
-  * Ajout de la propriété facultative `publicIPs` sur `NetworkConfiguration` pour les adresses IP publiques sur les pools (voir https://docs.microsoft.com/en-us/rest/api/batchservice/pool/add#request-body pour les détails)
+  * Ajout de `MountConfigurations` pour les montages de système de fichiers (voir https://docs.microsoft.com/rest/api/batchservice/pool/add#request-body pour les détails)
+  * Ajout de la propriété facultative `publicIPs` sur `NetworkConfiguration` pour les adresses IP publiques sur les pools (voir https://docs.microsoft.com/rest/api/batchservice/pool/add#request-body pour les détails)
 * Ajout de la prise en charge des galeries d’images partagées à `--image`
 * [CHANGEMENT CASSANT] Changement de la valeur par défaut `--start-task-wait-for-success` sur `batch pool create` qui devient `true`
 * [CHANGEMENT CASSANT] Changement de la valeur par défaut pour `Scope` sur `AutoUserSpecification` pour qu’elle soit toujours Pool (était `Task` sur les nœuds Windows, `Pool` sur les nœuds Linux)
