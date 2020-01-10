@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: a33b5850abc40e91a1ffbeacd49d56169f67d282
-ms.sourcegitcommit: 443e14098d6643cdb2e178847d1c79b1b95146ce
+ms.openlocfilehash: f65240524942c2534f61b9cc51101812c8d09351
+ms.sourcegitcommit: 0088160bdb1ea520724d3e1efe71a4a66f29753d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/26/2019
-ms.locfileid: "74543586"
+ms.lasthandoff: 12/19/2019
+ms.locfileid: "75216920"
 ---
 # <a name="install-azure-cli-with-yum"></a>Installer Azure CLI avec yum
 
@@ -55,9 +55,20 @@ Exécutez Azure CLI avec la commande `az`. Pour vous connecter, utilisez la comm
 
 Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md).
 
-## <a name="troubleshooting"></a>Résolution de problèmes
+## <a name="troubleshooting"></a>Dépannage
 
 Voici certains problèmes courants lors de l’installation avec `yum`. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
+
+### <a name="install-on-rhel-76-or-other-systems-without-python-3"></a>Installer sur RHEL 7.6 ou d’autres systèmes sans Python 3
+
+Si vous le pouvez, mettez à niveau votre système vers une version avec prise en charge officielle du package `python3`. Dans le cas contraire, vous devez d’abord installer un package `python3`, par le biais d’une [génération à partir du source](https://github.com/linux-on-ibm-z/docs/wiki/Building-Python-3.6.x) ou d’une installation par le biais d’un [dépôt supplémentaire](https://developers.redhat.com/blog/2018/08/13/install-python3-rhel/). Vous pouvez alors télécharger le package et l’installer sans dépendance.
+```bash
+$ sudo yum install yum-utils
+$ sudo yumdownloader azure-cli
+$ sudo rpm -ivh --nodeps azure-cli-*.rpm
+```
+
+L’option la moins recommandée consiste à utiliser Python 2 et à suivre les [instructions d’installation manuelle](install-azure-cli-linux.md), car Python 2 arrivera en fin de vie le 1er janvier 2020. Une future version d’Azure CLI mettra fin à la prise en charge de Python 2.7.
 
 ### <a name="proxy-blocks-connection"></a>Le proxy bloque la connexion
 
@@ -79,13 +90,7 @@ Pour obtenir la clé de signature Microsoft et obtenir le package à partir de n
 
 [!INCLUDE[troubleshoot-wsl.md](includes/troubleshoot-wsl.md)]
 
-### <a name="install-on-rhel-76-or-other-systems-without-python-3"></a>Installer sur RHEL 7.6 ou d’autres systèmes sans Python 3
-
-Si vous le pouvez, mettez à niveau votre système vers une version avec prise en charge officielle du package `python3`. Dans le cas contraire, vous devez d’abord installer un package `python3`, par le biais d’une [génération à partir du source](https://github.com/linux-on-ibm-z/docs/wiki/Building-Python-3.6.x) ou d’une installation par le biais d’un [dépôt supplémentaire](https://developers.redhat.com/blog/2018/08/13/install-python3-rhel/). Vous pouvez ensuite suivre les [instructions d’installation manuelle](install-azure-cli-linux.md).
-
-L’option la moins recommandée consiste à utiliser Python 2 et à suivre les [instructions d’installation manuelle](install-azure-cli-linux.md), car Python 2 arrivera en fin de vie le 1er janvier 2020. Une future version d’Azure CLI mettra fin à la prise en charge de Python 2.7.
-
-## <a name="update"></a>Mettre à jour
+## <a name="update"></a>Update
 
 Mettre à jour Azure CLI avec la commande `yum update`.
 

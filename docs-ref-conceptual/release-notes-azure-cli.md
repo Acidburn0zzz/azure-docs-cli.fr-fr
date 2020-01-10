@@ -1,22 +1,202 @@
 ---
 title: Notes de publication d’Azure CLI
 description: En savoir plus sur les dernières mises à jour d’Azure CLI
-author: sptramer
-ms.author: sttramer
-manager: carmonm
-ms.date: 11/26/2019
+author: dbradish-microsoft
+ms.author: dbradish
+manager: barbkess
+ms.date: 01/07/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 75a3a3ee800edc20bd1c8ed7ab1ff542f5935c6c
-ms.sourcegitcommit: 443e14098d6643cdb2e178847d1c79b1b95146ce
+ms.openlocfilehash: 9fc54add3bfb2a75d1912c47f0a2571d9d065ec0
+ms.sourcegitcommit: 5646008e7a521dd9a8a627418f57bd92ee180352
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/26/2019
-ms.locfileid: "74543462"
+ms.lasthandoff: 01/07/2020
+ms.locfileid: "75694272"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="january-07-2020"></a>7 janvier 2020
+
+Version 2.0.79
+
+### <a name="acr"></a>ACR
+
+* [CHANGEMENT CASSANT] Suppression du paramètre « --os » pour « acr build », « acr task create/update », « acr run » et « acr pack ». Utilisez « --platform » à la place.
+
+### <a name="appconfig"></a>AppConfig
+
+* Ajout de la prise en charge de l’importation/exportation des indicateurs de fonctionnalité
+* Ajout de la nouvelle commande « az appconfig kv set-keyvault » pour la création d’une référence KeyVault
+* Prise en charge de différentes conventions de nommage lors de l’exportation d’indicateurs de fonctionnalité dans un fichier
+
+### <a name="appservice"></a>AppService
+
+* Résolution du problème #7154 : Mise à jour de la documentation pour la commande <> afin d’utiliser des accents graves (backtick) plutôt que des guillemets simples
+* Résolution du problème #11287 : webapp up : Faire en sorte que l’application créée à l’aide de « up » ait « SSL activé » par défaut
+* Résolution du problème #11592 : Ajout de la commande az webapp up flag pour les sites statiques HTML
+
+### <a name="arm"></a>ARM
+
+* Correction de `az resource tag` : Impossible de mettre à jour les balises du coffre Recovery Services
+
+### <a name="backup"></a>Backup
+
+* Ajout de la nouvelle commande « backup protection undelete » pour activer la fonctionnalité de suppression réversible pour la charge de travail IaasVM
+* Ajout du nouveau paramètre « --soft-delete-feature-state » pour définir la commande backup-properties
+* Ajout de la prise en charge de l’exclusion de disque pour la charge de travail IaasVM
+
+### <a name="compute"></a>Calcul
+
+* Résolution de l’échec de `vm create` dans le profil Azure Stack.
+* vm monitor metrics tail/list-definitions : prise en charge des définitions de métriques et de listes pour une machine virtuelle.
+* Ajout d’une nouvelle action de réapplication de commande pour az vm
+
+### <a name="misc"></a>Divers
+
+* Ajout de la commande d’aperçu `az version show` pour afficher les versions des modules et extensions Azure CLI au format JSON par défaut ou au format configuré par --output
+
+### <a name="event-hubs"></a>Event Hubs
+
+* [CHANGEMENT CASSANT] Suppression de l’option d’état « ReceiveDisabled » des commandes « az eventhubs eventhub update » et « az eventhubs eventhub create ». Cette option n’est pas valide pour les entités Event Hub.
+
+### <a name="service-bus"></a>Service Bus
+
+* [CHANGEMENT CASSANT] Suppression de l’option d’état « ReceiveDisabled » des commandes « az servicebus topic create », « az servicebus topic update », « az servicebus queue create » et « az servicebus queue update ». Cette option n’est pas valide pour les rubriques et files d’attente Service Bus.
+
+### <a name="rbac"></a>RBAC
+
+* Correctif 11712 : `az ad app/sp show` ne retourne pas le code de sortie 3 quand le principal d’application ou de service n’existe pas
+
+### <a name="storage"></a>Stockage
+
+* `az storage account create`: Suppression de l’indicateur d’aperçu pour le paramètre --enable-hierarchical-namespace
+* Mise à jour de la version d’azure-mgmt-storage vers la version 7.0.0 pour utiliser la version d’API du 01/06/2019
+* Ajout des nouveaux paramètres `--enable-delete-retention` et `--delete-retention-days` afin de prendre en charge la gestion de la stratégie de conservation de suppression pour les propriétés blob-service du compte de stockage.
+
+## <a name="december-17-2019"></a>17 décembre 2019
+
+2.0.78
+
+### <a name="acr"></a>ACR
+
+* Ajout de la prise en charge du contexte local dans acr task run
+
+### <a name="acs"></a>ACS
+
+* [CHANGEMENT CASSANT]az openshift create : renommage de `--workspace-resource-id` en `--workspace-id`.
+
+### <a name="ams"></a>AMS
+
+* Mise à jour des commandes show pour retourner 3 quand la ressource est introuvable
+
+### <a name="appconfig"></a>AppConfig
+
+* Correction d’un bogue lié à l’ajout de la version d’API à l’URL de demande. La solution existante ne fonctionne pas avec la pagination.
+* Ajout de la prise en charge de l’affichage des langues en plus de l’anglais comme notre Unicode de support du service back-end pour la globalisation.
+
+### <a name="appservice"></a>AppService
+
+* Résolution du problème #11217 : webapp : az webapp config ssl upload doit prendre en charge le paramètre d’emplacement (slot)
+* Résolution du problème #10965 : Erreur : Le nom n'est pas vide. Autoriser la suppression par adresse IP (ip_address) et sous-réseau (subnet)
+* Ajout de la prise en charge de l’importation de certificats à partir du coffre de clés `az webapp config ssl import`
+
+### <a name="arm"></a>ARM
+
+* Mise à jour du package azure-mgmt-resource pour utiliser la version 6.0.0
+* Prise en charge interlocataire pour la commande `az group deployment create` en ajoutant le nouveau paramètre `--aux-subs`
+* Ajout du nouveau paramètre `--metadata` afin de prendre en charge l’ajout d’informations de métadonnées pour les définitions d’ensemble de stratégie.
+
+### <a name="backup"></a>Backup
+
+* Ajout de la prise en charge de la sauvegarde pour la charge de travail SQL et SAP Hana.
+
+### <a name="botservice"></a>BotService
+
+* [Changement cassant] Suppression de l’indicateur « --version » de la commande d’aperçu « az bot create ». Seuls les bots du SDK v4 sont pris en charge.
+* Ajout de la vérification de la disponibilité du nom pour « az bot create ».
+* Ajout de la prise en charge de la mise à jour de l’URL d’icône pour un bot par le biais de « az bot update ».
+* Ajout de la prise en charge de la mise à jour d’un canal Direct Line par le biais de « az bot directline update ».
+* Ajout de la prise en charge de l’indicateur « --enable-enhanced-auth » à « az bot directline create ».
+* Les groupes de commandes suivants sont en disponibilité générale et non en préversion : « az bot authsetting ».
+* Les commandes suivantes dans « az bot » sont en disponibilité générale et non en préversion : « create », « prepare-deploy », « show », « delete », « update ».
+* Résolution du problème lié au fait que « az bot prepare-deploy » convertit la valeur « --proj-file-path » en minuscules (par exemple, « Test.csproj » en « test.csproj »).
+
+### <a name="compute"></a>Calcul
+
+* vmss create/update : Ajout de --scale-in-policy, qui détermine quelles machines virtuelles sont choisies pour la suppression quand un groupe de machines virtuelles identiques (VMSS) fait l’objet d’un scale-in.
+* vm/vmss update : Ajout de --priority.
+* vm/vmss update : Ajout de --max-price.
+* Ajout du groupe de commandes disk-encryption-set (create, show, update, delete, list).
+* disk create : Ajout de --encryption-type et de --disk-encryption-set.
+* vm/vmss create : Ajout de --os-disk-encryption-set et de --data-disk-encryption-sets.
+
+### <a name="core"></a>Core
+
+* Suppression de la prise en charge pour Python 3.4
+* Intégrer l’enquête HaTS à plusieurs commandes
+
+### <a name="dls"></a>DLS
+
+* Mise à jour de la version du SDK ADLS (0.0.48).
+
+### <a name="install"></a>Installer
+
+* Prise en charge du script d’installation pour Python 3.8
+
+### <a name="iot"></a>IOT
+
+* [CHANGEMENT CASSANT] Suppression du paramètre --failover-region du basculement manuel. À présent, le basculement s’effectuera vers la région secondaire géographiquement associée.
+
+### <a name="key-vault"></a>Key Vault
+
+* Résolution du problème #8095 : `az keyvault storage remove` : amélioration du message d’aide
+* Résolution du problème #8921 : `az keyvault key/secret/certificate list/list-deleted/list-versions` : correction du bogue de validation sur le paramètre `--maxresults`
+* Résolution du problème #10512 : `az keyvault set-policy` : amélioration du message d’erreur quand aucune des valeurs `--object-id`, `--spn` ou `--upn` n’est spécifiée
+* Résolution du problème #10846 : `az keyvault secret show-deleted` : quand la valeur `--id` est spécifiée, `--name/-n` n’est pas nécessaire
+* Résolution du problème #11084 : `az keyvault secret download` : amélioration du message d’aide du paramètre `--encoding`
+
+### <a name="network"></a>Réseau
+
+* az network application-gateway probe : Ajout de la prise en charge de l’option --port afin de spécifier un port pour la détection des serveurs back-end lors d’une opération de création et de mise à jour
+* az network application-gateway url-path-map create/update : correction du bogue pour `--waf-policy`
+* az network application-gateway : Ajout de la prise en charge de `--rewrite-rule-set`
+* az network list-service-aliases : Ajout de la prise en charge du listage des alias de service qui peuvent être utilisés pour les stratégies de point de terminaison de service
+* az network dns zone import : Ajout de la prise en charge de .@ dans le nom des enregistrements
+
+### <a name="packaging"></a>Packaging
+
+* Rajout de builds edge pour pip install
+* Ajout du package Ubuntu eoan
+
+### <a name="policy"></a>Stratégie
+
+* Ajout de la prise en charge de l’API des stratégies version 2019-09-01.
+* az policy set-definition : Ajout de la prise en charge du regroupement dans les définitions d’ensemble de stratégies avec le paramètre `--definition-groups`
+
+### <a name="redis"></a>Redis
+
+* Ajout du paramètre d’aperçu `--replicas-per-master` à la commande `az redis create`
+* Mise à jour d’azure-mgmt-redis version 6.0.0 vers la version 7.0.0 RC1
+
+### <a name="servicefabric"></a>ServiceFabric
+
+* Correction du problème #10963 lié à la logique d’ajout de type de nœud : L’ajout d’un nouveau type de nœud avec le niveau de durabilité Gold générera toujours une erreur CLI
+* Mise à jour de la version de ServiceFabricNodeVmExt vers la version 1.1 dans le modèle de création
+
+### <a name="sql"></a>SQL
+
+* Ajout de paramètres « --read-scale » et « --read-replicas » aux commandes sql db create et sql db update pour prendre en charge la gestion de l’échelle lecture.
+
+### <a name="storage"></a>Stockage
+
+* Propriété Partages de fichiers volumineux de la version en disponibilité générale pour les commandes storage account create et storage account update
+* Prise en charge des jetons SAS de délégation d’utilisateur de la version en disponibilité générale
+* Ajout des nouvelles commandes `az storage account blob-service-properties show` et `az storage account blob-service-properties update --enable-change-feed` afin de gérer les propriétés du service blob pour le compte de stockage.
+* [CHANGEMENT CASSANT À VENIR] `az storage copy` : le caractère `*` n’est plus pris en charge comme caractère générique dans l’URL, mais les nouveaux paramètres --include-pattern et --exclude-pattern seront ajoutés avec une prise en charge du caractère générique `*`.
+* Résolution du problème #11043 : Ajout de la prise en charge de la suppression de l’intégralité du conteneur/partage dans la commande `az storage remove`
 
 ## <a name="november-26-2019"></a>26 novembre 2019
 
@@ -24,7 +204,7 @@ Version 2.0.77
 
 ### <a name="acr"></a>ACR
 
-* Dépréciation du paramètre `--branch` dans acr task create/update
+* Dépréciation du paramètre `--branch` dans acr task create/update
 
 ### <a name="azure-red-hat-openshift"></a>Azure Red Hat OpenShift
 
@@ -47,7 +227,7 @@ Version 2.0.77
 * az webapp up : En forçant la création ou le déploiement sur un site pour les langues prises en charge, aucune valeur par défaut n’est utilisée.
 * Ajout de la prise en charge d’App Service Environment : az appservice ase show | list | list-addresses | list-plans | create | update | delete
 
-### <a name="backup"></a>Sauvegarde
+### <a name="backup"></a>Backup
 
 * Résolution du problème dans az backup policy list-associated-items. Ajout du paramètre BackupManagementType facultatif.
 
@@ -162,7 +342,7 @@ Version 2.0.76
 * `az deployment/group deployment validate`: Ajout du paramètre `--handle-extended-json-format` pour prendre en charge le format multiligne et les commentaires dans le modèle json lors du déploiement.
 * Passage d’azure-mgmt-resource à 2019-07-01
 
-### <a name="backup"></a>Sauvegarde
+### <a name="backup"></a>Backup
 
 * Ajout de la prise en charge de la sauvegarde AzureFiles
 
@@ -280,7 +460,7 @@ Version 2.0.75
 
 * Résolution d’un problème où `iot hub show` entraînait une erreur incorrecte « ressource introuvable »
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Ajout de la prise en charge de CRUD dans `monitor log-analytics workspace`
 
@@ -321,7 +501,7 @@ Version 2.0.74
 
 * Ajout du paramètre `--terminate-notification-time` aux commandes `vmss [create|update]` pour prendre en charge la configuration de l’événement planifié d’arrêt
 * Ajout du paramètre `--enable-terminate-notification` à la commande `vmss update` pour prendre en charge la configuration de l’événement planifié d’arrêt
-* Ajout des paramètres `--priority,` `--eviction-policy,` `--max-billing` aux commandes `[vm|vmss] create`
+* Ajout des paramètres `--priority,``--eviction-policy,``--max-billing` aux commandes `[vm|vmss] create`
 * Modification de `disk create` pour autoriser la spécification de la taille exacte du chargement de disque
 * Ajout de la prise en charge des instantanés incrémentiels pour les disques managés à `snapshot create`
 
@@ -339,7 +519,7 @@ Version 2.0.74
 
 * Résolution d’un problème de connexion avec un locataire (`login -t`) qui pouvait provoquer l’échec de `keyvault create`
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Résolution d’un problème où le caractère `:` n’était pas autorisé dans l’argument `--condition` de `monitor metrics alert create`
 
@@ -477,14 +657,14 @@ Version 2.0.71
 Cette version contient un grand nombre de modifications conséquentes.
 
 * [CHANGEMENT CASSANT] Renommage des paramètres pour `hdinsight create` :
-  * Renommage de `--storage-default-container` en `--storage-container`
-  * Renommage de `--storage-default-filesystem` en `--storage-filesystem`
+  * `--storage-default-container` renommé en `--storage-container`
+  * `--storage-default-filesystem` renommé en `--storage-filesystem`
 * [CHANGEMENT CASSANT] Modification de l’argument `--name` de `application create` pour représenter le nom de l’application à la place du nom du cluster
 * Ajout d’un argument `--cluster-name` à `application create` pour remplacer l’ancienne fonctionnalité `--name`
 * [CHANGEMENT CASSANT] Renommage des paramètres pour `application create` :
-  * Renommage de `--application-type` en `--type`
-  * Renommage de `--marketplace-identifier` en `--marketplace-id`
-  * Renommage de `--https-endpoint-access-mode` en `--access-mode`
+  * `--application-type` renommé en `--type`
+  * `--marketplace-identifier` renommé en `--marketplace-id`
+  * `--https-endpoint-access-mode` renommé en `--access-mode`
   * `--https-endpoint-destination-port` renommé en `--destination-port`
 * [CHANGEMENT CASSANT] Suppression des paramètres pour `application create` :
   * `--https-endpoint-location`
@@ -509,13 +689,13 @@ Cette version contient un grand nombre de modifications conséquentes.
 
 * Résolution d’une erreur de chargement
 
-### <a name="kubernetes"></a>kubernetes
+### <a name="kubernetes"></a>Kubernetes
 
 * Modification pour utiliser `https` si le port du conteneur du tableau de bord utilise `https`
 
 ### <a name="network"></a>Réseau
 
-* Ajout de l’argument `--yes` `network dns record-set cname delete`
+* Ajout de l’argument `--yes``network dns record-set cname delete`
 
 ### <a name="profile"></a>Profil
 
@@ -764,7 +944,7 @@ Conséquence de ce changement, plusieurs groupes de commandes peuvent « soudai
 * Correction d’une erreur liée à l’utilisation de `policy assignment list` avec un groupe de ressources ou un niveau d’abonnement `--scope`
 
 ### <a name="servicebus"></a>ServiceBus
-* Correction d’une erreur liée à `servicebus topic create --max-size` [#9319](https://github.com/azure/azure-cli/issues/9319)
+* Résolution d’un problème lié à `servicebus topic create --max-size` [#9319](https://github.com/azure/azure-cli/issues/9319)
 
 ### <a name="sql"></a>SQL
 * Modification apportée à `--location` pour le rendre facultatif pour `sql [server|mi] create` : utilise l’emplacement du groupe de ressources s’il n’est pas spécifié
@@ -865,7 +1045,7 @@ Version 2.0.65
 ### <a name="compute"></a>Calcul
 * Ajout de `--computer-name` à `vm create` pour définir le nom d’une machine virtuelle
 * `--ssh-key-value` renommé en `--ssh-key-values` pour `[vm|vmss] create` - peut maintenant accepter plusieurs chemins d’accès ou valeurs de clé publique SSH
-  * __Remarque__: il ne s’agit **pas** d’un changement cassant - `--ssh-key-value` sera analysé correctement, car il correspond uniquement à `--ssh-key-values`
+  * __Remarque__ : il ne s’agit **pas** d’un changement cassant - `--ssh-key-value` sera analysé correctement, car il correspond uniquement à `--ssh-key-values`
 * Modification de l’argument `--type` qui devient facultatif dans `ppg create`
 
 ## <a name="may-6-2019"></a>6 mai 2019
@@ -876,7 +1056,7 @@ Version 2.0.64
 * [CHANGEMENT CASSANT] Suppression de l’indicateur `--fqdn` sur les commandes `openshift`
 * Modification permettant d’utiliser la version d’API en disponibilité générale d’Azure Red Hat Openshift
 * Ajout de l’indicateur `customer-admin-group-id` à `openshift create`
-* [Mise à la disposition générale] Suppression de `(PREVIEW)` de l’option `aks create` `--network-policy`
+* [Mise à la disposition générale] Suppression de `(PREVIEW)` de l’option `aks create``--network-policy`
 
 ### <a name="appservice"></a>AppService
 * [DÉPRÉCIATION] Commande `functionapp devops-build` dépréciée
@@ -897,7 +1077,7 @@ Version 2.0.64
 * [CHANGEMENT CASSANT] Modification apportée à `bot create -v v4 -k webapp` pour créer un bot d’application web vide par défaut (autrement dit, aucun bot n’est déployé sur App Service)
 * Ajout de l’indicateur `--echo` à `bot create` pour utiliser l’ancien comportement avec `-v v4`
 * [CHANGEMENT CASSANT] Modification de la valeur par défaut de `--version` qui devient `v4`
-  * __REMARQUE :__  `bot prepare-publish` utilise toujours l’ancienne valeur par défaut
+  * __REMARQUE :__ `bot prepare-publish` utilise toujours son ancienne valeur par défaut
 * [CHANGEMENT CASSANT] Modification de `--lang` qui n’a plus la valeur par défaut `Csharp`. Si la commande nécessite `--lang` et que celui-ci n’est pas fourni, la commande génère à présent une erreur
 * [CHANGEMENT CASSANT] Modification des arguments `--appid` et `--password` de `bot create` afin que ceux-ci soient requis et puisse maintenant être créés via `ad app create`
 * Ajout de la validation `--appid` et `--password`
@@ -914,7 +1094,7 @@ Version 2.0.64
 * Ajout de la journalisation commentée à `bot prepare-deploy`
 * Ajout d’un plus grand nombre de régions Application Insights disponibles dans `az bot create -v v3`
 
-### <a name="configure"></a>Configuration
+### <a name="configure"></a>Configurer
 * Ajout de la prise en charge des configurations de valeur par défaut d’argument en fonction d’un dossier
 
 ### <a name="eventhubs"></a>Eventhubs
@@ -1028,7 +1208,7 @@ Version 2.0.63
 * Changement apporté à `feedback` pour inviter l’utilisateur à ouvrir un navigateur et à utiliser un modèle de message de problème afin de faciliter le processus de création du ticket
 * Changement apporté à `feedback` pour afficher le corps du message du problème quand la commande est exécutée avec '--verbose'
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 * Correction du problème où « count » n’était pas une valeur autorisée avec `metrics alert [create|update]` 
 
 ### <a name="network"></a>Réseau
@@ -1093,7 +1273,7 @@ Version 2.0.63
 ### <a name="interactive"></a>Interactive
 * Correction d’une incompatibilité avec l’extension Interactive installée via azdev
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 * Changement visant à autoriser la valeur de dimension `*` pour `monitor metrics alert [create|update]`
 
 ### <a name="network"></a>Réseau
@@ -1296,7 +1476,7 @@ Version 2.0.58
 ### <a name="key-vault"></a>Key Vault
 * Correction du problème lié à `keyvault secret backup`, où certains utilisateurs recevaient une erreur `unexpected_keyword` quand ils utilisaient `--id`
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 * Changement apporté à `monitor metrics alert [create|update]` pour autoriser la valeur de dimension `*`
 
 ### <a name="network"></a>Réseau
@@ -1386,7 +1566,7 @@ Version 2.0.56
 ### <a name="kusto"></a>Kusto
 * Préversion
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 * Changement apporté à la comparaison d’ID pour qu’elle ne respecte pas la casse
 
 ### <a name="profile"></a>Profil
@@ -1435,7 +1615,7 @@ Version 2.0.55
 ### <a name="botservice"></a>Botservice
 * Ajout de mises à jour de l’état de déploiement à `bot create`
 
-### <a name="configure"></a>Configuration
+### <a name="configure"></a>Configurer
 * Ajout de `none` en tant que format de sortie configurable
 
 ### <a name="cosmosdb"></a>CosmosDB
@@ -1494,7 +1674,7 @@ Version 2.0.54
 ### <a name="vm"></a>Machine virtuelle
 * Ajout du paramètre `---os-type` pour `disk create`
 
-## <a name="december-18-2018"></a>18 décembre 2018
+## <a name="december-18-2018"></a>18 décembre 2018
 
 Version 2.0.53
 ### <a name="acr"></a>ACR
@@ -1656,14 +1836,14 @@ Version 2.0.50
 * [Changement cassant] : commande `ams streaming locator` remplacée par `ams streaming-locator`
 * [Changement cassant] : mise à jour de l’argument `--content-keys` de `ams streaming locator`
 * [Changement cassant] : `--content-policy-name` renommé en `--content-key-policy-name` dans la commande `ams streaming locator`
-* [Changement cassant] : remplacer la commande `ams streaming policy` par `ams streaming-policy`
+* [Changement cassant] : commande `ams streaming policy` remplacée par `ams streaming-policy`
 * [Changement cassant] : argument `--preset-names` remplacé par `--preset` dans le groupe de commandes `ams transform`. À présent vous ne pouvez définir qu’une sortie/présélection à la fois (pour en ajouter d’autres, vous devez exécuter `ams transform output add`). En outre, vous pouvez définir StandardEncoderPreset de façon personnalisée en transmettant le chemin à votre JSON personnalisé
 * [Changement cassant] : `--output-asset-names ` renommé en `--output-assets` dans la commande `ams job start`. Il accepte désormais une liste de ressources séparée par des espaces au format « assetName=label ». Une ressource sans étiquette peut être envoyée comme ceci : « assetName= »
 
 ### <a name="appservice"></a>AppService
 * Correction d’un bogue dans `az webapp config backup update` qui empêche de définir une planification de sauvegarde si elle n’est pas déjà définie
 
-### <a name="configure"></a>Configuration
+### <a name="configure"></a>Configurer
 * Ajout de YAML aux options de format de sortie
 
 ### <a name="container"></a>Conteneur
@@ -1675,7 +1855,7 @@ Version 2.0.50
 ### <a name="interactive"></a>Interactive
 * Interactive installe maintenant l’extension `interactive`, ce qui permettra des mises à jour et prises en charge plus rapides
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 * Ajout de la prise en charge pour les noms de métriques qui incluent les caractères barre oblique (/) et point (.) à `--condition` dans `monitor metrics alert [create|update]`
 
 ### <a name="network"></a>Réseau
@@ -1740,7 +1920,7 @@ Version 2.0.49
 * Ajout d’options de modèle et de nom d’affichage pour la création de l’application IoT central
 * [CHANGEMENT CASSANT] Suppression de la prise en charge de la référence SKU F1, utilisez la référence SKU S1 à la place
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 * Change en `monitor activity-log list` :
   * Prise en charge ajoutée pour répertorier tous les événements au niveau de l’abonnement
   * Ajout du paramètre `--offset` pour créer plus facilement des requêtes de temps
@@ -1819,7 +1999,7 @@ Version 2.0.47
 * Remplacement de `--remote-vnet-id` pour `network vnet peering create`
 * Ajout de `--remote-vnet` à `network vnet peering create`, qui accepte un nom ou ID
 * Prise en charge de multiples préfixes de sous-réseau pour `network vnet create` avec `--subnet-prefixes`
-* Prise en charge de multiple préfixes de sous-réseau pour `network vnet subnet [create|update]` avec `--address-prefixes`
+* Prise en charge de multiples préfixes de sous-réseau pour `network vnet subnet [create|update]` avec `--address-prefixes`
 * Correction d’une erreur relative à `network application-gateway create` qui empêchait la création de passerelles avec les références SKU `WAF_v2` ou `Standard_v2`
 * Ajout de l’argument d’usage `--service-endpoint-policy` à `network vnet subnet update`
 
@@ -1969,7 +2149,7 @@ Version 2.0.45
 * Ajout de la prise en charge de la balise ARM sur les commandes de création
 * Modification de `[webapp|functionapp] identity show` permettant de quitter avec le code 3 en cas de ressource manquante
 
-### <a name="backup"></a>Sauvegarde
+### <a name="backup"></a>Backup
 
 * Modification de `backup vault backup-properties show` permettant de quitter avec le code 3 en cas de ressource manquante
 
@@ -1985,7 +2165,7 @@ Version 2.0.45
 
 * Résolution du problème relatif à l’association de hubs liés
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Ajout des commandes `monitor metrics alert` permettant de recevoir des alertes sur les métriques quasiment en temps réel
 * Commandes `monitor alert` déconseillées
@@ -2246,7 +2426,7 @@ Version 2.0.40
 * Ajout de la prise en charge de la désactivation d’identité via `webapp identity remove`
 * Suppression de la balise `preview` pour la fonctionnalité Identité
 
-### <a name="backup"></a>Sauvegarde
+### <a name="backup"></a>Backup
 
 * Mise à jour de la définition du module
 
@@ -2357,7 +2537,7 @@ Version 2.0.38
 * [CHANGEMENT CASSANT] Ajout du paramètre obligatoire `ReservedResourceType` à `reservations catalog show`
 * Ajout du paramètre `Location` à `reservations catalog show`
 * [CHANGEMENT CASSANT] Suppression de `kind` de `ReservationProperties`
-* [CHANGEMENT CASSANT] `capabilities` renommé en `sku_properties` dans `Catalog`
+* [CHANGEMENT CASSANT]`capabilities` renommé en `sku_properties` dans `Catalog`
 * [CHANGEMENT CASSANT] Suppression des propriétés `size` et `tier` de `Catalog`
 * Ajout du paramètre `InstanceFlexibility` à `reservations reservation update`
 
@@ -2676,7 +2856,7 @@ Version 2.0.32
 * Modification de `vm resize` pour vérifier si la taille demandée est différente de celle actuellement définie et pour mettre à jour uniquement en cas de modifications
 
 
-## <a name="april-10-2018"></a>10 avril 2018
+## <a name="april-10-2018"></a>10 avril 2018
 
 Version 2.0.31
 
@@ -2737,7 +2917,7 @@ Version 2.0.31
 
 ### <a name="container"></a>Conteneur
 
-* Ajout des paramètres de montage de volume de référentiel Git `--gitrepo-url` `--gitrepo-dir` `--gitrepo-revision` et `--gitrepo-mount-path`
+* Ajout des paramètres de montage de volume de dépôt Git `--gitrepo-url` `--gitrepo-dir` `--gitrepo-revision` et `--gitrepo-mount-path`
 * Résolution de [#5926](https://github.com/Azure/azure-cli/issues/5926) : `az container exec` échoue lorsque le nom du conteneur -- est spécifié
 
 ### <a name="extension"></a>Extension
@@ -2810,7 +2990,7 @@ Version 2.0.30
 * Ajout de la prise en charge HTTPS exclusive à `webapp update`
 * Ajout de la prise en charge des emplacements à `az webapp identity [assign|show]` et `az functionapp identity [assign|show]`
 
-### <a name="backup"></a>Sauvegarde
+### <a name="backup"></a>Backup
 
 * Ajout de la commande `az backup protection isenabled-for-vm` Cette commande peut être utilisée pour vérifier si une machine virtuelle est sauvegardée par un coffre dans l’abonnement
 * Activation des ID d’objet Azure pour les paramètres `--resource-group` et `--vault-name`, pour les commandes suivantes :
@@ -2858,7 +3038,7 @@ Version 2.0.30
 
 * Correction des bogues avec la commande `create environment`
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Ajout de la prise en charge de `--top`, `--orderby` et `--namespace` à `metrics list` [#5785](https://github.com/Azure/azure-cli/issues/5785)
 * Résolution de [#4529](https://github.com/Azure/azure-cli/issues/5785) : `metrics list` accepte une liste de mesures séparées par des espaces pour la récupération
@@ -2943,7 +3123,7 @@ Version 2.0.29
 * Résolution de [#5688](https://github.com/Azure/azure-cli/issues/5688) : la saisie automatique n’apparaît pas si le chargement de la table de commande a rencontré une exception
 * Résolu : indicateur de progression pour les opérations à long terme
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Les commandes `monitor autoscale-settings` ont été déconseillées
 * Ajout des commandes `monitor autoscale`
@@ -3105,7 +3285,7 @@ Version 2.0.27
 * Ajout de la prise en charge de `--no-wait` pour `iot dps access policy [create|update]` et `iot dps linked-hub [create|update]`
 * Modification de `iot hub create` pour autoriser la spécification du nombre de partitions
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Correction de la commande `az monitor log-profiles create`
 
@@ -3238,7 +3418,7 @@ Version 2.0.25
 * Ajout de la prise en charge des URL personnalisées pour `browse`
 * Prise en charge de l’emplacement fixe pour `log tail`
 
-### <a name="backup"></a>Sauvegarde
+### <a name="backup"></a>Backup
 
 * Modification de l’option `--container-name` de `backup item list` désormais facultative
 * Ajout d’options de compte de stockage à `backup restore restore-disks`
@@ -3280,7 +3460,7 @@ Version 2.0.25
 * Ajout de messages de désapprobation dans les commandes et l’aide relative aux commandes
 * Ajout de la vérification IoT pour informer les utilisateurs de l’extension IoT
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Ajout de la prise en charge des paramètres multi diagnostic. Le paramètre `--name` est désormais requis pour `az monitor diagnostic-settings create`
 * Ajout de la commande `monitor diagnostic-settings categories` pour obtenir la catégorie des paramètres de diagnostic
@@ -3372,7 +3552,7 @@ Version 2.0.22
 
 * Correction de la régression des ports par défaut
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Ajout de la prise en charge de plusieurs dimensions à la commande des mesures
 
@@ -3461,7 +3641,7 @@ Version 2.0.21
 
 * Ajout de la prise en charge pour les autorités de certification (CA) et les chaînes d’approbation
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Ajout des commandes `activity-log alert`
 
@@ -3499,7 +3679,7 @@ Version 2.0.21
 * Correction d’un bogue avec `vmss create` qui empêchait l’utilisation du niveau de taille `Basic`
 * Ajout d’arguments `--plan` à `[vm|vmss] create` pour les images personnalisées avec des informations de facturation
 * Ajout des commandes `vm secret `[add|remove|list]
-* Renommage de `vm format-secret` en `vm secret format`
+* `vm format-secret` renommé en `vm secret format`
 * Ajout de l’argument `--encrypt format` à `vm encryption enable`
 
 ## <a name="october-24-2017"></a>24 octobre 2017
@@ -3529,7 +3709,7 @@ Version 2.0.20
 
 * Ajout de clarté dans les messages visant à déconseiller de tous les programmes d’installation et des invites de confirmation
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Ajout des commandes `action-group`
 
@@ -3656,7 +3836,7 @@ Version 2.0.18
 
 * Ajout de la capacité à mettre à jour et à afficher les paramètres d’authentification avec `webapp auth [update|show]`
 
-### <a name="backup"></a>Sauvegarde
+### <a name="backup"></a>Backup
 
 * Préversion
 
@@ -3693,7 +3873,7 @@ Version 2.0.17
 
 ### <a name="network"></a>Réseau
 
-* Renommage de `vnet list-private-access-services` en `vnet list-endpoint-services`
+* `vnet list-private-access-services` renommé en `vnet list-endpoint-services`
 * Argument `--private-access-services` renommé en `--service-endpoints` pour`vnet subnet create/update`
 * Ajout de la prise en charge de plusieurs plages IP et de ports à `nsg rule create/update`
 * Ajout de la prise en charge de la référence (SKU) pour `lb create`
@@ -3712,8 +3892,8 @@ Version 2.0.17
 
 ### <a name="vm"></a>Machine virtuelle
 
-* Problème résolu : n’affecte aucun accès tant que `--scope` n’est pas indiqué
-* Problème résolu : utilisation de la même dénomination d’extension que celle du portail
+* Résolu : n’affecte aucun accès tant que `--scope` n’est pas indiqué
+* Résolu : utilisation de la même dénomination d’extension que celle du portail
 * Suppression de `subscription` de la sortie `[vm|vmss] create`
 * Résolu : la référence SKU de stockage `[vm|vmss] create` n’est pas appliquée sur les disques de données avec une image
 * Résolu : `vm format-secret --secrets` n’accepte pas d’ID séparés par un saut de ligne
@@ -3755,7 +3935,7 @@ Version 2.0.15
 * Ajout d’un nouvel alias de `-i` pour `az webapp config container set --docker-custom-image-name`
 * Exposé `az webapp log show`
 * Exposition de nouveaux arguments à partir de `az webapp delete` pour conserver le plan de service d'application, les métriques ou l’inscription DNS
-* Problème résolu : détecter les paramètres d’emplacement correctement
+* Résolu : détecter les paramètres d’emplacement correctement
 
 ### <a name="iot"></a>IoT
 
@@ -4031,13 +4211,13 @@ vm (2.0.11)
 * Ajout de la prise en charge de la revendication de toutes les machines virtuelles dans le laboratoire via `az lab vm claim`
 * Ajout du formateur de sortie de tableau pour `az lab vm list` et `az lab vm show`
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Correctif pour le fichier de modèle avec `monitor autoscale-settings get-parameters-template` commande (#3349)
-* Renommage de `monitor alert-rule-incidents list` en `monitor alert list-incidents`
-* Renommage de `monitor alert-rule-incidents show` en `monitor alert show-incident`
-* Renommage de `monitor metric-defintions list` en `monitor metrics list-definitions`
-* Renommage de `monitor alert-rules` en `monitor alert`
+* `monitor alert-rule-incidents list` renommé en `monitor alert list-incidents`
+* `monitor alert-rule-incidents show` renommé en `monitor alert show-incident`
+* `monitor metric-defintions list` renommé en `monitor metrics list-definitions`
+* `monitor alert-rules` renommé en `monitor alert`
 * Modifié `monitor alert create`:
   * sous-commandes`condition` et `action` n’acceptent plus JSON
   * Ajout de nombreux paramètres simplifiant le processus de création de règle
@@ -4121,7 +4301,7 @@ vm (2.0.11)
 
 ### <a name="sql"></a>SQL
 
-* Suppression du paramètre rompu `sql server create` `--identity`
+* Suppression du paramètre `sql server create` `--identity` rompu
 * Suppression des valeurs de mot de passe à partir de la sortie de commande `sql server create` et `sql server update`
 * Ajout des commandes `sql db list-editions` et `sql elastic-pool list-editions`
 
@@ -4242,7 +4422,7 @@ vm (2.0.6)
 * Ajouter la prise en charge d’un nouveau type d’élément de catalogue : paquet. accessible via : `az dla catalog package`
 * A rendu possible le fait de répertorier les éléments de catalogue suivants à partir d’une base de données (aucune spécification de schéma requise) :
 
-  * Table
+  * Table de charge de travail
   * Fonction table
   * Affichage
   * Statistiques de table. Cela peut également être répertorié avec un schéma, mais sans spécifier un nom de table
@@ -4273,7 +4453,7 @@ vm (2.0.6)
 * Ajout de la commande pratique `az lab formula export-artifacts` pour exporter une structure d’artefact dans une formule de laboratoire
 * Ajout de commandes pour gérer les secrets dans un laboratoire
 
-### <a name="monitor"></a>Surveiller
+### <a name="monitor"></a>Moniteur
 
 * Résolution de bogue : modélisation de `--actions` de `az alert-rules create` pour consommer la chaîne JSON ([#3009](https://github.com/Azure/azure-cli/issues/3009))
 * Correction de bogue : la création de paramètres de diagnostic n’accepte pas les métriques/journaux à partir des commandes d’affichage ([#2913](https://github.com/Azure/azure-cli/issues/2913))
@@ -4436,7 +4616,7 @@ Version 2.0.0
 Cette version d’Azure CLI 2.0 est la première instance mise à la disposition générale. La disponibilité générale s’applique à ces modules de commande :
 - Container Service (acs)
 - Compute (notamment Resource Manager, machine virtuelle, groupes de machines virtuelles identiques, Disques managés)
-- Réseau
+- Mise en réseau
 - Stockage
 
 Ces modules de commande, pouvant être utilisés en production, sont pris en charge par le contrat de niveau de service (SLA) Microsoft standard. Vous pouvez ouvrir des incidents directement auprès du support technique Microsoft ou dans notre [liste d’incidents github](https://github.com/azure/azure-cli/issues/). Vous pouvez poser des questions sur [StackOverflow à l’aide du mot-clé azure-cli](http://stackoverflow.com/questions/tagged/azure-cli), ou contacter l’équipe produit à l’adresse [azfeedback@microsoft.com](mailto:azfeedback@microsoft.com). Vous pouvez fournir des commentaires à partir de la ligne de commande avec la commande `az feedback`.

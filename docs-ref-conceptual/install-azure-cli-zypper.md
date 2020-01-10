@@ -9,16 +9,16 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 84946fc0562e396ef296cbe8dede5e6a65cd6614
-ms.sourcegitcommit: 5a29ce9c0a3d7b831f22b1a13b1ae2e239e5549f
+ms.openlocfilehash: 7e5897fe545527aa2708432e0ad0cf626584c785
+ms.sourcegitcommit: 0088160bdb1ea520724d3e1efe71a4a66f29753d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/19/2019
-ms.locfileid: "71143956"
+ms.lasthandoff: 12/19/2019
+ms.locfileid: "75216874"
 ---
 # <a name="install-azure-cli-with-zypper"></a>Installez Azure CLI avec zypper
 
-Pour les distributions Linux avec `zypper`, telles que openSUSE ou SLES, un package est disponible pour l’Azure CLI. Ce package a été testé avec openSUSE 42.2 et ultérieur et SLES 12 SP 2 et ultérieur.
+Pour les distributions Linux avec `zypper`, telles que openSUSE ou SLES, un package est disponible pour l’Azure CLI. Ce package a été testé avec openSUSE Leap 15.1 and SLES 15.
 
 [!INCLUDE [current-version](includes/current-version.md)]
 
@@ -56,9 +56,29 @@ Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la c
 
 Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md).
 
-## <a name="troubleshooting"></a>Résolution de problèmes
+## <a name="troubleshooting"></a>Dépannage
 
 Voici certains problèmes courants lors de l’installation avec `zypper`. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
+
+### <a name="install-on-sles-12-or-other-other-systems-without-python-36"></a>Installer sur SLES 12 ou d’autres systèmes sans Python 3.6
+
+Sur SLES 12, le package python3 par défaut est la version 3.4 et n’est pas pris en charge par Azure CLI. Vous pouvez d’abord générer une version de python3 plus récente à partir de la source. Vous pouvez alors télécharger le package Azure CLI et l’installer sans dépendance.
+```bash
+$ sudo zypper install -y gcc gcc-c++ make ncurses patch wget tar zlib-devel zlib
+# Download Python source code
+$ PYTHON_VERSION="3.6.9"
+$ PYTHON_SRC_DIR=$(mktemp -d)
+$ wget -qO- https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz | tar -xz -C "$PYTHON_SRC_DIR"
+# Build Python
+$ $PYTHON_SRC_DIR/*/configure --with-ssl
+$ make
+$ sudo make install
+#Download azure-cli package 
+$ AZ_VERSION=$(zypper --no-refresh info azure-cli |grep Version | awk -F': ' '{print $2}' | awk '{$1=$1;print}')
+$ wget https://packages.microsoft.com/yumrepos/azure-cli/azure-cli-$AZ_VERSION.x86_64.rpm
+#Install without dependency
+$ sudo rpm -ivh --nodeps azure-cli-$AZ_VERSION.x86_64.rpm
+```
 
 ### <a name="proxy-blocks-connection"></a>Le proxy bloque la connexion
 
@@ -75,7 +95,7 @@ Pour obtenir la clé de signature Microsoft et obtenir le package à partir de n
 
 [!INCLUDE[troubleshoot-wsl.md](includes/troubleshoot-wsl.md)]
 
-## <a name="update"></a>Mettre à jour
+## <a name="update"></a>Update
 
 Vous pouvez mettre à jour le package avec la commande `zypper update`.
 

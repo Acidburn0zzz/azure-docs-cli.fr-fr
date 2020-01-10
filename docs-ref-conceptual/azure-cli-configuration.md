@@ -10,12 +10,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: d23f576a1f7447ffab0606b4554a81ae5c536e85
-ms.sourcegitcommit: 7f79860c799e78fd8a591d7a5550464080e07aa9
+ms.openlocfilehash: 792a4bde1876bda620d31bccb7abcfc8e880332f
+ms.sourcegitcommit: 503cf343422ab8d2a587d2ccb795953b8ad66376
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/12/2019
-ms.locfileid: "56158220"
+ms.lasthandoff: 12/31/2019
+ms.locfileid: "75559992"
 ---
 # <a name="azure-cli-configuration"></a>Configuration d’Azure CLI
 
@@ -25,7 +25,7 @@ L’interface CLI propose une commande satisfaisante pour la gestion de certains
 Les valeurs de configuration utilisées par l’interface CLI sont évaluées dans l’ordre suivant. Les éléments situés en haut de la liste sont prioritaires.
 
 1. Paramètres de ligne de commande
-2. Variables d’environnement
+2. Variables d'environnement
 3. Valeurs du fichier de configuration ou définies avec `az configure`
 
 ## <a name="cli-configuration-with-az-configure"></a>Configuration de l’interface CLI avec az configure
@@ -35,7 +35,7 @@ Cette commande accepte un seul argument, `--defaults`, qui est une liste sépar�
 
 Le tableau suivant contient une liste des clés de configuration disponibles.
 
-| Nom | Description |
+| Name | Description |
 |------|-------------|
 | group | Groupe de ressources par défaut à utiliser pour toutes les commandes. |
 | location | Emplacement par défaut à utiliser pour toutes les commandes. |
@@ -62,8 +62,8 @@ Les fichiers de configuration sont écrits sous le format de fichier INI. Ce for
 
 Les valeurs booléennes ne respectent pas la casse et sont représentées par les valeurs suivantes.
 
-* __True__ : 1, yes, true, on
-* __False__ : 0, no, false, off
+* __True__ : 1, yes, true, on
+* __False__ : 0, no, false, off
 
 Voici un exemple de fichier de configuration d’interface CLI qui désactive toutes les invites de confirmation et qui configure la journalisation vers le répertoire `/var/log/azure`.
 
@@ -84,23 +84,24 @@ Le tableau suivant contient l’ensemble des noms d’options et de sections pou
 
 Lorsque vous fournissez une valeur par défaut, cet argument n’est plus nécessaire à aucune commande. C’est la valeur par défaut qui est alors utilisée.
 
-| Section | Nom      | type | Description|
+| Section | Name      | Type | Description|
 |---------|-----------|------|------------|
-| __core__ | sortie | chaîne | Format de sortie par défaut. Peut être `json`, `jsonc`, `tsv` ou `table`. |
-| | disable\_confirm\_prompt | booléenne | Active/Désactive les invites de confirmation. |
-| | collect\_telemetry | booléenne | Autorise Microsoft à recueillir des données anonymes sur l’utilisation de l’interface CLI. Pour plus d’informations sur la confidentialité, consultez les [conditions d’utilisation d’Azure CLI](http://aka.ms/AzureCliLegal). |
-| __logging__ | enable\_log\_file | booléenne | Active/Désactive la journalisation. |
-| | log\_dir | chaîne | Répertoire dans lequel écrire les journaux. Par défaut, cette valeur est `${AZURE_CONFIG_DIR}/logs`. |
-| __storage__ | connection\_string | chaîne | Chaîne de connexion par défaut à utiliser pour les commandes `az storage`. |
-| | account | chaîne | Nom de compte par défaut à utiliser pour les commandes `az storage`. |
-| | key | chaîne | Clé de compte par défaut à utiliser pour les commandes `az storage`. |
-| | sas\_token | chaîne | Jeton SAS par défaut à utiliser pour les commandes `az storage`. |
-| __batchai__ | storage\_account | chaîne | Compte de stockage par défaut à utiliser pour les commandes `az batchai`. |
-| | storage\_key | chaîne | Clé de stockage par défaut à utiliser pour les commandes `az batchai`. |
-| __batch__ | account | chaîne | Nom de compte Azure Batch par défaut à utiliser pour les commandes `az batch`. |
-| | access\_key | chaîne | Clé d’accès par défaut à utiliser pour les commandes `az batch`. Uniquement utilisée avec l’autorisation `aad`. |
-| | endpoint | chaîne | Point de terminaison par défaut auquel se connecter pour les commandes `az batch`. |
-| | auth\_mode | chaîne | Mode d’autorisation à utiliser pour les commandes `az batch`. Peut être `shared_key` ou `aad`. |
+| __core__ | sortie | string | Format de sortie par défaut. Peut être `json`, `jsonc`, `tsv` ou `table`. |
+| | disable\_confirm\_prompt | boolean | Active/Désactive les invites de confirmation. |
+| | collect\_telemetry | boolean | Autorise Microsoft à recueillir des données anonymes sur l’utilisation de l’interface CLI. Pour plus d’informations sur la confidentialité, consultez les [conditions d’utilisation d’Azure CLI](http://aka.ms/AzureCliLegal). |
+| __logging__ | enable\_log\_file | boolean | Active/Désactive la journalisation. |
+| | log\_dir | string | Répertoire dans lequel écrire les journaux d’activité. Par défaut, cette valeur est `${AZURE_CONFIG_DIR}/logs`. |
+| __storage__ | connection\_string | string | Chaîne de connexion par défaut à utiliser pour les commandes `az storage`. |
+| | account | string | Nom de compte par défaut à utiliser pour les commandes `az storage`. |
+| | key | string | Clé de compte par défaut à utiliser pour les commandes `az storage`. |
+| | sas\_token | string | Jeton SAS par défaut à utiliser pour les commandes `az storage`. |
+| __batchai__ | storage\_account | string | Compte de stockage par défaut à utiliser pour les commandes `az batchai`. |
+| | storage\_key | string | Clé de stockage par défaut à utiliser pour les commandes `az batchai`. |
+| __batch__ | account | string | Nom de compte Azure Batch par défaut à utiliser pour les commandes `az batch`. |
+| | access\_key | string | Clé d’accès par défaut à utiliser pour les commandes `az batch`. Uniquement utilisée avec l’autorisation `aad`. |
+| | endpoint | string | Point de terminaison par défaut auquel se connecter pour les commandes `az batch`. |
+| | auth\_mode | string | Mode d’autorisation à utiliser pour les commandes `az batch`. Peut être `shared_key` ou `aad`. |
+| __cloud__ | name | string | Cloud par défaut pour toutes les commandes `az`.  Les valeurs possibles sont `AzureCloud` (valeur par défaut), `AzureChinaCloud`, `AzureUSGovernment`, `AzureGermanCloud`. Pour changer des clouds, vous pouvez utiliser la commande `az cloud set –name`.  Pour obtenir un exemple, consultez [Gérer des clouds avec l’interface Azure CLI](manage-clouds-azure-cli.md). |
 
 > [!NOTE]
 > Votre fichier de configuration peut contenir d’autres valeurs. Toutefois, celles-ci sont gérées directement par le biais de commandes de l’interface CLI, notamment `az configure`. Les valeurs répertoriées dans le tableau ci-dessus sont les seules valeurs que vous devez modifier vous-même.
