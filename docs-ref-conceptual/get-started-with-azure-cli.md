@@ -1,25 +1,25 @@
 ---
-title: Prise en main d’Azure CLI
+title: Bien démarrer avec Azure CLI
 description: Commencez à utiliser Azure CLI en apprenant les commandes de base.
 keywords: Azure CLI, aide CLI, aide Azure, requête, automatisation,
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 09/07/2018
+ms.date: 01/30/2020
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: af9b8ea52ded9d3bb27262ae0625ebdd1aedf189
-ms.sourcegitcommit: 18973ac471bbd12af2c8f8fa32a233b0abe5b020
+ms.openlocfilehash: 741d092121bbd448595301000acb9a5f51d87ace
+ms.sourcegitcommit: d0b2763cc856eef44a6ecb78f6b8c64291625750
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/13/2020
-ms.locfileid: "75913562"
+ms.lasthandoff: 02/04/2020
+ms.locfileid: "77013248"
 ---
-# <a name="get-started-with-azure-cli"></a>Prise en main d’Azure CLI
+# <a name="get-started-with-azure-cli"></a>Bien démarrer avec Azure CLI
 
-Bienvenue dans Azure CLI ! L’interface CLI est un outil conçu pour vous aider à utiliser rapidement et efficacement les services Azure, en mettant l’accent sur l’automatisation. Cet article présente les fonctionnalités de l’interface CLI et des liens vers des ressources qui vous aideront à être productif.
+Bienvenue dans Azure CLI !  Cet article présente l’interface CLI et fournit des liens qui vont vous aider à commencer.
 
 > [!NOTE]
 >

@@ -1,25 +1,27 @@
 ---
-title: Installer l’interface de ligne de commande Microsoft Azure
+title: Installation de l’interface Azure CLI
 description: Référence pour l’installation d’Azure CLI
 keywords: Azure CLI, Installation d’Azure CLI
-author: sptramer
-ms.author: sttramer
-manager: carmonm
-ms.date: 02/12/2019
+author: dbradish-microsoft
+ms.author: dbradish
+manager: barbkess
+ms.date: 01/30/2020
 ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: cacaa77845708f318b3743024d7f87e658368069
-ms.sourcegitcommit: 1987a39809f9865034b27130e56f30b2bd1eb72c
+ms.openlocfilehash: a4cdc3d745b673d88fa9b9554775b781af3b4048
+ms.sourcegitcommit: d0b2763cc856eef44a6ecb78f6b8c64291625750
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56421896"
+ms.lasthandoff: 02/04/2020
+ms.locfileid: "77013185"
 ---
-# <a name="install-the-azure-cli"></a>Installer l’interface de ligne de commande Microsoft Azure
+# <a name="install-the-azure-cli"></a>Installation de l’interface Azure CLI
 
-Azure CLI est un outil en ligne de commande offrant une expérience exceptionnelle pour la gestion des ressources Azure. L’interface CLI est conçue pour simplifier le script, les requêtes de données, la prise en charge des opérations de longue durée et bien plus encore. Essayez dès aujourd’hui et découvrez les avantages de l’interface CLI !
+Azure CLI est disponible pour être installé dans les environnements Windows, macOS et Linux.  Il peut également être exécuté dans un conteneur Docker et Azure Cloud Shell.
+
+## <a name="install"></a>Installer
 
 [!INCLUDE [current-version](includes/current-version.md)]
 
@@ -31,6 +33,11 @@ Azure CLI est un outil en ligne de commande offrant une expérience exceptionnel
   * [Installer avec zypper sur openSUSE ou SLE](install-azure-cli-zypper.md)
   * [Installer à partir du script](install-azure-cli-linux.md)
 * [Exécuter dans un conteneur Docker](run-azure-cli-docker.md)
+* [Exécuter dans Azure Cloud Shell](/azure/cloud-shell/quickstart)
 
 > [!NOTE]
 > Si vous utilisez le modèle de déploiement Azure CLI Classic, [installez l’interface de ligne de commande Azure CLI Classic](install-classic-cli.md).
+
+## <a name="next-steps"></a>Étapes suivantes
+
+Consultez [Qu’est-ce qu’Azure CLI ?](what-is-azure-cli.md) pour en connaître les principales caractéristiques.
