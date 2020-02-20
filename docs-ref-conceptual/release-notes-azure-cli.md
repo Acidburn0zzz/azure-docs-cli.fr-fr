@@ -4,19 +4,108 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 02/04/2020
+ms.date: 02/18/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: eafd18344ac4c1c0124ff53864a45510070b6fe7
-ms.sourcegitcommit: d0b2763cc856eef44a6ecb78f6b8c64291625750
+ms.openlocfilehash: 6c07b93752df2dab6ca0b210675a48b5c7b85c1c
+ms.sourcegitcommit: 91c1e5423bd054a948620999b559bc3a9828a688
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/04/2020
-ms.locfileid: "77013282"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77453475"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="february-18-2020"></a>18 février 2020
+
+Version 2.1.0
+
+### <a name="acr"></a>ACR
+
+* Ajoute un nouvel argument `--expose-token` pour `az acr login`
+* Corrige la sortie incorrecte de `az acr task identity show -n Name -r Registry -o table`
+* az acr login : lève une CLIError si des erreurs sont retournées par la commande docker
+
+### <a name="acs"></a>ACS
+
+* aks create/update : ajoute la validation `--vnet-subnet-id`
+
+### <a name="aladdin"></a>Aladdin
+
+* Analyse les exemples générés dans le _help.py des commandes
+
+### <a name="ams"></a>AMS
+
+* az ams est désormais en disponibilité générale
+
+### <a name="appconfig"></a>AppConfig
+
+* Modifie le message d’aide pour exclure les filtres de clé ou d’étiquette non pris en charge
+* Supprimer l’étiquette d’aperçu pour la plupart des commandes, à l’exception des indicateurs d’identité managée et de fonctionnalités
+* Ajoute une clé gérée par le client lors de la mise à jour des magasins
+
+### <a name="appservice"></a>AppService
+
+* az webapp list-runtimes : correction du bogue concernant list-runtimes
+* Ajoute az webapp|functionapp config ssl create
+* Ajoute la prise en charge des applications de fonction v3 et du nœud 12
+
+### <a name="arm"></a>ARM
+
+* az policy assignment create : correction du message d’erreur lorsque le paramètre `--policy` n’est pas valide
+* az group deployment create : correction de l’erreur « stat: path too long for Windows » (Chemin trop long pour Windows) lors de l’utilisation d’un fichier parameters.json volumineux
+
+### <a name="backup"></a>Backup
+
+* Correction du flux de récupération au niveau de l’élément dans OLR
+* Ajout de la prise en charge de la restauration sous forme de fichiers pour les bases de données SQL et SAP
+
+### <a name="compute"></a>Calcul
+
+* vm/vmss/availability-set update: add --ppg to allowing updating ProximityPlacementGroup
+* vmss create: add --data-disk-iops and --data-disk-mbps
+* az vm host : supprime l’étiquette d’aperçu pour `vm host` et `vm host group`
+* [CHANGEMENT CASSANT] Correctif n° 10728 : `az vm create` Création automatique d’un sous-réseau si un réseau virtuel est spécifié et s’il n’existe pas de sous-réseau
+* Amélioration de la robustesse de la liste d’images de machines virtuelles
+
+### <a name="eventhub"></a>Event Hubs
+
+* Prise en charge d’Azure Stack pour le profil 2019-03-01-hybrid
+
+### <a name="keyvault"></a>KeyVault
+
+* az keyvault key create : ajouter une nouvelle valeur `import` pour le paramètre `--ops`
+* az keyvault key list-versions : prise en charge du paramètre `--id` pour la spécification des clés
+* Prise en charge des connexions de points de terminaison privés
+
+### <a name="network"></a>Réseau
+
+* Passage à azure-mgmt-network 9.0.0
+* az network private-link-service update/create: support --enable-proxy-protocol
+* Ajout de la fonctionnalité Moniteur de connexion v2
+
+### <a name="packaging"></a>Packaging
+
+* [CHANGEMENT CASSANT] Python 2.7 n’est plus pris en charge
+
+### <a name="profile"></a>Profil
+
+* Aperçu : Ajoutez les nouveaux attributs `homeTenantId` et `managedByTenants` aux comptes d’abonnement. Réexécutez `az login` pour que les modifications soient prises en compte.
+* az login : affiche un avertissement lorsqu’un abonnement est listé par plusieurs locataires et s’affiche par défaut pour le premier. Pour sélectionner un locataire lors de l’accès à cet abonnement, ajoutez `--tenant` dans `az login`
+
+### <a name="role"></a>Role
+
+* az role assignment create : correction de l’erreur lors de laquelle l’attribution d’un rôle à un principal de service par nom d’affichage générait une erreur HTTP 400
+
+### <a name="sql"></a>SQL
+
+* Mise à jour de l’applet de commande SQL Managed Instance `az sql mi update` avec deux nouveaux paramètres : tier et family
+
+### <a name="storage"></a>Stockage
+
+* [CHANGEMENT CASSANT] `az storage account create` : Remplacement du type de compte de stockage par défaut par StorageV2
 
 ## <a name="february-04-2020"></a>4 février 2020
 

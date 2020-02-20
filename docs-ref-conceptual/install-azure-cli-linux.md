@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: caca30ec186f302e47f2978b9bfe616d4b2a5c02
-ms.sourcegitcommit: 443e14098d6643cdb2e178847d1c79b1b95146ce
+ms.openlocfilehash: 03b7d6d5ac157b3f22daa1b9be61fd1daecb9992
+ms.sourcegitcommit: 91c1e5423bd054a948620999b559bc3a9828a688
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/26/2019
-ms.locfileid: "74543643"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77453670"
 ---
 # <a name="install-azure-cli-on-linux-manually"></a>Installer manuellement Azure CLI sur Linux
 
@@ -29,13 +29,13 @@ S’il n’existe aucun package pour l’interface Azure CLI pour vous et votre 
 
 L’interface CLI requiert les logiciels suivants :
 
-* [Python 3.6.x ou 3.7.x](https://www.python.org/downloads/). 
+* [Python 3.6.x, 3.7.x ou 3.8.x](https://www.python.org/downloads/). 
 * [libffi](https://sourceware.org/libffi/)
 * [OpenSSL 1.0.2](https://www.openssl.org/source/)
 
 > [!IMPORTANT]
 >
-> L’interface CLI est également compatible avec Python 2.7.x, dont la fin de vie est prévue pour le 1er janvier 2020. Une future version d’Azure CLI mettra fin à la prise en charge de Python 2.7. C’est la raison pour laquelle nous vous recommandons d’installer Python 3 afin d’exécuter l’interface CLI. 
+> L’interface CLI a retiré la prise en charge de Python 2.7 depuis la version `2.1.0`. Les nouvelles versions ne garantissent plus une exécution correcte de Python 2.7.
 
 ## <a name="install-or-update"></a>Installation ou mise à jour
 
@@ -53,7 +53,7 @@ Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la c
 
 Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md).
 
-## <a name="troubleshooting"></a>Résolution de problèmes
+## <a name="troubleshooting"></a>Dépannage
 
 Voici certains problèmes courants rencontrés pendant une installation manuelle. Si vous rencontrez un problème qui n’est pas traité ici, [signalez ce problème sur GitHub](https://github.com/Azure/azure-cli/issues).
 

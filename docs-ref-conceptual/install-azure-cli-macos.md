@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 790c63a60a5d23863b48227dcc99462bbf950d80
-ms.sourcegitcommit: b42ce26476b135bb2047c8d9d787580c858f8b6b
+ms.openlocfilehash: 9a5026634691f49d960f383c90e139754c862cb4
+ms.sourcegitcommit: 91c1e5423bd054a948620999b559bc3a9828a688
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72163847"
+ms.lasthandoff: 02/19/2020
+ms.locfileid: "77453750"
 ---
 # <a name="install-azure-cli-on-macos"></a>Installer Azure CLI sur macOS
 
@@ -44,9 +44,13 @@ Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la c
 
 Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md).
 
-## <a name="troubleshooting"></a>Résolution de problèmes
+## <a name="troubleshooting"></a>Dépannage
 
 Si vous rencontrez un problème lors de l’installation de l’interface de ligne de commande via Homebrew, voici quelques erreurs courantes. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
+
+### <a name="completion-is-not-working"></a>La complétion ne fonctionne pas
+
+La formule Homebrew d’Azure CLI installe un fichier de complétion nommé `az` dans le répertoire de complétion géré par Homebrew (l’emplacement par défaut est `/usr/local/etc/bash_completion.d/`). Pour permettre la complétion, suivez les [instructions](https://docs.brew.sh/Shell-Completion) fournies par Homebrew.
 
 ### <a name="unable-to-find-python-or-installed-packages"></a>Impossible de trouver des packages Python ou des packages installés
 
@@ -75,7 +79,7 @@ Pour obtenir les ressources Bottle de Homebrew, votre proxy doit autoriser les c
 * `https://formulae.brew.sh`
 * `https://homebrew.bintray.com`
 
-## <a name="update"></a>Mettre à jour
+## <a name="update"></a>Update
 
 L’interface de ligne de commande est régulièrement mise à jour avec des correctifs de bogues, des améliorations, de nouvelles fonctions ainsi que des fonctionnalités en préversion. Une nouvelle version est disponible à peu près toutes les deux semaines. Mettez à jour vos informations de référentiel local, puis mettez à niveau le package `azure-cli`.
 
