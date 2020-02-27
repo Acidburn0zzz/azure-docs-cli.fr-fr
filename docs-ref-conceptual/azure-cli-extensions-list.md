@@ -4,17 +4,17 @@ description: Liste complète des extensions officiellement prises en charge pour
 author: sptramer
 ms.author: sttramer
 manager: carmonm
-ms.date: 02/05/2020
+ms.date: 02/17/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: c11f43f2cabd0b7d2cef41cdecfead24791661e8
-ms.sourcegitcommit: c332e9d6eeb4c0a8fbf587bd750002086f8ff0db
+ms.openlocfilehash: bac834704f4e965d44a8790f5a4fa59254357373
+ms.sourcegitcommit: aff84ab984e2d129927888e6b854ed7a5ccaaf59
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/06/2020
-ms.locfileid: "77038224"
+ms.lasthandoff: 02/21/2020
+ms.locfileid: "77520769"
 ---
 # <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
@@ -26,10 +26,10 @@ La liste des extensions est également disponible à partir de l’interface CLI
 az extension list-available --output table
 ```
 
-| Name | Version | Résumé | PRÉVERSION |
+| Nom | Version | Résumé | PRÉVERSION |
 |------|---------|---------|---------|
 | [aem](https://github.com/Azure/azure-cli-extensions) | 0.1.1 | Gestion des extensions de surveillance Azure améliorée pour SAP |  |
-| [préversion ASK](https://github.com/Azure/azure-cli-extensions/tree/master/src/aks-preview) | 0.4.27 | Fournit une préversion des fonctionnalités AKS à venir | Oui |
+| [préversion ASK](https://github.com/Azure/azure-cli-extensions/tree/master/src/aks-preview) | 0.4.29 | Fournit une préversion des fonctionnalités AKS à venir | Oui |
 | [alias](https://github.com/Azure/azure-cli-extensions) | 0.5.2 | Prise en charge des alias de commande | Oui |
 | [appconfig](https://github.com/Azure/azure-cli-extensions) | 0.5.0 | Fournit une préversion des fonctionnalités App Configuration à venir. | Oui |
 | [application-insights](https://github.com/Azure/azure-cli-extensions/tree/master/src/application-insights) | 0.1.3 | Prise en charge de la gestion des composants Application Insights et de l’interrogation des métriques, des événements et des journaux de ces composants. | Oui |
@@ -37,7 +37,7 @@ az extension list-available --output table
 | [azure-cli-iot-ext](https://github.com/azure/azure-iot-cli-extension) | 0.8.9 | Extension Azure IoT pour Azure CLI. |  |
 | [azure-cli-ml](https://docs.microsoft.com/azure/machine-learning/service/) | 1.0.85 | Module de commande AzureML des outils en ligne de commande Microsoft Azure |  |
 | [azure-devops](https://github.com/Microsoft/azure-devops-cli-extension) | 0.17.0 | Outils de gestion Azure DevOps. |  |
-| [azure-firewall](https://github.com/Azure/azure-cli-extensions/tree/master/src/azure-firewall) | 0.1.9 | Gérez les ressources de pare-feu Azure. | Oui |
+| [azure-firewall](https://github.com/Azure/azure-cli-extensions/tree/master/src/azure-firewall) | 0.3.0 | Gérez les ressources de pare-feu Azure. | Oui |
 | [connectedmachine](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Extension Connectedmachine des outils en ligne de commande Microsoft Azure | Oui |
 | [connection-monitor-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/connection-monitor-preview) | 0.1.0 | Extension Microsoft Azure Command-Line Connection Monitor V2 | Oui |
 | [db-up](https://github.com/Azure/azure-cli-extensions/tree/master/src/db-up) | 0.1.13 | Commandes supplémentaires pour simplifier les workflows Azure Database. | Oui |
@@ -58,7 +58,6 @@ az extension list-available --output table
 | [keyvault-preview](https://github.com/Azure/azure-keyvault-cli-extension) | 0.1.3 | Préversion des commandes Azure Key Vault. | Oui |
 | [log-analytics](https://github.com/Azure/azure-cli-extensions/tree/master/src/log-analytics) | 0.1.4 | Prise en charge des fonctionnalités de requête d’Azure Log Analytics. | Oui |
 | [maintenance](https://github.com/Azure/azure-cli-extensions) | 1.0.0 | Prise en charge de la préversion de la gestion de la maintenance Azure. | Oui |
-| [managementgroups](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Une extension Azure CLI pour les groupes d’administration |  |
 | [managementpartner](https://github.com/Azure/azure-cli-extensions) | 0.1.2 | Prise en charge de la préversion des groupes d’administration |  |
 | [mesh](https://github.com/Azure/azure-cli-extensions) | 0.10.6 | Prise en charge de Microsoft Azure Service Fabric Mesh - préversion publique | Oui |
 | [mixed-reality](https://github.com/Azure/azure-cli-extensions) | 0.0.1 | Extension Mixed Reality d’Azure CLI. |  |
