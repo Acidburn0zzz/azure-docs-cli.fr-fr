@@ -1,20 +1,19 @@
 ---
 title: Exécuter Azure CLI dans un conteneur Docker
 description: Comment exécuter un conteneur Docker hébergeant Azure CLI
-author: sptramer
-ms.author: sttramer
-manager: carmonm
+author: dbradish-microsoft
+ms.author: dbradish
+manager: barbkess
 ms.date: 01/29/2018
 ms.topic: conceptual
-ms.prod: azure
-ms.technology: azure-cli
+ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 346014c1890cd7aa5b4225df15078e55db908a33
-ms.sourcegitcommit: 334a1da92a73e42e715e33470057f4194f10b2ea
+ms.openlocfilehash: 96a2bcf311cb504b08d44da3ea6033dbad9034b8
+ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59289081"
+ms.lasthandoff: 02/28/2020
+ms.locfileid: "77780041"
 ---
 # <a name="run-azure-cli-in-a-docker-container"></a>Exécuter Azure CLI dans un conteneur Docker
 

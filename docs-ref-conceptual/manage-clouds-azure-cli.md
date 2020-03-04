@@ -1,20 +1,19 @@
 ---
 title: Sélectionnez des clouds avec Azure CLI
 description: Créez, connectez-vous et gérez plusieurs clouds avec Azure CLI.
-author: sptramer
-manager: carmonm
-ms.author: sttramer
+author: dbradish-microsoft
+manager: barbkess
+ms.author: dbradish
 ms.date: 09/09/2018
 ms.topic: conceptual
-ms.prod: azure
-ms.technology: azure-cli
+ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: f102414b9539c9f8ad7d088c2ddf802583c22721
-ms.sourcegitcommit: 503cf343422ab8d2a587d2ccb795953b8ad66376
+ms.openlocfilehash: 8e24a4740d97ddf67f81e60fef9217a4e72daab0
+ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/31/2019
-ms.locfileid: "75559607"
+ms.lasthandoff: 02/28/2020
+ms.locfileid: "77779463"
 ---
 # <a name="select-clouds-with-the-azure-cli"></a>Sélectionnez des clouds avec Azure CLI
 

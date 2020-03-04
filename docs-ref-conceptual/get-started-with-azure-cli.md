@@ -1,23 +1,21 @@
 ---
-title: Bien démarrer avec Azure CLI
+title: Prise en main d’Azure CLI
 description: Commencez à utiliser Azure CLI en apprenant les commandes de base.
-keywords: Azure CLI, aide CLI, aide Azure, requête, automatisation,
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
 ms.date: 01/30/2020
 ms.topic: conceptual
-ms.prod: azure
-ms.technology: azure-cli
+ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 741d092121bbd448595301000acb9a5f51d87ace
-ms.sourcegitcommit: d0b2763cc856eef44a6ecb78f6b8c64291625750
+ms.openlocfilehash: bef8ef96ffefd6214bc924d7378971348d528304
+ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/04/2020
-ms.locfileid: "77013248"
+ms.lasthandoff: 02/28/2020
+ms.locfileid: "77779633"
 ---
-# <a name="get-started-with-azure-cli"></a>Bien démarrer avec Azure CLI
+# <a name="get-started-with-azure-cli"></a>Prise en main d’Azure CLI
 
 Bienvenue dans Azure CLI !  Cet article présente l’interface CLI et fournit des liens qui vont vous aider à commencer.
 
@@ -32,6 +30,9 @@ Pour commencer avec l’interface CLI, le plus simple est de l’exécuter dans 
 Lorsque vous êtes prêt à installer l’interface CLI, consultez les [instructions d’installation](install-azure-cli.md).
 
 Après avoir installé l’interface CLI pour la première fois, vérifiez qu’elle est bien installée et que vous disposez de la version appropriée en exécutant `az --version`.
+
+> [!NOTE]
+> Si vous utilisez le modèle de déploiement Azure CLI Classic, [installez l’interface de ligne de commande Azure CLI Classic](install-classic-cli.md).
 
 ## <a name="sign-in"></a>Se connecter
 
