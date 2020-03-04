@@ -1,21 +1,19 @@
 ---
 title: Options de configuration d’Azure CLI
 description: Comment configurer Azure CLI
-keywords: Azure CLI, configuration, paramètres, Azure
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
 ms.date: 06/11/2018
 ms.topic: conceptual
-ms.prod: azure
-ms.technology: azure-cli
+ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: ffdcbda500bc148e661ee4422b76ec51ff4603eb
-ms.sourcegitcommit: 18973ac471bbd12af2c8f8fa32a233b0abe5b020
+ms.openlocfilehash: ff5f9f5a5add52bc05009a42aeb00855eb2703fa
+ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/13/2020
-ms.locfileid: "75913686"
+ms.lasthandoff: 02/28/2020
+ms.locfileid: "77779650"
 ---
 # <a name="azure-cli-configuration"></a>Configuration d’Azure CLI
 
@@ -35,7 +33,7 @@ Cette commande accepte un seul argument, `--defaults`, qui est une liste sépar�
 
 Le tableau suivant contient une liste des clés de configuration disponibles.
 
-| Name | Description |
+| Nom | Description |
 |------|-------------|
 | group | Groupe de ressources par défaut à utiliser pour toutes les commandes. |
 | location | Emplacement par défaut à utiliser pour toutes les commandes. |
@@ -84,11 +82,11 @@ Le tableau suivant contient l’ensemble des noms d’options et de sections pou
 
 Lorsque vous fournissez une valeur par défaut, cet argument n’est plus nécessaire à aucune commande. C’est la valeur par défaut qui est alors utilisée.
 
-| Section | Name      | Type | Description|
+| Section | Nom      | Type | Description|
 |---------|-----------|------|------------|
 | __core__ | sortie | string | Format de sortie par défaut. Peut être `json`, `jsonc`, `tsv` ou `table`. |
 | | disable\_confirm\_prompt | boolean | Active/Désactive les invites de confirmation. |
-| | collect\_telemetry | boolean | Autorise Microsoft à recueillir des données anonymes sur l’utilisation de l’interface CLI. Pour plus d’informations sur la confidentialité, consultez les [conditions d’utilisation d’Azure CLI](http://aka.ms/AzureCliLegal). |
+| | collect\_telemetry | boolean | Autorise Microsoft à recueillir des données anonymes sur l’utilisation de l’interface CLI. Pour plus d’informations sur la confidentialité, consultez les [conditions d’utilisation d’Azure CLI](https://aka.ms/AzureCliLegal). |
 | __logging__ | enable\_log\_file | boolean | Active/Désactive la journalisation. |
 | | log\_dir | string | Répertoire dans lequel écrire les journaux d’activité. Par défaut, cette valeur est `${AZURE_CONFIG_DIR}/logs`. |
 | __storage__ | connection\_string | string | Chaîne de connexion par défaut à utiliser pour les commandes `az storage`. |

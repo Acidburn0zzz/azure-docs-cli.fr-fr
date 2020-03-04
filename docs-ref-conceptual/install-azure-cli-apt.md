@@ -1,20 +1,19 @@
 ---
 title: Installer Azure CLI sur Linux avec apt
 description: Comment installer Azure CLI avec le gestionnaire de package apt
-author: sptramer
-ms.author: sttramer
-manager: carmonm
+author: dbradish-microsoft
+ms.author: dbradish
+manager: barbkess
 ms.date: 10/14/2019
 ms.topic: conceptual
-ms.prod: azure
-ms.technology: azure-cli
+ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 782d88bc2487c24bd0574b6a106f109368191f6b
-ms.sourcegitcommit: 69f52b032167a01509fdf15431e3e4e89a7e20ef
+ms.openlocfilehash: c84d5093f670b397a3035dc0f08edc22fa990ff4
+ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/15/2019
-ms.locfileid: "72324036"
+ms.lasthandoff: 02/28/2020
+ms.locfileid: "77780126"
 ---
 # <a name="install-azure-cli-with-apt"></a>Installer Azure CLI avec apt
 
@@ -49,7 +48,7 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 Si vous ne souhaitez pas exécuter un script en tant que superutilisateur ou que le script tout-en-un échoue, suivez ces étapes pour installer Azure CLI.
 
-1. Récupérez les packages nécessaires au processus d’installation :
+1. Obtenez les packages nécessaires pour le processus d’installation :
 
     ```bash
     sudo apt-get update
@@ -85,7 +84,7 @@ Exécutez Azure CLI avec la commande `az`. Pour vous connecter, utilisez la comm
 
 Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md).
 
-## <a name="troubleshooting"></a>Résolution de problèmes
+## <a name="troubleshooting"></a>Dépannage
 
 Voici certains problèmes courants lors de l’installation avec `apt`. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
 
@@ -123,7 +122,7 @@ Pour obtenir la clé de signature Microsoft et obtenir le package à partir de n
 
 [!INCLUDE[troubleshoot-wsl.md](includes/troubleshoot-wsl.md)]
 
-## <a name="update"></a>Mettre à jour
+## <a name="update"></a>Update
 
 Utilisez `apt-get upgrade` pour mettre à jour le package de l’interface de ligne de commande.
 

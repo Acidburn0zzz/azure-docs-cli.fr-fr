@@ -1,20 +1,19 @@
 ---
 title: Installer l’interface de ligne de commande Azure pour Windows
 description: Comment installer Azure CLI sur Windows
-author: sptramer
-ms.author: sttramer
-manager: carmonm
+author: dbradish-microsoft
+ms.author: dbradish
+manager: barbkess
 ms.date: 05/01/2019
 ms.topic: conceptual
-ms.prod: azure
-ms.technology: azure-cli
+ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 6c972ba69344f9e8bcd14a96a90e9dadb6cd8132
-ms.sourcegitcommit: 61965f5d95d0dae3752ad6a0e5a93db27a623c28
+ms.openlocfilehash: f88e9d6650354ace9d9e03a33a6bbb2642069bbd
+ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/06/2019
-ms.locfileid: "68830975"
+ms.lasthandoff: 02/28/2020
+ms.locfileid: "77779565"
 ---
 # <a name="install-azure-cli-on-windows"></a>Installer Azure CLI sur Windows
 
@@ -45,7 +44,7 @@ Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec l
 
 Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md).
 
-## <a name="troubleshooting"></a>Résolution de problèmes
+## <a name="troubleshooting"></a>Dépannage
 
 Voici certains problèmes courants lors de l’installation sur Windows. Si vous rencontrez un problème qui n’est pas traité ici, [signalez ce problème sur GitHub](https://github.com/Azure/azure-cli/issues).
 
@@ -74,7 +73,7 @@ La désinstallation d’Azure CLI s’effectue à partir de la liste « Applica
 
 | Plateforme | Instructions |
 |---|---|
-| Windows 10 | Démarrer > Paramètres > Applications |
+| Windows 10 | Démarrer > Paramètres > Applications |
 | Windows 8<br/>Windows 7 | Démarrer > Panneau de configuration > Programmes > Désinstaller un programme |
 
 Une fois sur cet écran, tapez __Azure CLI__ dans la barre de recherche du programme. Le programme à désinstaller est listé sous le nom __Microsoft CLI 2.0 pour Azure__. Sélectionnez cette application, puis cliquez sur le bouton `Uninstall`.

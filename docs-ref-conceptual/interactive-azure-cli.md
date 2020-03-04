@@ -1,20 +1,19 @@
 ---
 title: Mode interactif d’Azure CLI
 description: Utilisez Azure CLI en mode interactif.
-author: sptramer
-ms.author: sttramer
-manager: carmonm
+author: dbradish-microsoft
+ms.author: dbradish
+manager: barbkess
 ms.date: 09/09/2018
 ms.topic: conceptual
-ms.prod: azure
-ms.technology: azure-cli
+ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: a325b799c7384037ae336093aa5274c7cbf53cbc
-ms.sourcegitcommit: 334a1da92a73e42e715e33470057f4194f10b2ea
+ms.openlocfilehash: 7b3ee1e284e7f771c661bb65bf8b8ab53dafd77f
+ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59429011"
+ms.lasthandoff: 02/28/2020
+ms.locfileid: "77779514"
 ---
 # <a name="azure-cli-interactive-mode"></a>Mode interactif d’Azure CLI
 
@@ -28,7 +27,7 @@ Ce mode vous place dans un interpréteur de commandes interactif avec une saisie
 
 Si vous n’êtes pas déjà connecté à votre compte, utilisez la commande `login`.
 
-## <a name="configure"></a>Configuration
+## <a name="configure"></a>Configurer
 
 Le mode interactif affiche, si vous le souhaitez, des descriptions des commandes, des descriptions des paramètres et des exemples de commandes.
 Activez ou désactivez les descriptions et les exemples à l’aide de `F1`.
