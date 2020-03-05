@@ -6,15 +6,14 @@ ms.author: dbradish
 manager: barbkess
 ms.date: 02/18/2020
 ms.topic: article
-ms.prod: azure
-ms.technology: azure-cli
+ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 6c07b93752df2dab6ca0b210675a48b5c7b85c1c
-ms.sourcegitcommit: 91c1e5423bd054a948620999b559bc3a9828a688
+ms.openlocfilehash: 49bb108372225146be8ffc6bb38cf793da8cdb74
+ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "77453475"
+ms.lasthandoff: 02/28/2020
+ms.locfileid: "77779939"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
@@ -592,8 +591,8 @@ Version 2.0.76
 * `gremlin graph create`: Ajout de `--conflict-resolution-policy`
 * `gremlin graph create/update`: Mise à jour du schéma par défaut `--idx`
 * Faute de frappe corrigée dans un message d’aide
-* base de données : ajout d’informations de dépréciation
-* collection : ajout d’informations de dépréciation
+* base de données : Ajout d’informations de dépréciation
+* collection : Ajout d’informations de dépréciation
 
 ### <a name="iot"></a>IoT
 
@@ -711,7 +710,7 @@ Version 2.0.74
 ### <a name="acr"></a>ACR
 
 * Ajout d’un paramètre `--type` obligatoire à `acr config retention update`
-* [CHANGEMENT CASSANT] Remplacement du paramètre `--name -n` par `--registry -r ` pour le groupe de commandes `acr config`
+* [CHANGEMENT CASSANT] Renommage du paramètre `--name -n` en `--registry -r ` pour le groupe de commandes `acr config`
 
 ### <a name="aks"></a>AKS
 

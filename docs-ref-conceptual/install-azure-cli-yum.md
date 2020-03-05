@@ -1,20 +1,19 @@
 ---
 title: Installation d’Azure CLI pour Linux avec yum
 description: Comment installer Azure CLI avec yum
-author: sptramer
-ms.author: sttramer
-manager: carmonm
+author: dbradish-microsoft
+ms.author: dbradish
+manager: barbkess
 ms.date: 11/26/2019
 ms.topic: conceptual
-ms.prod: azure
-ms.technology: azure-cli
+ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 53d480c24e624d87ff0cc67ac143c2172344edf4
-ms.sourcegitcommit: 91c1e5423bd054a948620999b559bc3a9828a688
+ms.openlocfilehash: ad773a58cf784c46a1c605e7e7eca58de8a4a722
+ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "77453722"
+ms.lasthandoff: 02/28/2020
+ms.locfileid: "77780109"
 ---
 # <a name="install-azure-cli-with-yum"></a>Installer Azure CLI avec yum
 

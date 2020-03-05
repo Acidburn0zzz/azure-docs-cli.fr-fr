@@ -1,20 +1,19 @@
 ---
 title: Installez Azure CLI sur Linux avec zypper
 description: Comment installer Azure CLI avec zypper
-author: sptramer
-ms.author: sttramer
-manager: carmonm
+author: dbradish-microsoft
+ms.author: dbradish
+manager: barbkess
 ms.date: 09/09/2018
 ms.topic: conceptual
-ms.prod: azure
-ms.technology: azure-cli
+ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 7e5897fe545527aa2708432e0ad0cf626584c785
-ms.sourcegitcommit: 0088160bdb1ea520724d3e1efe71a4a66f29753d
+ms.openlocfilehash: 40312c2b6a741d3373d335b6db4797126ee2f3b3
+ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/19/2019
-ms.locfileid: "75216874"
+ms.lasthandoff: 02/28/2020
+ms.locfileid: "77779548"
 ---
 # <a name="install-azure-cli-with-zypper"></a>Installez Azure CLI avec zypper
 
@@ -60,17 +59,17 @@ Pour en savoir plus sur les différentes méthodes d’authentification, consult
 
 Voici certains problèmes courants lors de l’installation avec `zypper`. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
 
-### <a name="install-on-sles-12-or-other-other-systems-without-python-36"></a>Installer sur SLES 12 ou d’autres systèmes sans Python 3.6
+### <a name="install-on-sles-12-or-other-systems-without-python-36"></a>Installer sur SLES 12 ou d’autres systèmes sans Python 3.6
 
 Sur SLES 12, le package python3 par défaut est la version 3.4 et n’est pas pris en charge par Azure CLI. Vous pouvez d’abord générer une version de python3 plus récente à partir de la source. Vous pouvez alors télécharger le package Azure CLI et l’installer sans dépendance.
 ```bash
-$ sudo zypper install -y gcc gcc-c++ make ncurses patch wget tar zlib-devel zlib
+$ sudo zypper install -y gcc gcc-c++ make ncurses patch wget tar zlib-devel zlib openssl-devel
 # Download Python source code
 $ PYTHON_VERSION="3.6.9"
 $ PYTHON_SRC_DIR=$(mktemp -d)
 $ wget -qO- https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz | tar -xz -C "$PYTHON_SRC_DIR"
 # Build Python
-$ $PYTHON_SRC_DIR/*/configure --with-ssl
+$ $PYTHON_SRC_DIR/*/configure
 $ make
 $ sudo make install
 #Download azure-cli package 
