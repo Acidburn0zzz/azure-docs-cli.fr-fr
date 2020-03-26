@@ -1,6 +1,6 @@
 ---
 title: Qu’est-ce qu’Azure CLI ?
-description: Vue d’ensemble d’Azure CLI, outil d’interface de ligne de commande conçu pour créer et gérer des ressources Azure maintenant disponibles dans les environnements Windows, macOS et Linux.
+description: Vue d’ensemble d’Azure CLI, outil d’interface de ligne de commande conçu pour créer et gérer des ressources Azure maintenant disponibles dans les environnements Windows, macOS et Linux.
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
@@ -8,16 +8,16 @@ ms.date: 01/30/2020
 ms.topic: overview
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 6aeb296c635d3efa35af08af227f165c7bd8f7d2
-ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
+ms.openlocfilehash: f3f78f152a80fa1b9d10f3865f659c24767e4a1b
+ms.sourcegitcommit: 93d8137f37e974f7d314a0b1deb65ac563c2e2c5
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/28/2020
-ms.locfileid: "77779803"
+ms.lasthandoff: 03/21/2020
+ms.locfileid: "79989984"
 ---
 # <a name="what-is-azure-cli"></a>Qu’est-ce qu’Azure CLI
 
-L’interface de ligne de commande Azure (Azure CLI) est un environnement qui sert à créer et à gérer des ressources Azure.  Azure CLI est disponible dans les services Azure et est conçu pour vous permettre d’utiliser rapidement Azure en mettant l’accent sur l’automatisation.
+L’interface de ligne de commande Azure (Azure CLI) est un ensemble de commandes qui sert à créer et à gérer des ressources Azure.  L’interface Azure CLI est disponible dans les services Azure et est conçu pour vous permettre d’utiliser rapidement Azure en mettant l’accent sur l’automatisation.
 
 ## <a name="key-characteristics"></a>Caractéristiques clés
 
@@ -27,20 +27,19 @@ Les fonctionnalités Azure CLI facilitent l’utilisation de différents langage
 
 - Peut également être exécuté dans Docker et Azure Cloud Shell.
 - Offre la souplesse d’une ligne de commande quand vous gérez une solution Azure.
-
 - Prend en charge les opérations de longue durée.
 - Peut utiliser un seul abonnement pour toutes les commandes, ou changer d’abonnements par commande.
 - Permet d’interroger les résultats de ligne de commande avec une sortie de requête retournée dans le format de votre choix.
 - Offre la possibilité de travailler avec plusieurs clouds.
-- Fournit des paramètres configurables.
+- Fournit des paramètres configurables pour la journalisation, la collecte de données et les valeurs d’argument par défaut.
 - Est déployé avec des modèles de déploiement Azure Resource Manager.
 
 ## <a name="current-version"></a>Version actuelle
 
 [!INCLUDE [current-version](includes/current-version.md)]
 
-## <a name="next-steps"></a>Étapes suivantes
+## <a name="see-also"></a>Voir aussi
 
-- Consultez [Bien démarrer avec Azure CLI](get-started-with-azure-cli.md) pour commencer.
-
-- Pour la liste des commandes Azure CLI, consultez la [Liste de référence de toutes les commandes Azure CLI](/cli/azure/reference-index).
+- [Prise en main de l’interface Azure CLI](get-started-with-azure-cli.md)
+- [Liste de référence complète des commandes pour Azure CLI](/cli/azure/reference-index)
+- [Services pouvant être gérés par l’interface Azure CLI](azure-services-the-azure-cli-can-manage.md)
