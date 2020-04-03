@@ -4,18 +4,143 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 03/10/2020
+ms.date: 03/31/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: ff3a1da2343b96bfd78b20742c2c15707932f3d7
-ms.sourcegitcommit: 21bc2a7125b6c38bf1c4def0a0e66e6673de4805
+ms.openlocfilehash: aed043bcb900937a405fd71dafe24016fa0972d7
+ms.sourcegitcommit: b5ecfc168489cd0d96462d6decf83e8b26a10194
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/10/2020
-ms.locfileid: "79037946"
+ms.lasthandoff: 03/31/2020
+ms.locfileid: "80417826"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="march-31-2020"></a>31 mars 2020
+
+Version 2.3.0
+
+### <a name="acr"></a>ACR
+
+* 'az acr task update' : exception du pointeur null
+* `az acr import`: Modification de l’aide et du message d’erreur pour clarifier l’utilisation de --source et --registry
+* Ajout d’un validateur pour l’argument 'registry_name'
+* `az acr login` : Suppression de l’indicateur de préversion sur '--expose-token'
+* [CHANGEMENT CASSANT] Suppression du paramètre de branche 'az acr task create/update'
+* 'az acr task update' : Le client peut maintenant mettre à jour le contexte, git-token et/ou les déclencheurs individuellement
+* 'az acr agentpool' : nouvelle fonctionnalité
+
+### <a name="aks"></a>AKS
+
+* Correction d’apiServerAccessProfile lors de la mise à jour de --api-server-authorized-ip-ranges
+* aks update : Remplacement des adresses IP sortantes par des valeurs d’entrée lors de la mise à jour
+* Pas de création de SPN pour les clusters MSI et prise en charge de l’attachement d’acr à des clusters MSI
+
+### <a name="ams"></a>AMS
+
+* Correctif #12469 : échec de l’ajout de Fairplay content-key-policy en raison de problèmes avec le paramètre « ask »
+
+### <a name="appconfig"></a>AppConfig
+
+* Ajout de --skip-keyvault pour l’exportation de kv
+
+### <a name="appservice"></a>AppService
+
+* Correctif #12509 : Suppression de la balise d’az webapp up par défaut
+* az functionapp create : Mise à jour du menu d’aide --runtime-version et ajout d’un avertissement quand l’utilisateur spécifie --runtime-version pour dotnet
+* az functionapp create : Mise à jour du mode de définition de javaVersion pour les applications de fonction Windows
+
+### <a name="arm"></a>ARM
+
+* az deployment create/validate : Utilisation du --handle-extended-json-format par défaut
+* az lock create : Ajout d’exemples de création de sous-ressources dans la documentation d’aide
+* az deployment {group/mg/sub/tenant} list : Prise en charge du filtrage provisioningState
+* az deployment : Correction du bogue d’analyse pour les commentaires sous le dernier argument
+
+### <a name="backup"></a>Backup
+
+* Ajout de plusieurs fonctionnalités de restauration de fichiers
+* Ajout de la prise en charge de la sauvegarde des disques de système d’exploitation uniquement
+* Ajout du paramètre restore-as-unmanaged-disk pour spécifier une restauration non gérée
+
+### <a name="compute"></a>Calcul
+
+* az vm create : Ajout de l’option NONE de --nsg-rule
+* az vmss create/update : suppression de la balise d’aperçu des réparations automatiques vmss
+* az vm update : Prise en charge de --workspace
+* Correction d’un bogue dans le code d’initialisation VirtualMachineScaleSetExtension
+* Mise à niveau de VMAccessAgent vers la version 2.4
+* az vmss set-orchestration-service-state : prise en charge de l’état de la définition du service d’orchestration vmss
+* Mise à niveau de la version d’API de disque vers la version 2019-11-01
+* az disk create: add --disk-iops-read-only, --disk-mbps-read-only, --max-shares, --image-reference, --image-reference-lun, --gallery-image-reference, --gallery-image-reference-lun
+
+### <a name="cosmos-db"></a>Cosmos DB
+
+* Correction de l’option --type manquante pour les redirections de dépréciation
+
+### <a name="docker"></a>Docker
+
+* Mise à jour vers Alpine 3.11 et Python 3.6.10
+
+### <a name="extension"></a>Extension
+
+* Autorisation de charger des extensions dans le chemin système via des packages
+
+### <a name="hdinsight"></a>HDInsight
+
+* (az hdinsight create:) Les clients du support spécifient une version TLS minimale prise en charge à l’aide du paramètre `--minimal-tls-version`. La valeur autorisée est 1.0,1.1,1.2
+
+### <a name="iot"></a>IoT
+
+* Ajout de codeowner
+* az iot hub create : changement de la référence SKU par défaut S1 en F1
+* iot hub : Prise en charge d’IotHub dans le profil de 2019-03-01-hybrid
+
+### <a name="iotcentral"></a>IotCentral
+
+* Mise à jour des détails d’erreur, du modèle d’application par défaut et du message d’invite
+
+### <a name="keyvault"></a>KeyVault
+
+* Prise en charge de la sauvegarde/restauration de certificat
+* keyvault create/update : Prise en charge de --retention-days
+* Plus d’affichage des clés/secrets managés lors du listing
+* az keyvault create : prise en charge de `--network-acls`, `--network-acls-ips` et `--network-acls-vnets` pour spécifier des règles réseau lors de la création de coffres
+
+### <a name="lock"></a>Verrouillage
+
+* Correction de bogue pour az lock delete : az lock delete ne fonctionne pas sur Microsoft.DocumentDB
+
+### <a name="monitor"></a>Superviser
+
+* az monitor clone : prise en charge des règles de clonage de métriques d’une ressource à une autre
+* Correctif IcM179210086 : impossible de créer une alerte de métrique personnalisée pour la métrique Application Insights
+
+### <a name="netappfiles"></a>NetAppFiles
+
+* az volume create : Autorisation des volumes de protection des données à ajouter des opérations de réplication : approuver, suspendre, reprendre, état, supprimer
+
+### <a name="network"></a>Réseau
+
+* az network application-gateway waf-policy managed-rule rule-set add : prise en charge de Microsoft_BotManagerRuleSet
+* network watcher flow-log show: correction d’une information de dépréciation fausse
+* Prise en charge des noms d’hôte dans l’écouteur de passerelle d’application
+* az network nat gateway : prise en charge de la création d’une ressource vide sans IP publique ni préfixe d’IP publique
+* Prise en charge de la génération de passerelles VPN
+* Prise en charge de `--if-none-match` dans `az network dns record-set {} add-record`
+
+### <a name="packaging"></a>Packaging
+
+* Arrêt de la prise en charge de Python 3.5
+
+### <a name="profile"></a>Profil
+
+* az login : Affichage d’un avertissement pour l’erreur MFA
+
+### <a name="rdbms"></a>SGBDR
+
+* Ajout de commandes de gestion de clés de chiffrement de données de serveur pour PostgreSQL et MySQL
 
 ## <a name="march-10-2020"></a>10 mars 2020
 
@@ -89,7 +214,7 @@ Version 2.2.0
 
 * keyvault create : activation de la suppression réversible par défaut
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * az monitor metrics alert create : prise en charge de `~` dans `--condition`
 
@@ -810,7 +935,7 @@ Version 2.0.75
 
 * Résolution d’un problème où `iot hub show` entraînait une erreur incorrecte « ressource introuvable »
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Ajout de la prise en charge de CRUD dans `monitor log-analytics workspace`
 
@@ -869,7 +994,7 @@ Version 2.0.74
 
 * Résolution d’un problème de connexion avec un locataire (`login -t`) qui pouvait provoquer l’échec de `keyvault create`
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Résolution d’un problème où le caractère `:` n’était pas autorisé dans l’argument `--condition` de `monitor metrics alert create`
 
@@ -1558,7 +1683,7 @@ Version 2.0.63
 * Changement apporté à `feedback` pour inviter l’utilisateur à ouvrir un navigateur et à utiliser un modèle de message de problème afin de faciliter le processus de création du ticket
 * Changement apporté à `feedback` pour afficher le corps du message du problème quand la commande est exécutée avec '--verbose'
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 * Correction du problème où « count » n’était pas une valeur autorisée avec `metrics alert [create|update]` 
 
 ### <a name="network"></a>Réseau
@@ -1623,7 +1748,7 @@ Version 2.0.63
 ### <a name="interactive"></a>Interactive
 * Correction d’une incompatibilité avec l’extension Interactive installée via azdev
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 * Changement visant à autoriser la valeur de dimension `*` pour `monitor metrics alert [create|update]`
 
 ### <a name="network"></a>Réseau
@@ -1826,7 +1951,7 @@ Version 2.0.58
 ### <a name="key-vault"></a>Key Vault
 * Correction du problème lié à `keyvault secret backup`, où certains utilisateurs recevaient une erreur `unexpected_keyword` quand ils utilisaient `--id`
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 * Changement apporté à `monitor metrics alert [create|update]` pour autoriser la valeur de dimension `*`
 
 ### <a name="network"></a>Réseau
@@ -1916,7 +2041,7 @@ Version 2.0.56
 ### <a name="kusto"></a>Kusto
 * Préversion
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 * Changement apporté à la comparaison d’ID pour qu’elle ne respecte pas la casse
 
 ### <a name="profile"></a>Profil
@@ -2205,7 +2330,7 @@ Version 2.0.50
 ### <a name="interactive"></a>Interactive
 * Interactive installe maintenant l’extension `interactive`, ce qui permettra des mises à jour et prises en charge plus rapides
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 * Ajout de la prise en charge pour les noms de métriques qui incluent les caractères barre oblique (/) et point (.) à `--condition` dans `monitor metrics alert [create|update]`
 
 ### <a name="network"></a>Réseau
@@ -2270,7 +2395,7 @@ Version 2.0.49
 * Ajout d’options de modèle et de nom d’affichage pour la création de l’application IoT central
 * [CHANGEMENT CASSANT] Suppression de la prise en charge de la référence SKU F1, utilisez la référence SKU S1 à la place
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 * Change en `monitor activity-log list` :
   * Prise en charge ajoutée pour répertorier tous les événements au niveau de l’abonnement
   * Ajout du paramètre `--offset` pour créer plus facilement des requêtes de temps
@@ -2515,7 +2640,7 @@ Version 2.0.45
 
 * Résolution du problème relatif à l’association de hubs liés
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Ajout des commandes `monitor metrics alert` permettant de recevoir des alertes sur les métriques quasiment en temps réel
 * Commandes `monitor alert` déconseillées
@@ -3388,7 +3513,7 @@ Version 2.0.30
 
 * Correction des bogues avec la commande `create environment`
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Ajout de la prise en charge de `--top`, `--orderby` et `--namespace` à `metrics list` [#5785](https://github.com/Azure/azure-cli/issues/5785)
 * Résolution de [#4529](https://github.com/Azure/azure-cli/issues/5785) : `metrics list` accepte une liste de mesures séparées par des espaces pour la récupération
@@ -3473,7 +3598,7 @@ Version 2.0.29
 * Résolution de [#5688](https://github.com/Azure/azure-cli/issues/5688) : la saisie automatique n’apparaît pas si le chargement de la table de commande a rencontré une exception
 * Résolu : indicateur de progression pour les opérations à long terme
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Les commandes `monitor autoscale-settings` ont été déconseillées
 * Ajout des commandes `monitor autoscale`
@@ -3635,7 +3760,7 @@ Version 2.0.27
 * Ajout de la prise en charge de `--no-wait` pour `iot dps access policy [create|update]` et `iot dps linked-hub [create|update]`
 * Modification de `iot hub create` pour autoriser la spécification du nombre de partitions
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Correction de la commande `az monitor log-profiles create`
 
@@ -3810,7 +3935,7 @@ Version 2.0.25
 * Ajout de messages de désapprobation dans les commandes et l’aide relative aux commandes
 * Ajout de la vérification IoT pour informer les utilisateurs de l’extension IoT
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Ajout de la prise en charge des paramètres multi diagnostic. Le paramètre `--name` est désormais requis pour `az monitor diagnostic-settings create`
 * Ajout de la commande `monitor diagnostic-settings categories` pour obtenir la catégorie des paramètres de diagnostic
@@ -3902,7 +4027,7 @@ Version 2.0.22
 
 * Correction de la régression des ports par défaut
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Ajout de la prise en charge de plusieurs dimensions à la commande des mesures
 
@@ -3991,7 +4116,7 @@ Version 2.0.21
 
 * Ajout de la prise en charge pour les autorités de certification (CA) et les chaînes d’approbation
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Ajout des commandes `activity-log alert`
 
@@ -4059,7 +4184,7 @@ Version 2.0.20
 
 * Ajout de clarté dans les messages visant à déconseiller de tous les programmes d’installation et des invites de confirmation
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Ajout des commandes `action-group`
 
@@ -4561,7 +4686,7 @@ vm (2.0.11)
 * Ajout de la prise en charge de la revendication de toutes les machines virtuelles dans le laboratoire via `az lab vm claim`
 * Ajout du formateur de sortie de tableau pour `az lab vm list` et `az lab vm show`
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Correctif pour le fichier de modèle avec `monitor autoscale-settings get-parameters-template` commande (#3349)
 * `monitor alert-rule-incidents list` renommé en `monitor alert list-incidents`
@@ -4803,7 +4928,7 @@ vm (2.0.6)
 * Ajout de la commande pratique `az lab formula export-artifacts` pour exporter une structure d’artefact dans une formule de laboratoire
 * Ajout de commandes pour gérer les secrets dans un laboratoire
 
-### <a name="monitor"></a>Moniteur
+### <a name="monitor"></a>Superviser
 
 * Résolution de bogue : modélisation de `--actions` de `az alert-rules create` pour consommer la chaîne JSON ([#3009](https://github.com/Azure/azure-cli/issues/3009))
 * Correction de bogue : la création de paramètres de diagnostic n’accepte pas les métriques/journaux à partir des commandes d’affichage ([#2913](https://github.com/Azure/azure-cli/issues/2913))

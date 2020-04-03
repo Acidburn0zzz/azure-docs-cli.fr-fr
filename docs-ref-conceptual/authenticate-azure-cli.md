@@ -8,12 +8,12 @@ ms.date: 02/22/2019
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 2027741c4fac1ffaeaf6099e18b9729df2e84beb
-ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
+ms.openlocfilehash: 9c01c0e42edc0c4199349e0bc5d454d7cd3ddc71
+ms.sourcegitcommit: b5ecfc168489cd0d96462d6decf83e8b26a10194
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/28/2020
-ms.locfileid: "77780024"
+ms.lasthandoff: 03/31/2020
+ms.locfileid: "80417931"
 ---
 # <a name="sign-in-with-azure-cli"></a>Se connecter avec Azure CLI 
 
@@ -57,13 +57,17 @@ az login -u <username> -p <password>
 
 ## <a name="sign-in-with-a-service-principal"></a>Connexion avec un principal de service
 
-Les principaux de service sont des comptes non liés à un utilisateur spécifique, qui peuvent détenir des autorisations sur ces derniers par le biais de rôles prédéfinis. L’authentification avec un principal de service est la meilleure façon d’écrire des scripts ou des programmes sécurisés, ce qui vous permet d’appliquer des restrictions d’autorisation et des informations d’identification statiques stockées localement. Pour en savoir plus sur les principaux de service, consultez [Créer un principal du service avec Azure CLI](create-an-azure-service-principal-azure-cli.md).
+Les principaux de service sont des comptes non liés à un utilisateur spécifique, qui peuvent détenir des autorisations sur ces derniers par le biais de rôles prédéfinis. L’authentification avec un principal de service est la meilleure façon d’écrire des scripts ou des programmes sécurisés, ce qui vous permet d’appliquer des restrictions d’autorisation et des informations d’identification statiques stockées localement. Pour en savoir plus sur les principaux de service, consultez [Créer un principal du service avec Azure CLI](/cli/azure/create-an-azure-service-principal-azure-cli.md).
 
 Pour vous connecter avec un principal de service, il vous faut :
 
 * L’URL ou le nom associé au principal du service
 * Le mot de passe du principal de service ou le certificat X509 utilisé pour créer le principal du service au format PEM
 * Le locataire associé au principal du service, comme un domaine `.onmicrosoft.com` ou un ID d’objet Azure
+
+> [!NOTE]
+> Un **CERTIFICAT** doit être ajouté à la **CLÉ PRIVÉE** dans un fichier PEM.  Pour un exemple de format de fichier PEM, consultez [Créer un principal du service Azure à l’aide d’Azure CLI](create-an-azure-service-principal-azure-cli#sign-in-using-a-service-principal). 
+>
 
 > [!IMPORTANT]
 >

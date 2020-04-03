@@ -8,14 +8,14 @@ ms.date: 02/15/2019
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 1bde944f1c443ef1a8d5aa918575fa09e6bb4714
-ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
+ms.openlocfilehash: c18adbee84fd3e5c73367b07bbd0b03ac61008cd
+ms.sourcegitcommit: b5ecfc168489cd0d96462d6decf83e8b26a10194
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/28/2020
-ms.locfileid: "77779616"
+ms.lasthandoff: 03/31/2020
+ms.locfileid: "80417871"
 ---
-# <a name="create-an-azure-service-principal-with-azure-cli"></a>Créez un principal du service avec Azure CLI
+# <a name="create-an-azure-service-principal-with-the-azure-cli"></a>Créer un principal du service Azure à l’aide d’Azure CLI
 
 Les outils automatisés qui utilisent les services Azure doivent toujours avoir des autorisations restreintes. Plutôt que de faire se connecter des applications en tant qu’utilisateur entièrement privilégié, Azure offre des principaux du service.
 
@@ -25,7 +25,7 @@ Cet article vous explique les étapes à suivre pour créer, réinitialiser et o
 
 ## <a name="create-a-service-principal"></a>Créer un principal du service
 
-Créez un principal de service à l’aide de la commande [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac). Lorsque vous créez un principal de service, vous choisissez le type d’authentification de connexion qu’il utilise. 
+Créez un principal de service à l’aide de la commande [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac). Lorsque vous créez un principal de service, vous choisissez le type d’authentification de connexion qu’il utilise.
 
 > [!NOTE]
 >
@@ -53,6 +53,9 @@ Enregistrez leurs valeurs, mais elles peuvent être récupérées à tout moment
 
 Pour l’authentification basée sur un certificat, utilisez l’argument `--cert`. Cet argument requiert que vous possédiez un certificat existant. Assurez-vous que n’importe quel outil qui utilise ce principal de service a accès à la clé privée du certificat. Les certificats doivent être au format ASCII tel que PEM, CER ou DER. Transmettez le certificat sous forme de chaîne, ou utilisez le format `@path` pour charger le certificat depuis un fichier.
 
+> [!NOTE]
+> Quand un fichier PEM est utilisé, un **CERTIFICAT** doit être ajouté à la **CLÉ PRIVÉE** dans le fichier.
+
 ```azurecli-interactive
 az ad sp create-for-rbac --name ServicePrincipalName --cert "-----BEGIN CERTIFICATE-----
 ...
@@ -74,6 +77,35 @@ Pour créer un certificat _auto-signé_ pour l’authentification, utilisez l’
 ```azurecli-interactive
 az ad sp create-for-rbac --name ServicePrincipalName --create-cert
 ```
+
+Sortie de la console :
+
+```
+Creating a role assignment under the scope of "/subscriptions/myId"
+Please copy C:\myPath\myNewFile.pem to a safe place.
+When you run 'az login', provide the file path in the --password argument
+{
+  "appId": "myAppId",
+  "displayName": "myDisplayName",
+  "fileWithCertAndPrivateKey": "C:\\myPath\\myNewFile.pem",
+  "name": "http://myName",
+  "password": null,
+  "tenant": "myTenantId"
+}
+```
+
+Contenu du nouveau fichier PEM :
+```
+-----BEGIN PRIVATE KEY-----
+myPrivateKeyValue
+-----END PRIVATE KEY-----
+-----BEGIN CERTIFICATE-----
+myCertificateValue
+-----END CERTIFICATE-----
+```
+
+> [!NOTE]
+> La commande `az ad sp create-for-rbac --create-cert` crée le principal du service et un fichier PEM. Le fichier PEM contient une **CLÉ PRIVÉE** correctement mise en forme et un **CERTIFICAT**.
 
 L’argument `--keyvault` peut être ajouté pour stocker le certificat dans Azure Key Vault. Lorsque vous utilisez `--keyvault`, l’argument `--cert` est __requis__.
 
@@ -149,7 +181,7 @@ Pour vous connecter avec un principal du service utilisant un mot de passe :
 az login --service-principal --username APP_ID --password PASSWORD --tenant TENANT_ID
 ```
 
-Pour vous connecter avec un certificat, celui-ci doit être disponible localement sous forme de fichier PEM ou DER, ou au format ASCII :
+Pour vous connecter avec un certificat, celui-ci doit être disponible localement sous forme de fichier PEM ou DER, ou au format ASCII. Quand un fichier PEM est utilisé, la **CLÉ PRIVÉE** et le **CERTIFICAT** doivent être ajoutés ensemble dans le fichier.
 
 ```azurecli-interactive
 az login --service-principal --username APP_ID --tenant TENANT_ID --password /path/to/cert
