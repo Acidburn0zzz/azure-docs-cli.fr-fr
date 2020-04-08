@@ -4,18 +4,30 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 03/31/2020
+ms.date: 04/01/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: aed043bcb900937a405fd71dafe24016fa0972d7
-ms.sourcegitcommit: b5ecfc168489cd0d96462d6decf83e8b26a10194
+ms.openlocfilehash: cca6f42f29467126553c6e8a332907b1ad1ebc74
+ms.sourcegitcommit: 712c8ca6457552b6b7a8866c1370a6ec51d07f2c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/31/2020
-ms.locfileid: "80417826"
+ms.lasthandoff: 04/01/2020
+ms.locfileid: "80525258"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="april-01-2020"></a>01 avril 2020
+
+Version 2.3.1
+
+### <a name="acr"></a>ACR
+
+* Correction d’une version incorrecte d’azure-mgmt-containerregistry pour Linux
+
+### <a name="profile"></a>Profil
+
+* az login : Correction des échecs de connexion avec les profils cloud autres que `latest`
 
 ## <a name="march-31-2020"></a>31 mars 2020
 
@@ -5138,4 +5150,3 @@ Vous pouvez signaler des problèmes liés aux versions d’évaluation nocturnes
 - Signalez des problèmes dans notre [liste d’incidents github](https://github.com/azure/azure-cli/issues/)
 - Contactez l’équipe produit à l’adresse [azfeedback@microsoft.com](mailto:azfeedback@microsoft.com).
 - Fournissez des commentaires à partir de la ligne de commande avec la commande `az feedback`.
-
