@@ -4,18 +4,129 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 04/01/2020
+ms.date: 04/21/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: cca6f42f29467126553c6e8a332907b1ad1ebc74
-ms.sourcegitcommit: 712c8ca6457552b6b7a8866c1370a6ec51d07f2c
+ms.openlocfilehash: 10dfdc316ba00f8a7019f0724aab231e344c1c6d
+ms.sourcegitcommit: 89ec9fa7ebd2170b55201cd51fb386fd9351d7ca
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/01/2020
-ms.locfileid: "80525258"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81728596"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="april-21-2020"></a>21 avril 2020
+
+Version 2.4.0
+
+### <a name="acr"></a>ACR
+
+* `az acr run --cmd` : désactivation du remplacement du répertoire de travail
+* Prise en charge du point de terminaison de données dédié
+
+### <a name="aks"></a>AKS
+
+* `az aks list -o table` doit afficher privateFqdn comme nom de domaine complet pour les clusters privés
+* Ajout de --uptime-sla
+* Mise à jour du package containerservice
+* Ajout de la prise en charge de l’adresse IP publique de nœud
+* Correction d’une faute de frappe dans la commande d’aide
+
+### <a name="appconfig"></a>AppConfig
+
+* Résolution de la référence du coffre de clés pour la liste Key Vault et les commandes d’exportation
+* Résolution de bogue pour les valeurs de clé de liste
+
+### <a name="appservice"></a>AppService
+
+* `az functionapp create`: Modification de la façon dont linuxFxVersion était défini pour les applications de fonction dotnet linux. Cela doit résoudre un bogue qui empêchait la création d’applications de consommation dotnet linux
+* [CHANGEMENT CASSANT] `az webapp create` : correctif pour conserver les paramètres d’application existants avec az webapp create
+* [CHANGEMENT CASSANT] `az webapp up` : correctif pour créer un groupe de ressources pour la commande az webapp up lors de l’utilisation de l’indicateur -g
+* [CHANGEMENT CASSANT] `az webapp config` : correctif pour afficher des valeurs pour la sortie non-JSON avec la liste de chaînes de connexion az webapp config
+
+### <a name="arm"></a>ARM
+
+* `az deployment create/validate`: Ajout d’un paramètre `--no-prompt` pour prendre en charge le saut de l’invite de paramètres manquants pour le modèle ARM
+* `az deployment group/mg/sub/tenant validate`: Prise en charge de commentaires dans le fichier de paramètres de déploiement
+* `az deployment`: Suppression de `is_preview` pour le paramètre `--handle-extended-json-format`
+* `az deployment group/mg/sub/tenant cancel`: Prise en charge de l’annulation du déploiement pour le modèle ARM
+* `az deployment group/mg/sub/tenant validate`: Amélioration du message d’erreur lors de l’échec de la vérification du déploiement
+* `az deployment-scripts`: Ajout de nouvelles commandes pour DeploymentScripts
+* `az resource tag`: Ajout du paramètre `--is-incremental` pour prendre en charge l’ajout incrémentiel de balises aux ressources
+
+### <a name="aro"></a>ARO
+
+* `az aro`:  Ajout du module de commande aro Azure RedHat OpenShift V4
+
+### <a name="batch"></a>Batch
+
+* Mise à jour de l’API de lot
+
+### <a name="compute"></a>Calcul
+
+* `az sig image-version create`: Ajout d’un type de compte de stockage Premium_LRS
+* `az vmss update`: Correction d’un problème de mise à jour de notification d’arrêt
+* `az vm/vmss create`: Ajout de la prise en charge de la version d’image spécialisée
+* Version de l’API SIG 2019-12-01
+* `az sig image-version create`: Ajout de --target-region-encryption
+* Correction de l’échec des tests lors d’une exécution en série en raison d’un nom de coffre de clés en double dans le cache en mémoire global
+
+### <a name="cosmosdb"></a>CosmosDB
+
+* Prise en charge d’`az cosmosdb private-link-resource/private-endpoint-connection`
+
+### <a name="iot-central"></a>IoT Central
+
+* Dépréciation d’`az iotcentral`
+* Ajout du module de commande `az iot central`
+
+### <a name="monitor"></a>Superviser
+
+* Prise en charge du scénario de lien privé pour la supervision
+* Correction du mode de simulation incorrect dans test_monitor_general_operations.py
+
+### <a name="network"></a>Réseau
+
+* Dépréciation de la référence sku pour la commande de mise à jour de l’adresse IP publique
+* `az network private-endpoint`: Prise en charge du groupe de zones DNS privées
+* Activation de la fonctionnalité de contexte local pour le paramètre de réseau virtuel/sous-réseau
+* Correction d’un exemple d’utilisation incorrect dans test_nw_flow_log_delete
+
+### <a name="packaging"></a>Packaging
+
+* Suppression de la prise en charge d’un package Ubuntu/Disco
+
+### <a name="rbac"></a>RBAC
+
+* `az ad app create/update` : prise en charge de --optional-claims en tant que paramètre
+
+### <a name="rdbms"></a>SGBDR
+
+* Ajout des commandes d’administrateur Azure Active Directory pour PostgreSQL et MySQL
+
+### <a name="service-fabric"></a>Service Fabric
+
+* Correctif n  12891 : `az sf application update --application-parameters` supprime les anciens paramètres qui ne sont pas dans la demande
+* Correctif n  12470, az sf create cluster, résolution de bogues dans la durabilité et la fiabilité des mises à jour, et recherche de groupes identiques de machines virtuelles correctement dans le code en fonction d’un nom de type de nœud
+
+### <a name="sql"></a>SQL
+
+* Ajout d’`az sql mi op list`, `az sql mi op get`, `az sql mi op cancel`
+* `az sql midb` : mise à jour/affichage de la stratégie de conservation à long terme, affichage/suppression des sauvegardes de conservation à long terme, restauration de la sauvegarde de conservation à long terme
+
+### <a name="storage"></a>Stockage
+
+* Mise à niveau d’azure-mgmt-storage vers 9.0.0
+* `az storage logging off`: Prise en charge de la désactivation de la journalisation pour un compte de stockage
+* `az storage account update`: Activation de la rotation automatique de la clé pour CMK
+* `az storage account encryption-scope create/update/list/show`: Ajout de la prise en charge de la personnalisation de l’étendue du chiffrement
+* `az storage container create`: Ajout de --default-encryption-scope et --deny-encryption-scope-override pour définir l’étendue du chiffrement de niveau de conteneur
+
+### <a name="survey"></a>Enquête
+
+* Ajout d’une instruction switch pour désactiver le lien d’enquête
 
 ## <a name="april-01-2020"></a>01 avril 2020
 
