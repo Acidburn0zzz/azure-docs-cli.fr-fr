@@ -4,18 +4,72 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 04/21/2020
+ms.date: 04/28/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 10dfdc316ba00f8a7019f0724aab231e344c1c6d
-ms.sourcegitcommit: 89ec9fa7ebd2170b55201cd51fb386fd9351d7ca
+ms.openlocfilehash: 032039cc5a51f0d158fbd3616a30263df139f53b
+ms.sourcegitcommit: 1e5d8f04091803d68ac6833d2e2af37a863486ac
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81728596"
+ms.lasthandoff: 04/28/2020
+ms.locfileid: "82199391"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="april-28-2020"></a>28 avril 2020
+
+Version 2.5.0
+
+### <a name="acs"></a>ACS
+
+* [CHANGEMENT CASSANT] du paramètre az openshift create: remove --vnet-peer.
+* `az openshift create` : Ajout d’indicateurs pour prendre en charge un cluster privé.
+* `az openshift` : Mise à niveau vers la version d’API `2019-10-27-preview`.
+* `az openshift` : Ajout de la commande `update`.
+
+### <a name="aks"></a>AKS
+
+* `az aks create`: Ajout de la prise en charge de Windows
+
+### <a name="appservice"></a>AppService
+
+* `az webapp deployment source config-zip` : Suppression de sleep après request.get()
+
+### <a name="arm"></a>ARM
+
+* Ajout de commandes What-If de déploiement de modèles
+
+### <a name="aro"></a>ARO
+
+* `az aro`: Correction de la sortie de table
+
+### <a name="ci"></a>CI
+
+* Intégration de pytest et dépréciation de nose pour le test d’automatisation
+
+### <a name="compute"></a>Calcul
+
+* `az vmss disk detach` : Correction du problème NoneType du disque de données
+* `az vm availability-set list`: Prise en charge de l’affichage de la liste de machines virtuelles
+* `az vm list-skus`: Correction du problème d’affichage du format de table
+
+### <a name="keyvault"></a>KeyVault
+
+* Ajout d’un nouveau paramètre `--enable-rbac-authorization` lors de la création ou de la mise à jour
+
+### <a name="monitor"></a>Superviser
+
+* Prise en charge des fonctionnalités CMK de cluster LA
+* `az monitor log-analytics workspace linked-storage` : Prise en charge des fonctionnalités BYOS
+
+### <a name="network"></a>Réseau
+
+* `az network security-partner` : Prise en charge du fournisseur de partenaire de sécurité
+
+### <a name="privatedns"></a>Privatedns
+
+* Ajout d’une fonctionnalité dans une zone DNS privée pour importer/exporter un fichier de zone
 
 ## <a name="april-21-2020"></a>21 avril 2020
 
@@ -62,7 +116,7 @@ Version 2.4.0
 
 ### <a name="batch"></a>Batch
 
-* Mise à jour de l’API de lot
+* Mise à jour de l’API Batch
 
 ### <a name="compute"></a>Calcul
 
