@@ -8,12 +8,12 @@ ms.date: 06/11/2018
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: ff5f9f5a5add52bc05009a42aeb00855eb2703fa
-ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
+ms.openlocfilehash: 97f9fe767d8f7a6a1360c9068985b2fcfe1b7c6f
+ms.sourcegitcommit: 1e5d8f04091803d68ac6833d2e2af37a863486ac
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/28/2020
-ms.locfileid: "77779650"
+ms.lasthandoff: 04/28/2020
+ms.locfileid: "82199425"
 ---
 # <a name="azure-cli-configuration"></a>Configuration d’Azure CLI
 
@@ -78,7 +78,7 @@ Consultez la section suivante pour en savoir plus sur toutes les valeurs de conf
 
 ## <a name="cli-configuration-values-and-environment-variables"></a>Valeurs de configuration de l’interface CLI et variables d’environnement
 
-Le tableau suivant contient l’ensemble des noms d’options et de sections pouvant être placés dans un fichier de configuration. Leurs variables d’environnement correspondantes sont configurées en tant que `AZURE_{section}_{name}` dans toutes les extrémités de fin. Par exemple, le paramètre par défaut `storage_account` pour `batchai` est défini dans la variable `AZURE_BATCHAI_STORAGE_ACCOUNT`.
+Le tableau suivant contient l’ensemble des noms d’options et de sections pouvant être placés dans un fichier de configuration. Leurs variables d’environnement correspondantes sont configurées en tant que `AZURE_{section}_{name}` dans toutes les extrémités de fin. Par exemple, la valeur par défaut `output` pour `core` est définie dans la variable `AZURE_CORE_OUTPUT`, tandis que la valeur par défaut `storage_account` pour `batchai` est définie dans la variable `AZURE_BATCHAI_STORAGE_ACCOUNT`.
 
 Lorsque vous fournissez une valeur par défaut, cet argument n’est plus nécessaire à aucune commande. C’est la valeur par défaut qui est alors utilisée.
 
@@ -87,6 +87,8 @@ Lorsque vous fournissez une valeur par défaut, cet argument n’est plus néces
 | __core__ | sortie | string | Format de sortie par défaut. Peut être `json`, `jsonc`, `tsv` ou `table`. |
 | | disable\_confirm\_prompt | boolean | Active/Désactive les invites de confirmation. |
 | | collect\_telemetry | boolean | Autorise Microsoft à recueillir des données anonymes sur l’utilisation de l’interface CLI. Pour plus d’informations sur la confidentialité, consultez les [conditions d’utilisation d’Azure CLI](https://aka.ms/AzureCliLegal). |
+| | only\_show\_errors | boolean | Montre uniquement les erreurs pendant l’appel de commande. En d’autres termes, seules les erreurs sont écrites dans `stderr`. Il supprime les avertissements des commandes en préversion, dépréciées et expérimentales. Il est également disponible pour les commandes individuelles avec le paramètre `--only-show-errors`. |
+| | no\_color | boolean | Désactive la couleur. Les messages de couleur d’origine ont le préfixe `DEBUG`, `INFO`, `WARNING` et `ERROR`. Cela contourne le problème d’une bibliothèque tierce où la couleur du terminal ne peut pas être restaurée après une redirection de `stdout`. |
 | __logging__ | enable\_log\_file | boolean | Active/Désactive la journalisation. |
 | | log\_dir | string | Répertoire dans lequel écrire les journaux d’activité. Par défaut, cette valeur est `${AZURE_CONFIG_DIR}/logs`. |
 | __storage__ | connection\_string | string | Chaîne de connexion par défaut à utiliser pour les commandes `az storage`. |
