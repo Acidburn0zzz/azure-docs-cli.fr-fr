@@ -4,18 +4,55 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 04/28/2020
+ms.date: 04/30/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 032039cc5a51f0d158fbd3616a30263df139f53b
-ms.sourcegitcommit: 1e5d8f04091803d68ac6833d2e2af37a863486ac
+ms.openlocfilehash: efb17acb25b2268496efe313cac0a8189a78930a
+ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82199391"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82591422"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="april-30-2020"></a>30 avril 2020
+
+Version 2.5.1
+
+### <a name="acr"></a>ACR
+
+* `az acr check-health`: Correction de « DOCKER_PULL_ERROR » sur Windows
+
+### <a name="compute"></a>Calcul
+
+* `az vm list-ip-addresses`: Gestion des erreurs
+* Correction d’un bogue de vm create si endpoint_vm_image_alias_doc n’est pas défini dans le profil cloud
+* `az vmss create`: Ajout de --os-disk-size-gb
+
+### <a name="cosmos-db"></a>Cosmos DB
+
+* `az cosmosdb create/update` : ajout de la prise en charge de add --enable-public-network
+
+### <a name="extension"></a>Extension
+
+* Correction du chargement des métadonnées incorrectes pour l’extension du type de roulette
+
+### <a name="packaging"></a>Packaging
+
+* Ajout du script az pour Git Bash/Cygwin sur Windows
+
+### <a name="sql"></a>SQL
+
+* `az sql instance-pool`: Ajout d’un groupe de commandes pour les pools d’instances
+
+### <a name="storage"></a>Stockage
+
+* Mise à niveau du package azure-multiapi-storage vers 0.3.0
+* Prise en charge de GZRS pour la création et la mise à jour de comptes de stockage
+* `az storage account failover`: Ajout de la prise en charge du basculement de comptes de stockage grs/gzrs
+* `az storage blob upload`: Ajout du paramètre --encryption-scope pour prendre en charge la spécification des informations d’étendue du chiffrement
 
 ## <a name="april-28-2020"></a>28 avril 2020
 

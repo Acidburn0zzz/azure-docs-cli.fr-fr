@@ -1,9 +1,9 @@
 ---
 ms.openlocfilehash: 4e359c261849ccc877eb7d4b235f04ae560bb709
-ms.sourcegitcommit: e5e6cec0d44f914df6f6584e1105a3b296363207
+ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/06/2019
+ms.lasthandoff: 05/06/2020
 ms.locfileid: "70387419"
 ---
 # <a name="azure-cli-documentation"></a>Documentation Azure CLI
@@ -17,8 +17,8 @@ Nous accueillons les contributions publiques dans la documentation Azure CLI ! 
 * Pour soumettre un changement dans la documentation _conceptuelle_ (contenu dans le répertoire `docs-ref-conceptual`), effectuez une demande de tirage (pull request) sur ce référentiel.
 * Pour soumettre un changement dans la documentation _de référence_ (toute autre documentation), effectuez une demande de tirage (pull request) sur [azure/azure-cli](https://github.com/azure/azure-cli). Cette référence est générée à partir du code source et est également utilisée dans l’aide `-h` de la ligne de commande.
 
-## <a name="microsoft-open-source-code-of-conduct"></a>Code de conduite de Microsoft Open Source
+## <a name="microsoft-open-source-code-of-conduct"></a>Code de conduite Microsoft Open Source
 
-Ce projet a adopté le [Code de conduite open source de Microsoft](https://opensource.microsoft.com/codeofconduct/).
-Pour plus d’informations, consultez la [FAQ sur le code de conduite](https://opensource.microsoft.com/codeofconduct/faq/) ou envoyez vos questions ou vos commentaires à [opencode@microsoft.com](mailto:opencode@microsoft.com).
+Ce projet a adopté le [Code de conduite Open Source de Microsoft](https://opensource.microsoft.com/codeofconduct/).
+Pour plus d’informations, consultez le [Forum Aux Questions sur le Code de conduite](https://opensource.microsoft.com/codeofconduct/faq/) ou contactez [opencode@microsoft.com](mailto:opencode@microsoft.com) si vous avez d’autres questions ou des commentaires.
 
