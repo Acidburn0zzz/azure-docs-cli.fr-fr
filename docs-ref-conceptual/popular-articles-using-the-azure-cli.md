@@ -10,10 +10,10 @@ ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
 ms.openlocfilehash: 3a0b2e315e0eaf6c352aa2737f33da043b5feb7d
-ms.sourcegitcommit: 93d8137f37e974f7d314a0b1deb65ac563c2e2c5
+ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/21/2020
+ms.lasthandoff: 05/06/2020
 ms.locfileid: "80075931"
 ---
 # <a name="popular-articles-using-the-azure-cli"></a>Articles populaires utilisant l’interface Azure CLI
@@ -30,7 +30,7 @@ L’interface Azure CLI est utilisée dans de nombreux services Azure, ce qui d
 |Virtual Machines | Guide pratique : Linux | [Charger un disque dur virtuel sur Azure à l’aide d’Azure CLI](/azure/virtual-machines/linux/disks-upload-vhd-to-managed-disk-cli) | Créez un disque managé vide, chargez votre fichier VHD local, puis copiez un disque managé.
 |Virtual Machines | Guide pratique : Linux | [Créer une galerie d’images partagées à l’aide d’Azure CLI](/azure/virtual-machines/linux/shared-images) | Créez une galerie d’images partagées contenant des images de machine virtuelle personnalisées avec d’autres personnes de votre organisation, dans ou entre différentes régions, ou dans un locataire Azure Active Directory.
 |Virtual Machines | Guide pratique : Linux | [Déployer des machines virtuelles Spot avec Azure CLI (préversion)](/azure/virtual-machines/linux/spot-cli) | Déployez une machine virtuelle Spot Linux qui ne sera pas supprimée en fonction du prix.
-|Virtual Machines | Démarrage rapide :  Windows | [Créer une machine virtuelle Windows à l’aide d’Azure CLI](/azure/virtual-machines/windows/quick-create-cli) | Déployez dans Azure une machine virtuelle qui exécute Windows Server 2016.
+|Virtual Machines | Démarrage rapide : Windows | [Créer une machine virtuelle Windows à l’aide d’Azure CLI](/azure/virtual-machines/windows/quick-create-cli) | Déployez dans Azure une machine virtuelle qui exécute Windows Server 2016.
 |Virtual Machines | Module Learn | [Gérer des machines virtuelles à l’aide d’Azure CLI](https://docs.microsoft.com/learn/modules/manage-virtual-machines-with-azure-cli/) | Créez, démarrez, arrêtez des machines virtuelles, et effectuez d’autres tâches de gestion liées à ces dernières.
 |Azure Kubernetes Service (AKS)| Démarrage rapide | [Déployer un cluster AKS (Azure Kubernetes Service) à l’aide d’Azure CLI](/azure/aks/kubernetes-walkthrough) | Déployez et gérez des clusters AKS.  Découvrez comment superviser l’intégrité du cluster et des pods qui exécutent votre application.
 |Azure Batch|Exemple | [Exécuter un travail et des tâches avec Azure Batch à l’aide d’Azure CLI](/azure/batch/scripts/batch-cli-sample-run-job) | Créez un travail Batch et ajoutez une série de tâches au travail. Supervisez un travail et ses tâches.
@@ -38,7 +38,7 @@ L’interface Azure CLI est utilisée dans de nombreux services Azure, ce qui d
 |Azure Container Instance|Démarrage rapide | [Déployer un instance de conteneur à l’aide d’Azure CLI](/azure/container-instances/container-instances-quickstart) | Déployez un conteneur Docker isolé et mettez son application à disposition avec un nom de domaine complet (FQDN). Exécutez une seule commande de déploiement, puis accédez à l’application en cours d’exécution dans le conteneur.
 |Fonction Azure|Démarrage rapide |  [Créer dans Azure une fonction qui répond à des requêtes HTTP à l’aide d’Azure CLI](/azure/azure-functions/functions-create-first-azure-function-azure-cli) | Utilisez des outils en ligne de commande pour créer une fonction qui répond à des requêtes HTTP. Après avoir testé le code localement, déployez la fonction dans l’environnement serverless d’Azure Functions.
 
-## <a name="networking"></a>Networking
+## <a name="networking"></a>Mise en réseau
 
 | | | | |
 |-|-|-|-|
@@ -49,7 +49,7 @@ L’interface Azure CLI est utilisée dans de nombreux services Azure, ce qui d
 
 | | | | |
 |-|-|-|-|
-|IoT Hub|Tutoriel | [Configurer le routage des messages IoT Hub à l’aide d’Azure CLI](/azure/iot-hub/tutorial-routing) | Configurez et utilisez des requêtes de routage personnalisées avec IoT Hub.
+|IoT Hub|Didacticiel | [Configurer le routage des messages IoT Hub à l’aide d’Azure CLI](/azure/iot-hub/tutorial-routing) | Configurez et utilisez des requêtes de routage personnalisées avec IoT Hub.
 
 ## <a name="developer-tools"></a>Outils de développement
 

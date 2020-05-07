@@ -9,10 +9,10 @@ ms.topic: overview
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.openlocfilehash: f3f78f152a80fa1b9d10f3865f659c24767e4a1b
-ms.sourcegitcommit: 93d8137f37e974f7d314a0b1deb65ac563c2e2c5
+ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/21/2020
+ms.lasthandoff: 05/06/2020
 ms.locfileid: "79989984"
 ---
 # <a name="what-is-azure-cli"></a>Qu’est-ce qu’Azure CLI
@@ -38,7 +38,7 @@ Les fonctionnalités Azure CLI facilitent l’utilisation de différents langage
 
 [!INCLUDE [current-version](includes/current-version.md)]
 
-## <a name="see-also"></a>Voir aussi
+## <a name="see-also"></a> Voir aussi
 
 - [Prise en main de l’interface Azure CLI](get-started-with-azure-cli.md)
 - [Liste de référence complète des commandes pour Azure CLI](/cli/azure/reference-index)

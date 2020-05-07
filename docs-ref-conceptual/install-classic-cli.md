@@ -9,10 +9,10 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.openlocfilehash: 0cc1d7811223bf6f473c2c4516d0919306aa74c7
-ms.sourcegitcommit: 7caa6673f65e61deb8d6def6386e4eb9acdac923
+ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/28/2020
+ms.lasthandoff: 05/06/2020
 ms.locfileid: "77779480"
 ---
 # <a name="install-the-azure-classic-cli"></a>Installez l’interface de ligne de commande d’Azure CLI Classic
@@ -31,7 +31,7 @@ Pour obtenir davantage d’options générales et de contexte, consultez le réf
 
 Une fois l’interface de ligne de commande Azure CLI Classic installée, connectez-vous à l’aide de `azure login` et exécutez les commandes `azure` depuis votre interface de ligne de commande (Bash, terminal, invite de commandes, etc.) pour travailler avec vos ressources Azure.
 
-## <a name="option-1-install-an-npm-package"></a>Option 1 : Installer un package npm
+## <a name="option-1-install-an-npm-package"></a>Option 1 : Installer un package npm
 
 Pour installer l’interface de ligne de commande classique à partir d’un package npm, vérifiez que vous avez téléchargé et installé les [derniers fichiers Node.js et npm](https://nodejs.org/en/download/package-manager/). Ensuite, exécutez `npm install` pour installer le package azure-cli :
 
@@ -54,7 +54,7 @@ Si vous préférez, vous pouvez également télécharger un fichier tar à parti
 npm install -g <path to downloaded tar file>
 ```
 
-## <a name="option-2-use-an-installer"></a>Option n°2 : Utilisation d’un programme d’installation
+## <a name="option-2-use-an-installer"></a>Option 2 : Utiliser un programme d’installation
 
 Si vous utilisez un ordinateur Mac ou Windows, les programmes d’installation DMG et MSI sont disponibles depuis les [versions GitHub](https://github.com/Azure/azure-xplat-cli/releases).
 
