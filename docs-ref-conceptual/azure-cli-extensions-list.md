@@ -4,17 +4,17 @@ description: Liste complète des extensions officiellement prises en charge pour
 author: haroldrandom
 ms.author: jianzen
 manager: yonzhan,yungezz
-ms.date: 05/09/2020
+ms.date: 05/20/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: 9e3811ad6a566453e5ad22d70e0ae4116e45c570
-ms.sourcegitcommit: bd067ca2f623a3806298f57ba7774904954540aa
+ms.openlocfilehash: 9c4d54b0021ef3fddf96f73fade6fe8fc4731d60
+ms.sourcegitcommit: 4e616bbc65888e0cc77fdad9193e6123027f3bb2
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83279838"
+ms.lasthandoff: 05/21/2020
+ms.locfileid: "83775700"
 ---
 # <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
@@ -30,22 +30,24 @@ az extension list-available --output table
 |------|---------|---------|---------|
 | [account](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Extension Microsoft Azure Command-Line Tools SubscriptionClient |  |
 | [aem](https://github.com/Azure/azure-cli-extensions) | 0.1.1 | Gestion des extensions de surveillance Azure améliorée pour SAP |  |
+| [ai-did-you-mean-this](https://github.com/Azure/azure-cli-extensions/ai-did-you-mean-this) | 0.1.1 | Recommande les options de récupération en cas d’échec. |  |
 | [ai-examples](https://github.com/Azure/azure-cli-extensions/tree/master/src/ai-examples) | 0.2.0 | Ajoute des exemples d’IA dans l’aide. | Oui |
-| [préversion ASK](https://github.com/Azure/azure-cli-extensions/tree/master/src/aks-preview) | 0.4.44 | Fournit une préversion des fonctionnalités AKS à venir | Oui |
+| [préversion ASK](https://github.com/Azure/azure-cli-extensions/tree/master/src/aks-preview) | 0.4.45 | Fournit une préversion des fonctionnalités AKS à venir | Oui |
 | [alertsmanagement](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Extension Microsoft Azure Command-Line Tools Alerts |  |
 | [alias](https://github.com/Azure/azure-cli-extensions) | 0.5.2 | Prise en charge des alias de commande | Oui |
 | [application-insights](https://github.com/Azure/azure-cli-extensions/tree/master/src/application-insights) | 0.1.7 | Prise en charge de la gestion des composants Application Insights et de l’interrogation des métriques, des événements et des journaux de ces composants. | Oui |
 | [azure-batch-cli-extensions](https://github.com/Azure/azure-batch-cli-extensions) | 5.0.1 | Commandes supplémentaires pour travailler avec le service Azure Batch |  |
 | [azure-cli-iot-ext](https://github.com/azure/azure-iot-cli-extension) | 0.8.9 | Extension Azure IoT pour Azure CLI. |  |
-| [azure-cli-ml](https://docs.microsoft.com/azure/machine-learning/service/) | 1.4.0 | Module de commande AzureML des outils en ligne de commande Microsoft Azure |  |
+| [azure-cli-ml](https://docs.microsoft.com/azure/machine-learning/service/) | 1.5.0 | Module de commande AzureML des outils en ligne de commande Microsoft Azure |  |
 | [azure-devops](https://github.com/Microsoft/azure-devops-cli-extension) | 0.18.0 | Outils de gestion Azure DevOps. |  |
 | [azure-firewall](https://github.com/Azure/azure-cli-extensions/tree/master/src/azure-firewall) | 0.3.1 | Gérez les ressources de pare-feu Azure. | Oui |
 | [azure-iot](https://github.com/azure/azure-iot-cli-extension) | 0.9.2 | Extension Azure IoT pour Azure CLI. |  |
 | [blueprint](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Extension Microsoft Azure Command-Line Tools Blueprint |  |
-| [connectedk8s](https://github.com/Azure/azure-cli-extensions) | 0.1.5 | Extension Microsoft Azure Command-Line Tools Connectedk8s | Oui |
+| [connectedk8s](https://github.com/Azure/azure-cli-extensions) | 0.2.1 | Extension Microsoft Azure Command-Line Tools Connectedk8s | Oui |
 | [connectedmachine](https://github.com/Azure/azure-cli-extensions) | 0.1.1 | Extension Connectedmachine des outils en ligne de commande Microsoft Azure | Oui |
 | [connection-monitor-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/connection-monitor-preview) | 0.1.0 | Extension Microsoft Azure Command-Line Connection Monitor V2 | Oui |
 | [csvmware](https://github.com/Azure/az-vmware-cli) | 0.3.0 | Gérer Azure VMware Solution by CloudSimple. | Oui |
+| [custom-providers](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Extensions des fournisseurs personnalisés pour les outils en ligne de commande Microsoft Azure |  |
 | [databox](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Extension Microsoft Azure Command-Line Tools DataBox |  |
 | [databricks](https://github.com/Azure/azure-cli-extensions) | 0.2.0 | Extension Microsoft Azure Command-Line Tools DatabricksClient |  |
 | [datashare](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Extension Microsoft Azure Command-Line Tools DataShareManagementClient |  |
@@ -54,7 +56,7 @@ az extension list-available --output table
 | [dev-spaces](https://github.com/Azure/azure-cli-extensions) | 1.0.5 | Dev Spaces offre aux équipes une expérience de développement Kubernetes rapide et itérative. |  |
 | [dev-spaces-preview](https://github.com/Azure/azure-cli-extensions) | 0.1.6 | Dev Spaces offre aux équipes une expérience de développement Kubernetes rapide et itérative. | Oui |
 | [dms-preview](https://github.com/Azure/azure-cli-extensions/tree/master/src/dms-preview) | 0.11.0 | Prise en charge de nouveaux scénarios de Database Migration Service. | Oui |
-| [eventgrid](https://github.com/Azure/azure-cli-extensions) | 0.4.8 | Module de commande EventGrid des outils de ligne de commande Microsoft Azure. | Oui |
+| [eventgrid](https://github.com/Azure/azure-cli-extensions) | 0.4.9 | Module de commande EventGrid des outils de ligne de commande Microsoft Azure. | Oui |
 | [express-route](https://github.com/Azure/azure-cli-extensions/tree/master/src/express-route) | 0.1.3 | Gérez les instances ExpressRoute avec les fonctionnalités d’évaluation. | Oui |
 | [express-route-cross-connexion](https://github.com/Azure/azure-cli-extensions/tree/master/src/express-route-cross-connection) | 0.1.1 | Gérez des circuits ExpressRoute de client à l’aide d’une interconnexion ExpressRoute. |  |
 | [front-door](https://github.com/Azure/azure-cli-extensions/tree/master/src/front-door) | 1.0.6 | Gérez les portes d’entrée réseau. |  |
@@ -66,7 +68,7 @@ az extension list-available --output table
 | [interactive](https://github.com/Azure/azure-cli) | 0.4.4 | Shell interactif de ligne de commande Microsoft Azure | Oui |
 | [internet-analyzer](https://github.com/Azure/azure-cli-extensions) | 0.1.0rc5 | Extension Internet Analyzer des outils en ligne de commande Microsoft Azure | Oui |
 | [ip-group](https://github.com/Azure/azure-cli-extensions) | 0.1.1 | Extension IpGroup des outils en ligne de commande Microsoft Azure |  |
-| [k8sconfiguration](https://github.com/Azure/azure-cli-extensions) | 0.1.7 | Extension Microsoft Azure Command-Line Tools K8sconfiguration | Oui |
+| [k8sconfiguration](https://github.com/Azure/azure-cli-extensions) | 0.1.8 | Extension Microsoft Azure Command-Line Tools K8sconfiguration | Oui |
 | [keyvault-preview](https://github.com/Azure/azure-keyvault-cli-extension) | 0.1.3 | Préversion des commandes Azure Key Vault. | Oui |
 | [kusto](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Extension Microsoft Azure Command-Line Tools KustoManagementClient |  |
 | [log-analytics](https://github.com/Azure/azure-cli-extensions/tree/master/src/log-analytics) | 0.1.4 | Prise en charge des fonctionnalités de requête d’Azure Log Analytics. | Oui |
@@ -92,10 +94,10 @@ az extension list-available --output table
 | [stream-analytics](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Extension Microsoft Azure Command-Line Tools stream-analytics |  |
 | [subscription](https://github.com/Azure/azure-cli-extensions) | 0.1.3 | Prise en charge de la préversion des définitions d’abonnement. |  |
 | [support](https://github.com/azure/azure-cli-extensions/tree/master/src/support) | 1.0.2 | Extension Microsoft Azure Command-Line Tools Support |  |
-| [synapse](https://github.com/Azure/azure-cli-extensions) | 0.1.0 | Extension Synapse des outils en ligne de commande Microsoft Azure | Oui |
-| [timeseriesinsights](https://github.com/Azure/azure-cli-extensions/src/timeseriesinsights) | 0.1.0 | Extension Microsoft Azure Command-Line Tools TimeSeriesInsightsClient |  |
+| [synapse](https://github.com/Azure/azure-cli-extensions) | 0.2.0 | Extension Synapse des outils en ligne de commande Microsoft Azure | Oui |
+| [timeseriesinsights](https://github.com/Azure/azure-cli-extensions/src/timeseriesinsights) | 0.1.1 | Extension Microsoft Azure Command-Line Tools TimeSeriesInsightsClient |  |
 | [virtual-network-tap](https://github.com/Azure/azure-cli-extensions/tree/master/src/virtual-network-tap) | 0.1.0 | Gérez les taps de réseau virtuel (VTAP). | Oui |
 | [virtual-wan](https://github.com/Azure/azure-cli-extensions/tree/master/src/virtual-wan) | 0.1.3 | Gérez le WAN virtuel, les hubs, les passerelles VPN et les sites VPN. | Oui |
 | [vm-repair](https://github.com/Azure/azure-cli-extensions/tree/master/src/vm-repair) | 0.2.7 | Commandes de réparation automatique pour réparer les machines virtuelles. |  |
-| [vmware](https://github.com/virtustream/azure-vmware-virtustream-cli-extension) | 0.5.5 | Prévisualiser les commandes Azure VMware Solution by Virtustream. | Oui |
+| [vmware](https://github.com/virtustream/azure-vmware-virtustream-cli-extension) | 0.6.0 | Commandes de la solution Azure VMware en préversion. | Oui |
 | [webapp](https://github.com/Azure/azure-cli-extensions/tree/master/src/webapp) | 0.2.24 | Commandes supplémentaires pour Azure AppService. | Oui |

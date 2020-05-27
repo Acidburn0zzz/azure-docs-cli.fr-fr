@@ -8,12 +8,12 @@ ms.date: 06/11/2018
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 97f9fe767d8f7a6a1360c9068985b2fcfe1b7c6f
-ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
+ms.openlocfilehash: 24a798e9b3c08f3cd9e66c017cc45f5346d8995e
+ms.sourcegitcommit: d05660a42b2a77c4b05a7f96c386e656bd2db0fe
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82199425"
+ms.lasthandoff: 05/19/2020
+ms.locfileid: "83569168"
 ---
 # <a name="azure-cli-configuration"></a>Configuration d’Azure CLI
 
@@ -86,7 +86,7 @@ Lorsque vous fournissez une valeur par défaut, cet argument n’est plus néces
 |---------|-----------|------|------------|
 | __core__ | sortie | string | Format de sortie par défaut. Peut être `json`, `jsonc`, `tsv` ou `table`. |
 | | disable\_confirm\_prompt | boolean | Active/Désactive les invites de confirmation. |
-| | collect\_telemetry | boolean | Autorise Microsoft à recueillir des données anonymes sur l’utilisation de l’interface CLI. Pour plus d’informations sur la confidentialité, consultez les [conditions d’utilisation d’Azure CLI](https://aka.ms/AzureCliLegal). |
+| | collect\_telemetry | boolean | Autorise Microsoft à recueillir des données anonymes sur l’utilisation de l’interface CLI. Pour obtenir des informations sur la confidentialité, consultez la [licence MIT Azure CLI](https://github.com/Azure/azure-cli/blob/dev/LICENSE). |
 | | only\_show\_errors | boolean | Montre uniquement les erreurs pendant l’appel de commande. En d’autres termes, seules les erreurs sont écrites dans `stderr`. Il supprime les avertissements des commandes en préversion, dépréciées et expérimentales. Il est également disponible pour les commandes individuelles avec le paramètre `--only-show-errors`. |
 | | no\_color | boolean | Désactive la couleur. Les messages de couleur d’origine ont le préfixe `DEBUG`, `INFO`, `WARNING` et `ERROR`. Cela contourne le problème d’une bibliothèque tierce où la couleur du terminal ne peut pas être restaurée après une redirection de `stdout`. |
 | __logging__ | enable\_log\_file | boolean | Active/Désactive la journalisation. |

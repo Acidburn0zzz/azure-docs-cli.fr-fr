@@ -4,18 +4,135 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 04/30/2020
+ms.date: 05/19/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: efb17acb25b2268496efe313cac0a8189a78930a
-ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
+ms.openlocfilehash: c95a635cc58afcc7956c230d0e3f47351fa0893d
+ms.sourcegitcommit: d05660a42b2a77c4b05a7f96c386e656bd2db0fe
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82591422"
+ms.lasthandoff: 05/19/2020
+ms.locfileid: "83569185"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="may-19-2020"></a>19 mai 2020
+
+Version 2.6.0
+
+### <a name="acr"></a>ACR
+
+* Ajout du délai d’expiration par défaut de 5 minutes pour toute demande à ACR
+* Prise en charge de la désactivation de l’accès au réseau public
+* `az acr token create` : exposition de l’argument --days
+* `az acr import` : acceptation des valeurs de l’argument --source qui contiennent le nom du serveur de connexion résultant d’une correction côté du client
+
+### <a name="acs"></a>ACS
+
+* Correctif de bogue : suppression du nettoyage des champs pour les champs qui n’existent plus
+
+### <a name="aks"></a>AKS
+
+* Mise à jour du contexte de l’aide pour la commande uptime-sla
+* Suppression de la vérification de plage pour la mise à jour du nombre minimal pour l’autoscaler
+* Correction de l’interface CLI qui n’échoue pas quand l’utilisateur spécifie uniquement un mot de passe Windows
+
+### <a name="ams"></a>AMS
+
+* `az ams transform create`: Ajout de la possibilité de créer une transformation avec une présélection FaceDetector
+* `az ams content-key-policy create` : Ajout de la possibilité de créer une stratégie de clé de contenu FairPlay avec une configuration de location hors connexion
+
+### <a name="appconfig"></a>AppConfig
+
+* Correction de bogue pour les valeurs de clé de liste avec champs
+
+### <a name="appservice"></a>AppService
+
+* `az functionapp create`: AzureWebJobsDashboard ne sera défini que si AppInsights est désactivé
+* Correctif #10664 – Intégration de réseau virtuel – Problème de vérification d’emplacement et correctif #13257 – Échec d’az webapp up quand un groupe de ressources doit être créé
+* `az webapp|functionapp config ssl import`: Recherche dans le coffre de clés des groupes de ressources d’un abonnement et amélioration de l’aide et des exemples.
+* Intégration du contexte local pour App Service
+
+### <a name="arm"></a>ARM
+
+* `az deployment`: Correction du problème lié à l’absence de retour de templateLink pendant le déploiement ou la validation de template-uri
+* `az deployment`: Correction du problème lié au fait que les caractères spécialement encodés ne sont pas pris en charge par le déploiement/la validation
+* `az deployment sub/group what-if`: Correction de l’alignement de tableau et gestion des erreurs
+* `az deployment operation`: Modification des informations de dépréciation
+
+### <a name="aro"></a>ARO
+
+* Ajout d’exemples pour az aro create, list, list-credentials, show, delete
+* Ajout de la fonction generate_random_id
+
+### <a name="backup"></a>Backup
+
+* Autorisation de FriendlyName dans la commande d’activation de la protection pour AzureFileShare
+* Correction dans la commande IaasVM restore-disks
+* Ajout de BackupManagementType « MAB » à la commande item list
+* Ajout de la prise en charge des nouvelles tentatives de mise à jour de stratégie pour les éléments en échec.
+* Ajout d’une fonctionnalité de reprise de protection pour Machine Virtuelle Azure
+* Ajout d’une prise en charge permettant de spécifier ResourceGroup pour stocker instantRP pendant la création ou la modification d’une stratégie
+
+### <a name="ci"></a>CI
+
+* Prise en charge de flake8 3.8.0
+
+### <a name="compute"></a>Calcul
+
+* Nouvelle commande az vm auto-shutdown
+* `az vm list-skus`: Mise à jour du comportement de --zone ; retourne désormais tous les types de références SKU
+
+### <a name="core"></a>Core
+
+* Mise à jour de l’état activé/désactivé du contexte local vers le niveau utilisateur global
+
+### <a name="extension"></a>Extension
+
+* `az extension add`: Ajout de --system pour permettre l’installation d’extensions dans un chemin système
+* Prise en charge de .egg-info pour stocker les métadonnées d’extension de type wheel
+
+### <a name="iot"></a>IoT
+
+* `az iot`: Mise à jour du message de reconnaissance de la première extension exécutée par le module de commande IoT vers l’ID moderne non déconseillé `azure-iot`.
+
+### <a name="iot-hub"></a>IoT Hub
+
+* Prise en charge des commandes de l’API 2020-03-01 et de l’isolement réseau
+
+### <a name="netappfiles"></a>NetAppFiles
+
+* `az volume create`: Ajout de snapshot-id en tant que paramètre pour créer un volume, permettant ainsi aux utilisateurs de créer un volume à partir d’une capture instantanée existante.
+
+### <a name="network"></a>Réseau
+
+* Correction du changement non souhaité de la valeur TTL pour dns add-record
+* `az network public-ip create`: Information à l’intention des clients pour les prévenir d’un changement cassant imminent
+* Prise en charge des commandes génériques pour un scénario de liaison privée
+* `az network private-endpoint-connection`: Prise en charge des types mysql, postgre et mariadb
+* `az network private-endpoint-connection`: Prise en charge des types cosmosdb
+* `az network private-endpoint` : dépréciation de --group-ids et redirection vers --group-id
+
+### <a name="output"></a>Output
+
+* Affichage de l’instruction update dans find, feedback et --help
+
+### <a name="packaging"></a>Packaging
+
+* Génération de packages MSI/Homebrew avec les dépendances résolues selon requirements.txt
+
+### <a name="rbac"></a>RBAC
+
+* `az ad sp credential reset` : correction de la génération d’informations d’identification faibles
+
+### <a name="storage"></a>Stockage
+
+* `az storage account file-service-properties update/show`: Ajout de la prise en charge des propriétés de fichier pour le compte de stockage
+* `az storage container create`: Correction #13373 par l’ajout d’un validateur pour l’accès public
+* Ajout de la prise en charge d’ADLS Gen2 track2
+* `az storage blob sync`: Prise en charge d’`--connection-string`
+* `az storage blob sync`: Correction du message d’erreur incorrect quand azcopy ne trouve pas l’emplacement d’installation
 
 ## <a name="april-30-2020"></a>30 avril 2020
 
