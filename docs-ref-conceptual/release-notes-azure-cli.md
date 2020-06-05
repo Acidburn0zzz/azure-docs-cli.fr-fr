@@ -4,18 +4,85 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 05/19/2020
+ms.date: 06/02/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: c95a635cc58afcc7956c230d0e3f47351fa0893d
-ms.sourcegitcommit: d05660a42b2a77c4b05a7f96c386e656bd2db0fe
+ms.openlocfilehash: be0db24ca312825aba03256119d1b5e43afbd902
+ms.sourcegitcommit: 62355a77ca59addf7b19db6b95027676e52fd936
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/19/2020
-ms.locfileid: "83569185"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84275060"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
+
+## <a name="june-02-2020"></a>2 juin 2020
+
+Version 2.7.0
+
+### <a name="acr"></a>ACR
+
+* Correction d’une faute de frappe dans un message d’erreur de création de jeton
+
+### <a name="aks"></a>AKS
+
+* Remplacement de la référence SKU de machine virtuelle par défaut par Standard_D2s_v3
+* Correction de la création d’attribution de rôle pour le cluster MSI plus le sous-réseau personnalisé
+
+### <a name="appservice"></a>AppService
+
+* Correctif #12739 az appservice list-locations retourne des emplacements non valides
+
+### <a name="arm"></a>ARM
+
+* `az deployment`: Correction du problème #13159 concernant un message JSON incorrect après la suppression de commentaires et la compression
+* `az resource tag`: Correction du problème #13255 concernant l’étiquetage des ressources avec le type de ressource `Microsoft.ContainerRegistry/registries/webhooks`
+* Amélioration des exemples pour le module de ressources
+
+### <a name="aro"></a>ARO
+
+* Remplacement de CLIError par un indicateur correct pour --worker-vm-disk-size-gb
+
+### <a name="eventhub"></a>Event Hub
+
+* Correction du problème #12406 où l’argument --capture-interval ne mettait pas à jour « intervalInSeconds »
+
+### <a name="hdinsight"></a>HDInsight
+
+* Remplacement de get_json_object par shell_safe_json_parse
+
+### <a name="monitor"></a>Superviser
+
+* `az monitor metrics alert` : amélioration de plusieurs messages d’aide
+* `az monitor diagnostic-settings create` : prise en charge de l’argument --export-to-resource-specific
+* Prise en charge de la récupération de l’espace de travail LA
+
+### <a name="network"></a>Réseau
+
+* `az network dns zone` : prise en charge du caractère -
+* `az network vpn-connection ipsec-policy` : remplacement de --sa-lifetime et --sa-max-size par de plus grandes valeurs dans l’exemple
+* Passage du réseau à 2020-04-01
+* `az network private-endpoint-connection` : prise en charge de la grille d’événement
+* `az network express-route list-route-tables` : correction du bogue qui empêchait de lister les routes sous forme de table
+
+### <a name="packaging"></a>Packaging
+
+* Ajout du package Ubuntu Focal
+
+### <a name="rbac"></a>RBAC
+
+* `az ad sp credential reset` : modification de la génération d’informations d’identification pour éviter des caractères spéciaux posant problème
+
+### <a name="redis"></a>Redis
+
+* Correctif #13529 : Modification de la documentation du paramètre enable_non_ssl_port
+
+### <a name="storage"></a>Stockage
+
+* `az storage copy`: Ajout du paramètre `--follow-symlinks` pour prendre en charge les symlinks
+* Activer le contexte local pour le compte de stockage
+* `az storage logging`: Correction du problème #11969 pour améliorer le message d’erreur
 
 ## <a name="may-19-2020"></a>19 mai 2020
 
@@ -66,7 +133,7 @@ Version 2.6.0
 * Ajout d’exemples pour az aro create, list, list-credentials, show, delete
 * Ajout de la fonction generate_random_id
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Autorisation de FriendlyName dans la commande d’activation de la protection pour AzureFileShare
 * Correction dans la commande IaasVM restore-disks
@@ -389,7 +456,7 @@ Version 2.3.0
 * az deployment {group/mg/sub/tenant} list : Prise en charge du filtrage provisioningState
 * az deployment : Correction du bogue d’analyse pour les commentaires sous le dernier argument
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de plusieurs fonctionnalités de restauration de fichiers
 * Ajout de la prise en charge de la sauvegarde des disques de système d’exploitation uniquement
@@ -560,7 +627,7 @@ Version 2.2.0
 * az network watcher flow-log configure : dépréciée
 * az network watcher flow-log show : prise en charge de --location et de --name pour obtenir un résultat au format ARM. L’ancienne sortie mise en forme est dépréciée
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * az policy assignment create : correction du bogue qui générait automatiquement un nom d’attribution de stratégie dépassant la limite
 
@@ -637,7 +704,7 @@ Version 2.1.0
 * az policy assignment create : correction du message d’erreur lorsque le paramètre `--policy` n’est pas valide
 * az group deployment create : correction de l’erreur « stat: path too long for Windows » (Chemin trop long pour Windows) lors de l’utilisation d’un fichier parameters.json volumineux
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Correction du flux de récupération au niveau de l’élément dans OLR
 * Ajout de la prise en charge de la restauration sous forme de fichiers pour les bases de données SQL et SAP
@@ -742,7 +809,7 @@ Version 2.0.81
 * Ajout d’un nouveau groupe de commandes 'cdn endpoint rule' pour gérer les règles
 * Mise à jour de la version azure-mgmt-cdn vers la version 4.0.0 pour utiliser la version d’API 2019-04-15
 
-### <a name="deployment-manager"></a>Gestionnaire de déploiement
+### <a name="deployment-manager"></a>Deployment Manager
 
 * Ajout d’une opération de liste pour toutes les ressources.
 * Amélioration de la ressource d’étape pour le nouveau type d’étape.
@@ -768,7 +835,7 @@ Version 2.0.81
 
 * Correctif #2092 : avertissement az network dns record-set add/remove: add quand l’ensemble d’enregistrements est introuvable. À l’avenir, un argument supplémentaire sera pris en charge pour confirmer cette création automatique.
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la nouvelle commande `az policy metadata` pour récupérer des ressources de métadonnées de stratégie riches
 * `az policy remediation create`: Indication si la conformité doit être réévaluée avant correction avec le paramètre `--resource-discovery-mode`
@@ -843,7 +910,7 @@ Version 2.0.79
 
 * Correction de `az resource tag` : Impossible de mettre à jour les balises du coffre Recovery Services
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la nouvelle commande « backup protection undelete » pour activer la fonctionnalité de suppression réversible pour la charge de travail IaasVM
 * Ajout du nouveau paramètre « --soft-delete-feature-state » pour définir la commande backup-properties
@@ -915,7 +982,7 @@ Version 2.0.79
 * Prise en charge interlocataire pour la commande `az group deployment create` en ajoutant le nouveau paramètre `--aux-subs`
 * Ajout du nouveau paramètre `--metadata` afin de prendre en charge l’ajout d’informations de métadonnées pour les définitions d’ensemble de stratégie.
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la prise en charge de la sauvegarde pour la charge de travail SQL et SAP Hana.
 
@@ -977,7 +1044,7 @@ Version 2.0.79
 * Rajout de builds edge pour pip install
 * Ajout du package Ubuntu eoan
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la prise en charge de l’API des stratégies version 2019-09-01.
 * az policy set-definition : Ajout de la prise en charge du regroupement dans les définitions d’ensemble de stratégies avec le paramètre `--definition-groups`
@@ -1033,7 +1100,7 @@ Version 2.0.77
 * az webapp up : En forçant la création ou le déploiement sur un site pour les langues prises en charge, aucune valeur par défaut n’est utilisée.
 * Ajout de la prise en charge d’App Service Environment : az appservice ase show | list | list-addresses | list-plans | create | update | delete
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Résolution du problème dans az backup policy list-associated-items. Ajout du paramètre BackupManagementType facultatif.
 
@@ -1148,7 +1215,7 @@ Version 2.0.76
 * `az deployment/group deployment validate`: Ajout du paramètre `--handle-extended-json-format` pour prendre en charge le format multiligne et les commentaires dans le modèle json lors du déploiement.
 * Passage d’azure-mgmt-resource à 2019-07-01
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la prise en charge de la sauvegarde AzureFiles
 
@@ -1329,7 +1396,7 @@ Version 2.0.74
 
 * Résolution d’un problème où le caractère `:` n’était pas autorisé dans l’argument `--condition` de `monitor metrics alert create`
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la prise en charge de l’API Policy version 2019-06-01
 * Ajout du paramètre `--enforcement-mode` à la commande `policy assignment create`
@@ -1381,7 +1448,7 @@ Version 2.0.74
 * Ajout de la prise en charge de la définition de l’ID Key Vault sur `network application-gateway ssl-cert`
 * Ajout de `network express-route peering peer-connection [show|list]`
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Mis à jour pour utiliser la version d’API 2019-01-01
 
@@ -1954,7 +2021,7 @@ Version 2.0.63
 * Ajout de `-b` en tant qu’option à `webapp up` pour lancer l’application dans le navigateur
 * Changement apporté à `webapp deployment source config zip` pour gérer la variable d’environnement `AZURE_CLI_DISABLE_CONNECTION_VERIFICATION`
 
-### <a name="deployment-manager"></a>Gestionnaire de déploiement
+### <a name="deployment-manager"></a>Deployment Manager
 * [PRÉVERSION] Création et gestion d’artefacts prenant en charge les lancements
 
 ### <a name="lab"></a>Laboratoire
@@ -2955,7 +3022,7 @@ Version 2.0.45
 * Ajout de la prise en charge de la balise ARM sur les commandes de création
 * Modification de `[webapp|functionapp] identity show` permettant de quitter avec le code 3 en cas de ressource manquante
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Modification de `backup vault backup-properties show` permettant de quitter avec le code 3 en cas de ressource manquante
 
@@ -3232,7 +3299,7 @@ Version 2.0.40
 * Ajout de la prise en charge de la désactivation d’identité via `webapp identity remove`
 * Suppression de la balise `preview` pour la fonctionnalité Identité
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Mise à jour de la définition du module
 
@@ -3796,7 +3863,7 @@ Version 2.0.30
 * Ajout de la prise en charge HTTPS exclusive à `webapp update`
 * Ajout de la prise en charge des emplacements à `az webapp identity [assign|show]` et `az functionapp identity [assign|show]`
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la commande `az backup protection isenabled-for-vm` Cette commande peut être utilisée pour vérifier si une machine virtuelle est sauvegardée par un coffre dans l’abonnement
 * Activation des ID d’objet Azure pour les paramètres `--resource-group` et `--vault-name`, pour les commandes suivantes :
@@ -4224,7 +4291,7 @@ Version 2.0.25
 * Ajout de la prise en charge des URL personnalisées pour `browse`
 * Prise en charge de l’emplacement fixe pour `log tail`
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Modification de l’option `--container-name` de `backup item list` désormais facultative
 * Ajout d’options de compte de stockage à `backup restore restore-disks`
@@ -4642,7 +4709,7 @@ Version 2.0.18
 
 * Ajout de la capacité à mettre à jour et à afficher les paramètres d’authentification avec `webapp auth [update|show]`
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Préversion
 
