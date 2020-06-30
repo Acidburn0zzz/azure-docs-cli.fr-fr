@@ -8,12 +8,12 @@ ms.date: 10/14/2019
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 302b98717ee422de9bd60a57b18d900bcf5fcaf9
-ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
+ms.openlocfilehash: 12382d93304995b958e5095edba53cf5cdd17cc7
+ms.sourcegitcommit: bc31f6faacab22f39aed6a11393c8be02e01c9cb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "80417919"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85241792"
 ---
 # <a name="install-azure-cli-with-apt"></a>Installer Azure CLI avec apt
 
@@ -60,7 +60,7 @@ Si vous ne souhaitez pas exécuter un script en tant que superutilisateur ou que
     ```bash
     curl -sL https://packages.microsoft.com/keys/microsoft.asc |
         gpg --dearmor |
-        sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
+        sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
     ```
 
 3. <div id="set-release"/>Ajoutez le référentiel de logiciels Azure CLI :
@@ -173,7 +173,7 @@ Utilisez `apt-get upgrade` pour mettre à jour le package de l’interface de li
 3. Si vous n’utilisez pas d’autres packages de Microsoft, supprimez la clé de signature :
 
     ```bash
-    sudo rm /etc/apt/trusted.gpg.d/microsoft.asc.gpg
+    sudo rm /etc/apt/trusted.gpg.d/microsoft.gpg
     ```
 
 4. Supprimer tous les packages inutiles :
