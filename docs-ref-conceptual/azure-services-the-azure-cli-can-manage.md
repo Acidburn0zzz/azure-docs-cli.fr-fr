@@ -1,6 +1,6 @@
 ---
 title: Services Azure pouvant être gérés par l’interface Azure CLI
-description: Liens vers les services proposant les références Azure CLI, App Configuration, App Service, Active Directory (AD), la Sauvegarde, la Recherche cognitive, Cosmos DB, Data Lake Storage, Database, MariaDB, MySQL, PostgreSQL, PostgreSQL, DevOps, DevTest Labs, DNS, Functions, IoT, IoT Central, IoT Edge, IoT Hub, Kubernetes Service (AKS), Lab Services, Machine Learning, Applications managées, Private Link, Resource Manager, Spring Cloud, SQL Database, Batch, Cognitive Services, Container Instances, Container Registry, Data Lake Analytics, Event Grid, Event Hubs, HDInsight, Key Vault, Load Balancer, Managed Disks, Media Services, Notification Hubs, Service Bus, Service Fabric, Comptes de stockage, Traffic Manager, Virtual Machine Scale Sets, Réseau Virtuel, Compute, Networking, Internet des objets, Outils de développement, Bases de données, Analytique, Gestion et gouvernance, Hybride, Stockage, Sécurité, IA, IA + Machine Learning
+description: Liens vers les services proposant les références Azure CLI, App Configuration, App Service, Active Directory (AD), Sauvegarde, la Recherche cognitive, Cosmos DB, Data Lake Storage, Database, MariaDB, MySQL, PostgreSQL, PostgreSQL, DevOps, DevTest Labs, DNS, Functions, IoT, IoT Central, IoT Edge, IoT Hub, Kubernetes Service (AKS), Lab Services, Machine Learning, Applications managées, Private Link, Resource Manager, Spring Cloud, SQL Database, Batch, Cognitive Services, Container Instances, Container Registry, Data Lake Analytics, Event Grid, Event Hubs, HDInsight, Key Vault, Load Balancer, Managed Disks, Media Services, Notification Hubs, Service Bus, Service Fabric, Comptes de stockage, Traffic Manager, Virtual Machine Scale Sets, Réseau virtuel, Compute, Réseau, Internet des objets, Outils de développement, Bases de données, Analytique, Gestion et gouvernance, Hybride, Stockage, Sécurité, IA, IA + Machine Learning, Azure Data Explorer
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: aaf9969030512668b22c1b5bbfbd2a9a7d7ae47d
-ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
+ms.openlocfilehash: 04957e3f0da96e1523867da98ade27b80fe45e22
+ms.sourcegitcommit: 252e80dc48481f3c51267dd3c35f8665632d4f04
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "80417883"
+ms.lasthandoff: 06/17/2020
+ms.locfileid: "84902177"
 ---
 # <a name="azure-services-the-azure-cli-can-manage"></a>Services Azure pouvant être gérés par l’interface Azure CLI
 
@@ -26,7 +26,8 @@ Des références Azure CLI sont disponibles pour les services suivants :
 |-|-|
 |[IA + Machine Learning](/cli/azure/popular-articles-using-the-azure-cli?#ai--machine-learning)| [Azure Machine Learning](/azure/machine-learning/)
 ||[Cognitive Services](/azure/cognitive-services/)
-|[Analyse](/cli/azure/popular-articles-using-the-azure-cli?#analytics)|[Azure Data Lake Storage](/azure/storage/blobs/data-lake-storage-introduction/)
+|[Analyse](/cli/azure/popular-articles-using-the-azure-cli?#analytics)|[Explorateur de données Azure](/azure/data-explorer/)
+||[Azure Data Lake Storage](/azure/storage/blobs/data-lake-storage-introduction/)
 ||[Data Lake Analytics](/azure/data-lake-analytics/)
 ||[Hubs d'événements](/azure/event-hubs/)
 ||[HDInsight](/azure/hdinsight/)

@@ -4,39 +4,68 @@ description: Comment installer Azure CLI sur Windows
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 05/01/2019
+ms.prod: azure
+ms.date: 06/16/2020
 ms.topic: conceptual
-ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: c5e9118a04b0dc608309093866307fdc7083f591
-ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
+ms.technology: azure-cli
+ms.openlocfilehash: 555df1bcec74648ad1857832ae2cae1202ae650b
+ms.sourcegitcommit: bc31f6faacab22f39aed6a11393c8be02e01c9cb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "80417845"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85241747"
 ---
 # <a name="install-azure-cli-on-windows"></a>Installer Azure CLI sur Windows
 
-Sur Windows, Azure CLI est installée via un fichier MSI, ce qui vous donne accès à l’interface CLI via l’Invite de commande Windows (CMD) ou PowerShell.
+Pour Windows, Azure CLI est installée à l’aide d’un fichier MSI, ce qui vous donne accès à l’interface CLI via l’Invite de commande Windows (CMD) ou PowerShell.
 Lors de son installation sur le sous-système Windows pour Linux (WSL), des packages sont disponibles pour votre distribution Linux. Consultez la [page d’installation principale](install-azure-cli.md) pour obtenir la liste des gestionnaires de packages pris en charge ou pour savoir comment installer manuellement avec le sous-système Windows pour Linux.
 
 [!INCLUDE [current-version](includes/current-version.md)]
 
 ## <a name="install-or-update"></a>Installation ou mise à jour
 
-Le fichier MSI distribuable est utilisé pour l’installation ou la mise à jour d’Azure CLI sur Windows. L’utilisation du programme d’installation MSI ne nécessite pas la désinstallation des versions actuelles.
+Le fichier MSI distribuable est utilisé pour l’installation ou la mise à jour d’Azure CLI sur Windows. Vous n’avez pas besoin de désinstaller les versions actuelles avant d’utiliser le programme d’installation MSI, car celui-ci met à jour toute version existante.
 
-> [!div class="nextstepaction"]
-> [Téléchargez le programme d’installation MSI](https://aka.ms/installazurecliwindows)
+# <a name="microsoft-installer-msi"></a>[Microsoft Installer (MSI)](#tab/azure-cli)
 
 Lorsque le programme d’installation vous demande s’il peut apporter des modifications à votre ordinateur, cliquez sur la case « Oui ».
+
+### <a name="azure-cli-current-version"></a>Version actuelle d’Azure CLI
+
+Téléchargez et installez la version actuelle d’Azure CLI.  
+
+> [!div class="nextstepaction"]
+> [Version actuelle d’Azure CLI](https://aka.ms/installazurecliwindows)
+
+### <a name="azure-cli-beta-version"></a>Version bêta d’Azure CLI
+
+La version bêta d’Azure CLI prend en charge toutes les commandes CLI disponibles dans la version finale actuelle. La version bêta est une migration de la version publiée d’Azure CLI, car la plateforme d’authentification AAD (v1.0) est sur le point d’être dépréciée.  La [Plateforme d’identité Microsoft (v2.0)](/azure/active-directory/develop/v2-overview) est la nouvelle méthode d’authentification utilisée par version bêta d’Azure CLI.  Nous vous recommandons d’essayer la version bêta à l’avance.  
+
+Pour plus d’informations sur la version bêta d’Azure CLI, consultez les [notes de publication](release-notes-azure-cli?tabs=azure-cli-beta).
+
+> [!IMPORTANT]
+>
+> La version bêta ne garantit pas la qualité du produit. Ne l’utilisez pas dans votre environnement de production.
+
+Téléchargez et installez la version bêta d’Azure CLI.
+
+> [!div class="nextstepaction"]
+> [Version bêta d’Azure CLI](https://aka.ms/installazurecliwindowsbeta)
+
+# <a name="microsoft-installer-msi-with-powershell"></a>[Microsoft Installer (MSI) avec PowerShell](#tab/azure-powershell)
 
 Vous pouvez également installer Azure CLI en utilisant PowerShell. Démarrez PowerShell en tant qu’administrateur et exécutez la commande suivante :
 
    ```PowerShell
    Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
    ```
-Cette opération télécharge et installe la dernière version d’Azure CLI pour Windows. Si vous aviez déjà installé une version, celle-ci est mise à jour. Une fois l’installation terminée, vous devez rouvrir PowerShell pour utiliser Azure CLI.
+
+Cette opération télécharge et installe la dernière version d’Azure CLI pour Windows. Si une version est déjà installée, le programme d’installation met à jour la version existante. Une fois l’installation terminée, vous devez rouvrir PowerShell pour utiliser Azure CLI.
+
+---
+
+## <a name="run-the-azure-cli"></a>Exécuter Azure CLI
 
 Vous pouvez désormais exécuter l’interface de ligne de commande Azure avec la commande `az` à partir de l’invite de commandes Windows ou PowerShell. PowerShell offre des fonctionnalités de saisie semi-automatique via la touche TAB non disponibles à partir de l’invite de commandes Windows. Pour vous connecter, exécutez la commande [az login](/cli/azure/reference-index#az-login).
 
@@ -74,7 +103,7 @@ La désinstallation d’Azure CLI s’effectue à partir de la liste « Applica
 | Plateforme | Instructions |
 |---|---|
 | Windows 10 | Démarrer > Paramètres > Applications |
-| Windows 8<br/>Windows 7 | Démarrer > Panneau de configuration > Programmes > Désinstaller un programme |
+| Windows 8 et Windows 7 | Démarrer > Panneau de configuration > Programmes > Désinstaller un programme |
 
 Une fois sur cet écran, tapez __Azure CLI__ dans la barre de recherche du programme. Le programme à désinstaller est listé sous le nom __Microsoft CLI 2.0 pour Azure__. Sélectionnez cette application, puis cliquez sur le bouton `Uninstall`.
 
