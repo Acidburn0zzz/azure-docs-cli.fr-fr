@@ -8,12 +8,12 @@ ms.date: 09/09/2018
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: d07fe2e807bd6e1fac6d0e9f883bcc8092be46bb
-ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
+ms.openlocfilehash: b06d1f9b97bb4ad8b569f608175754020f548642
+ms.sourcegitcommit: d056d09dd6268b8d70ca65303a3ebf640a8d4b26
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "79037969"
+ms.lasthandoff: 07/03/2020
+ms.locfileid: "85938126"
 ---
 # <a name="install-azure-cli-with-zypper"></a>Installez Azure CLI avec zypper
 
@@ -94,6 +94,14 @@ Pour obtenir la clé de signature Microsoft et obtenir le package à partir de n
 * `https://download.opensuse.org`
 
 [!INCLUDE[troubleshoot-wsl.md](includes/troubleshoot-wsl.md)]
+
+### <a name="ssl-certificate-problem"></a>Problème de certificat SSL
+
+Lorsqu’un certificat est arrêté ou obsolète sur un ordinateur, vous pouvez recevoir une erreur indiquant que curl n’a pas réussi à vérifier la légitimité du serveur et n’a donc pas pu établir de connexion sécurisée.  Mettez à jour votre certificat pour corriger le problème.  
+
+```bach
+sudo zypper update-ca-certificates
+```
 
 ## <a name="update"></a>Update
 
