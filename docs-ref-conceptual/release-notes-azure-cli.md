@@ -4,20 +4,135 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 06/23/2020
+ms.date: 07/14/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 68ba21af45850bc11b7568860607dc5bcb379b9f
-ms.sourcegitcommit: a13a02e99e8eefb91f11e4a40f5fa0d3b5e758e0
+ms.openlocfilehash: cf9c4e1a86b3315d45a7533f67b731ee2f3d6bc0
+ms.sourcegitcommit: 857d0f19fd87d37d134efdf0dda0e7003260938b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85256318"
+ms.lasthandoff: 07/14/2020
+ms.locfileid: "86308676"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="july-14-2020"></a>14 juillet 2020
+
+Version 2.9.0
+
+### <a name="acr"></a>ACR
+
+* Gestion du lien d’artefact de journal du Registre pour le streaming de journaux
+* Dépréciation des commandes helm2
+
+### <a name="aks"></a>AKS
+
+* `az aks create` : ajout de l’argument --enable-aad
+* `az aks update` : ajout de l’argument --enable-aad
+
+### <a name="apim"></a>APIM
+
+* Ajout de commandes d’API az apim générales
+
+### <a name="appconfig"></a>AppConfig
+
+* Ajout d’un exemple d’utilisation de --fields dans appconfig revision
+
+### <a name="appservice"></a>AppService
+
+* `az functionapp create`: prise en charge de Java 11 et de PowerShell 7. Prise en charge de l’API Stacks.
+* Correction du problème #14208 entraînant l’échec de la création d’applications multiconteneurs
+* Correction de az webapp create : utilisation de piles d’exécution codées en dur
+
+### <a name="arm"></a>ARM
+
+* `az resource tag`: correction du problème concernant l’étiquetage des ressources avec le type de ressource `Microsoft.ContainerInstance/containerGroups`
+
+### <a name="compute"></a>Calcul
+
+* Changement de version pour les disques (2020-05-01) et la capacité de calcul (2020-06-01)
+* Double chiffrement du jeu de chiffrement de disque
+* `az vmss update` : prise en charge de la spécification d’une image interlocataire.
+* `az sig image-version create` : prise en charge de la spécification d’une image interlocataire.
+* vm/vmss create : chiffrement du cache et des données en transit pour les disques de système d’exploitation/de données et les disques temporaires pour les machines virtuelles et VMSS
+* Ajout d’une opération simulate-eviction pour les machines virtuelles et VMSS
+
+### <a name="cosmosdb"></a>CosmosDB
+
+* Fonctionnalités récentes : mise à l’échelle automatique, IpRules, EnableFreeTier et EnableAnalyticalStorage
+
+### <a name="eventgrid"></a>EventGrid
+
+* Prise en charge de l’interface CLI pour 2020-04-01-preview et signalement des fonctionnalités en préversion avec is_Preview=True
+
+### <a name="find"></a>Rechercher
+
+* Correction du problème #14094 lié à az find entraînant l’échec des requêtes en l’absence de connexion et en cas de désactivation de la télémétrie
+
+### <a name="hdinsight"></a>HDInsight
+
+* Ajout de deux commandes pour prendre en charge la fonctionnalité de redémarrage de nœud HDInsight
+
+### <a name="monitor"></a>Superviser
+
+* Suppression de l’indicateur de préversion pour les commandes sous l’espace de travail Log Analytics
+* `az monitor diagnostic-settings subscription`: Prise en charge des paramètres de diagnostic pour l’abonnement
+* `az monitor metrics` : prise en charge de « , » et de « | » dans le nom des métriques
+* `az monitor log-analytics workspace data-export` : prise en charge de l’exportation de données Log Analytics
+
+### <a name="network"></a>Réseau
+
+* `az network application-gateway frontend-ip update`: Dépréciation du paramètre --public-ip-address
+* Passage à azure-mgmt-network 11.0.0
+* `az network express-route gateway connection` : prise en charge de la configuration du routage
+* `az network virtual-appliance`: prise en charge d’une appliance virtuelle réseau Azure.
+* Fonctionnalité de liaison privée prise en charge par Application Gateway
+
+### <a name="policyinsights"></a>PolicyInsights
+
+* `az policy state` : ajout de la commande trigger-scan pour déclencher des évaluations de conformité de la stratégie
+* `az policy state list` : exposition des versions des entités de stratégie dans chaque enregistrement de conformité
+
+### <a name="profile"></a>Profil
+
+* `az account get-access-token`: expiresOn visible pour l’identité managée
+
+### <a name="rdbms"></a>SGBDR
+
+* Prise en charge de la version TLS minimale
+* Ajout du chiffrement d’infrastructure pour Azure Postgres et MySQL
+
+### <a name="security"></a>Sécurité
+
+* Ajout des commandes allowed_connections
+* Ajout de commandes de renforcement du réseau adaptatif
+* Ajout des commandes adaptive_application_controls
+* Ajout de az security iot-solution/ iot-alerts/iot-recommendations/iot-analytics (REST) à Azure CLI
+* Ajout d’une interface CLI conforme à la réglementation
+
+### <a name="signalr"></a>SignalR
+
+* Ajout de fonctionnalités, notamment la gestion des connexions de point de terminaison privé, des règles réseau et du trafic en amont
+
+### <a name="sql"></a>SQL
+
+* `az sql mi create`, `az sql mi update` : ajout du paramètre `--tags` pour prendre en charge l’étiquetage des ressources
+* `az sql mi failover`: prise en charge du basculement à partir du point principal ou secondaire
+
+### <a name="storage"></a>Stockage
+
+* `az storage account create/update`: ajout de --allow-blob-public-access pour autoriser ou interdire l’accès public pour les objets blob et les conteneurs
+* `az storage account create/update`: ajout de `--min-tls-version` pour prendre en charge la configuration de la version TLS minimale à autoriser sur les demandes de stockage.
+* Suppression de l’archivage des informations d’identification des jetons
+* Correction du nom du compte de stockage dans les exemples
+
+### <a name="webapp"></a>Webapp
+
+* Correction d’un bogue lié à az webapp log deployment show : des journaux de déploiement sont retournés au lieu de métadonnées de journaux
+* Correction d’un bogue lié à az webapp vnet-integration add : correction de la gestion des erreurs en cas de nom de réseau virtuel incorrect et prise en charge de l’ID de ressource de réseau virtuel
 
 ## <a name="june-23-2020"></a>23 juin 2020
 
