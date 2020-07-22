@@ -4,20 +4,40 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 07/14/2020
+ms.date: 07/16/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: cf9c4e1a86b3315d45a7533f67b731ee2f3d6bc0
-ms.sourcegitcommit: 857d0f19fd87d37d134efdf0dda0e7003260938b
+ms.openlocfilehash: d8f134b28c3c2c288a0a0faa0fcb64c109cb1970
+ms.sourcegitcommit: c473377d1c08ac4efd2480bf852c30dbf1044a57
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86308676"
+ms.lasthandoff: 07/16/2020
+ms.locfileid: "86415310"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="july-16-2020"></a>16 juillet 2020
+
+Version 2.9.1
+
+### <a name="aks"></a>AKS
+
+* Suppression du paramètre explicite de VMSS dans l’exemple de commande Windows puisqu’il est maintenant par défaut
+
+### <a name="iot"></a>IoT
+
+* [CHANGEMENT CASSANT] `az iot pnp` : Suppression des commandes IoT PNP en préversion de l’interface CLI principale
+
+### <a name="rest"></a>REST
+
+* Correctif #14152 : `az rest` : URL ARM acceptées sans ID d’abonnement
+
+### <a name="storage"></a>Stockage
+
+* Correctif #14138 : Autorisations rendues facultatives
 
 ## <a name="july-14-2020"></a>14 juillet 2020
 
