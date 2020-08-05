@@ -8,12 +8,13 @@ ms.date: 09/09/2018
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: b06d1f9b97bb4ad8b569f608175754020f548642
-ms.sourcegitcommit: d056d09dd6268b8d70ca65303a3ebf640a8d4b26
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 1fe5b06985bb3aabf7e99f0dcebf481a79ebd6e7
+ms.sourcegitcommit: bf84dfb62e910ea246586481863bb43d09d07795
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85938126"
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87551485"
 ---
 # <a name="install-azure-cli-with-zypper"></a>Installez Azure CLI avec zypper
 
