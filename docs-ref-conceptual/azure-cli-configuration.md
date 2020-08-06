@@ -8,12 +8,12 @@ ms.date: 06/11/2018
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 24a798e9b3c08f3cd9e66c017cc45f5346d8995e
-ms.sourcegitcommit: d05660a42b2a77c4b05a7f96c386e656bd2db0fe
+ms.openlocfilehash: 09300c2b0da50e326fc3a7651741b71708c89ec8
+ms.sourcegitcommit: bf84dfb62e910ea246586481863bb43d09d07795
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/19/2020
-ms.locfileid: "83569168"
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87551181"
 ---
 # <a name="azure-cli-configuration"></a>Configuration d’Azure CLI
 
@@ -102,6 +102,8 @@ Lorsque vous fournissez une valeur par défaut, cet argument n’est plus néces
 | | endpoint | string | Point de terminaison par défaut auquel se connecter pour les commandes `az batch`. |
 | | auth\_mode | string | Mode d’autorisation à utiliser pour les commandes `az batch`. Peut être `shared_key` ou `aad`. |
 | __cloud__ | name | string | Cloud par défaut pour toutes les commandes `az`.  Les valeurs possibles sont `AzureCloud` (valeur par défaut), `AzureChinaCloud`, `AzureUSGovernment`, `AzureGermanCloud`. Pour changer des clouds, vous pouvez utiliser la commande `az cloud set –name`.  Pour obtenir un exemple, consultez [Gérer des clouds avec l’interface Azure CLI](manage-clouds-azure-cli.md). |
+| __extension__ | use_dynamic_install | string | Installez une extension si elle n’est pas encore ajoutée lors de l’exécution d’une commande à partir de celle-ci. Les valeurs possibles sont `no` (valeur par défaut), `yes_prompt`, `yes_without_prompt`. |
+| | run_after_dynamic_install | boolean | Poursuivez l’exécution de la commande lorsqu’une extension est installée dynamiquement pour celle-ci. La valeur par défaut est `False`. |
 
 > [!NOTE]
 > Votre fichier de configuration peut contenir d’autres valeurs. Toutefois, celles-ci sont gérées directement par le biais de commandes de l’interface CLI, notamment `az configure`. Les valeurs répertoriées dans le tableau ci-dessus sont les seules valeurs que vous devez modifier vous-même.

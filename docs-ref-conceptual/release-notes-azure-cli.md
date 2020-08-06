@@ -4,20 +4,119 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 07/16/2020
+ms.date: 08/04/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: d8f134b28c3c2c288a0a0faa0fcb64c109cb1970
-ms.sourcegitcommit: c473377d1c08ac4efd2480bf852c30dbf1044a57
+ms.openlocfilehash: 68cd2632e33dcd4e35f818d2a330f009fcbfbdbc
+ms.sourcegitcommit: bf84dfb62e910ea246586481863bb43d09d07795
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86415310"
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87551555"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="august-04-2020"></a>4 août 2020
+
+Version 2.10.0
+
+### <a name="aks"></a>AKS
+
+* `az aks update`: Modification de l’argument --enable-aad pour migrer un cluster non AAD pour lequel RBAC est activé vers un cluster AAD géré par AKS
+* `az aks install-cli`: Ajout des arguments --kubelogin-version et --kubelogin-install-location pour installer kubelogin
+* Ajout de la commande az aks nodepool get-upgrades
+
+### <a name="ams"></a>AMS
+
+* Correctif n° 14021 : az ams account sp n’est pas idempotent
+
+### <a name="apim"></a>APIM
+
+* Importation d’API APIM : prise en charge de l’importation d’API et amélioration d’autres commandes CLI au niveau de l’API
+
+### <a name="app-service"></a>App Service
+
+* Correctif n° 13035 : Ajout de la validation pour az webapp config access-restriction afin d’éviter l’ajout de doublons
+
+### <a name="appconfig"></a>AppConfig
+
+* La valeur par défaut est la référence SKU standard si elle n’est pas spécifiée
+* [CHANGEMENT CASSANT] Paramètres de prise en charge avec le type de contenu JSON
+
+### <a name="arm"></a>ARM
+
+* `az resource tag`: Correction du bogue concernant le marquage managedApp et certains problèmes de test associés
+* `az deployment mg/tenant what-if`: Ajout de la prise en charge au scénario de déploiement au niveau du locataire et du groupe d’administration
+* `az deployment mg/tenant create`: Ajout du paramètre --confirm-with-what-if/-c.
+* `az deployment mg/tenant create`: Ajout du paramètre --what-if-result-format/-r.
+* `az deployment mg/tenant create`: Ajout du paramètre --what-if-exclude-change-types/-x.
+* `az tag` : prise en charge de la balise az pour le paramètre d’ID de ressource
+
+### <a name="backup"></a>Sauvegarde
+
+* Déclenchement de la découverte de conteneur/d’élément AFS uniquement si nécessaire
+
+### <a name="cdn"></a>CDN
+
+* Ajout de champs de liaison privée à l’origine
+
+### <a name="compute"></a>Calcul
+
+* `az vm/vmss create`: Sélection d’un nom d’utilisateur valide pour l’utilisateur si le nom d’utilisateur par défaut n’est pas valide
+* `az vm update` : prise en charge de l’image entre locataires
+* `az disk-access`: Ajout d’un nouveau groupe de commandes pour utiliser la ressource d’accès au disque
+* Prise en charge de la sélection élective automatique du groupe hôte dédié
+* Prise en charge de ppg et spg dans le mode d’orchestration de groupe identique de machines virtuelles
+
+### <a name="config"></a>Config
+
+* `az config`: Ajout d’un nouveau module de commande `config`
+
+### <a name="extension"></a>Extension
+
+* Prise en charge de l’installation automatique d’une extension si l’extension d’une commande n’est pas installée
+
+### <a name="hdinsight"></a>HDInsight
+
+* Ajout de 3 paramètres à la commande `az hdinsight create` pour prendre en charge la fonctionnalité de liaison privée et chiffrement en transit :
+
+### <a name="iot-hub"></a>IoT Hub
+
+* Correctif n° 7792 : iot hub create n’est pas idempotent
+
+### <a name="iot-central"></a>IoT Central
+
+* Ajout d’une liste d’options de paramètre pour iot central
+
+### <a name="keyvault"></a>KeyVault
+
+* `az keyvault key encrypt/decrypt` : ajout du paramètre `--data-type` pour spécifier explicitement le type de données d’origine
+
+### <a name="monitor"></a>Superviser
+
+* `az monitor log-analytics workspace data-export` : prise en charge de l’espace de noms Event Hub comme destination.
+* `az monitor autoscale` : prise en charge de l’espace de noms et des dimensions pour --condition
+
+### <a name="netappfiles"></a>NetAppFiles
+
+* `az volume revert`:  Ajout de Rétablissement du volume pour rétablir un volume dans l’état de l’un de ses instantanés.
+* [CHANGEMENT CASSANT] Suppression de `az netappfiles mount-target`.
+* `az volume show`: Ajout de site aux propriétés Active Directory
+
+### <a name="network"></a>Réseau
+
+* `az application-gateway private-link add` : prise en charge de la spécification d’un sous-réseau existant par ID
+* `az network application-gateway waf-policy create` : prise en charge de la version et du type
+
+### <a name="storage"></a>Stockage
+
+* Correctif n° 10302 : prise en charge de l’estimation du type de contenu lors de la synchronisation des fichiers
+* `az storage blob lease`: Application d’une nouvelle version d’API pour les opérations de bail d’objets blob
+* `az storage fs access`: Prise en charge des informations d’identification AAD dans la gestion du contrôle d’accès pour le compte ADLS Gen2
+* `az storage share-rm create/update` : ajout de --access-tier pour prendre en charge le niveau d’accès
 
 ## <a name="july-16-2020"></a>16 juillet 2020
 
@@ -906,7 +1005,7 @@ Version 2.2.0
 * az network watcher flow-log configure : dépréciée
 * az network watcher flow-log show : prise en charge de --location et de --name pour obtenir un résultat au format ARM. L’ancienne sortie mise en forme est dépréciée
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * az policy assignment create : correction du bogue qui générait automatiquement un nom d’attribution de stratégie dépassant la limite
 
@@ -1114,7 +1213,7 @@ Version 2.0.81
 
 * Correctif #2092 : avertissement az network dns record-set add/remove: add quand l’ensemble d’enregistrements est introuvable. À l’avenir, un argument supplémentaire sera pris en charge pour confirmer cette création automatique.
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Ajout de la nouvelle commande `az policy metadata` pour récupérer des ressources de métadonnées de stratégie riches
 * `az policy remediation create`: Indication si la conformité doit être réévaluée avant correction avec le paramètre `--resource-discovery-mode`
@@ -1323,7 +1422,7 @@ Version 2.0.79
 * Rajout de builds edge pour pip install
 * Ajout du package Ubuntu eoan
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Ajout de la prise en charge de l’API des stratégies version 2019-09-01.
 * az policy set-definition : Ajout de la prise en charge du regroupement dans les définitions d’ensemble de stratégies avec le paramètre `--definition-groups`
@@ -1727,7 +1826,7 @@ Version 2.0.74
 * Ajout de la prise en charge de la définition de l’ID Key Vault sur `network application-gateway ssl-cert`
 * Ajout de `network express-route peering peer-connection [show|list]`
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Mis à jour pour utiliser la version d’API 2019-01-01
 
