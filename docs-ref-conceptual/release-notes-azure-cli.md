@@ -4,20 +4,46 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 08/04/2020
+ms.date: 08/06/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 68cd2632e33dcd4e35f818d2a330f009fcbfbdbc
-ms.sourcegitcommit: bf84dfb62e910ea246586481863bb43d09d07795
+ms.openlocfilehash: f81f5a69bd5806d2081a8eaa9b62a5b00b56edf9
+ms.sourcegitcommit: 04d3b43d7c960ff0e6188c9672d27046b45da6ed
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/04/2020
-ms.locfileid: "87551555"
+ms.lasthandoff: 08/06/2020
+ms.locfileid: "87855931"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="august-11-2020"></a>11 août 2020
+
+Version 2.10.1
+
+### <a name="app-service"></a>App Service
+
+* Correctif n°9887 webapp et functionapp : prise en charge de l’affectation/la suppression des identités managées utilisateur
+* Correctif n°1382, n°14055 : Mise à jour des messages d’erreur pour az webapp create et az webapp config container set
+* `az webapp up`: Correction de la logique de sélection ASP par défaut lorsque le paramètre --plan n’est pas fourni
+
+### <a name="appconfig"></a>AppConfig
+
+* Prise en charge de l’activation/la désactivation de PublicNetworkAccess pendant la création du magasin
+
+### <a name="compute"></a>Calcul
+
+* Prise en charge de l’association de disques et d’instantanés à une ressource d’accès au disque
+
+### <a name="lab"></a>Laboratoire
+
+* Correction du problème n°7904 où se trouvait un bogue de validation de date lors de la création de machines virtuelles de labo
+
+### <a name="storage"></a>Stockage
+
+* `az storage blob upload-batch`: Correction du problème n°14660 où se trouvaient des arguments sans position
 
 ## <a name="august-04-2020"></a>4 août 2020
 
@@ -1005,7 +1031,7 @@ Version 2.2.0
 * az network watcher flow-log configure : dépréciée
 * az network watcher flow-log show : prise en charge de --location et de --name pour obtenir un résultat au format ARM. L’ancienne sortie mise en forme est dépréciée
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * az policy assignment create : correction du bogue qui générait automatiquement un nom d’attribution de stratégie dépassant la limite
 
@@ -1213,7 +1239,7 @@ Version 2.0.81
 
 * Correctif #2092 : avertissement az network dns record-set add/remove: add quand l’ensemble d’enregistrements est introuvable. À l’avenir, un argument supplémentaire sera pris en charge pour confirmer cette création automatique.
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la nouvelle commande `az policy metadata` pour récupérer des ressources de métadonnées de stratégie riches
 * `az policy remediation create`: Indication si la conformité doit être réévaluée avant correction avec le paramètre `--resource-discovery-mode`
@@ -1422,7 +1448,7 @@ Version 2.0.79
 * Rajout de builds edge pour pip install
 * Ajout du package Ubuntu eoan
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la prise en charge de l’API des stratégies version 2019-09-01.
 * az policy set-definition : Ajout de la prise en charge du regroupement dans les définitions d’ensemble de stratégies avec le paramètre `--definition-groups`
@@ -1826,7 +1852,7 @@ Version 2.0.74
 * Ajout de la prise en charge de la définition de l’ID Key Vault sur `network application-gateway ssl-cert`
 * Ajout de `network express-route peering peer-connection [show|list]`
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Mis à jour pour utiliser la version d’API 2019-01-01
 
