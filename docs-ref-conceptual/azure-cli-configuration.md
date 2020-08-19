@@ -8,12 +8,12 @@ ms.date: 06/11/2018
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 09300c2b0da50e326fc3a7651741b71708c89ec8
-ms.sourcegitcommit: bf84dfb62e910ea246586481863bb43d09d07795
+ms.openlocfilehash: 465a7c86a883c27e94ca21412bdb59476203afa5
+ms.sourcegitcommit: 58d839589858acc1a7a9f114af7f4fce13d883ea
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/04/2020
-ms.locfileid: "87551181"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88601863"
 ---
 # <a name="azure-cli-configuration"></a>Configuration d’Azure CLI
 
@@ -78,7 +78,7 @@ Consultez la section suivante pour en savoir plus sur toutes les valeurs de conf
 
 ## <a name="cli-configuration-values-and-environment-variables"></a>Valeurs de configuration de l’interface CLI et variables d’environnement
 
-Le tableau suivant contient l’ensemble des noms d’options et de sections pouvant être placés dans un fichier de configuration. Leurs variables d’environnement correspondantes sont configurées en tant que `AZURE_{section}_{name}` dans toutes les extrémités de fin. Par exemple, la valeur par défaut `output` pour `core` est définie dans la variable `AZURE_CORE_OUTPUT`, tandis que la valeur par défaut `storage_account` pour `batchai` est définie dans la variable `AZURE_BATCHAI_STORAGE_ACCOUNT`.
+Le tableau suivant contient l’ensemble des noms d’options et de sections pouvant être placés dans un fichier de configuration. Leurs variables d’environnement correspondantes sont configurées en tant que `AZURE_{section}_{name}` dans toutes les extrémités de fin. Par exemple, la valeur par défaut `output` pour `core` est définie dans la variable `AZURE_CORE_OUTPUT`, la valeur par défaut `storage_account` pour `batchai` est définie dans la variable `AZURE_BATCHAI_STORAGE_ACCOUNT` et la valeur par défaut `location` est définie dans la variable `AZURE_DEFAULTS_LOCATION`.
 
 Lorsque vous fournissez une valeur par défaut, cet argument n’est plus nécessaire à aucune commande. C’est la valeur par défaut qui est alors utilisée.
 
@@ -91,6 +91,8 @@ Lorsque vous fournissez une valeur par défaut, cet argument n’est plus néces
 | | no\_color | boolean | Désactive la couleur. Les messages de couleur d’origine ont le préfixe `DEBUG`, `INFO`, `WARNING` et `ERROR`. Cela contourne le problème d’une bibliothèque tierce où la couleur du terminal ne peut pas être restaurée après une redirection de `stdout`. |
 | __logging__ | enable\_log\_file | boolean | Active/Désactive la journalisation. |
 | | log\_dir | string | Répertoire dans lequel écrire les journaux d’activité. Par défaut, cette valeur est `${AZURE_CONFIG_DIR}/logs`. |
+| __defaults__ | group | string | Groupe de ressources par défaut à utiliser pour toutes les commandes. |
+| | location | string | Emplacement par défaut à utiliser pour toutes les commandes. |
 | __storage__ | connection\_string | string | Chaîne de connexion par défaut à utiliser pour les commandes `az storage`. |
 | | account | string | Nom de compte par défaut à utiliser pour les commandes `az storage`. |
 | | key | string | Clé de compte par défaut à utiliser pour les commandes `az storage`. |

@@ -1,14 +1,14 @@
 ---
-ms.openlocfilehash: 42905cad49810a1c16c406bcf3dd66e837f95e05
-ms.sourcegitcommit: f2e32fa945b2c69d45d2d3a01827e28f0e82e556
+ms.openlocfilehash: 4794f1eb2fb45ca767f67de5270e232d6b68aede
+ms.sourcegitcommit: 58d839589858acc1a7a9f114af7f4fce13d883ea
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87294685"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88601897"
 ---
 # <a name="tips-for-using-azure-cli-effectively"></a>Conseils pour utiliser Azure CLI efficacement
 
-Par souci de clarté, les scripts Bash sont utilisés inline. Les exemples PowerScript ou de commandes Windows sont listés dans l’annexe, que vous pouvez utiliser pour générer des exemples similaires.
+Par souci de clarté, les scripts Bash sont utilisés inline. Les exemples PowerShell ou de commandes Windows sont listés dans l’annexe, que vous pouvez utiliser pour générer des exemples similaires.
 
 ## <a name="output-formatting-json-table-or-tsv"></a>Mise en forme de la sortie (json, table ou tsv)
 
