@@ -4,17 +4,17 @@ description: Utilisation d’extensions avec Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 09/07/2018
+ms.date: 08/06/2020
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 16d88ebab47e1572b967911dd9554fb2efb0d756
-ms.sourcegitcommit: bf84dfb62e910ea246586481863bb43d09d07795
+ms.openlocfilehash: 72e5ca67f9d1d7a754dae098d89f2eb76d108b0b
+ms.sourcegitcommit: fd8c3e32f0f50feb6fea33ead636a80a050bcf2a
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/04/2020
-ms.locfileid: "87551521"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88713092"
 ---
 # <a name="use-extensions-with-azure-cli"></a>Utilisez des extensions avec Azure CLI 
 
@@ -33,6 +33,8 @@ Nous hébergeons également une [liste des extensions](azure-cli-extensions-list
 
 ## <a name="install-extensions"></a>Installer les extensions
 
+### <a name="install-extensions-manually"></a>Installer les extensions manuellement
+
 Une fois que vous avez trouvé une extension à installer, utilisez la commande [az extension add](https://docs.microsoft.com/cli/azure/extension#az-extension-add) pour l’obtenir. Si l’extension est répertoriée dans `az extension list-available`, vous pouvez installer l’extension par nom.
 
 ```azurecli-interactive
@@ -46,6 +48,28 @@ az extension add --source <URL-or-path>
 ```
 
 Une fois qu’une extension est installée, elle se trouve sous la valeur de la variable d’interpréteur de commandes `$AZURE_EXTENSION_DIR`. Si cette variable n’est pas définie, par défaut la valeur est `$HOME/.azure/cliextensions` sur Linux et macOS, et `%USERPROFILE%\.azure\cliextensions` sur Windows.
+
+### <a name="install-extensions-automatically"></a>Installer les extensions automatiquement
+
+À compter de la version `2.10.0`, quand vous exécutez une commande d’extension qui n’est pas installée, l’interface Azure CLI peut reconnaître la commande que vous exécutez et installer automatiquement l’extension. Cette fonctionnalité, appelée **installation dynamique**, est activée par configuration.
+```azurecli-interactive
+az config set extension.use_dynamic_install=yes_prompt
+```
+
+Utilisez la commande de configuration suivante pour activer l’installation dynamique sans invite.
+```azurecli-interactive
+az config set extension.use_dynamic_install=yes_without_prompt
+```
+
+Utilisez la commande de configuration suivante pour désactiver la fonctionnalité d’installation dynamique afin de rétablir le comportement par défaut. La commande d’extension retourne une erreur de commande introuvable si l’extension n’est pas installée.
+```azurecli-interactive
+az config set extension.use_dynamic_install=no
+```
+
+Par défaut, l’exécution d’une commande d’extension qui demande l’installation dynamique s’interrompt. Vous pouvez changer le comportement par défaut et faire en sorte que la commande se poursuive en affectant à la propriété `run_after_dynamic_install` la valeur `yes`.
+```azurecli-interactive
+az config set extension.run_after_dynamic_install=yes
+```
 
 ## <a name="update-extensions"></a>Mettre à jour les extensions
 
