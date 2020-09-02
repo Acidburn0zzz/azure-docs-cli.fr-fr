@@ -4,20 +4,165 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 08/06/2020
+ms.date: 08/28/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: f81f5a69bd5806d2081a8eaa9b62a5b00b56edf9
-ms.sourcegitcommit: 04d3b43d7c960ff0e6188c9672d27046b45da6ed
+ms.openlocfilehash: cc1ed8d904571fa7583445a8b7e7e79fa4f00b37
+ms.sourcegitcommit: 28e3282487dab68f9a4635f8bec161fbc412c3b9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87855931"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89054612"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="august-28-2020"></a>28 août 2020
+
+Version 2.11.1
+
+### <a name="acr"></a>ACR
+
+* Ajout d’un niveau isolé au pool d’agents
+* Ajout d’un contexte source d’artefacts OCI
+
+### <a name="aks"></a>AKS
+
+* Correction du problème de création de cluster AKS
+
+### <a name="cognitive-services"></a>Cognitive Services
+
+* [CHANGEMENT CASSANT] Affichage des conditions juridiques supplémentaires pour certaines API
+
+### <a name="network"></a>Réseau
+
+* [CHANGEMENT CASSANT] Possibilité de créer des adresses IP publiques et privées lors de la création d’une passerelle applicative
+* `az network list-service-tags` : Ajout de détails sur l’utilisation du paramètre location au message d’aide
+
+### <a name="storage"></a>Stockage
+
+* `az storage blob list`: Prise en charge des propriétés OR avec la nouvelle version d’API
+
+## <a name="august-25-2020"></a>25 août 2020
+
+Version 2.11.0
+
+### <a name="aks"></a>AKS
+
+* Suppression de l’étiquette preview du module complémentaire Nœud virtuel
+* Ajout de l’argument AKS CMK dans la création du cluster
+* Définition du profil réseau lors de l’utilisation d’un équilibreur de charge de base.
+* Suppression de la validation du nombre maximal de pods de l’interface CLI et gestion de la validation par la version préliminaire
+* Correction des modules complémentaires disponibles dans le message d’aide pour `az aks create`
+* Prise en charge du profil de l’utilitaire de mise à l’échelle automatique de cluster dans l’interface CLI principale
+
+### <a name="appservice"></a>AppService
+
+* `az webapp`: Ajout de la commande list-instances
+* `az webapp ssh`: Ajout du paramètre --instance pour se connecter à une instance spécifique
+* `az webapp create-remote-connection`: Ajout du paramètre --instance pour se connecter à une instance spécifique
+* Correctif 14758 : Erreurs az webapp create lors de la création d’une application Windows avec --runtime dotnetcore
+* Correctif 14701 : Implémentation de functionapp create --assign-identity
+* Correctif 11244 : `az webapp auth update` : Ajout d’un paramètre facultatif pour mettre à jour client-secret-certificate-thumbprint
+* `az functionapp keys`: Ajout de commandes permettant aux utilisateurs de gérer leurs clés d’application de fonction
+* `az functionapp function`: Ajout de commandes permettant aux utilisateurs de gérer leurs fonctions individuelles
+* `az functionapp function keys`: Ajout de commandes permettant aux utilisateurs de gérer leurs clés de fonction
+* Correctif 14788 : az webapp create n’obtient pas la bonne application web si les noms sont des sous-chaînes
+* `az functionapp create`: Impossibilité désormais de créer des fonctions 2.x dans les régions qui ne les prennent pas en charge
+
+### <a name="arm"></a>ARM
+
+* `az resource list`: Extension des données de retour de `createdTime`, `changedTime` et `provisioningState`
+* `az resource`: Ajout du paramètre `--latest-include-preview` pour prendre en charge l’utilisation de la dernière version d’API (api-version), même si celle-ci est une préversion
+
+### <a name="aro"></a>ARO
+
+* Améliorations de l’interface CLI, avec notamment des autorisations de vérification de la table de route
+
+### <a name="cloud"></a>Cloud
+
+* `az cloud register`: Correction de l’inscription de clouds avec un fichier config
+
+### <a name="compute"></a>Calcul
+
+* Mise à jour des références SKU de machine virtuelle qui prennent en charge l’accélération réseau
+* `az vm create`: Mise à jour corrective automatique dans l’invité
+* `az image builder create`: Ajout de --vm-size, --os-disk-size, --vnet, --subnet
+* Nouvelle commande az vm assess-patches
+
+### <a name="container"></a>Conteneur
+
+* Correctif 6235 : Mise à jour du texte d’aide pour le paramètre ports dans container create
+
+### <a name="datalake-store"></a>Magasin Data Lake
+
+* Correction du problème 14545 lié à l’opération de jointure à un lac de données
+
+### <a name="eventhub"></a>Event Hub
+
+* `az eventhubs eventhub create/update`: Changement de la documentation de destination_name
+
+### <a name="extension"></a>Extension
+
+* Ajout de la commande `az extension list-versions` pour lister toutes les versions disponibles d’une extension
+
+### <a name="hdinsight"></a>HDInsight
+
+* Prise en charge de la création de clusters avec configuration de mise à l’échelle automatique et prise en charge de la gestion de la configuration de mise à l’échelle automatique
+* Prise en charge de la création de clusters avec chiffrement sur l’hôte
+
+### <a name="iotcentral"></a>IotCentral
+
+* Améliorations apportées à la documentation sur l’interface CLI
+
+### <a name="monitor"></a>Superviser
+
+* `az monitor metrics alert create` : Prise en charge de RG et de Sub comme valeurs d’étendue
+
+### <a name="netappfiles"></a>NetAppFiles
+
+* [CHANGEMENT CASSANT] az netappfiles snapshot create: Suppression de file-system-id des paramètres
+* [CHANGEMENT CASSANT] az netappfiles snapshot show: L’instantané n’a plus le paramètre file-system-id
+* `az netappfiles account`: Le modèle ActiveDirectory a un nouveau paramètre backup_operators
+* `az netappfiles volume show`: Le modèle dataProtection a un nouveau paramètre snapshot
+* `az netappfiles volume show`: Le modèle Volume a un nouveau paramètre snapshot_directory_visible
+
+### <a name="network"></a>Réseau
+
+* `az network dns export` : Exportation du FQDN pour le type MX, PTR, NS et SRV à la place du chemin relatif
+* Prise en charge des liaisons privées pour les disques managés
+* `az network application-gateway auth-cert show`: Ajout d’un exemple pour illustrer le format de certificat
+* `az network private-endpoint-connection` : Prise en charge de la configuration des applications
+
+### <a name="rbac"></a>RBAC
+
+* `az ad group create` : Prise en charge de la spécification de la description lors de la création d’un groupe
+* `az role definition create` : Impression d’un message lisible par l’utilisateur au lieu d’une exception quand assignableScope est un tableau vide
+* [CHANGEMENT CASSANT] `az ad sp create-for-rbac` : Modification de l’autorisation par défaut du certificat créé
+
+### <a name="sql"></a>SQL
+
+* `az sql server audit-policy`: Ajout de la prise en charge de l’audit de serveurs SQL
+
+### <a name="storage"></a>Stockage
+
+* `az storage blob copy start-batch`: Correctif 6018 pour --source-sas
+* `az storage account or-policy`: Prise en charge de la stratégie de réplication d’objet de compte de stockage
+* Correctif du problème 14083 pour mettre à niveau la version du package azure-multiapi-storage pour résoudre le problème lié au package et prise en charge de la nouvelle version de l’API
+* `az storage blob generate-sas` : Ajout d’exemples pour --ip et amélioration du message d’erreur
+* `az storage blob list`: Correction du problème next_marker
+
+### <a name="synapse"></a>Synapse
+
+* Ajout d’applets de commande liées aux espaces de travail, pools Spark et pools SQL
+* Ajout de commandes liées aux travaux Spark basées sur le SDK track2
+* Ajout de commandes liées aux fonctionnalités de contrôle d’accès basées sur le SDK track2
+
+### <a name="upgrade"></a>Mettre à niveau
+
+* Ajout de la commande `az upgrade` pour mettre à niveau Azure CLI et les extensions
 
 ## <a name="august-11-2020"></a>11 août 2020
 
@@ -1031,7 +1176,7 @@ Version 2.2.0
 * az network watcher flow-log configure : dépréciée
 * az network watcher flow-log show : prise en charge de --location et de --name pour obtenir un résultat au format ARM. L’ancienne sortie mise en forme est dépréciée
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * az policy assignment create : correction du bogue qui générait automatiquement un nom d’attribution de stratégie dépassant la limite
 
@@ -1239,7 +1384,7 @@ Version 2.0.81
 
 * Correctif #2092 : avertissement az network dns record-set add/remove: add quand l’ensemble d’enregistrements est introuvable. À l’avenir, un argument supplémentaire sera pris en charge pour confirmer cette création automatique.
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Ajout de la nouvelle commande `az policy metadata` pour récupérer des ressources de métadonnées de stratégie riches
 * `az policy remediation create`: Indication si la conformité doit être réévaluée avant correction avec le paramètre `--resource-discovery-mode`
@@ -1448,7 +1593,7 @@ Version 2.0.79
 * Rajout de builds edge pour pip install
 * Ajout du package Ubuntu eoan
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Ajout de la prise en charge de l’API des stratégies version 2019-09-01.
 * az policy set-definition : Ajout de la prise en charge du regroupement dans les définitions d’ensemble de stratégies avec le paramètre `--definition-groups`
@@ -1800,7 +1945,7 @@ Version 2.0.74
 
 * Résolution d’un problème où le caractère `:` n’était pas autorisé dans l’argument `--condition` de `monitor metrics alert create`
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Ajout de la prise en charge de l’API Policy version 2019-06-01
 * Ajout du paramètre `--enforcement-mode` à la commande `policy assignment create`
@@ -1852,7 +1997,7 @@ Version 2.0.74
 * Ajout de la prise en charge de la définition de l’ID Key Vault sur `network application-gateway ssl-cert`
 * Ajout de `network express-route peering peer-connection [show|list]`
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Mis à jour pour utiliser la version d’API 2019-01-01
 
