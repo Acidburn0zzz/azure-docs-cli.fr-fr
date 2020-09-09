@@ -9,12 +9,13 @@ ms.topic: conceptual
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
-ms.openlocfilehash: 3a0b2e315e0eaf6c352aa2737f33da043b5feb7d
-ms.sourcegitcommit: ee64dc738cfe689a2a479e32a87bf420f96c31c8
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 42e9de630530568a15bc6f9f05d2442d790d8b68
+ms.sourcegitcommit: 2da241715d25407ed22c1065c0c793acfd865996
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "80075931"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89563142"
 ---
 # <a name="popular-articles-using-the-azure-cli"></a>Articles populaires utilisant l’interface Azure CLI
 
@@ -24,14 +25,14 @@ L’interface Azure CLI est utilisée dans de nombreux services Azure, ce qui d
 
 | | | | |
 |-|-|-|-|
-|Virtual Machines | Tutoriel : Linux | [Créer une machine virtuelle Linux avec Azure CLI](azure-cli-vm-tutorial.yml) | Création d’une machine virtuelle  Découvrez les requêtes de sortie et la définition de variables d’environnement.
-|Virtual Machines | Démarrage rapide : Linux | [Créer une machine virtuelle Linux à l’aide d’Azure CLI](/azure/virtual-machines/linux/quick-create-cli) | Créez et déployez une machine virtuelle Linux.  Ouvrez un port pour le trafic web et installez un serveur web.
+|Machines Virtuelles | Tutoriel : Linux | [Créer une machine virtuelle Linux avec Azure CLI](azure-cli-vm-tutorial.yml) | Création d’une machine virtuelle  Découvrez les requêtes de sortie et la définition de variables d’environnement.
+|Virtual Machines | Démarrage rapide : Linux | [Créer une machine virtuelle Linux en utilisant Azure CLI](/azure/virtual-machines/linux/quick-create-cli) | Créez et déployez une machine virtuelle Linux.  Ouvrez un port pour le trafic web et installez un serveur web.
 |Virtual Machines | Guide pratique : Linux |[Créer une image Linux d’une machine virtuelle ou d’un disque dur virtuel](/azure/virtual-machines/linux/capture-image) | Déprovisionnez une machine virtuelle existante, créer une image, puis créez une nouvelle machine virtuelle à partir de l’image capturée.
 |Virtual Machines | Guide pratique : Linux | [Charger un disque dur virtuel sur Azure à l’aide d’Azure CLI](/azure/virtual-machines/linux/disks-upload-vhd-to-managed-disk-cli) | Créez un disque managé vide, chargez votre fichier VHD local, puis copiez un disque managé.
 |Virtual Machines | Guide pratique : Linux | [Créer une galerie d’images partagées à l’aide d’Azure CLI](/azure/virtual-machines/linux/shared-images) | Créez une galerie d’images partagées contenant des images de machine virtuelle personnalisées avec d’autres personnes de votre organisation, dans ou entre différentes régions, ou dans un locataire Azure Active Directory.
 |Virtual Machines | Guide pratique : Linux | [Déployer des machines virtuelles Spot avec Azure CLI (préversion)](/azure/virtual-machines/linux/spot-cli) | Déployez une machine virtuelle Spot Linux qui ne sera pas supprimée en fonction du prix.
 |Virtual Machines | Démarrage rapide : Windows | [Créer une machine virtuelle Windows à l’aide d’Azure CLI](/azure/virtual-machines/windows/quick-create-cli) | Déployez dans Azure une machine virtuelle qui exécute Windows Server 2016.
-|Virtual Machines | Module Learn | [Gérer des machines virtuelles à l’aide d’Azure CLI](https://docs.microsoft.com/learn/modules/manage-virtual-machines-with-azure-cli/) | Créez, démarrez, arrêtez des machines virtuelles, et effectuez d’autres tâches de gestion liées à ces dernières.
+|Virtual Machines | Module d’apprentissage | [Gérer des machines virtuelles à l’aide d’Azure CLI](https://docs.microsoft.com/learn/modules/manage-virtual-machines-with-azure-cli/) | Créez, démarrez, arrêtez des machines virtuelles, et effectuez d’autres tâches de gestion liées à ces dernières.
 |Azure Kubernetes Service (AKS)| Démarrage rapide | [Déployer un cluster AKS (Azure Kubernetes Service) à l’aide d’Azure CLI](/azure/aks/kubernetes-walkthrough) | Déployez et gérez des clusters AKS.  Découvrez comment superviser l’intégrité du cluster et des pods qui exécutent votre application.
 |Azure Batch|Exemple | [Exécuter un travail et des tâches avec Azure Batch à l’aide d’Azure CLI](/azure/batch/scripts/batch-cli-sample-run-job) | Créez un travail Batch et ajoutez une série de tâches au travail. Supervisez un travail et ses tâches.
 |Azure Batch|Exemple | [Créer et gérer un pool Windows dans Azure Batch à l’aide d’Azure CLI](/azure/batch/scripts/batch-cli-sample-manage-windows-pool) | Créez et gérez un pool de nœuds de calcul Windows avec une configuration des services cloud.
@@ -42,7 +43,7 @@ L’interface Azure CLI est utilisée dans de nombreux services Azure, ce qui d
 
 | | | | |
 |-|-|-|-|
-|Réseau virtuel|Démarrage rapide | [Créer un réseau virtuel à l’aide d’Azure CLI](/azure/virtual-network/quick-create-cli) | Créez un réseau virtuel, déployez deux machines virtuelles dans le réseau virtuel, puis connectez-vous aux machines virtuelles à partir d’Internet.
+|Réseau virtuel|Démarrage rapide | [Créer un réseau virtuel à l’aide d’Azure CLI](/azure/virtual-network/quick-create-cli) | Créez un réseau virtuel, déployez deux machines virtuelles dans le réseau virtuel, puis connectez-vous aux machines virtuelles à partir d’Internet.
 |Réseau virtuel|Guide pratique | [Activer l’accélération réseau sur une machine virtuelle existante à l’aide d’Azure CLI](/azure/virtual-network/create-vm-accelerated-networking-cli) | Créez une machine virtuelle Linux, gérez la liaison dynamique et la révocation de la fonction virtuelle, puis activez l’accélération réseau.
 
 ## <a name="internet-of-things"></a>Internet des Objets
@@ -65,7 +66,7 @@ L’interface Azure CLI est utilisée dans de nombreux services Azure, ce qui d
 | | | | |
 |-|-|-|-|
 |SQL Database| Exemple |[Configurer Azure SQL Database à l’aide d’Azure CLI](/azure/sql-database/sql-database-cli-samples?tabs=single-database) | Exemples Azure CLI pour Azure SQL Database.
-|MySQL|Démarrage rapide |[Créer un serveur de base de données Azure pour MySQL à l’aide d’Azure CLI](/azure/mysql/quickstart-create-mysql-server-database-using-azure-cli) | Créez un serveur de base de données Azure pour MySQL.  Configurez une règle de pare-feu et des paramètres SL.  Obtenez et utilisez des informations de connexion.
+|MySQL|Démarrage rapide |[Créer un serveur Azure Database pour MySQL à l’aide d’Azure CLI](/azure/mysql/quickstart-create-mysql-server-database-using-azure-cli) | Créez un serveur de base de données Azure pour MySQL.  Configurez une règle de pare-feu et des paramètres SL.  Obtenez et utilisez des informations de connexion.
 |Cosmos DB |Guide pratique |[Gérer les ressources Azure Cosmos à l’aide d’Azure CLI](/azure/cosmos-db/manage-with-cli) | Utilisez des commandes courantes pour automatiser la gestion de vos comptes, bases de données et conteneurs Azure Cosmos DB.
 |Cosmos DB |Exemple |[Exemples Azure CLI pour l’API SQL (Core) Azure Cosmos DB](/azure/cosmos-db/cli-samples) | Obtenez des liens vers des exemples de scripts Azure CLI pour l’API SQL (Core) Azure Cosmos DB.
 
@@ -74,7 +75,7 @@ L’interface Azure CLI est utilisée dans de nombreux services Azure, ce qui d
 | | | | |
 |-|-|-|-|
 Azure Event Hub |Démarrage rapide |[Créer un hub d’événements à l’aide d’Azure CLI](/azure/event-hubs/event-hubs-quickstart-cli) | Créez un espace de noms Event Hubs et un hub d’événements.
-HDInsight |Guide pratique |[Créer des clusters HDInsight à l’aide d’Azure CLI](/azure/hdinsight/hdinsight-hadoop-create-linux-clusters-azure-cli) | Créez un cluster HDInsight 3.6.
+HDInsight |Guide pratique |[Créer des clusters HDInsight à l’aide de l’interface de ligne de commande Azure](/azure/hdinsight/hdinsight-hadoop-create-linux-clusters-azure-cli) | Créez un cluster HDInsight 3.6.
 HDInsight |Didacticiel |[Gérer des clusters Azure HDInsight à l’aide d’Azure CLI](/azure/hdinsight/hdinsight-administer-use-command-line) | Listez, affichez, supprimez et mettez à l’échelle des clusters HDInsight.
 
 ## <a name="management-and-governance"></a>Gestion et gouvernance
@@ -83,8 +84,8 @@ HDInsight |Didacticiel |[Gérer des clusters Azure HDInsight à l’aide d’Azu
 |-|-|-|-|
 Modèles de Gestionnaire des ressources |Guide pratique |[Déployer des ressources avec des modèles Azure Resource Manager et Azure CLI](/azure/azure-resource-manager/templates/deploy-cli) | Déployez vos ressources dans Azure à l’aide de modèles.
 Groupes Resource Manager |Guide pratique |[Gérer des groupes de ressources Azure Resource Manager à l’aide d’Azure CLI](/azure/azure-resource-manager/management/manage-resource-groups-cli) | Utilisez Azure Resource Manager pour gérer vos groupes de ressources Azure.
-Graphe des ressources |Démarrage rapide |[Exécuter votre première requête Resource Graph à l’aide d’Azure CLI](/azure/governance/resource-graph/first-query-azurecli) | Ajoutez Azure Resource Graph à votre installation d’Azure CLI, puis exécutez votre première requête Resource Graph.
-Affectation de rôle |Démarrage rapide |[Créer une attribution de stratégie pour identifier les ressources non conformes à l’aide d’Azure CLI](/azure/governance/policy/assign-policy-azurecli) | Créez une attribution de stratégie pour identifier les machines virtuelles qui n’utilisent pas de disques managés.
+Resource Graph |Démarrage rapide |[Exécuter votre première requête Resource Graph à l’aide d’Azure CLI](/azure/governance/resource-graph/first-query-azurecli) | Ajoutez Azure Resource Graph à votre installation d’Azure CLI, puis exécutez votre première requête Resource Graph.
+Attribution de stratégie |Démarrage rapide |[Créer une attribution de stratégie pour identifier les ressources non conformes à l’aide d’Azure CLI](/azure/governance/policy/assign-policy-azurecli) | Créez une attribution de stratégie pour identifier les machines virtuelles qui n’utilisent pas de disques managés.
 
 ## <a name="hybrid"></a>Hybride
 
@@ -98,9 +99,9 @@ Azure Stack Hub| Guide pratique : Ressources ASDK |[Gérer et déployer des ress
 
 | | | | |
 |-|-|-|-|
-Stockage d'objets blob |Démarrage rapide |  [Créer, charger et lister des objets blob à l’aide d’Azure CLI](/azure/storage/blobs/storage-quickstart-blobs-cli) | Chargez et téléchargez des données vers et depuis le Stockage Blob Azure.
-Stockage d'objets blob |Guide pratique |[Autoriser l’accès à des données d’objet blob ou de file d’attente à l’aide d’Azure CLI](/azure/storage/common/authorize-data-operations-cli) | Spécifiez la façon dont les opérations de données sont autorisées et définissez des variables d’environnement pour les paramètres.
-Stockage d'objets blob |Guide pratique |[Utiliser Azure CLI pour gérer des répertoires, des fichiers et des listes de contrôle d’accès dans Azure Data Lake Storage Gen2 (préversion)](/azure/storage/blobs/data-lake-storage-directory-file-acl-cli) | Créez et gérez des répertoires, des fichiers et des autorisations dans des comptes de stockage dotés d’un espace de noms hiérarchique.
+Stockage d’objets BLOB |Démarrage rapide |  [Créer, charger et lister des objets blob à l’aide d’Azure CLI](/azure/storage/blobs/storage-quickstart-blobs-cli) | Chargez et téléchargez des données vers et depuis le Stockage Blob Azure.
+Stockage d’objets BLOB |Guide pratique |[Autoriser l’accès à des données d’objet blob ou de file d’attente à l’aide d’Azure CLI](/azure/storage/common/authorize-data-operations-cli) | Spécifiez la façon dont les opérations de données sont autorisées et définissez des variables d’environnement pour les paramètres.
+Stockage d’objets BLOB |Guide pratique |[Utiliser Azure CLI pour gérer des répertoires, des fichiers et des listes de contrôle d’accès dans Azure Data Lake Storage Gen2 (préversion)](/azure/storage/blobs/data-lake-storage-directory-file-acl-cli) | Créez et gérez des répertoires, des fichiers et des autorisations dans des comptes de stockage dotés d’un espace de noms hiérarchique.
 Stockage Fichier |Démarrage rapide |[Créer et gérer des partages de fichiers Azure à l’aide d’Azure CLI](/azure/storage/files/storage-how-to-use-files-cli) | Créez et utilisez des partages de fichiers Azure.  Créez et gérez des captures instantanées de partage.
 
 ## <a name="security"></a>Sécurité
@@ -109,22 +110,22 @@ Stockage Fichier |Démarrage rapide |[Créer et gérer des partages de fichiers 
 |-|-|-|-|
 Principal du service |Guide pratique |[Créer un principal du service Azure à l’aide d’Azure CLI](/cli/azure/create-an-azure-service-principal-azure-cli) | Créez un principal de service, obtenez les informations s’y rapportant et réinitialisez-le avec Azure CLI.
 RBAC |Guide pratique |[Ajouter ou supprimer des attributions de rôles avec le contrôle d’accès en fonction du rôle (RBAC) Azure et Azure CLI](/azure/role-based-access-control/role-assignments-cli) | Attribuez des rôles au contrôle d’accès en fonction du rôle Azure.
-Key Vault |Guide pratique |[Gérer Key Vault à l’aide d’Azure CLI](/azure/key-vault/key-vault-manage-with-cli2) | Créez et gérez Azure Key Vault.  Inscrivez et autorisez une application, définissez des stratégies d’accès avancées et découvrez les commandes d’interface de ligne de commande multiplateformes.
-Key Vault |Didacticiel |[Gérer les clés de compte de stockage avec Key Vault et Azure CLI](/azure/key-vault/key-vault-ovw-storage-keys) | Gérez les clés de compte de stockage et générez des jetons de signature d’accès partagé.
+Key Vault |Guide pratique |[Gérer Key Vault à l’aide de l’interface de ligne de commande Azure](/azure/key-vault/key-vault-manage-with-cli2) | Créez et gérez Azure Key Vault.  Inscrivez et autorisez une application, définissez des stratégies d’accès avancées et découvrez les commandes d’interface de ligne de commande multiplateformes.
+Key Vault |Didacticiel |[Gérer les clés de compte de stockage avec Key Vault et l’interface de ligne de commande Azure](/azure/key-vault/key-vault-ovw-storage-keys) | Gérez les clés de compte de stockage et générez des jetons de signature d’accès partagé.
 
 ## <a name="ai--machine-learning"></a>IA + Machine Learning
 
 | | | | |
 |-|-|-|-|
-Machine Learning |Informations de référence |[Utiliser l’extension Azure CLI pour Azure Machine Learning](/azure/machine-learning/reference-azure-machine-learning-cli) | Exécutez des expériences pour créer et inscrire des modèles Machine Learning à destination des clients.  Empaquetez, déployez et suivez le cycle de vie de vos modèles Machine Learning.
-Cognitive Services |Guide pratique |[Créer une ressource Cognitive Services à l’aide d’Azure CLI](/azure/cognitive-services/cognitive-services-apis-create-account-cli) | Inscrivez-vous à Azure Cognitive Services et créez un compte disposant d’un abonnement monoservice ou multiservice.  Utilisez les clés et le point de terminaison générés automatiquement pour authentifier vos applications.
+Machine Learning |Référence |[Utiliser l’extension Azure CLI pour Azure Machine Learning](/azure/machine-learning/reference-azure-machine-learning-cli) | Exécutez des expériences pour créer et inscrire des modèles Machine Learning à destination des clients.  Empaquetez, déployez et suivez le cycle de vie de vos modèles Machine Learning.
+Cognitive Services |Guide pratique |[Créer une ressource Cognitive Services avec Azure CLI](/azure/cognitive-services/cognitive-services-apis-create-account-cli) | Inscrivez-vous à Azure Cognitive Services et créez un compte disposant d’un abonnement monoservice ou multiservice.  Utilisez les clés et le point de terminaison générés automatiquement pour authentifier vos applications.
 Azure Monitor |Guide pratique |[Créer un espace de travail Log Analytics dans Azure CLI](/azure/azure-monitor/learn/quick-create-workspace-cli) | Créez et déployez un espace de travail Log Analytics.
 
 ## <a name="geographies"></a>Zones géographiques
 
 | | | | |
 |-|-|-|-|
-Azure Germany |Découvrir |[Se connecter à Azure Allemagne à l’aide d’Azure CLI](/azure/germany/germany-get-started-connect-with-cli) | À l’aide d’Azure Allemagne, gérez un grand abonnement par le biais de scripts et accédez à des fonctionnalités qui ne sont actuellement pas disponibles dans le portail Azure global.
+Azure Allemagne |Découvrir |[Se connecter à Azure Allemagne à l’aide d’Azure CLI](/azure/germany/germany-get-started-connect-with-cli) | À l’aide d’Azure Allemagne, gérez un grand abonnement par le biais de scripts et accédez à des fonctionnalités qui ne sont actuellement pas disponibles dans le portail Azure global.
 Azure Government|Découvrir |[Connexion à Azure Government avec l’interface de ligne de commande Azure](/azure/azure-government/documentation-government-get-started-connect-with-cli)|Accédez à des ressources dans Azure Government et commencez à les gérer.
 
 ## <a name="see-also"></a>Voir aussi

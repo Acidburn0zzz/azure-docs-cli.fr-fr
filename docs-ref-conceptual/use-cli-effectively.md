@@ -1,10 +1,20 @@
 ---
-ms.openlocfilehash: 4794f1eb2fb45ca767f67de5270e232d6b68aede
-ms.sourcegitcommit: 58d839589858acc1a7a9f114af7f4fce13d883ea
+title: Conseils pour utiliser Azure CLI efficacement
+description: Conseils pour utiliser Azure CLI efficacement
+author: dbradish-microsoft
+ms.author: dbradish
+manager: barbkess
+ms.date: 09/07/2018
+ms.topic: conceptual
+ms.service: azure-cli
+ms.devlang: azurecli
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 720e0866b97db0d56417db95f2518d5567836571
+ms.sourcegitcommit: 2da241715d25407ed22c1065c0c793acfd865996
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88601897"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89563057"
 ---
 # <a name="tips-for-using-azure-cli-effectively"></a>Conseils pour utiliser Azure CLI efficacement
 
@@ -122,15 +132,15 @@ Par exemple, pour mettre à jour `redirectUris` pour une [application](/graph/ap
 
 # Get the application
 az rest --method GET
-        --url 'https://graph.microsoft.com/v1.0/applications/b4e4d2ab-e2cb-45d5-a31a-98eb3f364001'
+        --uri 'https://graph.microsoft.com/v1.0/applications/b4e4d2ab-e2cb-45d5-a31a-98eb3f364001'
 
 # Update `redirectUris` for `web` property
 az rest --method PATCH
-        --url 'https://graph.microsoft.com/v1.0/applications/b4e4d2ab-e2cb-45d5-a31a-98eb3f364001'
+        --uri 'https://graph.microsoft.com/v1.0/applications/b4e4d2ab-e2cb-45d5-a31a-98eb3f364001'
         --body '{"web":{"redirectUris":["https://myapp.com"]}}'
 ```
 
-Lorsque vous utilisez `--url-parameters` pour les demandes sous la forme d’OData, veillez à placer `$` dans une séquence d’échappement dans différents environnements : dans `Bash`, placez `$` dans la séquence d’échappement `\$` et dans `PowerShell`, placez `$` dans la séquence `` `$``
+Lorsque vous utilisez `--uri-parameters` pour les demandes sous la forme d’OData, veillez à placer `$` dans une séquence d’échappement dans différents environnements : dans `Bash`, placez `$` dans la séquence d’échappement `\$` et dans `PowerShell`, placez `$` dans la séquence `` `$``
 
 ## <a name="quoting-issues"></a>Problèmes liés aux guillemets
 
