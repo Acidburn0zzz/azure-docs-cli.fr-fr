@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 2b6b3c5faef66e714cddf7b07126ba14af8c149b
-ms.sourcegitcommit: fd8c3e32f0f50feb6fea33ead636a80a050bcf2a
+ms.openlocfilehash: 5f2ad8b4347257ee075d788d3cb500f464408724
+ms.sourcegitcommit: 2da241715d25407ed22c1065c0c793acfd865996
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88714342"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89563108"
 ---
 # <a name="overview-azure-cli-reference-types-and-status"></a>Présentation : Types et état de référence Azure CLI
 
@@ -22,13 +22,13 @@ L’interface Azure CLI comprend différents types de références qui sont par
 
 ## <a name="azure-cli-syntax-components"></a>Composants de la syntaxe d’Azure CLI
 
-La syntaxe d’Azure CLI est une combinaison de références, de commandes et de paramètres.  Souvent, la commande de référence complète est simplement appelée **commande**.
+La syntaxe d’Azure CLI est une combinaison de références, de commandes et de paramètres.  La **commande de référence complète** est souvent juste appelée **commande**.
 
 | Service Azure | Informations de référence | Sous-service de référence | Commande | Commande de référence complète | Exemples de paramètres
 |-|-|-|-|-|-|
 | Azure CLI | [az configure](/cli/azure/reference-index#az-configure) | | | az configure | --defaults, --list-default, --scope
 | Réseau Azure | [az network](/cli/azure/network) | application-gateway | create | [az network application-gateway create](/cli/azure/network/application-gateway#az-network-application-gateway-create) | --name, --resource-group, --capacity
-| Azure DevOps | [az pipelines](/cli/azure/pipelines) | agent | list | [az pipelines agent list](/cli/azure/pipelines/agent) | --pool-id, --agent-name, --demands
+| Azure DevOps Server | [az pipelines](/cli/azure/pipelines) | agent | list | [az pipelines agent list](/cli/azure/pipelines/agent) | --pool-id, --agent-name, --demands
 
 ## <a name="reference-types"></a>Types référence
 
@@ -39,9 +39,9 @@ Un type de référence vous indique si la commande de référence fait partie du
 | **Informations de référence** | Font partie du service Azure CLI principal | Sont des commandes de références facultatives qui doivent être installées
 | **Installer** | Conjointement avec le [programme d’installation MSI]() | Individuellement avec [az extension add]()|
 | **Publication** | Selon une planification | À mesure que de nouvelles fonctionnalités ou mises à jour sont disponibles
-| **État** | Peut être en disponibilité générale, en préversion ou expérimentale | Peut également être en disponibilité générale, en préversion ou expérimentale
+| **État** | Peut être GA (Generally Available), préversion ou expérimental | Peut également être en disponibilité générale, en préversion ou expérimentale
 
-Toutes les références Azure CLI peuvent être exécutées sous Windows, macOS, Linux, Docker et Azure Cloud Shell.
+Toutes les références Azure CLI peuvent être exécutées sur Windows, macOS, Linux, Docker et Azure Cloud Shell.
 
 ### <a name="core"></a>Core
 
@@ -69,10 +69,10 @@ Quel que soit le type, les références Azure CLI se répartissent en trois cat
 
 | | GA  | Préversion publique | Expérimental
 |-|-|-|-|
-| **Stabilité** | Permanent | Soumis aux conditions d’utilisation des [préversions de Microsoft Azure](/support/legal/preview-supplemental-terms/) | Passera à la préversion publique ou peut être supprimé
+| **Stabilité** | Permanent | Peut changer en réponse aux commentaires des clients.  Est soumis aux conditions d’utilisation des [préversions de Microsoft Azure](/support/legal/preview-supplemental-terms/). | Peut changer en réponse aux commentaires des clients.  Migre souvent vers la préversion publique.  Peut être supprimé.
 | **Niveau de support** | Complète | Partial | None
 
-Bien que la plupart des commandes et des paramètres d’une référence unique aient un seul état, cela n’est pas toujours le cas.  Une référence en disponibilité générale qui est conçue pour offrir plus de commandes peut avoir des commandes de références en disponibilité générale, en préversion et expérimentales.  En général, en réponse aux commentaires publics et à mesure que de nouveaux paramètres sont ajoutés pour améliorer les fonctionnalités, une même commande peut également avoir des paramètres qui appartiennent à différentes catégories d’état.  Voici des exemples de références qui ont différents états :
+Bien que la plupart des commandes et des paramètres d’une référence unique aient un seul état, cela n’est pas toujours le cas.  Une référence GA qui est conçue pour offrir plus de commandes peut avoir des commandes de références en GA, en préversion et expérimentales. À mesure que de nouveaux paramètres sont ajoutés pour améliorer les fonctionnalités, une même commande peut également avoir des paramètres qui appartiennent à différentes catégories d’état.  Voici des exemples de références qui ont différents états :
 
 | Commande de référence complète | Paramètres | Type | GA | Préversion publique | Expérimental
 |-|-|-|-|-|-|
