@@ -9,19 +9,19 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 0c522e30bfc55ea9c87cbea3ffa56762f63d5025
-ms.sourcegitcommit: 2da241715d25407ed22c1065c0c793acfd865996
+ms.openlocfilehash: 5159716ac8e9ba0d09697035b6d0e3dd2a2286c2
+ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89562870"
+ms.lasthandoff: 09/25/2020
+ms.locfileid: "91225964"
 ---
 # <a name="sign-in-with-azure-cli"></a>Se connecter avec Azure CLI 
 
 Il existe plusieurs types d’authentification pour l’interface Azure CLI. Le moyen le plus simple pour commencer est d’utiliser [Azure Cloud Shell](/azure/cloud-shell/overview), qui vous connecte automatiquement.
 Localement, vous pouvez vous connecter de manière interactive via votre navigateur avec la commande [az login](/cli/azure/reference-index#az-login). Lors de l’écriture de scripts, l’approche recommandée consiste à utiliser des principaux du service. En accordant uniquement les autorisations nécessaires à un principal du service, vous pouvez garantir la sécurité de votre automatisation.
 
-Aucune de vos informations de connexion n’est stockée par l’interface CLI. Au lieu de cela, un [jeton d’actualisation d’authentification](https://docs.microsoft.com/azure/active-directory/develop/v1-id-and-access-tokens#refresh-tokens) est généré par Azure, puis stocké. Depuis août 2018, ce jeton est révoqué après 90 jours d’inactivité, mais cette valeur peut être modifiée par Microsoft ou votre administrateur client. Une fois le jeton révoqué, vous recevez un message de l’interface CLI indiquant que vous devez vous reconnecter.
+Aucune de vos informations de connexion n’est stockée par l’interface CLI. Au lieu de cela, un [jeton d’actualisation d’authentification](/azure/active-directory/develop/v1-id-and-access-tokens#refresh-tokens) est généré par Azure, puis stocké. Depuis août 2018, ce jeton est révoqué après 90 jours d’inactivité, mais cette valeur peut être modifiée par Microsoft ou votre administrateur client. Une fois le jeton révoqué, vous recevez un message de l’interface CLI indiquant que vous devez vous reconnecter.
 
 Une fois connecté, les commandes CLI sont exécutées sur votre abonnement par défaut. Si vous possédez plusieurs abonnements, vous pouvez [modifier votre abonnement par défaut](manage-azure-subscriptions-azure-cli.md).
 
@@ -58,7 +58,7 @@ az login -u <username> -p <password>
 
 ## <a name="sign-in-with-a-service-principal"></a>Connexion avec un principal de service
 
-Les principaux de service sont des comptes non liés à un utilisateur spécifique, qui peuvent détenir des autorisations sur ces derniers par le biais de rôles prédéfinis. L’authentification avec un principal de service est la meilleure façon d’écrire des scripts ou des programmes sécurisés, ce qui vous permet d’appliquer des restrictions d’autorisation et des informations d’identification statiques stockées localement. Pour en savoir plus sur les principaux de service, consultez [Créer un principal du service avec Azure CLI](/cli/azure/create-an-azure-service-principal-azure-cli#sign-in-using-a-service-principal).
+Les principaux de service sont des comptes non liés à un utilisateur spécifique, qui peuvent détenir des autorisations sur ces derniers par le biais de rôles prédéfinis. L’authentification avec un principal de service est la meilleure façon d’écrire des scripts ou des programmes sécurisés, ce qui vous permet d’appliquer des restrictions d’autorisation et des informations d’identification statiques stockées localement. Pour en savoir plus sur les principaux de service, consultez [Créer un principal du service avec Azure CLI](./create-an-azure-service-principal-azure-cli.md#sign-in-using-a-service-principal).
 
 Pour vous connecter avec un principal de service, il vous faut :
 
@@ -67,7 +67,7 @@ Pour vous connecter avec un principal de service, il vous faut :
 * Le locataire associé au principal du service, comme un domaine `.onmicrosoft.com` ou un ID d’objet Azure
 
 > [!NOTE]
-> Un **CERTIFICAT** doit être ajouté à la **CLÉ PRIVÉE** dans un fichier PEM.  Pour un exemple de format de fichier PEM, consultez [Créer un principal du service Azure à l’aide d’Azure CLI](/cli/azure/create-an-azure-service-principal-azure-cli#sign-in-using-a-service-principal). 
+> Un **CERTIFICAT** doit être ajouté à la **CLÉ PRIVÉE** dans un fichier PEM.  Pour un exemple de format de fichier PEM, consultez [Créer un principal du service Azure à l’aide d’Azure CLI](./create-an-azure-service-principal-azure-cli.md#sign-in-using-a-service-principal). 
 >
 
 > [!IMPORTANT]
@@ -108,4 +108,4 @@ Sur les ressources configurées pour des identités managées pour les ressource
 az login --identity
 ```
 
-Pour en savoir plus sur les identités managées pour les ressources Azure, consultez [Configurer des identités managées pour les ressources Azure](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/qs-configure-cli-windows-vm) et [Utiliser des identités managées pour les ressources Azure pour se connecter](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-sign-in).
+Pour en savoir plus sur les identités managées pour les ressources Azure, consultez [Configurer des identités managées pour les ressources Azure](/azure/active-directory/managed-identities-azure-resources/qs-configure-cli-windows-vm) et [Utiliser des identités managées pour les ressources Azure pour se connecter](/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-sign-in).
