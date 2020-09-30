@@ -9,119 +9,119 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: f6f1aad856f331e82deea963942956c27235795b
-ms.sourcegitcommit: bf84dfb62e910ea246586481863bb43d09d07795
+ms.openlocfilehash: 9f70e0eb4f518c8fbb7bf8803b93b8b8246d8791
+ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/04/2020
-ms.locfileid: "87551538"
+ms.lasthandoff: 09/25/2020
+ms.locfileid: "91225658"
 ---
-# <a name="install-azure-cli-on-linux-manually"></a><span data-ttu-id="0553c-103">Installer manuellement Azure CLI sur Linux</span><span class="sxs-lookup"><span data-stu-id="0553c-103">Install Azure CLI on Linux manually</span></span>
+# <a name="install-azure-cli-on-linux-manually"></a><span data-ttu-id="d8b38-103">Installer manuellement Azure CLI sur Linux</span><span class="sxs-lookup"><span data-stu-id="d8b38-103">Install Azure CLI on Linux manually</span></span>
 
-<span data-ttu-id="0553c-104">S’il n’existe aucun package pour l’interface Azure CLI pour vous et votre distribution, installez l’interface CLI manuellement en exécutant un script.</span><span class="sxs-lookup"><span data-stu-id="0553c-104">If there's no package for the Azure CLI for you your distribution, install the CLI manually by running a script.</span></span>
+<span data-ttu-id="d8b38-104">S’il n’existe aucun package pour l’interface Azure CLI pour vous et votre distribution, installez l’interface CLI manuellement en exécutant un script.</span><span class="sxs-lookup"><span data-stu-id="d8b38-104">If there's no package for the Azure CLI for you your distribution, install the CLI manually by running a script.</span></span>
 
 [!INCLUDE [current-version](includes/current-version.md)]
 
 > [!NOTE]
-> <span data-ttu-id="0553c-105">Il est fortement recommandé d’installer l’interface CLI avec un gestionnaire de package.</span><span class="sxs-lookup"><span data-stu-id="0553c-105">It's strongly recommend to install the CLI with a package manager.</span></span> <span data-ttu-id="0553c-106">Un gestionnaire de package permet de s’assurer que vous obtenez toujours les dernières mises à jour et garantit la stabilité des composants de l’interface CLI.</span><span class="sxs-lookup"><span data-stu-id="0553c-106">A package manager makes sure you always get the latest updates, and guarantees the stability of CLI components.</span></span> <span data-ttu-id="0553c-107">Vérifiez s’il existe un package pour votre distribution avant d’installer manuellement.</span><span class="sxs-lookup"><span data-stu-id="0553c-107">Check and see if there is a package for your distribution before installing manually.</span></span>
+> <span data-ttu-id="d8b38-105">Il est fortement recommandé d’installer l’interface CLI avec un gestionnaire de package.</span><span class="sxs-lookup"><span data-stu-id="d8b38-105">It's strongly recommend to install the CLI with a package manager.</span></span> <span data-ttu-id="d8b38-106">Un gestionnaire de package permet de s’assurer que vous obtenez toujours les dernières mises à jour et garantit la stabilité des composants de l’interface CLI.</span><span class="sxs-lookup"><span data-stu-id="d8b38-106">A package manager makes sure you always get the latest updates, and guarantees the stability of CLI components.</span></span> <span data-ttu-id="d8b38-107">Vérifiez s’il existe un package pour votre distribution avant d’installer manuellement.</span><span class="sxs-lookup"><span data-stu-id="d8b38-107">Check and see if there is a package for your distribution before installing manually.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="0553c-108">Conditions préalables requises</span><span class="sxs-lookup"><span data-stu-id="0553c-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="d8b38-108">Conditions préalables requises</span><span class="sxs-lookup"><span data-stu-id="d8b38-108">Prerequisites</span></span>
 
-<span data-ttu-id="0553c-109">L’interface CLI requiert les logiciels suivants :</span><span class="sxs-lookup"><span data-stu-id="0553c-109">The CLI requires the following software:</span></span>
+<span data-ttu-id="d8b38-109">L’interface CLI requiert les logiciels suivants :</span><span class="sxs-lookup"><span data-stu-id="d8b38-109">The CLI requires the following software:</span></span>
 
-* <span data-ttu-id="0553c-110">[Python 3.6.x, 3.7.x ou 3.8.x](https://www.python.org/downloads/).</span><span class="sxs-lookup"><span data-stu-id="0553c-110">[Python 3.6.x, 3.7.x or 3.8.x](https://www.python.org/downloads/).</span></span> 
-* [<span data-ttu-id="0553c-111">libffi</span><span class="sxs-lookup"><span data-stu-id="0553c-111">libffi</span></span>](https://sourceware.org/libffi/)
-* [<span data-ttu-id="0553c-112">OpenSSL 1.0.2</span><span class="sxs-lookup"><span data-stu-id="0553c-112">OpenSSL 1.0.2</span></span>](https://www.openssl.org/source/)
+* <span data-ttu-id="d8b38-110">[Python 3.6.x, 3.7.x ou 3.8.x](https://www.python.org/downloads/).</span><span class="sxs-lookup"><span data-stu-id="d8b38-110">[Python 3.6.x, 3.7.x or 3.8.x](https://www.python.org/downloads/).</span></span> 
+* [<span data-ttu-id="d8b38-111">libffi</span><span class="sxs-lookup"><span data-stu-id="d8b38-111">libffi</span></span>](https://sourceware.org/libffi/)
+* [<span data-ttu-id="d8b38-112">OpenSSL 1.0.2</span><span class="sxs-lookup"><span data-stu-id="d8b38-112">OpenSSL 1.0.2</span></span>](https://www.openssl.org/source/)
 
 > [!IMPORTANT]
 >
-> <span data-ttu-id="0553c-113">L’interface CLI a retiré la prise en charge de Python 2.7 depuis la version `2.1.0`.</span><span class="sxs-lookup"><span data-stu-id="0553c-113">The CLI has dropped support for Python 2.7 since version `2.1.0`.</span></span> <span data-ttu-id="0553c-114">Les nouvelles versions ne garantissent plus une exécution correcte de Python 2.7.</span><span class="sxs-lookup"><span data-stu-id="0553c-114">New versions no longer guarantee to run with Python 2.7 correctly.</span></span>
+> <span data-ttu-id="d8b38-113">L’interface CLI a retiré la prise en charge de Python 2.7 depuis la version `2.1.0`.</span><span class="sxs-lookup"><span data-stu-id="d8b38-113">The CLI has dropped support for Python 2.7 since version `2.1.0`.</span></span> <span data-ttu-id="d8b38-114">Les nouvelles versions ne garantissent plus une exécution correcte de Python 2.7.</span><span class="sxs-lookup"><span data-stu-id="d8b38-114">New versions no longer guarantee to run with Python 2.7 correctly.</span></span>
 
-## <a name="install-or-update"></a><span data-ttu-id="0553c-115">Installation ou mise à jour</span><span class="sxs-lookup"><span data-stu-id="0553c-115">Install or update</span></span>
+## <a name="install-or-update"></a><span data-ttu-id="d8b38-115">Installation ou mise à jour</span><span class="sxs-lookup"><span data-stu-id="d8b38-115">Install or update</span></span>
 
-<span data-ttu-id="0553c-116">L’installation et la mise à jour de l’interface CLI nécessitent toutes de réexécuter le script d’installation.</span><span class="sxs-lookup"><span data-stu-id="0553c-116">Both installing and updating the CLI requires re-running the install script.</span></span> <span data-ttu-id="0553c-117">Installez l’interface CLI en exécutant `curl`.</span><span class="sxs-lookup"><span data-stu-id="0553c-117">Install the CLI by running `curl`.</span></span>
+<span data-ttu-id="d8b38-116">L’installation et la mise à jour de l’interface CLI nécessitent toutes de réexécuter le script d’installation.</span><span class="sxs-lookup"><span data-stu-id="d8b38-116">Both installing and updating the CLI requires re-running the install script.</span></span> <span data-ttu-id="d8b38-117">Installez l’interface CLI en exécutant `curl`.</span><span class="sxs-lookup"><span data-stu-id="d8b38-117">Install the CLI by running `curl`.</span></span>
 
 ```bash
 curl -L https://aka.ms/InstallAzureCli | bash
 ```
 
-<span data-ttu-id="0553c-118">Le script peut également être téléchargé et exécuté localement.</span><span class="sxs-lookup"><span data-stu-id="0553c-118">The script can also be downloaded and run locally.</span></span> <span data-ttu-id="0553c-119">Vous devrez peut-être redémarrer votre interpréteur de commandes pour que certaines modifications soient prises en compte.</span><span class="sxs-lookup"><span data-stu-id="0553c-119">You may have to restart your shell in order for changes to take effect.</span></span>
+<span data-ttu-id="d8b38-118">Le script peut également être téléchargé et exécuté localement.</span><span class="sxs-lookup"><span data-stu-id="d8b38-118">The script can also be downloaded and run locally.</span></span> <span data-ttu-id="d8b38-119">Vous devrez peut-être redémarrer votre interpréteur de commandes pour que certaines modifications soient prises en compte.</span><span class="sxs-lookup"><span data-stu-id="d8b38-119">You may have to restart your shell in order for changes to take effect.</span></span>
 
-<span data-ttu-id="0553c-120">Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`.</span><span class="sxs-lookup"><span data-stu-id="0553c-120">You can then run the Azure CLI with the `az` command.</span></span> <span data-ttu-id="0553c-121">Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).</span><span class="sxs-lookup"><span data-stu-id="0553c-121">To sign in, use [az login](/cli/azure/reference-index#az-login) command.</span></span>
+<span data-ttu-id="d8b38-120">Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`.</span><span class="sxs-lookup"><span data-stu-id="d8b38-120">You can then run the Azure CLI with the `az` command.</span></span> <span data-ttu-id="d8b38-121">Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).</span><span class="sxs-lookup"><span data-stu-id="d8b38-121">To sign in, use [az login](/cli/azure/reference-index#az-login) command.</span></span>
 
 [!INCLUDE [interactive-login](includes/interactive-login.md)]
 
-<span data-ttu-id="0553c-122">Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="0553c-122">To learn more about different authentication methods, see [Sign in with Azure CLI](authenticate-azure-cli.md).</span></span>
+<span data-ttu-id="d8b38-122">Pour en savoir plus sur les différentes méthodes d’authentification, consultez [Se connecter avec Azure CLI](authenticate-azure-cli.md).</span><span class="sxs-lookup"><span data-stu-id="d8b38-122">To learn more about different authentication methods, see [Sign in with Azure CLI](authenticate-azure-cli.md).</span></span>
 
-## <a name="troubleshooting"></a><span data-ttu-id="0553c-123">Dépannage</span><span class="sxs-lookup"><span data-stu-id="0553c-123">Troubleshooting</span></span>
+## <a name="troubleshooting"></a><span data-ttu-id="d8b38-123">Dépannage</span><span class="sxs-lookup"><span data-stu-id="d8b38-123">Troubleshooting</span></span>
 
-<span data-ttu-id="0553c-124">Voici certains problèmes courants rencontrés pendant une installation manuelle.</span><span class="sxs-lookup"><span data-stu-id="0553c-124">Here are some common problems seen during a manual installation.</span></span> <span data-ttu-id="0553c-125">Si vous rencontrez un problème qui n’est pas traité ici, [signalez ce problème sur GitHub](https://github.com/Azure/azure-cli/issues).</span><span class="sxs-lookup"><span data-stu-id="0553c-125">If you experience a problem not covered here, [file an issue on GitHub](https://github.com/Azure/azure-cli/issues).</span></span>
+<span data-ttu-id="d8b38-124">Voici certains problèmes courants rencontrés pendant une installation manuelle.</span><span class="sxs-lookup"><span data-stu-id="d8b38-124">Here are some common problems seen during a manual installation.</span></span> <span data-ttu-id="d8b38-125">Si vous rencontrez un problème qui n’est pas traité ici, [signalez ce problème sur GitHub](https://github.com/Azure/azure-cli/issues).</span><span class="sxs-lookup"><span data-stu-id="d8b38-125">If you experience a problem not covered here, [file an issue on GitHub](https://github.com/Azure/azure-cli/issues).</span></span>
 
-### <a name="curl-object-moved-error"></a><span data-ttu-id="0553c-126">erreur curl « Objet déplacé »</span><span class="sxs-lookup"><span data-stu-id="0553c-126">curl "Object Moved" error</span></span>
+### <a name="curl-object-moved-error"></a><span data-ttu-id="d8b38-126">erreur curl « Objet déplacé »</span><span class="sxs-lookup"><span data-stu-id="d8b38-126">curl "Object Moved" error</span></span>
 
-<span data-ttu-id="0553c-127">Si la commande `curl` renvoie une erreur concernant le `-L` paramètre ou un message d’erreur indiquant « Objet déplacé », essayez d’utiliser l’URL complète plutôt que la `aka.ms` redirection :</span><span class="sxs-lookup"><span data-stu-id="0553c-127">If you get an error from `curl` related to the `-L` parameter, or an error message including the text "Object Moved", try using the full URL instead of the `aka.ms` redirect:</span></span>
+<span data-ttu-id="d8b38-127">Si la commande `curl` renvoie une erreur concernant le `-L` paramètre ou un message d’erreur indiquant « Objet déplacé », essayez d’utiliser l’URL complète plutôt que la `aka.ms` redirection :</span><span class="sxs-lookup"><span data-stu-id="d8b38-127">If you get an error from `curl` related to the `-L` parameter, or an error message including the text "Object Moved", try using the full URL instead of the `aka.ms` redirect:</span></span>
 
 ```bash
 curl https://azurecliprod.blob.core.windows.net/install | bash
 ```
 
-### <a name="az-command-not-found"></a><span data-ttu-id="0553c-128">`az` commande introuvable</span><span class="sxs-lookup"><span data-stu-id="0553c-128">`az` command not found</span></span>
+### <a name="az-command-not-found"></a><span data-ttu-id="d8b38-128">`az` commande introuvable</span><span class="sxs-lookup"><span data-stu-id="d8b38-128">`az` command not found</span></span>
 
-<span data-ttu-id="0553c-129">Si vous ne pouvez pas exécuter la commande après l’installation et après avoir utilisé `bash` et `zsh`, effacez le cache de hachage de commande de votre interpréteur de commandes.</span><span class="sxs-lookup"><span data-stu-id="0553c-129">If you can't run the command after installation and using `bash` or `zsh`, clear your shell's command hash cache.</span></span> <span data-ttu-id="0553c-130">Exécuter</span><span class="sxs-lookup"><span data-stu-id="0553c-130">Run</span></span>
+<span data-ttu-id="d8b38-129">Si vous ne pouvez pas exécuter la commande après l’installation et après avoir utilisé `bash` et `zsh`, effacez le cache de hachage de commande de votre interpréteur de commandes.</span><span class="sxs-lookup"><span data-stu-id="d8b38-129">If you can't run the command after installation and using `bash` or `zsh`, clear your shell's command hash cache.</span></span> <span data-ttu-id="d8b38-130">Exécuter</span><span class="sxs-lookup"><span data-stu-id="d8b38-130">Run</span></span>
 
 ```bash
 hash -r
 ```
 
-<span data-ttu-id="0553c-131">et vérifiez si le problème est résolu.</span><span class="sxs-lookup"><span data-stu-id="0553c-131">and check if the problem is resolved.</span></span>
+<span data-ttu-id="d8b38-131">et vérifiez si le problème est résolu.</span><span class="sxs-lookup"><span data-stu-id="d8b38-131">and check if the problem is resolved.</span></span>
 
-<span data-ttu-id="0553c-132">Le problème peut également survenir si vous n’avez pas redémarré votre interpréteur de commandes après l’installation.</span><span class="sxs-lookup"><span data-stu-id="0553c-132">The issue can also occur if you didn't restart your shell after installation.</span></span> <span data-ttu-id="0553c-133">Assurez-vous que l’emplacement de la commande `az` se trouve dans votre `$PATH`.</span><span class="sxs-lookup"><span data-stu-id="0553c-133">Make sure that the location of the `az` command is in your `$PATH`.</span></span> <span data-ttu-id="0553c-134">L’emplacement de la commande `az` est</span><span class="sxs-lookup"><span data-stu-id="0553c-134">The location of the `az` command is</span></span>
+<span data-ttu-id="d8b38-132">Le problème peut également survenir si vous n’avez pas redémarré votre interpréteur de commandes après l’installation.</span><span class="sxs-lookup"><span data-stu-id="d8b38-132">The issue can also occur if you didn't restart your shell after installation.</span></span> <span data-ttu-id="d8b38-133">Assurez-vous que l’emplacement de la commande `az` se trouve dans votre `$PATH`.</span><span class="sxs-lookup"><span data-stu-id="d8b38-133">Make sure that the location of the `az` command is in your `$PATH`.</span></span> <span data-ttu-id="d8b38-134">L’emplacement de la commande `az` est</span><span class="sxs-lookup"><span data-stu-id="d8b38-134">The location of the `az` command is</span></span>
 
 ```bash
 <install path>/bin
 ```
 
-### <a name="proxy-blocks-connection"></a><span data-ttu-id="0553c-135">Le proxy bloque la connexion</span><span class="sxs-lookup"><span data-stu-id="0553c-135">Proxy blocks connection</span></span>
+### <a name="proxy-blocks-connection"></a><span data-ttu-id="d8b38-135">Le proxy bloque la connexion</span><span class="sxs-lookup"><span data-stu-id="d8b38-135">Proxy blocks connection</span></span>
 
 [!INCLUDE[configure-proxy](includes/configure-proxy.md)]
 
-<span data-ttu-id="0553c-136">Pour obtenir les scripts d’installation, votre proxy doit autoriser les connexions HTTPS aux adresses suivantes :</span><span class="sxs-lookup"><span data-stu-id="0553c-136">In order to get the installation scripts, your proxy needs to allow HTTPS connections to the following addresses:</span></span>
+<span data-ttu-id="d8b38-136">Pour obtenir les scripts d’installation, votre proxy doit autoriser les connexions HTTPS aux adresses suivantes :</span><span class="sxs-lookup"><span data-stu-id="d8b38-136">In order to get the installation scripts, your proxy needs to allow HTTPS connections to the following addresses:</span></span>
 
 * `https://aka.ms/`
 * `https://azurecliprod.blob.core.windows.net/`
 * `https://pypi.python.org`
-* <span data-ttu-id="0553c-137">Points de terminaison utilisés par le gestionnaire de package de votre distribution (le cas échéant) pour les packages de base</span><span class="sxs-lookup"><span data-stu-id="0553c-137">Endpoints used by your distribution's package manager (if any) for core packages</span></span>
+* <span data-ttu-id="d8b38-137">Points de terminaison utilisés par le gestionnaire de package de votre distribution (le cas échéant) pour les packages de base</span><span class="sxs-lookup"><span data-stu-id="d8b38-137">Endpoints used by your distribution's package manager (if any) for core packages</span></span>
 
 [!INCLUDE[troubleshoot-wsl.md](includes/troubleshoot-wsl.md)]
 
-## <a name="uninstall"></a><span data-ttu-id="0553c-138">Désinstaller l’interface</span><span class="sxs-lookup"><span data-stu-id="0553c-138">Uninstall</span></span>
+## <a name="uninstall"></a><span data-ttu-id="d8b38-138">Désinstaller l’interface</span><span class="sxs-lookup"><span data-stu-id="d8b38-138">Uninstall</span></span>
 
 [!INCLUDE [uninstall-boilerplate.md](includes/uninstall-boilerplate.md)]
 
-<span data-ttu-id="0553c-139">Désinstallez l’interface de ligne de commande en supprimant directement les fichiers de l’emplacement spécifié lors de l’installation.</span><span class="sxs-lookup"><span data-stu-id="0553c-139">Uninstall the CLI by directly deleting the files from the location chosen at the time of installation.</span></span> <span data-ttu-id="0553c-140">L’emplacement d’installation par défaut est `$HOME`.</span><span class="sxs-lookup"><span data-stu-id="0553c-140">The default install location is `$HOME`.</span></span>
+<span data-ttu-id="d8b38-139">Désinstallez l’interface de ligne de commande en supprimant directement les fichiers de l’emplacement spécifié lors de l’installation.</span><span class="sxs-lookup"><span data-stu-id="d8b38-139">Uninstall the CLI by directly deleting the files from the location chosen at the time of installation.</span></span> <span data-ttu-id="d8b38-140">L’emplacement d’installation par défaut est `$HOME`.</span><span class="sxs-lookup"><span data-stu-id="d8b38-140">The default install location is `$HOME`.</span></span>
 
-1. <span data-ttu-id="0553c-141">Supprimez les fichiers CLI installés.</span><span class="sxs-lookup"><span data-stu-id="0553c-141">Remove the installed CLI files.</span></span>
+1. <span data-ttu-id="d8b38-141">Supprimez les fichiers CLI installés.</span><span class="sxs-lookup"><span data-stu-id="d8b38-141">Remove the installed CLI files.</span></span>
 
    ```bash
    rm -r <install location>/lib/azure-cli
    rm <install location>/bin/az
    ```
 
-2. <span data-ttu-id="0553c-142">Modifiez votre fichier `$HOME/.bash_profile` pour supprimer la ligne suivante :</span><span class="sxs-lookup"><span data-stu-id="0553c-142">Modify your `$HOME/.bash_profile` file to remove the following line:</span></span>
+2. <span data-ttu-id="d8b38-142">Modifiez votre fichier `$HOME/.bash_profile` pour supprimer la ligne suivante :</span><span class="sxs-lookup"><span data-stu-id="d8b38-142">Modify your `$HOME/.bash_profile` file to remove the following line:</span></span>
 
    ```text
    <install location>/lib/azure-cli/az.completion
    ```
 
-3. <span data-ttu-id="0553c-143">Si vous utilisez `bash` ou `zsh`, rechargez le cache de commande de l’interpréteur de commandes.</span><span class="sxs-lookup"><span data-stu-id="0553c-143">If using `bash` or `zsh`, reload your shell's command cache.</span></span>
+3. <span data-ttu-id="d8b38-143">Si vous utilisez `bash` ou `zsh`, rechargez le cache de commande de l’interpréteur de commandes.</span><span class="sxs-lookup"><span data-stu-id="d8b38-143">If using `bash` or `zsh`, reload your shell's command cache.</span></span>
 
    ```bash
    hash -r
    ```
 
-## <a name="next-steps"></a><span data-ttu-id="0553c-144">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="0553c-144">Next Steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d8b38-144">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="d8b38-144">Next Steps</span></span>
 
-<span data-ttu-id="0553c-145">Maintenant que vous avez installé l’interface CLI, découvrez ses fonctionnalités et ses commandes courantes.</span><span class="sxs-lookup"><span data-stu-id="0553c-145">Now that you've installed the Azure CLI, take a short tour of its features and common commands.</span></span>
+<span data-ttu-id="d8b38-145">Maintenant que vous avez installé l’interface CLI, découvrez ses fonctionnalités et ses commandes courantes.</span><span class="sxs-lookup"><span data-stu-id="d8b38-145">Now that you've installed the Azure CLI, take a short tour of its features and common commands.</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="0553c-146">Prise en main de l’interface Azure CLI</span><span class="sxs-lookup"><span data-stu-id="0553c-146">Get started with the Azure CLI</span></span>](get-started-with-azure-cli.md)
+> [<span data-ttu-id="d8b38-146">Prise en main de l’interface Azure CLI</span><span class="sxs-lookup"><span data-stu-id="d8b38-146">Get started with the Azure CLI</span></span>](get-started-with-azure-cli.md)
