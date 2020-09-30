@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: dac21aa06817e18d29a181a5b1cb32069b8ea1f3
-ms.sourcegitcommit: 2da241715d25407ed22c1065c0c793acfd865996
+ms.openlocfilehash: 8f9e24a5770ad4793add9564e8f30b1bf68ba132
+ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89562479"
+ms.lasthandoff: 09/25/2020
+ms.locfileid: "91225573"
 ---
 # <a name="use-multiple-azure-subscriptions"></a>Utilisez plusieurs abonnements Azure
 
@@ -28,7 +28,7 @@ La différence entre les locataires, les utilisateurs et les abonnements dans Az
 Un utilisateur peut avoir accès à plusieurs _abonnements_, qui sont les contrats avec Microsoft pour utiliser les services de cloud, y compris Azure. Chaque ressource est associée à un abonnement.
 
 Pour en savoir plus sur les différences entre les locataires, les utilisateurs et les abonnements, consultez le [Dictionnaire de terminologie cloud Azure](/azure/azure-glossary-cloud-terminology).  Pour savoir comment ajouter un nouvel abonnement à votre locataire Azure Active Directory, consultez [Associer ou ajouter un abonnement Azure à votre locataire Azure Active Directory](/azure/active-directory/active-directory-how-subscriptions-associated-directory).
-Pour savoir comment se connecter à un client en particulier, consultez la rubrique [Se connecter avec Azure CLI](/cli/azure/authenticate-azure-cli).
+Pour savoir comment se connecter à un client en particulier, consultez la rubrique [Se connecter avec Azure CLI](./authenticate-azure-cli.md).
 
 ## <a name="change-the-active-subscription"></a>Modifier l’abonnement actif
 

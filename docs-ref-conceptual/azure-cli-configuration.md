@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 3e6727a9955582c66ecff6925e9847454e169ba1
-ms.sourcegitcommit: 2da241715d25407ed22c1065c0c793acfd865996
+ms.openlocfilehash: 8a431f3303d900cc5d2f8787d531d17d41a68a9e
+ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89562853"
+ms.lasthandoff: 09/25/2020
+ms.locfileid: "91225301"
 ---
 # <a name="azure-cli-configuration"></a>Configuration d’Azure CLI
 

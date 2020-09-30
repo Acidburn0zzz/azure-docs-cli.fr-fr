@@ -10,12 +10,12 @@ ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 14c6205e237d72a1c794fb1a115aace2488e7574
-ms.sourcegitcommit: 2da241715d25407ed22c1065c0c793acfd865996
+ms.openlocfilehash: f50a23d21976d03b168d7611332ac1666c008ace
+ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89562751"
+ms.lasthandoff: 09/25/2020
+ms.locfileid: "91225760"
 ---
 # <a name="azure-services-the-azure-cli-can-manage"></a>Services Azure pouvant être gérés par l’interface Azure CLI
 
@@ -25,15 +25,15 @@ Des références Azure CLI sont disponibles pour les services suivants :
 
 | Catégorie avec lien vers des articles populaires | Documentation complète des services
 |-|-|
-|[IA + Machine Learning](/cli/azure/popular-articles-using-the-azure-cli?#ai--machine-learning)| [Azure Machine Learning](/azure/machine-learning/)
+|[IA + Machine Learning](./popular-articles-using-the-azure-cli.md#ai--machine-learning)| [Azure Machine Learning](/azure/machine-learning/)
 ||[Cognitive Services](/azure/cognitive-services/)
-|[Analyse](/cli/azure/popular-articles-using-the-azure-cli?#analytics)|[Explorateur de données Azure](/azure/data-explorer/)
+|[Analyse](./popular-articles-using-the-azure-cli.md#analytics)|[Explorateur de données Azure](/azure/data-explorer/)
 ||[Azure Data Lake Storage](/azure/storage/blobs/data-lake-storage-introduction/)
 ||[Data Lake Analytics](/azure/data-lake-analytics/)
 ||[Hubs d'événements](/azure/event-hubs/)
 ||[HDInsight](/azure/hdinsight/)
 |[Blockchain](popular-articles-using-the-azure-cli.md)|[Azure Cosmos DB](/azure/cosmos-db/)
-|[Calcul](/cli/azure/popular-articles-using-the-azure-cli?#compute)|[App Service](/azure/app-service/)
+|[Calcul](./popular-articles-using-the-azure-cli.md#compute)|[App Service](/azure/app-service/)
 ||[Azure Functions](/azure/azure-functions/)
 ||[Azure Kubernetes Service (AKS)](/azure/aks/)
 ||[Azure Spring Cloud](/azure/spring-cloud/)
@@ -46,18 +46,18 @@ Des références Azure CLI sont disponibles pour les services suivants :
 ||[Container Instances](/azure/container-instances/)
 ||[Container Registry](/azure/container-registry/)
 ||[Service Fabric](/azure/service-fabric/)
-|[Bases de données](/cli/azure/popular-articles-using-the-azure-cli?#databases)|[Azure Cosmos DB](/azure/cosmos-db/)
+|[Bases de données](./popular-articles-using-the-azure-cli.md#databases)|[Azure Cosmos DB](/azure/cosmos-db/)
 ||[Azure Database for MariaDB](/azure/mariadb/)
 ||[Azure Database pour MySQL](/azure/mysql/)
 ||[Base de données Azure pour PostgreSQL](/azure/postgresql/)
 ||[Azure SQL Database](/azure/sql-database/)
-|[Outils de développement](/cli/azure/popular-articles-using-the-azure-cli?#developer-tools)|[Configuration de l’application](/azure/azure-app-configuration/)
+|[Outils de développement](./popular-articles-using-the-azure-cli.md#developer-tools)|[Configuration de l’application](/azure/azure-app-configuration/)
 ||[Azure DevOps](/azure/devops/)
 ||[Azure DevTest Labs](/azure/lab-services/)
 ||[Azure Lab Services](/azure/lab-services/classroom-labs/)
-|[DevOps](/cli/azure/popular-articles-using-the-azure-cli?#developer-tools)|[Azure DevOps](/azure/devops/)
+|[DevOps](./popular-articles-using-the-azure-cli.md#developer-tools)|[Azure DevOps](/azure/devops/)
 ||[Azure DevTest Labs](/azure/lab-services/)
-|[Hybride](/cli/azure/popular-articles-using-the-azure-cli?#hybrid)|[Azure Active Directory (AD)](/azure/active-directory/)
+|[Hybride](./popular-articles-using-the-azure-cli.md#hybrid)|[Azure Active Directory (AD)](/azure/active-directory/)
 ||[Base de données Azure pour PostgreSQL](/azure/postgresql/)
 ||[Azure DevOps](/azure/devops/)
 ||[Azure IoT Edge](/azure/iot-edge/)
@@ -65,27 +65,27 @@ Des références Azure CLI sont disponibles pour les services suivants :
 |[Identité](popular-articles-using-the-azure-cli.md)|[Azure Active Directory (AD)](/azure/active-directory/)
 |[Intégration](popular-articles-using-the-azure-cli.md)|[Event Grid](/azure/event-grid/)
 ||[Service Bus](/azure/service-bus/)
-|[Internet des objets](/cli/azure/popular-articles-using-the-azure-cli?#internet-of-things)|[Azure Cosmos DB](/azure/cosmos-db/)
+|[Internet des objets](./popular-articles-using-the-azure-cli.md#internet-of-things)|[Azure Cosmos DB](/azure/cosmos-db/)
 ||[Azure Functions](/azure/azure-functions/)
 ||[Azure IoT Central](/azure/iot-central/)
 ||[Azure IoT Edge](/azure/iot-edge/)
 ||[Azure IoT Hub](/azure/iot-hub/)
 ||[Azure Machine Learning](/azure/machine-learning/)
 ||[Event Grid](/azure/event-grid/)
-|[Gestion et gouvernance](/cli/azure/popular-articles-using-the-azure-cli?#management-and-governance)|[Azure Backup](/azure/backup/)
+|[Gestion et gouvernance](./popular-articles-using-the-azure-cli.md#management-and-governance)|[Azure Backup](/azure/backup/)
 ||[Applications managées Azure](/azure/azure-resource-manager/managed-applications/)
 ||[Azure Resource Manager](/azure/azure-resource-manager/)
 ||[Traffic Manager](/azure/traffic-manager/)
 |[Média](popular-articles-using-the-azure-cli.md)|[Media Services](/azure/media-services/)
 |[Mobile](popular-articles-using-the-azure-cli.md)|[App Service](/azure/app-service/)
-|[Mise en réseau](/cli/azure/popular-articles-using-the-azure-cli?#networking)|[DNS Azure](/azure/dns/)
+|[Mise en réseau](./popular-articles-using-the-azure-cli.md#networking)|[DNS Azure](/azure/dns/)
 ||[Azure Private Link](/azure/private-link/)
 ||[Équilibreur de charge](/azure/load-balancer/)
 ||[Traffic Manager](/azure/traffic-manager/)
 ||[Réseau virtuel](/azure/virtual-network/)
-|[Sécurité](/cli/azure/popular-articles-using-the-azure-cli?#security)|[Azure Active Directory (AD)](/azure/active-directory/)
+|[Sécurité](./popular-articles-using-the-azure-cli.md#security)|[Azure Active Directory (AD)](/azure/active-directory/)
 ||[Key Vault](/azure/key-vault/)
-|[Stockage](/cli/azure/popular-articles-using-the-azure-cli?#storage)|[Azure Backup](/azure/backup/)
+|[Stockage](./popular-articles-using-the-azure-cli.md#storage)|[Azure Backup](/azure/backup/)
 ||[Azure Data Lake Storage](/azure/storage/blobs/data-lake-storage-introduction/)
 ||[Disques managés](/azure/virtual-machines/windows/managed-disks-overview/)
 ||[Comptes de stockage](/azure/storage/common/storage-account-overview/)

@@ -10,12 +10,12 @@ ms.topic: conceptual
 ms.devlang: azurecli
 ms.technology: azure-cli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: dc6386e8bc1dfc4d11dafcdb947e9ff0b336ed25
-ms.sourcegitcommit: bf84dfb62e910ea246586481863bb43d09d07795
+ms.openlocfilehash: 39668b267d3374dd1bdb5f7b1f5e0f0847d2c2fa
+ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/04/2020
-ms.locfileid: "87551504"
+ms.lasthandoff: 09/25/2020
+ms.locfileid: "91225811"
 ---
 # <a name="install-azure-cli-on-windows"></a>Installer Azure CLI sur Windows
 
@@ -43,7 +43,7 @@ Téléchargez et installez la version actuelle d’Azure CLI.
 
 La version bêta d’Azure CLI prend en charge toutes les commandes CLI disponibles dans la version finale actuelle. La version bêta est une migration de la version publiée d’Azure CLI, car la plateforme d’authentification AAD (v1.0) est sur le point d’être dépréciée.  La [Plateforme d’identité Microsoft (v2.0)](/azure/active-directory/develop/v2-overview) est la nouvelle méthode d’authentification utilisée par version bêta d’Azure CLI.  Nous vous recommandons d’essayer la version bêta à l’avance.  
 
-Pour plus d’informations sur la version bêta d’Azure CLI, consultez les [notes de publication](release-notes-azure-cli?tabs=azure-cli-beta).
+Pour plus d’informations sur la version bêta d’Azure CLI, consultez les [notes de publication](./release-notes-azure-cli.md?tabs=azure-cli-beta).
 
 > [!IMPORTANT]
 >

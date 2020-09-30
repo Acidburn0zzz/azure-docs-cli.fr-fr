@@ -10,12 +10,12 @@ ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 42e9de630530568a15bc6f9f05d2442d790d8b68
-ms.sourcegitcommit: 2da241715d25407ed22c1065c0c793acfd865996
+ms.openlocfilehash: 1b58fa03d93769a66ea4c02678a7409f27262fd7
+ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89563142"
+ms.lasthandoff: 09/25/2020
+ms.locfileid: "91225505"
 ---
 # <a name="popular-articles-using-the-azure-cli"></a>Articles populaires utilisant l’interface Azure CLI
 
@@ -32,7 +32,7 @@ L’interface Azure CLI est utilisée dans de nombreux services Azure, ce qui d
 |Virtual Machines | Guide pratique : Linux | [Créer une galerie d’images partagées à l’aide d’Azure CLI](/azure/virtual-machines/linux/shared-images) | Créez une galerie d’images partagées contenant des images de machine virtuelle personnalisées avec d’autres personnes de votre organisation, dans ou entre différentes régions, ou dans un locataire Azure Active Directory.
 |Virtual Machines | Guide pratique : Linux | [Déployer des machines virtuelles Spot avec Azure CLI (préversion)](/azure/virtual-machines/linux/spot-cli) | Déployez une machine virtuelle Spot Linux qui ne sera pas supprimée en fonction du prix.
 |Virtual Machines | Démarrage rapide : Windows | [Créer une machine virtuelle Windows à l’aide d’Azure CLI](/azure/virtual-machines/windows/quick-create-cli) | Déployez dans Azure une machine virtuelle qui exécute Windows Server 2016.
-|Virtual Machines | Module d’apprentissage | [Gérer des machines virtuelles à l’aide d’Azure CLI](https://docs.microsoft.com/learn/modules/manage-virtual-machines-with-azure-cli/) | Créez, démarrez, arrêtez des machines virtuelles, et effectuez d’autres tâches de gestion liées à ces dernières.
+|Virtual Machines | Module d’apprentissage | [Gérer des machines virtuelles à l’aide d’Azure CLI](/learn/modules/manage-virtual-machines-with-azure-cli/) | Créez, démarrez, arrêtez des machines virtuelles, et effectuez d’autres tâches de gestion liées à ces dernières.
 |Azure Kubernetes Service (AKS)| Démarrage rapide | [Déployer un cluster AKS (Azure Kubernetes Service) à l’aide d’Azure CLI](/azure/aks/kubernetes-walkthrough) | Déployez et gérez des clusters AKS.  Découvrez comment superviser l’intégrité du cluster et des pods qui exécutent votre application.
 |Azure Batch|Exemple | [Exécuter un travail et des tâches avec Azure Batch à l’aide d’Azure CLI](/azure/batch/scripts/batch-cli-sample-run-job) | Créez un travail Batch et ajoutez une série de tâches au travail. Supervisez un travail et ses tâches.
 |Azure Batch|Exemple | [Créer et gérer un pool Windows dans Azure Batch à l’aide d’Azure CLI](/azure/batch/scripts/batch-cli-sample-manage-windows-pool) | Créez et gérez un pool de nœuds de calcul Windows avec une configuration des services cloud.
@@ -108,7 +108,7 @@ Stockage Fichier |Démarrage rapide |[Créer et gérer des partages de fichiers 
 
 | | | | |
 |-|-|-|-|
-Principal du service |Guide pratique |[Créer un principal du service Azure à l’aide d’Azure CLI](/cli/azure/create-an-azure-service-principal-azure-cli) | Créez un principal de service, obtenez les informations s’y rapportant et réinitialisez-le avec Azure CLI.
+Principal du service |Guide pratique |[Créer un principal du service Azure à l’aide d’Azure CLI](./create-an-azure-service-principal-azure-cli.md) | Créez un principal de service, obtenez les informations s’y rapportant et réinitialisez-le avec Azure CLI.
 RBAC |Guide pratique |[Ajouter ou supprimer des attributions de rôles avec le contrôle d’accès en fonction du rôle (RBAC) Azure et Azure CLI](/azure/role-based-access-control/role-assignments-cli) | Attribuez des rôles au contrôle d’accès en fonction du rôle Azure.
 Key Vault |Guide pratique |[Gérer Key Vault à l’aide de l’interface de ligne de commande Azure](/azure/key-vault/key-vault-manage-with-cli2) | Créez et gérez Azure Key Vault.  Inscrivez et autorisez une application, définissez des stratégies d’accès avancées et découvrez les commandes d’interface de ligne de commande multiplateformes.
 Key Vault |Didacticiel |[Gérer les clés de compte de stockage avec Key Vault et l’interface de ligne de commande Azure](/azure/key-vault/key-vault-ovw-storage-keys) | Gérez les clés de compte de stockage et générez des jetons de signature d’accès partagé.
