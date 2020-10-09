@@ -4,21 +4,29 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 09/22/2020
+ms.date: 09/29/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 54befd19d810d84dd076241bd0718c933b3ff2d8
-ms.sourcegitcommit: a0cc51d7b2b39a52c402af1d98d3b48ff369bd16
+ms.openlocfilehash: 613411f9565298e606812af258486acb4b722fc0
+ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90875940"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91422509"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="september-29-2020"></a>29 septembre 2020
+
+Version 2.12.1
+
+### <a name="rdbms"></a>SGBDR
+
+* Correctif logiciel : `az postgres flexible-server create` : Mise à jour de VnetName pour exclure le nom de serveur et mise à jour de la région par défaut pour MySQL
 
 ## <a name="september-22-2020"></a>22 septembre 2020
 
@@ -813,7 +821,7 @@ Version 2.6.0
 * Ajout d’exemples pour az aro create, list, list-credentials, show, delete
 * Ajout de la fonction generate_random_id
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Autorisation de FriendlyName dans la commande d’activation de la protection pour AzureFileShare
 * Correction dans la commande IaasVM restore-disks
@@ -1136,7 +1144,7 @@ Version 2.3.0
 * az deployment {group/mg/sub/tenant} list : Prise en charge du filtrage provisioningState
 * az deployment : Correction du bogue d’analyse pour les commentaires sous le dernier argument
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de plusieurs fonctionnalités de restauration de fichiers
 * Ajout de la prise en charge de la sauvegarde des disques de système d’exploitation uniquement
@@ -1307,7 +1315,7 @@ Version 2.2.0
 * az network watcher flow-log configure : dépréciée
 * az network watcher flow-log show : prise en charge de --location et de --name pour obtenir un résultat au format ARM. L’ancienne sortie mise en forme est dépréciée
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * az policy assignment create : correction du bogue qui générait automatiquement un nom d’attribution de stratégie dépassant la limite
 
@@ -1384,7 +1392,7 @@ Version 2.1.0
 * az policy assignment create : correction du message d’erreur lorsque le paramètre `--policy` n’est pas valide
 * az group deployment create : correction de l’erreur « stat: path too long for Windows » (Chemin trop long pour Windows) lors de l’utilisation d’un fichier parameters.json volumineux
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Correction du flux de récupération au niveau de l’élément dans OLR
 * Ajout de la prise en charge de la restauration sous forme de fichiers pour les bases de données SQL et SAP
@@ -1515,7 +1523,7 @@ Version 2.0.81
 
 * Correctif #2092 : avertissement az network dns record-set add/remove: add quand l’ensemble d’enregistrements est introuvable. À l’avenir, un argument supplémentaire sera pris en charge pour confirmer cette création automatique.
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la nouvelle commande `az policy metadata` pour récupérer des ressources de métadonnées de stratégie riches
 * `az policy remediation create`: Indication si la conformité doit être réévaluée avant correction avec le paramètre `--resource-discovery-mode`
@@ -1590,7 +1598,7 @@ Version 2.0.79
 
 * Correction de `az resource tag` : Impossible de mettre à jour les balises du coffre Recovery Services
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la nouvelle commande « backup protection undelete » pour activer la fonctionnalité de suppression réversible pour la charge de travail IaasVM
 * Ajout du nouveau paramètre « --soft-delete-feature-state » pour définir la commande backup-properties
@@ -1662,7 +1670,7 @@ Version 2.0.79
 * Prise en charge interlocataire pour la commande `az group deployment create` en ajoutant le nouveau paramètre `--aux-subs`
 * Ajout du nouveau paramètre `--metadata` afin de prendre en charge l’ajout d’informations de métadonnées pour les définitions d’ensemble de stratégie.
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la prise en charge de la sauvegarde pour la charge de travail SQL et SAP Hana.
 
@@ -1724,7 +1732,7 @@ Version 2.0.79
 * Rajout de builds edge pour pip install
 * Ajout du package Ubuntu eoan
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la prise en charge de l’API des stratégies version 2019-09-01.
 * az policy set-definition : Ajout de la prise en charge du regroupement dans les définitions d’ensemble de stratégies avec le paramètre `--definition-groups`
@@ -1780,7 +1788,7 @@ Version 2.0.77
 * az webapp up : En forçant la création ou le déploiement sur un site pour les langues prises en charge, aucune valeur par défaut n’est utilisée.
 * Ajout de la prise en charge d’App Service Environment : az appservice ase show | list | list-addresses | list-plans | create | update | delete
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Résolution du problème dans az backup policy list-associated-items. Ajout du paramètre BackupManagementType facultatif.
 
@@ -1895,7 +1903,7 @@ Version 2.0.76
 * `az deployment/group deployment validate`: Ajout du paramètre `--handle-extended-json-format` pour prendre en charge le format multiligne et les commentaires dans le modèle json lors du déploiement.
 * Passage d’azure-mgmt-resource à 2019-07-01
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la prise en charge de la sauvegarde AzureFiles
 
@@ -2076,7 +2084,7 @@ Version 2.0.74
 
 * Résolution d’un problème où le caractère `:` n’était pas autorisé dans l’argument `--condition` de `monitor metrics alert create`
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la prise en charge de l’API Policy version 2019-06-01
 * Ajout du paramètre `--enforcement-mode` à la commande `policy assignment create`
@@ -2128,7 +2136,7 @@ Version 2.0.74
 * Ajout de la prise en charge de la définition de l’ID Key Vault sur `network application-gateway ssl-cert`
 * Ajout de `network express-route peering peer-connection [show|list]`
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Mis à jour pour utiliser la version d’API 2019-01-01
 
@@ -3702,7 +3710,7 @@ Version 2.0.45
 * Ajout de la prise en charge de la balise ARM sur les commandes de création
 * Modification de `[webapp|functionapp] identity show` permettant de quitter avec le code 3 en cas de ressource manquante
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Modification de `backup vault backup-properties show` permettant de quitter avec le code 3 en cas de ressource manquante
 
@@ -3979,7 +3987,7 @@ Version 2.0.40
 * Ajout de la prise en charge de la désactivation d’identité via `webapp identity remove`
 * Suppression de la balise `preview` pour la fonctionnalité Identité
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Mise à jour de la définition du module
 
@@ -4543,7 +4551,7 @@ Version 2.0.30
 * Ajout de la prise en charge HTTPS exclusive à `webapp update`
 * Ajout de la prise en charge des emplacements à `az webapp identity [assign|show]` et `az functionapp identity [assign|show]`
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la commande `az backup protection isenabled-for-vm` Cette commande peut être utilisée pour vérifier si une machine virtuelle est sauvegardée par un coffre dans l’abonnement
 * Activation des ID d’objet Azure pour les paramètres `--resource-group` et `--vault-name`, pour les commandes suivantes :
@@ -4971,7 +4979,7 @@ Version 2.0.25
 * Ajout de la prise en charge des URL personnalisées pour `browse`
 * Prise en charge de l’emplacement fixe pour `log tail`
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Modification de l’option `--container-name` de `backup item list` désormais facultative
 * Ajout d’options de compte de stockage à `backup restore restore-disks`
@@ -5389,7 +5397,7 @@ Version 2.0.18
 
 * Ajout de la capacité à mettre à jour et à afficher les paramètres d’authentification avec `webapp auth [update|show]`
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Préversion
 

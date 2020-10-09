@@ -4,30 +4,32 @@ description: Comment installer Azure CLI avec le gestionnaire de package apt
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 10/14/2019
+ms.date: 09/29/2020
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: d098e8fe1016977cd10e3a7a89c28b59df8b3fca
-ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
+ms.openlocfilehash: 242c634717cf964af718873ab9ecf84ff707db3d
+ms.sourcegitcommit: aa44ec97af5c0e7558d254b3159f95921e22ff1c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2020
-ms.locfileid: "91225896"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91625412"
 ---
 # <a name="install-azure-cli-with-apt"></a>Installer Azure CLI avec apt
 
 Si vous exécutez une distribution qui est fournie avec `apt`, telle que Ubuntu ou Debian, un package x86_64 est disponible pour Azure CLI. Ce package a été testé avec les systèmes pris en charge suivants :
 
-* Ubuntu trusty, xenial, artful, bionic et disco
-* Debian wheezy, jessie, stretch et buster
+* Ubuntu trusty, xenial, bionic, eoan et focal
+* Debian jessie, stretch et buster
 
 [!INCLUDE [current-version](includes/current-version.md)]
 
 > [!NOTE]
 >
-> Le package Azure CLI installe son propre interpréteur Python et n’utilise pas le système Python.
+> Le package Azure CLI installe son propre interpréteur Python et n’utilise pas le système Python. 
+>
+> Sur Ubuntu 20.04 (Focal), il existe un package `azure-cli` avec la version `2.0.81` fourni par le référentiel `focal/universe` . Il est obsolète et n’est pas recommandé. Si vous l’avez déjà installé, supprimez-le d’abord en exécutant `sudo apt remove azure-cli -y && sudo apt autoremove -y` avant de suivre les étapes ci-dessous pour installer le dernier package `azure-cli`.
 
 ## <a name="install"></a>Installer
 
@@ -89,6 +91,9 @@ Pour en savoir plus sur les différentes méthodes d’authentification, consult
 
 Voici certains problèmes courants lors de l’installation avec `apt`. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
 
+### <a name="no-module-issue-on-ubuntu-2004-focalwsl"></a>Aucun problème de module sur Ubuntu 20.04 (Focal)/WSL
+Si vous avez installé `azure-cli` sur `Focal` sans ajouter le référentiel de logiciels Azure CLI dans l’[étape 3](#set-release) des instructions d’installation manuelle ou si vous utilisez notre [script](#install-with-one-command), vous pouvez rencontrer des problèmes tels qu’aucun module nommé « decorator » ou « antlr4 », car le package que vous avez installé est le package `azure-cli 2.0.81` obsolète du référentiel `focal/universe`. Commencez par le supprimer en exécutant `sudo apt remove azure-cli -y && sudo apt autoremove -y`, puis suivez les [instructions](#install) ci-dessus pour installer le dernier package `azure-cli`.
+
 ### <a name="lsb_release-does-not-return-the-correct-base-distribution-version"></a>lsb_release ne renvoie pas la bonne version de la distribution de base
 
 Certaines distributions Ubuntu ou Debian dérivées, telles que Linux Mint peuvent ne pas retourner le nom de version correct de `lsb_release`. Cette valeur est utilisée dans le processus d’installation pour déterminer le package à installer. Si vous connaissez le nom de code de la version Ubuntu ou Debian dont votre distribution est dérivée, vous pouvez définir la valeur `AZ_REPO` manuellement lors de l’[ajout du référentiel](#set-release). Dans le cas contraire, recherchez des informations expliquant comment déterminer le nom de code de la distribution de base et définir `AZ_REPO` sur la valeur appropriée.
@@ -140,8 +145,9 @@ Pour obtenir la clé de signature Microsoft et obtenir le package à partir de n
 [!INCLUDE[troubleshoot-wsl.md](includes/troubleshoot-wsl.md)]
 
 ## <a name="update"></a>Update
+[!INCLUDE [az-upgrade](includes/az-upgrade.md)]
 
-Utilisez `apt-get upgrade` pour mettre à jour le package de l’interface de ligne de commande.
+Vous pouvez aussi utiliser `apt-get upgrade` pour mettre à jour le package CLI.
 
    ```bash
    sudo apt-get update && sudo apt-get upgrade

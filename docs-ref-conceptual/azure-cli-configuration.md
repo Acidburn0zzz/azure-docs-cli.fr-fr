@@ -4,17 +4,17 @@ description: Comment configurer Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 06/11/2018
+ms.date: 09/30/2020
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 8a431f3303d900cc5d2f8787d531d17d41a68a9e
-ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
+ms.openlocfilehash: 232e08faca59c0cc0a7c4f2d94bce732bbeb9ebb
+ms.sourcegitcommit: aa44ec97af5c0e7558d254b3159f95921e22ff1c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2020
-ms.locfileid: "91225301"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91625225"
 ---
 # <a name="azure-cli-configuration"></a>Configuration d’Azure CLI
 
@@ -94,6 +94,10 @@ Lorsque vous fournissez une valeur par défaut, cet argument n’est plus néces
 | | log\_dir | string | Répertoire dans lequel écrire les journaux d’activité. Par défaut, cette valeur est `${AZURE_CONFIG_DIR}/logs`. |
 | __defaults__ | group | string | Groupe de ressources par défaut à utiliser pour toutes les commandes. |
 | | location | string | Emplacement par défaut à utiliser pour toutes les commandes. |
+| | web | string | Application par défaut à utiliser pour toutes les commandes `az webapp`. |
+| | vm | string | Nom de la machine virtuelle par défaut à utiliser pour les commandes `az vm`. |
+| | vmss | string | Nom du groupe de machines virtuelles identiques (VMSS) par défaut à utiliser pour les commandes `az vmss`. |
+| | acr | string | Nom du Registre du conteneur par défaut à utiliser pour les commandes `az acr`. |
 | __storage__ | connection\_string | string | Chaîne de connexion par défaut à utiliser pour les commandes `az storage`. |
 | | account | string | Nom de compte par défaut à utiliser pour les commandes `az storage`. |
 | | key | string | Clé de compte par défaut à utiliser pour les commandes `az storage`. |

@@ -5,17 +5,17 @@ author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
 ms.prod: azure
-ms.date: 06/16/2020
+ms.date: 09/25/2020
 ms.topic: conceptual
 ms.devlang: azurecli
 ms.technology: azure-cli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 39668b267d3374dd1bdb5f7b1f5e0f0847d2c2fa
-ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
+ms.openlocfilehash: 26e7f55d661928af78e645e820990a3617724644
+ms.sourcegitcommit: aa44ec97af5c0e7558d254b3159f95921e22ff1c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2020
-ms.locfileid: "91225811"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91625378"
 ---
 # <a name="install-azure-cli-on-windows"></a>Installer Azure CLI sur Windows
 
@@ -54,7 +54,9 @@ Téléchargez et installez la version bêta d’Azure CLI.
 > [!div class="nextstepaction"]
 > [Version bêta d’Azure CLI](https://aka.ms/installazurecliwindowsbeta)
 
-# <a name="microsoft-installer-msi-with-powershell"></a>[Microsoft Installer (MSI) avec PowerShell](#tab/azure-powershell)
+# <a name="microsoft-installer-msi-with-command"></a>[Microsoft Installer (MSI) avec commande](#tab/azure-powershell)
+
+### <a name="powershell-command"></a>Commande PowerShell
 
 Vous pouvez également installer Azure CLI en utilisant PowerShell. Démarrez PowerShell en tant qu’administrateur et exécutez la commande suivante :
 
@@ -63,6 +65,9 @@ Vous pouvez également installer Azure CLI en utilisant PowerShell. Démarrez Po
    ```
 
 Cette opération télécharge et installe la dernière version d’Azure CLI pour Windows. Si une version est déjà installée, le programme d’installation met à jour la version existante. Une fois l’installation terminée, vous devez rouvrir PowerShell pour utiliser Azure CLI.
+
+### <a name="azure-cli-command-for-update-only"></a>Commande Azure CLI (pour mise à jour uniquement)
+[!INCLUDE [az-upgrade](includes/az-upgrade.md)]
 
 ---
 
