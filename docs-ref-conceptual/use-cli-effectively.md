@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 53fa51e3d17069c9d3af62d53214d366f33779b4
-ms.sourcegitcommit: 6c3032b1d74c65a8f186b3063ab6b301350e3704
+ms.openlocfilehash: 4ffd47b7d88dafc717f496fe40d9db68c7af28a3
+ms.sourcegitcommit: ce10a134cb3c73aec32bb4f5887b09d08f9bde53
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90012729"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92308061"
 ---
 # <a name="use-azure-cli-effectively"></a>Utiliser Azure CLI efficacement
 
@@ -254,6 +254,8 @@ Le proxy est courant derrière le réseau d’entreprise ou introduit par des ou
     ```
 
    Il est fréquemment demandé si les variables d’environnement `HTTP_PROXY` ou `HTTPS_PROXY` doivent ou non être définies, et la réponse est que cela dépend. Pour Fiddler sur Windows, la variable agit par défaut en tant que proxy système au démarrage et vous n’avez pas besoin de définir quoi que ce soit. Si l’option est désactivée ou que vous utilisez d’autres outils qui ne fonctionnent pas en tant que proxy système, vous devez les définir. Comme presque tout le trafic de l’interface CLI est basé sur SSL, seule `HTTPS_PROXY` doit être définie. Si vous ne savez pas, il vous suffit de les définir, mais n’oubliez pas d’annuler cette configuration après l’arrêt du proxy. Pour Fiddler, la valeur par défaut est `http://localhost:8888`.
+
+   Certains proxys demandent une authentification et, par conséquent, le format des variables d’environnement `HTTP_PROXY` ou `HTTPS_PROXY` doit inclure l’authentification, par exemple `HTTPS_PROXY="https://username:password@proxy-server:port"`. C’est nécessaire pour les bibliothèques Python sous-jacentes. Pour obtenir des détails, consultez [Guide pratique pour configurer des proxys pour les bibliothèques Azure](https://docs.microsoft.com/azure/developer/python/azure-sdk-configure-proxy?tabs=bash). 
 
    Pour plus d’informations, consultez le [blog de Stefan](https://blog.jhnr.ch/2018/05/16/working-with-azure-cli-behind-ssl-intercepting-proxy-server/).
 
