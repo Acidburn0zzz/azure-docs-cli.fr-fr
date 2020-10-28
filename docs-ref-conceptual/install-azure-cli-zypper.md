@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 0bf5fb04c90cea7185b169af756db29f9a97b235
-ms.sourcegitcommit: aa44ec97af5c0e7558d254b3159f95921e22ff1c
+ms.openlocfilehash: e501d05985b0483442ab11f78343d773fd7e55bf
+ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91625344"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92687083"
 ---
 # <a name="install-azure-cli-with-zypper"></a>Installez Azure CLI avec zypper
 
@@ -61,23 +61,49 @@ Pour en savoir plus sur les différentes méthodes d’authentification, consult
 
 Voici certains problèmes courants lors de l’installation avec `zypper`. Si vous rencontrez un problème n’étant pas évoqué ici, [signalez un problème sur github](https://github.com/Azure/azure-cli/issues).
 
+### <a name="notimplementederror-on-opensuse-15-vm"></a>NotImplementedError sur une machine virtuelle OpenSUSE 15
+La version `2.0.45` d’Azure CLI est préinstallée sur la machine virtuelle OpenSUSE 15. Cette version est obsolète et présente des problèmes avec `az login`. Supprimez-la ainsi que ses dépendances avant de suivre les [instructions d’installation](#install) pour ajouter la dernière version d’Azure CLI :
+```bash
+sudo zypper rm -y --clean-deps azure-cli
+```
+
+Si vous avez mis à jour Azure CLI sans supprimer les dépendances de la version `2.0.45`, ses anciennes dépendances peuvent affecter la version la plus récente d’Azure CLI. Vous devez rajouter l’ancienne version pour établir un lien avec ses dépendances, puis supprimer `azure-cli` ainsi que ses dépendances :
+```bash
+# The package name may vary on different system version, run 'zypper --no-refresh info azure-cli' to check the source package format
+sudo zypper install --oldpackage azure-cli-2.0.45-4.22.noarch
+
+sudo zypper rm -y --clean-deps azure-cli
+```
+
+
 ### <a name="install-on-sles-12-or-other-systems-without-python-36"></a>Installer sur SLES 12 ou d’autres systèmes sans Python 3.6
 
-Sur SLES 12, le package python3 par défaut est la version 3.4 et n’est pas pris en charge par Azure CLI. Vous pouvez d’abord générer une version de python3 plus récente à partir de la source. Vous pouvez alors télécharger le package Azure CLI et l’installer sans dépendance.
+Sur SLES 12, le package `python3` par défaut est `3.4`, qui n’est pas pris en charge par Azure CLI. Vous pouvez d’abord suivre les étapes 1 à 3 des [instructions d’installation](#install) pour ajouter le dépôt `azure-cli`. Ensuite, générez une version plus récente de `python3` à partir de la source. Enfin, vous pouvez télécharger le package Azure CLI et l’installer sans dépendance.
+
+Vous pouvez utiliser la commande suivante pour installer Azure CLI (notez que votre version de Python 3 sera remplacée par Python 3.6) :
 ```bash
+curl -sL https://azurecliprod.blob.core.windows.net/sles12_install.sh | sudo bash
+```
+
+Vous pouvez également le faire étape par étape :
+
+```bash
+# !Please add azure-cli repository first following step 1-3 of the install instruction before running below commands
+$ sudo zypper refresh
 $ sudo zypper install -y gcc gcc-c++ make ncurses patch wget tar zlib-devel zlib openssl-devel
 # Download Python source code
 $ PYTHON_VERSION="3.6.9"
 $ PYTHON_SRC_DIR=$(mktemp -d)
 $ wget -qO- https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz | tar -xz -C "$PYTHON_SRC_DIR"
 # Build Python
-$ $PYTHON_SRC_DIR/*/configure
+# Please be aware that with --prefix=/usr, the command will override the existing Python 3 version
+$ $PYTHON_SRC_DIR/*/configure --prefix=/usr
 $ make
 $ sudo make install
-#Download azure-cli package 
+# Download azure-cli package 
 $ AZ_VERSION=$(zypper --no-refresh info azure-cli |grep Version | awk -F': ' '{print $2}' | awk '{$1=$1;print}')
 $ wget https://packages.microsoft.com/yumrepos/azure-cli/azure-cli-$AZ_VERSION.x86_64.rpm
-#Install without dependency
+# Install without dependency
 $ sudo rpm -ivh --nodeps azure-cli-$AZ_VERSION.x86_64.rpm
 ```
 

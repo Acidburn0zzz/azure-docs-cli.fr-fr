@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 08ef942ace04f018d52cf1f6f7b20dc344953485
-ms.sourcegitcommit: aa44ec97af5c0e7558d254b3159f95921e22ff1c
+ms.openlocfilehash: fac9f37969ac23245568c521d5d3e50efa5c050d
+ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91625361"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92687037"
 ---
 # <a name="install-azure-cli-with-yum"></a>Installer Azure CLI avec yum
 
@@ -61,14 +61,50 @@ Voici certains problèmes courants lors de l’installation avec `yum`. Si vous 
 
 ### <a name="install-on-rhel-76-or-other-systems-without-python-3"></a>Installer sur RHEL 7.6 ou d’autres systèmes sans Python 3
 
-Si vous le pouvez, mettez à niveau votre système vers une version avec prise en charge officielle du package `python3`. Dans le cas contraire, vous devez d’abord installer un package `python3`, par le biais d’une [génération à partir du source](https://github.com/linux-on-ibm-z/docs/wiki/Building-Python-3.6.x) ou d’une installation par le biais d’un [dépôt supplémentaire](https://developers.redhat.com/blog/2018/08/13/install-python3-rhel/). Vous pouvez alors télécharger le package et l’installer sans dépendance.
+Si vous le pouvez, mettez à niveau votre système vers une version avec prise en charge officielle du package `python 3.6+`. Si ce n’est pas possible, vous devrez d’abord installer un package `python3`, puis installer Azure CLI sans dépendance. 
+
+Vous pouvez utiliser la commande suivante pour installer Azure CLI avec `python 3.6` généré à partir de la source :
 ```bash
-$ sudo yum install yum-utils
+curl -sL https://azurecliprod.blob.core.windows.net/rhel7_6_install.sh | sudo bash
+```
+Vous pouvez également le faire étape par étape :
+
+Tout d’abord, Azure CLI nécessite `SSL 1.1+`. En outre, vous devez générer `openssl 1.1` à partir de la source avant de générer `python3` :
+```bash
+$ sudo yum install gcc gcc-c++ make ncurses patch wget tar zlib zlib-devel -y
+# build openssl from source
+$ cd ~
+$ wget https://www.openssl.org/source/openssl-1.1.1d.tar.gz
+$ tar -xzf openssl-1.1.1d.tar.gz
+$ cd openssl-1.1.1d
+$ ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl
+$ make
+$ sudo make install
+# configure shared object lookup directory so that libssl.so.1.1 can be found
+$ echo "/usr/local/ssl/lib" | sudo tee /etc/ld.so.conf.d/openssl-1.1.1d.conf
+# reload config
+$ sudo ldconfig -v
+```
+
+Ensuite, générez Python 3 à partir de la source :
+```bash
+$ PYTHON_VERSION="3.6.9"
+$ PYTHON_SRC_DIR=$(mktemp -d)
+$ wget -qO- https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz | tar -xz -C "$PYTHON_SRC_DIR"
+$ cd $PYTHON_SRC_DIR/Python-$PYTHON_VERSION
+$ ./configure --prefix=/usr --with-openssl=/usr/local/ssl
+$ make
+$ sudo make install
+```
+
+Enfin, suivez les étapes 1 et 2 des [instructions d’installation](#install) pour ajouter le dépôt Azure CLI. Vous pouvez désormais télécharger le package et l’installer sans dépendance.
+```bash
+$ sudo yum install yum-utils -y
 $ sudo yumdownloader azure-cli
 $ sudo rpm -ivh --nodeps azure-cli-*.rpm
 ```
 
-Si vous avez configuré Python 3, mais que vous obtenez toujours une erreur `python3: command not found` lorsque vous essayez d’exécuter l’interface CLI, vous devez l’ajouter dans votre chemin.
+En guise d’alternative, vous pouvez également installer Python 3 à l’aide d’un [dépôt supplémentaire](https://developers.redhat.com/blog/2018/08/13/install-python3-rhel/). Si vous avez configuré `python3`, mais que vous obtenez toujours une erreur `python3: command not found` lorsque vous essayez d’exécuter l’interface CLI, vous devez l’ajouter dans votre chemin.
 ```bash
 $ scl enable rh-python36 bash
 ```

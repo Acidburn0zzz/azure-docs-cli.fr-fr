@@ -4,21 +4,120 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 10/13/2020
+ms.date: 10/27/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: bc77b0601222b4956a6f5bed4159859fca4c3a81
-ms.sourcegitcommit: 19c24ebcd1e15ac23ca40ebc28b8c4804bd1327f
+ms.openlocfilehash: 4e1f03268ccd001d6fe371b1ecdecb869791b198
+ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92029657"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92687117"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="october-27-2020"></a>27 octobre 2020
+
+Version 2.14.0
+
+### <a name="aks"></a>AKS
+
+* Ajout de la prise en charge PPG
+* Mise à jour du délai d’attente maximal de l’équilibreur de charge standard sur 100 minutes
+
+### <a name="apim"></a>APIM
+
+* Résolution du problème lié à la création d’une instance de niveau Consommation
+
+### <a name="app-config"></a>App Config
+
+* Résolution du problème lié à l’interrogation des paires clé-valeur avec des étiquettes séparées par des virgules
+
+### <a name="app-service"></a>App Service
+
+* Résolution de bogue : la commande « az webapp up » échoue quand l’utilisateur ne dispose pas des autorisations en écriture sur le répertoire parent du projet
+* Correctif 13777 : Correctif supprimant les caractères d’échappement du code XML
+* Correctif 15441 : la commande « az webapp create-remote-connection » échoue avec AttributeError : L’objet « thread » n’a pas d’attribut « isAlive »
+* [CHANGEMENT CASSANT] az webapp up : ajout de paramètres facultatifs (OS et runtime) et mises à jour des runtimes
+
+### <a name="arm"></a>ARM
+
+* Mise en disponibilité générale des commandes What-If de déploiement de modèles
+* [CHANGEMENT CASSANT] Ajout d’une confirmation de l’utilisateur pour la commande az ts create
+* Correction des données retournées lors de l’étiquetage de plusieurs ressources
+
+### <a name="backup"></a>Sauvegarde
+
+* `az backup policy create` : Ajout de la prise en charge de la création de stratégies de sauvegarde IaaSVM à partir de CLI
+* Limite de protection des machines virtuelles accrue de 100 à 1 000
+
+### <a name="compute"></a>Calcul
+
+* sig image-definition create: add --features
+* Nouvelle version d’API de gallery_images 2020-09-30
+* `az vm update / az sig image-version update` : Prise en charge de update vm/image-version, même lors de l’utilisation d’une image multilocataire
+* Suppression de la validation des références SKU d’hôtes de machines virtuelles
+
+### <a name="cosmos-db"></a>Cosmos DB
+
+* `az cosmosdb create/update` : Amélioration du message d’erreur (précédemment, l’entrée --locations était incorrecte)
+* `az cosmosdb sql container create/update` : Ajout du paramètre --analytical-storage-ttl
+
+### <a name="hdinsight"></a>HDInsight
+
+* [CHANGEMENT CASSANT] az hdinsight create : suppression de deux paramètres : --public-network-access-type et --outbound-public-network-access-type
+
+### <a name="iot-central"></a>IoT Central
+
+* Suppression de l’avertissement informant qu’il s’agit d’une préversion, puisque le service est désormais en disponibilité générale
+
+### <a name="key-vault"></a>Key Vault
+
+* Invalidation de `--enable-soft-delete false` lors de la création ou de la mise à jour de coffres
+* Faire en sorte que `--bypass` et `--default-action` fonctionnent conjointement avec les paramètres de liste de contrôle d’accès réseau lors de la création de coffres
+
+### <a name="misc"></a>Divers
+
+* Ajout de bash-completion au fichier Dockerfile
+
+### <a name="rdbms"></a>SGBDR
+
+* Ajout de la commande List-SKUS, de transformateurs de table, d’un contexte local pour Postgres, de MySQL et de MariaDB Single Server
+* [CHANGEMENT CASSANT] Mises à jour des noms de paramètres. Améliorations apportées au plan de gestion pour MySQL et PostgreSQL
+* `az postgres|mariadb|mysql server create` : Mise à jour de l’expérience de création pour Postgres, MySQL et MariaDB : nouveaux champs dans la sortie, ajout de nouvelles valeurs pour le paramètre `--public` dans la commande create (all,<IP>,<IPRange>,0.0.0.0)
+
+### <a name="signalr"></a>SignalR
+
+* `az signalr create` : Ajout de l’option `--enable-messaging-logs` permettant de choisir si des journaux de messagerie doivent être ou non générés
+* `az signalr update` : Ajout de l’option `--enable-messaging-logs` permettant de choisir si des journaux de messagerie doivent être ou non générés
+
+### <a name="sql"></a>SQL
+
+* [CHANGEMENT CASSANT] Correction de la réponse au niveau du nom et de la valeur du paramètre de redondance du stockage de sauvegarde pour MI
+* `az sql db audit-policy show` : à développer pour afficher la stratégie d’audit de la base de données, y compris les données LA et EH
+* `az sql db audit-policy update` : à développer pour autoriser les mises à jour LA et EH avec la stratégie d’audit de la base de données
+* `az sql db audit-policy wait` : placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de la stratégie d’audit de la base de données soit remplie.
+* `az sql server audit-policy show` : à développer pour afficher la stratégie d’audit du serveur, y compris les données LA et EH
+* `az sql server audit-policy update` : à développer pour autoriser les mises à jour LA et EH avec la stratégie d’audit du serveur
+* `az sql server audit-policy wait` : placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de la stratégie d’audit du serveur soit remplie.
+* Ajout de la prise en charge AAD uniquement pour les instances et les serveurs managés par SQL
+* `az sql db replica create` : Ajout de l’argument --partner-database
+
+### <a name="storage"></a>Stockage
+
+* Correctif 15111 : `az storage logging update` échoue sans argument facultatif
+* Correction du bogue qui se produisait lors de l’utilisation de la commande set-tier avec la connexion du principal du service
+* Mise à niveau de la version du fichier datalake vers 2020-02-10
+* `az storage queue list` : Prise en charge de Track2
+* `az storage fs access` : Prise en charge de la gestion récursive des ACL
+
+### <a name="synapse"></a>Synapse
+
+* Ajout d’un pipeline, d’un service lié, d’un déclencheur, d’un notebook, d’un flux de données et d’applets de commande pour jeux de données
 
 ## <a name="october-13-2020"></a>13 octobre 2020
 
@@ -60,7 +159,7 @@ Version 2.13.0
 * `az ts` : Ajout de nouvelles commandes pour les spécifications de modèle
 * `az deployment` : Ajout de la prise en charge pour --template-spec -s
 
-### <a name="compute"></a>Calcul
+### <a name="compute"></a>Compute
 
 * Correction de la limitation du nombre de FD de création de groupe hôte
 * Ajout d’une nouvelle commande pour prendre en charge les extensions de mise à niveau pour VMSS
@@ -919,7 +1018,7 @@ Version 2.6.0
 * Ajout d’exemples pour az aro create, list, list-credentials, show, delete
 * Ajout de la fonction generate_random_id
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Autorisation de FriendlyName dans la commande d’activation de la protection pour AzureFileShare
 * Correction dans la commande IaasVM restore-disks
@@ -1242,7 +1341,7 @@ Version 2.3.0
 * az deployment {group/mg/sub/tenant} list : Prise en charge du filtrage provisioningState
 * az deployment : Correction du bogue d’analyse pour les commentaires sous le dernier argument
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de plusieurs fonctionnalités de restauration de fichiers
 * Ajout de la prise en charge de la sauvegarde des disques de système d’exploitation uniquement
@@ -1490,7 +1589,7 @@ Version 2.1.0
 * az policy assignment create : correction du message d’erreur lorsque le paramètre `--policy` n’est pas valide
 * az group deployment create : correction de l’erreur « stat: path too long for Windows » (Chemin trop long pour Windows) lors de l’utilisation d’un fichier parameters.json volumineux
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Correction du flux de récupération au niveau de l’élément dans OLR
 * Ajout de la prise en charge de la restauration sous forme de fichiers pour les bases de données SQL et SAP
@@ -1696,7 +1795,7 @@ Version 2.0.79
 
 * Correction de `az resource tag` : Impossible de mettre à jour les balises du coffre Recovery Services
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la nouvelle commande « backup protection undelete » pour activer la fonctionnalité de suppression réversible pour la charge de travail IaasVM
 * Ajout du nouveau paramètre « --soft-delete-feature-state » pour définir la commande backup-properties
@@ -1768,7 +1867,7 @@ Version 2.0.79
 * Prise en charge interlocataire pour la commande `az group deployment create` en ajoutant le nouveau paramètre `--aux-subs`
 * Ajout du nouveau paramètre `--metadata` afin de prendre en charge l’ajout d’informations de métadonnées pour les définitions d’ensemble de stratégie.
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la prise en charge de la sauvegarde pour la charge de travail SQL et SAP Hana.
 
@@ -1886,7 +1985,7 @@ Version 2.0.77
 * az webapp up : En forçant la création ou le déploiement sur un site pour les langues prises en charge, aucune valeur par défaut n’est utilisée.
 * Ajout de la prise en charge d’App Service Environment : az appservice ase show | list | list-addresses | list-plans | create | update | delete
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Résolution du problème dans az backup policy list-associated-items. Ajout du paramètre BackupManagementType facultatif.
 
@@ -2001,7 +2100,7 @@ Version 2.0.76
 * `az deployment/group deployment validate`: Ajout du paramètre `--handle-extended-json-format` pour prendre en charge le format multiligne et les commentaires dans le modèle json lors du déploiement.
 * Passage d’azure-mgmt-resource à 2019-07-01
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la prise en charge de la sauvegarde AzureFiles
 
@@ -2704,7 +2803,7 @@ Version 2.0.65
 ### <a name="compute"></a>Calcul
 * Ajout de `--computer-name` à `vm create` pour définir le nom d’une machine virtuelle
 * `--ssh-key-value` renommé en `--ssh-key-values` pour `[vm|vmss] create` - peut maintenant accepter plusieurs chemins d’accès ou valeurs de clé publique SSH
-  * __Remarque__ : il ne s’agit **pas** d’un changement cassant - `--ssh-key-value` sera analysé correctement, car il correspond uniquement à `--ssh-key-values`
+  * __Remarque__  : il ne s’agit **pas** d’un changement cassant - `--ssh-key-value` sera analysé correctement, car il correspond uniquement à `--ssh-key-values`
 * Modification de l’argument `--type` qui devient facultatif dans `ppg create`
 
 ## <a name="may-6-2019"></a>6 mai 2019
@@ -3808,7 +3907,7 @@ Version 2.0.45
 * Ajout de la prise en charge de la balise ARM sur les commandes de création
 * Modification de `[webapp|functionapp] identity show` permettant de quitter avec le code 3 en cas de ressource manquante
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Modification de `backup vault backup-properties show` permettant de quitter avec le code 3 en cas de ressource manquante
 
@@ -3879,7 +3978,7 @@ Version 2.0.44
 
 ### <a name="batchai"></a>Batch AI
 
-* Modification de la sortie de l’enregistreur d’événements pour la création du compte de stockage automatique afin de spécifier l’information « ressource *groupe*».        
+* Modification de la sortie de l’enregistreur d’événements pour la création du compte de stockage automatique afin de spécifier l’information « ressource *groupe* ».        
 
 ### <a name="container"></a>Conteneur
 
@@ -4085,7 +4184,7 @@ Version 2.0.40
 * Ajout de la prise en charge de la désactivation d’identité via `webapp identity remove`
 * Suppression de la balise `preview` pour la fonctionnalité Identité
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Mise à jour de la définition du module
 
@@ -4649,7 +4748,7 @@ Version 2.0.30
 * Ajout de la prise en charge HTTPS exclusive à `webapp update`
 * Ajout de la prise en charge des emplacements à `az webapp identity [assign|show]` et `az functionapp identity [assign|show]`
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Ajout de la commande `az backup protection isenabled-for-vm` Cette commande peut être utilisée pour vérifier si une machine virtuelle est sauvegardée par un coffre dans l’abonnement
 * Activation des ID d’objet Azure pour les paramètres `--resource-group` et `--vault-name`, pour les commandes suivantes :
@@ -5077,7 +5176,7 @@ Version 2.0.25
 * Ajout de la prise en charge des URL personnalisées pour `browse`
 * Prise en charge de l’emplacement fixe pour `log tail`
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Modification de l’option `--container-name` de `backup item list` désormais facultative
 * Ajout d’options de compte de stockage à `backup restore restore-disks`
@@ -5495,7 +5594,7 @@ Version 2.0.18
 
 * Ajout de la capacité à mettre à jour et à afficher les paramètres d’authentification avec `webapp auth [update|show]`
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Préversion
 
@@ -6314,7 +6413,7 @@ Python (Darwin) 2.7.10 (default, Jul 30 2016, 19:40:32)
 ```
 
 > [!Note]
-> Certains de ces modules de commande présentent un suffixe « b*n* » ou « rc*n* ». Ces modules de commande, encore en préversion, seront mis à la disposition générale à l’avenir.
+> Certains de ces modules de commande présentent un suffixe « b *n* » ou « rc *n* ». Ces modules de commande, encore en préversion, seront mis à la disposition générale à l’avenir.
 
 Nous avons également des versions d’évaluation nocturnes de l’interface CLI. Pour plus d’informations, consultez ces instructions sur l’[obtention des builds nocturnes](https://github.com/Azure/azure-cli#nightly-builds), ainsi que ces instructions sur [la contribution au code et la configuration d’un environnement de développement](https://github.com/Azure/azure-cli#developer-setup).
 
