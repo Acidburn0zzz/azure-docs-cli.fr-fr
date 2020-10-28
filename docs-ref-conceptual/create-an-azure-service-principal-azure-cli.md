@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: f3fb0e589c4a32cc8a8e9e53c0fa3e69bf9576c2
-ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
+ms.openlocfilehash: 17f550e2ce1df2e171d51c262d7a5e0428965039
+ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2020
-ms.locfileid: "91225947"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92687013"
 ---
 # <a name="create-an-azure-service-principal-with-the-azure-cli"></a>Créer un principal du service Azure à l’aide d’Azure CLI
 
@@ -106,9 +106,9 @@ myCertificateValue
 ```
 
 > [!NOTE]
-> La commande `az ad sp create-for-rbac --create-cert` crée le principal du service et un fichier PEM. Le fichier PEM contient une **CLÉ PRIVÉE** correctement mise en forme et un **CERTIFICAT**.
+> La commande `az ad sp create-for-rbac --create-cert` crée le principal du service et un fichier PEM. Le fichier PEM contient une **CLÉ PRIVÉE** correctement mise en forme et un **CERTIFICAT** .
 
-L’argument `--keyvault` peut être ajouté pour stocker le certificat dans Azure Key Vault. Lorsque vous utilisez `--keyvault`, l’argument `--cert` est __requis__.
+L’argument `--keyvault` peut être ajouté pour stocker le certificat dans Azure Key Vault. Lorsque vous utilisez `--keyvault`, l’argument `--cert` est __requis__ .
 
 ```azurecli-interactive
 az ad sp create-for-rbac --name ServicePrincipalName --create-cert --cert CertName --keyvault VaultName
@@ -130,7 +130,7 @@ Une liste des principaux de service dans un locataire peut être récupérée av
 * `--spn` filtre la correspondance exacte de nom de principal du service. Le nom de principal du service commence toujours par `https://`.
   si la valeur que vous avez utilisé pour `--name` n’était pas un URI, cette valeur est `https://` suivie du nom d’affichage.
 * `--show-mine` demande uniquement les principaux du service créés par l’utilisateur connecté.
-* `--filter` utilise un filtre OData et effectue un filtrage _côté serveur_. Cette méthode est préférable au filtrage côté client avec l’argument `--query` de l’interface de ligne de commande. Pour en savoir plus sur les filtres OData, consultez [syntaxe d’expression de filtres OData](/rest/api/searchservice/odata-expression-syntax-for-azure-search).
+* `--filter` utilise un filtre OData et effectue un filtrage _côté serveur_ . Cette méthode est préférable au filtrage côté client avec l’argument `--query` de l’interface de ligne de commande. Pour en savoir plus sur les filtres OData, consultez [syntaxe d’expression de filtres OData](/rest/api/searchservice/odata-expression-syntax-for-azure-search).
 
 Les informations retournées pour les objets de principaux du service sont détaillées. Pour obtenir uniquement les informations nécessaires pour vous connecter, utilisez la chaîne de requête `[].{id:appId, tenant:appOwnerTenantId}`. Par exemple, pour obtenir les informations de connexion de tous les principaux du service créés par l’utilisateur actuellement connecté :
 
@@ -194,10 +194,10 @@ Pour en savoir plus sur la connexion avec un principal du service, consultez [Se
 
 La section suivante fournit un exemple de création d’une ressource pour le [Stockage Azure](/azure/storage/) avec un principal de service, en utilisant les commandes suivantes :
 
-* [az login](/cli/azure/reference-index?view=azure-cli-latest#az_login)
-* [az group create](/cli/azure/group?view=azure-cli-latest#az_group_create)
-* [az storage account create](/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create)
-* [az storage account keys list](/cli/azure/storage/account/keys?view=azure-cli-latest#az_storage_account_keys_list)
+* [az login](/cli/azure/reference-index?#az_login)
+* [az group create](/cli/azure/group#az_group_create)
+* [az storage account create](/cli/azure/storage/account#az_storage_account_create)
+* [az storage account keys list](/cli/azure/storage/account/keys#az_storage_account_keys_list)
 
 Pour vous connecter avec un principal de service, vous avez besoin que `appId`, `tenant` et `password` soient retournés comme réponse lorsque vous [avez créé votre principal de service](#sign-in-using-a-service-principal).
 
@@ -240,3 +240,8 @@ Si vous avez oublié les informations d’identification d’un principal du ser
 ```azurecli-interactive
 az ad sp credential reset --name APP_ID
 ```
+
+## <a name="see-also"></a>Voir aussi
+
+* [Objets d’application et de principal de service dans Azure Active Directory](/azure/active-directory/develop/app-objects-and-service-principals)
+* [Comment gérer des principaux de service](/azure/developer/python/how-to-manage-service-principals)
