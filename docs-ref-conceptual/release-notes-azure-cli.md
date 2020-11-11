@@ -4,21 +4,37 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 10/27/2020
+ms.date: 11/09/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 4e1f03268ccd001d6fe371b1ecdecb869791b198
-ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
+ms.openlocfilehash: 02a7cf83bbd3de7dba69a75eeff0d6676d1e0952
+ms.sourcegitcommit: 133d53a85073e3ce526a3de8de668e7bca79f48e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92687117"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94484007"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="november-09-2020"></a>9 novembre 2020
+
+Version 2.14.2
+
+### <a name="app-service"></a>App Service
+
+* Correctif 15604, 15605 : Ajout de la prise en charge de Dotnet5
+
+## <a name="november-06-2020"></a>6 novembre 2020
+
+Version 2.14.1
+
+### <a name="arm"></a>ARM
+
+* Correctif logiciel : Ajout de la prise en charge des chaînes multilignes TS pour les entrées de modèle
 
 ## <a name="october-27-2020"></a>27 octobre 2020
 
@@ -159,7 +175,7 @@ Version 2.13.0
 * `az ts` : Ajout de nouvelles commandes pour les spécifications de modèle
 * `az deployment` : Ajout de la prise en charge pour --template-spec -s
 
-### <a name="compute"></a>Compute
+### <a name="compute"></a>Calcul
 
 * Correction de la limitation du nombre de FD de création de groupe hôte
 * Ajout d’une nouvelle commande pour prendre en charge les extensions de mise à niveau pour VMSS
@@ -1062,7 +1078,7 @@ Version 2.6.0
 * Correction du changement non souhaité de la valeur TTL pour dns add-record
 * `az network public-ip create`: Information à l’intention des clients pour les prévenir d’un changement cassant imminent
 * Prise en charge des commandes génériques pour un scénario de liaison privée
-* `az network private-endpoint-connection`: Prise en charge des types mysql, postgre et mariadb
+* `az network private-endpoint-connection` : Prise en charge des types mysql, postgres et mariadb
 * `az network private-endpoint-connection`: Prise en charge des types cosmosdb
 * `az network private-endpoint` : dépréciation de --group-ids et redirection vers --group-id
 
