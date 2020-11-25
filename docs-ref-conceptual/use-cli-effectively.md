@@ -4,17 +4,17 @@ description: Conseils pour utiliser Azure CLI efficacement
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 09/07/2018
+ms.date: 11/18/2020
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 4ffd47b7d88dafc717f496fe40d9db68c7af28a3
-ms.sourcegitcommit: ce10a134cb3c73aec32bb4f5887b09d08f9bde53
+ms.openlocfilehash: 0f1985425328492c96262a835eb7ffd8be333cc5
+ms.sourcegitcommit: 753de7d5c45062d5138be86ced7eacddd5696ca3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92308061"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94976898"
 ---
 # <a name="use-azure-cli-effectively"></a>Utiliser Azure CLI efficacement
 
@@ -243,7 +243,7 @@ Pour éviter des résultats imprévus, voici quelques suggestions :
 
 Le proxy est courant derrière le réseau d’entreprise ou introduit par des outils de suivi tels que Fiddler, mitmproxy, etc. Si le proxy utilise des certificats auto-signés, la bibliothèque de [demandes](https://github.com/kennethreitz/requests) de Python que l’interface CLI utilise va générer `SSLError("bad handshake: Error([('SSL routines', 'tls_process_server_certificate', 'certificate verify failed')],)",)`. Il existe 2 moyens de gérer cette erreur :
 
-1. Définissez la variable d’environnement `REQUESTS_CA_BUNDLE` sur le chemin du fichier du certificat de groupement d’autorités de certification au format PEM. Cette option est recommandée si vous utilisez l’interface CLI fréquemment derrière un proxy d’entreprise. Le groupement d’autorités de certification par défaut utilisé par l’interface CLI se trouve sur `C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\Lib\site-packages\certifi\cacert.pem` sur Windows et ` /opt/az/lib/python3.6/site-packages/certifi/cacert.pem` sur Linux. Vous pouvez ajouter le certificat du serveur proxy à ce fichier ou copier le contenu dans un autre fichier de certificat, puis définir `REQUESTS_CA_BUNDLE` sur celui-ci. Par exemple :
+1. Définissez la variable d’environnement `REQUESTS_CA_BUNDLE` sur le chemin du fichier du certificat de groupement d’autorités de certification au format PEM. Cette option est recommandée si vous utilisez l’interface CLI fréquemment derrière un proxy d’entreprise. Le bundle d’autorités de certification par défaut utilisé par l’interface CLI se trouve dans `C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\Lib\site-packages\certifi\cacert.pem` sur Windows, et dans ` /opt/az/lib/python3.6/site-packages/certifi/cacert.pem` sur Linux Ubuntu/Debian ou dans `/usr/lib64/az/lib/python3.6/site-packages/certifi/cacert.pem` sur Linux CentOS/RHEL/SUSE. Vous pouvez ajouter le certificat du serveur proxy à ce fichier ou copier le contenu dans un autre fichier de certificat, puis définir `REQUESTS_CA_BUNDLE` sur celui-ci. Par exemple :
 
     ```
     <Original cacert.pem>

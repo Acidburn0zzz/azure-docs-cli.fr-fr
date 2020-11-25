@@ -4,21 +4,161 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 11/09/2020
+ms.date: 11/20/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 02a7cf83bbd3de7dba69a75eeff0d6676d1e0952
-ms.sourcegitcommit: 133d53a85073e3ce526a3de8de668e7bca79f48e
+ms.openlocfilehash: b28bfc9ef06b7bac5e789cdeb2b53ded0afea273
+ms.sourcegitcommit: 753de7d5c45062d5138be86ced7eacddd5696ca3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94484007"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94976932"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="november-20-2020"></a>20 novembre 2020
+
+Version 2.15.1
+
+### <a name="profile"></a>Profil
+
+* Correctif logiciel : Correctif #15961 : az login : UnboundLocalError : variable locale « token_entry » référencée avant l’affectation
+
+## <a name="november-17-2020"></a>17 novembre 2020
+
+Version 2.15.0
+
+### <a name="acs"></a>ACS
+
+* Ajout d’avertissements de dépréciation de la v3
+
+### <a name="aks"></a>AKS
+
+* Ajout de la fonctionnalité de système d’exploitation éphémère
+* Amélioration en matière d’ingénierie : Remplacement des chaînes addon par des constantes
+* `az aks install-cli` : Prise en charge des URL de téléchargement personnalisées
+* `az aks browse` : Pointage sur la vue des ressources Kubernetes du portail Azure si la version de Kubernetes >= 1.19 ou si kube-dashboard n’est pas activé
+* Prise en charge de l’identité de plan de contrôle BYO
+* `az aks use-dev-spaces` : Indication que les commandes dev-spaces sont dépréciées
+
+### <a name="ams"></a>AMS
+
+* Changement de « région » en « emplacement » dans la chaîne de sortie : az ams account sp create
+
+### <a name="app-config"></a>App Config
+
+* Correction de l’initialisation du client Key Vault
+
+### <a name="app-service"></a>App Service
+
+* Correctif #13646 : Impossible de créer un plan App Service dans un groupe de ressources différent pour App Service Environment
+* Correctif #11698 #15198 #14862 #15409 : az webapp/functionapp config access-restriction add
+* `az functionapp create` : Ajout de la prise en charge de la préversion de Node 14.
+* `az functionapp create` : Suppression de l’indicateur de préversion des gestionnaires personnalisés.
+* [CHANGEMENT CASSANT] az functionapp update : La migration d’une application de fonction d’un plan Premium vers un plan Consommation nécessite désormais l’indicateur « --force ».
+* `az functionapp update` : Ajout d’un message d’erreur si la migration de l’application de fonction implique des plans sur Linux.
+* `az functionapp update` : Ajout d’un message d’erreur plus descriptif si la migration de l’application de fonction échoue.
+
+### <a name="arm"></a>ARM
+
+* Correction d’un problème où « What-If » montre deux étendues de groupe de ressources avec une casse différente
+* `az deployment` : Affichage des détails de l’erreur pour le déploiement
+
+### <a name="backup"></a>Sauvegarde
+
+* Correctif #14976 : KeyError corrigée et texte d’aide amélioré
+
+### <a name="batch"></a>Batch
+
+* Correctif #15464 : Vérification de la mise à jour du fichier pfx sans mot de passe dans create_certificate par lot
+
+### <a name="billing"></a>Facturation
+
+* [CHANGEMENT CASSANT] az billing invoice : Suppression des propriétés BillingPeriodsNames et DownloadUrlExpiry dans la réponse.
+* `az billing invoice` : Prise en charge de nombreuses autres étendues, comme BillingAccount, BillingProfile et un abonnement existant.
+* `az billing account` : Nouvelles commandes pour prendre en charge l’affichage et la mise à jour des comptes de facturation existants.
+* `az billing balance` : Nouvelles commandes pour prendre en charge l’affichage du solde d’un profil de facturation.
+* `az billing customer` : Nouvelles commandes pour prendre en charge l’affichage du client d’un compte de facturation.
+* `az billing policy` : Nouvelles commandes pour prendre en charge l’affichage et la mise à jour de la stratégie d’un client ou d’un profil de facturation.
+* `az billing product` : Nouvelles commandes pour gérer les produits d’un compte de facturation.
+* `az billing profile` : Nouvelles commandes pour gérer un profil de facturation.
+* `az billing property` : Nouvelles commandes pour afficher et mettre à jour les propriétés d’un compte de facturation.
+* `az billing subscription` : Nouvelles commandes pour gérer les abonnements pour un compte de facturation.
+* `az billing transaction` : Nouvelles commandes pour lister les transactions d’une facture.
+* `az billing agreement` : Nouvelles commandes pour gérer le contrat de facturation.
+* `az billing permission` : Nouvelles commandes pour gérer l’autorisation de facturation.
+* `az billing role-assignment` : Nouvelles commandes pour gérer l’attribution de rôle.
+* `az billing role-definition` : Nouvelles commandes pour afficher la définition de rôle.
+* `az billing instruction` : Nouvelles commandes pour gérer les instructions de facturation.
+
+### <a name="compute"></a>Calcul
+
+* Correction du problème de vérification de l’autorisation de mise à jour
+* Amélioration du format du tableau généré par vm list-skus
+* vm host group create : --platform-fault-domain-count rendu obligatoire et mise à jour de l’aide
+* Prise en charge de la mise à jour de la version des machine virtuelles/images quand elles utilisent des images multilocataires
+
+### <a name="dps"></a>DPS
+
+* Possibilité d’utiliser des balises dans la commande create d’IoT DPS
+
+### <a name="hdinsight"></a>HDInsight
+
+* az hdinsight create : Ajout des deux paramètres `--resource-provider-connection` et `--enable-private-link` pour prendre en charge la fonctionnalité de relais de trafic sortant et de liaison privée.
+
+### <a name="key-vault"></a>Key Vault
+
+* Amélioration de la précision des messages d’erreur pour `list-deleted` et `purge` du HSM
+* Prise en charge de la restauration de clés sélective pour les modules HSM managés
+
+### <a name="netappfiles"></a>NetAppFiles
+
+* [CHANGEMENT CASSANT] az netappfiles pool update : Suppression du niveau de service dans les paramètres.
+* `az netappfiles pool update` : Ajout du paramètre facultatif qos-type.
+* `az netappfiles pool create` : Ajout du paramètre facultatif qos-type.
+* `az netappfiles volume replication suspend` : Ajout de force-break-replication comme paramètre facultatif.
+* Ajout de az netappfiles volume replication re-initialize : Nouvelle commande ajoutée pour réinitialiser la réplication.
+* Ajout de az netappfiles volume pool-change : Nouvelle commande permettant de changer le pool d’un volume.
+* Ajout de az netappfiles snapshot policy : Nouveau groupe de commandes avec les commandes list, delete, update, show, create et volumes.
+* Ajout de az netappfiles account backup : Nouveau groupe de commandes avec les commandes show, list et delete
+* Ajout de az netappfiles volume backups : Nouveau groupe de commandes avec les commandes show, list, delete, update et create.
+* Ajout de az netappfiles account backup-policy : Nouveau groupe de commandes avec les commandes show, list, delete et update.
+* Ajout de az netappfiles vault list : Nouvelle commande ajoutée.
+* `az netappfiles account ad add` : Ajout des paramètres facultatifs kdc-ip, ad-name, server-root-ca-certificate et backup-operators
+* `az netappfiles volumes create` : Ajout des paramètres facultatifs snapshot-policy-id, backup-policy-id, backup-enabled, backup-id, policy-enforced, vault-id, kerberos-enabled, throughput-mibps, snapshot-directory-visible, security-style, kerberos5-read-only, kerberos5-read-write, kerberos5i-read-only, kerberos5i-read-write, kerberos5p-read-only, kerberos5p-read-write et has-root-access.
+* `az netappfiles volume update` : Ajout des paramètres facultatifs vault-id, backup-enabled, backup-policy-id, policy-enforced et throughput-mibps
+
+### <a name="network"></a>Réseau
+
+* Correction du bogue où il est impossible de créer une passerelle d’application Standard_v2 sans adresse IP statique privée
+* `az network dns zone import` : Déclenchement de FileOperationError au lieu de FileNotFoundError si le fichier de zone n’existe pas
+* Résolution du problème de plantage avec l’erreur NoneType lors de la suppression de ressources inexistantes d’ApplicationGateway, LoadBalancer, Nic
+
+### <a name="private-dns"></a>DNS privé
+
+* `az network private-dns zone import` : Déclenchement de FileOperationError au lieu de FileNotFoundError si le fichier de zone n’existe pas
+
+### <a name="profile"></a>Profil
+
+* `az login` : Rajout de l’avertissement indiquant qu’un navigateur est ouvert
+
+### <a name="role"></a>Role
+
+* `az role assignment create` : `--description`, `--condition`, `--condition-version` rendus fonctionnels pour les préversions
+
+### <a name="security"></a>Sécurité
+
+* `az security pricing` : Mise à jour de l’aide pour refléter la version de l’API appelée
+
+### <a name="storage"></a>Stockage
+
+* Correctif #15600 : az storage fs exists : dans le cas où fs n’existe pas, ResourceNotFoundError est retourné
+* Correctif #15706 : Les exemples pour storage container create sont incorrects
+* `az storage blob delete-batch` : Correction d’une faute de frappe dans la documentation.
 
 ## <a name="november-09-2020"></a>9 novembre 2020
 
@@ -1528,7 +1668,7 @@ Version 2.2.0
 * az network watcher flow-log configure : dépréciée
 * az network watcher flow-log show : prise en charge de --location et de --name pour obtenir un résultat au format ARM. L’ancienne sortie mise en forme est dépréciée
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * az policy assignment create : correction du bogue qui générait automatiquement un nom d’attribution de stratégie dépassant la limite
 
@@ -1736,7 +1876,7 @@ Version 2.0.81
 
 * Correctif #2092 : avertissement az network dns record-set add/remove: add quand l’ensemble d’enregistrements est introuvable. À l’avenir, un argument supplémentaire sera pris en charge pour confirmer cette création automatique.
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Ajout de la nouvelle commande `az policy metadata` pour récupérer des ressources de métadonnées de stratégie riches
 * `az policy remediation create`: Indication si la conformité doit être réévaluée avant correction avec le paramètre `--resource-discovery-mode`
@@ -1945,7 +2085,7 @@ Version 2.0.79
 * Rajout de builds edge pour pip install
 * Ajout du package Ubuntu eoan
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Ajout de la prise en charge de l’API des stratégies version 2019-09-01.
 * az policy set-definition : Ajout de la prise en charge du regroupement dans les définitions d’ensemble de stratégies avec le paramètre `--definition-groups`
@@ -2297,7 +2437,7 @@ Version 2.0.74
 
 * Résolution d’un problème où le caractère `:` n’était pas autorisé dans l’argument `--condition` de `monitor metrics alert create`
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Ajout de la prise en charge de l’API Policy version 2019-06-01
 * Ajout du paramètre `--enforcement-mode` à la commande `policy assignment create`
@@ -2349,7 +2489,7 @@ Version 2.0.74
 * Ajout de la prise en charge de la définition de l’ID Key Vault sur `network application-gateway ssl-cert`
 * Ajout de `network express-route peering peer-connection [show|list]`
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Mis à jour pour utiliser la version d’API 2019-01-01
 
@@ -2819,7 +2959,7 @@ Version 2.0.65
 ### <a name="compute"></a>Calcul
 * Ajout de `--computer-name` à `vm create` pour définir le nom d’une machine virtuelle
 * `--ssh-key-value` renommé en `--ssh-key-values` pour `[vm|vmss] create` - peut maintenant accepter plusieurs chemins d’accès ou valeurs de clé publique SSH
-  * __Remarque__  : il ne s’agit **pas** d’un changement cassant - `--ssh-key-value` sera analysé correctement, car il correspond uniquement à `--ssh-key-values`
+  * __Remarque__ : il ne s’agit **pas** d’un changement cassant - `--ssh-key-value` sera analysé correctement, car il correspond uniquement à `--ssh-key-values`
 * Modification de l’argument `--type` qui devient facultatif dans `ppg create`
 
 ## <a name="may-6-2019"></a>6 mai 2019
@@ -3994,7 +4134,7 @@ Version 2.0.44
 
 ### <a name="batchai"></a>Batch AI
 
-* Modification de la sortie de l’enregistreur d’événements pour la création du compte de stockage automatique afin de spécifier l’information « ressource *groupe* ».        
+* Modification de la sortie de l’enregistreur d’événements pour la création du compte de stockage automatique afin de spécifier l’information « ressource *groupe*».        
 
 ### <a name="container"></a>Conteneur
 

@@ -9,18 +9,22 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 17d62f7c6c5b819e34d6fce16caa0ded6faa53f0
-ms.sourcegitcommit: 2da241715d25407ed22c1065c0c793acfd865996
+ms.openlocfilehash: 780fc2dc87f949a1f36228af7a49cd987cb10cf6
+ms.sourcegitcommit: 753de7d5c45062d5138be86ced7eacddd5696ca3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89563125"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94976830"
 ---
 # <a name="query-azure-cli-command-output"></a>Interroger la sortie de commande Azure CLI
 
 Azure CLI utilise l’argument `--query` pour exécuter une [requête JMESPath](http://jmespath.org) sur les résultats des commandes. JMESPath est un langage de requête pour JSON, qui vous permet de sélectionner et de modifier des données depuis une sortie CLI. Les requêtes sont exécutées sur la sortie JSON, avant toute mise en forme de l’affichage.
 
 L’argument `--query` est pris en charge par toutes les commandes dans Azure CLI. Cet article explique comment utiliser les fonctionnalités de JMESPath avec une série d’exemples courts et simples.
+
+> [!NOTE]
+>
+> Lors de l’utilisation d’Azure CLI dans PowerShell sur Windows, des séquences d’échappement supplémentaires peuvent être nécessaires pour l’argument query. Pour plus d’informations, consultez [Problèmes liés aux guillemets avec PowerShell](https://github.com/Azure/azure-cli/blob/dev/doc/quoting-issues-with-powershell.md).
 
 ## <a name="dictionary-and-list-cli-results"></a>Résultats CLI de liste et de dictionnaire
 
