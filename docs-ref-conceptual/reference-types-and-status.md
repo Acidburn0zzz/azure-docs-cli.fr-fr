@@ -4,17 +4,17 @@ description: Explication des types et états de références
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 08/14/2020
+ms.date: 11/19/2020
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 30c964ae2724f56f4563c9e726affc154bcb22bf
-ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
+ms.openlocfilehash: ff77011db5a64e7c541dc67f2b2564301bfeebfb
+ms.sourcegitcommit: 6996f3d05d73f528a95b61fdce1422eee3c7a580
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2020
-ms.locfileid: "91225335"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "95870149"
 ---
 # <a name="overview-azure-cli-reference-types-and-status"></a>Présentation : Types et état de référence Azure CLI
 
@@ -69,7 +69,7 @@ Quel que soit le type, les références Azure CLI se répartissent en trois cat
 
 | | GA  | Préversion publique | Expérimental
 |-|-|-|-|
-| **Stabilité** | Permanent | Peut changer en réponse aux commentaires des clients.  Est soumis aux conditions d’utilisation des [préversions de Microsoft Azure](/support/legal/preview-supplemental-terms/). | Peut changer en réponse aux commentaires des clients.  Migre souvent vers la préversion publique.  Peut être supprimé.
+| **Stabilité** | Permanent | Peut changer en réponse aux commentaires des clients.  Est soumis aux conditions d’utilisation des [préversions de Microsoft Azure](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). | Peut changer en réponse aux commentaires des clients.  Migre souvent vers la préversion publique.  Peut être supprimé.
 | **Niveau de support** | Complète | Partial | None
 
 Bien que la plupart des commandes et des paramètres d’une référence unique aient un seul état, cela n’est pas toujours le cas.  Une référence GA qui est conçue pour offrir plus de commandes peut avoir des commandes de références en GA, en préversion et expérimentales. À mesure que de nouveaux paramètres sont ajoutés pour améliorer les fonctionnalités, une même commande peut également avoir des paramètres qui appartiennent à différentes catégories d’état.  Voici des exemples de références qui ont différents états :
