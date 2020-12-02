@@ -4,17 +4,17 @@ description: Comment installer Azure CLI avec yum
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 09/25/2020
+ms.date: 11/24/2020
 ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: fac9f37969ac23245568c521d5d3e50efa5c050d
-ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
+ms.openlocfilehash: 9053140a35c7bc1443a636d4150ee8f0ee94dba9
+ms.sourcegitcommit: 05b58a872cdd165805df62614000637144d80066
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92687037"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96470455"
 ---
 # <a name="install-azure-cli-with-yum"></a>Installer Azure CLI avec yum
 
@@ -35,12 +35,12 @@ Pour les distributions Linux avec `yum` telles que RHEL, Fedora ou CentOS, il ex
 2. Créez des informations de référentiel `azure-cli` locales.
 
    ```bash
-   sudo sh -c 'echo -e "[azure-cli]
+   echo -e "[azure-cli]
    name=Azure CLI
    baseurl=https://packages.microsoft.com/yumrepos/azure-cli
    enabled=1
    gpgcheck=1
-   gpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
+   gpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/azure-cli.repo
    ```
 
 3. Installez avec la commande `yum install`.

@@ -5,17 +5,17 @@ author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
 ms.prod: azure
-ms.date: 10/30/2020
+ms.date: 11/25/2020
 ms.topic: conceptual
 ms.devlang: azurecli
 ms.technology: azure-cli
 ms.custom: devex-track-azurecli
-ms.openlocfilehash: 49bf1d852f000dfbe6251cc15bd63e780b3bc91a
-ms.sourcegitcommit: 8d514f4147d6edfc02d8d95d5a4243d100a7fcc9
+ms.openlocfilehash: 9db3035c9a50a2a3cc356f3fd7a49ab4f28652ee
+ms.sourcegitcommit: 05b58a872cdd165805df62614000637144d80066
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/06/2020
-ms.locfileid: "93423189"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96470432"
 ---
 # <a name="tutorial-use-persisted-parameters-to-simplify-sequential-azure-cli-commands"></a>Tutoriel : Utiliser des paramètres persistants pour simplifier les commandes Azure CLI séquentielles
 
@@ -263,7 +263,7 @@ Utilisez la commande [az config param-persist delete](/cli/azure/param-persist#a
 
 ```azurecli
 # Remove a single persisted parameters entry by specifying the name, not the value
-az config param-persist delete --name resource_group_name
+az config param-persist delete resource_group_name
 
 # Remove all persisted parameters entries and do not prompt for confirmation
 az config param-persist delete --all --yes
