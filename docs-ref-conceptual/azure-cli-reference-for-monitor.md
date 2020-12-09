@@ -10,12 +10,12 @@ ms.author: dbradish
 ms.service: azure-cli
 ms.reviewer: robb
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: d16c745656b3d92942e66cfbcb6764d219d971ec
-ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
+ms.openlocfilehash: 18b8dcb9d22cf4f0177e329f9080bf7693eade0e
+ms.sourcegitcommit: 9beaf9abb794f1006a56acee4e1cfb8ea7fe2405
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2020
-ms.locfileid: "91225437"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96850284"
 ---
 # <a name="azure-cli-for-azure-monitor"></a>Azure CLI pour Azure Monitor
 
@@ -23,7 +23,7 @@ L'interface de ligne de commande Azure ([Azure CLI](./what-is-azure-cli.md)) est
 
 ## <a name="references-for-azure-monitor"></a>Références pour Azure Monitor
 
-L’expérience CLI d’[Azure Monitor](/azure/azure-monitor/) est composée de deux parties : Azure CLI (communément appelée **noyau** CLI) et l’**extension** Azure Monitor CLI.  Les références d’extension Azure CLI doivent être installées avant d’être utilisées. La commande [az extension add](/cli/azure/extension?view=azure-cli-latest#az-extension-add) installe une référence d’extension par nom.
+L’expérience CLI d’[Azure Monitor](/azure/azure-monitor/) est composée de deux parties : Azure CLI (communément appelée **noyau** CLI) et l’**extension** Azure Monitor CLI.  Les références d’extension Azure CLI doivent être installées avant d’être utilisées. La commande [az extension add](/cli/azure/extension#az-extension-add) installe une référence d’extension par nom.
 
 > [!IMPORTANT]
 >
