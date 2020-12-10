@@ -4,21 +4,113 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 11/20/2020
+ms.date: 12/08/2020
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: b28bfc9ef06b7bac5e789cdeb2b53ded0afea273
-ms.sourcegitcommit: 753de7d5c45062d5138be86ced7eacddd5696ca3
+ms.openlocfilehash: bcbf52e6321e283864fb585cd314be22c2241c9d
+ms.sourcegitcommit: 9beaf9abb794f1006a56acee4e1cfb8ea7fe2405
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "94976932"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96850301"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="december-08-2020"></a>8 décembre 2020
+
+Version 2.16.0
+
+### <a name="acr"></a>ACR
+
+* Mise à jour de la description du paramètre KEK
+
+### <a name="aks"></a>AKS
+
+* `az aks nodepool add/update/upgrade` : Acceptation du paramètre max-surge
+* Ajout de la prise en charge du complément AGIC
+* Cluster MSI défini par défaut
+
+### <a name="apim"></a>APIM
+
+* `az apim restore` : Nouvelle commande permettant de restaurer la sauvegarde d’un service Gestion des API
+
+### <a name="app-service"></a>App Service
+
+* Correctif #14857 : Autorisation accordée aux utilisateurs de mettre à jour une configuration d’application web même avec une restriction d’accès
+* `az functionapp create` : Acceptation de `--runtime python` et `--runtime-version 3.9` en tant que paramètre d’Azure Functions v3
+* Correctif #16041 : az webapp config ssl create génère une erreur inconnue
+
+### <a name="arm"></a>ARM
+
+* `az deployment-scripts` : Suppression de l’indicateur de préversion
+
+### <a name="backup"></a>Sauvegarde
+
+* Correctif #14976 : Améliorations par rapport aux erreurs CLI dans le cas de ValueError et AttributeError
+* `az backup protection undelete` : Ajout de la prise en charge de la restauration de la protection AzureWorkload à l’aide de l’interface CLI
+* Correction d’une erreur de demande incorrecte pour une entrée de type de charge de travail correcte
+
+### <a name="cdn"></a>CDN
+
+* Ajout de la prise en charge du multiorigine en préversion.
+* Ajout de la rotation automatique BYOC.
+
+### <a name="key-vault"></a>Key Vault
+
+* `az keyvault key/secret list` : Ajout d’un paramètre `--include-managed` pour lister les ressources managées
+
+### <a name="monitor"></a>Superviser
+
+* `az monitor metrics alert create` : Prise en charge des seuils dynamiques pour le paramètre de condition
+* `az monitor metrics alert update` : Prise en charge des seuils dynamiques pour le paramètre de condition
+* `az monitor metrics alert dimension create` : Création d’une dimension de règle d’alerte de métrique
+* `az monitor metrics alert condition create` : Création d’une condition de règle d’alerte de métrique
+
+### <a name="mysql"></a>MySQL
+
+* Ajout de la mise à niveau de la version de MySQL (CLI)
+
+### <a name="netappfiles"></a>NetAppFiles
+
+* `az netappfiles account ad add` : Ajout de deux paramètres facultatifs : aes_encryption et ldap_signing
+* `az netappfiles account backup-policy update` : Ajout de trois paramètres facultatifs nommés tags, type et id
+* `az netappfiles snapshot policy create` : Ajout d’un paramètre facultatif nommé provisioning_state
+
+### <a name="network"></a>Réseau
+
+* `az network network watcher configure` : Correction de l’erreur NetworkWatcherCountLimitReached provoquée par le respect de la casse de la valeur d’emplacement
+* `az network application-gateway http-listener` : Correction du bogue qui empêche la création et la mise à jour avec le nom de stratégie WAF
+* `az network route-table` : Dépréciation de la table de routage V1
+* `az network cross-region-lb` : Prise en charge d’un équilibreur de charge interrégional
+* `az network express-route port generate-loa` : Nouvelle commande permettant de générer et télécharger la lettre d’autorisation PDF pour un ExpressRoutePort
+
+### <a name="packaging"></a>Packaging
+
+* Ajout d’un package Ubuntu Groovy
+
+### <a name="rdbms"></a>SGBDR
+
+* Ajout de show-connection-string pour un serveur unique et de tests pour les commandes local-context, création de serveur
+
+### <a name="role"></a>Rôle
+
+* Ajout d’un résumé long/avertissement pour les commandes générant des informations d’identification
+
+### <a name="search"></a>Recherche
+
+* Ajout d’une option SKU
+
+### <a name="service-fabric"></a>Service Fabric
+
+* Mise à jour des documents d’application SF avec seulement une prise en charge des ressources ARM déployées
+
+### <a name="synapse"></a>Synapse
+
+* Prise en charge des applets de commande synapse sql dw et mise à jour de l’applet de commande az synapse workspace create
 
 ## <a name="november-20-2020"></a>20 novembre 2020
 
@@ -718,7 +810,7 @@ Version 2.10.0
 * `az deployment mg/tenant create`: Ajout du paramètre --what-if-exclude-change-types/-x.
 * `az tag` : prise en charge de la balise az pour le paramètre d’ID de ressource
 
-### <a name="backup"></a>Sauvegarde
+### <a name="backup"></a>Backup
 
 * Déclenchement de la découverte de conteneur/d’élément AFS uniquement si nécessaire
 
@@ -1668,7 +1760,7 @@ Version 2.2.0
 * az network watcher flow-log configure : dépréciée
 * az network watcher flow-log show : prise en charge de --location et de --name pour obtenir un résultat au format ARM. L’ancienne sortie mise en forme est dépréciée
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * az policy assignment create : correction du bogue qui générait automatiquement un nom d’attribution de stratégie dépassant la limite
 
@@ -1876,7 +1968,7 @@ Version 2.0.81
 
 * Correctif #2092 : avertissement az network dns record-set add/remove: add quand l’ensemble d’enregistrements est introuvable. À l’avenir, un argument supplémentaire sera pris en charge pour confirmer cette création automatique.
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la nouvelle commande `az policy metadata` pour récupérer des ressources de métadonnées de stratégie riches
 * `az policy remediation create`: Indication si la conformité doit être réévaluée avant correction avec le paramètre `--resource-discovery-mode`
@@ -2085,7 +2177,7 @@ Version 2.0.79
 * Rajout de builds edge pour pip install
 * Ajout du package Ubuntu eoan
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la prise en charge de l’API des stratégies version 2019-09-01.
 * az policy set-definition : Ajout de la prise en charge du regroupement dans les définitions d’ensemble de stratégies avec le paramètre `--definition-groups`
@@ -2437,7 +2529,7 @@ Version 2.0.74
 
 * Résolution d’un problème où le caractère `:` n’était pas autorisé dans l’argument `--condition` de `monitor metrics alert create`
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la prise en charge de l’API Policy version 2019-06-01
 * Ajout du paramètre `--enforcement-mode` à la commande `policy assignment create`
@@ -2489,7 +2581,7 @@ Version 2.0.74
 * Ajout de la prise en charge de la définition de l’ID Key Vault sur `network application-gateway ssl-cert`
 * Ajout de `network express-route peering peer-connection [show|list]`
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Mis à jour pour utiliser la version d’API 2019-01-01
 

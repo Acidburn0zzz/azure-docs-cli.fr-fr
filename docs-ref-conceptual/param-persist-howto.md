@@ -10,16 +10,16 @@ ms.topic: conceptual
 ms.devlang: azurecli
 ms.technology: azure-cli
 ms.custom: devex-track-azurecli
-ms.openlocfilehash: 47fb93c7f78af94c58d509a969bab70b814e6128
-ms.sourcegitcommit: 8d514f4147d6edfc02d8d95d5a4243d100a7fcc9
+ms.openlocfilehash: 087f5f05d6a4a6b25e6aebd0d2c482ebba656b01
+ms.sourcegitcommit: 9beaf9abb794f1006a56acee4e1cfb8ea7fe2405
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/06/2020
-ms.locfileid: "93423197"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96850216"
 ---
 # <a name="azure-cli-persisted-parameter"></a>Paramètre persistant Azure CLI
 
-La référence Azure CLI [az config param-persist](/cli/azure/param-persist) permet de conserver les valeurs de paramètres persistants en local pour des commandes Azure CLI.  Cela évite de devoir retaper continuellement des paramètres couramment utilisés. Par exemple, les paramètres location et resource-group sont obligatoires dans de nombreuses commandes CLI, mais ils ne contribuent pas à l’ _intention_ de la commande.  Quand vous stockez les valeurs de paramètres persistants, vous réduisez la redondance et pouvez écourter considérablement la syntaxe des commandes CLI.
+La référence Azure CLI [az config param-persist](/cli/azure/param-persist) permet de conserver les valeurs de paramètres persistants en local pour des commandes Azure CLI.  Cela évite de devoir retaper continuellement des paramètres couramment utilisés. Par exemple, les paramètres location et resource-group sont obligatoires dans de nombreuses commandes CLI, mais ils ne contribuent pas à l’_intention_ de la commande.  Quand vous stockez les valeurs de paramètres persistants, vous réduisez la redondance et pouvez écourter considérablement la syntaxe des commandes CLI.
 
 Les valeurs de configuration utilisées par l’interface CLI sont évaluées dans l’ordre suivant. Les éléments situés en haut de la liste sont prioritaires.
 
@@ -28,7 +28,7 @@ Les valeurs de configuration utilisées par l’interface CLI sont évaluées da
 1. Variables d'environnement
 1. Valeurs dans le fichier de configuration définies avec **az config**
 
-[Installez Azure CLI](install-azure-cli.md) ou ouvrez [Azure Cloud Shell](https://shell.azure.com) pour exécuter les scripts de cet article.  Si vous utilisez une installation locale d’Azure CLI, la version 2.12.0 ou ultérieure est nécessaire pour exécuter les commandes **az config param-persist**.  Exécutez [az version](/cli/azure/reference-index?#az_version) pour rechercher la version et les bibliothèques dépendantes installées. Pour effectuer une mise à niveau vers la dernière version, exécutez [az upgrade](/cli/azure/reference-index?#az_upgrade).  Azure Cloud Shell dispose toujours de la dernière version d’Azure CLI.
+[Installez Azure CLI](install-azure-cli.md) ou ouvrez [Azure Cloud Shell](https://shell.azure.com) pour exécuter les scripts de cet article.  Si vous utilisez une installation locale d’Azure CLI, la version 2.12.0 ou ultérieure est nécessaire pour exécuter les commandes **az config param-persist**.  Exécutez [az version](/cli/azure/reference-index#az_version) pour rechercher la version et les bibliothèques dépendantes installées. Pour effectuer une mise à niveau vers la dernière version, exécutez [az upgrade](/cli/azure/reference-index#az_upgrade).  Azure Cloud Shell dispose toujours de la dernière version d’Azure CLI.
 
 ## <a name="persisted-parameter-data-file"></a>Fichier de données des paramètres persistants
 
@@ -49,7 +49,7 @@ Les paramètres Azure CLI suivants sont pris en charge par le paramètre persist
 
 ## <a name="sample-script-using-persisted-parameters"></a>Exemple de script utilisant des paramètres persistants
 
-Sans paramètres persistants, les commandes CLI séquentielles doivent répéter les mêmes valeurs de paramètres.  Quand les paramètres persistants sont activés, les valeurs stockées de vos paramètres peuvent être omises des commandes séquentielles.  Dans cet exemple, l’ **emplacement** , le **nom du groupe de ressources** et le **nom du compte de stockage** sont répétés dans les commandes suivantes.
+Sans paramètres persistants, les commandes CLI séquentielles doivent répéter les mêmes valeurs de paramètres.  Quand les paramètres persistants sont activés, les valeurs stockées de vos paramètres peuvent être omises des commandes séquentielles.  Dans cet exemple, l’**emplacement**, le **nom du groupe de ressources** et le **nom du compte de stockage** sont répétés dans les commandes suivantes.
 
 ```azurecli
 # Reminder: function app and storage account names must be unique.
