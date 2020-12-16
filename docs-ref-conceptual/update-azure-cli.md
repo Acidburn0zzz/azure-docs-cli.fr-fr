@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 91ed79b9f59af4ad070983eb7d0744bc85d09216
-ms.sourcegitcommit: 9beaf9abb794f1006a56acee4e1cfb8ea7fe2405
+ms.openlocfilehash: 475b58bca5ec9dca52a70416cb89860dcbd39278
+ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96850873"
+ms.lasthandoff: 12/16/2020
+ms.locfileid: "97576783"
 ---
 # <a name="update-the-azure-cli"></a>Mettre à jour Azure CLI
 
@@ -40,13 +40,13 @@ Azure CLI vérifie alors régulièrement s’il existe une nouvelle version. Si 
 Il se peut que le message d’invite et les messages de sortie qui s’affichent pendant la mise à niveau interrompent le résultat de votre commande si elle est assignée à une variable ou si elle fait partie d’un flux automatisé. Pour éviter toute interruption, vous pouvez utiliser la configuration suivante pour permettre à la mise à jour de se dérouler automatiquement sans confirmation et pour faire en sorte que seuls les avertissements et les erreurs s’affichent pendant la mise à niveau.
 
 ```azurecli
-az config auto-upgrade.prompt=no
+az config set auto-upgrade.prompt=no
 ```
 
 Par défaut, toutes les extensions installées sont aussi mises à jour. Vous pouvez désactiver la mise à jour des extensions via la configuration.
 
 ```azurecli
-az config auto-upgrade.all=no
+az config set auto-upgrade.all=no
 ```
 
 > [!NOTE]
