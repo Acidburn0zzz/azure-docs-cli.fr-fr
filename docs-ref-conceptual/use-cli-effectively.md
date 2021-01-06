@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 0f1985425328492c96262a835eb7ffd8be333cc5
-ms.sourcegitcommit: 753de7d5c45062d5138be86ced7eacddd5696ca3
+ms.openlocfilehash: 598d7498d17078bdd9f3f1aa9dc2ca4447ca97b2
+ms.sourcegitcommit: bd2dbc80328936dadd211764d25c32a14fc58083
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "94976898"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97857799"
 ---
 # <a name="use-azure-cli-effectively"></a>Utiliser Azure CLI efficacement
 
@@ -123,9 +123,9 @@ Il peut arriver qu’un service qui vous intéresse n’ait pas de couverture de
 
 Si aucun argument de mise à jour générique ni `az resource` ne répond à vos besoins, vous pouvez utiliser la commande `az rest` pour appeler l’API REST. Elle s’authentifie automatiquement à l’aide des informations d’identification de connexion et définit l’en-tête `Content-Type: application/json`.
 
-Cela est très utile pour appeler l’[API Microsoft Graph](/graph/api/overview?toc=./ref/toc.json&view=graph-rest-1.0) qui n’est pas prise en charge pour l’instant par les commandes d’interface CLI ([n°12946](https://github.com/Azure/azure-cli/issues/12946)).
+Cela est très utile pour appeler l’[API Microsoft Graph](/graph/api/overview?toc=./ref/toc.json) qui n’est pas prise en charge pour l’instant par les commandes d’interface CLI ([n°12946](https://github.com/Azure/azure-cli/issues/12946)).
 
-Par exemple, pour mettre à jour `redirectUris` pour une [application](/graph/api/resources/application?view=graph-rest-1.0), nous appelons l’API REST [Mettre à jour l’application](/graph/api/application-update?view=graph-rest-1.0&tabs=http) avec :
+Par exemple, pour mettre à jour `redirectUris` pour une [application](/graph/api/resources/application), nous appelons l’API REST [Mettre à jour l’application](/graph/api/application-update?tabs=http) avec :
 
 ```sh
 # Line breaks for legibility only
@@ -142,7 +142,12 @@ az rest --method PATCH
 
 Lorsque vous utilisez `--uri-parameters` pour les demandes sous la forme d’OData, veillez à placer `$` dans une séquence d’échappement dans différents environnements : dans `Bash`, placez `$` dans la séquence d’échappement `\$` et dans `PowerShell`, placez `$` dans la séquence `` `$``
 
-## <a name="quoting-issues"></a>Problèmes liés aux guillemets
+## <a name="pass-arguments"></a>Passer des arguments
+
+1. Si la valeur d’un argument commence par un tiret (comme `-VerySecret`), [argparse](https://docs.python.org/3/library/argparse.html) l’analyse en tant qu’option (nom d’argument, comme `-n`) (https://bugs.python.org/issue9334). Pour qu’il l’analyse en tant que valeur, utilisez `--password="-VerySecret"`. ([Azure/azure-cli#7054](https://github.com/Azure/azure-cli/issues/7054)).
+2. Si la valeur d’un argument contient des caractères spéciaux, comme des espaces blancs (` `) ou des guillemets (`"`, `'`), certaines règles liées aux guillemets s’appliquent. Consultez la section ci-dessous :
+
+### <a name="quoting-issues"></a>Problèmes liés aux guillemets
 
 Cela devient un problème car, lorsque l’interface de commande (Bash, Zsh, invite de commandes Windows, PowerShell, etc.) analyse la commande CLI, elle interprète les guillemets et les espaces. Reportez-vous toujours aux documents lorsque vous hésitez quant à l’utilisation d’un interpréteur de commandes :
 

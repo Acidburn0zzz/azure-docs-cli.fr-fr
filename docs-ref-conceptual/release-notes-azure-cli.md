@@ -4,21 +4,138 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 12/08/2020
+ms.date: 01/04/2021
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: bcbf52e6321e283864fb585cd314be22c2241c9d
-ms.sourcegitcommit: 9beaf9abb794f1006a56acee4e1cfb8ea7fe2405
+ms.openlocfilehash: 9e7fd550f5ec6957287f0c7a865517eb5332a604
+ms.sourcegitcommit: bd2dbc80328936dadd211764d25c32a14fc58083
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96850301"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97857867"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="january-04-2021"></a>04 janvier 2021
+
+Version 2.17.1
+
+### <a name="rdbms"></a>SGBDR
+
+* Correctif logiciel : `az mysql create` : Remplacement du nom de paramètre incorrect « serv_name » par « service_name »
+
+## <a name="december-29-2020"></a>29 décembre 2020
+
+Version 2.17.0
+
+### <a name="acr"></a>ACR
+
+* Prise en charge de la redondance de zone
+* `az acr connected-registry` : Nouvelle fonctionnalité pour Azure Container Registry au niveau local
+* `az acr scope-map update` : --add et --remove sont dépréciés et ont été renommés --add-repo et --remove-repo
+* `az acr scope-map create/update` : Ajout de la prise en charge des actions de la passerelle.
+* `az acr token create` : prise en charge des actions de la passerelle
+
+### <a name="aks"></a>AKS
+
+* Correctif : ajout des arguments supprimés par une PR précédente
+* `az aks get-credentials` : Clarification de la documentation relative à get-credentials
+
+### <a name="app-service"></a>App Service
+
+* Possibilité pour un client de créer une application de fonction Python 3.9
+* Correctif 14583 : az webapp up doit générer un nom par défaut si aucun nom n’est fourni
+* Correctif : Gestion des erreurs améliorée lors de la tentative de création d’un ASP en double dans un emplacement différent
+
+### <a name="arm"></a>ARM
+
+* `az ts` :  Ajout de la prise en charge de --tags
+* `az ts` : Prise en charge de la suppression d’une seule version
+* `az provider register` : Ajout de --accept-terms pour l’inscription de RPaaS
+* Correction de l’analyse des fichiers JSON avec des chaînes à plusieurs lignes
+
+### <a name="aro"></a>ARO
+
+* `az aro delete` : Ajout de la validation RBAC lors de la suppression d’un cluster
+* `az aro update` : Ajout de la validation RBAC lors de la mise à jour d’un cluster
+* Vérification visant à déterminer que worker_profile n’est pas None avant d’obtenir les sous-réseaux
+
+### <a name="backup"></a>Sauvegarde
+
+* `az backup job list` : Résolution du bogue -o table et ajout de backup_management_type comme entrée de commande
+
+### <a name="batch"></a>Batch
+
+* Mise à niveau du plan de données vers [azure batch 10.0.0](https://pypi.org/project/azure-batch/10.0.0/)
+* [CHANGEMENT CASSANT] az batch job task-counts : Changement au niveau de la sortie : remplacement de l’objet JSON retournant un nombre de tâches par un objet JSON complexe comprenant le nombre de tâches (`taskCounts`) et le nombre d’emplacements de tâches (`taskSlotCounts`).
+
+### <a name="compute"></a>Calcul
+
+* Nouveau type de licence RHEL_ELS_6
+* Adoption du SDK track2, azure-mgmt-compute==18.0.0
+
+### <a name="container"></a>Conteneur
+
+* Correction des fautes d’orthographe dans l’exemple de texte CLI `az container create`.
+
+### <a name="databoxedge"></a>DataBoxEdge
+
+* Nouveau module de commande : prise en charge des appareils data-box-edge et de la gestion
+
+### <a name="iot"></a>IoT
+
+* Mise à jour de la génération des clés d’appareil
+* Mise à jour des tests de hub avec identité pour corriger les problèmes RBAC de point de terminaison
+
+### <a name="key-vault"></a>Key Vault
+
+* `az keyvault key import` : Prise en charge `--kty` pour l’importation de clés BYOK
+
+### <a name="monitor"></a>Surveillance
+
+* `az monitor metrics alert create` : Amélioration du message d’erreur pour fournir plus d’informations exploitables
+
+### <a name="network"></a>Réseau
+
+* `az network private-endpoint create` : Ajout de déclarations de « --subnet » et de « --private-connection-resource-id »
+* Changement du validateur de application-gateway ssl-cert create
+* Migration du réseau vers le SDK track2
+* Correction du bogue pour « az network traffic-manager profile create » lors de l’utilisation de « --routing-method MultiValue »
+
+### <a name="profile"></a>Profil
+
+* Correction du « secret ou certificat manquant pour s’authentifier par le biais d’un principal de service »
+
+### <a name="role"></a>Role
+
+* `az ad sp create-for-rbac` : Dépréciation de la création d’une attribution de rôle Contributeur par défaut
+
+### <a name="security"></a>Sécurité
+
+* Ajout de commandes de score sécurisées
+* Correction de la commande de mise à jour d’alerte et prise en charge d’une nouvelle valeur
+
+### <a name="sql"></a>SQL
+
+* `az sql dw update` : l’argument backup-storage-redundancy n’est pas accepté
+* `az sql db update` : mise à jour la redondance du stockage de sauvegarde comme demandé à partir de la commande
+
+### <a name="storage"></a>Stockage
+
+* Correction du problème #15965 : Clarification de la méthode à suivre pour supprimer plusieurs balises de conservation légale avec `az storage container legal-hold [clear|set]`
+* `az storage account encryption-scope` : Prise en charge de GA
+* Correction du problème #9959 : Échec de la tentative de téléchargement d’une version d’instantané d’un partage de fichiers (ResourceNotFound)
+
+### <a name="synapse"></a>Synapse
+
+* Ajout de nouvelles applets de commande az synapse sql ad-admin show, create, update, delete
+* Ajout d’une nouvelle applet de commande az synapse workspace firewall-rule update
+* Ajout de nouvelles applets de commande az synapse sql audit-policy show, update
+* Ajout d’applets de commande relatives au runtime d’intégration
 
 ## <a name="december-08-2020"></a>8 décembre 2020
 
@@ -810,7 +927,7 @@ Version 2.10.0
 * `az deployment mg/tenant create`: Ajout du paramètre --what-if-exclude-change-types/-x.
 * `az tag` : prise en charge de la balise az pour le paramètre d’ID de ressource
 
-### <a name="backup"></a>Backup
+### <a name="backup"></a>Sauvegarde
 
 * Déclenchement de la découverte de conteneur/d’élément AFS uniquement si nécessaire
 
@@ -1760,7 +1877,7 @@ Version 2.2.0
 * az network watcher flow-log configure : dépréciée
 * az network watcher flow-log show : prise en charge de --location et de --name pour obtenir un résultat au format ARM. L’ancienne sortie mise en forme est dépréciée
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * az policy assignment create : correction du bogue qui générait automatiquement un nom d’attribution de stratégie dépassant la limite
 
@@ -1968,7 +2085,7 @@ Version 2.0.81
 
 * Correctif #2092 : avertissement az network dns record-set add/remove: add quand l’ensemble d’enregistrements est introuvable. À l’avenir, un argument supplémentaire sera pris en charge pour confirmer cette création automatique.
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Ajout de la nouvelle commande `az policy metadata` pour récupérer des ressources de métadonnées de stratégie riches
 * `az policy remediation create`: Indication si la conformité doit être réévaluée avant correction avec le paramètre `--resource-discovery-mode`
@@ -2177,7 +2294,7 @@ Version 2.0.79
 * Rajout de builds edge pour pip install
 * Ajout du package Ubuntu eoan
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Ajout de la prise en charge de l’API des stratégies version 2019-09-01.
 * az policy set-definition : Ajout de la prise en charge du regroupement dans les définitions d’ensemble de stratégies avec le paramètre `--definition-groups`
@@ -2529,7 +2646,7 @@ Version 2.0.74
 
 * Résolution d’un problème où le caractère `:` n’était pas autorisé dans l’argument `--condition` de `monitor metrics alert create`
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Ajout de la prise en charge de l’API Policy version 2019-06-01
 * Ajout du paramètre `--enforcement-mode` à la commande `policy assignment create`
@@ -2581,7 +2698,7 @@ Version 2.0.74
 * Ajout de la prise en charge de la définition de l’ID Key Vault sur `network application-gateway ssl-cert`
 * Ajout de `network express-route peering peer-connection [show|list]`
 
-### <a name="policy"></a>Policy
+### <a name="policy"></a>Stratégie
 
 * Mis à jour pour utiliser la version d’API 2019-01-01
 
