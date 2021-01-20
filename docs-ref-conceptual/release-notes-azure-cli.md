@@ -4,21 +4,88 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 01/04/2021
+ms.date: 01/19/2021
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 9e7fd550f5ec6957287f0c7a865517eb5332a604
-ms.sourcegitcommit: bd2dbc80328936dadd211764d25c32a14fc58083
+ms.openlocfilehash: 0eed53a8eec57c4329bce934c90e90b72282f548
+ms.sourcegitcommit: 59f08c5a7a967fa68adb9eefbf5beb92acda9e08
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97857867"
+ms.lasthandoff: 01/19/2021
+ms.locfileid: "98569021"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="january-19-2021"></a>19 janvier 2021
+
+Version 2.18.0
+
+### <a name="acr"></a>ACR
+
+* `az acr create / update` : Ajoutez `--allow-trusted-services`. Ce paramètre détermine si les services Azure approuvés sont autorisés à accéder aux registres restreints du réseau. L'option par défaut est d’autoriser.
+
+### <a name="aks"></a>AKS
+
+* `az aks check-acr` : Ajout d’une nouvelle commande check-acr
+
+### <a name="app-service"></a>App Service
+
+* Correctif #13907 : `az webapp config ssl import` Changement de la commande pour importer aussi App Service Certificate
+* Correctif #16125 : `az webapp ssh` : Lors de l’utilisation d’un client Windows, ouverture du navigateur pour accéder au lien scm
+* Correctif #13291 : `az webapp deployment slot swap` : La commande doit prendre en charge preserve vnet.
+* [CHANGEMENT CASSANT] Correction de la régression où il est impossible d’utiliser une version du runtime avec un espace dans le nom
+
+### <a name="arm"></a>ARM
+
+* `az deployment` : ajout de la prise en charge de `--query-string`
+* `az ts` : Amélioration de la gestion des erreurs pour `--template-file` sans `--version` interdite
+
+### <a name="backup"></a>Sauvegarde
+
+* `az backup protection backup-now` : Définition de la période de conservation par défaut sur 30 jours
+
+### <a name="compute"></a>Compute
+
+* Correction du problème lié à l’absence de storage_profile
+* Meilleure gestion des erreurs des jetons externes
+* Correction d’un problème de réimageage de vmss
+* `az vm/vmss extension set` : Nouveau paramètre `--enable-auto-upgrade`
+
+### <a name="container"></a>Conteneur
+
+* `az container exec` : Suppression de la vérification de fin de vie pour éviter de fermer le terminal avant même de démarrer sur Linux
+
+### <a name="dms"></a>DMS
+
+* `az dms project task create` : Ajout du paramètre de type de tâche pour déterminer si un scénario est une migration en ligne ou une migration hors connexion.
+* `az dms project task cutover` : Ajout d’une nouvelle commande qui autorise le basculement et la fin de la migration des tâches avec un type de tâche de migration en ligne.
+* `az dms project create/az dms project task create` : Possibilité de créer des projets/tâches MySQL et PostgreSQL.
+
+### <a name="iot"></a>IoT
+
+* Ajout de balises -- pour créer et mettre à jour un hub IoT
+
+### <a name="monitor"></a>Superviser
+
+* [CHANGEMENT CASSANT] `az monitor log-analytics workspace data-export` : Suppression du paramètre `--export-all-tables` déprécié et demande obligatoire du paramètre `--tables`
+
+### <a name="rdbms"></a>SGBDR
+
+* Suppression de la balise d’aperçu pour la clé de serveur et les commandes ad admin pour Postgres et MySql
+
+### <a name="role"></a>Role
+
+* Correctif #11594 : `az role assignment create` : Affichage uniquement des valeurs prises en charge pour `--assignee-principal-type`
+
+### <a name="storage"></a>Stockage
+
+* Correctif #16072 : Téléchargement du fichier de grande taille
+* Correction #12291 : `az storage blob generate-sas` n’encode pas correctement `--full-uri`
+* Propriétés GA PITR et du service blob dans SRP
 
 ## <a name="january-04-2021"></a>04 janvier 2021
 
@@ -524,7 +591,7 @@ Version 2.13.0
 * `az ts` : Ajout de nouvelles commandes pour les spécifications de modèle
 * `az deployment` : Ajout de la prise en charge pour --template-spec -s
 
-### <a name="compute"></a>Calcul
+### <a name="compute"></a>Compute
 
 * Correction de la limitation du nombre de FD de création de groupe hôte
 * Ajout d’une nouvelle commande pour prendre en charge les extensions de mise à niveau pour VMSS
@@ -1877,7 +1944,7 @@ Version 2.2.0
 * az network watcher flow-log configure : dépréciée
 * az network watcher flow-log show : prise en charge de --location et de --name pour obtenir un résultat au format ARM. L’ancienne sortie mise en forme est dépréciée
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * az policy assignment create : correction du bogue qui générait automatiquement un nom d’attribution de stratégie dépassant la limite
 
@@ -2085,7 +2152,7 @@ Version 2.0.81
 
 * Correctif #2092 : avertissement az network dns record-set add/remove: add quand l’ensemble d’enregistrements est introuvable. À l’avenir, un argument supplémentaire sera pris en charge pour confirmer cette création automatique.
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la nouvelle commande `az policy metadata` pour récupérer des ressources de métadonnées de stratégie riches
 * `az policy remediation create`: Indication si la conformité doit être réévaluée avant correction avec le paramètre `--resource-discovery-mode`
@@ -2294,7 +2361,7 @@ Version 2.0.79
 * Rajout de builds edge pour pip install
 * Ajout du package Ubuntu eoan
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la prise en charge de l’API des stratégies version 2019-09-01.
 * az policy set-definition : Ajout de la prise en charge du regroupement dans les définitions d’ensemble de stratégies avec le paramètre `--definition-groups`
@@ -2646,7 +2713,7 @@ Version 2.0.74
 
 * Résolution d’un problème où le caractère `:` n’était pas autorisé dans l’argument `--condition` de `monitor metrics alert create`
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Ajout de la prise en charge de l’API Policy version 2019-06-01
 * Ajout du paramètre `--enforcement-mode` à la commande `policy assignment create`
@@ -2698,7 +2765,7 @@ Version 2.0.74
 * Ajout de la prise en charge de la définition de l’ID Key Vault sur `network application-gateway ssl-cert`
 * Ajout de `network express-route peering peer-connection [show|list]`
 
-### <a name="policy"></a>Stratégie
+### <a name="policy"></a>Policy
 
 * Mis à jour pour utiliser la version d’API 2019-01-01
 
