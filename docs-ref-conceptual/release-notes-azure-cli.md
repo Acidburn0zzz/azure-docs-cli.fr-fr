@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 0eed53a8eec57c4329bce934c90e90b72282f548
-ms.sourcegitcommit: 59f08c5a7a967fa68adb9eefbf5beb92acda9e08
+ms.openlocfilehash: ab837615dc4055abf7c08499dbab68c3ebefe515
+ms.sourcegitcommit: 2a0ae2ffc14ce325f9adb9c09d6b5eac534df8a6
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/19/2021
-ms.locfileid: "98569021"
+ms.lasthandoff: 01/27/2021
+ms.locfileid: "98887016"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
@@ -2741,8 +2741,8 @@ Version 2.0.74
 ### <a name="batch"></a>Batch
 
 * Ajout de nouveaux paramètres de configuration JSON à `--json-file` pour `batch pool create` :
-  * Ajout de `MountConfigurations` pour les montages de système de fichiers (voir https://docs.microsoft.com/rest/api/batchservice/pool/add#request-body pour les détails)
-  * Ajout de la propriété facultative `publicIPs` sur `NetworkConfiguration` pour les adresses IP publiques sur les pools (voir https://docs.microsoft.com/rest/api/batchservice/pool/add#request-body pour les détails)
+  * Ajout de `MountConfigurations` pour les montages de système de fichiers (voir [Corps de la demande](/rest/api/batchservice/pool/add#request-body) pour les détails)
+  * Ajout de la propriété facultative `publicIPs` sur `NetworkConfiguration` pour les adresses IP publiques sur les pools (voir [Corps de la demande](/rest/api/batchservice/pool/add#request-body) pour les détails)
 * Ajout de la prise en charge des galeries d’images partagées à `--image`
 * [CHANGEMENT CASSANT] Changement de la valeur par défaut `--start-task-wait-for-success` sur `batch pool create` qui devient `true`
 * [CHANGEMENT CASSANT] Changement de la valeur par défaut pour `Scope` sur `AutoUserSpecification` pour qu’elle soit toujours Pool (était `Task` sur les nœuds Windows, `Pool` sur les nœuds Linux)
@@ -4068,7 +4068,7 @@ Version 2.0.50
 * Ajout de la prise en charge pour attribuer les autorisations aux applications AAD
 
 ### <a name="storage"></a>Stockage
-* Ajout de la prise en charge pour vous connecter aux services de stockage uniquement avec les signatures d’accès partagé et les points de terminaison (sans nom de compte ou clé), comme décrit dans `Configure Azure Storage connection strings <https://docs.microsoft.com/azure/storage/common/storage-configure-connection-string>`
+* Ajout de la prise en charge pour vous connecter aux services de stockage uniquement avec les signatures d’accès partagé et les points de terminaison (sans nom de compte ou clé), comme décrit dans [Configurer les chaînes de connexion Stockage Azure](/azure/storage/common/storage-configure-connection-string).
 
 ### <a name="vm"></a>Machine virtuelle
 * Ajout de l’argument `storage-sku` à `image create` pour définir le type de compte de stockage par défaut de l’image
