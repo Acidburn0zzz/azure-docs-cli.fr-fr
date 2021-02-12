@@ -4,21 +4,147 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 01/19/2021
+ms.date: 02/09/2021
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: ab837615dc4055abf7c08499dbab68c3ebefe515
-ms.sourcegitcommit: 2a0ae2ffc14ce325f9adb9c09d6b5eac534df8a6
+ms.openlocfilehash: f84a71be28b7128c904b3a30e9b13a91a56395d1
+ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/27/2021
-ms.locfileid: "98887016"
+ms.lasthandoff: 02/09/2021
+ms.locfileid: "99987200"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="february-09-2021"></a>09 février 2021
+
+Version 2.19.0
+
+### <a name="acr"></a>ACR
+
+* `az acr connected-registry install info` : Ajout d’une nouvelle clé `ACR_SYNC_TOKEN_NAME` avec la même valeur que `ACR_SYNC_TOKEN_USERNAME`. Un avertissement indiquant que la deuxième clé va être dépréciée s’affiche.
+* `az acr connected-registry install renew-credentials` : Ajout d’une nouvelle clé `ACR_SYNC_TOKEN_NAME` avec la même valeur que `ACR_SYNC_TOKEN_USERNAME`. Un avertissement indiquant que la deuxième clé va être dépréciée s’affiche.
+
+### <a name="aks"></a>AKS
+
+* Ajout de liaisons d’arrêt/de démarrage de cluster managé
+* `az aks check-acr` : Correction de la vérification de la version de Kubernetes
+
+### <a name="apim"></a>APIM
+
+* Disponibilité générale du groupe de commandes
+
+### <a name="app-config"></a>App Config
+
+* [CHANGEMENT CASSANT] `az appconfig feature filter add` : Ajout d’objets JSON comme valeurs de paramètre du filtre de fonctionnalités. Vous trouverez plus de détails dans cette [demande de tirage (pull request)](https://github.com/Azure/azure-cli/pull/16536).
+
+### <a name="app-service"></a>App Service
+
+* `az appservice ase/plan` : Prise en charge d’ASEv3
+* Correctifs #16026 et #16118 pour az appservice plan
+* Correctif #16509 : Prise en charge de la préférence du système d’exploitation
+* Amélioration du comportement de appservice ase create-inbound-services pour ignorer les services DNS et prendre en charge DNS pour ASEv2
+* `az webapp up/az webapp create` : Correction des erreurs NoneType
+* `az webapp up/create` : Meilleure gestion des erreurs en cas de nom d’application avec un point
+* Correctif #16681 : `az webapp config ssl import` : Correction du bogue provoquant des échecs sur les clouds nationaux
+
+### <a name="arm"></a>ARM
+
+* `az provider register` : Prise en charge de l’inscription du groupe d’administration
+
+### <a name="backup"></a>Sauvegarde
+
+* Ajout de la fonctionnalité CRR pour IaaSVM et d’autres commandes CRR
+* `az backup protectable-item list` : Ajout de protectable-item-type comme argument facultatif
+
+### <a name="botservice"></a>BotService
+
+* `az bot create/update` : Ajout des fonctionnalités de chiffrement `--cmk-key-url` et `--encryption-off`
+* `az bot update` : Renommage de l’argument Encryption-OFF en CMK-OFF et mise à jour de la version de l’API
+
+### <a name="compute"></a>Calcul
+
+* [CHANGEMENT CASSANT] vmss create : Renommage des valeurs du mode d’orchestration
+* Nouveau groupe de commandes sshkey. Autorisation du référencement d’une ressource de clé SSH lors de la création d’une machine virtuelle
+* `az disk create/update` : Ajout du paramètre `--enable-bursting` pour prendre en charge le bursting de disque
+
+### <a name="extension"></a>Extension
+
+* Prise en charge de la correspondance du préfixe de commande d’extension pour une installation dynamique
+
+### <a name="hdinsight"></a>HDInsight
+
+* `az hdinsight create` : Ajout d’un nouveau paramètre `--enable-compute-isolation` pour prendre en charge la création de cluster avec isolation de calcul.
+
+### <a name="key-vault"></a>Key Vault
+
+* `az keyvault key import` : Prise en charge du paramètre `--curve` pour l’importation de clés BYOK
+* `az keyvault certificate download` : Correction d’un appel de méthode déprécié/supprimé
+* `az keyvault create/update` : Suppression de l’étiquette d’aperçu pour `--enable-rbac-authorization`
+
+### <a name="monitor"></a>Superviser
+
+* `az monitor metrics alert create` : Correction de l’erreur « Ressource introuvable »
+
+### <a name="netappfiles"></a>NetAppFiles
+
+* `az netappfiles account ad add` : Ajout du paramètre `--security-operators`.
+* `az netappfiles volume create` : Ajout du paramètre `--smb-continuously-available`.
+* `az netappfiles volume create` : Ajout du paramètre `--smb-encryption`.
+* `az netappfiles` : N’est plus en mode aperçu.
+
+### <a name="network"></a>Réseau
+
+* [CHANGEMENT CASSANT] `az network vrouter` : Ce groupe de commandes est déprécié, utilisez `az network routeserver`.
+* `az network routeserver` : Ajout d’un nouveau groupe de commandes.
+* `az network application-gateway create` : Ajout du paramètre `--ssl-profile-id`
+* `az network application-gateway client-cert` : Gestion du certificat client approuvé de la passerelle applicative
+* `az network application-gateway ssl-profile` : Gestion des profils SSL de la passerelle applicative
+* Prise en charge des connexions de points de terminaison privés à DigitalTwins
+
+### <a name="profile"></a>Profil
+
+* `az login` : Lancement du navigateur dans WSL 2
+
+### <a name="rdbms"></a>SGBDR
+
+* `az mysql flexible-server create --iops` : Possibilité pour l’utilisateur de choisir IOPS pour sa référence SKU.
+* Mise à jour de la commande de restauration Postgres pour prendre en charge la zone disponible
+
+### <a name="search"></a>Recherche
+
+* Mise à niveau pour utiliser la dernière version (8.0.0) du SDK Python azure-mgmt-search
+
+### <a name="security"></a>Sécurité
+
+* Ajout de nouvelles commandes pour `az security`
+
+### <a name="sql"></a>SQL
+
+* Ajout d’une correspondance regex de HSM managé à SQL
+* Mise à niveau de azure-mgmt-sql vers 0.26.0
+* `az sql mi create/update` : Prise en charge de la configuration de maintenance dans les opérations d’instances managées
+* Prise en charge des commandes de stratégie d’audit SQL Server DevOps
+
+### <a name="storage"></a>Stockage
+
+* Correctif #16079 : Objet blob public génère une erreur
+* Disponibilité générale des informations de référence sur le routage de stockage
+* Correctif #9158 : Impossible de générer une clé SAS opérationnelle à partir d’une stratégie
+* Correctif #16489 : Mise à niveau d’azcopy vers 10.8.0
+* `az storage account blob-service-properties` : Prise en charge de la version du service par défaut
+* Correctif #16519 : azcopy reçoit des droits SAS inutiles (a des droits d’écriture, mais n’a besoin que de droits de lecture)
+
+### <a name="synapse"></a>Synapse
+
+* `az synapse workspace create ` : Ajout du paramètre `--key-identifier` pour prendre en charge la création d’un espace de travail à l’aide d’une clé gérée par le client.
+* `az synapse workspace key` : Ajout d’applets de commande CRUD pour prendre en charge la gestion des clés dans l’espace de travail Synapse spécifié.
+* `az synapse workspace managed-identity` : Ajout d’applets de commande pour prendre en charge les opérations CRUD sur l’identité managée avec le paramètre sql-access.
+* `az synapse workspace` : Prise en charge de la protection contre l’exfiltration des données, ajout du paramètre `--allowed-tenant-ids`.
 
 ## <a name="january-19-2021"></a>19 janvier 2021
 
@@ -591,7 +717,7 @@ Version 2.13.0
 * `az ts` : Ajout de nouvelles commandes pour les spécifications de modèle
 * `az deployment` : Ajout de la prise en charge pour --template-spec -s
 
-### <a name="compute"></a>Compute
+### <a name="compute"></a>Calcul
 
 * Correction de la limitation du nombre de FD de création de groupe hôte
 * Ajout d’une nouvelle commande pour prendre en charge les extensions de mise à niveau pour VMSS

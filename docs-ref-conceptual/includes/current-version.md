@@ -2,13 +2,13 @@
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 01/19/2021
+ms.date: 02/09/2021
 ms.topic: include
-ms.openlocfilehash: 8bc7b022b9d8442692004656af2ff5c5637346fb
-ms.sourcegitcommit: 59f08c5a7a967fa68adb9eefbf5beb92acda9e08
+ms.openlocfilehash: d68bcd0b3314112cbd3bf34307751d81b32c6e9d
+ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/19/2021
-ms.locfileid: "98570733"
+ms.lasthandoff: 02/09/2021
+ms.locfileid: "99987510"
 ---
-La version actuelle d’Azure CLI est __2.18.0__. Pour plus d’informations sur la version la plus récente, consultez les [Notes de publication](../release-notes-azure-cli.md). Pour connaître la version que vous avez installée et savoir si elle nécessite d’être mise à jour, exécutez [az version](/cli/azure/reference-index#az_version).
+La version actuelle d’Azure CLI est __2.19.0__. Pour plus d’informations sur la version la plus récente, consultez les [Notes de publication](../release-notes-azure-cli.md). Pour connaître la version que vous avez installée et savoir si elle nécessite d’être mise à jour, exécutez [az version](/cli/azure/reference-index#az_version).
