@@ -4,21 +4,29 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 02/09/2021
+ms.date: 02/10/2021
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: f84a71be28b7128c904b3a30e9b13a91a56395d1
-ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+ms.openlocfilehash: 6f60c62974be947de8b1a2efbc7d0be9e9724e98
+ms.sourcegitcommit: a75bc3963fb815e8f19b7b3d575d3bd065b5b0cc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/09/2021
-ms.locfileid: "99987200"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100090239"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="february-10-2021"></a>10 février 2021
+
+Version 2.19.1
+
+### <a name="key-vault"></a>Key Vault
+
+* Correctif : Le package de dépendance `azure-keyvault-administration` est épinglé sur 4.0.0b1
 
 ## <a name="february-09-2021"></a>09 février 2021
 
@@ -118,6 +126,11 @@ Version 2.19.0
 ### <a name="search"></a>Recherche
 
 * Mise à niveau pour utiliser la dernière version (8.0.0) du SDK Python azure-mgmt-search
+* `az search create` : Prise en charge de la création de services de recherche avec des règles IP, un accès aux points de terminaison publics et/ou msi
+* `az search update` : Prise en charge de la mise à jour de services de recherche avec des règles IP, un accès aux points de terminaison publics et/ou msi
+* `az search private-endpoint-connection` : Gestion d’une connexion de point de terminaison privé à un service de recherche
+* `az search shared-private-link-resource` : Gestion des ressources de liaison privée partagées dans un service de recherche
+* `az search private-link-resource` : Création de la liste des ressources de liaison privée disponibles dans un service de recherche
 
 ### <a name="security"></a>Sécurité
 
@@ -717,7 +730,7 @@ Version 2.13.0
 * `az ts` : Ajout de nouvelles commandes pour les spécifications de modèle
 * `az deployment` : Ajout de la prise en charge pour --template-spec -s
 
-### <a name="compute"></a>Calcul
+### <a name="compute"></a>Compute
 
 * Correction de la limitation du nombre de FD de création de groupe hôte
 * Ajout d’une nouvelle commande pour prendre en charge les extensions de mise à niveau pour VMSS
