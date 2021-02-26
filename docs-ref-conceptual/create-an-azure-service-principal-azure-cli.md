@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: a17c0c24335dea634fb364dd5f1eab4bbac95eac
-ms.sourcegitcommit: 9beaf9abb794f1006a56acee4e1cfb8ea7fe2405
+ms.openlocfilehash: 6b64a8f781907977d6123561d91fb8266a0ebe08
+ms.sourcegitcommit: 594e9c620a6f74f5eaedf91a7f6a791e03a64c74
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96850199"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100631065"
 ---
 # <a name="create-an-azure-service-principal-with-the-azure-cli"></a>Créer un principal du service Azure à l’aide d’Azure CLI
 
@@ -28,11 +28,18 @@ Cet article vous explique les étapes à suivre pour créer, réinitialiser et o
 
 Créez un principal de service à l’aide de la commande [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac). Lorsque vous créez un principal de service, vous choisissez le type d’authentification de connexion qu’il utilise.
 
+Il existe deux types d’authentification disponibles pour les principaux de service : L’authentification basée sur un mot de passe et l’authentification basée sur un certificat.
+
 > [!NOTE]
 >
 > Si votre compte ne dispose pas d’autorisations pour créer un principal de service, `az ad sp create-for-rbac` vous retournera un message d’erreur contenant « Privilèges insuffisants pour effectuer l’opération ». Contactez votre administrateur Azure Active Directory pour créer un principal de service.
 
-Il existe deux types d’authentification disponibles pour les principaux de service : L’authentification basée sur un mot de passe et l’authentification basée sur un certificat.
+> [!WARNING]
+> Lorsque vous créez un principal de service avec la commande `az ad sp create-for-rbac`, la sortie contient les informations d’identification que vous devez protéger. Veillez à ne pas inclure ces informations d’identification dans votre code ou vérifiez les informations d’identification dans votre contrôle de code source. Vous pouvez aussi utiliser des [identités managées](/azure/active-directory/managed-identities-azure-resources/overview), si elles sont disponibles, pour éviter d’avoir à utiliser les informations d’identification.
+>
+> Par défaut, `az ad sp create-for-rbac` attribue le rôle [Contributeur](/azure/role-based-access-control/built-in-roles#contributor) au principal du service dans l’étendue de l’abonnement. Pour réduire le risque d’un principal de service compromis, attribuez un rôle plus spécifique et limitez l’étendue à une ressource ou à un groupe de ressources. Pour plus d’informations, consultez [Étapes pour ajouter une attribution de rôle](/azure/role-based-access-control/role-assignments-steps).
+>
+> Dans une prochaine version, `az ad sp create-for-rbac` NE créera PAS une attribution de rôle **Contributeur** par défaut. Si nécessaire, utilisez l’argument `--role` pour créer explicitement une attribution de rôle.
 
 ### <a name="password-based-authentication"></a>L’authentification basée sur un mot de passe
 
