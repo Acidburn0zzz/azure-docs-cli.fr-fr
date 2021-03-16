@@ -1,0 +1,136 @@
+### YamlMime:AzureCLIGroup
+uid: az_mysql_server_replica
+name: az mysql server replica
+summary: Gérer les réplicas en lecture.
+description: ''
+directCommands:
+- uid: az_mysql_server_replica_create
+  name: az mysql server replica create
+  summary: Créer un réplica en lecture pour un serveur.
+  description: ''
+  syntax: >-
+    az mysql server replica create --name
+                                   --resource-group
+                                   --source-server
+                                   [--location]
+                                   [--no-wait]
+                                   [--sku-name]
+                                   [--subscription]
+  examples:
+  - summary: Créez un réplica de lecture « testreplsvr » pour « testsvr ».
+    syntax: az mysql server replica create -n testreplsvr -g testgroup -s testsvr
+  - summary: Créez un réplica de lecture « testreplsvr » pour « testsvr2 », où « testreplsvr » se trouve dans un groupe de ressources différent.
+    syntax: >-
+      az mysql server replica create -n testreplsvr -g testgroup \
+          -s "/subscriptions/${SubID}/resourceGroups/${ResourceGroup}/providers/Microsoft.DBforMySQL/servers/testsvr2"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --source-server -s
+    summary: Nom ou ID de ressource du serveur maître pour lequel créer un réplica.
+    description: ''
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. S’il n’est pas fourni, le réplica de création se trouve au même emplacement que le serveur maître.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --sku-name
+    summary: 'Nom du la référence SKU. Suit la convention {niveau tarifaire} _{génération de calcul}_ {vCores} dans le raccourci. Exemples : B_Gen5_1, GP_Gen5_4 MO_Gen5_16.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_mysql_server_replica_list
+  name: az mysql server replica list
+  summary: Répertorie tous les réplicas de lecture pour un serveur donné.
+  description: ''
+  syntax: >-
+    az mysql server replica list [--ids]
+                                 [--query-examples]
+                                 [--resource-group]
+                                 [--server-name]
+                                 [--subscription]
+  examples:
+  - summary: Répertorie tous les réplicas de lecture pour le serveur maître « testsvr ».
+    syntax: az mysql server replica list -g testgroup -s testsvr
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server-name -s
+    summary: Nom du serveur maître.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_mysql_server_replica_stop
+  name: az mysql server replica stop
+  summary: Arrêtez la réplication vers un réplica en lecture et faites-en un serveur en lecture/écriture.
+  description: ''
+  syntax: >-
+    az mysql server replica stop [--ids]
+                                 [--name]
+                                 [--resource-group]
+                                 [--subscription]
+                                 [--yes]
+  examples:
+  - summary: Arrêtez la réplication vers « testreplsvr » et faites-en un serveur en lecture/écriture.
+    syntax: az mysql server replica stop -g testgroup -n testreplsvr
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+commands:
+- az_mysql_server_replica_create
+- az_mysql_server_replica_list
+- az_mysql_server_replica_stop
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les réplicas en lecture.
+  ms.openlocfilehash: f0a44b0104dec24380524eac27d6cdcbb395064b
+  ms.sourcegitcommit: a0cc51d7b2b39a52c402af1d98d3b48ff369bd16
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/22/2020
+  ms.locfileid: "102818528"

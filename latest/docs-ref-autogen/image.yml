@@ -1,0 +1,246 @@
+### YamlMime:AzureCLIGroup
+uid: az_image
+name: az image
+summary: Gérer les images de machine virtuelle personnalisées.
+description: ''
+directCommands:
+- uid: az_image_create
+  name: az image create
+  summary: Créez une image de machine virtuelle personnalisée à partir de disques gérés ou de captures instantanées.
+  description: ''
+  syntax: >-
+    az image create --name
+                    --resource-group
+                    --source
+                    [--data-disk-caching {None, ReadOnly, ReadWrite}]
+                    [--data-disk-sources]
+                    [--hyper-v-generation {V1, V2}]
+                    [--location]
+                    [--os-disk-caching {None, ReadOnly, ReadWrite}]
+                    [--os-type {Linux, Windows}]
+                    [--storage-sku {Premium_LRS, StandardSSD_LRS, Standard_LRS, UltraSSD_LRS}]
+                    [--subscription]
+                    [--tags]
+                    [--zone-resilient {false, true}]
+  examples:
+  - summary: Créer une image à partir d’un disque existant.
+    syntax: >-
+      az image create -g MyResourceGroup -n image1 --os-type Linux \
+          --source /subscriptions/db5eb68e-73e2-4fa8-b18a-0123456789999/resourceGroups/rg1/providers/Microsoft.Compute/snapshots/s1
+  - summary: Créer une image en capturant une machine virtuelle généralisée existante dans le même groupe de ressources.
+    syntax: az image create -g MyResourceGroup -n image1 --source MyVm1
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nouveau nom d’image.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --source
+    summary: Source du disque du système d’exploitation à partir de la même région, y compris un ID ou un nom d’ordinateur virtuel, l’URI de l’objet BLOB du disque du système d’exploitation, l’ID ou le nom du disque de système d’exploitation géré
+    description: ''
+  optionalParameters:
+  - name: --data-disk-caching
+    parameterValueGroup: None, ReadOnly, ReadWrite
+    summary: Type de mise en cache du stockage pour le disque de données de l’image.
+    description: ''
+  - name: --data-disk-sources
+    summary: Liste de sources de disques de données séparées par des espaces, y compris l’URI d’objet blob non managé, l’ID ou le nom du disque managé, ou l’ID ou le nom de l’instantané.
+    description: ''
+  - name: --hyper-v-generation
+    defaultValue: V1
+    parameterValueGroup: V1, V2
+    summary: Génération de l’hyperviseur de l’ordinateur virtuel créé à partir de l’image.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --os-disk-caching
+    parameterValueGroup: None, ReadOnly, ReadWrite
+    summary: Type de mise en cache du stockage pour le disque du système d’exploitation de l’image.
+    description: ''
+  - name: --os-type
+    parameterValueGroup: Linux, Windows
+    summary: ''
+    description: ''
+  - name: --storage-sku
+    parameterValueGroup: Premium_LRS, StandardSSD_LRS, Standard_LRS, UltraSSD_LRS
+    summary: Référence du compte de stockage avec lequel créer l’image de machine virtuelle. Non utilisé si la machine virtuelle source est spécifiée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --zone-resilient
+    parameterValueGroup: false, true
+    summary: Spécifie si une image est résiliente à une zone ou non. La valeur par défaut est false. Les images résilientes à une zone ne peuvent être créées que dans des régions qui fournissent un stockage redondant dans une zone.
+    description: ''
+- uid: az_image_delete
+  name: az image delete
+  summary: Supprime une image.
+  description: ''
+  syntax: >-
+    az image delete [--ids]
+                    [--name]
+                    [--resource-group]
+                    [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l'image.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_list
+  name: az image list
+  summary: Répertorier les images de machine virtuelle personnalisées.
+  description: ''
+  syntax: >-
+    az image list [--query-examples]
+                  [--resource-group]
+                  [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_show
+  name: az image show
+  summary: Obtient une image.
+  description: ''
+  syntax: >-
+    az image show [--expand]
+                  [--ids]
+                  [--name]
+                  [--query-examples]
+                  [--resource-group]
+                  [--subscription]
+  optionalParameters:
+  - name: --expand
+    summary: Expression Expand à appliquer à l’opération.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l'image.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_update
+  name: az image update
+  summary: Mettez à jour les images de machine virtuelle personnalisées.
+  description: ''
+  syntax: >-
+    az image update [--add]
+                    [--force-string]
+                    [--ids]
+                    [--name]
+                    [--remove]
+                    [--resource-group]
+                    [--set]
+                    [--subscription]
+                    [--tags]
+  examples:
+  - summary: Ajoutez ou mettez à jour des balises.
+    syntax: az image update -n ImageName -g ResourceGroup --tags tag1=val1 tag2=val2
+  - summary: Supprimer toutes les balises.
+    syntax: az image update -n ImageName -g resourceGroup --tags
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l'image.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+commands:
+- az_image_builder
+- az_image_builder_cancel
+- az_image_builder_create
+- az_image_builder_customizer
+- az_image_builder_customizer_add
+- az_image_builder_customizer_clear
+- az_image_builder_customizer_remove
+- az_image_builder_delete
+- az_image_builder_list
+- az_image_builder_output
+- az_image_builder_output_add
+- az_image_builder_output_clear
+- az_image_builder_output_remove
+- az_image_builder_run
+- az_image_builder_show
+- az_image_builder_show_runs
+- az_image_builder_update
+- az_image_builder_wait
+- az_image_create
+- az_image_delete
+- az_image_list
+- az_image_show
+- az_image_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les images de machine virtuelle personnalisées.
+  ms.openlocfilehash: ccf6e7417a7c15287393d52ffa58d7d77f8996e5
+  ms.sourcegitcommit: a0cc51d7b2b39a52c402af1d98d3b48ff369bd16
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/22/2020
+  ms.locfileid: "102818564"

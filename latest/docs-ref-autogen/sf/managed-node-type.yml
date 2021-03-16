@@ -1,0 +1,288 @@
+### YamlMime:AzureCLIGroup
+uid: az_sf_managed_node_type
+name: az sf managed-node-type
+summary: Gérer un type de nœud d’un cluster Azure Service Fabric géré.
+description: ''
+directCommands:
+- uid: az_sf_managed_node_type_create
+  name: az sf managed-node-type create
+  summary: Supprimer un cluster géré.
+  description: ''
+  syntax: >-
+    az sf managed-node-type create --cluster-name
+                                   --instance-count
+                                   --name
+                                   --resource-group
+                                   [--app-end-port]
+                                   [--app-start-port]
+                                   [--capacity]
+                                   [--disk-size]
+                                   [--ephemeral-end-port]
+                                   [--ephemeral-start-port]
+                                   [--placement-property]
+                                   [--primary {false, true}]
+                                   [--subscription]
+                                   [--vm-image-offer]
+                                   [--vm-image-publisher]
+                                   [--vm-image-sku]
+                                   [--vm-image-version]
+                                   [--vm-size]
+  examples:
+  - summary: Créez un type de nœud principal avec 5 nœuds.
+    syntax: az sf managed-node-type create -g testRG -c testCluster -n pnt --instance-count 5 --primary
+  - summary: Créer un type de nœud non principal avec les corrections, les capacités et les ports de placement.
+    syntax: az sf managed-node-type create -g testRG -c testCluster -n snt --instance-count 5 --placement-property NodeColor=Green SomeProperty=5 --capacity ClientConnections=65536 --app-start-port 20575 --app-end-port 20605 --ephemeral-start-port 20606 --ephemeral-end-port 20861
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --instance-count
+    summary: Essage = "nombre de nœuds dans le type de nœud.
+    description: ''
+  - isRequired: true
+    name: --name --node-type-name -n
+    summary: Nom du type de nœud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --app-end-port --application-end-port
+    summary: Port de fin de l’application d’une plage de ports.
+    description: ''
+  - name: --app-start-port --application-start-port
+    summary: Port de démarrage de l’application d’une plage de ports.
+    description: ''
+  - name: --capacity
+    summary: Les balises de capacité sont appliquées aux nœuds du type de nœud en tant que paires clé/valeur, Cluster Resource Manager utilise ces balises pour comprendre la quantité de ressource d’un nœud. La mise à jour de cette valeur remplacera les valeurs actuelles. exemple :--Capacity ClientConnections = 65536 param2 = value2.
+    description: ''
+  - name: --disk-size
+    defaultValue: "100"
+    summary: Taille de disque pour chaque machine virtuelle dans le type de nœud, en Go.
+    description: ''
+  - name: --ephemeral-end-port
+    summary: Port de fin éphémère d’une plage de ports.
+    description: ''
+  - name: --ephemeral-start-port
+    summary: Port de démarrage éphémère d’une plage de ports.
+    description: ''
+  - name: --placement-property
+    summary: Les balises de positionnement appliquées aux nœuds dans le type de nœud en tant que paires clé/valeur, qui peuvent être utilisées pour indiquer où certains services (charge de travail) doivent s’exécuter. La mise à jour va remplacer les valeurs actuelles. exemple :--placement-Property NodeColor = Green SomeProperty = 5.
+    description: ''
+  - name: --primary
+    parameterValueGroup: false, true
+    summary: Spécifiez si le type de nœud est principal. Sur ce type de nœud, exécute les services système. Un seul type de nœud doit être marqué comme principal. Impossible de supprimer ou de modifier le type de nœud principal pour les clusters existants.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vm-image-offer
+    defaultValue: WindowsServer
+    summary: Type d’offre de l’image de la place de marché de machines virtuelles Azure.
+    description: ''
+  - name: --vm-image-publisher
+    defaultValue: MicrosoftWindowsServer
+    summary: Éditeur de l’image de la place de marché de machines virtuelles Azure.
+    description: ''
+  - name: --vm-image-sku
+    defaultValue: 2019-Datacenter
+    summary: Référence SKU de l’image de la place de marché de machines virtuelles Azure.
+    description: ''
+  - name: --vm-image-version
+    defaultValue: latest
+    summary: Version de l’image de la place de marché de machines virtuelles Azure.
+    description: ''
+  - name: --vm-size
+    defaultValue: Standard_D2
+    summary: Taille des machines virtuelles dans le pool. Toutes les machines virtuelles d’un pool ont la même taille.
+    description: ''
+- uid: az_sf_managed_node_type_delete
+  name: az sf managed-node-type delete
+  summary: Supprimer le type de nœud d’un cluster.
+  description: ''
+  syntax: >-
+    az sf managed-node-type delete --cluster-name
+                                   --name
+                                   --resource-group
+                                   [--subscription]
+  examples:
+  - summary: Supprimer le cluster.
+    syntax: az sf managed-node-type delete -g testRG -c testCluster -n snt
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --name --node-type-name -n
+    summary: Nom du type de nœud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_managed_node_type_list
+  name: az sf managed-node-type list
+  summary: Répertorie les types de nœuds d’un cluster géré.
+  description: ''
+  syntax: >-
+    az sf managed-node-type list --cluster-name
+                                 --resource-group
+                                 [--query-examples]
+                                 [--subscription]
+  examples:
+  - summary: Répertorie les types de nœuds par cluster.
+    syntax: az sf managed-node-type list -g testRG -c testCluster
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_managed_node_type_show
+  name: az sf managed-node-type show
+  summary: Affichez les propriétés d’un type de nœud.
+  description: ''
+  syntax: >-
+    az sf managed-node-type show --cluster-name
+                                 --name
+                                 --resource-group
+                                 [--query-examples]
+                                 [--subscription]
+  examples:
+  - summary: Obtient le type de nœud.
+    syntax: az sf managed-node-type show -g testRG -c testCluster -n pnt
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --name --node-type-name -n
+    summary: Nom du type de nœud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_managed_node_type_update
+  name: az sf managed-node-type update
+  summary: Mettez à jour un cluster géré.
+  description: ''
+  syntax: >-
+    az sf managed-node-type update --cluster-name
+                                   --name
+                                   --resource-group
+                                   [--app-end-port]
+                                   [--app-start-port]
+                                   [--capacity]
+                                   [--ephemeral-end-port]
+                                   [--ephemeral-start-port]
+                                   [--instance-count]
+                                   [--placement-property]
+                                   [--subscription]
+  examples:
+  - summary: Mettez à jour le nombre d’instances du type de nœud.
+    syntax: az sf managed-node-type update -g testRG -c testCluster -n snt --instance-count 7
+  - summary: Met à jour les propriétés de placement du type de nœud. Cela remplacera les anciennes propriétés de positionnement, le cas échéant.
+    syntax: az sf managed-node-type update -g testRG -c testCluster -n snt --placement-property NodeColor=Red SomeProperty=6
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --name --node-type-name -n
+    summary: Nom du type de nœud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --app-end-port --application-end-port
+    summary: Port de fin de l’application d’une plage de ports.
+    description: ''
+  - name: --app-start-port --application-start-port
+    summary: Port de démarrage de l’application d’une plage de ports.
+    description: ''
+  - name: --capacity
+    summary: Les balises de capacité sont appliquées aux nœuds du type de nœud en tant que paires clé/valeur, Cluster Resource Manager utilise ces balises pour comprendre la quantité de ressource d’un nœud. La mise à jour de cette valeur remplacera les valeurs actuelles. exemple :--Capacity ClientConnections = 65536 param2 = value2.
+    description: ''
+  - name: --ephemeral-end-port
+    summary: Port de fin éphémère d’une plage de ports.
+    description: ''
+  - name: --ephemeral-start-port
+    summary: Port de démarrage éphémère d’une plage de ports.
+    description: ''
+  - name: --instance-count
+    summary: Essage = "nombre de nœuds dans le type de nœud.
+    description: ''
+  - name: --placement-property
+    summary: Les balises de positionnement appliquées aux nœuds dans le type de nœud en tant que paires clé/valeur, qui peuvent être utilisées pour indiquer où certains services (charge de travail) doivent s’exécuter. La mise à jour va remplacer les valeurs actuelles. exemple :--placement-Property NodeColor = Green SomeProperty = 5.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_sf_managed_node_type_create
+- az_sf_managed_node_type_delete
+- az_sf_managed_node_type_list
+- az_sf_managed_node_type_node
+- az_sf_managed_node_type_node_delete
+- az_sf_managed_node_type_node_reimage
+- az_sf_managed_node_type_node_restart
+- az_sf_managed_node_type_show
+- az_sf_managed_node_type_update
+- az_sf_managed_node_type_vm_extension
+- az_sf_managed_node_type_vm_extension_add
+- az_sf_managed_node_type_vm_extension_delete
+- az_sf_managed_node_type_vm_secret
+- az_sf_managed_node_type_vm_secret_add
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer un type de nœud d’un cluster Azure Service Fabric géré.
+  ms.openlocfilehash: 3c5d687c9603c146cc52ce38067635e527b2c1f8
+  ms.sourcegitcommit: a0cc51d7b2b39a52c402af1d98d3b48ff369bd16
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/22/2020
+  ms.locfileid: "102818714"
