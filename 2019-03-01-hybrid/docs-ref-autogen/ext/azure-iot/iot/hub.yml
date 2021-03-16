@@ -1,0 +1,414 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_iot_hub
+name: az iot hub
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ IOT Hub** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les entités dans un hub IoT Azure.
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_iot_hub_generate_sas_token
+  name: az iot hub generate-sas-token
+  summary: Générez un jeton SAP pour un IoT Hub, un appareil ou un module cible.
+  description: Pour les jetons SAS d’appareil, le paramètre de stratégie est utilisé uniquement pour accéder au registre de l’appareil. Par conséquent, la stratégie doit avoir un accès en lecture au registre. Pour IoT Hub jetons, la stratégie fait partie de la SAP.
+  syntax: >-
+    az iot hub generate-sas-token [--device-id]
+                                  [--du]
+                                  [--hub-name]
+                                  [--key-type {primary, secondary}]
+                                  [--login]
+                                  [--module-id]
+                                  [--pn]
+                                  [--resource-group]
+  examples:
+  - summary: Générez un jeton SAS IoT Hub à l’aide de la stratégie iothubowner et de la clé primaire.
+    syntax: az iot hub generate-sas-token -n {iothub_name}
+  - summary: Générez un jeton SAS IoT Hub à l’aide de la stratégie registryRead et de la clé secondaire.
+    syntax: az iot hub generate-sas-token -n {iothub_name} --policy registryRead --key-type secondary
+  - summary: Générez un jeton SAS d’appareil à l’aide de la stratégie iothubowner pour accéder au registre de l’appareil {iothub_name}.
+    syntax: az iot hub generate-sas-token -d {device_id} -n {iothub_name}
+  - summary: Générer un jeton SAS d’appareil à l’aide d’une chaîne de connexion IoT Hub (avec accès au registre)
+    syntax: az iot hub generate-sas-token -d {device_id} --login 'HostName=myhub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=12345'
+  optionalParameters:
+  - name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  - name: --du --duration
+    defaultValue: "3600"
+    summary: Durée de jeton valide, en secondes.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --key-type --kt
+    defaultValue: primary
+    parameterValueGroup: primary, secondary
+    summary: Type de clé de la stratégie d’accès partagé pour auth.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --module-id -m
+    summary: Module cible.
+    description: ''
+  - name: --pn --policy-name
+    defaultValue: iothubowner
+    summary: Stratégie d’accès partagé avec des autorisations d’opération pour la cible IoT Hub entité.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_invoke_device_method
+  name: az iot hub invoke-device-method
+  summary: Appeler une méthode d’appareil.
+  description: ''
+  syntax: >-
+    az iot hub invoke-device-method --device-id
+                                    --method-name
+                                    [--hub-name]
+                                    [--login]
+                                    [--method-payload]
+                                    [--resource-group]
+                                    [--timeout]
+  examples:
+  - summary: Appeler une méthode directe sur l’appareil à partir du Cloud.
+    syntax: az iot hub invoke-device-method --hub-name {iothub_name} --device-id {device_id} --method-name Reboot --method-payload '{"version":"1.0"}'
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  - isRequired: true
+    name: --method-name --mn
+    summary: Méthode cible pour l’appel.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --method-payload --mp
+    defaultValue: '{}'
+    summary: Charge utile JSON à passer à la méthode. Doit être un chemin d’accès de fichier ou un JSON brut.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --timeout --to
+    defaultValue: "30"
+    summary: Nombre maximal de secondes d’attente du résultat de la méthode de l’appareil.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_invoke_module_method
+  name: az iot hub invoke-module-method
+  summary: Appelle une méthode de module Edge.
+  description: ''
+  syntax: >-
+    az iot hub invoke-module-method --device-id
+                                    --method-name
+                                    --module-id
+                                    [--hub-name]
+                                    [--login]
+                                    [--method-payload]
+                                    [--resource-group]
+                                    [--timeout]
+  examples:
+  - summary: Appeler une méthode directe sur un appareil de périphérie à l’aide d’un module du Cloud.
+    syntax: "az iot hub invoke-module-method -n {iothub_name} -d {device_id} -m '$edgeAgent' --method-name 'RestartModule' --method-payload '{\"schemaVersion\": \"1.0\"}'"
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  - isRequired: true
+    name: --method-name --mn
+    summary: Méthode cible pour l’appel.
+    description: ''
+  - isRequired: true
+    name: --module-id -m
+    summary: Module cible.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --method-payload --mp
+    defaultValue: '{}'
+    summary: Charge utile JSON à passer à la méthode. Doit être un chemin d’accès de fichier ou un JSON brut.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --timeout --to
+    defaultValue: "30"
+    summary: Nombre maximal de secondes d’attente du résultat de la méthode de l’appareil.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_monitor_events
+  name: az iot hub monitor-events
+  summary: Surveiller les messages de télémétrie de l’appareil & envoyés à une IoT Hub.
+  description: >-
+    EXPÉRIMENTal requiert python 3.5 + cette commande s’appuie sur et peut installer le package Cython dépendant (uamqp) lors de la première exécution.
+
+    <a href="https://github.com/Azure/azure-uamqp-python">https://github.com/Azure/azure-uamqp-python</a>.
+  syntax: >-
+    az iot hub monitor-events [--cg]
+                              [--content-type]
+                              [--device-id]
+                              [--device-query]
+                              [--enqueued-time]
+                              [--hub-name]
+                              [--interface]
+                              [--login]
+                              [--module-id]
+                              [--properties {all, anno, app, sys}]
+                              [--repair {false, true}]
+                              [--resource-group]
+                              [--timeout]
+                              [--yes {false, true}]
+  examples:
+  - summary: Utilisation de base
+    syntax: az iot hub monitor-events -n {iothub_name}
+  - summary: Utilisation de base avec une chaîne de connexion IoT Hub
+    syntax: az iot hub monitor-events -n {iothub_name} --login 'HostName=myhub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=12345'
+  - summary: Utilisation de base lors du filtrage sur l’appareil cible
+    syntax: az iot hub monitor-events -n {iothub_name} -d {device_id}
+  - summary: Utilisation de base lors du filtrage des appareils ciblés avec un caractère générique dans l’ID
+    syntax: az iot hub monitor-events -n {iothub_name} -d Device*
+  - summary: Filtrer les appareils à l’aide du langage de requête IoT Hub
+    syntax: az iot hub monitor-events -n {iothub_name} -q "select * from devices where tags.location.region = 'US'"
+  - summary: Filtrez l’appareil et spécifiez un groupe de consommateurs Event Hub auquel effectuer la liaison.
+    syntax: az iot hub monitor-events -n {iothub_name} -d {device_id} --cg {consumer_group_name}
+  - summary: Recevoir des annotations de message (en-têtes de message)
+    syntax: az iot hub monitor-events -n {iothub_name} -d {device_id} --properties anno
+  - summary: Recevoir des annotations de message et des propriétés système. N’expirez jamais.
+    syntax: az iot hub monitor-events -n {iothub_name} -d {device_id} --properties anno sys --timeout 0
+  - summary: Recevoir tous les attributs de message de tous les messages de l’appareil
+    syntax: az iot hub monitor-events -n {iothub_name} --props all
+  - summary: Recevoir tous les messages et analyser la charge utile du message au format JSON
+    syntax: az iot hub monitor-events -n {iothub_name} --content-type application/json
+  optionalParameters:
+  - name: --cg --consumer-group -c
+    defaultValue: $Default
+    summary: Spécifiez le groupe de consommateurs à utiliser lors de la connexion à Event Hub point de terminaison.
+    description: ''
+  - name: --content-type --ct
+    summary: Spécifiez le type de contenu de la charge utile de message pour mettre automatiquement en forme la sortie vers ce type.
+    description: ''
+  - name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  - name: --device-query -q
+    summary: Spécifiez une requête personnalisée pour filtrer les appareils.
+    description: ''
+  - name: --enqueued-time --et -e
+    summary: Indique l’heure à utiliser comme point de départ pour lire des messages à partir des partitions. Les unités sont exprimées en millisecondes depuis l’époque UNIX. Si aucune heure n’est indiquée, « Now » est utilisé.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --interface -i
+    summary: 'Identificateur d’interface cible sur lequel filtrer. Par exemple : dtmi : com : exemple : TemperatureController ; 1.'
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --module-id -m
+    summary: Module cible.
+    description: ''
+  - name: --properties --props -p
+    parameterValueGroup: all, anno, app, sys
+    summary: Indiquer les propriétés de message clés à générer. sys = propriétés système, app = propriétés de l’application, Anno = annotations.
+    description: ''
+  - name: --repair -r
+    parameterValueGroup: false, true
+    summary: 'Réinstallez la dépendance uamqp compatible avec la version de l’extension. Valeur par défaut : false.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --timeout --to -t
+    defaultValue: "300"
+    summary: Nombre maximal de secondes pour maintenir la connexion sans recevoir de message. Utilisez 0 pour l’infini.
+    description: ''
+  - name: --yes -y
+    parameterValueGroup: false, true
+    summary: 'Ignorer les invites utilisateur. Indique l’acceptation de l’installation de la dépendance (si nécessaire). Utilisé principalement pour les scénarios d’automatisation. Valeur par défaut : false.'
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_monitor_feedback
+  name: az iot hub monitor-feedback
+  summary: Surveiller les commentaires envoyés par les appareils pour accuser réception des messages Cloud-à-appareil (C2D).
+  description: >-
+    EXPÉRIMENTal requiert python 3.4 + cette commande s’appuie sur et peut installer le package Cython dépendant (uamqp) lors de la première exécution.
+
+    <a href="https://github.com/Azure/azure-uamqp-python">https://github.com/Azure/azure-uamqp-python</a>.
+  syntax: >-
+    az iot hub monitor-feedback [--device-id]
+                                [--hub-name]
+                                [--login]
+                                [--repair {false, true}]
+                                [--resource-group]
+                                [--wait-on-msg]
+                                [--yes {false, true}]
+  examples:
+  - summary: Utilisation de base
+    syntax: az iot hub monitor-feedback -n {iothub_name}
+  - summary: Utilisation de base avec une chaîne de connexion IoT Hub
+    syntax: az iot hub monitor-feedback -n {iothub_name} --login 'HostName=myhub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=12345'
+  - summary: Utilisation de base lors du filtrage sur l’appareil cible
+    syntax: az iot hub monitor-feedback -n {iothub_name} -d {device_id}
+  - summary: Quitter le moniteur de commentaires lors de la réception d’un message avec un ID spécifique (UUID)
+    syntax: az iot hub monitor-feedback -n {iothub_name} -d {device_id} -w {message_id}
+  optionalParameters:
+  - name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --repair -r
+    parameterValueGroup: false, true
+    summary: 'Réinstallez la dépendance uamqp compatible avec la version de l’extension. Valeur par défaut : false.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --wait-on-msg -w
+    summary: Le moniteur de commentaires se bloque jusqu’à ce qu’un message avec un ID spécifique (UUID) soit reçu.
+    description: ''
+  - name: --yes -y
+    parameterValueGroup: false, true
+    summary: 'Ignorer les invites utilisateur. Indique l’acceptation de l’installation de la dépendance (si nécessaire). Utilisé principalement pour les scénarios d’automatisation. Valeur par défaut : false.'
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_query
+  name: az iot hub query
+  summary: Interrogez une IoT Hub à l’aide d’un puissant langage de type SQL.
+  description: Interrogez une IoT Hub à l’aide d’un puissant langage de type SQL pour récupérer des informations concernant les représentations d’appareil et de module, les travaux et le routage des messages. <a href="https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-query-language">https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-query-language</a>Pour plus d’informations, consultez.
+  syntax: >-
+    az iot hub query --query-command
+                     [--hub-name]
+                     [--login]
+                     [--resource-group]
+                     [--top]
+  examples:
+  - summary: Interroger toutes les données de représentation d’appareil dans une IoT Hub Azure.
+    syntax: az iot hub query -n {iothub_name} -q "select * from devices"
+  - summary: Interroger toutes les données de représentation du module sur l’appareil cible.
+    syntax: az iot hub query -n {iothub_name} -q "select * from devices.modules where devices.deviceId = '{device_id}'"
+  requiredParameters:
+  - isRequired: true
+    name: --query-command -q
+    summary: Requête utilisateur à exécuter.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --top
+    summary: Nombre maximal d’éléments à retourner. Par défaut, la requête n’a pas d’extrémité.
+    description: ''
+commands:
+- ext_azure-iot_az_iot_hub_configuration
+- ext_azure-iot_az_iot_hub_configuration_create
+- ext_azure-iot_az_iot_hub_configuration_delete
+- ext_azure-iot_az_iot_hub_configuration_list
+- ext_azure-iot_az_iot_hub_configuration_show
+- ext_azure-iot_az_iot_hub_configuration_show_metric
+- ext_azure-iot_az_iot_hub_configuration_update
+- ext_azure-iot_az_iot_hub_connection_string
+- ext_azure-iot_az_iot_hub_connection_string_show
+- ext_azure-iot_az_iot_hub_device_identity
+- ext_azure-iot_az_iot_hub_device_identity_add_children
+- ext_azure-iot_az_iot_hub_device_identity_children
+- ext_azure-iot_az_iot_hub_device_identity_children_add
+- ext_azure-iot_az_iot_hub_device_identity_children_list
+- ext_azure-iot_az_iot_hub_device_identity_children_remove
+- ext_azure-iot_az_iot_hub_device_identity_connection_string
+- ext_azure-iot_az_iot_hub_device_identity_connection_string_show
+- ext_azure-iot_az_iot_hub_device_identity_create
+- ext_azure-iot_az_iot_hub_device_identity_delete
+- ext_azure-iot_az_iot_hub_device_identity_export
+- ext_azure-iot_az_iot_hub_device_identity_get_parent
+- ext_azure-iot_az_iot_hub_device_identity_import
+- ext_azure-iot_az_iot_hub_device_identity_list
+- ext_azure-iot_az_iot_hub_device_identity_list_children
+- ext_azure-iot_az_iot_hub_device_identity_parent
+- ext_azure-iot_az_iot_hub_device_identity_parent_set
+- ext_azure-iot_az_iot_hub_device_identity_parent_show
+- ext_azure-iot_az_iot_hub_device_identity_remove_children
+- ext_azure-iot_az_iot_hub_device_identity_renew_key
+- ext_azure-iot_az_iot_hub_device_identity_set_parent
+- ext_azure-iot_az_iot_hub_device_identity_show
+- ext_azure-iot_az_iot_hub_device_identity_show_connection_string
+- ext_azure-iot_az_iot_hub_device_identity_update
+- ext_azure-iot_az_iot_hub_device_twin
+- ext_azure-iot_az_iot_hub_device_twin_replace
+- ext_azure-iot_az_iot_hub_device_twin_show
+- ext_azure-iot_az_iot_hub_device_twin_update
+- ext_azure-iot_az_iot_hub_digital_twin
+- ext_azure-iot_az_iot_hub_digital_twin_invoke_command
+- ext_azure-iot_az_iot_hub_digital_twin_show
+- ext_azure-iot_az_iot_hub_digital_twin_update
+- ext_azure-iot_az_iot_hub_distributed_tracing
+- ext_azure-iot_az_iot_hub_distributed_tracing_show
+- ext_azure-iot_az_iot_hub_distributed_tracing_update
+- ext_azure-iot_az_iot_hub_generate_sas_token
+- ext_azure-iot_az_iot_hub_invoke_device_method
+- ext_azure-iot_az_iot_hub_invoke_module_method
+- ext_azure-iot_az_iot_hub_job
+- ext_azure-iot_az_iot_hub_job_cancel
+- ext_azure-iot_az_iot_hub_job_create
+- ext_azure-iot_az_iot_hub_job_list
+- ext_azure-iot_az_iot_hub_job_show
+- ext_azure-iot_az_iot_hub_module_identity
+- ext_azure-iot_az_iot_hub_module_identity_connection_string
+- ext_azure-iot_az_iot_hub_module_identity_connection_string_show
+- ext_azure-iot_az_iot_hub_module_identity_create
+- ext_azure-iot_az_iot_hub_module_identity_delete
+- ext_azure-iot_az_iot_hub_module_identity_list
+- ext_azure-iot_az_iot_hub_module_identity_show
+- ext_azure-iot_az_iot_hub_module_identity_show_connection_string
+- ext_azure-iot_az_iot_hub_module_identity_update
+- ext_azure-iot_az_iot_hub_module_twin
+- ext_azure-iot_az_iot_hub_module_twin_replace
+- ext_azure-iot_az_iot_hub_module_twin_show
+- ext_azure-iot_az_iot_hub_module_twin_update
+- ext_azure-iot_az_iot_hub_monitor_events
+- ext_azure-iot_az_iot_hub_monitor_feedback
+- ext_azure-iot_az_iot_hub_query
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les entités dans un hub IoT Azure.
+  ms.openlocfilehash: e3a343166cdc5c74fc3172da2205a3a5626efceb
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102841159"
