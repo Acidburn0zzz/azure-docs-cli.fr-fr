@@ -1,0 +1,151 @@
+### YamlMime:AzureCLIGroup
+uid: az_batch_pool_autoscale
+name: az batch pool autoscale
+summary: Gérer la mise à l’échelle automatique des pools batch.
+description: ''
+directCommands:
+- uid: az_batch_pool_autoscale_disable
+  name: az batch pool autoscale disable
+  summary: Désactive la mise à l’échelle automatique pour un pool.
+  description: ''
+  syntax: >-
+    az batch pool autoscale disable --pool-id
+                                    [--account-endpoint]
+                                    [--account-key]
+                                    [--account-name]
+                                    [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --pool-id
+    summary: ID du pool sur lequel la mise à l’échelle automatique doit être désactivée.
+    description: ''
+  optionalParameters:
+  - name: --account-endpoint
+    summary: 'Point de terminaison du service batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ENDPOINT.'
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCESS_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCOUNT.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batch/_help.py
+- uid: az_batch_pool_autoscale_enable
+  name: az batch pool autoscale enable
+  summary: Active la mise à l’échelle automatique pour un pool.
+  description: Vous ne pouvez pas activer la mise à l’échelle automatique sur un pool si une opération de redimensionnement est en cours sur le pool. Si la mise à l’échelle automatique du pool est actuellement désactivée, vous devez spécifier une formule de mise à l’échelle automatique valide dans le cadre de la requête. Si la mise à l’échelle automatique du pool est déjà activée, vous pouvez spécifier une nouvelle formule de mise à l’échelle automatique et/ou un nouvel intervalle d’évaluation. Vous ne pouvez pas appeler cette API pour le même pool plus d’une fois toutes les 30 secondes.
+  syntax: >-
+    az batch pool autoscale enable --pool-id
+                                   [--account-endpoint]
+                                   [--account-key]
+                                   [--account-name]
+                                   [--auto-scale-evaluation-interval]
+                                   [--auto-scale-formula]
+                                   [--if-match]
+                                   [--if-modified-since]
+                                   [--if-none-match]
+                                   [--if-unmodified-since]
+                                   [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --pool-id
+    summary: ID du pool sur lequel activer la mise à l’échelle automatique.
+    description: ''
+  optionalParameters:
+  - name: --account-endpoint
+    summary: 'Point de terminaison du service batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ENDPOINT.'
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCESS_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCOUNT.'
+    description: ''
+  - name: --auto-scale-evaluation-interval
+    summary: Intervalle de temps à partir duquel ajuster automatiquement la taille du pool en fonction de la formule de mise à l’échelle automatique. La valeur par défaut est 15 minutes. Les valeurs minimale et maximale sont respectivement de 5 minutes et de 168 heures. Si vous spécifiez une valeur inférieure à 5 minutes ou supérieure à 168 heures, le service de traitement par lots rejette la requête avec une erreur de valeur de propriété non valide ; Si vous appelez l’API REST directement, le code d’état HTTP est 400 (requête incorrecte). Si vous spécifiez un nouvel intervalle, le calendrier d’évaluation de la mise à l’échelle automatique existant est arrêté et un nouveau calendrier d’évaluation de la mise à l’échelle automatique est démarré, avec l’heure de début de l’émission de la demande.
+    description: ''
+  - name: --auto-scale-formula
+    summary: Formule pour le nombre souhaité de nœuds de calcul dans le pool. La validité de la formule est vérifiée avant d’être appliquée au pool. Si la formule n’est pas valide, le service de traitement par lots rejette la demande avec des informations détaillées sur l’erreur. Pour plus d’informations sur la spécification de cette formule, consultez mettre automatiquement à l’échelle les nœuds de calcul dans un pool de Azure Batch ( <a href="https://azure.microsoft.com/en-us/documentation/articles/batch-automatic-scaling">https://azure.microsoft.com/en-us/documentation/articles/batch-automatic-scaling</a> ).
+    description: ''
+  - name: --if-match
+    summary: Valeur ETag associée à la version de la ressource connue du client. L’opération sera exécutée uniquement si l’ETag actuel de la ressource sur le service correspond exactement à la valeur spécifiée par le client.
+    description: ''
+  - name: --if-modified-since
+    summary: Horodateur qui indique l’heure de la dernière modification de la ressource connue du client. L’opération sera exécutée uniquement si la ressource sur le service a été modifiée depuis l’heure spécifiée.
+    description: ''
+  - name: --if-none-match
+    summary: Valeur ETag associée à la version de la ressource connue du client. L’opération sera exécutée uniquement si l’ETag actuel de la ressource sur le service ne correspond pas à la valeur spécifiée par le client.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Horodateur qui indique l’heure de la dernière modification de la ressource connue du client. L’opération sera exécutée uniquement si la ressource sur le service n’a pas été modifiée depuis l’heure spécifiée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batch/_help.py
+- uid: az_batch_pool_autoscale_evaluate
+  name: az batch pool autoscale evaluate
+  summary: Obtient le résultat de l’évaluation d’une formule de mise à l’échelle automatique sur le pool.
+  description: Cette API est principalement utilisée pour valider une formule de mise à l’échelle automatique, car elle retourne simplement le résultat sans appliquer la formule au pool. La mise à l’échelle automatique du pool doit être activée pour pouvoir évaluer une formule.
+  syntax: >-
+    az batch pool autoscale evaluate --auto-scale-formula
+                                     --pool-id
+                                     [--account-endpoint]
+                                     [--account-key]
+                                     [--account-name]
+                                     [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --auto-scale-formula
+    summary: Formule pour le nombre souhaité de nœuds de calcul dans le pool. La formule est validée et ses résultats sont calculés, mais elle n’est pas appliquée au pool. Pour appliquer la formule au pool, activez la mise à l’échelle automatique sur un pool. Pour plus d’informations sur la spécification de cette formule, consultez mettre automatiquement à l’échelle les nœuds de calcul dans un pool de Azure Batch ( <a href="https://azure.microsoft.com/en-us/documentation/articles/batch-automatic-scaling">https://azure.microsoft.com/en-us/documentation/articles/batch-automatic-scaling</a> ).
+    description: ''
+  - isRequired: true
+    name: --pool-id
+    summary: ID du pool sur lequel évaluer la formule de mise à l’échelle automatique.
+    description: ''
+  optionalParameters:
+  - name: --account-endpoint
+    summary: 'Point de terminaison du service batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ENDPOINT.'
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCESS_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCOUNT.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batch/_help.py
+commands:
+- az_batch_pool_autoscale_disable
+- az_batch_pool_autoscale_enable
+- az_batch_pool_autoscale_evaluate
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/07/2020
+  description: Gérer la mise à l’échelle automatique des pools batch.
+  ms.openlocfilehash: 8e5aa81d9d25e006bef79147a6b223c815a52d6f
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102840778"
