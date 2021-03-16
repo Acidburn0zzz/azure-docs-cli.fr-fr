@@ -1,0 +1,155 @@
+### YamlMime:AzureCLIGroup
+uid: az_servicebus_migration
+name: az servicebus migration
+summary: Gérez Azure Service Bus migration de standard vers Premium.
+description: ''
+directCommands:
+- uid: az_servicebus_migration_abort
+  name: az servicebus migration abort
+  summary: Désactivez la migration Service Bus de l’espace de noms standard vers Premium.
+  description: La commande Abort arrête la réplication des entités des espaces de noms standard vers Premium. Les entités répliquées dans l’espace de noms Premium avant l’abandon de la commande seront disponibles sous espace de noms Premium. La migration abandonnée ne peut pas être reprise, elle doit être redémarrée.
+  syntax: >-
+    az servicebus migration abort [--ids]
+                                  [--name]
+                                  [--resource-group]
+                                  [--subscription]
+  examples:
+  - summary: Désactiver la migration Service Bus de l’espace de noms standard vers Premium
+    syntax: az servicebus migration abort --resource-group myresourcegroup --name standardnamespace
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’espace de noms standard.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+- uid: az_servicebus_migration_complete
+  name: az servicebus migration complete
+  summary: Termine la migration Service Bus de l’espace de noms standard vers Premium.
+  description: Une fois la migration terminée, les chaînes de connexion existantes à l’espace de noms standard se connectent automatiquement à l’espace de noms Premium. Nom de la migration postérieure est le nom qui peut être utilisé pour se connecter à l’espace de noms standard une fois la migration terminée.
+  syntax: >-
+    az servicebus migration complete [--ids]
+                                     [--name]
+                                     [--resource-group]
+                                     [--subscription]
+  examples:
+  - summary: Termine la migration Service Bus de l’espace de noms standard vers Premium
+    syntax: az servicebus migration complete --resource-group myresourcegroup --name standardnamespace
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’espace de noms standard.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+- uid: az_servicebus_migration_show
+  name: az servicebus migration show
+  summary: Affiche les propriétés des propriétés de la migration Service Bus.
+  description: ''
+  syntax: >-
+    az servicebus migration show [--ids]
+                                 [--name]
+                                 [--query-examples]
+                                 [--resource-group]
+                                 [--subscription]
+  examples:
+  - summary: affiche les propriétés des propriétés de Service Bus migration
+    syntax: az servicebus migration show --resource-group myresourcegroup --name standardnamespace
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’espace de noms standard.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+- uid: az_servicebus_migration_start
+  name: az servicebus migration start
+  summary: Créez et démarrez Service Bus la migration de l’espace de noms standard vers Premium.
+  description: Service Bus migration requiert un espace de noms Premium vide pour répliquer des entités à partir de l’espace de noms standard.
+  syntax: >-
+    az servicebus migration start --post-migration-name
+                                  --target-namespace
+                                  [--ids]
+                                  [--name]
+                                  [--resource-group]
+                                  [--subscription]
+  examples:
+  - summary: Créer et démarrer Service Bus la migration de l’espace de noms standard vers Premium
+    syntax: az servicebus migration start --resource-group myresourcegroup --name standardnamespace --target-namespace ARMIDpremiumnamespace --post-migration-name mypostmigrationname
+  requiredParameters:
+  - isRequired: true
+    name: --post-migration-name
+    summary: Nom de la migration postérieure est le nom qui peut être utilisé pour se connecter à l’espace de noms standard une fois la migration terminée.
+    description: ''
+  - isRequired: true
+    name: --target-namespace
+    summary: Nom (dans le même groupe de ressources) ou ID ARM d’un nom d’espace de noms Premium Service Bus vide qui sera la cible de la migration.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’espace de noms standard utilisé comme source de la migration.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+commands:
+- az_servicebus_migration_abort
+- az_servicebus_migration_complete
+- az_servicebus_migration_show
+- az_servicebus_migration_start
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/17/2019
+  description: Gérez Azure Service Bus migration de standard vers Premium.
+  ms.openlocfilehash: 3226ea8af8bc9b5405f9804c587053dd31424348
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820580"
