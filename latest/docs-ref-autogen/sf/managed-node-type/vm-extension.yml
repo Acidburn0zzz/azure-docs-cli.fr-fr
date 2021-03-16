@@ -1,0 +1,137 @@
+### YamlMime:AzureCLIGroup
+uid: az_sf_managed_node_type_vm_extension
+name: az sf managed-node-type vm-extension
+summary: Extension de machine virtuelle gérée sur un type de nœud sur des clusters gérés.
+description: ''
+directCommands:
+- uid: az_sf_managed_node_type_vm_extension_add
+  name: az sf managed-node-type vm-extension add
+  summary: Ajoutez une extension au type de nœud.
+  description: ''
+  syntax: >-
+    az sf managed-node-type vm-extension add --cluster-name
+                                             --extension-name
+                                             --extension-type
+                                             --name
+                                             --publisher
+                                             --resource-group
+                                             --type-handler-version
+                                             [--auto-upgrade {false, true}]
+                                             [--force-update-tag]
+                                             [--protected-setting]
+                                             [--provision-after]
+                                             [--setting]
+                                             [--subscription]
+  examples:
+  - summary: Ajoutez une extension BG.
+    syntax: az sf managed-node-type vm-extension add -g testRG -c testCluster -n snt --extension-name csetest --publisher Microsoft.Compute --extension-type BGInfo --type-handler-version 2.1 --auto-upgrade-minor-version
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --extension-name
+    summary: Nom de l’extension.
+    description: ''
+  - isRequired: true
+    name: --extension-type
+    summary: Spécifie le type de l’extension ; par exemple, « CustomScriptExtension ».
+    description: ''
+  - isRequired: true
+    name: --name --node-type-name -n
+    summary: Nom du type de nœud.
+    description: ''
+  - isRequired: true
+    name: --publisher
+    summary: Nom de l’éditeur du gestionnaire d’extensions.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --type-handler-version
+    summary: Spécifie la version du gestionnaire de script.
+    description: ''
+  optionalParameters:
+  - name: --auto-upgrade --auto-upgrade-minor-version
+    defaultValue: "1"
+    parameterValueGroup: false, true
+    summary: Indique si l’extension doit utiliser une version mineure plus récente si celle-ci est disponible au moment du déploiement. Toutefois, une fois déployée, l’extension ne met pas à niveau les versions mineures, sauf si elle est redéployée, même si cette propriété a la valeur true.
+    description: ''
+  - name: --force-update-tag
+    summary: Si une valeur est fournie et est différente de la valeur précédente, le gestionnaire d’extensions sera forcé à être mis à jour même si la configuration de l’extension n’a pas changé.
+    description: ''
+  - name: --protected-setting
+    summary: L’extension peut contenir soit protectedSettings, soit protectedSettingsFromKeyVault, soit aucun paramètre protégé.
+    description: ''
+  - name: --provision-after --provision-after-extension
+    summary: Collection de noms d’extension après laquelle cette extension doit être approvisionnée.
+    description: ''
+  - name: --setting
+    summary: Paramètres publics au format JSON pour l’extension.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_managed_node_type_vm_extension_delete
+  name: az sf managed-node-type vm-extension delete
+  summary: Supprimer une extension du type de nœud.
+  description: ''
+  syntax: >-
+    az sf managed-node-type vm-extension delete --cluster-name
+                                                --extension-name
+                                                --name
+                                                --resource-group
+                                                [--subscription]
+  examples:
+  - summary: Supprime l’extension par nom.
+    syntax: az sf managed-node-type vm-extension delete -g testRG -c testCluster -n snt --extension-name csetest
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --extension-name
+    summary: Nom de l’extension.
+    description: ''
+  - isRequired: true
+    name: --name --node-type-name -n
+    summary: Nom du type de nœud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_sf_managed_node_type_vm_extension_add
+- az_sf_managed_node_type_vm_extension_delete
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Extension de machine virtuelle gérée sur un type de nœud sur des clusters gérés.
+  ms.openlocfilehash: d252303c0751a4e2e584a9968f1376e0639f99b6
+  ms.sourcegitcommit: a0cc51d7b2b39a52c402af1d98d3b48ff369bd16
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/22/2020
+  ms.locfileid: "102818711"

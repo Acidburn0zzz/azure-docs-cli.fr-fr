@@ -1,0 +1,1404 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_blob
+name: az storage blob
+summary: Gérer le stockage d’objets pour les données non structurées (objets BLOB).
+description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
+directCommands:
+- uid: az_storage_blob_delete
+  name: az storage blob delete
+  summary: Marque un objet BLOB ou un instantané à supprimer.
+  description: L’objet blob est marqué pour une suppression ultérieure pendant la garbage collection.  Pour pouvoir supprimer un objet BLOB, tous ses instantanés doivent également être supprimés. Les deux peuvent être supprimés en même temps.
+  syntax: >-
+    az storage blob delete --container-name
+                           --name
+                           [--account-key]
+                           [--account-name]
+                           [--auth-mode {key, login}]
+                           [--connection-string]
+                           [--delete-snapshots {include, only}]
+                           [--if-match]
+                           [--if-modified-since]
+                           [--if-none-match]
+                           [--if-unmodified-since]
+                           [--lease-id]
+                           [--sas-token]
+                           [--snapshot]
+                           [--subscription]
+                           [--timeout]
+  examples:
+  - summary: Supprimer un objet blob.
+    syntax: az storage blob delete -c mycontainer -n MyBlob
+  - summary: Supprimer un objet blob à l’aide des informations d’identification de connexion.
+    syntax: az storage blob delete -c mycontainer -n MyBlob --account-name mystorageaccount --auth-mode login
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --delete-snapshots
+    parameterValueGroup: include, only
+    summary: Obligatoire si l'objet blob a des instantanés associés.
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si l'objet blob a un bail actif.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --snapshot
+    summary: Le paramètre snapshot est une valeur DateTime opaque qui, lorsqu’elle est présente, spécifie l’instantané d’objet blob à supprimer.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_delete_batch
+  name: az storage blob delete-batch
+  summary: Supprimer les objets BLOB d’un conteneur d’objets BLOB de manière récursive.
+  description: ''
+  syntax: >-
+    az storage blob delete-batch --source
+                                 [--account-key]
+                                 [--account-name]
+                                 [--auth-mode {key, login}]
+                                 [--connection-string]
+                                 [--delete-snapshots {include, only}]
+                                 [--dryrun]
+                                 [--if-match]
+                                 [--if-modified-since]
+                                 [--if-none-match]
+                                 [--if-unmodified-since]
+                                 [--lease-id]
+                                 [--pattern]
+                                 [--sas-token]
+                                 [--subscription]
+                                 [--timeout]
+  examples:
+  - summary: Supprimez tous les objets BLOB se terminant par « . py » dans un conteneur qui n’ont pas été modifiés pendant 10 jours.
+    syntax: >-
+      date=`date -d "10 days ago" '+%Y-%m-%dT%H:%MZ'`
+
+      az storage blob delete-batch -s mycontainer --account-name mystorageaccount --pattern *.py --if-unmodified-since $date --auth-mode login
+  - summary: Supprimez tous les objets BLOB d’un répertoire nommé « dir » dans un conteneur nommé « mycontainer ».
+    syntax: az storage blob delete-batch -s mycontainer --pattern dir/*
+  - summary: Supprimez les objets BLOB au format « cli-2018-xx-xx.txt » ou « cli-2019-xx-xx.txt » dans un conteneur.
+    syntax: az storage blob delete-batch -s mycontainer --pattern cli-201[89]-??-??.txt
+  - summary: Supprimez tous les objets BLOB au format « cli-201x-xx-xx.txt », sauf cli-2018-xx-xx.txt» et « cli-2019-xx-xx.txt » dans un conteneur.
+    syntax: az storage blob delete-batch -s mycontainer --pattern cli-201[!89]-??-??.txt
+  requiredParameters:
+  - isRequired: true
+    name: --source -s
+    summary: Conteneur d’objets BLOB à partir duquel les fichiers seront supprimés.
+    description: La source peut être l’URL du conteneur ou le nom du conteneur. Lorsque la source est l’URL du conteneur, le nom du compte de stockage est analysé à partir de l’URL.
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --delete-snapshots
+    parameterValueGroup: include, only
+    summary: Obligatoire si l'objet blob a des instantanés associés.
+    description: ''
+  - name: --dryrun
+    summary: Affichez le résumé des opérations à effectuer au lieu de supprimer réellement le ou les fichiers.
+    description: Si cette option est spécifiée, elle ignore tous les arguments de condition préalable qui incluent--If-Modified-Since et--If-Unmodified-Since. Par conséquent, le ou les fichiers seront supprimés avec la commande sans--du peut être différent de la liste de résultats avec l’indicateur--du activé.
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ).
+    description: Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique (*) pour exécuter l'opération uniquement si la ressource n'existe pas, et faire échouer l'opération si elle existe.
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: ID de bail actif pour l’objet BLOB.
+    description: ''
+  - name: --pattern
+    summary: Modèle utilisé pour les fichiers globbing ou les objets BLOB dans la source. Les modèles pris en charge sont « \* », «  ? », « [seq] » et « [ ! seq] ». Pour plus d’informations, consultez <a href="https://docs.python.org/3.7/library/fnmatch.html">https://docs.python.org/3.7/library/fnmatch.html</a> .
+    description: Quand vous utilisez « * » dans le modèle, il correspond à n’importe quel caractère, y compris le séparateur de répertoire « / ». Vous pouvez également essayer la commande « AZ Storage Remove » avec--include et--Exclude with Azure CLI >= 2.0.70 pour correspondre à plusieurs modèles.
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_download
+  name: az storage blob download
+  summary: Télécharge un objet BLOB vers un chemin d’accès de fichier, avec des notifications de segmentation automatique et de progression.
+  description: Retourne une instance d’objet BLOB avec des propriétés et des métadonnées.
+  syntax: >-
+    az storage blob download --container-name
+                             --file
+                             --name
+                             [--account-key]
+                             [--account-name]
+                             [--auth-mode {key, login}]
+                             [--connection-string]
+                             [--end-range]
+                             [--if-match]
+                             [--if-modified-since]
+                             [--if-none-match]
+                             [--if-unmodified-since]
+                             [--lease-id]
+                             [--max-connections]
+                             [--no-progress]
+                             [--open-mode]
+                             [--sas-token]
+                             [--snapshot]
+                             [--socket-timeout]
+                             [--start-range]
+                             [--subscription]
+                             [--timeout]
+                             [--validate-content]
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --file -f
+    summary: Chemin d’accès du fichier dans lequel écrire.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --end-range
+    summary: 'Plage de fin d’octet à utiliser pour le téléchargement d’une section de l’objet BLOB. Si end_range est donné, start_range doit être fourni. Les paramètres start_range et end_range sont inclus. Par exemple : start_range = 0, end_range = 511 téléchargera les 512 premiers octets d’objets BLOB.'
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si l'objet blob a un bail actif.
+    description: ''
+  - name: --max-connections
+    defaultValue: "2"
+    summary: Si la valeur est supérieure ou égale à 2, une opération d’extraction initiale est effectuée pour le premier self. MAX_SINGLE_GET_SIZE octets de l’objet BLOB. S’il s’agit de l’objet BLOB entier, la méthode retourne à ce stade. Si ce n’est pas le cas, les données restantes sont téléchargées en parallèle à l’aide du nombre de threads égal à max_connections. Chaque segment aura une taille propre. MAX_CHUNK_GET_SIZE. Si la valeur est 1, une seule requête d’extraction de grande taille sera effectuée. Cela n’est généralement pas recommandé, mais disponible si vous devez utiliser très peu de threads, si les demandes réseau sont très coûteuses ou si un flux non recherché empêche le téléchargement en parallèle. Cela peut également être utile si de nombreux objets BLOB sont supposés être vides, car une demande supplémentaire est requise pour les objets BLOB vides si max_connections est supérieur à 1.
+    description: ''
+  - name: --no-progress
+    summary: Incluez cet indicateur pour désactiver la création de rapports de progression pour la commande.
+    description: ''
+  - name: --open-mode
+    defaultValue: wb
+    summary: Mode à utiliser lors de l’ouverture du fichier. Notez que la spécification de l’ajout uniquement open_mode empêche le téléchargement en parallèle. Par conséquent, max_connections doit avoir la valeur 1 si ce open_mode est utilisé.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --snapshot
+    summary: Le paramètre snapshot est une valeur DateTime opaque qui, lorsqu’elle est présente, spécifie l’instantané d’objet blob à récupérer.
+    description: ''
+  - name: --socket-timeout
+    summary: Délai d’attente du socket (en secondes), utilisé par le service pour réguler le Data Flow.
+    description: ''
+  - name: --start-range
+    summary: 'Début de la plage d’octets à utiliser pour le téléchargement d’une section de l’objet BLOB. Si aucun end_range n’est spécifié, tous les octets après le start_range seront téléchargés. Les paramètres start_range et end_range sont inclus. Par exemple : start_range = 0, end_range = 511 téléchargera les 512 premiers octets d’objets BLOB.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  - name: --validate-content
+    summary: Si la valeur est true, valide un hachage MD5 pour chaque partie Récupérée de l’objet BLOB. Cela est principalement utile pour détecter les bitflips sur le réseau si vous utilisez http au lieu de https comme HTTPS (la valeur par défaut) est déjà validée. Notez que le service renvoie uniquement les MD5s transactionnelles pour les blocs de 4 Mo ou moins, de sorte que la première demande d’extraction sera de la même taille. MAX_CHUNK_GET_SIZE au lieu de self. MAX_SINGLE_GET_SIZE. Si soi-même. MAX_CHUNK_GET_SIZE a été défini sur une valeur supérieure à 4 Mo, une erreur est générée. À mesure que le calcul MD5 prend du temps de traitement et que davantage de demandes devront être effectuées en raison de la taille de segment réduite, une latence peut être accrue.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_download_batch
+  name: az storage blob download-batch
+  summary: Télécharger des objets BLOB à partir d’un conteneur d’objets BLOB de manière récursive.
+  description: ''
+  syntax: >-
+    az storage blob download-batch --destination
+                                   --source
+                                   [--account-key]
+                                   [--account-name]
+                                   [--auth-mode {key, login}]
+                                   [--connection-string]
+                                   [--dryrun]
+                                   [--max-connections]
+                                   [--no-progress]
+                                   [--pattern]
+                                   [--sas-token]
+                                   [--socket-timeout]
+                                   [--subscription]
+  examples:
+  - summary: Télécharger tous les objets BLOB qui se terminent par. py
+    syntax: az storage blob download-batch -d . --pattern *.py -s mycontainer --account-name mystorageaccount --account-key 00000000
+  - summary: Téléchargez tous les objets BLOB dans un répertoire nommé « dir » à partir du conteneur nommé « mycontainer ».
+    syntax: az storage blob download-batch -d . -s mycontainer --pattern dir/*
+  - summary: Télécharger tous les objets BLOB au format « cli-2018-xx-xx.txt » ou « cli-2019-xx-xx.txt » dans le conteneur vers le chemin d’accès actuel.
+    syntax: az storage blob download-batch -d . -s mycontainer --pattern cli-201[89]-??-??.txt
+  - summary: Télécharger tous les objets BLOB au format « cli-201x-xx-xx.txt », sauf cli-2018-xx-xx.txt» et « cli-2019-xx-xx.txt » dans le conteneur vers le chemin d’accès actuel.
+    syntax: az storage blob download-batch -d . -s mycontainer --pattern cli-201[!89]-??-??.txt
+  requiredParameters:
+  - isRequired: true
+    name: --destination -d
+    summary: Dossier de destination existant pour cette opération de téléchargement.
+    description: ''
+  - isRequired: true
+    name: --source -s
+    summary: Conteneur d’objets BLOB à partir duquel les fichiers seront téléchargés.
+    description: La source peut être l’URL du conteneur ou le nom du conteneur. Lorsque la source est l’URL du conteneur, le nom du compte de stockage est analysé à partir de l’URL.
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --dryrun
+    summary: Affichez le résumé des opérations à effectuer au lieu de télécharger le ou les fichiers.
+    description: ''
+  - name: --max-connections
+    defaultValue: "2"
+    summary: Nombre maximal de connexions parallèles à utiliser lorsque la taille de l’objet BLOB dépasse 64 Mo.
+    description: ''
+  - name: --no-progress
+    summary: Incluez cet indicateur pour désactiver la création de rapports de progression pour la commande.
+    description: ''
+  - name: --pattern
+    summary: Modèle utilisé pour les fichiers globbing ou les objets BLOB dans la source. Les modèles pris en charge sont « \* », «  ? », « [seq] » et « [ ! seq] ». Pour plus d’informations, consultez <a href="https://docs.python.org/3.7/library/fnmatch.html">https://docs.python.org/3.7/library/fnmatch.html</a> .
+    description: Quand vous utilisez « * » dans le modèle, il correspond à n’importe quel caractère, y compris le séparateur de répertoire « / ».
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --socket-timeout
+    summary: Délai d’attente du socket (en secondes), utilisé par le service pour réguler le Data Flow.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_exists
+  name: az storage blob exists
+  summary: Vérifiez l’existence d’un objet BLOB dans un conteneur.
+  description: ''
+  syntax: >-
+    az storage blob exists --container-name
+                           --name
+                           [--account-key]
+                           [--account-name]
+                           [--auth-mode {key, login}]
+                           [--connection-string]
+                           [--sas-token]
+                           [--snapshot]
+                           [--subscription]
+                           [--timeout]
+  examples:
+  - summary: Vérifiez l’existence d’un objet BLOB dans un conteneur. généré automatiquement
+    syntax: az storage blob exists --account-key 00000000 --account-name MyAccount --container-name mycontainer --name MyBlob
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --snapshot
+    summary: Le paramètre snapshot est une valeur DateTime opaque qui, lorsqu’elle est présente, spécifie l’instantané.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_generate_sas
+  name: az storage blob generate-sas
+  summary: Générez une signature d’accès partagé pour l’objet BLOB.
+  description: ''
+  syntax: >-
+    az storage blob generate-sas --container-name
+                                 --name
+                                 [--account-key]
+                                 [--account-name]
+                                 [--auth-mode {key, login}]
+                                 [--cache-control]
+                                 [--connection-string]
+                                 [--content-disposition]
+                                 [--content-encoding]
+                                 [--content-language]
+                                 [--content-type]
+                                 [--expiry]
+                                 [--full-uri]
+                                 [--https-only]
+                                 [--ip]
+                                 [--permissions]
+                                 [--policy-name]
+                                 [--sas-token]
+                                 [--start]
+                                 [--subscription]
+  examples:
+  - summary: Générez un jeton SAP pour un objet BLOB avec des autorisations en lecture seule.
+    syntax: >-
+      end=`date -u -d "30 minutes" '+%Y-%m-%dT%H:%MZ'`
+
+      az storage blob generate-sas -c myycontainer -n MyBlob --permissions r --expiry $end --https-only
+  - summary: Générez un jeton SAP pour un objet BLOB avec la plage d’adresses IP spécifiée.
+    syntax: >-
+      end=`date -u -d "30 minutes" '+%Y-%m-%dT%H:%MZ'`
+
+      az storage blob generate-sas -c myycontainer -n MyBlob --ip "176.134.171.0-176.134.171.255" --permissions r --expiry $end --https-only
+  - summary: Générez une signature d’accès partagé pour l’objet BLOB. généré automatiquement
+    syntax: az storage blob generate-sas --account-key 00000000 --account-name MyStorageAccount --container-name mycontainer --expiry 2018-01-01T00:00:00Z --name MyBlob --permissions r
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --cache-control
+    summary: Valeur d’en-tête de réponse pour Cache-Control lorsque la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --content-disposition
+    summary: Valeur d’en-tête de réponse pour Content-disposition lorsque la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --content-encoding
+    summary: Valeur d’en-tête de réponse pour Content-Encoding quand la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --content-language
+    summary: Valeur d’en-tête de réponse pour Content-Language lorsque la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --content-type
+    summary: Valeur d’en-tête de réponse pour Content-type quand la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --expiry
+    summary: Spécifie la date/heure UTC (Y-m-d’T’H :M’Z') à laquelle la signature d’accès partagé n’est plus valide. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur.
+    description: ''
+  - name: --full-uri
+    summary: Indique que cette commande retourne l’URI d’objet BLOB complet et le jeton de signature d’accès partagé.
+    description: ''
+  - name: --https-only
+    summary: Autorise uniquement les demandes effectuées avec le protocole HTTPs. En cas d’omission, les demandes du protocole HTTP et HTTPs sont autorisées.
+    description: ''
+  - name: --ip
+    summary: Spécifie l’adresse IP ou la plage d’adresses IP à partir de laquelle accepter les demandes. Prend uniquement en charge les adresses de style IPv4.
+    description: ''
+  - name: --permissions
+    summary: 'Autorisations accordées par la signature d’accès partagé. Valeurs autorisées : (a) JJ (c) RÉER (d) upprimer (r) IRE (w). N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur. Peut être combiné.'
+    description: ''
+  - name: --policy-name
+    summary: Nom d’une stratégie d’accès stockée au sein de la liste de contrôle d’accès du conteneur.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --start
+    summary: Spécifie la date/heure UTC (Y-m-d’T’H :M’Z') à laquelle la signature d’accès partagé devient valide. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur. La valeur par défaut est l’heure de la demande.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_list
+  name: az storage blob list
+  summary: Répertorier les objets BLOB dans un conteneur donné.
+  description: ''
+  syntax: >-
+    az storage blob list --container-name
+                         [--account-key]
+                         [--account-name]
+                         [--auth-mode {key, login}]
+                         [--connection-string]
+                         [--delimiter]
+                         [--include]
+                         [--marker]
+                         [--num-results]
+                         [--prefix]
+                         [--query-examples]
+                         [--sas-token]
+                         [--subscription]
+                         [--timeout]
+  examples:
+  - summary: Répertorie tous les objets BLOB de stockage dans un conteneur dont les noms commencent par « foo »; correspond aux noms tels que « foo », « foobar » et « foo/bar »
+    syntax: az storage blob list -c mycontainer --prefix foo
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --delimiter
+    summary: Lorsque la demande comprend ce paramètre, l’opération retourne un élément pour blobprefix dans la liste de résultats qui agit comme un espace réservé pour tous les objets BLOB dont le nom commence par la même sous-chaîne jusqu’à l’apparence du caractère délimiteur. Le délimiteur peut être un caractère ou une chaîne.
+    description: ''
+  - name: --include
+    summary: Spécifie un ou plusieurs jeux de données supplémentaires à inclure dans la réponse.
+    description: ''
+  - name: --marker
+    summary: Jeton de continuation opaque. Cette valeur peut être récupérée à partir du champ next_marker d’un objet générateur précédent si num_results a été spécifié et que le générateur a terminé l’énumération des résultats. S’il est spécifié, ce générateur commencera à retourner des résultats à partir du point où le générateur précédent s’est arrêté.
+    description: ''
+  - name: --num-results
+    defaultValue: "5000"
+    summary: Spécifie le nombre maximal de résultats à retourner. Fournissez « \* » pour retourner tous les.
+    description: ''
+  - name: --prefix
+    summary: Filtre les résultats pour renvoyer uniquement les objets blob dont le nom commence par le préfixe spécifié.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_set_tier
+  name: az storage blob set-tier
+  summary: Définissez les niveaux de bloc ou de page sur l’objet BLOB.
+  description: Pour les objets BLOB de blocs, cette commande prend en charge uniquement les objets BLOB de blocs sur les comptes de stockage standard. Pour un objet blob de pages, cette commande ne prend en charge que les objets BLOB de pages sur les comptes Premium.
+  syntax: >-
+    az storage blob set-tier --container-name
+                             --name
+                             --tier
+                             [--account-key]
+                             [--account-name]
+                             [--auth-mode {key, login}]
+                             [--connection-string]
+                             [--sas-token]
+                             [--subscription]
+                             [--timeout]
+                             [--type {block, page}]
+  examples:
+  - summary: Définissez les niveaux de bloc ou de page sur l’objet BLOB. généré automatiquement
+    syntax: az storage blob set-tier --account-key 00000000 --account-name MyAccount --container-name mycontainer --name MyBlob --tier P10
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  - isRequired: true
+    name: --tier
+    summary: Valeur de niveau vers laquelle définir l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Le paramètre timeout est exprimé en secondes. Cette méthode peut effectuer plusieurs appels au service Azure et le délai d’attente s’applique individuellement à chaque appel.
+    description: ''
+  - name: --type -t
+    defaultValue: block
+    parameterValueGroup: block, page
+    summary: Le type de l'objet blob.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_show
+  name: az storage blob show
+  summary: Obtient les détails d’un objet BLOB.
+  description: ''
+  syntax: >-
+    az storage blob show --container-name
+                         --name
+                         [--account-key]
+                         [--account-name]
+                         [--auth-mode {key, login}]
+                         [--connection-string]
+                         [--if-match]
+                         [--if-modified-since]
+                         [--if-none-match]
+                         [--if-unmodified-since]
+                         [--lease-id]
+                         [--query-examples]
+                         [--sas-token]
+                         [--snapshot]
+                         [--subscription]
+                         [--timeout]
+  examples:
+  - summary: Affiche toutes les propriétés d’un objet BLOB.
+    syntax: az storage blob show -c mycontainer -n MyBlob
+  - summary: Obtenir les détails d’un objet BLOB (généré automatiquement)
+    syntax: az storage blob show --account-name mystorageccount --account-key 00000000 --container-name mycontainer --name MyBlob
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si l'objet blob a un bail actif.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --snapshot
+    summary: Le paramètre snapshot est une valeur DateTime opaque qui, lorsqu’elle est présente, spécifie l’instantané d’objet blob à récupérer.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_snapshot
+  name: az storage blob snapshot
+  summary: Crée un instantané en lecture seule d'un objet blob.
+  description: ''
+  syntax: >-
+    az storage blob snapshot --container-name
+                             --name
+                             [--account-key]
+                             [--account-name]
+                             [--auth-mode {key, login}]
+                             [--connection-string]
+                             [--if-match]
+                             [--if-modified-since]
+                             [--if-none-match]
+                             [--if-unmodified-since]
+                             [--lease-id]
+                             [--metadata]
+                             [--sas-token]
+                             [--subscription]
+                             [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si l'objet blob a un bail actif.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_sync
+  name: az storage blob sync
+  summary: Synchroniser les objets BLOB de manière récursive vers un conteneur d’objets BLOB de stockage.
+  description: ''
+  syntax: >-
+    az storage blob sync --container
+                         --source
+                         [--account-key]
+                         [--account-name]
+                         [--auth-mode {key, login}]
+                         [--connection-string]
+                         [--destination]
+                         [--exclude-path]
+                         [--exclude-pattern]
+                         [--include-pattern]
+                         [--sas-token]
+                         [--subscription]
+  examples:
+  - summary: Synchroniser un seul objet BLOB dans un conteneur.
+    syntax: az storage blob sync -c mycontainer -s "path/to/file" -d NewBlob
+  - summary: Synchroniser un répertoire sur un conteneur.
+    syntax: az storage blob sync -c mycontainer --account-name mystorageccount --account-key 00000000 -s "path/to/directory"
+  requiredParameters:
+  - isRequired: true
+    name: --container -c
+    summary: Conteneur de destination de synchronisation.
+    description: ''
+  - isRequired: true
+    name: --source -s
+    summary: Chemin d’accès du fichier source à partir duquel effectuer la synchronisation.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --destination -d
+    summary: Chemin d’accès de destination qui sera ajouté au nom de l’objet BLOB.
+    description: ''
+  - name: --exclude-path
+    summary: 'Excluez ces chemins d’accès. Cette option ne prend pas en charge les caractères génériques ( \* ). Vérifie le préfixe du chemin d’accès relatif. Par exemple : myFolder;myFolder/subDirName/file.pdf.'
+    description: ''
+  - name: --exclude-pattern
+    summary: 'Excluez ces fichiers lorsque le nom correspond à la liste de modèles. Par exemple : \*.jpg;\*.pdf;exactName. Cette option prend en charge les caractères génériques ( \* ).'
+    description: ''
+  - name: --include-pattern
+    summary: 'Incluez uniquement les fichiers dont le nom correspond à la liste de modèles. Par exemple : \*.jpg;\*.pdf;exactName. Cette option prend en charge les caractères génériques ( \* ).'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_undelete
+  name: az storage blob undelete
+  summary: L’opération d’annulation de la suppression d’un objet BLOB restaure le contenu et les métadonnées d’un objet BLOB ou d’un instantané supprimé de manière réversible.
+  description: Toute tentative d’annulation de la suppression d’un objet BLOB ou d’un instantané qui n’est pas supprimé de manière réversible échouera sans aucune modification.
+  syntax: >-
+    az storage blob undelete --container-name
+                             --name
+                             [--account-key]
+                             [--account-name]
+                             [--auth-mode {key, login}]
+                             [--connection-string]
+                             [--sas-token]
+                             [--subscription]
+                             [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_update
+  name: az storage blob update
+  summary: Définit les propriétés système sur l’objet BLOB.
+  description: Si une propriété est définie pour l’content_settings, toutes les propriétés sont remplacées.
+  syntax: >-
+    az storage blob update --container-name
+                           --name
+                           [--account-key]
+                           [--account-name]
+                           [--auth-mode {key, login}]
+                           [--clear-content-settings {false, true}]
+                           [--connection-string]
+                           [--content-cache-control]
+                           [--content-disposition]
+                           [--content-encoding]
+                           [--content-language]
+                           [--content-md5]
+                           [--content-type]
+                           [--if-match]
+                           [--if-modified-since]
+                           [--if-none-match]
+                           [--if-unmodified-since]
+                           [--lease-id]
+                           [--sas-token]
+                           [--subscription]
+                           [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --clear-content-settings
+    parameterValueGroup: false, true
+    summary: Si cet indicateur est défini, si une ou plusieurs des propriétés suivantes (--Content-Cache-Control,--Content-disposition,--Content-Encoding,--Content-Language,--Content-MD5,--Content-type) sont définies, toutes ces propriétés sont définies ensemble. Si aucune valeur n’est fournie pour une propriété donnée lorsqu’au moins une des propriétés listées ci-dessous est définie, cette propriété est effacée.
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --content-cache-control
+    summary: Chaîne de contrôle du cache.
+    description: ''
+  - name: --content-disposition
+    summary: Transmet des informations supplémentaires sur le traitement de la charge utile de la réponse et peut également être utilisé pour attacher des métadonnées supplémentaires.
+    description: ''
+  - name: --content-encoding
+    summary: Type d’encodage du contenu.
+    description: ''
+  - name: --content-language
+    summary: Langue du contenu.
+    description: ''
+  - name: --content-md5
+    summary: Hachage MD5 du contenu.
+    description: ''
+  - name: --content-type
+    summary: Type MIME du contenu.
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si l'objet blob a un bail actif.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_upload
+  name: az storage blob upload
+  summary: Chargez un fichier dans un objet blob de stockage.
+  description: Crée un objet blob à partir d’un chemin d’accès de fichier ou met à jour le contenu d’un objet BLOB existant avec des notifications de segmentation automatique et de progression.
+  syntax: >-
+    az storage blob upload --container-name
+                           --file
+                           --name
+                           [--account-key]
+                           [--account-name]
+                           [--auth-mode {key, login}]
+                           [--connection-string]
+                           [--content-cache-control]
+                           [--content-disposition]
+                           [--content-encoding]
+                           [--content-language]
+                           [--content-md5]
+                           [--content-type]
+                           [--encryption-scope]
+                           [--if-match]
+                           [--if-modified-since]
+                           [--if-none-match]
+                           [--if-unmodified-since]
+                           [--lease-id]
+                           [--max-connections]
+                           [--maxsize-condition]
+                           [--metadata]
+                           [--no-progress]
+                           [--sas-token]
+                           [--socket-timeout]
+                           [--subscription]
+                           [--tier {P10, P20, P30, P4, P40, P50, P6, P60}]
+                           [--timeout]
+                           [--type {append, block, page}]
+                           [--validate-content]
+  examples:
+  - summary: Charger dans un objet BLOB.
+    syntax: az storage blob upload -f /path/to/file -c mycontainer -n MyBlob
+  - summary: Chargez un fichier dans un objet blob de stockage. généré automatiquement
+    syntax: az storage blob upload --account-name mystorageaccount --account-key 0000-0000 --container-name mycontainer --file /path/to/file --name myblob
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --file -f
+    summary: Chemin d’accès du fichier à charger en tant que contenu de l’objet BLOB.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --content-cache-control
+    summary: Chaîne de contrôle du cache.
+    description: ''
+  - name: --content-disposition
+    summary: Transmet des informations supplémentaires sur le traitement de la charge utile de la réponse et peut également être utilisé pour attacher des métadonnées supplémentaires.
+    description: ''
+  - name: --content-encoding
+    summary: Type d’encodage du contenu.
+    description: ''
+  - name: --content-language
+    summary: Langue du contenu.
+    description: ''
+  - name: --content-md5
+    summary: Hachage MD5 du contenu.
+    description: ''
+  - name: --content-type
+    summary: Type MIME du contenu.
+    description: ''
+  - name: --encryption-scope
+    summary: Étendue de chiffrement prédéfinie utilisée pour chiffrer les données sur le service.
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si l'objet blob a un bail actif.
+    description: ''
+  - name: --max-connections
+    defaultValue: "2"
+    summary: Nombre maximal de connexions parallèles à utiliser lorsque la taille de l’objet BLOB dépasse 64 Mo.
+    description: ''
+  - name: --maxsize-condition
+    summary: Longueur maximale, en octets, autorisée pour un objet blob d’ajout.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --no-progress
+    summary: Incluez cet indicateur pour désactiver la création de rapports de progression pour la commande.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --socket-timeout
+    summary: Délai d’attente du socket (en secondes), utilisé par le service pour réguler le Data Flow.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tier
+    parameterValueGroup: P10, P20, P30, P4, P40, P50, P6, P60
+    summary: Valeur de niveau de l’objet blob de pages à affecter à l’objet BLOB. Le niveau correspond à la taille de l’objet BLOB et au nombre d’e/s par seconde autorisées. Cela s’applique uniquement aux objets BLOB de pages sur les comptes de stockage Premium.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  - name: --type -t
+    parameterValueGroup: append, block, page
+    summary: La valeur par défaut est « page » pour les \* fichiers. vhd, ou « bloquer » dans le cas contraire.
+    description: ''
+  - name: --validate-content
+    summary: Spécifie qu’un hachage MD5 doit être calculé pour chaque segment de l’objet BLOB et vérifié par le service lorsque le segment est arrivé.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_upload_batch
+  name: az storage blob upload-batch
+  summary: Charger des fichiers à partir d’un répertoire local vers un conteneur d’objets BLOB.
+  description: ''
+  syntax: >-
+    az storage blob upload-batch --destination
+                                 --source
+                                 [--account-key]
+                                 [--account-name]
+                                 [--auth-mode {key, login}]
+                                 [--connection-string]
+                                 [--content-cache-control]
+                                 [--content-disposition]
+                                 [--content-encoding]
+                                 [--content-language]
+                                 [--content-md5]
+                                 [--content-type]
+                                 [--destination-path]
+                                 [--dryrun]
+                                 [--if-match]
+                                 [--if-modified-since]
+                                 [--if-none-match]
+                                 [--if-unmodified-since]
+                                 [--lease-id]
+                                 [--max-connections]
+                                 [--maxsize-condition]
+                                 [--metadata]
+                                 [--no-progress]
+                                 [--pattern]
+                                 [--sas-token]
+                                 [--socket-timeout]
+                                 [--subscription]
+                                 [--timeout]
+                                 [--type {append, block, page}]
+                                 [--validate-content]
+  examples:
+  - summary: Téléchargez tous les fichiers qui se terminent par. py, sauf si l’objet BLOB existe et a été modifié depuis la date donnée.
+    syntax: az storage blob upload-batch -d mycontainer --account-name mystorageaccount --account-key 00000000 -s <path-to-directory> --pattern *.py --if-unmodified-since 2018-08-27T20:51Z
+  - summary: Téléchargez tous les fichiers du répertoire du chemin d’accès local vers un conteneur nommé « mycontainer ».
+    syntax: az storage blob upload-batch -d mycontainer -s <path-to-directory>
+  - summary: Téléchargez tous les fichiers au format « cli-2018-xx-xx.txt » ou « cli-2019-xx-xx.txt » dans le répertoire du chemin d’accès local.
+    syntax: az storage blob upload-batch -d mycontainer -s <path-to-directory> --pattern cli-201[89]-??-??.txt
+  - summary: Télécharger tous les fichiers au format' cli-201x-xx-xx.txt 'sauf cli-2018-xx-xx.txt 'et' cli-2019-xx-xx.txt 'dans un conteneur.
+    syntax: az storage blob upload-batch -d mycontainer -s <path-to-directory> --pattern cli-201[!89]-??-??.txt
+  requiredParameters:
+  - isRequired: true
+    name: --destination -d
+    summary: Conteneur d’objets BLOB dans lequel les fichiers seront téléchargés.
+    description: La destination peut être l’URL du conteneur ou le nom du conteneur. Lorsque la destination est l’URL du conteneur, le nom du compte de stockage est analysé à partir de l’URL.
+  - isRequired: true
+    name: --source -s
+    summary: Répertoire dans lequel se trouvent les fichiers à charger.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --content-cache-control
+    summary: Chaîne de contrôle du cache.
+    description: ''
+  - name: --content-disposition
+    summary: Transmet des informations supplémentaires sur le traitement de la charge utile de la réponse et peut également être utilisé pour attacher des métadonnées supplémentaires.
+    description: ''
+  - name: --content-encoding
+    summary: Type d’encodage du contenu.
+    description: ''
+  - name: --content-language
+    summary: Langue du contenu.
+    description: ''
+  - name: --content-md5
+    summary: Hachage MD5 du contenu.
+    description: ''
+  - name: --content-type
+    summary: Type MIME du contenu.
+    description: ''
+  - name: --destination-path
+    summary: Chemin d’accès de destination qui sera ajouté au nom de l’objet BLOB.
+    description: ''
+  - name: --dryrun
+    summary: Affichez le résumé des opérations à effectuer au lieu de charger réellement le ou les fichiers.
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ).
+    description: Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique (*) pour exécuter l'opération uniquement si la ressource n'existe pas, et faire échouer l'opération si elle existe.
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: ID de bail actif pour l’objet BLOB.
+    description: ''
+  - name: --max-connections
+    defaultValue: "2"
+    summary: Nombre maximal de connexions parallèles à utiliser lorsque la taille de l’objet BLOB dépasse 64 Mo.
+    description: ''
+  - name: --maxsize-condition
+    summary: Longueur maximale, en octets, autorisée pour un objet blob d’ajout.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --no-progress
+    summary: Incluez cet indicateur pour désactiver la création de rapports de progression pour la commande.
+    description: ''
+  - name: --pattern
+    summary: Modèle utilisé pour les fichiers globbing ou les objets BLOB dans la source. Les modèles pris en charge sont « \* », «  ? », « [seq] » et « [ ! seq] ». Pour plus d’informations, consultez <a href="https://docs.python.org/3.7/library/fnmatch.html">https://docs.python.org/3.7/library/fnmatch.html</a> .
+    description: Quand vous utilisez « * » dans le modèle, il correspond à n’importe quel caractère, y compris le séparateur de répertoire « / ».
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --socket-timeout
+    summary: Délai d’attente du socket (en secondes), utilisé par le service pour réguler le Data Flow.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  - name: --type -t
+    parameterValueGroup: append, block, page
+    summary: La valeur par défaut est « page » pour les \* fichiers. vhd, ou « bloquer » dans le cas contraire. Le paramètre remplace les types d’objets BLOB pour chaque fichier.
+    description: ''
+  - name: --validate-content
+    summary: Spécifie qu’un hachage MD5 doit être calculé pour chaque segment de l’objet BLOB et vérifié par le service lorsque le segment est arrivé.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_url
+  name: az storage blob url
+  summary: Créez l’URL pour accéder à un objet BLOB.
+  description: ''
+  syntax: >-
+    az storage blob url --container-name
+                        --name
+                        [--account-key]
+                        [--account-name]
+                        [--auth-mode {key, login}]
+                        [--connection-string]
+                        [--protocol {http, https}]
+                        [--sas-token]
+                        [--snapshot]
+                        [--subscription]
+  examples:
+  - summary: Créer l’URL pour accéder à un objet BLOB (généré automatiquement)
+    syntax: az storage blob url --connection-string $connectionString --container-name container1 --name blob1
+  - summary: Créer l’URL pour accéder à un objet BLOB (généré automatiquement)
+    syntax: az storage blob url --account-name storageacct --account-key 00000000 --container-name container1 --name blob1
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --protocol
+    defaultValue: https
+    parameterValueGroup: http, https
+    summary: Protocole à utiliser.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --snapshot
+    summary: Valeur de chaîne qui identifie de façon unique l’instantané. La valeur du paramètre de requête ofthis indique la version de l’instantané.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_blob_copy
+- az_storage_blob_copy_cancel
+- az_storage_blob_copy_start
+- az_storage_blob_copy_start_batch
+- az_storage_blob_delete
+- az_storage_blob_delete_batch
+- az_storage_blob_download
+- az_storage_blob_download_batch
+- az_storage_blob_exists
+- az_storage_blob_generate_sas
+- az_storage_blob_incremental_copy
+- az_storage_blob_incremental_copy_cancel
+- az_storage_blob_incremental_copy_start
+- az_storage_blob_lease
+- az_storage_blob_lease_acquire
+- az_storage_blob_lease_break
+- az_storage_blob_lease_change
+- az_storage_blob_lease_release
+- az_storage_blob_lease_renew
+- az_storage_blob_list
+- az_storage_blob_metadata
+- az_storage_blob_metadata_show
+- az_storage_blob_metadata_update
+- az_storage_blob_service_properties
+- az_storage_blob_service_properties_delete_policy
+- az_storage_blob_service_properties_delete_policy_show
+- az_storage_blob_service_properties_delete_policy_update
+- az_storage_blob_service_properties_show
+- az_storage_blob_service_properties_update
+- az_storage_blob_set_tier
+- az_storage_blob_show
+- az_storage_blob_snapshot
+- az_storage_blob_sync
+- az_storage_blob_undelete
+- az_storage_blob_update
+- az_storage_blob_upload
+- az_storage_blob_upload_batch
+- az_storage_blob_url
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
+  ms.openlocfilehash: 009002db9c40fe60e22374d2eb5d023bdb711a10
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102847186"

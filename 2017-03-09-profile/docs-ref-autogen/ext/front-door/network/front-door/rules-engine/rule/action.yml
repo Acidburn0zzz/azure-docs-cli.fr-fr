@@ -1,0 +1,210 @@
+### YamlMime:AzureCLIGroup
+uid: ext_front-door_az_network_front_door_rules_engine_rule_action
+name: az network front-door rules-engine rule action
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de la **porte avant** pour Azure CLI et requiert la version 2.0.68 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ Network front-porte Rules-Engine Rule action** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les actions du moteur de règles pour la porte de l’avant.
+description: ''
+directCommands:
+- uid: ext_front-door_az_network_front_door_rules_engine_rule_action_add
+  name: az network front-door rules-engine rule action add
+  summary: Ajoutez une action à une règle du moteur de règles.
+  description: ''
+  syntax: >-
+    az network front-door rules-engine rule action add --action-type {ForwardRouteOverride, RedirectRouteOverride, RequestHeader, ResponseHeader}
+                                                       --front-door-name
+                                                       --name
+                                                       --resource-group
+                                                       --rules-engine-name
+                                                       [--backend-pool]
+                                                       [--cache-duration]
+                                                       [--caching {Disabled, Enabled}]
+                                                       [--custom-forwarding-path]
+                                                       [--custom-fragment]
+                                                       [--custom-host]
+                                                       [--custom-path]
+                                                       [--custom-query-string]
+                                                       [--dynamic-compression {Disabled, Enabled}]
+                                                       [--forwarding-protocol {HttpOnly, HttpsOnly, MatchRequest}]
+                                                       [--header-action {Append, Delete, Overwrite}]
+                                                       [--header-name]
+                                                       [--header-value]
+                                                       [--query-parameter-strip-directive {StripAll, StripAllExcept, StripNone, StripOnly}]
+                                                       [--query-parameters]
+                                                       [--redirect-protocol {HttpOnly, HttpsOnly, MatchRequest}]
+                                                       [--redirect-type {Found, Moved, PermanentRedirect, TemporaryRedirect}]
+  requiredParameters:
+  - isRequired: true
+    name: --action-type
+    parameterValueGroup: ForwardRouteOverride, RedirectRouteOverride, RequestHeader, ResponseHeader
+    summary: Type d’action à appliquer à une règle.
+    description: ''
+  - isRequired: true
+    name: --front-door-name -f
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rules-engine-name -r
+    summary: Nom du moteur de règles.
+    description: ''
+  optionalParameters:
+  - name: --backend-pool
+    summary: Nom ou ID d’un pool principal.
+    description: ''
+  - name: --cache-duration
+    summary: Durée pendant laquelle le contenu doit être mis en cache. Le format autorisé est ISO 8601 durée.
+    description: ''
+  - name: --caching
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique s’il faut activer la mise en cache pour cette route.
+    description: ''
+  - name: --custom-forwarding-path
+    summary: Chemin personnalisé utilisé pour réécrire les chemins d’accès aux ressources correspondant à cette règle. Laissez cette option vide pour utiliser le chemin entrant.
+    description: ''
+  - name: --custom-fragment
+    summary: 'Fragment à ajouter à l’URL de redirection. Fragment est la partie de l’URL qui vient après #. N’incluez pas le #.'
+    description: ''
+  - name: --custom-host
+    summary: Hôte à rediriger. Laissez vide pour utiliser utiliser l’hôte entrant comme ordinateur hôte de destination.
+    description: ''
+  - name: --custom-path
+    summary: Chemin d’accès complet à rediriger. Le chemin d’accès ne peut pas être vide et doit commencer par/. Laissez vide pour utiliser le chemin d’accès entrant comme chemin d’accès de destination.
+    description: ''
+  - name: --custom-query-string
+    summary: Ensemble de chaînes de requête à placer dans l’URL de redirection. La définition de cette valeur remplace toute chaîne de requête existante ; laissez vide pour conserver la chaîne de requête entrante. La chaîne de requête doit être dans <key>=<value> HH:MM:SS. La première ? et & sont ajoutés automatiquement. ne les incluez donc pas à l’avant, mais Séparez plusieurs chaînes de requête par des &.
+    description: ''
+  - name: --dynamic-compression
+    parameterValueGroup: Disabled, Enabled
+    summary: Utilisez la compression dynamique pour le contenu mis en cache.
+    description: ''
+  - name: --forwarding-protocol
+    parameterValueGroup: HttpOnly, HttpsOnly, MatchRequest
+    summary: Protocole à utiliser pour transférer le trafic.
+    description: ''
+  - name: --header-action
+    parameterValueGroup: Append, Delete, Overwrite
+    summary: Type d’action d’en-tête pour les demandes.
+    description: ''
+  - name: --header-name
+    summary: Nom de l’en-tête à modifier.
+    description: ''
+  - name: --header-value
+    summary: Valeur de l'en-tête.
+    description: ''
+  - name: --query-parameter-strip-directive
+    parameterValueGroup: StripAll, StripAllExcept, StripNone, StripOnly
+    summary: Traitement des termes de requête d’URL lors de la création de la clé de cache.
+    description: ''
+  - name: --query-parameters
+    summary: Paramètres de requête à inclure ou à exclure (séparés par des virgules) lors de l’utilisation du type StripAllExcept ou StripOnly, respectivement.
+    description: ''
+  - name: --redirect-protocol
+    defaultValue: MatchRequest
+    parameterValueGroup: HttpOnly, HttpsOnly, MatchRequest
+    summary: Protocole de destination vers lequel le trafic est redirigé.
+    description: ''
+  - name: --redirect-type
+    defaultValue: Moved
+    parameterValueGroup: Found, Moved, PermanentRedirect, TemporaryRedirect
+    summary: Type de redirection que la règle utilisera lors de la redirection du trafic.
+    description: ''
+- uid: ext_front-door_az_network_front_door_rules_engine_rule_action_list
+  name: az network front-door rules-engine rule action list
+  summary: Affichez toutes les actions qui s’appliquent à une règle du moteur de règles.
+  description: ''
+  syntax: >-
+    az network front-door rules-engine rule action list --front-door-name
+                                                        --name
+                                                        --resource-group
+                                                        --rules-engine-name
+  requiredParameters:
+  - isRequired: true
+    name: --front-door-name -f
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rules-engine-name -r
+    summary: Nom du moteur de règles.
+    description: ''
+- uid: ext_front-door_az_network_front_door_rules_engine_rule_action_remove
+  name: az network front-door rules-engine rule action remove
+  summary: Supprimer une action d’une règle de moteur de règles.
+  description: ''
+  syntax: >-
+    az network front-door rules-engine rule action remove --action-type {ForwardRouteOverride, RedirectRouteOverride, RequestHeader, ResponseHeader}
+                                                          --front-door-name
+                                                          --name
+                                                          --resource-group
+                                                          --rules-engine-name
+                                                          [--index]
+  requiredParameters:
+  - isRequired: true
+    name: --action-type
+    parameterValueGroup: ForwardRouteOverride, RedirectRouteOverride, RequestHeader, ResponseHeader
+    summary: Type d’action à appliquer à une règle.
+    description: ''
+  - isRequired: true
+    name: --front-door-name -f
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rules-engine-name -r
+    summary: Nom du moteur de règles.
+    description: ''
+  optionalParameters:
+  - name: --index
+    summary: index de base 0 de l’action d’en-tête de demande ou de réponse à supprimer. Le paramètre d’index n’est pas requis pour la suppression de l’action « ForwardRouteOverride » ou « RedirectRouteOverride ».
+    description: ''
+commands:
+- ext_front-door_az_network_front_door_rules_engine_rule_action_add
+- ext_front-door_az_network_front_door_rules_engine_rule_action_list
+- ext_front-door_az_network_front_door_rules_engine_rule_action_remove
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les actions du moteur de règles pour la porte de l’avant.
+  ms.openlocfilehash: 5ba4c26f70da6597a1bbc60714deec93da026bfa
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102825980"
