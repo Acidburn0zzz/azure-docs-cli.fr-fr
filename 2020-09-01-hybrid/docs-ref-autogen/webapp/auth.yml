@@ -1,0 +1,195 @@
+### YamlMime:AzureCLIGroup
+uid: az_webapp_auth
+name: az webapp auth
+summary: Gérer l’authentification et l’autorisation WebApp.
+description: ''
+directCommands:
+- uid: az_webapp_auth_show
+  name: az webapp auth show
+  summary: Affichez les paramètres d’authentification pour WebApp.
+  description: ''
+  syntax: >-
+    az webapp auth show [--ids]
+                        [--name]
+                        [--query-examples]
+                        [--resource-group]
+                        [--slot]
+                        [--subscription]
+  examples:
+  - summary: Affichez les paramètres d’authentification pour WebApp. généré automatiquement
+    syntax: az webapp auth show --name MyWebApp --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_auth_update
+  name: az webapp auth update
+  summary: Mettez à jour les paramètres d’authentification pour WebApp.
+  description: ''
+  syntax: >-
+    az webapp auth update [--aad-allowed-token-audiences]
+                          [--aad-client-id]
+                          [--aad-client-secret]
+                          [--aad-client-secret-certificate-thumbprint]
+                          [--aad-token-issuer-url]
+                          [--action {AllowAnonymous, LoginWithAzureActiveDirectory, LoginWithFacebook, LoginWithGoogle, LoginWithMicrosoftAccount, LoginWithTwitter}]
+                          [--allowed-external-redirect-urls]
+                          [--enabled {false, true}]
+                          [--facebook-app-id]
+                          [--facebook-app-secret]
+                          [--facebook-oauth-scopes]
+                          [--google-client-id]
+                          [--google-client-secret]
+                          [--google-oauth-scopes]
+                          [--ids]
+                          [--microsoft-account-client-id]
+                          [--microsoft-account-client-secret]
+                          [--microsoft-account-oauth-scopes]
+                          [--name]
+                          [--resource-group]
+                          [--runtime-version]
+                          [--slot]
+                          [--subscription]
+                          [--token-refresh-extension-hours]
+                          [--token-store {false, true}]
+                          [--twitter-consumer-key]
+                          [--twitter-consumer-secret]
+  examples:
+  - summary: Activez AAD en activant l’authentification et en définissant les paramètres associés à AAD. Le fournisseur par défaut est défini sur AAD. Doit avoir créé un principal du service AAD au préalable.
+    syntax: >-
+      az webapp auth update  -g myResourceGroup -n myUniqueApp --enabled true \
+        --action LoginWithAzureActiveDirectory \
+        --aad-allowed-token-audiences https://webapp_name.azurewebsites.net/.auth/login/aad/callback \
+        --aad-client-id ecbacb08-df8b-450d-82b3-3fced03f2b27 --aad-client-secret very_secret_password \
+        --aad-token-issuer-url https://sts.windows.net/54826b22-38d6-4fb2-bad9-b7983a3e9c5a/
+  - summary: Autoriser l’authentification Facebook en définissant les paramètres associés à FB et en activant les étendues de courrier et de profil public ; autoriser les utilisateurs anonymes
+    syntax: >-
+      az webapp auth update -g myResourceGroup -n myUniqueApp --action AllowAnonymous \
+        --facebook-app-id my_fb_id --facebook-app-secret my_fb_secret \
+        --facebook-oauth-scopes public_profile email
+  optionalParameters:
+  - name: --aad-allowed-token-audiences
+    summary: Un ou plusieurs publics de jetons (séparés par des espaces).
+    description: ''
+  - name: --aad-client-id
+    summary: ID d’application pour intégrer la connexion du compte d’organisation AAD à votre application Web.
+    description: ''
+  - name: --aad-client-secret
+    summary: Secret de l’application AAD.
+    description: ''
+  - name: --aad-client-secret-certificate-thumbprint --thumbprint
+    summary: Alternative à la clé secrète du client AAD, empreinte numérique d’un certificat utilisé à des fins de signature.
+    description: ''
+  - name: --aad-token-issuer-url
+    summary: Cette URL se trouve dans la sortie JSON retournée à partir de votre point de terminaison Active Directory à l’aide de votre tenantID. Le point de terminaison peut être interrogé à partir de `az cloud show` « Endpoints. activeDirectory ». Le tenantID peut être trouvé à l’aide de `az account show` . Procurez-vous le « émetteur » à partir du JSON sur <active directory endpoint> / <tenantId> /.well-known/OpenID-configuration.
+    description: ''
+  - name: --action
+    parameterValueGroup: AllowAnonymous, LoginWithAzureActiveDirectory, LoginWithFacebook, LoginWithGoogle, LoginWithMicrosoftAccount, LoginWithTwitter
+    summary: ''
+    description: ''
+  - name: --allowed-external-redirect-urls
+    summary: Une ou plusieurs URL (séparées par des espaces).
+    description: ''
+  - name: --enabled
+    parameterValueGroup: false, true
+    summary: ''
+    description: ''
+  - name: --facebook-app-id
+    summary: ID d’application pour intégrer la connexion Facebook à votre application Web.
+    description: ''
+  - name: --facebook-app-secret
+    summary: Clé secrète client de l’application Facebook.
+    description: ''
+  - name: --facebook-oauth-scopes
+    summary: Une ou plusieurs étendues d’authentification Facebook (séparées par des espaces).
+    description: ''
+  - name: --google-client-id
+    summary: ID d’application pour intégrer la connexion Google à votre application Web.
+    description: ''
+  - name: --google-client-secret
+    summary: Clé secrète client de l’application Google.
+    description: ''
+  - name: --google-oauth-scopes
+    summary: Une ou plusieurs étendues d’authentification Google (séparées par des espaces).
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --microsoft-account-client-id
+    summary: L’ID d’application AAD v2 pour intégrer compte Microsoft Connectez-vous à votre application Web.
+    description: ''
+  - name: --microsoft-account-client-secret
+    summary: Clé secrète du client d’application AAD v2.
+    description: ''
+  - name: --microsoft-account-oauth-scopes
+    summary: Une ou plusieurs étendues d’authentification Microsoft (séparées par des espaces).
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --runtime-version
+    summary: Version du runtime de la fonctionnalité d’authentification/autorisation utilisée pour l’application actuelle.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --token-refresh-extension-hours
+    summary: Les heures doivent être formatées en valeurs float.
+    description: ''
+  - name: --token-store
+    parameterValueGroup: false, true
+    summary: Utilisez App Service magasin de jetons.
+    description: ''
+  - name: --twitter-consumer-key
+    summary: ID d’application pour intégrer la connexion Twitter à votre application Web.
+    description: ''
+  - name: --twitter-consumer-secret
+    summary: Clé secrète du client de l’application Twitter.
+    description: ''
+commands:
+- az_webapp_auth_show
+- az_webapp_auth_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer l’authentification et l’autorisation WebApp.
+  ms.openlocfilehash: 4e6a1a88c9ad20cd063232b7ac27d07c93d7de77
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102841297"
