@@ -1,0 +1,151 @@
+### YamlMime:AzureCLIGroup
+uid: az_account
+name: az account
+summary: Gérer les informations d’abonnement Azure.
+description: ''
+directCommands:
+- uid: az_account_clear
+  name: az account clear
+  summary: Effacez tous les abonnements du cache local de l’interface de commande.
+  description: Pour effacer l’abonnement actuel, utilisez’AZ logout'.
+  syntax: az account clear
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
+- uid: az_account_get_access_token
+  name: az account get-access-token
+  summary: Obtenir un jeton pour que les utilitaires accèdent à Azure.
+  description: Le jeton sera valide pendant au moins 5 minutes avec la valeur maximale à 60 minutes. Si l’argument d’abonnement n’est pas spécifié, le compte actuel est utilisé.
+  syntax: >-
+    az account get-access-token [--resource]
+                                [--resource-type {aad-graph, arm, batch, data-lake, media, ms-graph, oss-rdbms}]
+                                [--subscription]
+                                [--tenant]
+  examples:
+  - summary: Obtenir un jeton d’accès pour le compte actuel
+    syntax: az account get-access-token
+  - summary: Obtenir un jeton d’accès pour un abonnement spécifique
+    syntax: az account get-access-token --subscription 00000000-0000-0000-0000-000000000000
+  - summary: Obtenir un jeton d’accès pour un locataire spécifique
+    syntax: az account get-access-token --tenant 00000000-0000-0000-0000-000000000000
+  - summary: Obtient un jeton d’accès à utiliser avec MS API Graph
+    syntax: az account get-access-token --resource-type ms-graph
+  optionalParameters:
+  - name: --resource
+    summary: Points de terminaison de ressource Azure. La valeur par défaut est Azure Resource Manager.
+    description: ''
+  - name: --resource-type
+    parameterValueGroup: aad-graph, arm, batch, data-lake, media, ms-graph, oss-rdbms
+    summary: Type de ressource connue.
+    description: ''
+  - name: --subscription -s
+    summary: Nom ou ID de l’abonnement.
+    description: ''
+  - name: --tenant -t
+    summary: ID de locataire pour lequel le jeton est acquis. Disponible uniquement pour les comptes d’utilisateur et de principal du service, et non pour le compte MSI ou Cloud Shell.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
+- uid: az_account_list
+  name: az account list
+  summary: Obtenir la liste des abonnements pour le compte connecté.
+  description: ''
+  syntax: >-
+    az account list [--all]
+                    [--query-examples]
+                    [--refresh]
+  optionalParameters:
+  - name: --all
+    summary: Répertorie tous les abonnements, plutôt que simplement ceux qui sont « activés ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --refresh
+    summary: Récupération des abonnements mis à jour à partir du serveur.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
+- uid: az_account_list_locations
+  name: az account list-locations
+  summary: Répertorie les régions prises en charge pour l’abonnement actuel.
+  description: ''
+  syntax: az account list-locations
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
+- uid: az_account_set
+  name: az account set
+  summary: Définissez un abonnement en tant qu’abonnement actif.
+  description: ''
+  syntax: az account set --subscription
+  requiredParameters:
+  - isRequired: true
+    name: --subscription -s
+    summary: Nom ou ID de l’abonnement.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
+- uid: az_account_show
+  name: az account show
+  summary: Obtenir les détails d’un abonnement.
+  description: >-
+    Si l’abonnement n’est pas spécifié, affiche les détails de l’abonnement par défaut.
+
+
+    Quand--SDK-auth est utilisé, la sortie contient les informations d’identification que vous devez protéger. Veillez à ne pas inclure ces informations d’identification dans votre code ou vérifiez les informations d’identification dans votre contrôle de code source. Vous pouvez également utiliser [Managed Identities] ( <a href="https://aka.ms/azadsp-managed-identities">https://aka.ms/azadsp-managed-identities</a> ) si elle est disponible pour éviter d’avoir à utiliser des informations d’identification.
+  syntax: >-
+    az account show [--query-examples]
+                    [--sdk-auth]
+                    [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sdk-auth
+    summary: Résultat de sortie dans un fichier compatible avec l’authentification du kit de développement logiciel (SDK) Azure. S’applique uniquement lors de l’authentification auprès d’un principal de service.
+    description: ''
+  - name: --subscription -s
+    summary: Nom ou ID de l’abonnement.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
+commands:
+- az_account_clear
+- az_account_get_access_token
+- az_account_list
+- az_account_list_locations
+- az_account_lock
+- az_account_lock_create
+- az_account_lock_delete
+- az_account_lock_list
+- az_account_lock_show
+- az_account_lock_update
+- az_account_management_group
+- az_account_management_group_create
+- az_account_management_group_delete
+- az_account_management_group_list
+- az_account_management_group_show
+- az_account_management_group_subscription
+- az_account_management_group_subscription_add
+- az_account_management_group_subscription_remove
+- az_account_management_group_update
+- az_account_set
+- az_account_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/18/2020
+  description: Gérer les informations d’abonnement Azure.
+  ms.openlocfilehash: 66cf3c8e8cfe1dc6b9f8acd1300360928fe3e467
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102840991"
