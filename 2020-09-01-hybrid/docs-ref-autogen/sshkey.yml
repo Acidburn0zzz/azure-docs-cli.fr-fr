@@ -1,0 +1,178 @@
+### YamlMime:AzureCLIGroup
+uid: az_sshkey
+name: az sshkey
+summary: Gérez la clé publique SSH avec la machine virtuelle.
+description: ''
+directCommands:
+- uid: az_sshkey_create
+  name: az sshkey create
+  summary: Créez une ressource de clé publique SSH.
+  description: ''
+  syntax: >-
+    az sshkey create --name
+                     --resource-group
+                     [--location]
+                     [--public-key]
+                     [--subscription]
+                     [--tags]
+  examples:
+  - summary: Créez une ressource de clé publique SSH.
+    syntax: az sshkey create --location "westus" --public-key "{ssh-rsa public key}" --resource-group "myResourceGroup" --name "mySshPublicKeyName"
+  - summary: Créer une nouvelle ressource de clé publique SSH à l’aide d’une clé publique dans un fichier.
+    syntax: az sshkey create --location "westus" --public-key "@filename" --resource-group "myResourceGroup" --name "mySshPublicKeyName"
+  - summary: Créer une ressource de clé publique SSH avec une valeur générée automatiquement.
+    syntax: az sshkey create --location "westus" --resource-group "myResourceGroup" --name "mySshPublicKeyName"
+  requiredParameters:
+  - isRequired: true
+    name: --name --ssh-public-key-name -n
+    summary: Nom de la clé publique SSH.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --public-key
+    summary: Clé publique SSH utilisée pour l’authentification auprès d’une machine virtuelle via SSH. Si cette propriété n’est pas initialement fournie lors de la création de la ressource, la propriété publicKey sera remplie quand generateKeyPair est appelé. Si la clé publique est fournie lors de la création de la ressource, la clé publique fournie doit avoir au moins 2048 bits et au format SSH-RSA.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_sshkey_delete
+  name: az sshkey delete
+  summary: Supprimer une clé publique SSH.
+  description: ''
+  syntax: >-
+    az sshkey delete [--ids]
+                     [--name]
+                     [--resource-group]
+                     [--subscription]
+                     [--yes]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name --ssh-public-key-name -n
+    summary: Nom de la clé publique SSH.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_sshkey_list
+  name: az sshkey list
+  summary: Répertorie toutes les clés publiques SSH.
+  description: ''
+  syntax: >-
+    az sshkey list [--query-examples]
+                   [--resource-group]
+                   [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sshkey_show
+  name: az sshkey show
+  summary: Récupérez les informations relatives à une clé publique SSH.
+  description: ''
+  syntax: >-
+    az sshkey show [--ids]
+                   [--name]
+                   [--query-examples]
+                   [--resource-group]
+                   [--subscription]
+  examples:
+  - summary: Procurez-vous une clé publique SSH.
+    syntax: az sshkey show --resource-group "myResourceGroup" --name "mySshPublicKeyName"
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name --ssh-public-key-name -n
+    summary: Nom de la clé publique SSH.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sshkey_update
+  name: az sshkey update
+  summary: Mettez à jour une ressource de clé publique SSH.
+  description: ''
+  syntax: >-
+    az sshkey update [--ids]
+                     [--name]
+                     [--public-key]
+                     [--resource-group]
+                     [--subscription]
+                     [--tags]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name --ssh-public-key-name -n
+    summary: Nom de la clé publique SSH.
+    description: ''
+  - name: --public-key
+    summary: Clé publique SSH utilisée pour l’authentification auprès d’une machine virtuelle via SSH. Si cette propriété n’est pas initialement fournie lors de la création de la ressource, la propriété publicKey sera remplie quand generateKeyPair est appelé. Si la clé publique est fournie lors de la création de la ressource, la clé publique fournie doit avoir au moins 2048 bits et au format SSH-RSA.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+commands:
+- az_sshkey_create
+- az_sshkey_delete
+- az_sshkey_list
+- az_sshkey_show
+- az_sshkey_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérez la clé publique SSH avec la machine virtuelle.
+  ms.openlocfilehash: 6e49a5efbe7c0cd5b2be2ae5aefd0ab44e2efde6
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102850261"

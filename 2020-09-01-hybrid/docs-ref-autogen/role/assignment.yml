@@ -1,0 +1,183 @@
+### YamlMime:AzureCLIGroup
+uid: az_role_assignment
+name: az role assignment
+summary: Gérer les attributions de rôles.
+description: ''
+directCommands:
+- uid: az_role_assignment_create
+  name: az role assignment create
+  summary: Crée une nouvelle attribution de rôle pour un utilisateur, un groupe ou un principal de service.
+  description: ''
+  syntax: >-
+    az role assignment create --role
+                              [--assignee]
+                              [--assignee-object-id]
+                              [--resource-group]
+                              [--scope]
+                              [--subscription]
+  examples:
+  - summary: Créer une attribution de rôle pour un cessionnaire.
+    syntax: az role assignment create --assignee sp_name --role a_role
+  - summary: Crée une nouvelle attribution de rôle pour un utilisateur, un groupe ou un principal de service. généré automatiquement
+    syntax: az role assignment create --assignee 00000000-0000-0000-0000-000000000000 --role "Storage Account Key Operator Service Role" --scope $id
+  requiredParameters:
+  - isRequired: true
+    name: --role
+    summary: Nom ou ID du rôle.
+    description: ''
+  optionalParameters:
+  - name: --assignee
+    summary: 'Représente un utilisateur, un groupe ou un principal du service. format pris en charge : ID d’objet, nom de connexion de l’utilisateur ou nom de principal du service.'
+    description: ''
+  - name: --assignee-object-id
+    summary: Utilisez ce paramètre à la place de'--assigned’pour ignorer API Graph appel en cas de privilèges insuffisants. Ce paramètre fonctionne uniquement avec les ID d’objet pour les utilisateurs, les groupes, les principaux de service et les identités gérées. Pour les identités gérées, utilisez l’ID du principal. Pour les principaux de service, utilisez l’ID d’objet et non l’ID d’application.
+    description: ''
+  - name: --resource-group -g
+    summary: Utilisez-le uniquement si le rôle ou l’affectation a été ajouté au niveau d’un groupe de ressources.
+    description: ''
+  - name: --scope
+    summary: Portée à laquelle s’applique l’attribution de rôle ou la définition, par exemple/subscriptions/0b1f6471-1bf0-4DDA-AEC3-111122223333,/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup ou/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup/providers/Microsoft.Compute/virtualMachines/myVM.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_role_assignment_delete
+  name: az role assignment delete
+  summary: Supprimer les attributions de rôles.
+  description: ''
+  syntax: >-
+    az role assignment delete [--assignee]
+                              [--ids]
+                              [--include-inherited]
+                              [--resource-group]
+                              [--role]
+                              [--scope]
+                              [--subscription]
+                              [--yes]
+  examples:
+  - summary: Supprimer les attributions de rôles. généré automatiquement
+    syntax: az role assignment delete --assignee 00000000-0000-0000-0000-000000000000 --role "Storage Account Key Operator Service Role"
+  optionalParameters:
+  - name: --assignee
+    summary: 'Représente un utilisateur, un groupe ou un principal du service. format pris en charge : ID d’objet, nom de connexion de l’utilisateur ou nom de principal du service.'
+    description: ''
+  - name: --ids
+    summary: ID d’attribution de rôle séparés par des espaces.
+    description: ''
+  - name: --include-inherited
+    summary: Inclure les affectations appliquées aux étendues parentes.
+    description: ''
+  - name: --resource-group -g
+    summary: Utilisez-le uniquement si le rôle ou l’affectation a été ajouté au niveau d’un groupe de ressources.
+    description: ''
+  - name: --role
+    summary: Nom ou ID du rôle.
+    description: ''
+  - name: --scope
+    summary: Portée à laquelle s’applique l’attribution de rôle ou la définition, par exemple/subscriptions/0b1f6471-1bf0-4DDA-AEC3-111122223333,/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup ou/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup/providers/Microsoft.Compute/virtualMachines/myVM.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Continuez à supprimer toutes les affectations sous l’abonnement.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_role_assignment_list
+  name: az role assignment list
+  summary: Répertorier les attributions de rôles.
+  description: Par défaut, seules sont affichées les attributions étendues à un abonnement. Pour afficher les attributions étendues par ressource ou groupe, utilisez `--all`.
+  syntax: >-
+    az role assignment list [--all]
+                            [--assignee]
+                            [--include-classic-administrators {false, true}]
+                            [--include-groups]
+                            [--include-inherited]
+                            [--query-examples]
+                            [--resource-group]
+                            [--role]
+                            [--scope]
+                            [--subscription]
+  optionalParameters:
+  - name: --all
+    summary: Affiche toutes les attributions sous l’abonnement actuel.
+    description: ''
+  - name: --assignee
+    summary: 'Représente un utilisateur, un groupe ou un principal du service. format pris en charge : ID d’objet, nom de connexion de l’utilisateur ou nom de principal du service.'
+    description: ''
+  - name: --include-classic-administrators
+    parameterValueGroup: false, true
+    summary: Répertorier les attributions de rôle par défaut pour les administrateurs classiques des abonnements, également appelés coadministrateurs.
+    description: ''
+  - name: --include-groups
+    summary: Incluez des affectations supplémentaires aux groupes dont l’utilisateur est membre (transitivement).
+    description: ''
+  - name: --include-inherited
+    summary: Inclure les affectations appliquées aux étendues parentes.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Utilisez-le uniquement si le rôle ou l’affectation a été ajouté au niveau d’un groupe de ressources.
+    description: ''
+  - name: --role
+    summary: Nom ou ID du rôle.
+    description: ''
+  - name: --scope
+    summary: Portée à laquelle s’applique l’attribution de rôle ou la définition, par exemple/subscriptions/0b1f6471-1bf0-4DDA-AEC3-111122223333,/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup ou/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup/providers/Microsoft.Compute/virtualMachines/myVM.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_role_assignment_list_changelogs
+  name: az role assignment list-changelogs
+  summary: Répertorier les changelogs pour les attributions de rôles.
+  description: ''
+  syntax: >-
+    az role assignment list-changelogs [--end-time]
+                                       [--start-time]
+                                       [--subscription]
+  optionalParameters:
+  - name: --end-time
+    summary: Heure de fin de la requête au format% Y-% m-% dT% H :%M :% SZ, par exemple 2000-12-31T12:59:59Z. La valeur par défaut est l’heure actuelle.
+    description: ''
+  - name: --start-time
+    summary: Heure de début de la requête au format% Y-% m-% dT% H :%M :% SZ, par exemple 2000-12-31T12:59:59Z. La valeur par défaut est 1 heure avant l’heure actuelle.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+commands:
+- az_role_assignment_create
+- az_role_assignment_delete
+- az_role_assignment_list
+- az_role_assignment_list_changelogs
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/20/2021
+  description: Gérer les attributions de rôles.
+  ms.openlocfilehash: a8b79133cef61727524137e0efb903c9b6cb1f9b
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102850315"
