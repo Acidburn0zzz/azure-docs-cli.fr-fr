@@ -1,0 +1,184 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_dt_model
+name: az dt model
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ DT Model** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les modèles et les définitions DTDL sur une instance représentations numérique.
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_dt_model_create
+  name: az dt model create
+  summary: Charge un ou plusieurs modèles. Quand une erreur se produit, aucun modèle n’est téléchargé.
+  description: --les modèles peuvent être inline JSON ou le chemin d’accès au fichier.
+  syntax: >-
+    az dt model create --dt-name
+                       [--fd]
+                       [--models]
+                       [--resource-group]
+  examples:
+  - summary: Téléchargez en bloc tous les fichiers de modèle. JSON ou. dtdl à partir d’un répertoire cible. Le traitement des modèles est récursif.
+    syntax: az dt model create -n {instance_or_hostname} --from-directory {directory_path}
+  - summary: Charger le modèle JSON en ligne ou à partir du chemin d’accès au fichier.
+    syntax: az dt model create -n {instance_or_hostname} --models {file_path_or_inline_json}
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  optionalParameters:
+  - name: --fd --from-directory
+    summary: Les fichiers de modèle JSON de l’annuaire seront analysés à partir de.
+    description: ''
+  - name: --models
+    summary: JSON du modèle inline ou chemin d’accès du fichier au modèle JSON.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_model_delete
+  name: az dt model delete
+  summary: Supprimer un modèle. Un modèle ne peut être supprimé que s’il n’est pas référencé par d’autres modèles.
+  description: ''
+  syntax: >-
+    az dt model delete --dt-name
+                       --dtmi
+                       [--resource-group]
+  examples:
+  - summary: Supprimer un modèle cible.
+    syntax: az dt model delete -n {instance_or_hostname} --dtmi "dtmi:com:example:Floor;1"
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --dtmi --model-id -m
+    summary: 'ID de modèle Digital représentations. exemple : dtmi : com : example : Room ; 2.'
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_model_list
+  name: az dt model list
+  summary: Répertorier les métadonnées, définitions et dépendances du modèle.
+  description: ''
+  syntax: >-
+    az dt model list --dt-name
+                     [--def {false, true}]
+                     [--dependencies-for]
+                     [--resource-group]
+  examples:
+  - summary: Répertorier les métadonnées de modèle
+    syntax: az dt model list -n {instance_or_hostname}
+  - summary: Répertorier les définitions de modèle
+    syntax: az dt model list -n {instance_or_hostname} --definition
+  - summary: Répertorier les dépendances de modèles préexistants particuliers. Espace séparer les valeurs dtmi.
+    syntax: az dt model list -n {instance_or_hostname} --dependencies-for {model_id0} {model_id1}
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  optionalParameters:
+  - name: --def --definition
+    parameterValueGroup: false, true
+    summary: L’opération récupère la définition du modèle.
+    description: ''
+  - name: --dependencies-for
+    summary: Ensemble de modèles dont les dépendances seront récupérées. En cas d’omission, tous les modèles sont récupérés. Le format est une liste séparée par des espaces blancs.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_model_show
+  name: az dt model show
+  summary: Récupérez un modèle cible ou une définition de modèle.
+  description: ''
+  syntax: >-
+    az dt model show --dt-name
+                     --dtmi
+                     [--def {false, true}]
+                     [--resource-group]
+  examples:
+  - summary: Afficher les métadonnées du modèle
+    syntax: az dt model show -n {instance_or_hostname} --dtmi "dtmi:com:example:Floor;1"
+  - summary: Afficher les métadonnées et la définition du modèle
+    syntax: az dt model show -n {instance_or_hostname} --dtmi "dtmi:com:example:Floor;1" --definition
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --dtmi --model-id -m
+    summary: 'ID de modèle Digital représentations. exemple : dtmi : com : example : Room ; 2.'
+    description: ''
+  optionalParameters:
+  - name: --def --definition
+    parameterValueGroup: false, true
+    summary: L’opération récupère la définition du modèle.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_model_update
+  name: az dt model update
+  summary: Met à jour les métadonnées d’un modèle. Actuellement, un modèle ne peut être mesure.
+  description: ''
+  syntax: >-
+    az dt model update --dt-name
+                       --dtmi
+                       [--decommission {false, true}]
+                       [--resource-group]
+  examples:
+  - summary: Decommision un modèle cible
+    syntax: az dt model update -n {instance_or_hostname} --dtmi "dtmi:com:example:Floor;1" --decommission
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --dtmi --model-id -m
+    summary: 'ID de modèle Digital représentations. exemple : dtmi : com : example : Room ; 2.'
+    description: ''
+  optionalParameters:
+  - name: --decommission
+    parameterValueGroup: false, true
+    summary: Indique l’intention de désaffecter un modèle cible.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_azure-iot_az_dt_model_create
+- ext_azure-iot_az_dt_model_delete
+- ext_azure-iot_az_dt_model_list
+- ext_azure-iot_az_dt_model_show
+- ext_azure-iot_az_dt_model_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les modèles et les définitions DTDL sur une instance représentations numérique.
+  ms.openlocfilehash: 910a93cff9029f685c0e42c84d17d7f09c2fb40d
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102823481"
