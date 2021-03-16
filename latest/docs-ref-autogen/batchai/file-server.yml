@@ -1,0 +1,229 @@
+### YamlMime:AzureCLIGroup
+uid: az_batchai_file_server
+name: az batchai file-server
+summary: Commandes pour gérer les serveurs de fichiers.
+description: ''
+directCommands:
+- uid: az_batchai_file_server_create
+  name: az batchai file-server create
+  summary: Créez un serveur de fichiers.
+  description: ''
+  syntax: >-
+    az batchai file-server create --name
+                                  --resource-group
+                                  --workspace
+                                  [--caching-type {none, readonly, readwrite}]
+                                  [--config-file]
+                                  [--disk-count]
+                                  [--disk-size]
+                                  [--generate-ssh-keys]
+                                  [--no-wait]
+                                  [--password]
+                                  [--ssh-key]
+                                  [--storage-sku {Premium_LRS, Standard_LRS}]
+                                  [--subnet]
+                                  [--subscription]
+                                  [--user-name]
+                                  [--vm-size]
+  examples:
+  - summary: Créez un serveur de fichiers NFS à l’aide d’un fichier de configuration.
+    syntax: az batchai file-server create -g MyResourceGroup -w MyWorkspace -n MyNFS -f nfs.json
+  - summary: Créez un NFS en fournissant manuellement des paramètres.
+    syntax: >-
+      az batchai file-server create -g MyResourceGroup -w MyWorkspace -n MyNFS \
+          -s Standard_D14 --disk-count 4 --disk-size 512 \
+          --storage-sku Premium_LRS --caching-type readonly \
+          -u $USER -k ~/.ssh/id_rsa.pub
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du serveur de fichiers.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer une valeur par défaut en configurant l’espace de travail par défaut à l’aide de `az batchai workspace set-default` .
+    description: ''
+  - isRequired: true
+    name: --workspace -w
+    summary: Nom ou ID ARM de l’espace de travail. Vous pouvez configurer l’espace de travail par défaut à l’aide de `az batchai workspace set-default` .
+    description: ''
+  optionalParameters:
+  - name: --caching-type
+    parameterValueGroup: none, readonly, readwrite
+    summary: Type de mise en cache pour les disques Premium. S’il n’est pas fourni via la ligne de commande ou dans le fichier de configuration, aucune mise en cache n’est utilisée.
+    description: ''
+  - name: --config-file -f
+    summary: Chemin d’accès à un fichier JSON contenant des paramètres de création de serveur de fichiers (représentation JSON de azure.mgmt.batChai. Models. FileServerCreateParameters). Notez que les paramètres fournis via la ligne de commande remplacent les paramètres spécifiés dans le fichier de configuration.
+    description: ''
+  - name: --disk-count
+    summary: Nombre de disques.
+    description: ''
+  - name: --disk-size
+    summary: Taille du disque en Go.
+    description: ''
+  - name: --generate-ssh-keys
+    summary: Générez des fichiers de clé publique et privée SSH dans le répertoire ~/.ssh (s’ils sont manquants).
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --password -p
+    summary: Mot de passe facultatif de l’utilisateur administrateur créé sur le nœud NFS.
+    description: ''
+  - name: --ssh-key -k
+    summary: Valeur ou chemin d’accès de la clé publique SSH facultatif. Si omis et aucun mot de passe n’est spécifié, la clé SSH par défaut (~/.ssh/id_rsa. pub) sera utilisée.
+    description: ''
+  - name: --storage-sku
+    parameterValueGroup: Premium_LRS, Standard_LRS
+    summary: Référence du compte de stockage pour la persistance de la machine virtuelle.
+    description: ''
+  - name: --subnet
+    summary: ID ARM d’un sous-réseau de réseau virtuel dans lequel placer le serveur de fichiers. S’il n’est pas fourni via la ligne de commande ou dans le fichier de configuration, Batch AI crée un réseau virtuel et un sous-réseau sous votre abonnement.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --user-name -u
+    summary: Nom du compte d’utilisateur administrateur à créer sur le nœud NFS. Si la valeur n’est pas fournie et qu’aucune configuration utilisateur n’est fournie dans le fichier de configuration, le nom de l’utilisateur actuel sera utilisé.
+    description: ''
+  - name: --vm-size -s
+    summary: Taille de la machine virtuelle.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_file_server_delete
+  name: az batchai file-server delete
+  summary: Supprimer un serveur de fichiers.
+  description: ''
+  syntax: >-
+    az batchai file-server delete [--ids]
+                                  [--name]
+                                  [--no-wait]
+                                  [--resource-group]
+                                  [--subscription]
+                                  [--workspace]
+                                  [--yes]
+  examples:
+  - summary: Supprimez le serveur de fichiers et attendez la fin de la suppression.
+    syntax: az batchai file-server delete -g MyResourceGroup -w MyWorkspace -n MyNFS
+  - summary: Supprimer le serveur de fichiers sans demander de confirmation (pour les scénarios non interactifs).
+    syntax: az batchai file-server delete -g MyResourceGroup -w MyWorkspace -n MyNFS -y
+  - summary: Demande la suppression du serveur de fichiers sans attendre la fin de la suppression.
+    syntax: az batchai file-server delete -g MyResourceGroup -w MyWorkspace -n MyNFS --no-wait
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du serveur de fichiers.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_file_server_list
+  name: az batchai file-server list
+  summary: Répertorier les serveurs de fichiers.
+  description: ''
+  syntax: >-
+    az batchai file-server list --resource-group
+                                --workspace
+                                [--query-examples]
+                                [--subscription]
+  examples:
+  - summary: Répertorie tous les serveurs de fichiers dans l’espace de travail spécifié.
+    syntax: az batchai file-server list -g MyResourceGroup -w MyWorkspace -o table
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_file_server_show
+  name: az batchai file-server show
+  summary: Affichez des informations sur un serveur de fichiers.
+  description: ''
+  syntax: >-
+    az batchai file-server show [--ids]
+                                [--name]
+                                [--query-examples]
+                                [--resource-group]
+                                [--subscription]
+                                [--workspace]
+  examples:
+  - summary: Affichez des informations complètes sur un serveur de fichiers.
+    syntax: az batchai file-server show -g MyResourceGroup -w MyWorkspace -n MyNFS
+  - summary: Affiche le résumé du serveur de fichiers.
+    syntax: az batchai file-server show -g MyResourceGroup -w MyWorkspace -n MyNFS -o table
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du serveur de fichiers.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+commands:
+- az_batchai_file_server_create
+- az_batchai_file_server_delete
+- az_batchai_file_server_list
+- az_batchai_file_server_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/19/2019
+  description: Commandes pour gérer les serveurs de fichiers.
+  ms.openlocfilehash: 442af113295c03a982a2daa5dd4049721c6d8a10
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102819908"
