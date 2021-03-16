@@ -1,0 +1,146 @@
+### YamlMime:AzureCLIGroup
+uid: ext_codespaces_az_codespace_plan
+name: az codespace plan
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **codespaces** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ codeSpace plan** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les plans codeSpace.
+description: ''
+directCommands:
+- uid: ext_codespaces_az_codespace_plan_create
+  name: az codespace plan create
+  summary: Créez un plan codeSpace.
+  description: ''
+  syntax: >-
+    az codespace plan create --name
+                             --resource-group
+                             [--default-instance-type]
+                             [--default-suspend-after {120, 30, 5, 60}]
+                             [--location]
+                             [--subnet]
+                             [--tags]
+  examples:
+  - summary: Créer un plan dans la même région que le groupe de ressources
+    syntax: az codespace plan create -g my-rg -n my-plan
+  - summary: Créer un plan dans une région spécifique
+    syntax: az codespace plan create -g my-rg -n my-plan -l westus2
+  - summary: Créer un plan avec des étiquettes
+    syntax: az codespace plan create -g my-rg -n my-plan --tags tagname=tagvalue
+  - summary: Créer un plan avec un type d’instance par défaut
+    syntax: az codespace plan create -g my-rg -n my-plan --default-instance-type premiumLinux
+  - summary: Créer un plan avec une suspension par défaut après
+    syntax: az codespace plan create -g my-rg -n my-plan --default-suspend-after 120
+  - summary: Créer un plan associé à un sous-réseau
+    syntax: az codespace plan create -g my-rg -n my-plan --subnet /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/default
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du plan codeSpace.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --default-instance-type
+    summary: Type d’instance par défaut pour Codespaces dans ce plan.
+    description: ''
+  - name: --default-suspend-after
+    parameterValueGroup: 120, 30, 5, 60
+    summary: Les minutes par défaut Codespaces dans ce plan doivent être suspendues après.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --subnet
+    summary: ID de ressource d’un sous-réseau existant. S’il est spécifié, tous les Codespaces de ce plan seront créés dans ce sous-réseau. Le sous-réseau doit être dans la même région que le plan.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_codespaces_az_codespace_plan_delete
+  name: az codespace plan delete
+  summary: Supprimer un plan codeSpace.
+  description: ''
+  syntax: >-
+    az codespace plan delete --name
+                             --resource-group
+                             [--yes]
+  examples:
+  - summary: Supprimer un plan
+    syntax: az codespace plan delete -g my-rg -n my-plan
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du plan codeSpace.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_codespaces_az_codespace_plan_list
+  name: az codespace plan list
+  summary: Répertoriez les plans codeSpace.
+  description: ''
+  syntax: az codespace plan list [--resource-group]
+  examples:
+  - summary: Liste des plans
+    syntax: az codespace plan list
+  - summary: Répertorier les plans dans un groupe de ressources donné
+    syntax: az codespace plan list -g my-rg
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_codespaces_az_codespace_plan_show
+  name: az codespace plan show
+  summary: Affichez les détails d’un plan codeSpace.
+  description: ''
+  syntax: >-
+    az codespace plan show --name
+                           --resource-group
+  examples:
+  - summary: Afficher les détails d’un plan
+    syntax: az codespace plan show -g my-rg -n my-plan
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du plan codeSpace.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_codespaces_az_codespace_plan_create
+- ext_codespaces_az_codespace_plan_delete
+- ext_codespaces_az_codespace_plan_list
+- ext_codespaces_az_codespace_plan_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les plans codeSpace.
+  ms.openlocfilehash: 23fe24dacd0688ea571182c085183b19623715b4
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102838513"
