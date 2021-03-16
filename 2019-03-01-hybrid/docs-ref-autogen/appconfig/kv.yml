@@ -1,0 +1,749 @@
+### YamlMime:AzureCLIGroup
+uid: az_appconfig_kv
+name: az appconfig kv
+summary: Gérer les valeurs de clé stockées dans une configuration d’application.
+description: ''
+directCommands:
+- uid: az_appconfig_kv_delete
+  name: az appconfig kv delete
+  summary: Supprimez Key-values.
+  description: ''
+  syntax: >-
+    az appconfig kv delete --key
+                           [--auth-mode {key, login}]
+                           [--connection-string]
+                           [--endpoint]
+                           [--label]
+                           [--name]
+                           [--subscription]
+                           [--yes]
+  examples:
+  - summary: Supprimer une clé à l’aide du nom de la configuration d’application sans confirmation.
+    syntax: az appconfig kv delete -n MyAppConfiguration --key color --label MyLabel --yes
+  - summary: Supprimer une clé à l’aide de la chaîne de connexion.
+    syntax: az appconfig kv delete --connection-string Endpoint=https://contoso.azconfig.io;Id=xxx;Secret=xxx --key color --label MyLabel
+  - summary: Supprimez une clé à l’aide de vos informations d’identification «AZ login Credentials et configuration de l’application.
+    syntax: az appconfig kv delete --endpoint https://myappconfiguration.azconfig.io --key color --auth-mode login --yes
+  requiredParameters:
+  - isRequired: true
+    name: --key
+    summary: Prennent en charge les filtres de signe étoile, par exemple \* signifie que toutes les clés et ABC \* signifient les clés avec ABC comme préfixe.
+    description: ''
+  optionalParameters:
+  - name: --auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Ce paramètre peut être utilisé pour indiquer comment une opération de données doit être autorisée. Si le mode d’authentification est « clé », indiquez une chaîne de connexion ou un nom de magasin et vos clés d’accès de compte seront récupérées pour l’autorisation. Si le mode d’authentification est « connexion », indiquez le nom du point de terminaison ou du magasin, et vos informations d’identification « AZ login » seront utilisées pour l’autorisation. Vous pouvez configurer le mode d’authentification par défaut à l’aide de `az configure --defaults appconfig_auth_mode=<auth_mode>` . Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac">https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac</a>.
+    description: ''
+  - name: --connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison de la configuration de l’application. Peut être trouvé à l’aide de’AZ appconfig Credential List'. Les utilisateurs peuvent le prédéfinir à l’aide de `az configure --defaults appconfig_connection_string=<connection_string>` ou de la variable d’environnement portant le nom AZURE_APPCONFIG_CONNECTION_STRING.
+    description: ''
+  - name: --endpoint
+    summary: Si le mode d’authentification est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application. Le point de terminaison peut être récupéré à l’aide de la commande « AZ appconfig Show ». Vous pouvez configurer le point de terminaison par défaut à l’aide de `az configure --defaults appconfig_endpoint=<endpoint>` .
+    description: ''
+  - name: --label
+    summary: Si aucune étiquette n’est spécifiée, supprimer l’entrée avec une étiquette de valeur null. Prendre en charge les filtres de signe étoile, par exemple \* signifie que toutes les étiquettes et ABC \* signifient des étiquettes avec ABC comme préfixe.
+    description: ''
+  - name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_kv_export
+  name: az appconfig kv export
+  summary: Exporter les configurations vers un autre emplacement à partir de la configuration de votre application.
+  description: ''
+  syntax: >-
+    az appconfig kv export --destination {appconfig, appservice, file}
+                           [--appservice-account]
+                           [--auth-mode {key, login}]
+                           [--connection-string]
+                           [--dest-auth-mode {key, login}]
+                           [--dest-connection-string]
+                           [--dest-endpoint]
+                           [--dest-label]
+                           [--dest-name]
+                           [--endpoint]
+                           [--format {json, properties, yaml}]
+                           [--key]
+                           [--label]
+                           [--name]
+                           [--naming-convention {camel, hyphen, pascal, underscore}]
+                           [--path]
+                           [--prefix]
+                           [--preserve-labels {false, true}]
+                           [--resolve-keyvault {false, true}]
+                           [--separator]
+                           [--skip-features {false, true}]
+                           [--skip-keyvault {false, true}]
+                           [--subscription]
+                           [--yes]
+  examples:
+  - summary: Exportez toutes les clés et indicateurs de fonctionnalités avec l’étiquette test dans un fichier JSON.
+    syntax: az appconfig kv export -n MyAppConfiguration --label test -d file --path D:/abc.json --format json
+  - summary: Exportez toutes les clés avec une étiquette null dans une application App Service.
+    syntax: az appconfig kv export -n MyAppConfiguration -d appservice --appservice-account MyAppService
+  - summary: Exportez toutes les clés avec le test d’étiquette en excluant les indicateurs de fonctionnalité dans un fichier JSON.
+    syntax: az appconfig kv export -n MyAppConfiguration --label test -d file --path D:/abc.json --format json --skip-features
+  - summary: Exporter toutes les clés et tous les indicateurs de fonctionnalités avec toutes les étiquettes vers une autre configuration d’application.
+    syntax: az appconfig kv export -n MyAppConfiguration -d appconfig --dest-name AnotherAppConfiguration --key * --label * --preserve-labels
+  - summary: Exportez toutes les clés et tous les indicateurs de fonctionnalités avec toutes les étiquettes vers une autre configuration d’application et remplacez les étiquettes de destination.
+    syntax: az appconfig kv export -n MyAppConfiguration -d appconfig --dest-name AnotherAppConfiguration --key * --label * --dest-label ExportedKeys
+  - summary: Exportez toutes les clés vers une autre configuration d’application à l’aide de vos informations d’identification AZ login.
+    syntax: az appconfig kv export -d appconfig --endpoint https://myappconfiguration.azconfig.io --auth-mode login --dest-endpoint https://anotherappconfiguration.azconfig.io --dest-auth-mode login --key * --label * --preserve-labels
+  requiredParameters:
+  - isRequired: true
+    name: --destination -d
+    parameterValueGroup: appconfig, appservice, file
+    summary: Destination de l’exportation. Notez que l’exportation des indicateurs de fonctionnalités vers Appservice n’est pas prise en charge.
+    description: ''
+  optionalParameters:
+  - name: --appservice-account
+    summary: ID ARM pour AppService ou nom du AppService, en supposant qu’il se trouve dans le même abonnement et le même groupe de ressources que la configuration de l’application. Requis pour les arguments AppService.
+    description: ''
+  - name: --auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Ce paramètre peut être utilisé pour indiquer comment une opération de données doit être autorisée. Si le mode d’authentification est « clé », indiquez une chaîne de connexion ou un nom de magasin et vos clés d’accès de compte seront récupérées pour l’autorisation. Si le mode d’authentification est « connexion », indiquez le nom du point de terminaison ou du magasin, et vos informations d’identification « AZ login » seront utilisées pour l’autorisation. Vous pouvez configurer le mode d’authentification par défaut à l’aide de `az configure --defaults appconfig_auth_mode=<auth_mode>` . Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac">https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac</a>.
+    description: ''
+  - name: --connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison de la configuration de l’application. Peut être trouvé à l’aide de’AZ appconfig Credential List'. Les utilisateurs peuvent le prédéfinir à l’aide de `az configure --defaults appconfig_connection_string=<connection_string>` ou de la variable d’environnement portant le nom AZURE_APPCONFIG_CONNECTION_STRING.
+    description: ''
+  - name: --dest-auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Mode d’authentification pour la connexion à la configuration de l’application de destination. Pour plus d’informations, consultez l’argument « --auth-mode ».
+    description: ''
+  - name: --dest-connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison du magasin de destination.
+    description: ''
+  - name: --dest-endpoint
+    summary: Si--dest-auth-mode est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application de destination.
+    description: ''
+  - name: --dest-label
+    summary: L’identificateur KVs exporté sera étiqueté avec cette étiquette de destination. Si vous ne spécifiez ni--dest-label ni--Preserve-labels, l’étiquette null est assignée.
+    description: ''
+  - name: --dest-name
+    summary: Nom de la configuration de l’application de destination.
+    description: ''
+  - name: --endpoint
+    summary: Si le mode d’authentification est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application. Le point de terminaison peut être récupéré à l’aide de la commande « AZ appconfig Show ». Vous pouvez configurer le point de terminaison par défaut à l’aide de `az configure --defaults appconfig_endpoint=<endpoint>` .
+    description: ''
+  - name: --format
+    parameterValueGroup: json, properties, yaml
+    summary: Format de fichier exportant vers. Requis pour les arguments de fichier. Actuellement, les indicateurs de fonctionnalité ne sont pas pris en charge dans le format des propriétés.
+    description: ''
+  - name: --key
+    summary: Si aucune clé n’est spécifiée, retourne toutes les clés par défaut. Prendre en charge les filtres de signature en étoile, par exemple ABC \* signifie les clés avec ABC comme préfixe. Filtrage des clés non applicable pour les indicateurs de fonctionnalité. Par défaut, tous les indicateurs de fonctionnalités avec l’étiquette spécifiée sont exportés.
+    description: ''
+  - name: --label
+    summary: Seuls les clés et les indicateurs de fonctionnalités avec cette étiquette seront exportés. Si aucune étiquette n’est spécifiée, exportez les clés et les indicateurs de fonctionnalités avec une étiquette NULL par défaut. Dans le cas d’une destination d’exportation appconfig, nous prenons en charge les filtres Star Sign As, par exemple, \* toutes les étiquettes et ABC \* signifient les étiquettes avec ABC comme préfixe. Les filtres d’étiquette ne sont pas pris en charge lors de l’exportation vers un fichier ou un Appservice.
+    description: ''
+  - name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - name: --naming-convention
+    defaultValue: pascal
+    parameterValueGroup: camel, hyphen, pascal, underscore
+    summary: 'Convention d’affectation de noms à utiliser pour la section « gestion des fonctionnalités » du fichier. Exemple : Pascal = FeatureManagement, mixte = featureManagement, trait de soulignement = feature_management, trait d’Union = gestion des fonctionnalités.'
+    description: ''
+  - name: --path
+    summary: Chemin du fichier de configuration local. Requis pour les arguments de fichier.
+    description: ''
+  - name: --prefix
+    summary: Préfixe à découper des clés. Le préfixe sera ignoré pour les indicateurs de fonctionnalité.
+    description: ''
+  - name: --preserve-labels
+    parameterValueGroup: false, true
+    summary: Indicateur de conservation des étiquettes à partir de la source AppConfig. Cet argument ne doit pas être spécifié avec--dest-label.
+    description: ''
+  - name: --resolve-keyvault
+    parameterValueGroup: false, true
+    summary: Résolvez le contenu de la référence du coffre de clés.
+    description: ''
+  - name: --separator
+    summary: "Délimiteur pour l’aplatissement des paires clé-valeur en fichier JSON ou YAML. Requis pour l’exportation d’une structure hiérarchique. Le séparateur sera ignoré pour les fichiers de propriétés et les indicateurs de fonctionnalité. Valeurs prises en charge : '. ', ', ', '; ', '-', ' _ ', ' _ _ ', '/', ' : '."
+    description: ''
+  - name: --skip-features
+    parameterValueGroup: false, true
+    summary: Exportez les éléments à l’exclusion de tous les indicateurs de fonctionnalité. Par défaut, toutes les fonctionnalités avec l’étiquette spécifiée sont exportées vers le fichier ou appconfig. Non applicable pour Appservice.
+    description: ''
+  - name: --skip-keyvault
+    parameterValueGroup: false, true
+    summary: Exporter les éléments à l’exclusion de toutes les références de coffre de clés. Par défaut, toutes les références de coffre de clés avec l’étiquette spécifiée seront exportées.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander la version préliminaire.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_kv_import
+  name: az appconfig kv import
+  summary: Importez des configurations dans la configuration de votre application à partir d’un autre emplacement.
+  description: ''
+  syntax: >-
+    az appconfig kv import --source {appconfig, appservice, file}
+                           [--appservice-account]
+                           [--auth-mode {key, login}]
+                           [--connection-string]
+                           [--content-type]
+                           [--depth]
+                           [--endpoint]
+                           [--format {json, properties, yaml}]
+                           [--label]
+                           [--name]
+                           [--path]
+                           [--prefix]
+                           [--preserve-labels {false, true}]
+                           [--separator]
+                           [--skip-features {false, true}]
+                           [--src-auth-mode {key, login}]
+                           [--src-connection-string]
+                           [--src-endpoint]
+                           [--src-key]
+                           [--src-label]
+                           [--src-name]
+                           [--subscription]
+                           [--yes]
+  examples:
+  - summary: Importez toutes les clés et indicateurs de fonctionnalités à partir d’un fichier et appliquez l’étiquette de test.
+    syntax: az appconfig kv import -n MyAppConfiguration --label test -s file --path D:/abc.json --format json
+  - summary: Importez toutes les clés et indicateurs de fonctionnalités avec une étiquette null et appliquez une nouvelle étiquette à partir d’une configuration d’application.
+    syntax: az appconfig kv import -n MyAppConfiguration -s appconfig --src-name AnotherAppConfiguration --label ImportedKeys
+  - summary: Importez toutes les clés et appliquez une étiquette null à partir d’une application App Service.
+    syntax: az appconfig kv import -n MyAppConfiguration -s appservice --appservice-account MyAppService
+  - summary: Importez toutes les clés avec l’étiquette test et appliquez l’étiquette test2 à l’exception des indicateurs de fonctionnalités d’une configuration d’application.
+    syntax: az appconfig kv import -n MyAppConfiguration -s appconfig --src-label test --label test2 --src-name AnotherAppConfiguration --skip-features
+  - summary: Importez toutes les clés et tous les indicateurs de fonctionnalités avec toutes les étiquettes dans une autre configuration d’application.
+    syntax: az appconfig kv import -n MyAppConfiguration -s appconfig --src-name AnotherAppConfiguration --src-key * --src-label * --preserve-labels
+  - summary: Importez toutes les clés et indicateurs de fonctionnalités à partir d’un fichier JSON et appliquez le type de contenu JSON.
+    syntax: az appconfig kv import -n MyAppConfiguration -s file --path D:/abc.json --format json --separator . --content-type application/json
+  - summary: Importez toutes les clés dans une autre configuration d’application à l’aide de vos informations d’identification AZ login.
+    syntax: az appconfig kv import -s appconfig --endpoint https://myappconfiguration.azconfig.io --auth-mode login --src-endpoint https://anotherappconfiguration.azconfig.io --src-auth-mode login --src-key * --src-label * --preserve-labels
+  requiredParameters:
+  - isRequired: true
+    name: --source -s
+    parameterValueGroup: appconfig, appservice, file
+    summary: Source de l’importation. Notez que l’importation des indicateurs de fonctionnalité à partir de Appservice n’est pas prise en charge.
+    description: ''
+  optionalParameters:
+  - name: --appservice-account
+    summary: ID ARM pour AppService ou nom du AppService, en supposant qu’il se trouve dans le même abonnement et le même groupe de ressources que la configuration de l’application. Requis pour les arguments AppService.
+    description: ''
+  - name: --auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Ce paramètre peut être utilisé pour indiquer comment une opération de données doit être autorisée. Si le mode d’authentification est « clé », indiquez une chaîne de connexion ou un nom de magasin et vos clés d’accès de compte seront récupérées pour l’autorisation. Si le mode d’authentification est « connexion », indiquez le nom du point de terminaison ou du magasin, et vos informations d’identification « AZ login » seront utilisées pour l’autorisation. Vous pouvez configurer le mode d’authentification par défaut à l’aide de `az configure --defaults appconfig_auth_mode=<auth_mode>` . Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac">https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac</a>.
+    description: ''
+  - name: --connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison de la configuration de l’application. Peut être trouvé à l’aide de’AZ appconfig Credential List'. Les utilisateurs peuvent le prédéfinir à l’aide de `az configure --defaults appconfig_connection_string=<connection_string>` ou de la variable d’environnement portant le nom AZURE_APPCONFIG_CONNECTION_STRING.
+    description: ''
+  - name: --content-type
+    summary: Type de contenu de tous les éléments importés.
+    description: ''
+  - name: --depth
+    summary: Profondeur pour la mise à plat du fichier JSON ou YAML en paires clé-valeur. Aplatir au niveau le plus élevé par défaut Si--separator est fourni. Non applicable pour les fichiers de propriétés ou les indicateurs de fonctionnalité.
+    description: ''
+  - name: --endpoint
+    summary: Si le mode d’authentification est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application. Le point de terminaison peut être récupéré à l’aide de la commande « AZ appconfig Show ». Vous pouvez configurer le point de terminaison par défaut à l’aide de `az configure --defaults appconfig_endpoint=<endpoint>` .
+    description: ''
+  - name: --format
+    parameterValueGroup: json, properties, yaml
+    summary: Format de fichier importé. Requis pour les arguments de fichier. Actuellement, les indicateurs de fonctionnalité ne sont pas pris en charge dans le format des propriétés.
+    description: ''
+  - name: --label
+    summary: Les indicateurs KVs et Feature importés seront affectés avec cette étiquette. Si aucune étiquette n’est spécifiée, assigne une étiquette null.
+    description: ''
+  - name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - name: --path
+    summary: Chemin du fichier de configuration local. Requis pour les arguments de fichier.
+    description: ''
+  - name: --prefix
+    summary: Ce préfixe est ajouté au début des clés importées. Le préfixe sera ignoré pour les indicateurs de fonctionnalité.
+    description: ''
+  - name: --preserve-labels
+    parameterValueGroup: false, true
+    summary: Indicateur de conservation des étiquettes à partir de la source AppConfig. Cet argument ne doit pas être spécifié avec--label.
+    description: ''
+  - name: --separator
+    summary: "Délimiteur pour l’aplatissement du fichier JSON ou YAML en paires clé-valeur. Le séparateur sera ignoré pour les fichiers de propriétés et les indicateurs de fonctionnalité. Valeurs prises en charge : '. ', ', ', '; ', '-', ' _ ', ' _ _ ', '/', ' : '."
+    description: ''
+  - name: --skip-features
+    parameterValueGroup: false, true
+    summary: Importez uniquement les valeurs de clés et excluez tous les indicateurs de fonctionnalité. Par défaut, tous les indicateurs de fonctionnalités seront importés à partir du fichier ou appconfig. Non applicable pour Appservice.
+    description: ''
+  - name: --src-auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Mode d’authentification pour la connexion à la configuration de l’application source. Pour plus d’informations, consultez l’argument « --auth-mode ».
+    description: ''
+  - name: --src-connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison du magasin source.
+    description: ''
+  - name: --src-endpoint
+    summary: Si--SRC-auth-mode est « login », indiquez l’URL du point de terminaison de la configuration de l’application source.
+    description: ''
+  - name: --src-key
+    summary: Si aucune clé n’est spécifiée, toutes les clés sont importées par défaut. Prendre en charge les filtres de signature en étoile, par exemple ABC \* signifie les clés avec ABC comme préfixe. Filtrage des clés non applicable pour les indicateurs de fonctionnalité. Par défaut, tous les indicateurs de fonctionnalités avec l’étiquette spécifiée seront importés.
+    description: ''
+  - name: --src-label
+    summary: Seules les clés avec cette étiquette dans la source AppConfig seront importées. Si aucune valeur n’est spécifiée, importez les clés avec une étiquette NULL par défaut. Prendre en charge les filtres de signature en étoile, par exemple, \* toutes les étiquettes, ABC \* signifie des étiquettes avec ABC comme préfixe.
+    description: ''
+  - name: --src-name
+    summary: Nom de la configuration de l’application source.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander la version préliminaire.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_kv_list
+  name: az appconfig kv list
+  summary: Liste des valeurs de clés.
+  description: ''
+  syntax: >-
+    az appconfig kv list [--all]
+                         [--auth-mode {key, login}]
+                         [--connection-string]
+                         [--datetime]
+                         [--endpoint]
+                         [--fields {content_type, etag, key, label, last_modified, locked, tags, value}]
+                         [--key]
+                         [--label]
+                         [--name]
+                         [--query-examples]
+                         [--resolve-keyvault {false, true}]
+                         [--subscription]
+                         [--top]
+  examples:
+  - summary: Répertorie toutes les valeurs de clé avec une étiquette null.
+    syntax: az appconfig kv list -n MyAppConfiguration --label \0
+  - summary: Répertorie une clé spécifique pour toute étiquette commençant par v1. utilisation d’une chaîne de connexion.
+    syntax: az appconfig kv list --key color --connection-string Endpoint=https://contoso.azconfig.io;Id=xxx;Secret=xxx --label v1.*
+  - summary: Répertorie toutes les clés avec des étiquettes et une clé, une valeur et des balises uniquement pour les requêtes.
+    syntax: az appconfig kv list --connection-string Endpoint=https://contoso.azconfig.io;Id=xxx;Secret=xxx --fields key value tags --datetime "2019-05-01T11:24:12Z"
+  - summary: Répertoriez le contenu de la référence de coffre de clés avec le préfixe de clé’KVRef_ 'et sélectionnez uniquement la clé et la valeur.
+    syntax: az appconfig kv list -n MyAppConfiguration --key "KVRef_*" --resolve-keyvault --query "[*].{key:key, value:value}"
+  - summary: Répertorier les valeurs de clé avec plusieurs étiquettes.
+    syntax: az appconfig kv list --label test,prod,\0 -n MyAppConfiguration
+  - summary: Répertoriez toutes les valeurs de clé avec toutes les étiquettes à l’aide de vos informations d’identification AZ login.
+    syntax: az appconfig kv list --endpoint https://myappconfiguration.azconfig.io --auth-mode login
+  optionalParameters:
+  - name: --all
+    summary: Répertorie tous les éléments.
+    description: ''
+  - name: --auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Ce paramètre peut être utilisé pour indiquer comment une opération de données doit être autorisée. Si le mode d’authentification est « clé », indiquez une chaîne de connexion ou un nom de magasin et vos clés d’accès de compte seront récupérées pour l’autorisation. Si le mode d’authentification est « connexion », indiquez le nom du point de terminaison ou du magasin, et vos informations d’identification « AZ login » seront utilisées pour l’autorisation. Vous pouvez configurer le mode d’authentification par défaut à l’aide de `az configure --defaults appconfig_auth_mode=<auth_mode>` . Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac">https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac</a>.
+    description: ''
+  - name: --connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison de la configuration de l’application. Peut être trouvé à l’aide de’AZ appconfig Credential List'. Les utilisateurs peuvent le prédéfinir à l’aide de `az configure --defaults appconfig_connection_string=<connection_string>` ou de la variable d’environnement portant le nom AZURE_APPCONFIG_CONNECTION_STRING.
+    description: ''
+  - name: --datetime
+    summary: 'Format : « YYYY-MM-DDThh : mm : ssZ ». Si aucun fuseau horaire n’est spécifié, utilisez l’heure UTC par défaut.'
+    description: ''
+  - name: --endpoint
+    summary: Si le mode d’authentification est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application. Le point de terminaison peut être récupéré à l’aide de la commande « AZ appconfig Show ». Vous pouvez configurer le point de terminaison par défaut à l’aide de `az configure --defaults appconfig_endpoint=<endpoint>` .
+    description: ''
+  - name: --fields
+    parameterValueGroup: content_type, etag, key, label, last_modified, locked, tags, value
+    summary: Champs de sortie personnalisés séparés par des espaces.
+    description: ''
+  - name: --key
+    summary: Si aucune clé n’est spécifiée, retourne toutes les clés par défaut. Prendre en charge les filtres de signature en étoile, par exemple ABC \* signifie les clés avec ABC comme préfixe.
+    description: ''
+  - name: --label
+    summary: Si aucune étiquette n’est spécifiée, répertorie toutes les étiquettes. Prendre en charge les filtres de signature en étoile, par exemple ABC \* signifie des étiquettes avec ABC comme préfixe. Utilisez « 0 » pour une étiquette null.
+    description: ''
+  - name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resolve-keyvault
+    parameterValueGroup: false, true
+    summary: Résolvez le contenu de la référence du coffre de clés. Cet argument ne doit pas être spécifié avec les champs--. Utilisez plutôt--Query pour une requête personnalisée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --top -t
+    summary: Nombre maximal d’éléments à retourner. Cette valeur doit être un entier positif. La valeur par défaut est 100.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_kv_lock
+  name: az appconfig kv lock
+  summary: Verrouiller une valeur de clé pour interdire les opérations d’écriture.
+  description: ''
+  syntax: >-
+    az appconfig kv lock --key
+                         [--auth-mode {key, login}]
+                         [--connection-string]
+                         [--endpoint]
+                         [--label]
+                         [--name]
+                         [--subscription]
+                         [--yes]
+  examples:
+  - summary: Verrouille une clé-valeur à l’aide du nom de configuration de l’application.
+    syntax: az appconfig kv lock -n MyAppConfiguration --key color --label test
+  - summary: Forcer le verrouillage d’une clé-valeur à l’aide de la chaîne de connexion.
+    syntax: az appconfig kv lock --connection-string Endpoint=https://contoso.azconfig.io;Id=xxx;Secret=xxx --key color --label test --yes
+  requiredParameters:
+  - isRequired: true
+    name: --key
+    summary: Clé à verrouiller.
+    description: ''
+  optionalParameters:
+  - name: --auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Ce paramètre peut être utilisé pour indiquer comment une opération de données doit être autorisée. Si le mode d’authentification est « clé », indiquez une chaîne de connexion ou un nom de magasin et vos clés d’accès de compte seront récupérées pour l’autorisation. Si le mode d’authentification est « connexion », indiquez le nom du point de terminaison ou du magasin, et vos informations d’identification « AZ login » seront utilisées pour l’autorisation. Vous pouvez configurer le mode d’authentification par défaut à l’aide de `az configure --defaults appconfig_auth_mode=<auth_mode>` . Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac">https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac</a>.
+    description: ''
+  - name: --connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison de la configuration de l’application. Peut être trouvé à l’aide de’AZ appconfig Credential List'. Les utilisateurs peuvent le prédéfinir à l’aide de `az configure --defaults appconfig_connection_string=<connection_string>` ou de la variable d’environnement portant le nom AZURE_APPCONFIG_CONNECTION_STRING.
+    description: ''
+  - name: --endpoint
+    summary: Si le mode d’authentification est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application. Le point de terminaison peut être récupéré à l’aide de la commande « AZ appconfig Show ». Vous pouvez configurer le point de terminaison par défaut à l’aide de `az configure --defaults appconfig_endpoint=<endpoint>` .
+    description: ''
+  - name: --label
+    summary: Si aucune étiquette n’est spécifiée, verrouillage de l’entrée avec une étiquette de valeur null. Le filtrage n'est pas pris en charge.
+    description: ''
+  - name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_kv_restore
+  name: az appconfig kv restore
+  summary: Restaurez les valeurs de clé.
+  description: ''
+  syntax: >-
+    az appconfig kv restore --datetime
+                            [--auth-mode {key, login}]
+                            [--connection-string]
+                            [--endpoint]
+                            [--key]
+                            [--label]
+                            [--name]
+                            [--subscription]
+                            [--yes]
+  examples:
+  - summary: Restaure toutes les valeurs de clé à un point spécifique dans le temps.
+    syntax: az appconfig kv restore -n MyAppConfiguration --datetime "2019-05-01T11:24:12Z"
+  - summary: Restaurez une clé spécifique pour toute étiquette commençant par v1. utilisation d’une chaîne de connexion à un point spécifique dans le temps.
+    syntax: az appconfig kv restore --key color --connection-string Endpoint=https://contoso.azconfig.io;Id=xxx;Secret=xxx --label v1.* --datetime "2019-05-01T11:24:12Z"
+  requiredParameters:
+  - isRequired: true
+    name: --datetime
+    summary: 'Format : « YYYY-MM-DDThh : mm : ssZ ». Si aucun fuseau horaire n’est spécifié, utilisez l’heure UTC par défaut.'
+    description: ''
+  optionalParameters:
+  - name: --auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Ce paramètre peut être utilisé pour indiquer comment une opération de données doit être autorisée. Si le mode d’authentification est « clé », indiquez une chaîne de connexion ou un nom de magasin et vos clés d’accès de compte seront récupérées pour l’autorisation. Si le mode d’authentification est « connexion », indiquez le nom du point de terminaison ou du magasin, et vos informations d’identification « AZ login » seront utilisées pour l’autorisation. Vous pouvez configurer le mode d’authentification par défaut à l’aide de `az configure --defaults appconfig_auth_mode=<auth_mode>` . Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac">https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac</a>.
+    description: ''
+  - name: --connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison de la configuration de l’application. Peut être trouvé à l’aide de’AZ appconfig Credential List'. Les utilisateurs peuvent le prédéfinir à l’aide de `az configure --defaults appconfig_connection_string=<connection_string>` ou de la variable d’environnement portant le nom AZURE_APPCONFIG_CONNECTION_STRING.
+    description: ''
+  - name: --endpoint
+    summary: Si le mode d’authentification est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application. Le point de terminaison peut être récupéré à l’aide de la commande « AZ appconfig Show ». Vous pouvez configurer le point de terminaison par défaut à l’aide de `az configure --defaults appconfig_endpoint=<endpoint>` .
+    description: ''
+  - name: --key
+    summary: Si aucune clé n’est spécifiée, restaurez toutes les clés par défaut. Prendre en charge les filtres de signature en étoile, par exemple ABC \* signifie les clés avec ABC comme préfixe.
+    description: ''
+  - name: --label
+    summary: Si aucune étiquette n’est spécifiée, restaurez toutes les paires clé-valeur avec toutes les étiquettes. Prendre en charge les filtres de signature en étoile, par exemple ABC \* signifie des étiquettes avec ABC comme préfixe. Utilisez « 0 » pour une étiquette null.
+    description: ''
+  - name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_kv_set
+  name: az appconfig kv set
+  summary: Définissez une valeur de clé.
+  description: ''
+  syntax: >-
+    az appconfig kv set --key
+                        [--auth-mode {key, login}]
+                        [--connection-string]
+                        [--content-type]
+                        [--endpoint]
+                        [--label]
+                        [--name]
+                        [--subscription]
+                        [--tags]
+                        [--value]
+                        [--yes]
+  examples:
+  - summary: Définissez une valeur de clé avec l’étiquette MyLabel.
+    syntax: az appconfig kv set -n MyAppConfiguration --key color --label MyLabel --value red
+  - summary: Définissez une clé avec une étiquette null à l’aide de la chaîne de connexion.
+    syntax: az appconfig kv set --connection-string Endpoint=https://contoso.azconfig.io;Id=xxx;Secret=xxx --key color --value red --tags key1=value1 key2=value2
+  - summary: Définissez une clé avec une valeur de chaîne et un type de contenu JSON.
+    syntax: az appconfig kv set -n MyAppConfiguration --key color --value \"red\" --content-type application/json
+  - summary: Définissez une clé avec une valeur de liste et un type de contenu JSON.
+    syntax: az appconfig kv set -n MyAppConfiguration --key options --value [1,2,3] --content-type application/activity+json;charset=utf-8
+  - summary: Définissez une clé avec une valeur null et un type de contenu JSON.
+    syntax: az appconfig kv set -n MyAppConfiguration --key foo --value null --content-type application/json
+  - summary: Définissez une valeur de clé à l’aide de vos informations d’identification AZ login.
+    syntax: az appconfig kv set --endpoint https://myappconfiguration.azconfig.io --key color --value red --auth-mode login
+  requiredParameters:
+  - isRequired: true
+    name: --key
+    summary: Clé à définir. La clé ne peut pas être'. 'ou'.. ', ni contenir le caractère'% '.
+    description: ''
+  optionalParameters:
+  - name: --auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Ce paramètre peut être utilisé pour indiquer comment une opération de données doit être autorisée. Si le mode d’authentification est « clé », indiquez une chaîne de connexion ou un nom de magasin et vos clés d’accès de compte seront récupérées pour l’autorisation. Si le mode d’authentification est « connexion », indiquez le nom du point de terminaison ou du magasin, et vos informations d’identification « AZ login » seront utilisées pour l’autorisation. Vous pouvez configurer le mode d’authentification par défaut à l’aide de `az configure --defaults appconfig_auth_mode=<auth_mode>` . Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac">https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac</a>.
+    description: ''
+  - name: --connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison de la configuration de l’application. Peut être trouvé à l’aide de’AZ appconfig Credential List'. Les utilisateurs peuvent le prédéfinir à l’aide de `az configure --defaults appconfig_connection_string=<connection_string>` ou de la variable d’environnement portant le nom AZURE_APPCONFIG_CONNECTION_STRING.
+    description: ''
+  - name: --content-type
+    summary: Type de contenu de la valeur KeyValue à définir.
+    description: ''
+  - name: --endpoint
+    summary: Si le mode d’authentification est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application. Le point de terminaison peut être récupéré à l’aide de la commande « AZ appconfig Show ». Vous pouvez configurer le point de terminaison par défaut à l’aide de `az configure --defaults appconfig_endpoint=<endpoint>` .
+    description: ''
+  - name: --label
+    summary: Si aucune étiquette n’est spécifiée, définissez la clé avec une étiquette NULL par défaut.
+    description: ''
+  - name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --value
+    summary: Valeur de la valeur de KeyValue à définir.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_kv_set_keyvault
+  name: az appconfig kv set-keyvault
+  summary: Définissez une référence Key Vault.
+  description: ''
+  syntax: >-
+    az appconfig kv set-keyvault --key
+                                 --secret-identifier
+                                 [--auth-mode {key, login}]
+                                 [--connection-string]
+                                 [--endpoint]
+                                 [--label]
+                                 [--name]
+                                 [--subscription]
+                                 [--tags]
+                                 [--yes]
+  examples:
+  - summary: Définissez une référence Key Vault avec l’étiquette MyLabel.
+    syntax: az appconfig kv set-keyvault -n MyAppConfiguration --key HostSecret --label MyLabel --secret-identifier https://contoso.vault.azure.net/Secrets/DummySecret/Dummyversion
+  - summary: Définissez une référence de coffre de clés avec une étiquette null et plusieurs balises à l’aide de la chaîne de connexion.
+    syntax: az appconfig kv set-keyvault --connection-string Endpoint=https://contoso.azconfig.io;Id=xxx;Secret=xxx --key HostSecret --secret-identifier https://contoso.vault.azure.net/Secrets/DummySecret --tags tag1=value1 tag2=value2
+  requiredParameters:
+  - isRequired: true
+    name: --key
+    summary: Clé à définir. La clé ne peut pas être'. 'ou'.. ', ni contenir le caractère'% '.
+    description: ''
+  - isRequired: true
+    name: --secret-identifier
+    summary: ID de l’objet Key Vault. Peut être trouvé à l’aide de la commande « AZ keyvault {collection} Show », où collection est Key, secret ou Certificate. Pour définir la référence à la version la plus récente de votre clé secrète, supprimez les informations de version de l’identificateur secret.
+    description: ''
+  optionalParameters:
+  - name: --auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Ce paramètre peut être utilisé pour indiquer comment une opération de données doit être autorisée. Si le mode d’authentification est « clé », indiquez une chaîne de connexion ou un nom de magasin et vos clés d’accès de compte seront récupérées pour l’autorisation. Si le mode d’authentification est « connexion », indiquez le nom du point de terminaison ou du magasin, et vos informations d’identification « AZ login » seront utilisées pour l’autorisation. Vous pouvez configurer le mode d’authentification par défaut à l’aide de `az configure --defaults appconfig_auth_mode=<auth_mode>` . Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac">https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac</a>.
+    description: ''
+  - name: --connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison de la configuration de l’application. Peut être trouvé à l’aide de’AZ appconfig Credential List'. Les utilisateurs peuvent le prédéfinir à l’aide de `az configure --defaults appconfig_connection_string=<connection_string>` ou de la variable d’environnement portant le nom AZURE_APPCONFIG_CONNECTION_STRING.
+    description: ''
+  - name: --endpoint
+    summary: Si le mode d’authentification est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application. Le point de terminaison peut être récupéré à l’aide de la commande « AZ appconfig Show ». Vous pouvez configurer le point de terminaison par défaut à l’aide de `az configure --defaults appconfig_endpoint=<endpoint>` .
+    description: ''
+  - name: --label
+    summary: Si aucune étiquette n’est spécifiée, définissez la clé avec une étiquette NULL par défaut.
+    description: ''
+  - name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_kv_show
+  name: az appconfig kv show
+  summary: Affiche tous les attributs d’une clé-valeur.
+  description: ''
+  syntax: >-
+    az appconfig kv show --key
+                         [--auth-mode {key, login}]
+                         [--connection-string]
+                         [--datetime]
+                         [--endpoint]
+                         [--label]
+                         [--name]
+                         [--query-examples]
+                         [--subscription]
+  examples:
+  - summary: Afficher une clé-valeur à l’aide du nom de la configuration d’application avec une étiquette et une date/heure spécifiques
+    syntax: az appconfig kv show -n MyAppConfiguration --key color --label MyLabel --datetime "2019-05-01T11:24:12Z"
+  - summary: Afficher une clé-valeur à l’aide de la chaîne de connexion avec l’étiquette
+    syntax: az appconfig kv show --connection-string Endpoint=https://contoso.azconfig.io;Id=xxx;Secret=xxx --key color --label MyLabel
+  - summary: Affichez une valeur de clé à l’aide de vos informations d’identification AZ login.
+    syntax: az appconfig kv show --key color --auth-mode login --endpoint https://myappconfiguration.azconfig.io
+  requiredParameters:
+  - isRequired: true
+    name: --key
+    summary: Clé à montrer.
+    description: ''
+  optionalParameters:
+  - name: --auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Ce paramètre peut être utilisé pour indiquer comment une opération de données doit être autorisée. Si le mode d’authentification est « clé », indiquez une chaîne de connexion ou un nom de magasin et vos clés d’accès de compte seront récupérées pour l’autorisation. Si le mode d’authentification est « connexion », indiquez le nom du point de terminaison ou du magasin, et vos informations d’identification « AZ login » seront utilisées pour l’autorisation. Vous pouvez configurer le mode d’authentification par défaut à l’aide de `az configure --defaults appconfig_auth_mode=<auth_mode>` . Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac">https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac</a>.
+    description: ''
+  - name: --connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison de la configuration de l’application. Peut être trouvé à l’aide de’AZ appconfig Credential List'. Les utilisateurs peuvent le prédéfinir à l’aide de `az configure --defaults appconfig_connection_string=<connection_string>` ou de la variable d’environnement portant le nom AZURE_APPCONFIG_CONNECTION_STRING.
+    description: ''
+  - name: --datetime
+    summary: 'Format : « YYYY-MM-DDThh : mm : ssZ ». Si aucun fuseau horaire n’est spécifié, utilisez l’heure UTC par défaut.'
+    description: ''
+  - name: --endpoint
+    summary: Si le mode d’authentification est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application. Le point de terminaison peut être récupéré à l’aide de la commande « AZ appconfig Show ». Vous pouvez configurer le point de terminaison par défaut à l’aide de `az configure --defaults appconfig_endpoint=<endpoint>` .
+    description: ''
+  - name: --label
+    summary: Si aucune étiquette n’est spécifiée, afficher l’entrée avec une étiquette null. Le filtrage n'est pas pris en charge.
+    description: ''
+  - name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_kv_unlock
+  name: az appconfig kv unlock
+  summary: Déverrouillez une clé-valeur pour obtenir des opérations d’écriture.
+  description: ''
+  syntax: >-
+    az appconfig kv unlock --key
+                           [--auth-mode {key, login}]
+                           [--connection-string]
+                           [--endpoint]
+                           [--label]
+                           [--name]
+                           [--subscription]
+                           [--yes]
+  examples:
+  - summary: Déverrouillez une clé-valeur à l’aide du nom de la configuration de l’application.
+    syntax: az appconfig kv unlock -n MyAppConfiguration --key color --label test
+  - summary: Forcez le déverrouillage d’une clé-valeur à l’aide de la chaîne de connexion.
+    syntax: az appconfig kv unlock --connection-string Endpoint=https://contoso.azconfig.io;Id=xxx;Secret=xxx --key color --label test --yes
+  requiredParameters:
+  - isRequired: true
+    name: --key
+    summary: Clé à déverrouiller.
+    description: ''
+  optionalParameters:
+  - name: --auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Ce paramètre peut être utilisé pour indiquer comment une opération de données doit être autorisée. Si le mode d’authentification est « clé », indiquez une chaîne de connexion ou un nom de magasin et vos clés d’accès de compte seront récupérées pour l’autorisation. Si le mode d’authentification est « connexion », indiquez le nom du point de terminaison ou du magasin, et vos informations d’identification « AZ login » seront utilisées pour l’autorisation. Vous pouvez configurer le mode d’authentification par défaut à l’aide de `az configure --defaults appconfig_auth_mode=<auth_mode>` . Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac">https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac</a>.
+    description: ''
+  - name: --connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison de la configuration de l’application. Peut être trouvé à l’aide de’AZ appconfig Credential List'. Les utilisateurs peuvent le prédéfinir à l’aide de `az configure --defaults appconfig_connection_string=<connection_string>` ou de la variable d’environnement portant le nom AZURE_APPCONFIG_CONNECTION_STRING.
+    description: ''
+  - name: --endpoint
+    summary: Si le mode d’authentification est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application. Le point de terminaison peut être récupéré à l’aide de la commande « AZ appconfig Show ». Vous pouvez configurer le point de terminaison par défaut à l’aide de `az configure --defaults appconfig_endpoint=<endpoint>` .
+    description: ''
+  - name: --label
+    summary: Si aucune étiquette n’est spécifiée, déverrouillez l’entrée avec une étiquette de valeur null. Le filtrage n'est pas pris en charge.
+    description: ''
+  - name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+commands:
+- az_appconfig_kv_delete
+- az_appconfig_kv_export
+- az_appconfig_kv_import
+- az_appconfig_kv_list
+- az_appconfig_kv_lock
+- az_appconfig_kv_restore
+- az_appconfig_kv_set
+- az_appconfig_kv_set_keyvault
+- az_appconfig_kv_show
+- az_appconfig_kv_unlock
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/18/2021
+  description: Gérer les valeurs de clé stockées dans une configuration d’application.
+  ms.openlocfilehash: 3619350ae19d04b13e401f01e8cc94f6d283e583
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102848812"
