@@ -1,0 +1,200 @@
+### YamlMime:AzureCLIGroup
+uid: ext_cosmosdb-preview_az_cosmosdb_sql_role_definition
+name: az cosmosdb sql role definition
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **cosmosdb-Preview** pour Azure CLI et requiert la version 2.17.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ cosmosdb SQL Role Definition** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les définitions de rôles SQL Azure Cosmos DB.
+description: ''
+directCommands:
+- uid: ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_create
+  name: az cosmosdb sql role definition create
+  summary: Créez une définition de rôle SQL sous un compte Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb sql role definition create --account-name
+                                           --body
+                                           --resource-group
+  examples:
+  - summary: Créez une définition de rôle SQL sous un compte Azure Cosmos DB à l’aide d’une chaîne JSON.
+    syntax: >-
+      az cosmosdb sql role definition create --account-name MyAccount --resource-group MyResourceGroup --body '{
+        "Id": "be79875a-2cc4-40d5-8958-566017875b39",
+        "RoleName": "My Read Only Role",
+        "Type": "CustomRole",
+        "AssignableScopes": ["/dbs/mydb/colls/mycontainer"],
+        "Permissions": [{
+          "DataActions": [
+            "Microsoft.DocumentDB/databaseAccounts/readMetadata",
+            "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/items/read",
+            "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/executeQuery",
+            "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/readChangeFeed"
+          ]
+        }]
+      }'
+  - summary: Créez une définition de rôle SQL sous un compte Azure Cosmos DB à l’aide d’un fichier JSON.
+    syntax: az cosmosdb sql role definition create --account-name MyAccount --resource-group MyResourceGroup --body @role-definition.json
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --body -b
+    summary: 'Corps de définition de rôle ayant l’ID (facultatif pour Create), DataActions ou permissions, type (la valeur par défaut est CustomRole) et AssignableScopes.  Vous pouvez l’entrer sous la forme d’une chaîne ou d’un fichier, par exemple,--Body @rdbody-file.json ou--Body "{" ID " :" be79875a-2cc4-40D5-8958-566017875b39», « roleName » : « mon rôle en lecture/écriture », « type » : « CustomRole », « AssignableScopes » : [« / »], « DataActions » : [« Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/items/Create », « Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/items/Read »]}».'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_delete
+  name: az cosmosdb sql role definition delete
+  summary: Supprimer une définition de rôle SQL sous un compte Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb sql role definition delete --account-name
+                                           --id
+                                           --resource-group
+                                           [--yes]
+  examples:
+  - summary: Créez une définition de rôle SQL sous un compte Azure Cosmos DB.
+    syntax: az cosmosdb sql role definition delete --account-name MyAccount --resource-group MyResourceGroup --id be79875a-2cc4-40d5-8958-566017875b39
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --id -i
+    summary: ID unique de la définition de rôle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_exists
+  name: az cosmosdb sql role definition exists
+  summary: Vérifiez s’il existe une définition de rôle Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb sql role definition exists --account-name
+                                           --id
+                                           --resource-group
+  examples:
+  - summary: Vérifiez s’il existe une définition de rôle Azure Cosmos DB.
+    syntax: az cosmosdb sql role definition exists --account-name MyAccount --resource-group MyResourceGroup --id be79875a-2cc4-40d5-8958-566017875b39
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --id -i
+    summary: ID unique de la définition de rôle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_list
+  name: az cosmosdb sql role definition list
+  summary: Répertorie toutes les définitions de rôle SQL sous un compte Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb sql role definition list --account-name
+                                         --resource-group
+  examples:
+  - summary: Répertorie toutes les définitions de rôle SQL sous un compte Azure Cosmos DB.
+    syntax: az cosmosdb sql role definition list --account-name MyAccount --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_show
+  name: az cosmosdb sql role definition show
+  summary: Affichez les propriétés d’une définition de rôle SQL sous un compte Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb sql role definition show --account-name
+                                         --id
+                                         --resource-group
+  examples:
+  - summary: Affichez les propriétés d’une définition de rôle SQL sous un compte Azure Cosmos DB.
+    syntax: az cosmosdb sql role definition show --account-name MyAccount --resource-group MyResourceGroup --id be79875a-2cc4-40d5-8958-566017875b39
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --id -i
+    summary: ID unique de la définition de rôle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_update
+  name: az cosmosdb sql role definition update
+  summary: Mettez à jour une définition de rôle SQL sous un compte Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb sql role definition update --account-name
+                                           --body
+                                           --resource-group
+  examples:
+  - summary: Mettez à jour une définition de rôle SQL sous un compte Azure Cosmos DB.
+    syntax: az cosmosdb sql role definition update --account-name MyAccount --resource-group MyResourceGroup --body @role-definition.json
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --body -b
+    summary: 'Corps de définition de rôle ayant l’ID (facultatif pour Create), DataActions ou permissions, type (la valeur par défaut est CustomRole) et AssignableScopes.  Vous pouvez l’entrer sous la forme d’une chaîne ou d’un fichier, par exemple,--Body @rdbody-file.json ou--Body "{" ID " :" be79875a-2cc4-40D5-8958-566017875b39», « roleName » : « mon rôle en lecture/écriture », « type » : « CustomRole », « AssignableScopes » : [« / »], « DataActions » : [« Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/items/Create », « Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/items/Read »]}».'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_create
+- ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_delete
+- ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_exists
+- ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_list
+- ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_show
+- ext_cosmosdb-preview_az_cosmosdb_sql_role_definition_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les définitions de rôles SQL Azure Cosmos DB.
+  ms.openlocfilehash: e0a12aed7fc2c8c1ebdde6dc505289eecf5f3758
+  ms.sourcegitcommit: 3e79897e0aeca4d74bc8ff0410121b011b5884ec
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/03/2021
+  ms.locfileid: "102845806"
