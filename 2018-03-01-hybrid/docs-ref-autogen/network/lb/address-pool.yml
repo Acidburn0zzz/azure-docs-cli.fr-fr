@@ -1,0 +1,192 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_lb_address_pool
+name: az network lb address-pool
+summary: Gérer les pools d’adresses d’un équilibreur de charge.
+description: ''
+directCommands:
+- uid: az_network_lb_address_pool_create
+  name: az network lb address-pool create
+  summary: Créez un pool d’adresses.
+  description: ''
+  syntax: >-
+    az network lb address-pool create --lb-name
+                                      --name
+                                      --resource-group
+                                      [--backend-address]
+                                      [--backend-addresses-config-file]
+                                      [--subscription]
+                                      [--vnet]
+  examples:
+  - summary: Créez un pool d’adresses.
+    syntax: az network lb address-pool create -g MyResourceGroup --lb-name MyLb -n MyAddressPool
+  - summary: Créez un pool d’adresses avec plusieurs adresses principales à l’aide d’arguments clé-valeur.
+    syntax: az network lb address-pool create -g MyResourceGroup --lb-name MyLb -n MyAddressPool --vnet {VnetResourceId} --backend-address name=addr1 ip-address=10.0.0.1 --backend-address name=addr2 ip-address=10.0.0.3
+  - summary: Créer un pool d’adresses avec plusieurs adresses principales à l’aide du fichier de configuration
+    syntax: az network lb address-pool create -g MyResourceGroup --lb-name MyLb -n MyAddressPool --backend-addresses-config-file @config_file.json
+  requiredParameters:
+  - isRequired: true
+    name: --lb-name
+    summary: Nom de l’équilibreur de charge.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du pool d’adresses principales. S’il n’existe qu’un seul, omettez pour l’utiliser comme valeur par défaut.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --backend-address
+    summary: Informations d’adresses principales pour le pool d’adresses principales. S’il est utilisé,--vnet est également requis.
+    description: >-
+      Utilisation :--backend-Address Name = addr1 adresse IP-adresse = 10.0.0.1--vnet MyVnet
+
+
+      nom : obligatoire. Nom de l’adresse du serveur principal.
+
+      adresse IP : obligatoire. Adresse IP dans le réseau virtuel.
+
+
+      Plusieurs adresses principales peuvent être spécifiées à l’aide de plusieurs `--backend-address` arguments.
+  - name: --backend-addresses-config-file
+    summary: Fichier de configuration utilisé pour définir les adresses du serveur principal. Cet argument est destiné aux utilisateurs expérimentés. Vous pouvez rencontrer des erreurs d’analyse si le fichier JSON n’est pas valide.
+    description: >-
+      Utilisation :--backend-addresses-config-file @ "{config_file.json}"
+
+
+      Exemple de fichier de configuration : [{« Name » : « adresse1 », « virtualNetwork » : « clitestvnet », « ipAddress » : « 10.0.0.4 »}, {« Name » : « adresse2 », « virtualNetwork » : « /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/cli_test_lb_address_pool_addresses000001/providers/Microsoft.Network/virtualNetworks/clitestvnet », « ipAddress » : « 10.0.0.5 »}].
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet
+    summary: Nom ou ID du réseau virtuel appliqué à toutes les adresses principales.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_address_pool_delete
+  name: az network lb address-pool delete
+  summary: Supprimer un pool d’adresses.
+  description: ''
+  syntax: >-
+    az network lb address-pool delete --lb-name
+                                      --name
+                                      --resource-group
+                                      [--subscription]
+  examples:
+  - summary: Supprimer un pool d’adresses.
+    syntax: az network lb address-pool delete -g MyResourceGroup --lb-name MyLb -n MyAddressPool
+  requiredParameters:
+  - isRequired: true
+    name: --lb-name
+    summary: Le nom de l’équilibreur de charge.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du pool d’adresses principales.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_address_pool_list
+  name: az network lb address-pool list
+  summary: Répertorier les pools d’adresses.
+  description: ''
+  syntax: >-
+    az network lb address-pool list --lb-name
+                                    --resource-group
+                                    [--query-examples]
+                                    [--subscription]
+  examples:
+  - summary: Répertorier les pools d’adresses.
+    syntax: az network lb address-pool list -g MyResourceGroup --lb-name MyLb -o table
+  requiredParameters:
+  - isRequired: true
+    name: --lb-name
+    summary: Le nom de l’équilibreur de charge.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_address_pool_show
+  name: az network lb address-pool show
+  summary: Obtient les détails d’un pool d’adresses.
+  description: ''
+  syntax: >-
+    az network lb address-pool show --lb-name
+                                    --name
+                                    --resource-group
+                                    [--query-examples]
+                                    [--subscription]
+  examples:
+  - summary: Obtient les détails d’un pool d’adresses.
+    syntax: az network lb address-pool show -g MyResourceGroup --lb-name MyLb -n MyAddressPool
+  requiredParameters:
+  - isRequired: true
+    name: --lb-name
+    summary: Le nom de l’équilibreur de charge.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du pool d’adresses principales.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_lb_address_pool_address
+- az_network_lb_address_pool_address_add
+- az_network_lb_address_pool_address_list
+- az_network_lb_address_pool_address_remove
+- az_network_lb_address_pool_create
+- az_network_lb_address_pool_delete
+- az_network_lb_address_pool_list
+- az_network_lb_address_pool_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer les pools d’adresses d’un équilibreur de charge.
+  ms.openlocfilehash: 5f174370103e0f8f5c478a0acbbb45bca1c4713e
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102848890"

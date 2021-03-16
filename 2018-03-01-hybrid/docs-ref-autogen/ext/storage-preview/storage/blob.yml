@@ -1,0 +1,195 @@
+### YamlMime:AzureCLIGroup
+uid: ext_storage-preview_az_storage_blob
+name: az storage blob
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Storage-Preview** pour Azure CLI et requiert la version 2.13.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Storage BLOB** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer le stockage d’objets pour les données non structurées (objets BLOB).
+description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
+directCommands:
+- uid: ext_storage-preview_az_storage_blob_list
+  name: az storage blob list
+  summary: Répertorier les objets BLOB dans un conteneur donné.
+  description: ''
+  syntax: >-
+    az storage blob list --container-name
+                         [--account-key]
+                         [--account-name]
+                         [--auth-mode {key, login}]
+                         [--connection-string]
+                         [--delimiter]
+                         [--include]
+                         [--marker]
+                         [--num-results]
+                         [--prefix]
+                         [--sas-token]
+                         [--timeout]
+  examples:
+  - summary: Répertorie tous les objets BLOB de stockage dans un conteneur dont les noms commencent par « foo »; correspond aux noms tels que « foo », « foobar » et « foo/bar »
+    syntax: az storage blob list -c mycontainer --prefix foo
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --delimiter
+    summary: Lorsque la demande comprend ce paramètre, l’opération retourne un élément pour blobprefix dans la liste de résultats qui agit comme un espace réservé pour tous les objets BLOB dont le nom commence par la même sous-chaîne jusqu’à l’apparence du caractère délimiteur. Le délimiteur peut être un caractère ou une chaîne.
+    description: ''
+  - name: --include
+    defaultValue: mc
+    summary: Spécifie un ou plusieurs jeux de données supplémentaires à inclure dans la réponse.
+    description: ''
+  - name: --marker
+    summary: Jeton de continuation opaque. Cette valeur peut être récupérée à partir du champ next_marker d’un objet générateur précédent si num_results a été spécifié et que le générateur a terminé l’énumération des résultats. S’il est spécifié, ce générateur commencera à retourner des résultats à partir du point où le générateur précédent s’est arrêté.
+    description: ''
+  - name: --num-results
+    defaultValue: "5000"
+    summary: Spécifie le nombre maximal de résultats à retourner. Fournissez « \* » pour retourner tous les.
+    description: ''
+  - name: --prefix
+    summary: Filtre les résultats pour renvoyer uniquement les objets blob dont le nom commence par le préfixe spécifié.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: ext_storage-preview_az_storage_blob_move
+  name: az storage blob move
+  summary: Déplacer un objet BLOB dans un conteneur de stockage.
+  description: ''
+  syntax: >-
+    az storage blob move --container-name
+                         --destination-blob
+                         --source-blob
+                         [--account-key]
+                         [--account-name]
+                         [--auth-mode {key, login}]
+                         [--connection-string]
+                         [--lease-id]
+                         [--sas-token]
+                         [--source-if-match]
+                         [--source-if-modified-since]
+                         [--source-if-none-match]
+                         [--source-if-unmodified-since]
+                         [--source-lease-id]
+                         [--timeout]
+  examples:
+  - summary: Déplacer un objet BLOB dans un conteneur de stockage.
+    syntax: az storage blob move -c MyContainer -d DestinationBlobPath -s SourceBlobPath --account-name MyStorageAccount
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --destination-blob -d
+    summary: Nom de l’objet blob de destination. Il doit s’agir d’un chemin d’accès absolu sous le conteneur. par exemple, « topdir1/dirbar ».
+    description: ''
+  - isRequired: true
+    name: --source-blob -s
+    summary: Nom de l’objet BLOB source. Il doit s’agir d’un chemin d’accès absolu sous le conteneur. par exemple, « topdir1/dirsubfoo ».
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --lease-id
+    summary: Facultatif. ID de bail pour le new_path. Le new_path doit avoir un bail actif et l’ID de bail doit correspondre.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --source-if-match
+    summary: Facultatif. Spécifiez une valeur ETag. Spécifiez cet en-tête pour effectuer l’opération de changement de nom uniquement si l’ETag de la source correspond à la valeur spécifiée.
+    description: ''
+  - name: --source-if-modified-since
+    summary: Facultatif. Valeur de date et heure. Spécifiez cet en-tête pour effectuer l’opération de changement de nom uniquement si la source a été modifiée depuis la date et l’heure spécifiées.
+    description: ''
+  - name: --source-if-none-match
+    summary: Facultatif. Valeur ETag ou valeur générique spéciale (" \* "). Spécifiez cet en-tête pour effectuer l’opération de changement de nom uniquement si l’ETag de la source ne correspond pas à la valeur spécifiée.
+    description: ''
+  - name: --source-if-unmodified-since
+    summary: Facultatif. Valeur de date et heure. Spécifiez cet en-tête pour effectuer l’opération de changement de nom uniquement si la source n’a pas été modifiée depuis la date et l’heure spécifiées.
+    description: ''
+  - name: --source-lease-id
+    summary: Facultatif. ID de bail pour le source_path. Le source_path doit avoir un bail actif et l’ID de bail doit correspondre.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+commands:
+- ext_storage-preview_az_storage_blob_access
+- ext_storage-preview_az_storage_blob_access_set
+- ext_storage-preview_az_storage_blob_access_show
+- ext_storage-preview_az_storage_blob_access_update
+- ext_storage-preview_az_storage_blob_directory
+- ext_storage-preview_az_storage_blob_directory_access
+- ext_storage-preview_az_storage_blob_directory_access_set
+- ext_storage-preview_az_storage_blob_directory_access_show
+- ext_storage-preview_az_storage_blob_directory_access_update
+- ext_storage-preview_az_storage_blob_directory_create
+- ext_storage-preview_az_storage_blob_directory_delete
+- ext_storage-preview_az_storage_blob_directory_download
+- ext_storage-preview_az_storage_blob_directory_exists
+- ext_storage-preview_az_storage_blob_directory_list
+- ext_storage-preview_az_storage_blob_directory_metadata
+- ext_storage-preview_az_storage_blob_directory_metadata_show
+- ext_storage-preview_az_storage_blob_directory_metadata_update
+- ext_storage-preview_az_storage_blob_directory_move
+- ext_storage-preview_az_storage_blob_directory_show
+- ext_storage-preview_az_storage_blob_directory_upload
+- ext_storage-preview_az_storage_blob_list
+- ext_storage-preview_az_storage_blob_move
+- ext_storage-preview_az_storage_blob_service_properties
+- ext_storage-preview_az_storage_blob_service_properties_show
+- ext_storage-preview_az_storage_blob_service_properties_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
+  ms.openlocfilehash: 7c07d063e085e9b57a83ea06f95d55ce3776929d
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102841411"

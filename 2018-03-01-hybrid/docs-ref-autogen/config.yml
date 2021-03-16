@@ -1,0 +1,114 @@
+### YamlMime:AzureCLIGroup
+uid: az_config
+name: az config
+summary: Gérez Azure CLI configuration.
+description: ''
+directCommands:
+- uid: az_config_get
+  name: az config get
+  summary: Obtenir une configuration.
+  description: ''
+  syntax: >-
+    az config get [--local]
+                  [<KEY>]
+  examples:
+  - summary: Récupération de toutes les configurations.
+    syntax: az config get
+  - summary: Obtient les configurations dans la `core` section.
+    syntax: az config get core
+  - summary: Obtient la configuration de la clé `core.no_color` .
+    syntax: az config get core.no_color
+  optionalParameters:
+  - name: --local
+    summary: Incluez la configuration locale. Effectuez une analyse à partir du répertoire de travail jusqu’au lecteur racine, puis la configuration globale et retournez la première occurrence.
+    description: ''
+  - name: <KEY>
+    summary: Configuration à récupérer. S’il n’est pas fourni, toutes les sections et configurations sont listées. Si `section` est fourni, toutes les configurations dans la section spécifiée sont listées. Si `<section>.<key>` est fourni, seule la configuration correspondante est affichée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/config/_help.py
+- uid: az_config_set
+  name: az config set
+  summary: Définissez une configuration.
+  description: >-
+    Pour connaître les options de configuration disponibles, consultez <a href="https://docs.microsoft.com/en-us/cli/azure/azure-cli-configuration">https://docs.microsoft.com/en-us/cli/azure/azure-cli-configuration</a> .
+
+    Par défaut, si vous ne spécifiez pas--local, la configuration est enregistrée dans `~/.azure/config` .
+  syntax: >-
+    az config set [--local]
+                  [<KEY_VALUE>]
+  examples:
+  - summary: Désactivez la couleur avec `core.no_color` .
+    syntax: az config set core.no_color=true
+  - summary: Masquer les avertissements et afficher uniquement les erreurs avec `core.only_show_errors` .
+    syntax: az config set core.only_show_errors=true
+  - summary: Activez la télémétrie côté client.
+    syntax: az config set core.collect_telemetry=true
+  - summary: Activez la journalisation des fichiers et définissez son emplacement.
+    syntax: >-
+      az config set logging.enable_log_file=true
+
+      az config set logging.log_dir=~/az-logs
+  - summary: Définissez l’emplacement par défaut sur `westus2` et le groupe de ressources par défaut sur `myRG` .
+    syntax: az config set defaults.location=westus2 defaults.group=MyResourceGroup
+  - summary: Définissez le groupe de ressources par défaut `myRG` sur sur une étendue locale.
+    syntax: az config set defaults.group=myRG --local
+  optionalParameters:
+  - name: --local
+    summary: Définissez en tant que configuration locale dans le répertoire de travail.
+    description: ''
+  - name: <KEY_VALUE>
+    summary: Configurations séparées par des espaces au format <section>.<key>=<value>.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/config/_help.py
+- uid: az_config_unset
+  name: az config unset
+  summary: Annule une configuration.
+  description: ''
+  syntax: >-
+    az config unset [--local]
+                    [<KEY>]
+  examples:
+  - summary: Annule la configuration de la clé `core.no_color` .
+    syntax: az config unset core.no_color
+  optionalParameters:
+  - name: --local
+    summary: Incluez la configuration locale. Effectuez une analyse à partir du répertoire de travail jusqu’au lecteur racine, puis la configuration globale et annulez la première occurrence.
+    description: ''
+  - name: <KEY>
+    summary: Configuration à non définie, sous la forme de <section>.<key>.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/config/_help.py
+commands:
+- az_config_get
+- az_config_param_persist
+- az_config_param_persist_delete
+- az_config_param_persist_off
+- az_config_param_persist_on
+- az_config_param_persist_show
+- az_config_set
+- az_config_unset
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 09/14/2020
+  description: Gérez Azure CLI configuration.
+  ms.openlocfilehash: 66df0a32de0716c7291ed239457711d5bc121392
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102819944"
