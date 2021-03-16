@@ -1,0 +1,242 @@
+### YamlMime:AzureCLIGroup
+uid: az_vm_image
+name: az vm image
+summary: Informations sur les images de machine virtuelle disponibles.
+description: ''
+directCommands:
+- uid: az_vm_image_accept_terms
+  name: az vm image accept-terms
+  summary: Acceptez le terme de la place de marché Azure afin que l’image puisse être utilisée pour créer des machines virtuelles.
+  description: ''
+  syntax: >-
+    az vm image accept-terms [--offer]
+                             [--plan]
+                             [--publisher]
+                             [--subscription]
+                             [--urn]
+  examples:
+  - summary: Acceptez le terme de la place de marché Azure afin que l’image puisse être utilisée pour créer des machines virtuelles. généré automatiquement
+    syntax: az vm image accept-terms --urn publisher:offer:sku:version
+  optionalParameters:
+  - name: --offer -f
+    summary: Offre d’image.
+    description: ''
+  - name: --plan
+    summary: Plan de facturation d’image.
+    description: ''
+  - name: --publisher -p
+    summary: Éditeur d’images.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --urn
+    summary: 'URN, au format « éditeur : offre : SKU : version ». Si ce paramètre est spécifié, les autres valeurs d’argument peuvent être omises.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_image_list
+  name: az vm image list
+  summary: Répertoriez les images de machine virtuelle/VMSS disponibles sur la place de marché Azure.
+  description: ''
+  syntax: >-
+    az vm image list [--all]
+                     [--location]
+                     [--offer]
+                     [--publisher]
+                     [--query-examples]
+                     [--sku]
+                     [--subscription]
+  examples:
+  - summary: Répertorie toutes les images disponibles.
+    syntax: az vm image list --all
+  - summary: Répertorie toutes les images CentOS mises en cache hors connexion.
+    syntax: az vm image list -f CentOS
+  - summary: Répertorie toutes les images CentOS.
+    syntax: az vm image list -f CentOS --all
+  optionalParameters:
+  - name: --all
+    summary: Récupérez la liste d’images à partir du service Azure Live plutôt que d’utiliser une liste d’images hors connexion.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --offer -f
+    summary: Nom de l’offre d’image, le nom partiel est accepté.
+    description: ''
+  - name: --publisher -p
+    summary: Nom de l’éditeur d’images, le nom partiel est accepté.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sku -s
+    summary: Nom de la référence de l’image, le nom partiel est accepté.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_image_list_offers
+  name: az vm image list-offers
+  summary: Répertoriez les offres d’images de machine virtuelle disponibles sur la place de marché Azure.
+  description: ''
+  syntax: >-
+    az vm image list-offers --location
+                            --publisher
+                            [--subscription]
+  examples:
+  - summary: Répertoriez toutes les offres de Microsoft dans la région ouest des États-Unis.
+    syntax: az vm image list-offers -l westus -p MicrosoftWindowsServer
+  - summary: Répertoriez toutes les offres de OpenLocic dans la région ouest des États-Unis.
+    syntax: az vm image list-offers -l westus -p OpenLogic
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --publisher -p
+    summary: Éditeur d’image valide.
+    description: ''
+    valueFrom: az vm image list-publishers
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_image_list_publishers
+  name: az vm image list-publishers
+  summary: Répertoriez les éditeurs d’images de machine virtuelle disponibles dans la place de marché Azure.
+  description: ''
+  syntax: >-
+    az vm image list-publishers --location
+                                [--subscription]
+  examples:
+  - summary: Répertorie tous les serveurs de publication dans la région ouest des États-Unis.
+    syntax: az vm image list-publishers -l westus
+  - summary: Répertorie tous les serveurs de publication dont le nom commence par « Open » (Ouest).
+    syntax: az vm image list-publishers -l westus --query "[?starts_with(name, 'Open')]"
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_image_list_skus
+  name: az vm image list-skus
+  summary: Répertorier les références SKU d’image de machine virtuelle disponibles dans la place de marché Azure.
+  description: ''
+  syntax: >-
+    az vm image list-skus --location
+                          --offer
+                          --publisher
+                          [--subscription]
+  examples:
+  - summary: Répertorie toutes les références (SKU) disponibles pour les CentOS publiées par OpenLogic dans la région États-Unis de l’Ouest.
+    syntax: az vm image list-skus -l westus -f CentOS -p OpenLogic
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --offer -f
+    summary: Offre d’image.
+    description: ''
+  - isRequired: true
+    name: --publisher -p
+    summary: Éditeur d’image valide.
+    description: ''
+    valueFrom: az vm image list-publishers
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_image_show
+  name: az vm image show
+  summary: Obtenir les détails d’une image de machine virtuelle disponible dans la place de marché Azure.
+  description: ''
+  syntax: >-
+    az vm image show [--location]
+                     [--offer]
+                     [--publisher]
+                     [--query-examples]
+                     [--sku]
+                     [--subscription]
+                     [--urn]
+                     [--version]
+  examples:
+  - summary: Affichez les informations de la dernière image CentOS disponible à partir de OpenLogic.
+    syntax: >-
+      latest=$(az vm image list -p OpenLogic -s 7.3 --all --query \
+          "[?offer=='CentOS'].version" -o tsv | sort -u | tail -n 1)
+      az vm image show -l westus -f CentOS -p OpenLogic --sku 7.3 --version {latest}
+  - summary: Obtenir les détails d’une image de machine virtuelle disponible dans la place de marché Azure. généré automatiquement
+    syntax: az vm image show --location westus --urn publisher:offer:sku:version
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --offer -f
+    summary: Offre d’image.
+    description: ''
+  - name: --publisher -p
+    summary: Éditeur d’images.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sku -s
+    summary: Référence SKU de l’image.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --urn
+    summary: 'URN, au format « éditeur : offre : SKU : version ». Si ce paramètre est spécifié, les autres valeurs d’argument peuvent être omises.'
+    description: ''
+  - name: --version
+    summary: Version de la référence de l’image.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+commands:
+- az_vm_image_accept_terms
+- az_vm_image_list
+- az_vm_image_list_offers
+- az_vm_image_list_publishers
+- az_vm_image_list_skus
+- az_vm_image_show
+- az_vm_image_terms
+- az_vm_image_terms_accept
+- az_vm_image_terms_cancel
+- az_vm_image_terms_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/05/2021
+  description: Informations sur les images de machine virtuelle disponibles.
+  ms.openlocfilehash: e38bffe94de375b3ce046f5274850121b56cd076
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102848275"
