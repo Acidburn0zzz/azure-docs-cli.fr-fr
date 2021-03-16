@@ -1,0 +1,218 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_dt
+name: az dt
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ DT** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les solutions et l’infrastructure Azure Digital Twins.
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_dt_create
+  name: az dt create
+  summary: Créez ou mettez à jour une instance Digital représentations.
+  description: ''
+  syntax: >-
+    az dt create --dt-name
+                 --resource-group
+                 [--assign-identity {false, true}]
+                 [--location]
+                 [--pna {Disabled, Enabled}]
+                 [--role]
+                 [--scopes]
+                 [--tags]
+  examples:
+  - summary: Créez une instance dans le groupe de ressources cible à l’aide de l’emplacement du groupe de ressources.
+    syntax: az dt create -n {instance_name} -g {resouce_group}
+  - summary: Créer une instance dans le groupe de ressources cible avec l’emplacement et les balises spécifiés.
+    syntax: az dt create -n {instance_name} -g {resouce_group} -l westus --tags a=b c=d
+  - summary: Créez une instance dans le groupe de ressources cible avec une identité gérée par le système.
+    syntax: az dt create -n {instance_name} -g {resouce_group} --assign-identity
+  - summary: Créez une instance dans le groupe de ressources cible avec une identité gérée par le système, puis affectez l’identité à une ou plusieurs étendues (séparées par des espaces) avec le rôle contributeur.
+    syntax: az dt create -n {instance_name} -g {resouce_group} --assign-identity --scopes "/subscriptions/a12345ea-bb21-994d-2263-c716348e32a1/resourceGroups/ProResourceGroup/providers/Microsoft.EventHub/namespaces/myEventHubNamespace/eventhubs/myEventHub" "/subscriptions/a12345ea-bb21-994d-2263-c716348e32a1/resourceGroups/ProResourceGroup/providers/Microsoft.ServiceBus/namespaces/myServiceBusNamespace/topics/myTopic"
+  - summary: Créez une instance dans le groupe de ressources cible avec une identité gérée par le système, puis affectez l’identité à une ou plusieurs étendues avec un rôle spécifié personnalisé.
+    syntax: az dt create -n {instance_name} -g {resouce_group} --assign-identity --scopes "/subscriptions/a12345ea-bb21-994d-2263-c716348e32a1/resourceGroups/ProResourceGroup/providers/Microsoft.EventHub/namespaces/myEventHubNamespace/eventhubs/myEventHub" "/subscriptions/a12345ea-bb21-994d-2263-c716348e32a1/resourceGroups/ProResourceGroup/providers/Microsoft.ServiceBus/namespaces/myServiceBusNamespace/topics/myTopic" --role MyCustomRole
+  - summary: Mettez à jour une instance dans le groupe de ressources cible pour activer l’identité gérée par le système.
+    syntax: az dt create -n {instance_name} -g {resouce_group} --assign-identity
+  - summary: Mettez à jour une instance du groupe de ressources cible pour désactiver l’identité gérée par le système.
+    syntax: az dt create -n {instance_name} -g {resouce_group} --assign-identity false
+  - summary: Mettez à jour une instance dans le groupe de ressources cible avec les nouvelles valeurs de balise et désactivez l’accès au réseau public.
+    syntax: az dt create -n {instance_name} -g {resouce_group} --tags env=prod --public-network-access Disabled
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --assign-identity
+    parameterValueGroup: false, true
+    summary: Affectez une identité générée par le système à l’instance représentations numérique.
+    description: ''
+  - name: --location -l
+    summary: Emplacement de l’instance représentations numérique. Si aucun emplacement n’est fourni, l’emplacement du groupe de ressources est utilisé. Vous pouvez configurer l’emplacement par défaut à l’aide de `az configure --defaults location=<name>` .
+    description: ''
+  - name: --pna --public-network-access
+    defaultValue: Enabled
+    parameterValueGroup: Disabled, Enabled
+    summary: Détermine si l’instance représentations numérique est accessible à partir d’un réseau public.
+    description: ''
+  - name: --role
+    defaultValue: Contributor
+    summary: Nom de rôle ou ID dont l’identité a été affectée par le système.
+    description: ''
+  - name: --scopes
+    summary: Étendues séparées par des espaces. les identités affectées par le système peuvent y accéder.
+    description: ''
+  - name: --tags
+    summary: 'Balises d’instance représentations numérique. Conteneur de propriétés dans les paires clé-valeur au format suivant : a = b c = d.'
+    description: ''
+- uid: ext_azure-iot_az_dt_delete
+  name: az dt delete
+  summary: Supprimer une instance de représentations numérique existante.
+  description: ''
+  syntax: >-
+    az dt delete --dt-name
+                 [--no-wait]
+                 [--resource-group]
+                 [--yes]
+  examples:
+  - summary: Supprimer une instance arbitraire en mode blocage à l’aide d’une invite de confirmation.
+    syntax: az dt delete -n {instance_name}
+  - summary: Supprimer une instance arbitraire sans blocage ou invite.
+    syntax: az dt delete -n {instance_name} -y --no-wait
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_azure-iot_az_dt_list
+  name: az dt list
+  summary: Répertorier la collection d’instances Digital représentations par abonnement ou groupe de ressources.
+  description: ''
+  syntax: az dt list [--resource-group]
+  examples:
+  - summary: Répertorie toutes les instances dans l’abonnement actuel.
+    syntax: az dt list
+  - summary: Répertorie toutes les instances dans le groupe de ressources cible et la sortie sous forme de table.
+    syntax: az dt list -g {resource_group} --output table
+  - summary: Répertorie toutes les instances de l’abonnement qui remplissent une condition.
+    syntax: az dt list --query "[?contains(name, 'Production')]"
+  - summary: Compter les instances qui remplissent la condition.
+    syntax: az dt list --query "length([?contains(name, 'Production')])"
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_show
+  name: az dt show
+  summary: Affichez une instance représentations numérique existante.
+  description: ''
+  syntax: >-
+    az dt show --dt-name
+               [--resource-group]
+  examples:
+  - summary: Affichez une instance.
+    syntax: az dt show -n {instance_name}
+  - summary: Affichez une instance et projetez certaines propriétés.
+    syntax: az dt show -n {instance_name} --query "{Endpoint:hostName, Location:location}"
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_azure-iot_az_dt_create
+- ext_azure-iot_az_dt_delete
+- ext_azure-iot_az_dt_endpoint
+- ext_azure-iot_az_dt_endpoint_create
+- ext_azure-iot_az_dt_endpoint_create_eventgrid
+- ext_azure-iot_az_dt_endpoint_create_eventhub
+- ext_azure-iot_az_dt_endpoint_create_servicebus
+- ext_azure-iot_az_dt_endpoint_delete
+- ext_azure-iot_az_dt_endpoint_list
+- ext_azure-iot_az_dt_endpoint_show
+- ext_azure-iot_az_dt_list
+- ext_azure-iot_az_dt_model
+- ext_azure-iot_az_dt_model_create
+- ext_azure-iot_az_dt_model_delete
+- ext_azure-iot_az_dt_model_list
+- ext_azure-iot_az_dt_model_show
+- ext_azure-iot_az_dt_model_update
+- ext_azure-iot_az_dt_network
+- ext_azure-iot_az_dt_network_private_endpoint
+- ext_azure-iot_az_dt_network_private_endpoint_connection
+- ext_azure-iot_az_dt_network_private_endpoint_connection_delete
+- ext_azure-iot_az_dt_network_private_endpoint_connection_list
+- ext_azure-iot_az_dt_network_private_endpoint_connection_set
+- ext_azure-iot_az_dt_network_private_endpoint_connection_show
+- ext_azure-iot_az_dt_network_private_link
+- ext_azure-iot_az_dt_network_private_link_list
+- ext_azure-iot_az_dt_network_private_link_show
+- ext_azure-iot_az_dt_role_assignment
+- ext_azure-iot_az_dt_role_assignment_create
+- ext_azure-iot_az_dt_role_assignment_delete
+- ext_azure-iot_az_dt_role_assignment_list
+- ext_azure-iot_az_dt_route
+- ext_azure-iot_az_dt_route_create
+- ext_azure-iot_az_dt_route_delete
+- ext_azure-iot_az_dt_route_list
+- ext_azure-iot_az_dt_route_show
+- ext_azure-iot_az_dt_show
+- ext_azure-iot_az_dt_twin
+- ext_azure-iot_az_dt_twin_component
+- ext_azure-iot_az_dt_twin_component_show
+- ext_azure-iot_az_dt_twin_component_update
+- ext_azure-iot_az_dt_twin_create
+- ext_azure-iot_az_dt_twin_delete
+- ext_azure-iot_az_dt_twin_query
+- ext_azure-iot_az_dt_twin_relationship
+- ext_azure-iot_az_dt_twin_relationship_create
+- ext_azure-iot_az_dt_twin_relationship_delete
+- ext_azure-iot_az_dt_twin_relationship_list
+- ext_azure-iot_az_dt_twin_relationship_show
+- ext_azure-iot_az_dt_twin_relationship_update
+- ext_azure-iot_az_dt_twin_show
+- ext_azure-iot_az_dt_twin_telemetry
+- ext_azure-iot_az_dt_twin_telemetry_send
+- ext_azure-iot_az_dt_twin_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les solutions et l’infrastructure Azure Digital Twins.
+  ms.openlocfilehash: fdea2de929b9a709631931c3bf4989fd3f956d88
+  ms.sourcegitcommit: 3e79897e0aeca4d74bc8ff0410121b011b5884ec
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/03/2021
+  ms.locfileid: "102846256"
