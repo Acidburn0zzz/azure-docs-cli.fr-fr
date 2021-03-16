@@ -1,0 +1,268 @@
+### YamlMime:AzureCLIGroup
+uid: az_webapp_config_backup
+name: az webapp config backup
+summary: Gérer les sauvegardes pour les applications Web.
+description: ''
+directCommands:
+- uid: az_webapp_config_backup_create
+  name: az webapp config backup create
+  summary: Créer une sauvegarde d’une application Web.
+  description: ''
+  syntax: >-
+    az webapp config backup create --container-url
+                                   --resource-group
+                                   --webapp-name
+                                   [--backup-name]
+                                   [--db-connection-string]
+                                   [--db-name]
+                                   [--db-type {LocalMySql, MySql, PostgreSql, SqlAzure}]
+                                   [--slot]
+                                   [--subscription]
+  examples:
+  - summary: Créer une sauvegarde d’une application Web. généré automatiquement
+    syntax: az webapp config backup create --container-url {container-url} --resource-group MyResourceGroup --webapp-name MyWebapp
+  requiredParameters:
+  - isRequired: true
+    name: --container-url
+    summary: URL avec jeton SAS vers le conteneur de stockage d’objets BLOB.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --webapp-name
+    summary: Nom de l’application web.
+    description: ''
+  optionalParameters:
+  - name: --backup-name
+    summary: Nom de la sauvegarde. S’il n’est pas spécifié, la sauvegarde sera nommée avec le nom de l’application Web et un horodateur.
+    description: ''
+  - name: --db-connection-string
+    summary: Chaîne de connexion pour la base de données dans la sauvegarde.
+    description: ''
+  - name: --db-name
+    summary: Nom de la base de données dans la sauvegarde.
+    description: ''
+  - name: --db-type
+    parameterValueGroup: LocalMySql, MySql, PostgreSql, SqlAzure
+    summary: Type de base de données dans la sauvegarde.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_config_backup_list
+  name: az webapp config backup list
+  summary: Répertorier les sauvegardes d’une application Web.
+  description: ''
+  syntax: >-
+    az webapp config backup list --resource-group
+                                 --webapp-name
+                                 [--query-examples]
+                                 [--slot]
+                                 [--subscription]
+  examples:
+  - summary: Répertorier les sauvegardes d’une application Web. généré automatiquement
+    syntax: az webapp config backup list --resource-group MyResourceGroup --webapp-name MyWebapp
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --webapp-name
+    summary: Nom de l’application web.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_config_backup_restore
+  name: az webapp config backup restore
+  summary: Restaurez une application Web à partir d’une sauvegarde.
+  description: ''
+  syntax: >-
+    az webapp config backup restore --backup-name
+                                    --container-url
+                                    --resource-group
+                                    --webapp-name
+                                    [--db-connection-string]
+                                    [--db-name]
+                                    [--db-type {LocalMySql, MySql, PostgreSql, SqlAzure}]
+                                    [--ignore-hostname-conflict]
+                                    [--overwrite]
+                                    [--slot]
+                                    [--subscription]
+                                    [--target-name]
+  requiredParameters:
+  - isRequired: true
+    name: --backup-name
+    summary: Nom de la sauvegarde à restaurer.
+    description: ''
+  - isRequired: true
+    name: --container-url
+    summary: URL avec jeton SAS vers le conteneur de stockage d’objets BLOB.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --webapp-name
+    summary: Nom de l’application web.
+    description: ''
+  optionalParameters:
+  - name: --db-connection-string
+    summary: Chaîne de connexion pour la base de données dans la sauvegarde.
+    description: ''
+  - name: --db-name
+    summary: Nom de la base de données dans la sauvegarde.
+    description: ''
+  - name: --db-type
+    parameterValueGroup: LocalMySql, MySql, PostgreSql, SqlAzure
+    summary: Type de base de données dans la sauvegarde.
+    description: ''
+  - name: --ignore-hostname-conflict
+    summary: Ignore les noms d’hôte personnalisés stockés dans la sauvegarde.
+    description: ''
+  - name: --overwrite
+    summary: Remplacer l’application Web source, si--target-Name n’est pas spécifié.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --target-name
+    summary: Nom à utiliser pour l’application Web restaurée. S’il n’est pas spécifié, utilise par défaut le nom qui a été utilisé lors de la création de la sauvegarde.
+    description: ''
+- uid: az_webapp_config_backup_show
+  name: az webapp config backup show
+  summary: Affiche la planification de sauvegarde pour une application Web.
+  description: ''
+  syntax: >-
+    az webapp config backup show --resource-group
+                                 --webapp-name
+                                 [--query-examples]
+                                 [--slot]
+                                 [--subscription]
+  examples:
+  - summary: Affiche la planification de sauvegarde pour une application Web. généré automatiquement
+    syntax: az webapp config backup show --resource-group MyResourceGroup --webapp-name MyWebapp
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --webapp-name
+    summary: Nom de l’application web.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_config_backup_update
+  name: az webapp config backup update
+  summary: Configurez une nouvelle planification de sauvegarde pour une application Web.
+  description: ''
+  syntax: >-
+    az webapp config backup update --resource-group
+                                   --webapp-name
+                                   [--backup-name]
+                                   [--container-url]
+                                   [--db-connection-string]
+                                   [--db-name]
+                                   [--db-type {LocalMySql, MySql, PostgreSql, SqlAzure}]
+                                   [--frequency]
+                                   [--retain-one {false, true}]
+                                   [--retention]
+                                   [--slot]
+                                   [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --webapp-name
+    summary: Nom de l’application web.
+    description: ''
+  optionalParameters:
+  - name: --backup-name
+    summary: Nom de la sauvegarde. S’il n’est pas spécifié, la sauvegarde sera nommée avec le nom de l’application Web et un horodateur.
+    description: ''
+  - name: --container-url
+    summary: URL avec jeton SAS vers le conteneur de stockage d’objets BLOB.
+    description: ''
+  - name: --db-connection-string
+    summary: Chaîne de connexion pour la base de données dans la sauvegarde.
+    description: ''
+  - name: --db-name
+    summary: Nom de la base de données dans la sauvegarde.
+    description: ''
+  - name: --db-type
+    parameterValueGroup: LocalMySql, MySql, PostgreSql, SqlAzure
+    summary: Type de base de données dans la sauvegarde.
+    description: ''
+  - name: --frequency
+    summary: Fréquence de sauvegarde. Utilisez un nombre suivi de d ou h, par exemple, 5D = 5 jours, 2H = 2 heures.
+    description: ''
+  - name: --retain-one
+    parameterValueGroup: false, true
+    summary: Conservez toujours une sauvegarde, quel que soit son ancienneté.
+    description: ''
+  - name: --retention
+    summary: Nombre de jours pendant lesquels conserver une sauvegarde avant sa suppression automatique. Défini sur 0 pour une rétention indéfinie.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_webapp_config_backup_create
+- az_webapp_config_backup_list
+- az_webapp_config_backup_restore
+- az_webapp_config_backup_show
+- az_webapp_config_backup_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les sauvegardes pour les applications Web.
+  ms.openlocfilehash: 16c22136375de9bfebf82b0ff981ac8feb7484a6
+  ms.sourcegitcommit: a0cc51d7b2b39a52c402af1d98d3b48ff369bd16
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/22/2020
+  ms.locfileid: "102819374"
