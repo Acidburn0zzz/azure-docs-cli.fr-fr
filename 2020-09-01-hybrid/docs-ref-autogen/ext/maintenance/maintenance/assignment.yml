@@ -1,0 +1,253 @@
+### YamlMime:AzureCLIGroup
+uid: ext_maintenance_az_maintenance_assignment
+name: az maintenance assignment
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de **maintenance** de Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ maintenance Assignment** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Affectation de maintenance.
+description: ''
+directCommands:
+- uid: ext_maintenance_az_maintenance_assignment_create
+  name: az maintenance assignment create
+  summary: Inscrire la configuration pour la ressource.
+  description: ''
+  syntax: >-
+    az maintenance assignment create --configuration-assignment-name
+                                     --provider-name
+                                     --resource-group
+                                     --resource-name
+                                     --resource-type
+                                     [--config-id]
+                                     [--location]
+                                     [--resource-id]
+                                     [--resource-parent-name]
+                                     [--resource-parent-type]
+  examples:
+  - summary: ConfigurationAssignments_CreateOrUpdateParent
+    syntax: az maintenance assignment create --maintenance-configuration-id "/subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourcegroups/examplerg/providers/Microsoft.Maintenance/maintenanceConfigurations/policy1" --name "workervmPolicy" --provider-name "Microsoft.Compute" --resource-group "examplerg" --resource-name "smdvm1" --resource-parent-name "smdtest1" --resource-parent-type "virtualMachineScaleSets" --resource-type "virtualMachines"
+  requiredParameters:
+  - isRequired: true
+    name: --configuration-assignment-name --name -n
+    summary: Nom de l’attribution de la configuration.
+    description: ''
+  - isRequired: true
+    name: --provider-name
+    summary: Nom du fournisseur de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Identificateur de ressource.
+    description: ''
+  - isRequired: true
+    name: --resource-type
+    summary: Type de ressource.
+    description: ''
+  optionalParameters:
+  - name: --config-id --maintenance-configuration-id
+    summary: ID de configuration de la maintenance.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --resource-id
+    summary: ResourceId unique.
+    description: ''
+  - name: --resource-parent-name
+    summary: Identificateur parent de la ressource.
+    description: ''
+  - name: --resource-parent-type
+    summary: Type de parent de la ressource.
+    description: ''
+- uid: ext_maintenance_az_maintenance_assignment_delete
+  name: az maintenance assignment delete
+  summary: Annule l’inscription de la configuration pour la ressource.
+  description: ''
+  syntax: >-
+    az maintenance assignment delete --configuration-assignment-name
+                                     --provider-name
+                                     --resource-group
+                                     --resource-name
+                                     --resource-type
+                                     [--resource-parent-name]
+                                     [--resource-parent-type]
+                                     [--yes]
+  examples:
+  - summary: ConfigurationAssignments_DeleteParent
+    syntax: az maintenance assignment delete --name "workervmConfiguration" --provider-name "Microsoft.Compute" --resource-group "examplerg" --resource-name "smdvm1" --resource-parent-name "smdtest1" --resource-parent-type "virtualMachineScaleSets" --resource-type "virtualMachines"
+  requiredParameters:
+  - isRequired: true
+    name: --configuration-assignment-name --name -n
+    summary: Nom unique de l’attribution de la configuration.
+    description: ''
+  - isRequired: true
+    name: --provider-name
+    summary: Nom du fournisseur de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Identificateur de ressource.
+    description: ''
+  - isRequired: true
+    name: --resource-type
+    summary: Type de ressource.
+    description: ''
+  optionalParameters:
+  - name: --resource-parent-name
+    summary: Identificateur parent de la ressource.
+    description: ''
+  - name: --resource-parent-type
+    summary: Type de parent de la ressource.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_maintenance_az_maintenance_assignment_list
+  name: az maintenance assignment list
+  summary: Liste configurationAssignments pour la ressource.
+  description: ''
+  syntax: >-
+    az maintenance assignment list --provider-name
+                                   --resource-group
+                                   --resource-name
+                                   --resource-type
+  examples:
+  - summary: ConfigurationAssignments_List
+    syntax: az maintenance assignment list --provider-name "Microsoft.Compute" --resource-group "examplerg" --resource-name "smdtest1" --resource-type "virtualMachineScaleSets"
+  requiredParameters:
+  - isRequired: true
+    name: --provider-name
+    summary: Nom du fournisseur de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Identificateur de ressource.
+    description: ''
+  - isRequired: true
+    name: --resource-type
+    summary: Type de ressource.
+    description: ''
+- uid: ext_maintenance_az_maintenance_assignment_list_parent
+  name: az maintenance assignment list-parent
+  summary: Liste configurationAssignments pour la ressource.
+  description: ''
+  syntax: >-
+    az maintenance assignment list-parent --provider-name
+                                          --resource-group
+                                          --resource-name
+                                          --resource-parent-name
+                                          --resource-parent-type
+                                          --resource-type
+  examples:
+  - summary: ConfigurationAssignments_ListParent
+    syntax: az maintenance assignment list-parent --provider-name "Microsoft.Compute" --resource-group "examplerg" --resource-name "smdtestvm1" --resource-parent-name "smdtest1" --resource-parent-type "virtualMachineScaleSets" --resource-type "virtualMachines"
+  requiredParameters:
+  - isRequired: true
+    name: --provider-name
+    summary: Nom du fournisseur de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Identificateur de ressource.
+    description: ''
+  - isRequired: true
+    name: --resource-parent-name
+    summary: Identificateur parent de la ressource.
+    description: ''
+  - isRequired: true
+    name: --resource-parent-type
+    summary: Type de parent de la ressource.
+    description: ''
+  - isRequired: true
+    name: --resource-type
+    summary: Type de ressource.
+    description: ''
+- uid: ext_maintenance_az_maintenance_assignment_update
+  name: az maintenance assignment update
+  summary: Inscrire la configuration pour la ressource.
+  description: ''
+  syntax: >-
+    az maintenance assignment update --configuration-assignment-name
+                                     --provider-name
+                                     --resource-group
+                                     --resource-name
+                                     --resource-type
+                                     [--config-id]
+                                     [--location]
+                                     [--resource-id]
+  requiredParameters:
+  - isRequired: true
+    name: --configuration-assignment-name --name -n
+    summary: Nom de l’attribution de la configuration.
+    description: ''
+  - isRequired: true
+    name: --provider-name
+    summary: Nom du fournisseur de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Identificateur de ressource.
+    description: ''
+  - isRequired: true
+    name: --resource-type
+    summary: Type de ressource.
+    description: ''
+  optionalParameters:
+  - name: --config-id --maintenance-configuration-id
+    summary: ID de configuration de la maintenance.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --resource-id
+    summary: ResourceId unique.
+    description: ''
+commands:
+- ext_maintenance_az_maintenance_assignment_create
+- ext_maintenance_az_maintenance_assignment_delete
+- ext_maintenance_az_maintenance_assignment_list
+- ext_maintenance_az_maintenance_assignment_list_parent
+- ext_maintenance_az_maintenance_assignment_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Affectation de maintenance.
+  ms.openlocfilehash: ea7df2ae322b9bc147d10470ca3679ace46c9e3e
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102831257"
