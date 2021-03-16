@@ -1,0 +1,153 @@
+### YamlMime:AzureCLIGroup
+uid: az_staticwebapp_users
+name: az staticwebapp users
+summary: Gérer les utilisateurs de l’application statique.
+description: ''
+directCommands:
+- uid: az_staticwebapp_users_invite
+  name: az staticwebapp users invite
+  summary: Créer un lien d’invitation pour l’utilisateur spécifié vers l’application statique.
+  description: ''
+  syntax: >-
+    az staticwebapp users invite --authentication-provider
+                                 --domain
+                                 --invitation-expiration-in-hours
+                                 --name
+                                 --roles
+                                 --user-details
+                                 [--resource-group]
+                                 [--subscription]
+  examples:
+  - summary: Créer un lien d’invitation pour l’utilisateur spécifié vers l’application statique.
+    syntax: az staticwebapp users invite -n MyStaticAppName --authentication-provider GitHub --user-details JohnDoe --role Contributor --domain static-app-001.azurestaticapps.net --invitation-expiration-in-hours 1
+  requiredParameters:
+  - isRequired: true
+    name: --authentication-provider
+    summary: Fournisseur d’authentification de l’identité de l’utilisateur, par exemple AAD, Facebook, GitHub, Google, Twitter.
+    description: ''
+  - isRequired: true
+    name: --domain
+    summary: Domaine ajouté à l’application statique entre guillemets.
+    description: ''
+  - isRequired: true
+    name: --invitation-expiration-in-hours
+    summary: Cette valeur définit la date d’expiration du lien, en heures. La valeur maximale est 168 (7 jours).
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du site statique.
+    description: ''
+  - isRequired: true
+    name: --roles
+    summary: Noms de rôles par défaut ou définis par l’utilisateur séparés par des virgules. Les rôles qui peuvent être attribués à un utilisateur sont séparés par des virgules et ne respectent pas la casse (au plus 50 rôles jusqu’à 25 caractères chacun et sont limités à 0-9, A-Z, a-z et _). Définissez des rôles dans routes.jsdans le répertoire racine de votre référentiel GitHub.
+    description: ''
+  - isRequired: true
+    name: --user-details
+    summary: Adresse de messagerie pour AAD, Facebook et Google. Nom de compte (descripteur) pour GitHub et Twitter.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_staticwebapp_users_list
+  name: az staticwebapp users list
+  summary: Répertorie les utilisateurs et les rôles attribués, limités aux utilisateurs qui ont accepté leurs invitations.
+  description: ''
+  syntax: >-
+    az staticwebapp users list --name
+                               [--authentication-provider]
+                               [--query-examples]
+                               [--resource-group]
+                               [--subscription]
+  examples:
+  - summary: Répertorie les utilisateurs et les rôles affectés.
+    syntax: az staticwebapp users list -n MyStaticAppName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du site statique.
+    description: ''
+  optionalParameters:
+  - name: --authentication-provider
+    defaultValue: all
+    summary: Fournisseur d’authentification de l’identité de l’utilisateur, par exemple AAD, Facebook, GitHub, Google, Twitter.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_staticwebapp_users_update
+  name: az staticwebapp users update
+  summary: Met à jour une entrée d’utilisateur avec les rôles listés. Les détails de l’utilisateur ou l’ID d’utilisateur est requis.
+  description: ''
+  syntax: >-
+    az staticwebapp users update --name
+                                 --roles
+                                 [--authentication-provider]
+                                 [--resource-group]
+                                 [--subscription]
+                                 [--user-details]
+                                 [--user-id]
+  examples:
+  - summary: Met à jour une entrée d’utilisateur avec les rôles listés.
+    syntax: az staticwebapp users update -n MyStaticAppName --user-details JohnDoe --role Contributor
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du site statique.
+    description: ''
+  - isRequired: true
+    name: --roles
+    summary: Noms de rôles par défaut ou définis par l’utilisateur séparés par des virgules. Les rôles qui peuvent être attribués à un utilisateur sont séparés par des virgules et ne respectent pas la casse (au plus 50 rôles jusqu’à 25 caractères chacun et sont limités à 0-9, A-Z, a-z et _). Définissez des rôles dans routes.jsdans le répertoire racine de votre référentiel GitHub.
+    description: ''
+  optionalParameters:
+  - name: --authentication-provider
+    summary: Fournisseur d’authentification de l’identité de l’utilisateur, par exemple AAD, Facebook, GitHub, Google, Twitter.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --user-details
+    summary: Adresse de messagerie pour AAD, Facebook et Google. Nom de compte (descripteur) pour GitHub et Twitter.
+    description: ''
+  - name: --user-id
+    summary: ID donné de l’utilisateur inscrit.
+    description: ''
+commands:
+- az_staticwebapp_users_invite
+- az_staticwebapp_users_list
+- az_staticwebapp_users_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les utilisateurs de l’application statique.
+  ms.openlocfilehash: ec376d0b42a4ce6a97eb8713d21140eb97913aa4
+  ms.sourcegitcommit: a0cc51d7b2b39a52c402af1d98d3b48ff369bd16
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/22/2020
+  ms.locfileid: "102819272"

@@ -1,0 +1,479 @@
+### YamlMime:AzureCLIGroup
+uid: az_image_builder
+name: az image builder
+summary: Gérer et générer des modèles d’image Builder.
+description: ''
+directCommands:
+- uid: az_image_builder_cancel
+  name: az image builder cancel
+  summary: Annulez la génération de l’image longue basée sur le modèle d’image.
+  description: ''
+  syntax: >-
+    az image builder cancel [--ids]
+                            [--name]
+                            [--resource-group]
+                            [--subscription]
+  examples:
+  - summary: Annule une génération d’image.
+    syntax: az image builder cancel -n mytemplate -g my-group
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_builder_create
+  name: az image builder create
+  summary: Créez un modèle d’image Builder.
+  description: ''
+  syntax: >-
+    az image builder create --name
+                            --resource-group
+                            [--build-timeout]
+                            [--checksum]
+                            [--defer]
+                            [--identity]
+                            [--image-source]
+                            [--image-template]
+                            [--location]
+                            [--managed-image-destinations]
+                            [--no-wait]
+                            [--os-disk-size]
+                            [--scripts]
+                            [--shared-image-destinations]
+                            [--subnet]
+                            [--subscription]
+                            [--tags]
+                            [--vm-size]
+                            [--vnet]
+  examples:
+  - summary: Créez un modèle d’image Builder à partir d’une image UbuntuLTS 18,04. Le distribuer comme une image managée et une version d’image de la Galerie d’images partagées
+    syntax: >-
+      scripts="https://my-script-url.net/customize_script.sh"
+
+      imagesource="Canonical:UbuntuServer:18.04-LTS:18.04.201903060"
+
+
+      az image builder create --image-source $imagesource -n mytemplate -g my-group \
+          --scripts $scripts --managed-image-destinations image_1=westus \
+          --shared-image-destinations my_shared_gallery/linux_image_def=westus,brazilsouth \
+          --identity myidentity
+  - summary: Créez un modèle d’image Builder à l’aide d’un fichier de modèle d’image.
+    syntax: az image builder create -g my-group -n mytemplate --image-template filename
+  - summary: 'Détaillées Créez un modèle d’image avec plusieurs personnalisateurs et serveurs de distribution à l’aide du cache d’objets de l’interface CLI via--defer. Prend en charge des fonctionnalités telles que : les noms de personnalisation et de sortie, les codes de sortie PowerShell, les scripts Inline, le redémarrage de Windows, les personnalisateurs de fichiers, les balises d’artefact et les serveurs de sortie VHD.'
+    syntax: >-
+      script="https://my-script-url.com/customize_script.ps1"
+
+      imagesource="MicrosoftWindowsServer:WindowsServer:2019-Datacenter:2019.0.20190214"
+
+
+      # create and update template object in local cli cache. Defers put request to ARM
+
+      # Cache object ttl set via az configure.
+
+      az image builder create --image-source $imagesource -n mytemplate \
+          -g my-group --scripts $script --identity myidentity --defer
+
+      # add customizers
+
+      az image builder customizer add -n mytemplate -g my-group  \
+          --customizer-name my-pwsh-script --exit-codes 0 1 --inline-script \
+          "mkdir c:\buildActions" "echo Azure-Image-Builder-Was-Here \
+           > c:\buildActions\Output.txt" --type powershell --defer
+
+      az image builder customizer add -n mytemplate -g my-group \
+          --customizer-name my-file-customizer --type file \
+          --file-source "https://my-file-source.net/file.txt"  \
+          --dest-path "c:\buildArtifacts\file.txt" --defer
+
+      # add distributors
+
+      az image builder output add -n mytemplate -g my-group --is-vhd \
+          --output-name my-win-image-vhd --artifact-tags "is_vhd=True" --defer
+
+      az image builder output add -n mytemplate -g my-group \
+          --output-name my-win-image-managed --managed-image winImage \
+          --managed-image-location eastus \
+          --artifact-tags "is_vhd=False" --defer
+
+      # Stop deferring put request to ARM. Create the template from the object cache.
+
+      # Cache object will be deleted.
+
+      az image builder update -n mytemplate -g my-group
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --build-timeout
+    summary: Durée maximale d’attente lors de la génération du modèle d’image, en minutes. La valeur par défaut est 60.
+    description: ''
+  - name: --checksum
+    summary: Somme de contrôle SHA256 de l’image ISO de Red Hat.
+    description: ''
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
+    description: ''
+  - name: --identity
+    summary: Liste des identités affectées par l’utilisateur (nom ou ID, espace délimité) du modèle d’image.
+    description: ''
+  - name: --image-source -i
+    summary: Image de base à personnaliser. Doit être une image de plateforme URN, un alias d’image de plateforme, un URI d’image Red Hat ISO, un ID/ID d’image managée ou un ID de version d’image partagée.
+    description: ''
+    valueFrom: az vm image list, az vm image show
+  - name: --image-template
+    summary: 'URL ou chemin d’accès local vers un fichier de modèle d’image. Quand vous utilisez--image-template, tous les autres paramètres sont ignorés, sauf-g et-n. Référence : <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/image-builder-json">https://docs.microsoft.com/en-us/azure/virtual-machines/linux/image-builder-json</a> .'
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --managed-image-destinations
+    summary: Informations sur le serveur de distribution d’image managée. Liste de paires clé-valeur séparées par des espaces. Par exemple, « image_1 = westus2 image_2 = westus ». Chaque clé est le nom ou l’ID de ressource de l’image managée à créer. Chaque valeur correspond à l’emplacement de l’image.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --os-disk-size
+    summary: Taille du disque du système d’exploitation en Go. Omettez ou spécifiez 0 pour utiliser la taille de disque du système d’exploitation par défaut d’Azure.
+    description: ''
+  - name: --scripts
+    summary: Liste séparée par des espaces de scripts d’interpréteur de commandes ou de scripts PowerShell pour personnaliser l’image. Chaque script doit être une URL accessible publiquement. Déduit le type de script à partir de l’extension de fichier (« . SH » ou « . ps1 ») ou du type de source. Plus de possibilités de personnalisation et de flexibilité, consultez « AZ image template Customizer Add ».
+    description: ''
+  - name: --shared-image-destinations
+    summary: Informations sur le serveur de distribution de la Galerie d’images partagées (SIG). Liste de paires clé-valeur séparées par des espaces. Par exemple, « my_gallery_1/image_def_1 = est, westus my_gallery_2/image_def_2 = uksouth, canadaeast, francesouth ». Chaque clé correspond à l’ID de définition d’image SIG ou au nom de la Galerie SIG et à la définition d’image SIG délimitée par un « / ». Chaque valeur est une liste délimitée par des virgules d’emplacements de réplicas.
+    description: ''
+  - name: --subnet
+    summary: Nom ou ID du sous-réseau pour déployer l’ordinateur virtuel de la Build.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --vm-size
+    summary: Taille de la machine virtuelle utilisée pour générer, personnaliser et capturer des images. Omettez ou spécifiez une chaîne vide pour utiliser la valeur par défaut (Standard_D1_v2).
+    description: ''
+  - name: --vnet
+    summary: Nom du réseau virtuel pour le déploiement de la machine virtuelle de Build. Vous devez uniquement le spécifier quand le sous-réseau est un nom.
+    description: ''
+- uid: az_image_builder_delete
+  name: az image builder delete
+  summary: Supprimer le modèle du générateur d’images.
+  description: ''
+  syntax: >-
+    az image builder delete [--ids]
+                            [--name]
+                            [--resource-group]
+                            [--subscription]
+  examples:
+  - summary: Supprimer le modèle du générateur d’images. généré automatiquement
+    syntax: az image builder delete --name MyImageTemplate --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_builder_list
+  name: az image builder list
+  summary: Répertorier les modèles du générateur d’images.
+  description: ''
+  syntax: >-
+    az image builder list [--query-examples]
+                          [--resource-group]
+                          [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_builder_run
+  name: az image builder run
+  summary: Générez un modèle d’image Builder.
+  description: ''
+  syntax: >-
+    az image builder run [--ids]
+                         [--name]
+                         [--no-wait]
+                         [--resource-group]
+                         [--subscription]
+  examples:
+  - summary: Démarrez une génération de modèle, puis attendez qu’elle se termine.
+    syntax: >-
+      az image builder run -n mytemplate -g my-group --no-wait
+
+
+      az image builder wait -n mytemplate -g aibmdi \
+          --custom "lastRunStatus.runState!='running'"
+
+      az image builder show -n mytemplate -g my-group
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_builder_show
+  name: az image builder show
+  summary: Affichez un modèle d’image Builder.
+  description: ''
+  syntax: >-
+    az image builder show [--ids]
+                          [--name]
+                          [--query-examples]
+                          [--resource-group]
+                          [--subscription]
+  examples:
+  - summary: Afficher un modèle d’image Builder (généré automatiquement)
+    syntax: az image builder show --name mytemplate  --resource-group my-group
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_builder_show_runs
+  name: az image builder show-runs
+  summary: Affichez les sorties d’exécution d’un modèle image Builder.
+  description: ''
+  syntax: >-
+    az image builder show-runs [--ids]
+                               [--name]
+                               [--output-name]
+                               [--resource-group]
+                               [--subscription]
+  examples:
+  - summary: Exécutez une génération de modèle, puis affichez ses sorties d’exécution.
+    syntax: >-
+      az image builder run -n mytemplate -g my-group --no-wait
+
+
+      az image builder wait -n mytemplate -g aibmdi \
+          --custom "lastRunStatus.runState!='running'"
+
+      az image builder show-runs -n mytemplate -g my-group
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --output-name
+    summary: Nom de la sortie de l’exécution du générateur d’images.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_builder_update
+  name: az image builder update
+  summary: Mettre à jour un modèle d’image Builder.
+  description: La mise à jour d’un modèle d’image Builder n’est pas prise en charge pour le moment. Cette commande peut être utilisée conjointement avec--defer pour mettre à jour un objet modèle d’image dans le cache CLI. Sans--Defer, il récupère le modèle d’image spécifié à partir du cache et envoie une demande à Azure pour créer le modèle d’image.
+  syntax: >-
+    az image builder update [--add]
+                            [--defer]
+                            [--force-string]
+                            [--ids]
+                            [--name]
+                            [--remove]
+                            [--resource-group]
+                            [--set]
+                            [--subscription]
+  examples:
+  - summary: Créer une ressource de modèle à partir d’un objet de modèle dans le cache CLI.
+    syntax: >-
+      # create and write template object to local cli cache
+
+      az image builder create --image-source {image_source} -n mytemplate -g my-group \
+          --scripts {script} --managed-image-destinations image_1=westus --identity myidentity --defer
+
+      # add customizers and outputs to local cache template object via az image template output / customizer add
+
+      # one can also update cache object properties through generic update options, such as: --set
+
+      az image builder output add -n mytemplate -g my-group --output-name my-win-image-managed \
+          --artifact-tags "is_vhd=False"  --managed-image winImage --managed-image-location eastus --defer
+
+      # send template create request to azure to create template resource
+
+      az image builder update -n mytemplate -g my-group
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_builder_wait
+  name: az image builder wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du modèle soit remplie.
+  description: ''
+  syntax: >-
+    az image builder wait [--created]
+                          [--custom]
+                          [--deleted]
+                          [--exists]
+                          [--ids]
+                          [--interval]
+                          [--name]
+                          [--resource-group]
+                          [--subscription]
+                          [--timeout]
+                          [--updated]
+  examples:
+  - summary: Démarrez une génération de modèle, puis attendez qu’elle se termine.
+    syntax: >-
+      az image builder run -n mytemplate -g my-group --no-wait
+
+
+      az image builder wait -n mytemplate -g aibmdi \
+          --custom "lastRunStatus.runState!='running'"
+
+      az image builder show -n mytemplate -g my-group
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_image_builder_cancel
+- az_image_builder_create
+- az_image_builder_customizer
+- az_image_builder_customizer_add
+- az_image_builder_customizer_clear
+- az_image_builder_customizer_remove
+- az_image_builder_delete
+- az_image_builder_list
+- az_image_builder_output
+- az_image_builder_output_add
+- az_image_builder_output_clear
+- az_image_builder_output_remove
+- az_image_builder_run
+- az_image_builder_show
+- az_image_builder_show_runs
+- az_image_builder_update
+- az_image_builder_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer et générer des modèles d’image Builder.
+  ms.openlocfilehash: a53cabb4a3105724a47e31b2fb3b8c105944645b
+  ms.sourcegitcommit: a0cc51d7b2b39a52c402af1d98d3b48ff369bd16
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/22/2020
+  ms.locfileid: "102819362"
