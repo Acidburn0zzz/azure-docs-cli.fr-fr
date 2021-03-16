@@ -1,0 +1,411 @@
+### YamlMime:AzureCLIGroup
+uid: az_keyvault_storage
+name: az keyvault storage
+summary: Gérer les comptes de stockage.
+description: ''
+directCommands:
+- uid: az_keyvault_storage_add
+  name: az keyvault storage add
+  summary: Crée ou met à jour un nouveau compte de stockage.
+  description: ''
+  syntax: >-
+    az keyvault storage add --active-key-name
+                            --name
+                            --resource-id
+                            --vault-name
+                            [--auto-regenerate-key {false, true}]
+                            [--disabled {false, true}]
+                            [--regeneration-period]
+                            [--subscription]
+                            [--tags]
+  examples:
+  - summary: Créer un compte de stockage et configurer un coffre pour gérer ses clés
+    syntax: >-
+      $id = az storage account create -g resourcegroup -n storageacct --query id
+
+
+      # assign the Azure Key Vault service the "Storage Account Key Operator Service Role" role.
+
+      az role assignment create --role "Storage Account Key Operator Service Role" --scope $id \
+
+      --assignee cfa8b339-82a2-471a-a3c9-0fc0be7a4093
+
+
+      az keyvault storage add --vault-name vault -n storageacct --active-key-name key1    \
+
+      --auto-regenerate-key --regeneration-period P90D  --resource-id $id
+  requiredParameters:
+  - isRequired: true
+    name: --active-key-name
+    summary: Nom de la clé actuelle du compte de stockage actif.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom identifiant le compte de stockage dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --resource-id
+    summary: ID de ressource du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --auto-regenerate-key
+    parameterValueGroup: false, true
+    summary: Si keyvault doit gérer le compte de stockage pour l’utilisateur.
+    description: ''
+  - name: --disabled
+    parameterValueGroup: false, true
+    summary: Ajoutez le compte de stockage dans un état désactivé.
+    description: ''
+  - name: --regeneration-period
+    summary: Durée de régénération des clés spécifiée au format ISO-8601, par exemple « P30D » pour la rotation tous les 30 jours.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_backup
+  name: az keyvault storage backup
+  summary: Sauvegarde le compte de stockage spécifié.
+  description: Demande qu’une sauvegarde du compte de stockage spécifié soit téléchargée sur le client. Cette opération requiert l’autorisation stockage/sauvegarde.
+  syntax: >-
+    az keyvault storage backup --file
+                               [--id]
+                               [--name]
+                               [--subscription]
+                               [--vault-name]
+  requiredParameters:
+  - isRequired: true
+    name: --file -f
+    summary: Chemin d’accès au fichier local dans lequel stocker la sauvegarde du compte de stockage.
+    description: ''
+  optionalParameters:
+  - name: --id
+    summary: ID du compte de stockage.  S’il est spécifié, tous les autres arguments’ID’doivent être omis.
+    description: ''
+  - name: --name -n
+    summary: Nom identifiant le compte de stockage dans le coffre. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vault-name
+    summary: Nom de l’Key Vault. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_list
+  name: az keyvault storage list
+  summary: Répertorier les comptes de stockage gérés par le coffre de clés spécifié.
+  description: Cette opération requiert l’autorisation stockage/liste.
+  syntax: >-
+    az keyvault storage list --vault-name
+                             [--maxresults]
+                             [--query-examples]
+                             [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --maxresults
+    summary: Nombre maximal de résultats à retourner dans une page. S’il n’est pas spécifié, le service retourne jusqu’à 25 résultats.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_list_deleted
+  name: az keyvault storage list-deleted
+  summary: Répertorie les comptes de stockage supprimés pour le coffre spécifié.
+  description: L’opération obtenir les comptes de stockage supprimés retourne les comptes de stockage qui ont été supprimés pour un coffre activé pour la suppression réversible. Cette opération requiert l’autorisation stockage/liste.
+  syntax: >-
+    az keyvault storage list-deleted --vault-name
+                                     [--maxresults]
+                                     [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --maxresults
+    summary: Nombre maximal de résultats à retourner dans une page. S’il n’est pas spécifié, le service retourne jusqu’à 25 résultats.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_purge
+  name: az keyvault storage purge
+  summary: Supprime définitivement le compte de stockage spécifié.
+  description: L’opération purger le compte de stockage supprimé supprime définitivement le secret, sans possibilité de récupération. Cette opération ne peut être effectuée que sur un coffre activé pour la suppression réversible. Cette opération nécessite l’autorisation de stockage/vidage.
+  syntax: >-
+    az keyvault storage purge --name
+                              --vault-name
+                              [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom identifiant le compte de stockage dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_recover
+  name: az keyvault storage recover
+  summary: Récupère le compte de stockage supprimé.
+  description: Récupère le compte de stockage supprimé dans le coffre spécifié. Cette opération ne peut être effectuée que sur un coffre activé pour la suppression réversible. Cette opération nécessite l’autorisation de stockage/récupération.
+  syntax: >-
+    az keyvault storage recover --name
+                                --vault-name
+                                [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom identifiant le compte de stockage dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_regenerate_key
+  name: az keyvault storage regenerate-key
+  summary: Régénère la valeur de clé spécifiée pour le compte de stockage donné.
+  description: Cette opération requiert l’autorisation Storage/regeneratekey.
+  syntax: >-
+    az keyvault storage regenerate-key --key-name
+                                       [--id]
+                                       [--name]
+                                       [--subscription]
+                                       [--vault-name]
+  requiredParameters:
+  - isRequired: true
+    name: --key-name
+    summary: Nom de la clé de compte de stockage.
+    description: ''
+  optionalParameters:
+  - name: --id
+    summary: ID du compte de stockage.  S’il est spécifié, tous les autres arguments’ID’doivent être omis.
+    description: ''
+  - name: --name -n
+    summary: Nom identifiant le compte de stockage dans le coffre. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vault-name
+    summary: Nom de l’Key Vault. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_remove
+  name: az keyvault storage remove
+  summary: Supprimer un compte de stockage Azure géré Key Vault et toutes les définitions SAS associées. Cette opération nécessite l’autorisation de stockage/suppression.
+  description: ''
+  syntax: >-
+    az keyvault storage remove [--id]
+                               [--name]
+                               [--subscription]
+                               [--vault-name]
+  examples:
+  - summary: Supprimer un compte de stockage Azure géré Key Vault et toutes les définitions SAS associées (générées automatiquement)
+    syntax: az keyvault storage remove --id "/subscriptions/00000000-0000-0000-0000-00000000000000000/resourceGroups/myrg/providers/Microsoft.KeyVault/vaults/mykv/privateEndpointConnections/mykv.00000000-0000-0000-0000-00000000000000000"
+  - summary: Supprimer un compte de stockage Azure géré Key Vault et toutes les définitions SAS associées (générées automatiquement)
+    syntax: az keyvault storage remove --name MyStorageAccount --vault-name MyVault
+  optionalParameters:
+  - name: --id
+    summary: ID du compte de stockage.  S’il est spécifié, tous les autres arguments’ID’doivent être omis.
+    description: ''
+  - name: --name -n
+    summary: Nom identifiant le compte de stockage dans le coffre. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vault-name
+    summary: Nom de l’Key Vault. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_restore
+  name: az keyvault storage restore
+  summary: Restaure un compte de stockage sauvegardé dans un coffre.
+  description: Restaure un compte de stockage sauvegardé dans un coffre. Cette opération nécessite l’autorisation de stockage/restauration.
+  syntax: >-
+    az keyvault storage restore --file
+                                --vault-name
+                                [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --file -f
+    summary: Sauvegarde de clé locale à partir de laquelle restaurer le compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_show
+  name: az keyvault storage show
+  summary: Obtient des informations sur un compte de stockage spécifié.
+  description: Cette opération nécessite l’autorisation Storage/obten.
+  syntax: >-
+    az keyvault storage show [--id]
+                             [--name]
+                             [--query-examples]
+                             [--subscription]
+                             [--vault-name]
+  optionalParameters:
+  - name: --id
+    summary: ID du compte de stockage.  S’il est spécifié, tous les autres arguments’ID’doivent être omis.
+    description: ''
+  - name: --name -n
+    summary: Nom identifiant le compte de stockage dans le coffre. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vault-name
+    summary: Nom de l’Key Vault. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_show_deleted
+  name: az keyvault storage show-deleted
+  summary: Obtient le compte de stockage supprimé spécifié.
+  description: L’opération de récupération de compte de stockage supprimé retourne le compte de stockage supprimé spécifié, ainsi que ses attributs. Cette opération nécessite l’autorisation Storage/obten.
+  syntax: >-
+    az keyvault storage show-deleted --name
+                                     --vault-name
+                                     [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom identifiant le compte de stockage dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_update
+  name: az keyvault storage update
+  summary: Met à jour les attributs spécifiés associés au compte de stockage donné.
+  description: Cette opération nécessite l’autorisation Storage/Set/Update.
+  syntax: >-
+    az keyvault storage update [--active-key-name]
+                               [--auto-regenerate-key {false, true}]
+                               [--disabled {false, true}]
+                               [--id]
+                               [--name]
+                               [--regeneration-period]
+                               [--subscription]
+                               [--tags]
+                               [--vault-name]
+  optionalParameters:
+  - name: --active-key-name
+    summary: Nom de la clé actuelle du compte de stockage actif.
+    description: ''
+  - name: --auto-regenerate-key
+    parameterValueGroup: false, true
+    summary: Si keyvault doit gérer le compte de stockage pour l’utilisateur.
+    description: ''
+  - name: --disabled
+    parameterValueGroup: false, true
+    summary: Ajoutez le compte de stockage dans un état désactivé.
+    description: ''
+  - name: --id
+    summary: ID du compte de stockage.  S’il est spécifié, tous les autres arguments’ID’doivent être omis.
+    description: ''
+  - name: --name -n
+    summary: Nom identifiant le compte de stockage dans le coffre. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  - name: --regeneration-period
+    summary: Durée de régénération des clés spécifiée au format ISO-8601, par exemple « P30D » pour la rotation tous les 30 jours.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --vault-name
+    summary: Nom de l’Key Vault. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+commands:
+- az_keyvault_storage_add
+- az_keyvault_storage_backup
+- az_keyvault_storage_list
+- az_keyvault_storage_list_deleted
+- az_keyvault_storage_purge
+- az_keyvault_storage_recover
+- az_keyvault_storage_regenerate_key
+- az_keyvault_storage_remove
+- az_keyvault_storage_restore
+- az_keyvault_storage_sas_definition
+- az_keyvault_storage_sas_definition_create
+- az_keyvault_storage_sas_definition_delete
+- az_keyvault_storage_sas_definition_list
+- az_keyvault_storage_sas_definition_list_deleted
+- az_keyvault_storage_sas_definition_recover
+- az_keyvault_storage_sas_definition_show
+- az_keyvault_storage_sas_definition_show_deleted
+- az_keyvault_storage_sas_definition_update
+- az_keyvault_storage_show
+- az_keyvault_storage_show_deleted
+- az_keyvault_storage_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/14/2020
+  description: Gérer les comptes de stockage.
+  ms.openlocfilehash: 60e7fb50a44ceb15db59351723d153349f8e9a17
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102841465"

@@ -1,0 +1,359 @@
+### YamlMime:AzureCLIGroup
+uid: az_servicebus_queue
+name: az servicebus queue
+summary: Gérer Azure Service Bus règle de file d’attente et d’autorisation.
+description: ''
+directCommands:
+- uid: az_servicebus_queue_create
+  name: az servicebus queue create
+  summary: Créez la file d’attente Service Bus.
+  description: ''
+  syntax: >-
+    az servicebus queue create --name
+                               --namespace-name
+                               --resource-group
+                               [--auto-delete-on-idle]
+                               [--default-message-time-to-live]
+                               [--duplicate-detection-history-time-window]
+                               [--enable-batched-operations {false, true}]
+                               [--enable-dead-lettering-on-message-expiration {false, true}]
+                               [--enable-duplicate-detection {false, true}]
+                               [--enable-express {false, true}]
+                               [--enable-partitioning {false, true}]
+                               [--enable-session {false, true}]
+                               [--forward-dead-lettered-messages-to]
+                               [--forward-to]
+                               [--lock-duration]
+                               [--max-delivery-count]
+                               [--max-size {1024, 10240, 2048, 20480, 3072, 4096, 40960, 5120, 81920}]
+                               [--status {Active, Disabled, SendDisabled}]
+                               [--subscription]
+  examples:
+  - summary: Créez Service Bus file d’attente.
+    syntax: az servicebus queue create --resource-group myresourcegroup --namespace-name mynamespace --name myqueue
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la file d’attente.
+    description: ''
+  - isRequired: true
+    name: --namespace-name
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --auto-delete-on-idle
+    summary: Format de date/heure ISO 8601 pour l’intervalle d’inactivité après lequel la file d’attente est automatiquement supprimée. La durée minimale est de 5 minutes.
+    description: ''
+  - name: --default-message-time-to-live
+    summary: Format de durée de vie ISO 8601 pour la valeur de message par défaut. Il s’agit de la durée au bout de laquelle le message expire, à partir du moment où le message est envoyé à Service Bus. Il s’agit de la valeur par défaut utilisée lorsque TimeToLive n’est pas défini sur un message lui-même.
+    description: ''
+  - name: --duplicate-detection-history-time-window
+    summary: Structure timeSpan ISO 8601 qui définit la durée de l’historique de détection des doublons. La valeur par défaut est 10 minutes.
+    description: ''
+  - name: --enable-batched-operations
+    parameterValueGroup: false, true
+    summary: Autorisez les opérations par lots côté serveur.
+    description: ''
+  - name: --enable-dead-lettering-on-message-expiration
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si cette file d’attente prend en charge les lettres mortes lorsqu’un message expire.
+    description: ''
+  - name: --enable-duplicate-detection
+    parameterValueGroup: false, true
+    summary: Valeur booléenne indiquant si cette file d’attente requiert la détection des doublons.
+    description: ''
+  - name: --enable-express
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si les entités Express sont activées. Une file d’attente Express maintient temporairement un message en mémoire avant de l’écrire dans un stockage persistant.
+    description: ''
+  - name: --enable-partitioning
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si la file d’attente doit être partitionnée entre plusieurs courtiers de messages.
+    description: ''
+  - name: --enable-session
+    parameterValueGroup: false, true
+    summary: Valeur booléenne indiquant si la file d’attente prend en charge le concept de sessions.
+    description: ''
+  - name: --forward-dead-lettered-messages-to
+    summary: Nom de la file d’attente/rubrique pour transférer le message de lettre morte.
+    description: ''
+  - name: --forward-to
+    summary: Nom de la file d’attente/rubrique pour transférer les messages.
+    description: ''
+  - name: --lock-duration
+    summary: Format d’intervalle de temps ou de durée de la chaîne ISO 8601 pour la durée d’un verrou de lecture ; autrement dit, il s’agit de la durée pendant laquelle le message est verrouillé pour les autres destinataires. La valeur maximale de LockDuration est de 5 minutes ; la valeur par défaut est 1 minute.
+    description: ''
+  - name: --max-delivery-count
+    summary: Nombre maximal de remises. Un message devient une lettre morte après ce nombre de remises. la valeur par défaut est 10.
+    description: ''
+  - name: --max-size
+    parameterValueGroup: 1024, 10240, 2048, 20480, 3072, 4096, 40960, 5120, 81920
+    summary: Taille maximale de la file d’attente en mégaoctets, qui est la taille de la mémoire allouée pour la file d’attente. La valeur par défaut est 1024. Le nombre maximal de références SKU standard est de 5120 et la référence SKU Premium est 81920.
+    description: ''
+  - name: --status
+    parameterValueGroup: Active, Disabled, SendDisabled
+    summary: Énumère les valeurs possibles pour l’état d’une entité de messagerie.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+- uid: az_servicebus_queue_delete
+  name: az servicebus queue delete
+  summary: Supprime la file d’attente de Service Bus.
+  description: ''
+  syntax: >-
+    az servicebus queue delete [--ids]
+                               [--name]
+                               [--namespace-name]
+                               [--resource-group]
+                               [--subscription]
+  examples:
+  - summary: Supprime la file d’attente
+    syntax: az servicebus queue delete --resource-group myresourcegroup --namespace-name mynamespace --name myqueue
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la file d’attente.
+    description: ''
+  - name: --namespace-name
+    summary: Nom de l’espace de noms.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+- uid: az_servicebus_queue_list
+  name: az servicebus queue list
+  summary: Répertoriez la file d’attente en Service Bus espace.
+  description: ''
+  syntax: >-
+    az servicebus queue list --namespace-name
+                             --resource-group
+                             [--query-examples]
+                             [--skip]
+                             [--subscription]
+                             [--top]
+  examples:
+  - summary: Obtient les files d’attente en Service Bus espace de noms.
+    syntax: az servicebus queue list --resource-group myresourcegroup --namespace-name mynamespace
+  requiredParameters:
+  - isRequired: true
+    name: --namespace-name
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --skip
+    summary: Skip est utilisé uniquement si une opération précédente a retourné un résultat partiel. Si une réponse précédente contient un élément nextLink, la valeur de l’élément nextLink inclut un paramètre skip qui spécifie un point de départ à utiliser pour les appels suivants.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --top
+    summary: Peut être utilisé pour limiter le nombre de résultats aux N usageDetails les plus récents.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+- uid: az_servicebus_queue_show
+  name: az servicebus queue show
+  summary: Affiche les détails de la file d’attente Service Bus.
+  description: ''
+  syntax: >-
+    az servicebus queue show [--ids]
+                             [--name]
+                             [--namespace-name]
+                             [--query-examples]
+                             [--resource-group]
+                             [--subscription]
+  examples:
+  - summary: Affiche les détails de la file d’attente Service Bus
+    syntax: az servicebus queue show --resource-group myresourcegroup --namespace-name mynamespace --name myqueue
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la file d’attente.
+    description: ''
+  - name: --namespace-name
+    summary: Nom de l’espace de noms.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+- uid: az_servicebus_queue_update
+  name: az servicebus queue update
+  summary: Met à jour la file d’attente de Service Bus existante.
+  description: ''
+  syntax: >-
+    az servicebus queue update [--add]
+                               [--auto-delete-on-idle]
+                               [--default-message-time-to-live]
+                               [--duplicate-detection-history-time-window]
+                               [--enable-batched-operations {false, true}]
+                               [--enable-dead-lettering-on-message-expiration {false, true}]
+                               [--enable-duplicate-detection {false, true}]
+                               [--enable-express {false, true}]
+                               [--enable-partitioning {false, true}]
+                               [--enable-session {false, true}]
+                               [--force-string]
+                               [--forward-dead-lettered-messages-to]
+                               [--forward-to]
+                               [--ids]
+                               [--lock-duration]
+                               [--max-delivery-count]
+                               [--max-size {1024, 10240, 2048, 20480, 3072, 4096, 40960, 5120, 81920}]
+                               [--name]
+                               [--namespace-name]
+                               [--remove]
+                               [--resource-group]
+                               [--set]
+                               [--status {Active, Disabled, SendDisabled}]
+                               [--subscription]
+  examples:
+  - summary: Met à jour la file d’attente Service Bus.
+    syntax: az servicebus queue update --resource-group myresourcegroup --namespace-name mynamespace --name myqueue --auto-delete-on-idle PT3M
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --auto-delete-on-idle
+    summary: Format de date/heure ISO 8601 pour l’intervalle d’inactivité après lequel la file d’attente est automatiquement supprimée. La durée minimale est de 5 minutes.
+    description: ''
+  - name: --default-message-time-to-live
+    summary: Format de durée de vie ISO 8601 pour la valeur de message par défaut. Il s’agit de la durée au bout de laquelle le message expire, à partir du moment où le message est envoyé à Service Bus. Il s’agit de la valeur par défaut utilisée lorsque TimeToLive n’est pas défini sur un message lui-même.
+    description: ''
+  - name: --duplicate-detection-history-time-window
+    summary: Structure timeSpan ISO 8601 qui définit la durée de l’historique de détection des doublons. La valeur par défaut est 10 minutes.
+    description: ''
+  - name: --enable-batched-operations
+    parameterValueGroup: false, true
+    summary: Autorisez les opérations par lots côté serveur.
+    description: ''
+  - name: --enable-dead-lettering-on-message-expiration
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si cette file d’attente prend en charge les lettres mortes lorsqu’un message expire.
+    description: ''
+  - name: --enable-duplicate-detection
+    parameterValueGroup: false, true
+    summary: Valeur booléenne indiquant si cette file d’attente requiert la détection des doublons.
+    description: ''
+  - name: --enable-express
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si les entités Express sont activées. Une file d’attente Express maintient temporairement un message en mémoire avant de l’écrire dans un stockage persistant.
+    description: ''
+  - name: --enable-partitioning
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si la file d’attente doit être partitionnée entre plusieurs courtiers de messages.
+    description: ''
+  - name: --enable-session
+    parameterValueGroup: false, true
+    summary: Valeur booléenne indiquant si la file d’attente prend en charge le concept de sessions.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --forward-dead-lettered-messages-to
+    summary: Nom de la file d’attente/rubrique pour transférer le message de lettre morte.
+    description: ''
+  - name: --forward-to
+    summary: Nom de la file d’attente/rubrique pour transférer les messages.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --lock-duration
+    summary: Format d’intervalle de temps ou de durée de la chaîne ISO 8601 pour la durée d’un verrou de lecture ; autrement dit, il s’agit de la durée pendant laquelle le message est verrouillé pour les autres destinataires. La valeur maximale de LockDuration est de 5 minutes ; la valeur par défaut est 1 minute.
+    description: ''
+  - name: --max-delivery-count
+    summary: Nombre maximal de remises. Un message devient une lettre morte après ce nombre de remises. la valeur par défaut est 10.
+    description: ''
+  - name: --max-size
+    parameterValueGroup: 1024, 10240, 2048, 20480, 3072, 4096, 40960, 5120, 81920
+    summary: Taille maximale de la file d’attente en mégaoctets, qui est la taille de la mémoire allouée pour la file d’attente. La valeur par défaut est 1024. Le nombre maximal de références SKU standard est de 5120 et la référence SKU Premium est 81920.
+    description: ''
+  - name: --name -n
+    summary: Nom de la file d’attente.
+    description: ''
+  - name: --namespace-name
+    summary: Nom de l’espace de noms.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --status
+    parameterValueGroup: Active, Disabled, SendDisabled
+    summary: Énumère les valeurs possibles pour l’état d’une entité de messagerie.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+commands:
+- az_servicebus_queue_authorization_rule
+- az_servicebus_queue_authorization_rule_create
+- az_servicebus_queue_authorization_rule_delete
+- az_servicebus_queue_authorization_rule_keys
+- az_servicebus_queue_authorization_rule_keys_list
+- az_servicebus_queue_authorization_rule_keys_renew
+- az_servicebus_queue_authorization_rule_list
+- az_servicebus_queue_authorization_rule_show
+- az_servicebus_queue_authorization_rule_update
+- az_servicebus_queue_create
+- az_servicebus_queue_delete
+- az_servicebus_queue_list
+- az_servicebus_queue_show
+- az_servicebus_queue_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/17/2019
+  description: Gérer Azure Service Bus règle de file d’attente et d’autorisation.
+  ms.openlocfilehash: 27511ee9a40b2040179a6f5d7d8e05ddb0f3c919
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820040"

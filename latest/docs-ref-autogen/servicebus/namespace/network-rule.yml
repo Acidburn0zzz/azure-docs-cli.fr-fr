@@ -1,0 +1,153 @@
+### YamlMime:AzureCLIGroup
+uid: az_servicebus_namespace_network_rule
+name: az servicebus namespace network-rule
+summary: Gérer Azure ServiceBus networkruleSet pour l’espace de noms.
+description: ''
+directCommands:
+- uid: az_servicebus_namespace_network_rule_add
+  name: az servicebus namespace network-rule add
+  summary: Ajoutez une règle de réseau pour un espace de noms.
+  description: ''
+  syntax: >-
+    az servicebus namespace network-rule add --namespace-name
+                                             --resource-group
+                                             [--action {Allow}]
+                                             [--ignore-missing-endpoint {false, true}]
+                                             [--ip-address]
+                                             [--subnet]
+                                             [--subscription]
+                                             [--vnet-name]
+  examples:
+  - summary: Ajouter une règle VirtualNetwork dans NetworkruleSet pour un espace de noms
+    syntax: az servicebus namespace network-rule add --resource-group myresourcegroup --namespace-name mynamespace --subnet {subnetId} --ignore-missing-endpoint True
+  - summary: Ajouter une règle d’adresse IP dans NetworkruleSet pour un espace de noms
+    syntax: az servicebus namespace network-rule add --resource-group myresourcegroup --namespace-name mynamespace --ip-address 10.0.0.0/24 --action Allow
+  requiredParameters:
+  - isRequired: true
+    name: --namespace-name
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --action
+    defaultValue: Allow
+    parameterValueGroup: Allow
+    summary: Action de la règle d’adresse IP.
+    description: ''
+  - name: --ignore-missing-endpoint
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique s’il faut ignorer le point de terminaison de service de réseau virtuel manquant.
+    description: ''
+  - name: --ip-address
+    summary: Adresse IPv4 ou plage CIDR.
+    description: ''
+  - name: --subnet
+    summary: Nom ou ID du sous-réseau. Si le nom est fourni, `--vnet-name` doit être fourni.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+- uid: az_servicebus_namespace_network_rule_list
+  name: az servicebus namespace network-rule list
+  summary: Affichez les propriétés de la règle réseau de l’espace de noms donné.
+  description: ''
+  syntax: >-
+    az servicebus namespace network-rule list --namespace-name
+                                              --resource-group
+                                              [--query-examples]
+                                              [--subscription]
+  examples:
+  - summary: Afficher les propriétés de la règle de réseau de l’espace de noms donné
+    syntax: az servicebus namespace network-rule list --resource-group myresourcegroup --namespace-name mynamespace
+  requiredParameters:
+  - isRequired: true
+    name: --namespace-name
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+- uid: az_servicebus_namespace_network_rule_remove
+  name: az servicebus namespace network-rule remove
+  summary: Supprimer une règle de réseau pour un espace de noms.
+  description: ''
+  syntax: >-
+    az servicebus namespace network-rule remove --namespace-name
+                                                --resource-group
+                                                [--ip-address]
+                                                [--subnet]
+                                                [--subscription]
+                                                [--vnet-name]
+  examples:
+  - summary: supprimer la règle VirtualNetwork de NetworkruleSet pour un espace de noms
+    syntax: az servicebus namespace network-rule remove --resource-group myresourcegroup --namespace-name mynamespace --subnet {subnetId}
+  - summary: supprimer la règle IP de NetworkruleSet pour un espace de noms
+    syntax: az servicebus namespace network-rule remove --resource-group myresourcegroup --namespace-name mynamespace --ip-address 10.0.0.0/24
+  requiredParameters:
+  - isRequired: true
+    name: --namespace-name
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --ip-address
+    summary: Adresse IPv4 ou plage CIDR.
+    description: ''
+  - name: --subnet
+    summary: Nom ou ID du sous-réseau. Si le nom est fourni, `--vnet-name` doit être fourni.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/servicebus/_help.py
+commands:
+- az_servicebus_namespace_network_rule_add
+- az_servicebus_namespace_network_rule_list
+- az_servicebus_namespace_network_rule_remove
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/17/2019
+  description: Gérer Azure ServiceBus networkruleSet pour l’espace de noms.
+  ms.openlocfilehash: d3d113744671ed569e4102d86847a582a6627751
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820043"
