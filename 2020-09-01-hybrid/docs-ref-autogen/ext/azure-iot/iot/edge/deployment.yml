@@ -1,0 +1,280 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_iot_edge_deployment
+name: az iot edge deployment
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ IOT Edge Deployment** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérez les déploiements de IoT Edge à grande échelle.
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_iot_edge_deployment_create
+  name: az iot edge deployment create
+  summary: Créez un déploiement de IoT Edge dans une IoT Hub cible.
+  description: >-
+    Le contenu de déploiement est au format JSON et se présente sous la forme {"modulesContent" : {...}} ou {"Content" : {"modulesContent" : {...}}}.
+
+
+    Les déploiements de périphérie peuvent être créés avec des mesures définies par l’utilisateur pour l’évaluation à la demande.
+
+    Les métriques de l’utilisateur sont au format JSON et sous la forme {"Queries" : {...}} ou {"Metrics" : {"Queries" : {...}}}.
+  syntax: >-
+    az iot edge deployment create --content
+                                  --deployment-id
+                                  [--hub-name]
+                                  [--lab]
+                                  [--layered {false, true}]
+                                  [--login]
+                                  [--metrics]
+                                  [--no-validation {false, true}]
+                                  [--pri]
+                                  [--resource-group]
+                                  [--target-condition]
+  examples:
+  - summary: Créez un déploiement avec des étiquettes (exemple de syntaxe bash) qui s’applique aux appareils dans « Building 9 » et l’environnement est « test ».
+    syntax: az iot edge deployment create -d {deployment_name} -n {iothub_name} --content modules_content.json --labels '{"key0":"value0", "key1":"value1"}' --target-condition "tags.building=9 and tags.environment='test'" --priority 3
+  - summary: Créez un déploiement avec des étiquettes (exemple de syntaxe PowerShell) qui s’applique aux appareils marqués avec l’environnement « dev ».
+    syntax: az iot edge deployment create -d {deployment_name} -n {iothub_name} --content modules_content.json --labels "{'key':'value'}" --target-condition "tags.environment='dev'"
+  - summary: Créez un déploiement en couches qui s’applique aux appareils marqués avec l’environnement « dev ». Les métriques utilisateur et le contenu des modules sont définis en ligne (exemple de syntaxe PowerShell).
+    syntax: az iot edge deployment create -d {deployment_name} -n {iothub_name} --content "{'modulesContent':{'`$edgeAgent':{'properties.desired.modules.mymodule0':{ }},'`$edgeHub':{'properties.desired.routes.myroute0':'FROM /messages/* INTO `$upstream'}}}" --target-condition "tags.environment='dev'" --priority 10 --metrics "{'queries':{'mymetrik':'SELECT deviceId from devices where properties.reported.lastDesiredStatus.code = 200'}}" --layered
+  - summary: Créez un déploiement en couches qui s’applique aux appareils « Building 9 » et « test » de l’environnement. Les métriques utilisateur et le contenu des modules sont définis en ligne (exemple de syntaxe bash).
+    syntax: az iot edge deployment create -d {deployment_name} -n {iothub_name} --content '{"modulesContent":{"$edgeAgent":{"properties.desired.modules.mymodule0":{ }},"$edgeHub":{"properties.desired.routes.myroute0":"FROM /messages/* INTO $upstream"}}}' --target-condition "tags.building=9 and tags.environment='test'" --metrics '{"queries":{"mymetrik":"SELECT deviceId from devices where properties.reported.lastDesiredStatus.code = 200"}}' --layered
+  - summary: Créez un déploiement en couches qui s’applique aux appareils « Building 9 » et « test » de l’environnement. Le contenu des métriques et des modules de l’utilisateur est défini à partir du fichier.
+    syntax: az iot edge deployment create -d {deployment_name} -n {iothub_name} --content layered_modules_content.json --target-condition "tags.building=9 and tags.environment='test'" --metrics metrics_content.json --layered
+  requiredParameters:
+  - isRequired: true
+    name: --content -k
+    summary: IoT Edge le contenu du déploiement. Fournissez un chemin de fichier ou un JSON brut.
+    description: ''
+  - isRequired: true
+    name: --deployment-id -d
+    summary: Nom du déploiement cible.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --lab --labels
+    summary: 'Mappage des étiquettes à appliquer au déploiement cible. Utilisez le format suivant : « {"Key0 » : « value0 », « Key1 » : « value1 »}».'
+    description: ''
+  - name: --layered
+    parameterValueGroup: false, true
+    summary: Les déploiements en couche vous permettent de définir les propriétés souhaitées dans $edgeAgent, les $edgeHub et les modules utilisateur qui se couchent sur un déploiement de base. Par exemple, les itinéraires spécifiés dans un déploiement en couches sont fusionnés avec les itinéraires du déploiement de base. Les itinéraires portant le même nom seront remplacés en fonction de la priorité de déploiement.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --metrics -m
+    summary: IoT Edge les définitions de métriques de déploiement. Fournissez un chemin de fichier ou un JSON brut.
+    description: ''
+  - name: --no-validation
+    parameterValueGroup: false, true
+    summary: Désactive la validation du schéma côté client pour la création du déploiement Edge.
+    description: ''
+  - name: --pri --priority
+    summary: Pondération du déploiement en cas de règles en concurrence (WINS le plus élevé).
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --target-condition --tc -t
+    summary: Condition cible à laquelle un déploiement Edge s’applique.
+    description: ''
+- uid: ext_azure-iot_az_iot_edge_deployment_delete
+  name: az iot edge deployment delete
+  summary: Supprimer un déploiement de IoT Edge.
+  description: ''
+  syntax: >-
+    az iot edge deployment delete --deployment-id
+                                  [--etag]
+                                  [--hub-name]
+                                  [--login]
+                                  [--resource-group]
+  requiredParameters:
+  - isRequired: true
+    name: --deployment-id -d
+    summary: Nom du déploiement cible.
+    description: ''
+  optionalParameters:
+  - name: --etag -e
+    summary: L’ETag ou la balise d’entité correspondant au dernier état de la ressource. Si aucun ETag n’est fourni, la valeur' \* 'est utilisée.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_edge_deployment_list
+  name: az iot edge deployment list
+  summary: Répertorie IoT Edge déploiements dans un IoT Hub.
+  description: ''
+  syntax: >-
+    az iot edge deployment list [--hub-name]
+                                [--login]
+                                [--resource-group]
+                                [--top]
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --top
+    summary: Nombre maximal de déploiements à retourner. Par défaut, tous les déploiements sont retournés.
+    description: ''
+- uid: ext_azure-iot_az_iot_edge_deployment_show
+  name: az iot edge deployment show
+  summary: Obtient les détails d’un déploiement de IoT Edge.
+  description: ''
+  syntax: >-
+    az iot edge deployment show --deployment-id
+                                [--hub-name]
+                                [--login]
+                                [--resource-group]
+  requiredParameters:
+  - isRequired: true
+    name: --deployment-id -d
+    summary: Nom du déploiement cible.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_edge_deployment_show_metric
+  name: az iot edge deployment show-metric
+  summary: Évaluer une métrique du système cible définie dans un déploiement de IoT Edge.
+  description: ''
+  syntax: >-
+    az iot edge deployment show-metric --deployment-id
+                                       --metric-id
+                                       [--hub-name]
+                                       [--login]
+                                       [--metric-type {system, user}]
+                                       [--resource-group]
+  examples:
+  - summary: Évaluer la métrique du système « appliedCount »
+    syntax: az iot edge deployment show-metric -m appliedCount -d {deployment_name} -n {iothub_name} --mt system
+  - summary: Évaluer la métrique de l’utilisateur « myCustomMetric »
+    syntax: az iot edge deployment show-metric -m myCustomMetric -d {deployment_name} -n {iothub_name}
+  requiredParameters:
+  - isRequired: true
+    name: --deployment-id -d
+    summary: Nom du déploiement cible.
+    description: ''
+  - isRequired: true
+    name: --metric-id -m
+    summary: Mesure cible pour l’évaluation.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --metric-type --mt
+    defaultValue: user
+    parameterValueGroup: system, user
+    summary: Indique quelle collection de mesures doit être utilisée pour rechercher une mesure.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_edge_deployment_update
+  name: az iot edge deployment update
+  summary: >-
+    Met à jour les propriétés spécifiées d’un déploiement de IoT Edge.
+
+
+    Utilisez--Set suivi d’assignations de propriété pour la mise à jour d’un déploiement.
+
+
+    Remarque : IoT Edge contenu de déploiement est immuable. Les propriétés de déploiement qui peuvent être mises à jour sont « labels », « Metrics », « Priority » et « targetCondition ».
+  description: ''
+  syntax: >-
+    az iot edge deployment update --deployment-id
+                                  [--add]
+                                  [--etag]
+                                  [--force-string]
+                                  [--hub-name]
+                                  [--login]
+                                  [--remove]
+                                  [--resource-group]
+                                  [--set]
+  examples:
+  - summary: Modifier les étiquettes et la condition cible d’un déploiement de périphérie existant
+    syntax: az iot edge deployment update -d {deployment_name} -n {iothub_name} --set labels='{"purpose":"dev", "owners":"IoTEngineering"}' targetCondition='tags.building=9'
+  requiredParameters:
+  - isRequired: true
+    name: --deployment-id -d
+    summary: Nom du déploiement cible.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --etag -e
+    summary: L’ETag ou la balise d’entité correspondant au dernier état de la ressource. Si aucun ETag n’est fourni, la valeur' \* 'est utilisée.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+commands:
+- ext_azure-iot_az_iot_edge_deployment_create
+- ext_azure-iot_az_iot_edge_deployment_delete
+- ext_azure-iot_az_iot_edge_deployment_list
+- ext_azure-iot_az_iot_edge_deployment_show
+- ext_azure-iot_az_iot_edge_deployment_show_metric
+- ext_azure-iot_az_iot_edge_deployment_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérez les déploiements de IoT Edge à grande échelle.
+  ms.openlocfilehash: d223d1fbdfb56e7ba83287b0144d93d5da95888c
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102841114"
