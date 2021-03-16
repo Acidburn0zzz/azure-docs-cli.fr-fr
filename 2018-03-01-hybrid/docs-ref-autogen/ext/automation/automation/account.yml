@@ -1,0 +1,159 @@
+### YamlMime:AzureCLIGroup
+uid: ext_automation_az_automation_account
+name: az automation account
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Automation** pour Azure CLI et requiert la version 2.13.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Automation Account** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Compte Automation.
+description: ''
+directCommands:
+- uid: ext_automation_az_automation_account_create
+  name: az automation account create
+  summary: Créez un compte Automation.
+  description: ''
+  syntax: >-
+    az automation account create --automation-account-name
+                                 --resource-group
+                                 [--location]
+                                 [--sku {Basic, Free}]
+                                 [--tags]
+  examples:
+  - summary: Créer un compte Automation
+    syntax: az automation account create --automation-account-name "myAutomationAccount" --location "East US 2"                --sku "Free" --resource-group "rg"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name --name -n
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --sku
+    defaultValue: Basic
+    parameterValueGroup: Basic, Free
+    summary: Référence du compte.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_automation_az_automation_account_delete
+  name: az automation account delete
+  summary: Supprimer un compte Automation.
+  description: ''
+  syntax: >-
+    az automation account delete --automation-account-name
+                                 --resource-group
+                                 [--yes]
+  examples:
+  - summary: Supprimer le compte Automation
+    syntax: az automation account delete --name "myAutomationAccount" --resource-group "rg"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name --name -n
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_automation_az_automation_account_list
+  name: az automation account list
+  summary: Récupérer une liste de comptes au sein d’un groupe de ressources donné. Et récupèrent une liste de comptes au sein d’un abonnement donné.
+  description: ''
+  syntax: az automation account list [--resource-group]
+  examples:
+  - summary: Répertorier les comptes Automation par groupe de ressources
+    syntax: az automation account list --resource-group "rg"
+  - summary: Répertorier les comptes Automation par groupe de ressources
+    syntax: az automation account list
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_automation_az_automation_account_show
+  name: az automation account show
+  summary: Obtenir des informations sur un compte Automation.
+  description: ''
+  syntax: >-
+    az automation account show --automation-account-name
+                               --resource-group
+  examples:
+  - summary: Obtient le compte Automation
+    syntax: az automation account show --name "myAutomationAccount" --resource-group "rg"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name --name -n
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_automation_az_automation_account_update
+  name: az automation account update
+  summary: Mettre à jour un compte Automation.
+  description: ''
+  syntax: >-
+    az automation account update --automation-account-name
+                                 --resource-group
+                                 [--sku {Basic, Free}]
+                                 [--tags]
+  examples:
+  - summary: Mettre à jour un compte Automation
+    syntax: az automation account update --automation-account-name "myAutomationAccount" --tags KEY=VALUE                --resource-group "rg"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name --name -n
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --sku
+    parameterValueGroup: Basic, Free
+    summary: Référence du compte.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+commands:
+- ext_automation_az_automation_account_create
+- ext_automation_az_automation_account_delete
+- ext_automation_az_automation_account_list
+- ext_automation_az_automation_account_show
+- ext_automation_az_automation_account_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Compte Automation.
+  ms.openlocfilehash: 11887242d2bae31eaa9586c1183ba3ab3ce02ce1
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102826961"

@@ -1,0 +1,177 @@
+### YamlMime:AzureCLIGroup
+uid: ext_synapse_az_synapse_spark_statement
+name: az synapse spark statement
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Synapse** pour Azure CLI et requiert la version 2.0.67 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Synapse Spark Statement** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les instructions Synapse Spark.
+description: ''
+directCommands:
+- uid: ext_synapse_az_synapse_spark_statement_cancel
+  name: az synapse spark statement cancel
+  summary: Annuler une instruction Spark.
+  description: ''
+  syntax: >-
+    az synapse spark statement cancel --livy-id
+                                      --session-id
+                                      --spark-pool-name
+                                      --workspace-name
+                                      [--yes]
+  examples:
+  - summary: Annuler une instruction Spark.
+    syntax: >-
+      az synapse spark statement cancel --livy-id 1 --session-id 11 --workspace-name testsynapseworkspace \
+
+      --spark-pool-name testsparkpool
+  requiredParameters:
+  - isRequired: true
+    name: --livy-id
+    summary: ID de l’instruction.
+    description: ''
+  - isRequired: true
+    name: --session-id
+    summary: ID de la session Spark.
+    description: ''
+  - isRequired: true
+    name: --spark-pool-name
+    summary: Nom du pool Spark.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_synapse_az_synapse_spark_statement_invoke
+  name: az synapse spark statement invoke
+  summary: Appeler une instruction Spark.
+  description: ''
+  syntax: >-
+    az synapse spark statement invoke --code
+                                      --language {CSharp, PySpark, Python, SQL, Scala, Spark, SparkDotNet}
+                                      --session-id
+                                      --spark-pool-name
+                                      --workspace-name
+  examples:
+  - summary: Appeler une instruction Spark.
+    syntax: >-
+      az synapse spark statement invoke --session-id 1 --workspace-name testsynapseworkspace \
+
+      --spark-pool-name testsparkpool --code "print('hello, Azure CLI')" --language pyspark
+  - summary: Soumettez une instruction Spark en lisant le contenu du code à partir d’un fichier.
+    syntax: >-
+      az synapse spark statement invoke --session-id 1 --workspace-name testsynapseworkspace \
+
+      --spark-pool-name testsparkpool --code @file-path --language pyspark
+  requiredParameters:
+  - isRequired: true
+    name: --code
+    summary: Code de l’instruction Spark. Il s’agit du contenu du code ou `@<file path>` de l’utilisation pour charger le contenu à partir d’un fichier.
+    description: ''
+  - isRequired: true
+    name: --language
+    parameterValueGroup: CSharp, PySpark, Python, SQL, Scala, Spark, SparkDotNet
+    summary: Langue de l’instruction Spark.
+    description: ''
+  - isRequired: true
+    name: --session-id
+    summary: ID de la session Spark.
+    description: ''
+  - isRequired: true
+    name: --spark-pool-name
+    summary: Nom du pool Spark.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+- uid: ext_synapse_az_synapse_spark_statement_list
+  name: az synapse spark statement list
+  summary: Répertorie toutes les instructions Spark.
+  description: ''
+  syntax: >-
+    az synapse spark statement list --session-id
+                                    --spark-pool-name
+                                    --workspace-name
+  examples:
+  - summary: Répertorie toutes les instructions Spark.
+    syntax: >-
+      az synapse spark statement list --session-id 11 --workspace-name testsynapseworkspace \
+
+      --spark-pool-name testsparkpool
+  requiredParameters:
+  - isRequired: true
+    name: --session-id
+    summary: ID de la session Spark.
+    description: ''
+  - isRequired: true
+    name: --spark-pool-name
+    summary: Nom du pool Spark.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+- uid: ext_synapse_az_synapse_spark_statement_show
+  name: az synapse spark statement show
+  summary: Obtenir une instruction Spark.
+  description: ''
+  syntax: >-
+    az synapse spark statement show --livy-id
+                                    --session-id
+                                    --spark-pool-name
+                                    --workspace-name
+  examples:
+  - summary: Obtenir une instruction Spark.
+    syntax: >-
+      az synapse spark statement show --livy-id 1 --session-id 11 --workspace-name testsynapseworkspace \
+
+      --spark-pool-name testsparkpool
+  requiredParameters:
+  - isRequired: true
+    name: --livy-id
+    summary: ID de l’instruction.
+    description: ''
+  - isRequired: true
+    name: --session-id
+    summary: ID de la session Spark.
+    description: ''
+  - isRequired: true
+    name: --spark-pool-name
+    summary: Nom du pool Spark.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+commands:
+- ext_synapse_az_synapse_spark_statement_cancel
+- ext_synapse_az_synapse_spark_statement_invoke
+- ext_synapse_az_synapse_spark_statement_list
+- ext_synapse_az_synapse_spark_statement_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les instructions Synapse Spark.
+  ms.openlocfilehash: 150792787073f9961f30fc8d869286923b1bdd44
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102834073"

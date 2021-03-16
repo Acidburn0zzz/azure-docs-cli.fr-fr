@@ -1,0 +1,222 @@
+### YamlMime:AzureCLIGroup
+uid: az_ad_sp
+name: az ad sp
+summary: Gérez Azure Active Directory principaux de service pour l’authentification Automation.
+description: ''
+directCommands:
+- uid: az_ad_sp_create
+  name: az ad sp create
+  summary: Créer un principal de service.
+  description: ''
+  syntax: az ad sp create --id
+  examples:
+  - summary: Créer un principal de service. généré automatiquement
+    syntax: az ad sp create --id 00000000-0000-0000-0000-000000000000
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: URI d’identificateur, ID d’application ou ID d’objet de l’application associée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_sp_create_for_rbac
+  name: az ad sp create-for-rbac
+  summary: Créez un principal de service et configurez son accès aux ressources Azure.
+  description: >-
+    La sortie comprend des informations d’identification que vous devez protéger. Veillez à ne pas inclure ces informations d’identification dans votre code ou vérifiez les informations d’identification dans votre contrôle de code source. Vous pouvez également utiliser [Managed Identities] ( <a href="https://aka.ms/azadsp-managed-identities">https://aka.ms/azadsp-managed-identities</a> ) si elle est disponible pour éviter d’avoir à utiliser des informations d’identification.
+
+
+    Par défaut, cette commande attribue le rôle « contributeur » au principal du service au niveau de l’étendue de l’abonnement. Pour réduire le risque d’un principal de service compromis, utilisez--SKIP-Assignment pour éviter de créer une attribution de rôle, puis attribuez un rôle plus spécifique et limitez l’étendue à une ressource ou à un groupe de ressources. Pour plus d’informations, consultez [étapes pour ajouter une attribution de rôle] ( <a href="https://aka.ms/azadsp-more">https://aka.ms/azadsp-more</a> ).
+
+
+    AVERTISSEMENT : dans une version ultérieure, cette commande ne crée pas d’attribution de rôle « Contributor » par défaut. Si nécessaire, utilisez l’argument--Role pour créer explicitement une attribution de rôle.
+  syntax: >-
+    az ad sp create-for-rbac [--cert]
+                             [--create-cert]
+                             [--keyvault]
+                             [--name]
+                             [--role]
+                             [--scopes]
+                             [--sdk-auth {false, true}]
+                             [--skip-assignment {false, true}]
+                             [--years]
+  examples:
+  - summary: Créez avec une attribution de rôle par défaut.
+    syntax: az ad sp create-for-rbac
+  - summary: Créez à l’aide d’un nom personnalisé et avec une assignation par défaut.
+    syntax: az ad sp create-for-rbac -n "MyApp"
+  - summary: Créer sans affectation par défaut.
+    syntax: az ad sp create-for-rbac --skip-assignment
+  - summary: Créez avec des attributions de rôle de contributeur sur l’étendue spécifiée.
+    syntax: az ad sp create-for-rbac -n "MyApp" --role Contributor --scopes /subscriptions/{SubID}/resourceGroups/{ResourceGroup1} /subscriptions/{SubID}/resourceGroups/{ResourceGroup2}
+  - summary: Créez à l’aide d’un certificat auto-signé.
+    syntax: az ad sp create-for-rbac --create-cert
+  - summary: Créez à l’aide d’un certificat auto-signé et stockez-le dans le coffre de clés.
+    syntax: az ad sp create-for-rbac --keyvault MyVault --cert CertName --create-cert
+  - summary: Créez à l’aide d’un certificat existant dans Key Vault.
+    syntax: az ad sp create-for-rbac --keyvault MyVault --cert CertName
+  optionalParameters:
+  - name: --cert
+    summary: Certificat à utiliser pour les informations d’identification.
+    description: Utilisé avec `--keyvault,` indique le nom du certificat à utiliser ou à créer. Sinon, fournissez une chaîne de certificat public au format PEM ou DER. Utilisez `@{path}` pour charger à partir d’un fichier. N’incluez pas d’informations sur la clé privée.
+  - name: --create-cert
+    summary: Créez un certificat auto-signé à utiliser pour les informations d’identification. Seul l’utilisateur du système d’exploitation actuel dispose d’une autorisation de lecture/écriture sur ce certificat.
+    description: Utilisez avec `--keyvault` pour créer le certificat dans Key Vault. Dans le cas contraire, un certificat sera créé localement.
+  - name: --keyvault
+    summary: Nom ou ID d’un coffre de stockage à utiliser pour la création ou la récupération de certificats.
+    description: ''
+  - name: --name -n
+    summary: URI à utiliser comme nom de logique. Il n’a pas besoin d’exister. S’il n’est pas présent, l’interface CLI en génère une.
+    description: ''
+  - name: --role
+    summary: Rôle du principal de service.
+    description: ''
+  - name: --scopes
+    summary: Liste séparée par des espaces des étendues auxquelles s’applique l’attribution de rôle du principal de service. La valeur par défaut est la racine de l’abonnement actuel. par exemple,/subscriptions/0b1f6471-1bf0-4DDA-AEC3-111122223333,/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup ou/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup/providers/Microsoft.Compute/virtualMachines/myVM.
+    description: ''
+  - name: --sdk-auth
+    parameterValueGroup: false, true
+    summary: Résultat de sortie en compatible avec le fichier d’authentification du kit de développement logiciel (SDK) Azure.
+    description: ''
+  - name: --skip-assignment
+    parameterValueGroup: false, true
+    summary: Ignorez la création de l’affectation par défaut, qui permet au principal du service d’accéder aux ressources de l’abonnement actuel. Quand elles sont spécifiées,--les étendues sont ignorées. Vous pouvez utiliser `az role assignment create` pour créer ultérieurement des attributions de rôle pour ce principal de service.
+    description: ''
+  - name: --years
+    summary: 'Nombre d’années pendant lesquelles les informations d’identification seront valides. Valeur par défaut : 1 an.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_sp_delete
+  name: az ad sp delete
+  summary: Supprimer un principal du service et ses attributions de rôles.
+  description: ''
+  syntax: az ad sp delete --id
+  examples:
+  - summary: Supprimer un principal du service et ses attributions de rôles. généré automatiquement
+    syntax: az ad sp delete --id 00000000-0000-0000-0000-000000000000
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: Nom du principal du service ou ID de l’objet.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_sp_list
+  name: az ad sp list
+  summary: Liste des principaux du service.
+  description: Pour une faible latence, par défaut, seul le premier 100 est retourné, sauf si vous fournissez des arguments de filtre ou utilisez « --All ».
+  syntax: >-
+    az ad sp list [--all]
+                  [--display-name]
+                  [--filter]
+                  [--query-examples]
+                  [--show-mine]
+                  [--spn]
+  optionalParameters:
+  - name: --all
+    summary: Répertorie toutes les entités, s’attend à un long délai si elle est sous une grande organisation.
+    description: ''
+  - name: --display-name
+    summary: Nom complet de l’objet ou son préfixe.
+    description: ''
+  - name: --filter
+    summary: Filtre OData, par exemple--Filter « DisplayName EQ’test » et servicePrincipalType EQ’application'.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --show-mine
+    summary: Répertorie les entités détenues par l’utilisateur actuel.
+    description: ''
+  - name: --spn
+    summary: Nom du principal du service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_sp_show
+  name: az ad sp show
+  summary: Obtenir les détails d’un principal de service.
+  description: ''
+  syntax: >-
+    az ad sp show --id
+                  [--query-examples]
+  examples:
+  - summary: Obtenir les détails d’un principal de service. généré automatiquement
+    syntax: az ad sp show --id 00000000-0000-0000-0000-000000000000
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: Nom du principal du service ou ID de l’objet.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_sp_update
+  name: az ad sp update
+  summary: Mettez à jour un principal de service.
+  description: ''
+  syntax: >-
+    az ad sp update --id
+                    [--add]
+                    [--force-string]
+                    [--remove]
+                    [--set]
+  examples:
+  - summary: mettre à jour un principal de service (généré automatiquement)
+    syntax: az ad sp update --id 00000000-0000-0000-0000-000000000000 --set groupMembershipClaims=All
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: Nom du principal du service ou ID de l’objet.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+commands:
+- az_ad_sp_create
+- az_ad_sp_create_for_rbac
+- az_ad_sp_credential
+- az_ad_sp_credential_delete
+- az_ad_sp_credential_list
+- az_ad_sp_credential_reset
+- az_ad_sp_delete
+- az_ad_sp_list
+- az_ad_sp_owner
+- az_ad_sp_owner_list
+- az_ad_sp_show
+- az_ad_sp_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/20/2021
+  description: Gérez Azure Active Directory principaux de service pour l’authentification Automation.
+  ms.openlocfilehash: ff6541ff8db81a9c9e1775b087ec29e6b5fc711d
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102848863"
