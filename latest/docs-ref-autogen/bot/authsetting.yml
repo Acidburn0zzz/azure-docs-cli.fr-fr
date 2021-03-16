@@ -1,0 +1,200 @@
+### YamlMime:AzureCLIGroup
+uid: az_bot_authsetting
+name: az bot authsetting
+summary: Gérer les paramètres de connexion OAuth sur un bot.
+description: ''
+directCommands:
+- uid: az_bot_authsetting_create
+  name: az bot authsetting create
+  summary: Créez un paramètre de connexion OAuth sur un bot.
+  description: ''
+  syntax: >-
+    az bot authsetting create --client-id
+                              --client-secret
+                              --name
+                              --provider-scope-string
+                              --resource-group
+                              --service
+                              --setting-name
+                              [--parameters]
+                              [--subscription]
+  examples:
+  - summary: Créer un nouveau paramètre de connexion OAuth sur un bot.
+    syntax: >-
+      az bot authsetting create -g MyResourceGroup -n botName -c myConnectionName \
+
+      --client-id clientId --client-secret secret --provider-scope-string "scope1 scope2"\
+
+      --service google --parameters id=myid
+  requiredParameters:
+  - isRequired: true
+    name: --client-id
+    summary: ID client associé au paramètre du fournisseur de services.
+    description: ''
+  - isRequired: true
+    name: --client-secret
+    summary: Clé secrète client associée au paramètre du fournisseur de services.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: 'Nom de ressource du bot. Le nom du bot doit comporter entre 4 à 42 caractères. Il peut contenir uniquement les caractères suivants : a-z, A-Z, 0-9 et _.'
+    description: ''
+  - isRequired: true
+    name: --provider-scope-string
+    summary: Chaîne de portée associée au paramètre du fournisseur de services. La chaîne doit être délimitée en fonction des besoins du fournisseur de services.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service
+    summary: Nom du fournisseur de services. Pour obtenir la liste de tous les fournisseurs de services, utilisez `az bot connection listserviceproviders` .
+    description: ''
+  - isRequired: true
+    name: --setting-name -c
+    summary: Nom du paramètre de connexion OAuth.
+    description: ''
+  optionalParameters:
+  - name: --parameters
+    summary: Valeurs de paramètre pour les paramètres du fournisseur de services. Utilisation :--Parameters key = value key1 = value1.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+- uid: az_bot_authsetting_delete
+  name: az bot authsetting delete
+  summary: Supprimer un paramètre de connexion OAuth sur un bot.
+  description: ''
+  syntax: >-
+    az bot authsetting delete --name
+                              --resource-group
+                              --setting-name
+                              [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: 'Nom de ressource du bot. Le nom du bot doit comporter entre 4 à 42 caractères. Il peut contenir uniquement les caractères suivants : a-z, A-Z, 0-9 et _.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --setting-name -c
+    summary: Nom du paramètre de connexion OAuth.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+- uid: az_bot_authsetting_list
+  name: az bot authsetting list
+  summary: Affiche tous les paramètres de connexion OAuth sur un bot.
+  description: ''
+  syntax: >-
+    az bot authsetting list --name
+                            --resource-group
+                            [--query-examples]
+                            [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: 'Nom de ressource du bot. Le nom du bot doit comporter entre 4 à 42 caractères. Il peut contenir uniquement les caractères suivants : a-z, A-Z, 0-9 et _.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+- uid: az_bot_authsetting_list_providers
+  name: az bot authsetting list-providers
+  summary: Répertorier les détails de tous les fournisseurs de services disponibles pour la création de paramètres de connexion OAuth.
+  description: ''
+  syntax: >-
+    az bot authsetting list-providers [--provider-name]
+                                      [--subscription]
+  examples:
+  - summary: Répertorie tous les fournisseurs de services.
+    syntax: az bot authsetting list-providers
+  - summary: Filtrez par un type particulier de fournisseur de services.
+    syntax: az bot authsetting list-providers --provider-name google
+  optionalParameters:
+  - name: --provider-name
+    summary: Nom du fournisseur de services pour lequel récupérer les détails.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+- uid: az_bot_authsetting_show
+  name: az bot authsetting show
+  summary: Affichez les détails d’un paramètre de connexion OAuth sur un bot.
+  description: ''
+  syntax: >-
+    az bot authsetting show --name
+                            --resource-group
+                            --setting-name
+                            [--query-examples]
+                            [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: 'Nom de ressource du bot. Le nom du bot doit comporter entre 4 à 42 caractères. Il peut contenir uniquement les caractères suivants : a-z, A-Z, 0-9 et _.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --setting-name -c
+    summary: Nom du paramètre de connexion OAuth.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+commands:
+- az_bot_authsetting_create
+- az_bot_authsetting_delete
+- az_bot_authsetting_list
+- az_bot_authsetting_list_providers
+- az_bot_authsetting_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/11/2019
+  description: Gérer les paramètres de connexion OAuth sur un bot.
+  ms.openlocfilehash: d1c12de310771aae95708f94def13980592c6e7f
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820694"
