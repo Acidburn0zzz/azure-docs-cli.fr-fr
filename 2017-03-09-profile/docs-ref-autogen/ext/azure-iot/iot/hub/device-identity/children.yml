@@ -1,0 +1,141 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_iot_hub_device_identity_children
+name: az iot hub device-identity children
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez la commande **AZ IOT Hub Device-Identity Children** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérez l’appareil des enfants de l’appareil IoT.
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_iot_hub_device_identity_children_add
+  name: az iot hub device-identity children add
+  summary: Ajoutez la liste d’ID d’appareils séparés par des espaces spécifiés en tant qu’enfants de l’appareil de périphérie spécifié.
+  description: ''
+  syntax: >-
+    az iot hub device-identity children add --child-list
+                                            --device-id
+                                            [--force]
+                                            [--hub-name]
+                                            [--login]
+                                            [--resource-group]
+  examples:
+  - summary: Ajoutez des appareils en tant qu’enfants à l’appareil de périphérie.
+    syntax: az iot hub device-identity children add -d {edge_device_id} --child-list {space_separated_device_id} -n {iothub_name}
+  - summary: Ajouter des appareils en tant qu’enfants à l’appareil de périphérie et remplacer le parent d’origine des appareils enfants.
+    syntax: az iot hub device-identity children add -d {edge_device_id} --child-list {space_separated_device_id} -n {iothub_name} -f
+  requiredParameters:
+  - isRequired: true
+    name: --child-list --cl
+    summary: Liste des appareils enfants (séparés par des espaces).
+    description: ''
+  - isRequired: true
+    name: --device-id -d
+    summary: ID de l’appareil de périphérie.
+    description: ''
+  optionalParameters:
+  - name: --force -f
+    summary: Remplace l’appareil parent du périphérique enfant.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_device_identity_children_list
+  name: az iot hub device-identity children list
+  summary: Génère la liste des appareils enfants affectés.
+  description: ''
+  syntax: >-
+    az iot hub device-identity children list --device-id
+                                             [--hub-name]
+                                             [--login]
+                                             [--resource-group]
+  examples:
+  - summary: Afficher tous les appareils enfants affectés en tant que liste.
+    syntax: az iot hub device-identity children list -d {edge_device_id} -n {iothub_name}
+  - summary: Affiche tous les appareils enfants affectés en tant que liste dont l’ID de périphérique contient la sous-chaîne « test ».
+    syntax: az iot hub device-identity children list -d {edge_device_id} -n {iothub_name} --query "[?contains(@,'test')]"
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: ID de l’appareil de périphérie.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_device_identity_children_remove
+  name: az iot hub device-identity children remove
+  summary: Supprimer les appareils en tant qu’enfants du périphérique de périphérie spécifié.
+  description: ''
+  syntax: >-
+    az iot hub device-identity children remove --device-id
+                                               [--child-list]
+                                               [--hub-name]
+                                               [--login]
+                                               [--remove-all]
+                                               [--resource-group]
+  examples:
+  - summary: Supprimer tous les appareils mentionnés comme enfants de l’appareil spécifié.
+    syntax: az iot hub device-identity children remove -d {edge_device_id} --child-list {space_separated_device_id} -n {iothub_name}
+  - summary: Supprimer tous les appareils comme appareil de périphérie spécifié par les enfants.
+    syntax: az iot hub device-identity children remove -d {edge_device_id} --remove-all
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: ID de l’appareil de périphérie.
+    description: ''
+  optionalParameters:
+  - name: --child-list --cl
+    summary: Liste des appareils enfants (séparés par des espaces).
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --remove-all -a
+    summary: Pour supprimer tous les enfants.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_azure-iot_az_iot_hub_device_identity_children_add
+- ext_azure-iot_az_iot_hub_device_identity_children_list
+- ext_azure-iot_az_iot_hub_device_identity_children_remove
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérez l’appareil des enfants de l’appareil IoT.
+  ms.openlocfilehash: 754aff282a373e5b8507f795a5c72c5c1bd54b70
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102823400"
