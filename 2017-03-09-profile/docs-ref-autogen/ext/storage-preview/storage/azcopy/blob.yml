@@ -1,0 +1,239 @@
+### YamlMime:AzureCLIGroup
+uid: ext_storage-preview_az_storage_azcopy_blob
+name: az storage azcopy blob
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Storage-Preview** pour Azure CLI et requiert la version 2.13.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Storage azcopy BLOB** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer le stockage d’objets pour les données non structurées (objets BLOB) à l’aide de AzCopy.
+description: ''
+directCommands:
+- uid: ext_storage-preview_az_storage_azcopy_blob_delete
+  name: az storage azcopy blob delete
+  summary: Supprimez les objets BLOB d’un conteneur d’objets BLOB de stockage à l’aide de AzCopy.
+  description: ''
+  syntax: >-
+    az storage azcopy blob delete --container
+                                  [--account-key]
+                                  [--account-name]
+                                  [--auth-mode {key, login}]
+                                  [--connection-string]
+                                  [--recursive]
+                                  [--sas-token]
+                                  [--target]
+  examples:
+  - summary: Supprimer un seul objet blob d’un conteneur.
+    syntax: az storage azcopy blob delete -c MyContainer --account-name MyStorageAccount -t TargetBlob
+  - summary: Supprimer tous les objets BLOB d’un conteneur.
+    syntax: az storage azcopy blob delete -c MyContainer --account-name MyStorageAccount --recursive
+  - summary: Supprimer tous les objets BLOB dans un répertoire virtuel.
+    syntax: az storage azcopy blob delete -c MyContainer --account-name MyStorageAccount -t "path/to/virtual_directory" --recursive
+  requiredParameters:
+  - isRequired: true
+    name: --container -c
+    summary: Conteneur de la cible de suppression.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --recursive -r
+    summary: Supprimez de manière récursive les objets BLOB.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --target -t
+    summary: Chemin d’accès de la cible de suppression.
+    description: ''
+- uid: ext_storage-preview_az_storage_azcopy_blob_download
+  name: az storage azcopy blob download
+  summary: Téléchargez des objets BLOB à partir d’un conteneur d’objets BLOB de stockage à l’aide de AzCopy.
+  description: ''
+  syntax: >-
+    az storage azcopy blob download --container
+                                    --destination
+                                    [--account-key]
+                                    [--account-name]
+                                    [--auth-mode {key, login}]
+                                    [--connection-string]
+                                    [--recursive]
+                                    [--sas-token]
+                                    [--source]
+  examples:
+  - summary: Téléchargez un objet BLOB unique à partir d’un conteneur.
+    syntax: az storage azcopy blob download -c MyContainer --account-name MyStorageAccount -s "path/to/blob" -d "path/to/file"
+  - summary: Téléchargez un répertoire virtuel à partir d’un conteneur.
+    syntax: az storage azcopy blob download -c MyContainer --account-name MyStorageAccount -s "path/to/virtual_directory" -d "download/path" --recursive
+  - summary: Télécharger le contenu d’un conteneur sur un système de fichiers local.
+    syntax: az storage azcopy blob download -c MyContainer --account-name MyStorageAccount -s * -d "download/path" --recursive
+  requiredParameters:
+  - isRequired: true
+    name: --container -c
+    summary: Conteneur source de téléchargement.
+    description: ''
+  - isRequired: true
+    name: --destination -d
+    summary: Chemin d’accès du fichier de destination vers lequel effectuer le téléchargement.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --recursive -r
+    summary: Télécharger des objets BLOB de manière récursive.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --source -s
+    summary: Chemin de la source de téléchargement.
+    description: ''
+- uid: ext_storage-preview_az_storage_azcopy_blob_sync
+  name: az storage azcopy blob sync
+  summary: Synchroniser des objets BLOB de manière récursive vers un conteneur d’objets BLOB de stockage à l’aide de AzCopy.
+  description: ''
+  syntax: >-
+    az storage azcopy blob sync --container
+                                --source
+                                [--account-key]
+                                [--account-name]
+                                [--auth-mode {key, login}]
+                                [--connection-string]
+                                [--destination]
+                                [--sas-token]
+  examples:
+  - summary: Synchroniser un seul objet BLOB dans un conteneur.
+    syntax: az storage azcopy blob sync -c MyContainer --account-name MyStorageAccount -s "path/to/file" -d NewBlob
+  - summary: Synchroniser un répertoire sur un conteneur.
+    syntax: az storage azcopy blob sync -c MyContainer --account-name MyStorageAccount -s "path/to/directory"
+  requiredParameters:
+  - isRequired: true
+    name: --container -c
+    summary: Conteneur de destination de synchronisation.
+    description: ''
+  - isRequired: true
+    name: --source -s
+    summary: Chemin d’accès du fichier source à partir duquel effectuer la synchronisation.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --destination -d
+    summary: Chemin de destination de la synchronisation.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+- uid: ext_storage-preview_az_storage_azcopy_blob_upload
+  name: az storage azcopy blob upload
+  summary: Charger des objets BLOB dans un conteneur d’objets BLOB de stockage à l’aide de AzCopy.
+  description: ''
+  syntax: >-
+    az storage azcopy blob upload --container
+                                  --source
+                                  [--account-key]
+                                  [--account-name]
+                                  [--auth-mode {key, login}]
+                                  [--connection-string]
+                                  [--destination]
+                                  [--recursive]
+                                  [--sas-token]
+  examples:
+  - summary: Chargez un seul objet BLOB dans un conteneur.
+    syntax: az storage azcopy blob upload -c MyContainer --account-name MyStorageAccount -s "path/to/file" -d NewBlob
+  - summary: Chargez un répertoire dans un conteneur.
+    syntax: az storage azcopy blob upload -c MyContainer --account-name MyStorageAccount -s "path/to/directory" --recursive
+  - summary: Charge le contenu d’un répertoire dans un conteneur.
+    syntax: az storage azcopy blob upload -c MyContainer --account-name MyStorageAccount -s "path/to/directory/*" --recursive
+  requiredParameters:
+  - isRequired: true
+    name: --container -c
+    summary: Conteneur de destination de chargement.
+    description: ''
+  - isRequired: true
+    name: --source -s
+    summary: Chemin d’accès du fichier source à partir duquel effectuer le téléchargement.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --destination -d
+    summary: Chemin de destination de chargement.
+    description: ''
+  - name: --recursive -r
+    summary: Charger des objets BLOB de manière récursive.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+commands:
+- ext_storage-preview_az_storage_azcopy_blob_delete
+- ext_storage-preview_az_storage_azcopy_blob_download
+- ext_storage-preview_az_storage_azcopy_blob_sync
+- ext_storage-preview_az_storage_azcopy_blob_upload
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer le stockage d’objets pour les données non structurées (objets BLOB) à l’aide de AzCopy.
+  ms.openlocfilehash: fea6303ffbafe837e9971a9b769c62ef61d0e435
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102828817"
