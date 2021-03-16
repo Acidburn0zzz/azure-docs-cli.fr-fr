@@ -1,0 +1,204 @@
+### YamlMime:AzureCLIGroup
+uid: az_vm_nic
+name: az vm nic
+summary: Gérer des interfaces réseau. Voir aussi `az network nic`.
+description: Une interface réseau (NIC) est l’interconnexion entre une machine virtuelle et le réseau logiciel sous-jacent. Pour plus d’informations, consultez <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-network-interface-overview">https://docs.microsoft.com/azure/virtual-network/virtual-network-network-interface-overview</a>.
+directCommands:
+- uid: az_vm_nic_add
+  name: az vm nic add
+  summary: Ajoutez des cartes réseau existantes à une machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm nic add --nics
+                  --resource-group
+                  --vm-name
+                  [--primary-nic]
+                  [--subscription]
+  examples:
+  - summary: Ajoutez deux cartes réseau à une machine virtuelle.
+    syntax: az vm nic add -g MyResourceGroup --vm-name MyVm --nics nic_name1 nic_name2
+  requiredParameters:
+  - isRequired: true
+    name: --nics
+    summary: Noms ou ID des cartes réseau.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --primary-nic
+    summary: Nom ou ID de la carte réseau principale. Si elle est manquante, la première carte d’interface réseau de la liste sera la première.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_nic_list
+  name: az vm nic list
+  summary: Répertorie les cartes réseau disponibles sur une machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm nic list --resource-group
+                   --vm-name
+                   [--query-examples]
+                   [--subscription]
+  examples:
+  - summary: Répertorie toutes les cartes réseau sur une machine virtuelle.
+    syntax: az vm nic list -g MyResourceGroup --vm-name MyVm
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_nic_remove
+  name: az vm nic remove
+  summary: Supprimer des cartes réseau d’une machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm nic remove --nics
+                     --resource-group
+                     --vm-name
+                     [--primary-nic]
+                     [--subscription]
+  examples:
+  - summary: Supprimer deux cartes réseau d’une machine virtuelle.
+    syntax: az vm nic remove -g MyResourceGroup --vm-name MyVm --nics nic_name1 nic_name2
+  requiredParameters:
+  - isRequired: true
+    name: --nics
+    summary: Noms ou ID des cartes réseau.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --primary-nic
+    summary: Nom ou ID de la carte réseau principale. Si elle est manquante, la première carte d’interface réseau de la liste sera la première.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_nic_set
+  name: az vm nic set
+  summary: Configurez les paramètres d’une carte réseau attachée à une machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm nic set --nics
+                  --resource-group
+                  --vm-name
+                  [--primary-nic]
+                  [--subscription]
+  examples:
+  - summary: Définissez une carte réseau sur une machine virtuelle comme interface principale.
+    syntax: az vm nic set -g MyResourceGroup --vm-name MyVm --nic nic_name1 nic_name2 --primary-nic nic_name2
+  - summary: Configurez les paramètres d’une carte réseau attachée à une machine virtuelle. généré automatiquement
+    syntax: az vm nic set --nics nic_name1 nic_name2 --primary-nic nic_name2 --resource-group MyResourceGroup --vm-name MyVm
+  requiredParameters:
+  - isRequired: true
+    name: --nics
+    summary: Noms ou ID des cartes réseau.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --primary-nic
+    summary: Nom ou ID de la carte réseau principale. Si elle est manquante, la première carte d’interface réseau de la liste sera la première.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_nic_show
+  name: az vm nic show
+  summary: Affiche des informations pour une carte réseau attachée à une machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm nic show --nic
+                   --resource-group
+                   --vm-name
+                   [--query-examples]
+                   [--subscription]
+  examples:
+  - summary: Affichez les détails d’une carte réseau sur une machine virtuelle.
+    syntax: az vm nic show -g MyResourceGroup --vm-name MyVm --nic nic_name1
+  requiredParameters:
+  - isRequired: true
+    name: --nic
+    summary: Nom ou ID de la carte réseau.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+commands:
+- az_vm_nic_add
+- az_vm_nic_list
+- az_vm_nic_remove
+- az_vm_nic_set
+- az_vm_nic_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/05/2021
+  description: Une interface réseau (NIC) est l’interconnexion entre une machine virtuelle et le réseau logiciel sous-jacent. Pour plus d’informations, consultez <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-network-interface-overview">https://docs.microsoft.com/azure/virtual-network/virtual-network-network-interface-overview</a>.
+  ms.openlocfilehash: 71508cb60f3eacb88d57709ca1f6c954b36397bf
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102848245"

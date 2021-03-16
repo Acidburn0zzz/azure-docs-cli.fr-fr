@@ -1,0 +1,97 @@
+### YamlMime:AzureCLIGroup
+uid: az_vmss_diagnostics
+name: az vmss diagnostics
+summary: Configurez l’extension de diagnostics du groupe de machines virtuelles identiques Azure.
+description: ''
+directCommands:
+- uid: az_vmss_diagnostics_get_default_config
+  name: az vmss diagnostics get-default-config
+  summary: Affichez le fichier de configuration par défaut qui définit les données à collecter.
+  description: ''
+  syntax: >-
+    az vmss diagnostics get-default-config [--is-windows-os]
+                                           [--subscription]
+  optionalParameters:
+  - name: --is-windows-os
+    summary: Pour les machines virtuelles Windows.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vmss_diagnostics_set
+  name: az vmss diagnostics set
+  summary: Activez les diagnostics sur un VMSS.
+  description: ''
+  syntax: >-
+    az vmss diagnostics set --resource-group
+                            --settings
+                            --vmss-name
+                            [--no-auto-upgrade {false, true}]
+                            [--no-auto-upgrade-minor-version {false, true}]
+                            [--protected-settings]
+                            [--subscription]
+                            [--version]
+  examples:
+  - summary: Activez les diagnostics sur un VMSS. généré automatiquement
+    syntax: "az vmss diagnostics set --protected-settings {protected-settings} --resource-group MyResourceGroup --settings '{\"commandToExecute\": \"echo testing\"}' --vmss-name MyVmss"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --settings
+    summary: Chaîne JSON ou chemin d’accès de fichier qui définit les données à collecter.
+    description: ''
+  - isRequired: true
+    name: --vmss-name
+    summary: Nom du groupe identique.
+    description: ''
+  optionalParameters:
+  - name: --no-auto-upgrade
+    parameterValueGroup: false, true
+    summary: Si cette valeur est définie, le service d’extension ne choisit pas automatiquement la dernière version mineure ou ne la met pas à niveau, même si l’extension est redéployée.
+    description: ''
+  - name: --no-auto-upgrade-minor-version
+    parameterValueGroup: false, true
+    summary: Si cette valeur est définie, le service d’extension ne choisit pas automatiquement la dernière version mineure ou ne la met pas à niveau, même si l’extension est redéployée.
+    description: ''
+  - name: --protected-settings
+    summary: Chaîne JSON ou chemin d’accès de fichier contenant des configurations privées, telles que des clés de compte de stockage, etc.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --version
+    summary: Version de l’extension de Diagnostics. Utilise le le plus récent s’il n’est pas spécifié.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+commands:
+- az_vmss_diagnostics_get_default_config
+- az_vmss_diagnostics_set
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/05/2021
+  description: Configurez l’extension de diagnostics du groupe de machines virtuelles identiques Azure.
+  ms.openlocfilehash: e3736456a236e0133916fa4e0e296f786e4e162d
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102848236"

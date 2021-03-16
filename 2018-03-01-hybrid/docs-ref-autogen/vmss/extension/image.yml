@@ -1,0 +1,178 @@
+### YamlMime:AzureCLIGroup
+uid: az_vmss_extension_image
+name: az vmss extension image
+summary: Recherchez les extensions de machine virtuelle disponibles pour un abonnement et une région.
+description: ''
+directCommands:
+- uid: az_vmss_extension_image_list
+  name: az vmss extension image list
+  summary: Répertorier les informations sur les extensions disponibles.
+  description: ''
+  syntax: >-
+    az vmss extension image list [--latest]
+                                 [--location]
+                                 [--name]
+                                 [--publisher]
+                                 [--query-examples]
+                                 [--subscription]
+                                 [--version]
+  examples:
+  - summary: Répertoriez les serveurs de publication uniques pour les extensions.
+    syntax: az vmss extension image list --query "[].publisher" -o tsv | sort -u
+  - summary: Recherchez les extensions avec « docker » dans le nom.
+    syntax: az vmss extension image list --query "[].name" -o tsv | sort -u | grep Docker
+  - summary: Répertoriez les noms d’extension où le nom de l’éditeur commence par « Microsoft. Azure. app ».
+    syntax: >-
+      az vmss extension image list --query \
+          "[?starts_with(publisher, 'Microsoft.Azure.App')].publisher" \
+          -o tsv | sort -u | xargs -I{} az vmss extension image list-names --publisher {} -l westus
+  optionalParameters:
+  - name: --latest
+    summary: Affiche la version la plus récente uniquement.
+    description: ''
+  - name: --location -l
+    summary: Emplacement de l’image.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’image
+    description: ''
+  - name: --publisher -p
+    summary: Nom de l’éditeur d’images.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --version
+    summary: Version de l’extension.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vmss_extension_image_list_names
+  name: az vmss extension image list-names
+  summary: Obtient la liste des types d’images d’extension de machine virtuelle.
+  description: ''
+  syntax: >-
+    az vmss extension image list-names --location
+                                       --publisher
+                                       [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --publisher -p
+    summary: Nom de l’éditeur d’images.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vmss_extension_image_list_versions
+  name: az vmss extension image list-versions
+  summary: Obtient une liste des versions d’images d’extension de machine virtuelle.
+  description: ''
+  syntax: >-
+    az vmss extension image list-versions --location
+                                          --name
+                                          --publisher
+                                          [--filter]
+                                          [--orderby]
+                                          [--subscription]
+                                          [--top]
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’extension.
+    description: ''
+  - isRequired: true
+    name: --publisher -p
+    summary: Nom de l’éditeur d’images.
+    description: ''
+  optionalParameters:
+  - name: --filter
+    summary: Filtre à appliquer à l’opération.
+    description: ''
+  - name: --orderby
+    summary: Option de requête OData $orderby.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --top
+    summary: Option de requête OData $top.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vmss_extension_image_show
+  name: az vmss extension image show
+  summary: Obtient une image d’extension de machine virtuelle.
+  description: ''
+  syntax: >-
+    az vmss extension image show --location
+                                 --name
+                                 --publisher
+                                 --version
+                                 [--query-examples]
+                                 [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’extension.
+    description: ''
+  - isRequired: true
+    name: --publisher -p
+    summary: Nom de l’éditeur d’images.
+    description: ''
+  - isRequired: true
+    name: --version
+    summary: Version de l’extension.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+commands:
+- az_vmss_extension_image_list
+- az_vmss_extension_image_list_names
+- az_vmss_extension_image_list_versions
+- az_vmss_extension_image_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/05/2021
+  description: Recherchez les extensions de machine virtuelle disponibles pour un abonnement et une région.
+  ms.openlocfilehash: 7555d16034e11da256e87c8a8933860c9f35972a
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102848227"
