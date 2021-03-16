@@ -1,0 +1,382 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_lb
+name: az network lb
+summary: Gérer et configurer les équilibreurs de charge.
+description: Pour en savoir plus sur Azure Load Balancer visitez <a href="https://docs.microsoft.com/azure/load-balancer/load-balancer-get-started-internet-arm-cli">https://docs.microsoft.com/azure/load-balancer/load-balancer-get-started-internet-arm-cli</a> .
+directCommands:
+- uid: az_network_lb_create
+  name: az network lb create
+  summary: Créez un équilibrage de charge.
+  description: ''
+  syntax: >-
+    az network lb create --name
+                         --resource-group
+                         [--backend-pool-name]
+                         [--frontend-ip-name]
+                         [--frontend-ip-zone {1, 2, 3}]
+                         [--location]
+                         [--no-wait]
+                         [--private-ip-address]
+                         [--private-ip-address-version {IPv4, IPv6}]
+                         [--public-ip-address]
+                         [--public-ip-address-allocation {Dynamic, Static}]
+                         [--public-ip-dns-name]
+                         [--public-ip-zone {1, 2, 3}]
+                         [--sku {Basic, Standard}]
+                         [--subnet]
+                         [--subnet-address-prefix]
+                         [--subscription]
+                         [--tags]
+                         [--validate]
+                         [--vnet-address-prefix]
+                         [--vnet-name]
+  examples:
+  - summary: Créez un équilibreur de charge de base.
+    syntax: az network lb create -g MyResourceGroup -n MyLb --sku Basic
+  - summary: Créez un équilibreur de charge de base sur un réseau virtuel et un sous-réseau spécifiques. Si un réseau virtuel portant le même nom se trouve dans le même groupe de ressources, l’équilibreur de charge utilise ce réseau virtuel.  Si aucun n’est trouvé, un nouveau sera créé.
+    syntax: az network lb create -g MyResourceGroup -n MyLb --sku Basic --vnet-name MyVnet --subnet MySubnet
+  - summary: Créez un équilibreur de charge de base sur un sous-réseau d’un réseau virtuel préexistant. Le sous-réseau peut être dans le groupe de ressources ou l’abonnement arbitraire en fournissant l’ID du sous-réseau.
+    syntax: az network lb create -g MyResourceGroup -n MyLb --sku Basic --subnet {subnetID}
+  - summary: Créez un équilibreur de charge interne de la zone de base, en approvisionnant une adresse IP publique zonale.
+    syntax: az network lb create -g MyResourceGroup -n MyLb --sku Basic --public-ip-zone 2
+  - summary: Créez un équilibreur de charge public dans une zone standard, par le biais de l’approvisionnement d’une configuration IP frontale zonale et d’un réseau virtuel.
+    syntax: az network lb create -g MyResourceGroup -n MyLb --sku Standard --frontend-ip-zone 1 --vnet-name MyVnet --subnet MySubnet
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’équilibreur de charge.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --backend-pool-name
+    summary: Nom du pool d’adresses principales.
+    description: ''
+  - name: --frontend-ip-name
+    defaultValue: LoadBalancerFrontEnd
+    summary: Nom de la configuration d’adresse IP frontale.
+    description: ''
+  - name: --frontend-ip-zone
+    parameterValueGroup: 1, 2, 3
+    summary: Utilisé pour créer l’équilibreur de charge interne.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --private-ip-address
+    summary: Adresse IP privée statique à utiliser.
+    description: ''
+  - name: --private-ip-address-version
+    defaultValue: IPv4
+    parameterValueGroup: IPv4, IPv6
+    summary: Version de l’adresse IP privée à utiliser.
+    description: ''
+  - name: --public-ip-address
+    summary: Nom ou ID de l’adresse IP publique, ou «» pour aucun. Utilise la ressource existante si elle est disponible ou crée une nouvelle ressource avec les valeurs par défaut si elle est omise.
+    description: ''
+  - name: --public-ip-address-allocation
+    parameterValueGroup: Dynamic, Static
+    summary: Méthode d’allocation d’adresses IP.
+    description: ''
+  - name: --public-ip-dns-name
+    summary: Nom DNS global unique pour une nouvelle adresse IP publique.
+    description: ''
+  - name: --public-ip-zone
+    parameterValueGroup: 1, 2, 3
+    summary: Utilisé pour créer une nouvelle adresse IP publique pour l’équilibreur de charge, a. k. un équilibreur de charge public.
+    description: ''
+  - name: --sku
+    defaultValue: Basic
+    parameterValueGroup: Basic, Standard
+    summary: Référence SKU de l’équilibreur de charge.
+    description: ''
+  - name: --subnet
+    summary: Nom ou ID d’un sous-réseau. Utilise la ressource existante ou crée une nouvelle valeur si elle est spécifiée, ou None si elle est omise. Si le nom est spécifié, spécifiez également--vnet-Name. Si vous souhaitez utiliser un sous-réseau existant dans un autre groupe de ressources ou abonnement, indiquez l’ID à la place du nom du sous-réseau.
+    description: ''
+  - name: --subnet-address-prefix
+    defaultValue: 10.0.0.0/24
+    summary: Préfixe d’adresse CIDR à utiliser lors de la création d’un sous-réseau.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --validate
+    summary: Générez et validez le modèle ARM sans créer de ressources.
+    description: ''
+  - name: --vnet-address-prefix
+    defaultValue: 10.0.0.0/16
+    summary: Préfixe d’adresse CIDR à utiliser lors de la création d’un nouveau réseau virtuel.
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel (VNet).
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_delete
+  name: az network lb delete
+  summary: Supprimer un équilibreur de charge.
+  description: ''
+  syntax: >-
+    az network lb delete [--ids]
+                         [--name]
+                         [--resource-group]
+                         [--subscription]
+  examples:
+  - summary: Supprimer un équilibreur de charge.
+    syntax: az network lb delete -g MyResourceGroup -n MyLb
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’équilibreur de charge.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_list
+  name: az network lb list
+  summary: Répertorier les équilibrages de charge.
+  description: ''
+  syntax: >-
+    az network lb list [--query-examples]
+                       [--resource-group]
+                       [--subscription]
+  examples:
+  - summary: Répertorier les équilibrages de charge.
+    syntax: az network lb list -g MyResourceGroup
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_show
+  name: az network lb show
+  summary: Obtenir les détails d’un équilibreur de charge.
+  description: ''
+  syntax: >-
+    az network lb show [--expand]
+                       [--ids]
+                       [--name]
+                       [--query-examples]
+                       [--resource-group]
+                       [--subscription]
+  examples:
+  - summary: Obtenir les détails d’un équilibreur de charge.
+    syntax: az network lb show -g MyResourceGroup -n MyLb
+  optionalParameters:
+  - name: --expand
+    summary: Développe des ressources référencées.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’équilibreur de charge.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_update
+  name: az network lb update
+  summary: Mettre à jour un équilibreur de charge.
+  description: Cette commande ne peut être utilisée que pour mettre à jour les balises d’un équilibreur de charge. Le nom et le groupe de ressources sont immuables et ne peuvent pas être mis à jour.
+  syntax: >-
+    az network lb update [--add]
+                         [--force-string]
+                         [--ids]
+                         [--name]
+                         [--remove]
+                         [--resource-group]
+                         [--set]
+                         [--subscription]
+  examples:
+  - summary: Mettez à jour les balises d’un équilibreur de charge.
+    syntax: az network lb update -g MyResourceGroup -n MyLb --set tags.CostCenter=MyBusinessGroup
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’équilibreur de charge.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_wait
+  name: az network lb wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de l’équilibrage de charge soit remplie.
+  description: ''
+  syntax: >-
+    az network lb wait [--created]
+                       [--custom]
+                       [--deleted]
+                       [--exists]
+                       [--expand]
+                       [--ids]
+                       [--interval]
+                       [--name]
+                       [--resource-group]
+                       [--subscription]
+                       [--timeout]
+                       [--updated]
+  examples:
+  - summary: Attendez que l’équilibrage de charge retourne comme créé.
+    syntax: az network lb wait -g MyResourceGroup -n MyLB --created
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --expand
+    summary: Développe des ressources référencées.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’équilibreur de charge.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_lb_address_pool
+- az_network_lb_address_pool_address
+- az_network_lb_address_pool_address_add
+- az_network_lb_address_pool_address_list
+- az_network_lb_address_pool_address_remove
+- az_network_lb_address_pool_create
+- az_network_lb_address_pool_delete
+- az_network_lb_address_pool_list
+- az_network_lb_address_pool_show
+- az_network_lb_create
+- az_network_lb_delete
+- az_network_lb_frontend_ip
+- az_network_lb_frontend_ip_create
+- az_network_lb_frontend_ip_delete
+- az_network_lb_frontend_ip_list
+- az_network_lb_frontend_ip_show
+- az_network_lb_frontend_ip_update
+- az_network_lb_inbound_nat_pool
+- az_network_lb_inbound_nat_pool_create
+- az_network_lb_inbound_nat_pool_delete
+- az_network_lb_inbound_nat_pool_list
+- az_network_lb_inbound_nat_pool_show
+- az_network_lb_inbound_nat_pool_update
+- az_network_lb_inbound_nat_rule
+- az_network_lb_inbound_nat_rule_create
+- az_network_lb_inbound_nat_rule_delete
+- az_network_lb_inbound_nat_rule_list
+- az_network_lb_inbound_nat_rule_show
+- az_network_lb_inbound_nat_rule_update
+- az_network_lb_list
+- az_network_lb_outbound_rule
+- az_network_lb_outbound_rule_create
+- az_network_lb_outbound_rule_delete
+- az_network_lb_outbound_rule_list
+- az_network_lb_outbound_rule_show
+- az_network_lb_outbound_rule_update
+- az_network_lb_probe
+- az_network_lb_probe_create
+- az_network_lb_probe_delete
+- az_network_lb_probe_list
+- az_network_lb_probe_show
+- az_network_lb_probe_update
+- az_network_lb_rule
+- az_network_lb_rule_create
+- az_network_lb_rule_delete
+- az_network_lb_rule_list
+- az_network_lb_rule_show
+- az_network_lb_rule_update
+- az_network_lb_show
+- az_network_lb_update
+- az_network_lb_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Pour en savoir plus sur Azure Load Balancer visitez <a href="https://docs.microsoft.com/azure/load-balancer/load-balancer-get-started-internet-arm-cli">https://docs.microsoft.com/azure/load-balancer/load-balancer-get-started-internet-arm-cli</a> .
+  ms.openlocfilehash: 05918ad1c852ff6903f09977d9d69f920d769f97
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102847015"

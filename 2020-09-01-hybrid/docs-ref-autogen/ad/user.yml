@@ -1,0 +1,183 @@
+### YamlMime:AzureCLIGroup
+uid: az_ad_user
+name: az ad user
+summary: Gérer les utilisateurs Azure Active Directory et l’authentification des utilisateurs.
+description: ''
+directCommands:
+- uid: az_ad_user_create
+  name: az ad user create
+  summary: Créez un utilisateur Azure Active Directory.
+  description: ''
+  syntax: >-
+    az ad user create --display-name
+                      --password
+                      --user-principal-name
+                      [--force-change-password-next-login {false, true}]
+                      [--immutable-id]
+                      [--mail-nickname]
+  requiredParameters:
+  - isRequired: true
+    name: --display-name
+    summary: Nom complet de l’objet ou son préfixe.
+    description: ''
+  - isRequired: true
+    name: --password
+    summary: Mot de passe qui doit être attribué à l’utilisateur pour l’authentification.
+    description: ''
+  - isRequired: true
+    name: --user-principal-name
+    summary: Obligatoire. Nom d’utilisateur principal ( someuser@contoso.com ). Il doit contenir l’un des domaines vérifiés pour le locataire.
+    description: ''
+  optionalParameters:
+  - name: --force-change-password-next-login
+    parameterValueGroup: false, true
+    summary: Indique à cet utilisateur la nécessité de mettre à jour son mot de passe la prochaine fois qu’il s’authentifie. En cas d’omission, la valeur false est utilisée.
+    description: ''
+  - name: --immutable-id
+    summary: Ce nom doit être spécifié si vous utilisez un domaine fédéré pour la propriété userPrincipalName (UPN) de l’utilisateur lors de la création d’un nouveau compte d’utilisateur. Il est utilisé pour associer un compte d’utilisateur Active Directory local à son objet utilisateur Azure AD.
+    description: ''
+  - name: --mail-nickname
+    summary: Alias de messagerie. La valeur par défaut est le nom d’utilisateur principal.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_user_delete
+  name: az ad user delete
+  summary: Supprimer un utilisateur.
+  description: ''
+  syntax: az ad user delete --id
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: ID d’objet ou nom de principal de l’utilisateur pour lequel obtenir des informations.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_user_get_member_groups
+  name: az ad user get-member-groups
+  summary: Obtenir les groupes dont l’utilisateur est membre.
+  description: ''
+  syntax: >-
+    az ad user get-member-groups --id
+                                 [--security-enabled-only]
+  examples:
+  - summary: Obtenir les groupes dont l’utilisateur est membre (généré automatiquement)
+    syntax: az ad user get-member-groups --upn-or-object-id myuser@contoso.com
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: ID d’objet ou nom de principal de l’utilisateur pour lequel obtenir des informations.
+    description: ''
+  optionalParameters:
+  - name: --security-enabled-only
+    summary: Si la valeur est true, seule l’appartenance à des groupes sécurisés doit être vérifiée. Dans le cas contraire, l’appartenance à tous les groupes doit être vérifiée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_user_list
+  name: az ad user list
+  summary: Répertorier les utilisateurs Azure Active Directory.
+  description: ''
+  syntax: >-
+    az ad user list [--display-name]
+                    [--filter]
+                    [--query-examples]
+                    [--upn]
+  optionalParameters:
+  - name: --display-name
+    summary: Nom complet de l’objet ou son préfixe.
+    description: ''
+  - name: --filter
+    summary: Filtre OData, par exemple--Filter « DisplayName EQ’test » et servicePrincipalType EQ’application'.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --upn
+    summary: Nom d’utilisateur principal, par exemple john.doe@contoso.com .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_user_show
+  name: az ad user show
+  summary: Obtient des informations sur l’utilisateur à partir du répertoire.
+  description: ''
+  syntax: >-
+    az ad user show --id
+                    [--query-examples]
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: ID d’objet ou nom de principal de l’utilisateur pour lequel obtenir des informations.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_user_update
+  name: az ad user update
+  summary: Mettre à jour les utilisateurs Azure Active Directory.
+  description: ''
+  syntax: >-
+    az ad user update --id
+                      [--account-enabled {false, true}]
+                      [--display-name]
+                      [--force-change-password-next-login {false, true}]
+                      [--mail-nickname]
+                      [--password]
+  examples:
+  - summary: Mettre à jour les utilisateurs Azure Active Directory. généré automatiquement
+    syntax: az ad user update --id 00000000-0000-0000-0000-000000000000
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: ID d’objet ou nom de principal de l’utilisateur pour lequel obtenir des informations.
+    description: ''
+  optionalParameters:
+  - name: --account-enabled
+    parameterValueGroup: false, true
+    summary: Activez le compte d’utilisateur.
+    description: ''
+  - name: --display-name
+    summary: Nom complet de l’objet ou son préfixe.
+    description: ''
+  - name: --force-change-password-next-login
+    parameterValueGroup: false, true
+    summary: Oblige l’utilisateur à modifier son mot de passe la prochaine fois qu’il se connecte. Valide uniquement quand--Password est spécifié.
+    description: ''
+  - name: --mail-nickname
+    summary: Alias de messagerie. La valeur par défaut est le nom d’utilisateur principal.
+    description: ''
+  - name: --password
+    summary: Mot de passe utilisateur.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+commands:
+- az_ad_user_create
+- az_ad_user_delete
+- az_ad_user_get_member_groups
+- az_ad_user_list
+- az_ad_user_show
+- az_ad_user_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/20/2021
+  description: Gérer les utilisateurs Azure Active Directory et l’authentification des utilisateurs.
+  ms.openlocfilehash: 0074742772c2713883f5e61a5ecbcf0a2db216d7
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102846976"
