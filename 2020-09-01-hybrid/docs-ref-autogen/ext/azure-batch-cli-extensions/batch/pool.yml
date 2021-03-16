@@ -1,0 +1,141 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-batch-cli-extensions_az_batch_pool
+name: az batch pool
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-batch-CLI-extensions** pour Azure CLI et requiert la version 2.0.74 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ batch pool** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les pools batch.
+description: ''
+directCommands:
+- uid: ext_azure-batch-cli-extensions_az_batch_pool_create
+  name: az batch pool create
+  summary: Créer un pool batch dans un compte. Lorsque vous créez un pool, choisissez des arguments à partir de configuration des services Cloud ou de la configuration de l’ordinateur virtuel.
+  description: ''
+  syntax: >-
+    az batch pool create [--account-endpoint]
+                         [--account-key]
+                         [--account-name]
+                         [--application-licenses]
+                         [--application-package-references]
+                         [--auto-scale-formula]
+                         [--certificate-references]
+                         [--disk-encryption-targets]
+                         [--enable-inter-node-communication]
+                         [--id]
+                         [--image]
+                         [--json-file]
+                         [--metadata]
+                         [--node-agent-sku-id]
+                         [--os-family]
+                         [--parameters]
+                         [--resize-timeout]
+                         [--resource-group]
+                         [--start-task-command-line]
+                         [--start-task-resource-files]
+                         [--start-task-wait-for-success]
+                         [--target-dedicated-nodes]
+                         [--target-low-priority-nodes]
+                         [--template]
+                         [--vm-size]
+  optionalParameters:
+  - name: --account-endpoint
+    summary: 'Point de terminaison du service batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ENDPOINT.'
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCESS_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCOUNT.'
+    description: ''
+  - name: --application-licenses
+    summary: Liste des licences d’application que le service batch met à disposition sur chaque nœud de calcul du pool. La liste des licences d’application doit être un sous-ensemble de licences d’application de service batch disponibles. Si vous demandez une licence qui n’est pas prise en charge, la création du pool échouera.
+    description: ''
+  - name: --application-package-references
+    summary: Liste des packages à installer sur chaque nœud de calcul dans le pool. Les modifications apportées aux références de package affectent tous les nouveaux nœuds qui rejoignent le pool, mais n’affectent pas les nœuds de calcul qui se trouvent déjà dans le pool tant qu’ils ne sont pas redémarrés ou réinitialisés. Il existe un maximum de 10 références de package sur un pool donné.
+    description: ''
+  - name: --auto-scale-formula
+    summary: Formule pour le nombre souhaité de nœuds de calcul dans le pool. Cette propriété ne doit pas être spécifiée si enableAutoScale a la valeur false. Il est obligatoire si enableAutoScale a la valeur true. La validité de la formule est vérifiée avant la création du pool. Si la formule n’est pas valide, le service de traitement par lots rejette la demande avec des informations détaillées sur l’erreur. Pour plus d’informations sur la spécification de cette formule, consultez « mettre automatiquement à l’échelle les nœuds de calcul dans un pool de Azure Batch » ( <a href="https://azure.microsoft.com/documentation/articles/batch-automatic-scaling/">https://azure.microsoft.com/documentation/articles/batch-automatic-scaling/</a> ).
+    description: ''
+  - name: --certificate-references
+    summary: Liste des certificats à installer sur chaque nœud de calcul dans le pool. Pour les nœuds Windows, le service batch installe les certificats dans le magasin de certificats et l’emplacement spécifiés. Pour les nœuds de calcul Linux, les certificats sont stockés dans un répertoire à l’intérieur du répertoire de travail de la tâche et une variable d’environnement AZ_BATCH_CERTIFICATES_DIR est fournie à la tâche pour interroger cet emplacement. Pour les certificats dont la visibilité est « UtilisateurDistant », un répertoire « certs » est créé dans le répertoire de démarrage de l’utilisateur (par exemple,/home/{user-name}/certs), et les certificats sont placés dans ce répertoire.
+    description: ''
+  - name: --disk-encryption-targets
+    summary: Liste séparée par des espaces de DiskEncryptionTargets. les valeurs possibles actuelles sont OsDisk et TemporaryDisk.
+    description: ''
+  - name: --enable-inter-node-communication
+    summary: Indique si le pool permet une communication directe entre les nœuds de calcul. L’activation de la communication entre nœuds limite la taille maximale du pool en raison de restrictions de déploiement sur les nœuds de calcul du pool. Cela peut entraîner un pool qui n’atteint pas sa taille souhaitée. La valeur par défaut est false.
+    description: ''
+  - name: --id
+    summary: Obligatoire. Chaîne qui identifie de façon unique le pool dans le compte. L’ID peut contenir n’importe quelle combinaison de caractères alphanumériques, notamment des traits d’Union et des traits de soulignement, et ne peut pas contenir plus de 64 caractères. L’ID est en préservant la casse et ne respecte pas la casse (autrement dit, vous ne pouvez pas avoir deux ID de pool dans un compte qui diffèrent uniquement par la casse).
+    description: ''
+  - name: --image
+    summary: 'Référence de l’image du système d’exploitation. Il peut s’agir de l’un des formats suivants : « Publisher : offer : SKU [ : version] » ou un ID d’image ARM complet au format « /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/images/{imageName} ». Si le format « éditeur : offre : SKU [ : version] » est spécifié, la version est facultative et, si elle est omise, la dernière est utilisée. Les valeurs valides peuvent être récupérées via « AZ batch pool node-agent-SKU List ». Par exemple : « MicrosoftWindowsServer : windowsserver2003:2012-R2-Datacenter : latest ».'
+    description: ''
+  - name: --json-file
+    summary: Le fichier contenant le pool à créer au format JSON, si ce paramètre est spécifié, tous les autres paramètres sont ignorés.
+    description: ''
+  - name: --metadata
+    summary: Liste de paires nom-valeur associées au pool en tant que métadonnées. Le service batch n’affecte aucune signification aux métadonnées ; C’est uniquement pour l’utilisation du code utilisateur.
+    description: ''
+  - name: --node-agent-sku-id
+    summary: Référence SKU de l’agent de nœud batch à approvisionner sur des nœuds de calcul dans le pool. L’agent de nœud batch est un programme qui s’exécute sur chaque nœud du pool et fournit l’interface de commande et de contrôle entre le nœud et le service batch. Il existe différentes implémentations de l’agent de nœud pour différents systèmes d’exploitation, connues sous le nom de références. Vous devez spécifier un SKU d’agent de nœud qui correspond à la référence d’image sélectionnée. Pour obtenir la liste des références SKU d’agent de nœud prises en charge, ainsi que leur liste de références d’image vérifiées, consultez l’opération « répertorier les SKU d’agent de nœud pris en charge ».
+    description: ''
+  - name: --os-family
+    summary: 'Famille de systèmes d’exploitation invités d’Azure à installer sur les machines virtuelles au sein du pool. Les valeurs possibles sont les suivantes : 2-famille de systèmes d’exploitation 2, équivalent à Windows Server 2008 R2 SP1. 3-famille 3 du système d’exploitation, équivalent à Windows Server 2012. 4-famille 4 de systèmes d’exploitation, équivalent à Windows Server 2012 R2. 5-famille 5 du système d’exploitation, équivalent à Windows Server 2016. Pour plus d’informations, consultez releases du système d’exploitation invité Azure ( <a href="https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases">https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases</a> ). Valeurs autorisées : 2, 3, 4, 5.'
+    description: ''
+  - name: --parameters
+    summary: Valeurs de paramètre pour un fichier de modèle JSON de pool batch. Peut uniquement être utilisé avec--template.
+    description: ''
+  - name: --resize-timeout
+    summary: Délai d’attente pour l’allocation des nœuds de calcul au pool. Ce délai d’attente s’applique uniquement à la mise à l’échelle manuelle. elle n’a aucun effet quand enableAutoScale a la valeur true. La valeur par défaut est 15 minutes. La valeur minimale est de 5 minutes. Si vous spécifiez une valeur inférieure à 5 minutes, le service de traitement par lots renvoie une erreur. Si vous appelez l’API REST directement, le code d’état HTTP est 400 (requête incorrecte).
+    description: ''
+  - name: --resource-group
+    summary: Groupe de ressources du compte batch.
+    description: ''
+  - name: --start-task-command-line
+    summary: Ligne de commande de la tâche de démarrage. La ligne de commande ne s’exécute pas sous un interpréteur de commandes et ne peut donc pas tirer parti des fonctionnalités de l’interpréteur de commandes telles que l’expansion des variables d’environnement. Si vous souhaitez tirer parti de ces fonctionnalités, vous devez appeler l’interpréteur de commandes dans la ligne de commande, par exemple en utilisant « cmd/c MyCommand » dans Windows ou « /bin/sh-c MyCommand » dans Linux.
+    description: ''
+  - name: --start-task-resource-files
+    summary: Liste des fichiers que le service batch télécharge sur le nœud de calcul avant d’exécuter la ligne de commande. Références de ressource séparées par des espaces au format filename = httpurl.
+    description: ''
+  - name: --start-task-wait-for-success
+    summary: Si le service de traitement par lots doit attendre la fin de la tâche de démarrage (autrement dit, pour quitter le code de sortie 0) avant de planifier des tâches sur le nœud de calcul. Si la valeur est true et que la tâche de démarrage échoue sur un nœud de calcul, le service de traitement par lots réessaie la tâche de démarrage jusqu’à un nombre maximal de nouvelles tentatives (maxTaskRetryCount). Si la tâche ne s’est toujours pas terminée correctement après toutes les nouvelles tentatives, le service batch marque le nœud de calcul comme inutilisable et ne planifie pas de tâches. Cette condition peut être détectée via l’état du nœud et les détails de l’erreur de planification. Si la valeur est false, le service batch n’attend pas que la tâche de démarrage se termine. Dans ce cas, d’autres tâches peuvent démarrer l’exécution sur le nœud de calcul pendant que la tâche de démarrage est toujours en cours d’exécution. et même en cas d’échec de la tâche de démarrage, les nouvelles tâches sont planifiées sur le nœud. La valeur par défaut est false. True si l’indicateur est présent.
+    description: ''
+  - name: --target-dedicated-nodes
+    summary: Nombre souhaité de nœuds de calcul dédiés dans le pool. Cette propriété ne doit pas être spécifiée si enableAutoScale a la valeur true. Si enableAutoScale a la valeur false, vous devez définir targetDedicatedNodes, targetLowPriorityNodes, ou les deux.
+    description: ''
+  - name: --target-low-priority-nodes
+    summary: Nombre souhaité de nœuds de calcul de faible priorité dans le pool. Cette propriété ne doit pas être spécifiée si enableAutoScale a la valeur true. Si enableAutoScale a la valeur false, vous devez définir targetDedicatedNodes, targetLowPriorityNodes, ou les deux.
+    description: ''
+  - name: --template
+    summary: Fichier de modèle JSON de pool batch. Si ce paramètre est spécifié, tous les autres paramètres sont ignorés.
+    description: ''
+  - name: --vm-size
+    summary: Obligatoire. Taille des machines virtuelles dans le pool. Toutes les machines virtuelles d’un pool ont la même taille. Pour plus d’informations sur les tailles disponibles des machines virtuelles pour les pools de services Cloud (pools créés avec cloudServiceConfiguration), consultez tailles pour les services Cloud ( <a href="https://azure.microsoft.com/documentation/articles/cloud-services-sizes-specs/">https://azure.microsoft.com/documentation/articles/cloud-services-sizes-specs/</a> ). Batch prend en charge toutes les tailles de machine virtuelle des services Cloud, à l’exception de très petite, A1V2 et A2V2. Pour plus d’informations sur les tailles de machine virtuelle disponibles pour les pools à l’aide d’images de la place de marché de machines virtuelles (pools créés avec virtualMachineConfiguration), voir tailles des machines virtuelles (Linux) ( <a href="https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/">https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/</a> ) ou tailles des machines virtuelles (Windows) ( <a href="https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/">https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/</a> ). Batch prend en charge toutes les tailles de machine virtuelle Azure, à l’exception des STANDARD_A0 et de celles avec stockage Premium (STANDARD_GS, STANDARD_DS et STANDARD_DSV2 Series).
+    description: ''
+commands:
+- ext_azure-batch-cli-extensions_az_batch_pool_create
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les pools batch.
+  ms.openlocfilehash: f29f236fad2421db2400eb9c830612811f91bde5
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102836321"
