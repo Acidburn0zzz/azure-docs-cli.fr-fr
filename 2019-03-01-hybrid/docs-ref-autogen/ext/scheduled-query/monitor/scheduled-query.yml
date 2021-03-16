@@ -1,0 +1,248 @@
+### YamlMime:AzureCLIGroup
+uid: ext_scheduled-query_az_monitor_scheduled_query
+name: az monitor scheduled-query
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de **requête planifiée** pour Azure CLI et requiert la version 2.0.67 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Monitor scheduled-Query** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer les requêtes planifiées.
+description: ''
+directCommands:
+- uid: ext_scheduled-query_az_monitor_scheduled_query_create
+  name: az monitor scheduled-query create
+  summary: Créer une requête planifiée.
+  description: ''
+  syntax: >-
+    az monitor scheduled-query create --condition
+                                      --name
+                                      --resource-group
+                                      --scopes
+                                      [--action]
+                                      [--description]
+                                      [--disabled {false, true}]
+                                      [--evaluation-frequency]
+                                      [--location]
+                                      [--mad]
+                                      [--severity]
+                                      [--tags]
+                                      [--target-resource-type]
+                                      [--window-size]
+  examples:
+  - summary: Créer une requête planifiée pour une machine virtuelle.
+    syntax: az monitor scheduled-query create -g {rg} -n {name1} --scopes {vm_id} --condition "count 'union Event, Syslog | where TimeGenerated > ago(1h) | where EventLevelName=="Error" or SeverityLevel=="err"' > 360 resource id _ResourceID at least 1 violations out of 5 aggregated points" --description "Test rule"
+  - summary: Créer une requête planifiée pour les machines virtuelles dans un groupe de ressources.
+    syntax: az monitor scheduled-query create -g {rg} -n {name1} --scopes {rg_id} --condition "count 'union Event, Syslog | where TimeGenerated > ago(1h) | where EventLevelName=="Error" or SeverityLevel=="err"' > 360 resource id _ResourceID at least 1 violations out of 5 aggregated points" --description "Test rule"
+  requiredParameters:
+  - isRequired: true
+    name: --condition
+    summary: Condition qui déclenche la règle.
+    description: >-
+      Utilisation :--condition {AVG, min, Max, total, Count} ["METRIC colonne" from] "QUERY" {=, ! =, >, >=, <, <=} seuil [ID de ressource RESOURCEID] [Where DIMENSION {includes, excludes} VALUE [ou VALUE...] [et DIMENSION {includes, excludes} valeur [ou VALUE...]...]] [au moins MinTimeToFail violations des points agrégés EvaluationPeriod] '
+
+
+      Les dimensions peuvent être interrogées en ajoutant le mot clé « WHERE » et plusieurs dimensions peuvent être interrogées en les associant au mot clé « and ».
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de requête planifiée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --scopes
+    summary: Liste d’étendues séparées par des espaces auxquelles la règle s’applique. Les ressources spécifiées dans ce paramètre doivent être du même type et se trouver au même emplacement.
+    description: ''
+  optionalParameters:
+  - name: --action -a
+    summary: Ajoutez un groupe d’actions et des propriétés de webhook facultatives pour déclencher l’activation de l’alerte.
+    description: >-
+      Utilisation :--action ACTION_GROUP_NAME_OR_ID [clé = VAL [KEY = VAL...]]
+
+
+      Plusieurs groupes d’actions peuvent être spécifiés à l’aide de plusieurs `--action` arguments.
+  - name: --description
+    summary: Description de la règle en texte libre.
+    description: ''
+  - name: --disabled
+    parameterValueGroup: false, true
+    summary: Désactivez la requête planifiée.
+    description: ''
+  - name: --evaluation-frequency
+    defaultValue: 5m
+    summary: 'Fréquence à laquelle évaluer la règle au format « # #h # #m # #s ».'
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --mad --mute-actions-duration
+    defaultValue: PT30M
+    summary: Actions muet pour la période de temps choisie (au format de durée ISO 8601) après le déclenchement de l’alerte.
+    description: ''
+  - name: --severity
+    defaultValue: "2"
+    summary: Gravité de l’alerte comprise entre 0 (critique) et 4 (commentaires).
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --target-resource-type --type
+    summary: Type de ressource de la ou des ressources cibles dans les étendues. Elle doit être fournie lorsque l’étendue est un groupe de ressources ou un abonnement.
+    description: ''
+  - name: --window-size
+    defaultValue: 5m
+    summary: 'Délai d’agrégation des métriques au format « # #h # #m # #s ».'
+    description: ''
+- uid: ext_scheduled-query_az_monitor_scheduled_query_delete
+  name: az monitor scheduled-query delete
+  summary: Supprimer une requête planifiée.
+  description: ''
+  syntax: >-
+    az monitor scheduled-query delete --name
+                                      --resource-group
+                                      [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de requête planifiée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_scheduled-query_az_monitor_scheduled_query_list
+  name: az monitor scheduled-query list
+  summary: Répertorie toutes les requêtes planifiées.
+  description: ''
+  syntax: az monitor scheduled-query list [--resource-group]
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_scheduled-query_az_monitor_scheduled_query_show
+  name: az monitor scheduled-query show
+  summary: Affichez les détails d’une requête planifiée.
+  description: ''
+  syntax: >-
+    az monitor scheduled-query show --name
+                                    --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de requête planifiée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_scheduled-query_az_monitor_scheduled_query_update
+  name: az monitor scheduled-query update
+  summary: Mettre à jour une requête planifiée.
+  description: ''
+  syntax: >-
+    az monitor scheduled-query update --name
+                                      --resource-group
+                                      [--action]
+                                      [--add]
+                                      [--condition]
+                                      [--description]
+                                      [--disabled {false, true}]
+                                      [--evaluation-frequency]
+                                      [--force-string]
+                                      [--mad]
+                                      [--remove]
+                                      [--set]
+                                      [--severity]
+                                      [--tags]
+                                      [--window-size]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de requête planifiée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --action -a
+    summary: Ajoutez un groupe d’actions et des propriétés de webhook facultatives pour déclencher l’activation de l’alerte.
+    description: >-
+      Utilisation :--action ACTION_GROUP_NAME_OR_ID [clé = VAL [KEY = VAL...]]
+
+
+      Plusieurs groupes d’actions peuvent être spécifiés à l’aide de plusieurs `--action` arguments.
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --condition
+    summary: Condition qui déclenche la règle.
+    description: >-
+      Utilisation :--condition {AVG, min, Max, total, Count} ["METRIC colonne" from] "QUERY" {=, ! =, >, >=, <, <=} seuil [ID de ressource RESOURCEID] [Where DIMENSION {includes, excludes} VALUE [ou VALUE...] [et DIMENSION {includes, excludes} valeur [ou VALUE...]...]] [au moins MinTimeToFail violations des points agrégés EvaluationPeriod] '
+
+
+      Les dimensions peuvent être interrogées en ajoutant le mot clé « WHERE » et plusieurs dimensions peuvent être interrogées en les associant au mot clé « and ».
+  - name: --description
+    summary: Description de la règle en texte libre.
+    description: ''
+  - name: --disabled
+    parameterValueGroup: false, true
+    summary: Désactivez la requête planifiée.
+    description: ''
+  - name: --evaluation-frequency
+    summary: 'Fréquence à laquelle évaluer la règle au format « # #h # #m # #s ».'
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --mad --mute-actions-duration
+    summary: Actions muet pour la période de temps choisie (au format de durée ISO 8601) après le déclenchement de l’alerte.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --severity
+    summary: Gravité de l’alerte comprise entre 0 (critique) et 4 (commentaires).
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --window-size
+    summary: 'Délai d’agrégation des métriques au format « # #h # #m # #s ».'
+    description: ''
+commands:
+- ext_scheduled-query_az_monitor_scheduled_query_create
+- ext_scheduled-query_az_monitor_scheduled_query_delete
+- ext_scheduled-query_az_monitor_scheduled_query_list
+- ext_scheduled-query_az_monitor_scheduled_query_show
+- ext_scheduled-query_az_monitor_scheduled_query_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer les requêtes planifiées.
+  ms.openlocfilehash: 09475fcd9c91dfec6ccc943c57bcb72ffb6a5b4f
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102840445"

@@ -1,0 +1,727 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_application_gateway
+name: az network application-gateway
+summary: Gérer les services de routage et d’équilibrage de charge au niveau de l’application.
+description: Pour en savoir plus sur Application Gateway, visitez <a href="https://docs.microsoft.com/azure/application-gateway/application-gateway-create-gateway-cli">https://docs.microsoft.com/azure/application-gateway/application-gateway-create-gateway-cli</a> .
+directCommands:
+- uid: az_network_application_gateway_create
+  name: az network application-gateway create
+  summary: Créer une passerelle d’application
+  description: ''
+  syntax: >-
+    az network application-gateway create --name
+                                          --resource-group
+                                          [--capacity]
+                                          [--cert-file]
+                                          [--cert-password]
+                                          [--connection-draining-timeout]
+                                          [--custom-error-pages]
+                                          [--enable-private-link]
+                                          [--frontend-port]
+                                          [--http-settings-cookie-based-affinity {Disabled, Enabled}]
+                                          [--http-settings-port]
+                                          [--http-settings-protocol {Http, Https}]
+                                          [--http2 {Disabled, Enabled}]
+                                          [--identity]
+                                          [--key-vault-secret-id]
+                                          [--location]
+                                          [--max-capacity]
+                                          [--min-capacity]
+                                          [--no-wait]
+                                          [--private-ip-address]
+                                          [--private-link-ip-address]
+                                          [--private-link-primary {false, true}]
+                                          [--private-link-subnet]
+                                          [--private-link-subnet-prefix]
+                                          [--public-ip-address]
+                                          [--public-ip-address-allocation]
+                                          [--routing-rule-type {Basic, PathBasedRouting}]
+                                          [--servers]
+                                          [--sku {Standard_Large, Standard_Medium, Standard_Small, Standard_v2, WAF_Large, WAF_Medium, WAF_v2}]
+                                          [--ssl-profile]
+                                          [--ssl-profile-id]
+                                          [--subnet]
+                                          [--subnet-address-prefix]
+                                          [--subscription]
+                                          [--tags]
+                                          [--trusted-client-cert]
+                                          [--validate]
+                                          [--vnet-address-prefix]
+                                          [--vnet-name]
+                                          [--waf-policy]
+                                          [--zones {1, 2, 3}]
+  examples:
+  - summary: Créer une passerelle d’application avec des machines virtuelles en tant que serveurs principaux.
+    syntax: >-
+      az network application-gateway create -g MyResourceGroup -n MyAppGateway --capacity 2 --sku Standard_Medium \
+          --vnet-name MyVNet --subnet MySubnet --http-settings-cookie-based-affinity Enabled \
+          --public-ip-address MyAppGatewayPublicIp --servers 10.0.0.4 10.0.0.5
+  - summary: Créer une passerelle d’application généré automatiquement
+    syntax: az network application-gateway create --capacity 2 --frontend-port MyFrontendPort --http-settings-cookie-based-affinity Enabled --http-settings-port 80 --http-settings-protocol Http --location westus2 --name MyAppGateway --public-ip-address MyAppGatewayPublicIp --resource-group MyResourceGroup --sku Standard_Small --subnet MySubnet --vnet-name MyVNet
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --capacity
+    defaultValue: "2"
+    summary: Nombre d’instances à utiliser avec la passerelle d’application.
+    description: ''
+  - name: --cert-file
+    summary: Chemin d’accès au fichier de certificat PFX.
+    description: ''
+  - name: --cert-password
+    summary: Mot de passe du certificat.
+    description: ''
+  - name: --connection-draining-timeout
+    summary: 'Durée en secondes après la suppression d’un serveur principal pendant laquelle la connexion ouverte reste active. Plage : 0 (désactivé) à 3600.'
+    description: ''
+  - name: --custom-error-pages
+    summary: Liste séparée par des espaces des pages d’erreurs personnalisées au `STATUS_CODE=URL` format.
+    description: ''
+  - name: --enable-private-link
+    summary: Activez la fonctionnalité de liaison privée pour cette passerelle d’application. Si les adresses IP publiques et privées sont toutes deux intégrées, ne prennent effet que dans l’adresse IP du serveur frontal public.
+    description: ''
+  - name: --frontend-port
+    summary: Numéro de port du serveur frontal.
+    description: ''
+  - name: --http-settings-cookie-based-affinity
+    defaultValue: disabled
+    parameterValueGroup: Disabled, Enabled
+    summary: Activez ou désactivez l’affinité basée sur les cookies des paramètres HTTP.
+    description: ''
+  - name: --http-settings-port
+    defaultValue: "80"
+    summary: Port des paramètres HTTP.
+    description: ''
+  - name: --http-settings-protocol
+    defaultValue: Http
+    parameterValueGroup: Http, Https
+    summary: Protocole des paramètres HTTP.
+    description: ''
+  - name: --http2
+    parameterValueGroup: Disabled, Enabled
+    summary: Utilisez HTTP2 pour la passerelle d’application.
+    description: ''
+  - name: --identity
+    summary: Nom ou ID de la ressource ManagedIdentity.
+    description: ''
+  - name: --key-vault-secret-id
+    summary: ID secret de (fichier PFX non chiffré de base 64) « secret » ou objet « Certificate » stocké dans Azure Key Vault. Pour utiliser cette fonctionnalité, vous devez activer la suppression réversible pour keyvault.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --max-capacity
+    summary: Limite supérieure du nombre d’instances de la passerelle d’application.
+    description: ''
+  - name: --min-capacity
+    summary: Limite inférieure sur le nombre d’instances de la passerelle Application Gateway.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --private-ip-address
+    summary: Adresse IP privée statique à utiliser.
+    description: ''
+  - name: --private-link-ip-address
+    summary: Adresse IP privée statique d’un sous-réseau pour le lien privé. Si vous l’omettez, un dynamique est créé.
+    description: ''
+  - name: --private-link-primary
+    parameterValueGroup: false, true
+    summary: Si la configuration IP est principale ou non.
+    description: ''
+  - name: --private-link-subnet
+    defaultValue: PrivateLinkDefaultSubnet
+    summary: Nom du sous-réseau dans le même réseau virtuel d’une passerelle d’application.
+    description: ''
+  - name: --private-link-subnet-prefix
+    defaultValue: 10.0.1.0/24
+    summary: Préfixe CIDR à utiliser lors de la création d’un sous-réseau.
+    description: ''
+  - name: --public-ip-address
+    summary: Nom ou ID d’une adresse IP publique. Utilise la ressource existante ou crée une nouvelle valeur si elle est spécifiée, ou None si elle est omise.
+    description: ''
+  - name: --public-ip-address-allocation
+    defaultValue: Dynamic
+    summary: Type d’allocation d’adresses IP à utiliser lors de la création d’une nouvelle adresse IP publique.
+    description: ''
+  - name: --routing-rule-type
+    defaultValue: Basic
+    parameterValueGroup: Basic, PathBasedRouting
+    summary: Type de règle de routage des demandes.
+    description: ''
+  - name: --servers
+    summary: Liste séparée par des espaces des adresses IP ou des noms DNS correspondant aux serveurs principaux.
+    description: ''
+  - name: --sku
+    defaultValue: Standard_Medium
+    parameterValueGroup: Standard_Large, Standard_Medium, Standard_Small, Standard_v2, WAF_Large, WAF_Medium, WAF_v2
+    summary: Nom de la référence SKU.
+    description: ''
+  - name: --ssl-profile
+    summary: Profils SSL de la passerelle d’application.
+    description: >-
+      Utilisation :--SSL-profile name = MySslProfile client-auth-configuration = true Cipher-Suites = TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 Policy-type = personnalisé min-Protocol-version = TLSv1_0
+
+
+      nom : obligatoire. Nom du profil SSL qui est unique au sein d’un Application Gateway.
+
+      Stratégie-nom : nom de la stratégie SSL.
+
+      Policy-type : type de stratégie SSL.
+
+      min-Protocol-version : version minimale du protocole SSL à prendre en charge sur la passerelle Application Gateway.
+
+      Cipher-Suites : les suites de chiffrement SSL à activer dans l’ordre spécifié pour la passerelle d’application.
+
+      Disabled-SSL-Protocols : liste de protocoles séparés par des espaces à désactiver.
+
+      Trusted-Client-Certificates : tableau de références aux certificats clients approuvés d’application Gateway.
+
+      client-auth-configuration : configuration de l’authentification du client de la ressource Application Gateway.
+
+
+      Plusieurs profils SSL peuvent être spécifiés à l’aide de plusieurs `--ssl-profile` arguments.
+  - name: --ssl-profile-id
+    summary: Ressource de profil SSL de la passerelle d’application.
+    description: ''
+  - name: --subnet
+    defaultValue: default
+    summary: Nom ou ID du sous-réseau. Créera la ressource si elle n’existe pas. Si le nom est spécifié, spécifiez également--vnet-Name. Si vous souhaitez utiliser un sous-réseau existant dans un autre groupe de ressources ou abonnement, indiquez l’ID à la place du nom du sous-réseau.
+    description: ''
+  - name: --subnet-address-prefix
+    defaultValue: 10.0.0.0/24
+    summary: Préfixe CIDR à utiliser lors de la création d’un sous-réseau.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --trusted-client-cert
+    summary: Certificat client approuvé de la passerelle Application Gateway.
+    description: >-
+      Utilisation :--Trusted-Client-Certificates Name = CLIENT1 Data = client. cer
+
+
+      nom : obligatoire. Nom du certificat de client approuvé qui est unique au sein d’une Application Gateway données : obligatoire. Données publiques des certificats.
+
+
+      Plusieurs certificats clients approuvés peuvent être spécifiés à l’aide de plusieurs `--trusted-client-certificates` arguments.
+  - name: --validate
+    summary: Générez et validez le modèle ARM sans créer de ressources.
+    description: ''
+  - name: --vnet-address-prefix
+    defaultValue: 10.0.0.0/16
+    summary: Préfixe CIDR à utiliser lors de la création d’un nouveau réseau virtuel.
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel (VNet).
+    description: ''
+  - name: --waf-policy
+    summary: Nom ou ID d’une stratégie de pare-feu d’applications Web (WAF).
+    description: ''
+  - name: --zones -z
+    parameterValueGroup: 1, 2, 3
+    summary: Liste séparée par des espaces des zones de disponibilité dans laquelle approvisionner la ressource.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_delete
+  name: az network application-gateway delete
+  summary: Supprimer une passerelle Application Gateway.
+  description: ''
+  syntax: >-
+    az network application-gateway delete [--ids]
+                                          [--name]
+                                          [--no-wait]
+                                          [--resource-group]
+                                          [--subscription]
+  examples:
+  - summary: Supprimer une passerelle Application Gateway.
+    syntax: az network application-gateway delete -g MyResourceGroup -n MyAppGateway
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_list
+  name: az network application-gateway list
+  summary: Répertoriez les passerelles d’application.
+  description: ''
+  syntax: >-
+    az network application-gateway list [--query-examples]
+                                        [--resource-group]
+                                        [--subscription]
+  examples:
+  - summary: Répertoriez les passerelles d’application.
+    syntax: az network application-gateway list -g MyResourceGroup
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_show
+  name: az network application-gateway show
+  summary: Obtient les détails d’une passerelle d’application.
+  description: ''
+  syntax: >-
+    az network application-gateway show [--ids]
+                                        [--name]
+                                        [--query-examples]
+                                        [--resource-group]
+                                        [--subscription]
+  examples:
+  - summary: Obtient les détails d’une passerelle d’application.
+    syntax: az network application-gateway show -g MyResourceGroup -n MyAppGateway
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_show_backend_health
+  name: az network application-gateway show-backend-health
+  summary: Obtient des informations sur l’intégrité du serveur principal d’une passerelle d’application.
+  description: ''
+  syntax: >-
+    az network application-gateway show-backend-health [--expand]
+                                                       [--ids]
+                                                       [--name]
+                                                       [--resource-group]
+                                                       [--subscription]
+  examples:
+  - summary: Affichez l’intégrité du serveur principal d’une passerelle Application Gateway.
+    syntax: az network application-gateway show-backend-health -g MyResourceGroup -n MyAppGateway
+  optionalParameters:
+  - name: --expand
+    summary: Développe BackendAddressPool et BackendHttpSettings référencés dans l’intégrité du serveur principal.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_start
+  name: az network application-gateway start
+  summary: Démarrez une passerelle Application Gateway.
+  description: ''
+  syntax: >-
+    az network application-gateway start [--ids]
+                                         [--name]
+                                         [--resource-group]
+                                         [--subscription]
+  examples:
+  - summary: Démarrez une passerelle Application Gateway.
+    syntax: az network application-gateway start -g MyResourceGroup -n MyAppGateway
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_stop
+  name: az network application-gateway stop
+  summary: Arrêtez une passerelle Application Gateway.
+  description: ''
+  syntax: >-
+    az network application-gateway stop [--ids]
+                                        [--name]
+                                        [--resource-group]
+                                        [--subscription]
+  examples:
+  - summary: Arrêtez une passerelle Application Gateway.
+    syntax: az network application-gateway stop -g MyResourceGroup -n MyAppGateway
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_update
+  name: az network application-gateway update
+  summary: Mettre à jour une passerelle d’application.
+  description: ''
+  syntax: >-
+    az network application-gateway update [--add]
+                                          [--capacity]
+                                          [--custom-error-pages]
+                                          [--force-string]
+                                          [--http2 {Disabled, Enabled}]
+                                          [--ids]
+                                          [--max-capacity]
+                                          [--min-capacity]
+                                          [--name]
+                                          [--no-wait]
+                                          [--remove]
+                                          [--resource-group]
+                                          [--set]
+                                          [--sku {Standard_Large, Standard_Medium, Standard_Small, Standard_v2, WAF_Large, WAF_Medium, WAF_v2}]
+                                          [--subscription]
+                                          [--tags]
+  examples:
+  - summary: Mettre à jour une passerelle d’application. généré automatiquement
+    syntax: az network application-gateway update --name MyApplicationGateway --resource-group MyResourceGroup --set useRemoteGateways=true
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --capacity
+    summary: Nombre d’instances à utiliser avec la passerelle d’application.
+    description: ''
+  - name: --custom-error-pages
+    summary: Liste séparée par des espaces des pages d’erreurs personnalisées au `STATUS_CODE=URL` format.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --http2
+    parameterValueGroup: Disabled, Enabled
+    summary: Utilisez HTTP2 pour la passerelle d’application.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --max-capacity
+    summary: Limite supérieure du nombre d’instances de la passerelle d’application.
+    description: ''
+  - name: --min-capacity
+    summary: Limite inférieure sur le nombre d’instances de la passerelle Application Gateway.
+    description: ''
+  - name: --name -n
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --sku
+    parameterValueGroup: Standard_Large, Standard_Medium, Standard_Small, Standard_v2, WAF_Large, WAF_Medium, WAF_v2
+    summary: Nom de la référence SKU.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_wait
+  name: az network application-gateway wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de la passerelle d’application soit remplie.
+  description: ''
+  syntax: >-
+    az network application-gateway wait [--created]
+                                        [--custom]
+                                        [--deleted]
+                                        [--exists]
+                                        [--ids]
+                                        [--interval]
+                                        [--name]
+                                        [--resource-group]
+                                        [--subscription]
+                                        [--timeout]
+                                        [--updated]
+  examples:
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à la création de la passerelle d’application.
+    syntax: az network application-gateway wait -g MyResourceGroup -n MyAppGateway --created
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --name -n
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_application_gateway_address_pool
+- az_network_application_gateway_address_pool_create
+- az_network_application_gateway_address_pool_delete
+- az_network_application_gateway_address_pool_list
+- az_network_application_gateway_address_pool_show
+- az_network_application_gateway_address_pool_update
+- az_network_application_gateway_auth_cert
+- az_network_application_gateway_auth_cert_create
+- az_network_application_gateway_auth_cert_delete
+- az_network_application_gateway_auth_cert_list
+- az_network_application_gateway_auth_cert_show
+- az_network_application_gateway_auth_cert_update
+- az_network_application_gateway_client_cert
+- az_network_application_gateway_client_cert_add
+- az_network_application_gateway_client_cert_list
+- az_network_application_gateway_client_cert_remove
+- az_network_application_gateway_create
+- az_network_application_gateway_delete
+- az_network_application_gateway_frontend_ip
+- az_network_application_gateway_frontend_ip_create
+- az_network_application_gateway_frontend_ip_delete
+- az_network_application_gateway_frontend_ip_list
+- az_network_application_gateway_frontend_ip_show
+- az_network_application_gateway_frontend_ip_update
+- az_network_application_gateway_frontend_port
+- az_network_application_gateway_frontend_port_create
+- az_network_application_gateway_frontend_port_delete
+- az_network_application_gateway_frontend_port_list
+- az_network_application_gateway_frontend_port_show
+- az_network_application_gateway_frontend_port_update
+- az_network_application_gateway_http_listener
+- az_network_application_gateway_http_listener_create
+- az_network_application_gateway_http_listener_delete
+- az_network_application_gateway_http_listener_list
+- az_network_application_gateway_http_listener_show
+- az_network_application_gateway_http_listener_update
+- az_network_application_gateway_http_settings
+- az_network_application_gateway_http_settings_create
+- az_network_application_gateway_http_settings_delete
+- az_network_application_gateway_http_settings_list
+- az_network_application_gateway_http_settings_show
+- az_network_application_gateway_http_settings_update
+- az_network_application_gateway_identity
+- az_network_application_gateway_identity_assign
+- az_network_application_gateway_identity_remove
+- az_network_application_gateway_identity_show
+- az_network_application_gateway_list
+- az_network_application_gateway_private_link
+- az_network_application_gateway_private_link_add
+- az_network_application_gateway_private_link_ip_config
+- az_network_application_gateway_private_link_ip_config_add
+- az_network_application_gateway_private_link_ip_config_list
+- az_network_application_gateway_private_link_ip_config_remove
+- az_network_application_gateway_private_link_ip_config_show
+- az_network_application_gateway_private_link_ip_config_wait
+- az_network_application_gateway_private_link_list
+- az_network_application_gateway_private_link_remove
+- az_network_application_gateway_private_link_show
+- az_network_application_gateway_private_link_wait
+- az_network_application_gateway_probe
+- az_network_application_gateway_probe_create
+- az_network_application_gateway_probe_delete
+- az_network_application_gateway_probe_list
+- az_network_application_gateway_probe_show
+- az_network_application_gateway_probe_update
+- az_network_application_gateway_redirect_config
+- az_network_application_gateway_redirect_config_create
+- az_network_application_gateway_redirect_config_delete
+- az_network_application_gateway_redirect_config_list
+- az_network_application_gateway_redirect_config_show
+- az_network_application_gateway_redirect_config_update
+- az_network_application_gateway_rewrite_rule
+- az_network_application_gateway_rewrite_rule_condition
+- az_network_application_gateway_rewrite_rule_condition_create
+- az_network_application_gateway_rewrite_rule_condition_delete
+- az_network_application_gateway_rewrite_rule_condition_list
+- az_network_application_gateway_rewrite_rule_condition_list_server_variables
+- az_network_application_gateway_rewrite_rule_condition_show
+- az_network_application_gateway_rewrite_rule_condition_update
+- az_network_application_gateway_rewrite_rule_create
+- az_network_application_gateway_rewrite_rule_delete
+- az_network_application_gateway_rewrite_rule_list
+- az_network_application_gateway_rewrite_rule_list_request_headers
+- az_network_application_gateway_rewrite_rule_list_response_headers
+- az_network_application_gateway_rewrite_rule_set
+- az_network_application_gateway_rewrite_rule_set_create
+- az_network_application_gateway_rewrite_rule_set_delete
+- az_network_application_gateway_rewrite_rule_set_list
+- az_network_application_gateway_rewrite_rule_set_show
+- az_network_application_gateway_rewrite_rule_set_update
+- az_network_application_gateway_rewrite_rule_show
+- az_network_application_gateway_rewrite_rule_update
+- az_network_application_gateway_root_cert
+- az_network_application_gateway_root_cert_create
+- az_network_application_gateway_root_cert_delete
+- az_network_application_gateway_root_cert_list
+- az_network_application_gateway_root_cert_show
+- az_network_application_gateway_root_cert_update
+- az_network_application_gateway_rule
+- az_network_application_gateway_rule_create
+- az_network_application_gateway_rule_delete
+- az_network_application_gateway_rule_list
+- az_network_application_gateway_rule_show
+- az_network_application_gateway_rule_update
+- az_network_application_gateway_show
+- az_network_application_gateway_show_backend_health
+- az_network_application_gateway_ssl_cert
+- az_network_application_gateway_ssl_cert_create
+- az_network_application_gateway_ssl_cert_delete
+- az_network_application_gateway_ssl_cert_list
+- az_network_application_gateway_ssl_cert_show
+- az_network_application_gateway_ssl_cert_update
+- az_network_application_gateway_ssl_policy
+- az_network_application_gateway_ssl_policy_list_options
+- az_network_application_gateway_ssl_policy_predefined
+- az_network_application_gateway_ssl_policy_predefined_list
+- az_network_application_gateway_ssl_policy_predefined_show
+- az_network_application_gateway_ssl_policy_set
+- az_network_application_gateway_ssl_policy_show
+- az_network_application_gateway_ssl_profile
+- az_network_application_gateway_ssl_profile_add
+- az_network_application_gateway_ssl_profile_list
+- az_network_application_gateway_ssl_profile_remove
+- az_network_application_gateway_start
+- az_network_application_gateway_stop
+- az_network_application_gateway_update
+- az_network_application_gateway_url_path_map
+- az_network_application_gateway_url_path_map_create
+- az_network_application_gateway_url_path_map_delete
+- az_network_application_gateway_url_path_map_list
+- az_network_application_gateway_url_path_map_rule
+- az_network_application_gateway_url_path_map_rule_create
+- az_network_application_gateway_url_path_map_rule_delete
+- az_network_application_gateway_url_path_map_show
+- az_network_application_gateway_url_path_map_update
+- az_network_application_gateway_waf_config
+- az_network_application_gateway_waf_config_list_rule_sets
+- az_network_application_gateway_waf_config_set
+- az_network_application_gateway_waf_config_show
+- az_network_application_gateway_waf_policy
+- az_network_application_gateway_waf_policy_create
+- az_network_application_gateway_waf_policy_custom_rule
+- az_network_application_gateway_waf_policy_custom_rule_create
+- az_network_application_gateway_waf_policy_custom_rule_delete
+- az_network_application_gateway_waf_policy_custom_rule_list
+- az_network_application_gateway_waf_policy_custom_rule_match_condition
+- az_network_application_gateway_waf_policy_custom_rule_match_condition_add
+- az_network_application_gateway_waf_policy_custom_rule_match_condition_list
+- az_network_application_gateway_waf_policy_custom_rule_match_condition_remove
+- az_network_application_gateway_waf_policy_custom_rule_show
+- az_network_application_gateway_waf_policy_custom_rule_update
+- az_network_application_gateway_waf_policy_delete
+- az_network_application_gateway_waf_policy_list
+- az_network_application_gateway_waf_policy_managed_rule
+- az_network_application_gateway_waf_policy_managed_rule_exclusion
+- az_network_application_gateway_waf_policy_managed_rule_exclusion_add
+- az_network_application_gateway_waf_policy_managed_rule_exclusion_list
+- az_network_application_gateway_waf_policy_managed_rule_exclusion_remove
+- az_network_application_gateway_waf_policy_managed_rule_rule_set
+- az_network_application_gateway_waf_policy_managed_rule_rule_set_add
+- az_network_application_gateway_waf_policy_managed_rule_rule_set_list
+- az_network_application_gateway_waf_policy_managed_rule_rule_set_remove
+- az_network_application_gateway_waf_policy_managed_rule_rule_set_update
+- az_network_application_gateway_waf_policy_policy_setting
+- az_network_application_gateway_waf_policy_policy_setting_list
+- az_network_application_gateway_waf_policy_policy_setting_update
+- az_network_application_gateway_waf_policy_show
+- az_network_application_gateway_waf_policy_update
+- az_network_application_gateway_waf_policy_wait
+- az_network_application_gateway_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Pour en savoir plus sur Application Gateway, visitez <a href="https://docs.microsoft.com/azure/application-gateway/application-gateway-create-gateway-cli">https://docs.microsoft.com/azure/application-gateway/application-gateway-create-gateway-cli</a> .
+  ms.openlocfilehash: 0c9c9b443224316b819ad98d3cedc4b0e0f5ef1a
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102847030"
