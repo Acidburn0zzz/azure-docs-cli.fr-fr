@@ -1,0 +1,261 @@
+### YamlMime:AzureCLIGroup
+uid: az_staticwebapp
+name: az staticwebapp
+summary: Gérer les applications statiques.
+description: ''
+directCommands:
+- uid: az_staticwebapp_browse
+  name: az staticwebapp browse
+  summary: Affichez les détails d’une application statique.
+  description: ''
+  syntax: >-
+    az staticwebapp browse --name
+                           [--resource-group]
+                           [--subscription]
+  examples:
+  - summary: Affichez l’application statique dans un abonnement.
+    syntax: az staticwebapp browse -n MyStaticAppName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du site statique.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_staticwebapp_create
+  name: az staticwebapp create
+  summary: Créer une application statique avec le contenu de l’URL GitHubRepository fournie dans la source sur la branche fournie. Retourne l’application créée.
+  description: ''
+  syntax: >-
+    az staticwebapp create --branch
+                           --location
+                           --name
+                           --resource-group
+                           --source
+                           [--api-location]
+                           [--app-artifact-location]
+                           [--app-location]
+                           [--no-wait]
+                           [--subscription]
+                           [--tags]
+                           [--token]
+  examples:
+  - summary: Créer une application statique dans un abonnement.
+    syntax: az staticwebapp create -n MyStaticAppName -g MyExistingRg -s https://github.com/JohnDoe/my-first-static-web-app -l WestUs2 -b master
+  requiredParameters:
+  - isRequired: true
+    name: --branch -b
+    summary: Branche cible dans le référentiel.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du site statique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --source -s
+    summary: URL du référentiel du site statique.
+    description: ''
+  optionalParameters:
+  - name: --api-location
+    defaultValue: .
+    summary: Emplacement de votre code Azure Functions. Par exemple, « /API » représente un dossier appelé « API ».
+    description: ''
+  - name: --app-artifact-location
+    defaultValue: .github/workflows
+    summary: Chemin d’accès de votre sortie de génération par rapport à l’emplacement de votre application. Par exemple, si vous affectez la valeur’Build’à l’emplacement de votre application défini sur'/App', le contenu de'/App/Build’est pris en charge.
+    description: ''
+  - name: --app-location
+    defaultValue: .
+    summary: Emplacement du code de votre application. Par exemple, « / » représente la racine de votre application, tandis que « /app » représente un répertoire appelé « App ».
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --token -t
+    summary: 'Jeton de référentiel GitHub d’un utilisateur. Il est utilisé pour configurer le fichier de workflow des actions GitHub et les secrets de l’API. Si vous devez créer un jeton d’accès personnel GitHub, suivez les étapes figurant sur le lien suivant : <a href="https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line">https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line</a> .'
+    description: ''
+- uid: az_staticwebapp_delete
+  name: az staticwebapp delete
+  summary: Supprimer une application statique.
+  description: ''
+  syntax: >-
+    az staticwebapp delete --name
+                           [--no-wait]
+                           [--resource-group]
+                           [--subscription]
+                           [--yes]
+  examples:
+  - summary: Supprimer une application statique.
+    syntax: az staticwebapp delete -n MyStaticAppName -g MyRg
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du site statique.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_staticwebapp_disconnect
+  name: az staticwebapp disconnect
+  summary: Déconnectez le contrôle de code source pour activer la connexion à un autre référentiel.
+  description: ''
+  syntax: >-
+    az staticwebapp disconnect --name
+                               [--no-wait]
+                               [--resource-group]
+                               [--subscription]
+  examples:
+  - summary: Déconnecter l’application statique.
+    syntax: az staticwebapp disconnect -n MyStaticAppName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du site statique.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_staticwebapp_list
+  name: az staticwebapp list
+  summary: Répertorie toutes les ressources d’application statiques dans un abonnement ou dans le groupe de ressources si elles sont fournies.
+  description: ''
+  syntax: >-
+    az staticwebapp list [--query-examples]
+                         [--resource-group]
+                         [--subscription]
+  examples:
+  - summary: Répertorier les applications statiques dans un abonnement.
+    syntax: az staticwebapp list
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_staticwebapp_reconnect
+  name: az staticwebapp reconnect
+  summary: Connectez-vous à un référentiel et une branche à la suite d’une commande Disconnect.
+  description: ''
+  syntax: >-
+    az staticwebapp reconnect --branch
+                              --name
+                              --source
+                              [--no-wait]
+                              [--resource-group]
+                              [--subscription]
+                              [--token]
+  examples:
+  - summary: Connectez un référentiel et une branche à une application statique.
+    syntax: az staticwebapp reconnect -n MyStaticAppName --source MyGitHubRepo -b master --token MyAccessToken
+  requiredParameters:
+  - isRequired: true
+    name: --branch -b
+    summary: Branche cible dans le référentiel.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du site statique.
+    description: ''
+  - isRequired: true
+    name: --source -s
+    summary: URL du référentiel du site statique.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --token -t
+    summary: 'Jeton de référentiel GitHub d’un utilisateur. Il est utilisé pour configurer le fichier de workflow des actions GitHub et les secrets de l’API. Si vous devez créer un jeton d’accès personnel GitHub, suivez les étapes figurant sur le lien suivant : <a href="https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line">https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line</a> .'
+    description: ''
+commands:
+- az_staticwebapp_appsettings
+- az_staticwebapp_appsettings_delete
+- az_staticwebapp_appsettings_list
+- az_staticwebapp_appsettings_set
+- az_staticwebapp_browse
+- az_staticwebapp_create
+- az_staticwebapp_delete
+- az_staticwebapp_disconnect
+- az_staticwebapp_environment
+- az_staticwebapp_environment_functions
+- az_staticwebapp_environment_list
+- az_staticwebapp_environment_show
+- az_staticwebapp_hostname
+- az_staticwebapp_hostname_delete
+- az_staticwebapp_hostname_list
+- az_staticwebapp_hostname_set
+- az_staticwebapp_list
+- az_staticwebapp_reconnect
+- az_staticwebapp_users
+- az_staticwebapp_users_invite
+- az_staticwebapp_users_list
+- az_staticwebapp_users_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les applications statiques.
+  ms.openlocfilehash: d8edaad3d1379daede03ddd31c84f609ee56a9a8
+  ms.sourcegitcommit: a0cc51d7b2b39a52c402af1d98d3b48ff369bd16
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/22/2020
+  ms.locfileid: "102819725"
