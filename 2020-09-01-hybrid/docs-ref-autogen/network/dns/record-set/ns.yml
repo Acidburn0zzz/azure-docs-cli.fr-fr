@@ -1,0 +1,350 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_dns_record_set_ns
+name: az network dns record-set ns
+summary: Gérer les enregistrements DNS NS.
+description: ''
+directCommands:
+- uid: az_network_dns_record_set_ns_add_record
+  name: az network dns record-set ns add-record
+  summary: Ajoutez un enregistrement NS.
+  description: ''
+  syntax: >-
+    az network dns record-set ns add-record --nsdname
+                                            --record-set-name
+                                            --resource-group
+                                            --zone-name
+                                            [--if-none-match]
+                                            [--subscriptionid]
+                                            [--ttl]
+  examples:
+  - summary: Ajoutez un enregistrement NS.
+    syntax: >-
+      az network dns record-set ns add-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -d ns.mysite.com
+  requiredParameters:
+  - isRequired: true
+    name: --nsdname -d
+    summary: Nom de domaine du serveur de noms.
+    description: ''
+  - isRequired: true
+    name: --record-set-name -n
+    summary: Nom du jeu d’enregistrements relatif à la zone. Crée un nouveau jeu d’enregistrements s’il n’en existe pas.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone.
+    description: ''
+  optionalParameters:
+  - name: --if-none-match
+    summary: Créez le jeu d’enregistrements uniquement s’il n’existe pas déjà.
+    description: ''
+  - name: --subscriptionid -s
+    summary: ID d’abonnement pour l’ajout de l’enregistrement de serveur de noms.
+    description: ''
+  - name: --ttl
+    defaultValue: "3600"
+    summary: Durée de vie du jeu d’enregistrements (durée de vie).
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_dns_record_set_ns_create
+  name: az network dns record-set ns create
+  summary: Créez un jeu d’enregistrements NS vide.
+  description: ''
+  syntax: >-
+    az network dns record-set ns create --name
+                                        --resource-group
+                                        --zone-name
+                                        [--if-match]
+                                        [--if-none-match]
+                                        [--metadata]
+                                        [--subscription]
+                                        [--target-resource]
+                                        [--ttl]
+  examples:
+  - summary: Créez un jeu d’enregistrements NS vide.
+    syntax: az network dns record-set ns create -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Créez un jeu d’enregistrements NS vide. généré automatiquement
+    syntax: az network dns record-set ns create --name MyRecordSet --resource-group MyResourceGroup --ttl 30 --zone-name www.mysite.com
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone.
+    description: ''
+  optionalParameters:
+  - name: --if-match
+    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours remplacer le jeu d’enregistrements actuel. Spécifiez la valeur d’ETag la plus récente pour éviter que accidentellement overwritting les modifications simultanées.
+    description: ''
+  - name: --if-none-match
+    summary: Créez le jeu d’enregistrements uniquement s’il n’existe pas déjà.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --target-resource
+    summary: ID d’une ressource Azure à partir de laquelle la valeur de ressource DNS est prise.
+    description: ''
+  - name: --ttl
+    defaultValue: "3600"
+    summary: Durée de vie du jeu d’enregistrements (durée de vie).
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_dns_record_set_ns_delete
+  name: az network dns record-set ns delete
+  summary: Supprimer un jeu d’enregistrements NS et tous les enregistrements associés.
+  description: ''
+  syntax: >-
+    az network dns record-set ns delete --name
+                                        --resource-group
+                                        --zone-name
+                                        [--if-match]
+                                        [--subscription]
+                                        [--yes]
+  examples:
+  - summary: Supprimer un jeu d’enregistrements NS et tous les enregistrements associés.
+    syntax: az network dns record-set ns delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Supprimer un jeu d’enregistrements NS et tous les enregistrements associés. généré automatiquement
+    syntax: az network dns record-set ns delete --name MyRecordSet --resource-group MyResourceGroup --subscription MySubscription --yes --zone-name www.mysite.com
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone.
+    description: ''
+  optionalParameters:
+  - name: --if-match
+    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours supprimer le jeu d’enregistrements actuel. Spécifiez la dernière valeur eTag visible pour empêcher la suppression accidentelle des modifications simultanées.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_dns_record_set_ns_list
+  name: az network dns record-set ns list
+  summary: Répertorie tous les jeux d’enregistrements NS dans une zone.
+  description: ''
+  syntax: >-
+    az network dns record-set ns list --resource-group
+                                      --zone-name
+                                      [--query-examples]
+                                      [--subscription]
+  examples:
+  - summary: Répertorie tous les jeux d’enregistrements NS dans une zone.
+    syntax: az network dns record-set ns list -g MyResourceGroup -z www.mysite.com
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_dns_record_set_ns_remove_record
+  name: az network dns record-set ns remove-record
+  summary: Supprimer un enregistrement NS de son jeu d’enregistrements.
+  description: Par défaut, si le dernier enregistrement d’un jeu est supprimé, le jeu d’enregistrements est supprimé. Pour conserver le jeu d’enregistrements vide, incluez--Keep-vide-record-Set.
+  syntax: >-
+    az network dns record-set ns remove-record --nsdname
+                                               --record-set-name
+                                               --resource-group
+                                               --zone-name
+                                               [--keep-empty-record-set]
+                                               [--subscription]
+  examples:
+  - summary: Supprimer un enregistrement NS de son jeu d’enregistrements.
+    syntax: >-
+      az network dns record-set ns remove-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -d ns.mysite.com
+  - summary: Supprimer un enregistrement NS de son jeu d’enregistrements. généré automatiquement
+    syntax: az network dns record-set ns remove-record --keep-empty-record-set --nsdname ns.mysite.com --record-set-name MyRecordSet --resource-group MyResourceGroup --subscription MySubscription --zone-name www.mysite.com
+  requiredParameters:
+  - isRequired: true
+    name: --nsdname -d
+    summary: Nom de domaine du serveur de noms.
+    description: ''
+  - isRequired: true
+    name: --record-set-name -n
+    summary: Nom du jeu d’enregistrements relatif à la zone.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone.
+    description: ''
+  optionalParameters:
+  - name: --keep-empty-record-set
+    summary: Conserver le jeu d’enregistrements vide si le dernier enregistrement est supprimé.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_dns_record_set_ns_show
+  name: az network dns record-set ns show
+  summary: Obtient les détails d’un jeu d’enregistrements NS.
+  description: ''
+  syntax: >-
+    az network dns record-set ns show --name
+                                      --resource-group
+                                      --zone-name
+                                      [--query-examples]
+                                      [--subscription]
+  examples:
+  - summary: Obtient les détails d’un jeu d’enregistrements NS.
+    syntax: az network dns record-set ns show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_dns_record_set_ns_update
+  name: az network dns record-set ns update
+  summary: Mettre à jour un jeu d’enregistrements NS.
+  description: ''
+  syntax: >-
+    az network dns record-set ns update --name
+                                        --resource-group
+                                        --zone-name
+                                        [--add]
+                                        [--force-string]
+                                        [--if-match]
+                                        [--if-none-match]
+                                        [--metadata]
+                                        [--remove]
+                                        [--set]
+                                        [--subscription]
+                                        [--target-resource]
+  examples:
+  - summary: Mettre à jour un jeu d’enregistrements NS.
+    syntax: >-
+      az network dns record-set ns update -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet --metadata owner=WebTeam
+  - summary: Mettre à jour un jeu d’enregistrements NS. généré automatiquement
+    syntax: az network dns record-set ns update --name MyRecordSet --resource-group MyResourceGroup --set tags.CostCenter=MyBusinessGroup --zone-name www.mysite.com
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --if-match
+    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours remplacer le jeu d’enregistrements actuel. Spécifiez la valeur d’ETag la plus récente pour éviter que accidentellement overwritting les modifications simultanées.
+    description: ''
+  - name: --if-none-match
+    summary: Défini sur « \* » pour autoriser la création d’un nouveau jeu d’enregistrements, mais pour empêcher la mise à jour d’un jeu d’enregistrements existant. Les autres valeurs sont ignorées.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --target-resource
+    summary: ID d’une ressource Azure à partir de laquelle la valeur de ressource DNS est prise.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_dns_record_set_ns_add_record
+- az_network_dns_record_set_ns_create
+- az_network_dns_record_set_ns_delete
+- az_network_dns_record_set_ns_list
+- az_network_dns_record_set_ns_remove_record
+- az_network_dns_record_set_ns_show
+- az_network_dns_record_set_ns_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer les enregistrements DNS NS.
+  ms.openlocfilehash: cf18810e46c66805ef22e56af44ed79530fd2a21
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102847303"
