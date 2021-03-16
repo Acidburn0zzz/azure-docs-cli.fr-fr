@@ -1,0 +1,196 @@
+### YamlMime:AzureCLIGroup
+uid: az_lab_custom_image
+name: az lab custom-image
+summary: Gérer les images personnalisées d’un laboratoire DevTest.
+description: ''
+directCommands:
+- uid: az_lab_custom_image_create
+  name: az lab custom-image create
+  summary: Créer une image personnalisée dans un laboratoire DevTest.
+  description: ''
+  syntax: >-
+    az lab custom-image create --lab-name
+                               --name
+                               --os-state
+                               --os-type
+                               --resource-group
+                               --source-vm-id
+                               [--author]
+                               [--description]
+                               [--subscription]
+  examples:
+  - summary: Créez une image personnalisée dans le laboratoire à partir d’une machine virtuelle Windows en cours d’exécution sans appliquer Sysprep.
+    syntax: >-
+      az lab custom-image create --lab-name {LabName} -g {ResourceGroup} --name {VMName} \
+          --os-type Windows --os-state NonSysprepped \
+          --source-vm-id "/subscriptions/{SubID}/resourcegroups/{ResourceGroup}/microsoft.devtestlab/labs/{LabName}/virtualmachines/{VMName}"
+  requiredParameters:
+  - isRequired: true
+    name: --lab-name
+    summary: Nom du Lab.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’image.
+    description: ''
+  - isRequired: true
+    name: --os-state
+    summary: État actuel de l’ordinateur virtuel.
+    description: 'Pour les machines virtuelles Windows : NonSysprepped, SysprepRequested, SysprepApplied pour les machines virtuelles Linux : NonDeprovisioned, DeprovisionRequested, DeprovisionApplied.'
+  - isRequired: true
+    name: --os-type
+    summary: 'Type du système d’exploitation sur lequel l’image personnalisée est basée. Les valeurs autorisées sont : Windows, Linux.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --source-vm-id
+    summary: ID de ressource d’un ordinateur virtuel dans le laboratoire fourni.
+    description: ''
+  optionalParameters:
+  - name: --author
+    summary: Auteur de l’image personnalisée.
+    description: ''
+  - name: --description
+    summary: Description détaillée de l’image personnalisée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/lab/_help.py
+- uid: az_lab_custom_image_delete
+  name: az lab custom-image delete
+  summary: Supprimer une image personnalisée.
+  description: Cet opérateur peut prendre un certain temps.
+  syntax: >-
+    az lab custom-image delete --lab-name
+                               --name
+                               --resource-group
+                               [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --lab-name
+    summary: Nom du lab.
+    description: ''
+  - isRequired: true
+    name: --name
+    summary: Nom de l’image personnalisée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/lab/_help.py
+- uid: az_lab_custom_image_list
+  name: az lab custom-image list
+  summary: Répertorier les images personnalisées dans un laboratoire donné.
+  description: ''
+  syntax: >-
+    az lab custom-image list --lab-name
+                             --resource-group
+                             [--expand]
+                             [--filter]
+                             [--orderby]
+                             [--query-examples]
+                             [--subscription]
+                             [--top]
+  requiredParameters:
+  - isRequired: true
+    name: --lab-name
+    summary: Nom du lab.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --expand
+    summary: "Spécifiez la requête $expand. Exemple : 'Properties ($select = VM) '."
+    description: ''
+  - name: --filter
+    summary: "Filtre à appliquer à l’opération. Exemple : ' $filter = Contains (nom, 'myName')."
+    description: ''
+  - name: --orderby
+    summary: "Expression de classement pour les résultats, à l’aide de la notation OData. Exemple : ' $orderby = nom DESC'."
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --top
+    summary: 'Nombre maximal de ressources à retourner à partir de l’opération. Exemple : « $top = 10 ».'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/lab/_help.py
+- uid: az_lab_custom_image_show
+  name: az lab custom-image show
+  summary: Obtient une image personnalisée.
+  description: ''
+  syntax: >-
+    az lab custom-image show --lab-name
+                             --name
+                             --resource-group
+                             [--expand]
+                             [--query-examples]
+                             [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --lab-name
+    summary: Nom du lab.
+    description: ''
+  - isRequired: true
+    name: --name
+    summary: Nom de l’image personnalisée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --expand
+    summary: "Spécifiez la requête $expand. Exemple : 'Properties ($select = VM) '."
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/lab/_help.py
+commands:
+- az_lab_custom_image_create
+- az_lab_custom_image_delete
+- az_lab_custom_image_list
+- az_lab_custom_image_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/20/2019
+  description: Gérer les images personnalisées d’un laboratoire DevTest.
+  ms.openlocfilehash: a07c6aa494b24e4c6578bf078afbd5d5e791341c
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820034"

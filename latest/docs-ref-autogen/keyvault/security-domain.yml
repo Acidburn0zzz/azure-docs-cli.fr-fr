@@ -1,0 +1,170 @@
+### YamlMime:AzureCLIGroup
+uid: az_keyvault_security_domain
+name: az keyvault security-domain
+summary: Gérer les opérations de domaine de sécurité.
+description: ''
+directCommands:
+- uid: az_keyvault_security_domain_download
+  name: az keyvault security-domain download
+  summary: Téléchargez le fichier de domaine de sécurité à partir du HSM.
+  description: ''
+  syntax: >-
+    az keyvault security-domain download --sd-quorum
+                                         --sd-wrapping-keys
+                                         --security-domain-file
+                                         [--hsm-name]
+                                         [--id]
+                                         [--subscription]
+  examples:
+  - summary: Téléchargement du domaine de sécurité (N = 3, M = 2).
+    syntax: az keyvault security-domain download --hsm-name MyHSM --security-domain-file "{SD_FILE_NAME}" --sd-quorum 2 --sd-wrapping-keys "{PEM_PUBLIC_KEY1_FILE_NAME}" "{PEM_PUBLIC_KEY2_FILE_NAME}" "{PEM_PUBLIC_KEY3_FILE_NAME}"
+  requiredParameters:
+  - isRequired: true
+    name: --sd-quorum
+    summary: Nombre minimal de partages requis pour déchiffrer le domaine de sécurité pour la récupération.
+    description: ''
+  - isRequired: true
+    name: --sd-wrapping-keys
+    summary: Chemins d’accès de fichiers séparés par des espaces aux fichiers PEM contenant des clés publiques.
+    description: ''
+  - isRequired: true
+    name: --security-domain-file
+    summary: Chemin d’accès à un fichier dans lequel l’objet BLOB JSON retourné par cette commande est stocké.
+    description: ''
+  optionalParameters:
+  - name: --hsm-name
+    summary: Nom du HSM. Peut être omis si--ID est spécifié.
+    description: ''
+  - name: --id
+    summary: ID du HSM.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_security_domain_init_recovery
+  name: az keyvault security-domain init-recovery
+  summary: Récupérez la clé d’échange du HSM.
+  description: ''
+  syntax: >-
+    az keyvault security-domain init-recovery --sd-exchange-key
+                                              [--hsm-name]
+                                              [--id]
+                                              [--subscription]
+  examples:
+  - summary: Récupérez la clé d’échange et stockez-la.
+    syntax: az keyvault security-domain init-recovery --hsm-name MyHSM --sd-exchange-key "{PATH_TO_RESTORE}"
+  requiredParameters:
+  - isRequired: true
+    name: --sd-exchange-key
+    summary: Chemin d’accès au fichier local pour stocker la clé exportée.
+    description: ''
+  optionalParameters:
+  - name: --hsm-name
+    summary: Nom du HSM. Peut être omis si--ID est spécifié.
+    description: ''
+  - name: --id
+    summary: ID du HSM.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_security_domain_upload
+  name: az keyvault security-domain upload
+  summary: Commencez par restaurer le HSM.
+  description: ''
+  syntax: >-
+    az keyvault security-domain upload --sd-exchange-key
+                                       --sd-file
+                                       --sd-wrapping-keys
+                                       [--hsm-name]
+                                       [--id]
+                                       [--no-wait]
+                                       [--passwords]
+                                       [--subscription]
+  examples:
+  - summary: Chargement du domaine de sécurité (M = 2).
+    syntax: az keyvault security-domain upload --hsm-name MyHSM --sd-file "{SD_TRANSFER_FILE}" --sd-exchange-key "{PEM_FILE_NAME}" --sd-wrapping-keys "{PEM_PRIVATE_KEY1_FILE_NAME}" "{PEM_PRIVATE_KEY2_FILE_NAME}"
+  requiredParameters:
+  - isRequired: true
+    name: --sd-exchange-key
+    summary: Clé d’échange pour le domaine de sécurité.
+    description: ''
+  - isRequired: true
+    name: --sd-file
+    summary: Ce fichier contient le domaine de sécurité chiffré à l’aide du fichier d’échange SD téléchargé dans la commande init-Recovery de domaine de sécurité.
+    description: ''
+  - isRequired: true
+    name: --sd-wrapping-keys
+    summary: Chemins d’accès de fichiers séparés par des espaces aux fichiers PEM contenant des clés privées.
+    description: ''
+  optionalParameters:
+  - name: --hsm-name
+    summary: Nom du HSM. Peut être omis si--ID est spécifié.
+    description: ''
+  - name: --id
+    summary: ID du HSM.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --passwords
+    summary: Liste de mots de passe séparés par des espaces pour--SD-Wrap-Keys. L’interface CLI les met en correspondance dans l’ordre. Peut être omis si vos clés n’ont pas de protection par mot de passe.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_security_domain_wait
+  name: az keyvault security-domain wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce que l’opération de domaine de sécurité HSM soit terminée.
+  description: ''
+  syntax: >-
+    az keyvault security-domain wait [--hsm-name]
+                                     [--id]
+                                     [--subscription]
+  examples:
+  - summary: Interrompez l’interface CLI jusqu’à ce que l’opération de domaine de sécurité soit terminée.
+    syntax: az keyvault security-domain wait --hsm-name MyHSM
+  optionalParameters:
+  - name: --hsm-name
+    summary: Nom du HSM. Peut être omis si--ID est spécifié.
+    description: ''
+  - name: --id
+    summary: ID du HSM.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+commands:
+- az_keyvault_security_domain_download
+- az_keyvault_security_domain_init_recovery
+- az_keyvault_security_domain_upload
+- az_keyvault_security_domain_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/14/2020
+  description: Gérer les opérations de domaine de sécurité.
+  ms.openlocfilehash: 4724097837df346d177c0f7b7ece0f63b11c4568
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102841468"

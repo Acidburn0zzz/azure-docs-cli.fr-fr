@@ -1,0 +1,330 @@
+### YamlMime:AzureCLIGroup
+uid: az_keyvault_storage_sas_definition
+name: az keyvault storage sas-definition
+summary: Gérez les définitions SAS du compte de stockage.
+description: ''
+directCommands:
+- uid: az_keyvault_storage_sas_definition_create
+  name: az keyvault storage sas-definition create
+  summary: Crée ou met à jour une nouvelle définition SAS pour le compte de stockage spécifié.
+  description: ''
+  syntax: >-
+    az keyvault storage sas-definition create --account-name
+                                              --name
+                                              --sas-type {account, service}
+                                              --template-uri
+                                              --validity-period
+                                              --vault-name
+                                              [--disabled {false, true}]
+                                              [--subscription]
+                                              [--tags]
+  examples:
+  - summary: Ajouter une signature SAS pour un jeton SAP-Token
+    syntax: >-
+      $sastoken = az storage account generate-sas --expiry 2020-01-01 --permissions rw --resource-types sco --services bfqt --https-only --account-name storageacct --account-key 00000000
+
+
+      az keyvault storage sas-definition create --vault-name vault --account-name storageacct -n rwallserviceaccess --validity-period P2D --sas-type account --template-uri $sastoken
+  - summary: Ajouter une signature d’accès partagé pour un jeton SAP SAS
+    syntax: >-
+      $sastoken = az storage blob generate-sas --account-name storageacct --account-key 00000000 -c container1 -n blob1 --https-only --permissions rw
+
+      $url = az storage blob url --account-name storageacct -c container1 -n blob1
+
+      az keyvault storage sas-definition create --vault-name vault --account-name storageacct -n rwblobaccess --validity-period P2D --sas-type service --template-uri $url?$sastoken
+  - summary: Ajouter une signature d’accès partagé pour un conteneur SAS-Token
+    syntax: >-
+      $sastoken = az storage container generate-sas --account-name storageacct --account-key 00000000 -n container1 --https-only --permissions rw
+
+      $url = "https://{storage-account-name}.blob.core.windows.net/{container-name}"  # The prefix of your blob url
+
+      az keyvault storage sas-definition create --vault-name vault --account-name storageacct -n rwcontaineraccess --validity-period P2D --sas-type service --template-uri $url?$sastoken
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: Nom identifiant le compte de stockage dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom permettant d’identifier la définition de la signature d’accès partagé dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --sas-type
+    parameterValueGroup: account, service
+    summary: Type de jeton SAS créé par la définition de la signature d’accès partagé.
+    description: ''
+  - isRequired: true
+    name: --template-uri
+    summary: Le modèle de jeton de définition SAS signé avec la clé 00000000. Dans le cas d’un jeton de compte, il s’agit uniquement du jeton SAP proprement dit, des jetons de service, de l’URL de point de terminaison de service complète avec le jeton SAS.  Les jetons créés en fonction de la définition de la signature d’accès partagé auront les mêmes propriétés que le modèle.
+    description: ''
+  - isRequired: true
+    name: --validity-period
+    summary: Période de validité des jetons SAS créés en fonction de la définition de la signature d’accès partagé (ISO-8601), par exemple « PT12H » pour les jetons de 12 heures.
+    description: ''
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --disabled
+    parameterValueGroup: false, true
+    summary: Ajoutez le compte de stockage dans un état désactivé.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_sas_definition_delete
+  name: az keyvault storage sas-definition delete
+  summary: Supprime une définition SAS d’un compte de stockage spécifié.
+  description: Cette opération requiert l’autorisation Storage/deletesas.
+  syntax: >-
+    az keyvault storage sas-definition delete [--account-name]
+                                              [--id]
+                                              [--name]
+                                              [--subscription]
+                                              [--vault-name]
+  optionalParameters:
+  - name: --account-name
+    summary: Nom identifiant le compte de stockage dans le coffre. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  - name: --id
+    summary: ID de la définition de la signature d’accès partagé. S’il est spécifié, tous les autres arguments’ID’doivent être omis.
+    description: ''
+  - name: --name -n
+    summary: Nom permettant d’identifier la définition de la signature d’accès partagé dans le coffre. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vault-name
+    summary: Nom de l’Key Vault. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_sas_definition_list
+  name: az keyvault storage sas-definition list
+  summary: Répertorie les définitions SAS de stockage pour le compte de stockage donné.
+  description: Cette opération requiert l’autorisation Storage/lists.
+  syntax: >-
+    az keyvault storage sas-definition list --account-name
+                                            --vault-name
+                                            [--maxresults]
+                                            [--query-examples]
+                                            [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: Nom identifiant le compte de stockage dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --maxresults
+    summary: Nombre maximal de résultats à retourner dans une page. S’il n’est pas spécifié, le service retourne jusqu’à 25 résultats.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_sas_definition_list_deleted
+  name: az keyvault storage sas-definition list-deleted
+  summary: Répertorie les définitions SAS supprimées pour le coffre et le compte de stockage spécifiés.
+  description: L’opération obtenir les définitions SAS supprimées retourne les définitions SAS qui ont été supprimées pour un coffre activé pour la suppression réversible. Cette opération requiert l’autorisation Storage/lists.
+  syntax: >-
+    az keyvault storage sas-definition list-deleted --account-name
+                                                    --vault-name
+                                                    [--maxresults]
+                                                    [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: Nom identifiant le compte de stockage dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --maxresults
+    summary: Nombre maximal de résultats à retourner dans une page. S’il n’est pas spécifié, le service retourne jusqu’à 25 résultats.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_sas_definition_recover
+  name: az keyvault storage sas-definition recover
+  summary: Récupère la définition SAS supprimée.
+  description: Récupère la définition SAS supprimée pour le compte de stockage spécifié. Cette opération ne peut être effectuée que sur un coffre activé pour la suppression réversible. Cette opération nécessite l’autorisation de stockage/récupération.
+  syntax: >-
+    az keyvault storage sas-definition recover --account-name
+                                               --name
+                                               --vault-name
+                                               [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: Nom identifiant le compte de stockage dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom permettant d’identifier la définition de la signature d’accès partagé dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_sas_definition_show
+  name: az keyvault storage sas-definition show
+  summary: Obtient des informations sur une définition SAS pour le compte de stockage spécifié.
+  description: Cette opération requiert l’autorisation Storage/obtientas.
+  syntax: >-
+    az keyvault storage sas-definition show [--account-name]
+                                            [--id]
+                                            [--name]
+                                            [--query-examples]
+                                            [--subscription]
+                                            [--vault-name]
+  optionalParameters:
+  - name: --account-name
+    summary: Nom identifiant le compte de stockage dans le coffre. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  - name: --id
+    summary: ID de la définition de la signature d’accès partagé. S’il est spécifié, tous les autres arguments’ID’doivent être omis.
+    description: ''
+  - name: --name -n
+    summary: Nom permettant d’identifier la définition de la signature d’accès partagé dans le coffre. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vault-name
+    summary: Nom de l’Key Vault. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_sas_definition_show_deleted
+  name: az keyvault storage sas-definition show-deleted
+  summary: Obtient la définition SAS supprimée spécifiée.
+  description: L’opération de définition d’une signature SAS supprimée retourne la définition SAP supprimée spécifiée, ainsi que ses attributs. Cette opération requiert l’autorisation Storage/obtientas.
+  syntax: >-
+    az keyvault storage sas-definition show-deleted --account-name
+                                                    --name
+                                                    --vault-name
+                                                    [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: Nom identifiant le compte de stockage dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom permettant d’identifier la définition de la signature d’accès partagé dans le coffre.
+    description: ''
+  - isRequired: true
+    name: --vault-name
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_storage_sas_definition_update
+  name: az keyvault storage sas-definition update
+  summary: Met à jour les attributs spécifiés associés à la définition SAS donnée.
+  description: Cette opération nécessite l’autorisation storage/setsas.
+  syntax: >-
+    az keyvault storage sas-definition update [--account-name]
+                                              [--disabled {false, true}]
+                                              [--id]
+                                              [--name]
+                                              [--sas-type {account, service}]
+                                              [--subscription]
+                                              [--tags]
+                                              [--template-uri]
+                                              [--validity-period]
+                                              [--vault-name]
+  optionalParameters:
+  - name: --account-name
+    summary: Nom identifiant le compte de stockage dans le coffre. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  - name: --disabled
+    parameterValueGroup: false, true
+    summary: Ajoutez le compte de stockage dans un état désactivé.
+    description: ''
+  - name: --id
+    summary: ID de la définition de la signature d’accès partagé. S’il est spécifié, tous les autres arguments’ID’doivent être omis.
+    description: ''
+  - name: --name -n
+    summary: Nom permettant d’identifier la définition de la signature d’accès partagé dans le coffre. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  - name: --sas-type
+    parameterValueGroup: account, service
+    summary: Type de jeton SAS créé par la définition de la signature d’accès partagé.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --template-uri
+    summary: Le modèle de jeton de définition SAS signé avec la clé 00000000. Dans le cas d’un jeton de compte, il s’agit uniquement du jeton SAP proprement dit, des jetons de service, de l’URL de point de terminaison de service complète avec le jeton SAS.  Les jetons créés en fonction de la définition de la signature d’accès partagé auront les mêmes propriétés que le modèle.
+    description: ''
+  - name: --validity-period
+    summary: Période de validité des jetons SAS créés en fonction de la définition de la signature d’accès partagé (ISO-8601), par exemple « PT12H » pour les jetons de 12 heures.
+    description: ''
+  - name: --vault-name
+    summary: Nom de l’Key Vault. Obligatoire si--ID n’est pas spécifié.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+commands:
+- az_keyvault_storage_sas_definition_create
+- az_keyvault_storage_sas_definition_delete
+- az_keyvault_storage_sas_definition_list
+- az_keyvault_storage_sas_definition_list_deleted
+- az_keyvault_storage_sas_definition_recover
+- az_keyvault_storage_sas_definition_show
+- az_keyvault_storage_sas_definition_show_deleted
+- az_keyvault_storage_sas_definition_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/14/2020
+  description: Gérez les définitions SAS du compte de stockage.
+  ms.openlocfilehash: 750b6721b636ce5efcbfa8608d9cd9a1c83823fe
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102841462"
