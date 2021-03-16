@@ -1,0 +1,104 @@
+### YamlMime:AzureCLIGroup
+uid: ext_ssh_az_ssh
+name: az ssh
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **SSH** pour Azure CLI et requiert la version 2.4.0 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ SSH** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Utilisez SSH dans des machines virtuelles Azure.
+description: ''
+directCommands:
+- uid: ext_ssh_az_ssh_config
+  name: az ssh config
+  summary: Créez une configuration SSH pour les machines virtuelles Azure qui peuvent ensuite être importées vers des clients SSH tiers.
+  description: ''
+  syntax: >-
+    az ssh config --file
+                  [--ip]
+                  [--private-key-file]
+                  [--public-key-file]
+                  [--resource-group]
+                  [--vm-name]
+  examples:
+  - summary: Fournir un groupe de ressources et une machine virtuelle pour lequel créer une configuration et l’enregistrer dans un fichier local
+    syntax: az ssh config --resource-group myResourceGroup --vm-name myVm --file ./sshconfig
+  - summary: Donnez à l’adresse IP publique d’une machine virtuelle pour laquelle créer une configuration
+    syntax: az ssh config --ip 1.2.3.4 --file ./sshconfig
+  requiredParameters:
+  - isRequired: true
+    name: --file
+    summary: Chemin d’accès du fichier dans lequel écrire la configuration SSH.
+    description: ''
+  optionalParameters:
+  - name: --ip
+    summary: l’adresse IP publique de la machine virtuelle ;
+    description: ''
+  - name: --private-key-file
+    summary: Chemin du fichier de clé privée RSA.
+    description: ''
+  - name: --public-key-file
+    summary: Chemin du fichier de clé publique RSA.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --vm-name
+    summary: nom de la machine virtuelle.
+    description: ''
+- uid: ext_ssh_az_ssh_vm
+  name: az ssh vm
+  summary: Utilisez SSH dans des machines virtuelles Azure.
+  description: ''
+  syntax: >-
+    az ssh vm [--ip]
+              [--private-key-file]
+              [--public-key-file]
+              [--resource-group]
+              [--vm-name]
+  examples:
+  - summary: Attribuer un groupe de ressources et une machine virtuelle à SSH
+    syntax: az ssh vm --resource-group myResourceGroup --vm-name myVm
+  - summary: Attribuer le protocole SSH à l’adresse IP publique d’une machine virtuelle
+    syntax: az ssh vm --ip 1.2.3.4
+  optionalParameters:
+  - name: --ip
+    summary: l’adresse IP publique de la machine virtuelle ;
+    description: ''
+  - name: --private-key-file
+    summary: Chemin du fichier de clé privée RSA.
+    description: ''
+  - name: --public-key-file
+    summary: Chemin du fichier de clé publique RSA.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --vm-name
+    summary: nom de la machine virtuelle.
+    description: ''
+commands:
+- ext_ssh_az_ssh_config
+- ext_ssh_az_ssh_vm
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Utilisez SSH dans des machines virtuelles Azure.
+  ms.openlocfilehash: bcf2fc49f660bf1c0fea5169f14d18175513ebbe
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102830225"
