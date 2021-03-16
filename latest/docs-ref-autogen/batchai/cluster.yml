@@ -1,0 +1,379 @@
+### YamlMime:AzureCLIGroup
+uid: az_batchai_cluster
+name: az batchai cluster
+summary: Commandes pour gérer les clusters.
+description: ''
+directCommands:
+- uid: az_batchai_cluster_auto_scale
+  name: az batchai cluster auto-scale
+  summary: Définir des paramètres de mise à l’échelle automatique pour un cluster.
+  description: ''
+  syntax: >-
+    az batchai cluster auto-scale --max
+                                  --min
+                                  [--ids]
+                                  [--name]
+                                  [--resource-group]
+                                  [--subscription]
+                                  [--workspace]
+  examples:
+  - summary: Créez un cluster pour mettre à l’échelle automatiquement entre 0 et 10 nœuds en fonction du nombre de travaux en file d’attente et en cours d’exécution.
+    syntax: az batchai cluster auto-scale -g MyResourceGroup -w MyWorkspace -n MyCluster --min 0 --max 10
+  requiredParameters:
+  - isRequired: true
+    name: --max
+    summary: Nombre maximal de nœuds.
+    description: ''
+  - isRequired: true
+    name: --min
+    summary: Nombre minimal de nœuds.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_cluster_create
+  name: az batchai cluster create
+  summary: Créer un cluster.
+  description: ''
+  syntax: >-
+    az batchai cluster create --name
+                              --resource-group
+                              --workspace
+                              [--afs-mount-path]
+                              [--afs-name]
+                              [--bfs-mount-path]
+                              [--bfs-name]
+                              [--config-file]
+                              [--custom-image]
+                              [--generate-ssh-keys]
+                              [--image]
+                              [--max]
+                              [--min]
+                              [--nfs]
+                              [--nfs-mount-path]
+                              [--password]
+                              [--setup-task]
+                              [--setup-task-output]
+                              [--ssh-key]
+                              [--storage-account-key]
+                              [--storage-account-name]
+                              [--subnet]
+                              [--subscription]
+                              [--target]
+                              [--use-auto-storage]
+                              [--user-name]
+                              [--vm-priority {dedicated, lowpriority}]
+                              [--vm-size]
+  examples:
+  - summary: Créez un cluster GPU à nœud unique avec l’image par défaut et le compte de stockage automatique.
+    syntax: >-
+      az batchai cluster create -g MyResourceGroup -w MyWorkspace -n MyCluster \
+          -s Standard_NC6 -t 1 --use-auto-storage --generate-ssh-keys
+  - summary: Créer un cluster avec une commande d’installation qui installe le DÉCOMPRESSION sur chaque nœud, le résultat de la commande est stocké sur le partage de fichiers Azure du compte de stockage automatique.
+    syntax: >-
+      az batchai cluster create -g MyResourceGroup -w MyWorkspace -n MyCluster \
+          --use-auto-storage \
+          -s Standard_NC6 -t 1 -k id_rsa.pub \
+          --setup-task 'apt update; apt install unzip -y' \
+          --setup-task-output '$AZ_BATCHAI_MOUNT_ROOT/autoafs'
+  - summary: Créez un cluster qui fournit tous les paramètres manuellement.
+    syntax: >-
+      az batchai cluster create -g MyResourceGroup -w MyWorkspace -n MyCluster \
+          -i UbuntuLTS -s Standard_NC6 --vm-priority lowpriority \
+          --min 0 --target 1 --max 10 \
+          --storage-account-name MyStorageAccount \
+          --nfs MyNfsToMount --afs-name MyAzureFileShareToMount \
+          --bfs-name MyBlobContainerNameToMount \
+          -u AdminUserName -k id_rsa.pub -p ImpossibleToGuessPassword
+  - summary: Créez un cluster à l’aide d’un fichier de configuration.
+    syntax: az batchai cluster create -g MyResourceGroup -w MyWorkspace -n MyCluster -f cluster.json
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --afs-mount-path
+    defaultValue: afs
+    summary: Chemin de montage relatif pour le partage de fichiers Azure. Le partage de fichiers sera disponible dans $AZ dossier _BATCHAI_MOUNT_ROOT/<relative_mount_path>.
+    description: ''
+  - name: --afs-name
+    summary: Nom du partage de fichiers Azure à monter sur chaque nœud de cluster. Doit être utilisé conjointement avec--Storage-Account-Name. Plusieurs partages peuvent être montés à l’aide du fichier de configuration (Voir l’option--config-file).
+    description: ''
+  - name: --bfs-mount-path
+    defaultValue: bfs
+    summary: Chemin de montage relatif pour le conteneur de stockage Azure. Le conteneur sera disponible dans $AZ _BATCHAI_MOUNT_ROOT/<relative_mount_path dossier>.
+    description: ''
+  - name: --bfs-name
+    summary: Nom du conteneur de stockage Azure à monter sur chaque nœud de cluster. Doit être utilisé conjointement avec--Storage-Account-Name. Plusieurs conteneurs peuvent être montés à l’aide d’un fichier de configuration (Voir l’option--config-file).
+    description: ''
+  - name: --config-file -f
+    summary: Chemin d’accès à un fichier JSON contenant des paramètres de création de cluster (représentation JSON de azure.mgmt.batChai. Models. ClusterCreateParameters).
+    description: ''
+  - name: --custom-image
+    summary: ID ARM d’une image de machine virtuelle à utiliser pour la création de nœuds. Notez que vous devez fournir une image contenant des informations sur l’image de base utilisée pour cette création d’image.
+    description: ''
+  - name: --generate-ssh-keys
+    summary: Générez des fichiers de clé publique et privée SSH dans le répertoire ~/.ssh (s’ils sont manquants).
+    description: ''
+  - name: --image -i
+    summary: 'Image du système d’exploitation pour les nœuds de cluster. La valeur peut contenir un alias (UbuntuLTS, UbuntuDSVM) ou spécifier les détails de l’image sous la forme « Publisher : offer : SKU : version ». Si la configuration de l’image n’est pas fournie via la ligne de commande ou le fichier de configuration, Batch AI choisira l’image de système d’exploitation par défaut.'
+    description: ''
+  - name: --max
+    summary: Nombre maximal de nœuds pour le cluster avec mise à l’échelle automatique.
+    description: ''
+  - name: --min
+    summary: Nombre minimal de nœuds pour le cluster avec mise à l’échelle automatique.
+    description: ''
+  - name: --nfs
+    summary: Nom ou ID ARM d’un serveur de fichiers à monter sur chaque nœud de cluster. Vous devez fournir un ID ARM complet si le serveur de fichiers appartient à un autre espace de travail. Vous pouvez monter plusieurs NFS à l’aide d’un fichier de configuration (Voir l’option--config-file).
+    description: ''
+  - name: --nfs-mount-path
+    defaultValue: nfs
+    summary: Chemin de montage relatif pour NFS. Le NFS sera disponible dans $AZ dossier _BATCHAI_MOUNT_ROOT/<relative_mount_path>.
+    description: ''
+  - name: --password -p
+    summary: Mot de passe facultatif pour le compte d’utilisateur administrateur à créer sur chaque nœud de calcul.
+    description: ''
+  - name: --setup-task
+    summary: Ligne de commande qui doit être exécutée sur chaque nœud de calcul lorsqu’elle est allouée ou redémarrée. La tâche est exécutée dans un sous-interpréteur bash sous le compte racine.
+    description: ''
+  - name: --setup-task-output
+    summary: Chemin d’accès au répertoire où sont stockés les journaux de la tâche d’installation. Notez que Batch AI créera plusieurs répertoires d’assistance sous ce chemin d’accès. Les répertoires créés sont signalés comme stdOutErrPathSuffix par la commande « AZ cluster Show ».
+    description: ''
+  - name: --ssh-key -k
+    summary: Valeur ou chemin d’accès de la clé publique SSH facultatif. Si omis et aucun mot de passe n’est spécifié, la clé SSH par défaut (~/.ssh/id_rsa. pub) sera utilisée.
+    description: ''
+  - name: --storage-account-key
+    summary: Clé du compte de stockage. Obligatoire si le compte de stockage appartient à un autre abonnement. Peut être spécifié à l’aide de AZURE_BATCHAI_STORAGE_KEY variable d’environnement.
+    description: ''
+  - name: --storage-account-name
+    summary: Nom du compte de stockage pour les partages de fichiers Azure et/ou les conteneurs de stockage Azure à monter sur chaque nœud de cluster. Peut être spécifié à l’aide de AZURE_BATCHAI_STORAGE_ACCOUNT variable d’environnement.
+    description: ''
+  - name: --subnet
+    summary: ID ARM d’un sous-réseau de réseau virtuel dans lequel placer le cluster.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --target -t
+    summary: Nombre de nœuds qui doivent être alloués immédiatement après la création du cluster. Si le cluster est en mode de mise à l’échelle automatique, BatchAI peut modifier le nombre de nœuds ultérieurement en fonction du nombre de travaux en cours d’exécution et en attente.
+    description: ''
+  - name: --use-auto-storage
+    summary: Si elle est fournie, la commande crée un compte de stockage dans un groupe de ressources nouveau ou existant nommé « batchaiautostorage ». Il créera également un partage de fichiers Azure nommé « batchaishare », un conteneur d’objets BLOB Azure nommé « batchaicontainer ». Le partage de fichiers et le conteneur d’objets BLOB sont montés sur chaque nœud de cluster à $AZ _BATCHAI_MOUNT_ROOT/autoafs et $AZ _BATCHAI_MOUNT_ROOT/autobfs. Si le groupe de ressources existe déjà et contient un compte de stockage approapriate appartenant à la même région que le cluster, cette commande réutilise le compte de stockage existant.
+    description: ''
+  - name: --user-name -u
+    summary: Nom du compte d’utilisateur administrateur à créer sur chaque nœud de calcul. Si la valeur n’est pas fournie et qu’aucune configuration utilisateur n’est fournie dans le fichier de configuration, le nom de l’utilisateur actuel sera utilisé.
+    description: ''
+  - name: --vm-priority
+    parameterValueGroup: dedicated, lowpriority
+    summary: Priorité de la machine virtuelle.
+    description: ''
+  - name: --vm-size -s
+    summary: Taille de machine virtuelle pour les nœuds de cluster (par exemple, Standard_NC6 pour 1 nœud GPU).
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_cluster_delete
+  name: az batchai cluster delete
+  summary: Supprimer un cluster.
+  description: ''
+  syntax: >-
+    az batchai cluster delete [--ids]
+                              [--name]
+                              [--no-wait]
+                              [--resource-group]
+                              [--subscription]
+                              [--workspace]
+                              [--yes]
+  examples:
+  - summary: Supprimez un cluster et attendez la fin de la suppression.
+    syntax: az batchai cluster delete -g MyResourceGroup -w MyWorkspace -n MyCluster
+  - summary: Envoyer une commande de suppression pour un cluster et ne pas attendre la fin de la suppression.
+    syntax: az batchai cluster delete -g MyResourceGroup -w MyWorkspace -n MyCluster --no-wait
+  - summary: Supprimer le cluster sans demander de confirmation (pour les scénarios non interactifs).
+    syntax: az batchai cluster delete -g MyResourceGroup -w MyWorkspace -n MyCluster -y
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_cluster_list
+  name: az batchai cluster list
+  summary: Répertorier les clusters.
+  description: ''
+  syntax: >-
+    az batchai cluster list --resource-group
+                            --workspace
+                            [--query-examples]
+                            [--subscription]
+  examples:
+  - summary: Répertorie tous les clusters d’un espace de travail.
+    syntax: az batchai cluster list -g MyResourceGroup -w MyWorkspace -o table
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_cluster_resize
+  name: az batchai cluster resize
+  summary: Redimensionner un cluster.
+  description: ''
+  syntax: >-
+    az batchai cluster resize --target
+                              [--ids]
+                              [--name]
+                              [--resource-group]
+                              [--subscription]
+                              [--workspace]
+  examples:
+  - summary: Redimensionner un cluster à la taille zéro pour ne plus en payer.
+    syntax: az batchai cluster resize -g MyResourceGroup -w MyWorkspace -n MyCluster -t 0
+  - summary: Redimensionner un cluster pour avoir 10 nœuds.
+    syntax: az batchai cluster resize -g MyResourceGroup -w MyWorkspace -n MyCluster -t 10
+  requiredParameters:
+  - isRequired: true
+    name: --target -t
+    summary: Nombre cible de nœuds de calcul.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_cluster_show
+  name: az batchai cluster show
+  summary: Affichez les informations relatives à un cluster.
+  description: ''
+  syntax: >-
+    az batchai cluster show [--ids]
+                            [--name]
+                            [--query-examples]
+                            [--resource-group]
+                            [--subscription]
+                            [--workspace]
+  examples:
+  - summary: Affichez des informations complètes sur un cluster.
+    syntax: az batchai cluster show -g MyResourceGroup -w MyWorkspace -n MyCluster
+  - summary: Affichez le résumé du cluster.
+    syntax: az batchai cluster show -g MyResourceGroup -w MyWorkspace -n MyCluster -o table
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+commands:
+- az_batchai_cluster_auto_scale
+- az_batchai_cluster_create
+- az_batchai_cluster_delete
+- az_batchai_cluster_file
+- az_batchai_cluster_file_list
+- az_batchai_cluster_list
+- az_batchai_cluster_node
+- az_batchai_cluster_node_exec
+- az_batchai_cluster_node_list
+- az_batchai_cluster_resize
+- az_batchai_cluster_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/19/2019
+  description: Commandes pour gérer les clusters.
+  ms.openlocfilehash: 6e5041bf5ce166c1d7f5976523091e21fcd97603
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102819911"
