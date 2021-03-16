@@ -1,0 +1,230 @@
+### YamlMime:AzureCLIGroup
+uid: ext_storage-blob-preview_az_storage_container
+name: az storage container
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Storage-BLOB-Preview** pour Azure CLI et requiert la version 2.14.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Storage Container** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les conteneurs de stockage d’objets BLOB.
+description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
+directCommands:
+- uid: ext_storage-blob-preview_az_storage_container_generate_sas
+  name: az storage container generate-sas
+  summary: Générez un jeton SAP pour un conteneur de stockage.
+  description: ''
+  syntax: >-
+    az storage container generate-sas --name
+                                      [--account-key]
+                                      [--account-name]
+                                      [--as-user]
+                                      [--auth-mode {key, login}]
+                                      [--cache-control]
+                                      [--connection-string]
+                                      [--content-disposition]
+                                      [--content-encoding]
+                                      [--content-language]
+                                      [--content-type]
+                                      [--expiry]
+                                      [--full-uri]
+                                      [--https-only]
+                                      [--ip]
+                                      [--permissions]
+                                      [--policy-name]
+                                      [--start]
+  examples:
+  - summary: Générez un jeton SAP pour le conteneur d’objets BLOB et utilisez-le pour charger un objet BLOB.
+    syntax: >-
+      end=`date -u -d "30 minutes" '+%Y-%m-%dT%H:%MZ'`
+
+      sas=`az storage container generate-sas -n mycontainer --https-only --permissions dlrw --expiry $end -o tsv`
+
+      az storage blob upload -n MyBlob -c mycontainer -f file.txt --sas-token $sas
+  - summary: Générer une signature d’accès partagé pour le conteneur (généré automatiquement)
+    syntax: az storage container generate-sas --account-key 00000000 --account-name mystorageaccount --expiry 2020-01-01 --name mycontainer --permissions dlrw
+  - summary: Générez un jeton SAP pour un conteneur de stockage. généré automatiquement
+    syntax: az storage container generate-sas --account-name mystorageaccount --as-user --auth-mode login --expiry 2020-01-01 --name container1 --permissions dlrw
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --as-user
+    summary: Indique que cette commande retourne la signature d’accès partagé avec la clé de délégation d’utilisateur. Les paramètres d’expiration et « --auth-mode login » sont requis si cet argument est spécifié.
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --cache-control
+    summary: Valeur d’en-tête de réponse pour Cache-Control lorsque la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --content-disposition
+    summary: Valeur d’en-tête de réponse pour Content-disposition lorsque la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --content-encoding
+    summary: Valeur d’en-tête de réponse pour Content-Encoding quand la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --content-language
+    summary: Valeur d’en-tête de réponse pour Content-Language lorsque la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --content-type
+    summary: Valeur d’en-tête de réponse pour Content-type quand la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --expiry
+    summary: Spécifie la date/heure UTC (Y-m-d’T’H :M’Z') à laquelle la signature d’accès partagé n’est plus valide. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur.
+    description: ''
+  - name: --full-uri
+    summary: Indique que cette commande retourne l’URI d’objet BLOB complet et le jeton de signature d’accès partagé.
+    description: ''
+  - name: --https-only
+    summary: Autorise uniquement les demandes effectuées avec le protocole HTTPs. En cas d’omission, les demandes du protocole HTTP et HTTPs sont autorisées.
+    description: ''
+  - name: --ip
+    summary: Spécifie l’adresse IP ou la plage d’adresses IP à partir de laquelle accepter les demandes. Prend uniquement en charge les adresses de style IPv4.
+    description: ''
+  - name: --permissions
+    summary: 'Autorisations accordées par la signature d’accès partagé. Valeurs autorisées : (d) supprim (x) delete_previous_version (l) IST (r) IRE (t) AG (w) ° de code. N’utilisez pas si une stratégie d’accès stockée est référencée avec--Policy-Name qui spécifie cette valeur. Peut être combiné.'
+    description: ''
+  - name: --policy-name
+    summary: Nom d’une stratégie d’accès stockée au sein de la liste de contrôle d’accès du conteneur.
+    description: ''
+  - name: --start
+    summary: Spécifie la date/heure UTC (Y-m-d’T’H :M’Z') à laquelle la signature d’accès partagé devient valide. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur. La valeur par défaut est l’heure de la demande.
+    description: ''
+- uid: ext_storage-blob-preview_az_storage_container_list
+  name: az storage container list
+  summary: Répertorie les conteneurs dans un compte de stockage.
+  description: ''
+  syntax: >-
+    az storage container list [--account-key]
+                              [--account-name]
+                              [--auth-mode {key, login}]
+                              [--connection-string]
+                              [--include-deleted {false, true}]
+                              [--include-metadata {false, true}]
+                              [--marker]
+                              [--num-results]
+                              [--prefix]
+                              [--sas-token]
+                              [--show-next-marker]
+                              [--timeout]
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --include-deleted
+    parameterValueGroup: false, true
+    summary: Spécifie que les conteneurs supprimés doivent être retournés dans la réponse. Il s’agit du compte activé pour la restauration du conteneur. La valeur par défaut est `False`.
+    description: ''
+  - name: --include-metadata
+    parameterValueGroup: false, true
+    summary: Spécifiez les métadonnées de conteneur à retourner dans la réponse.
+    description: ''
+  - name: --marker
+    summary: Valeur de chaîne qui identifie la partie de la liste de conteneurs à retourner avec l’opération de liste suivante. L’opération retourne la valeur NextMarker dans le corps de la réponse si l’opération de liste n’a pas retourné tous les conteneurs restants à répertorier avec la page actuelle. S’il est spécifié, ce générateur commencera à retourner des résultats à partir du point où le générateur précédent s’est arrêté.
+    description: ''
+  - name: --num-results
+    defaultValue: "5000"
+    summary: Spécifiez le nombre maximal à retourner. Si la demande ne spécifie pas num_results ou spécifie une valeur supérieure à 5000, le serveur retournera jusqu’à 5000 éléments. Notez que si l’opération de listage franchit une limite de partition, le service renverra un jeton de liaison pour récupérer le reste des résultats. Fournissez « \* » pour retourner tous les.
+    description: ''
+  - name: --prefix
+    summary: Filtrez les résultats pour retourner uniquement les objets BLOB dont le nom commence par le préfixe spécifié.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --show-next-marker
+    summary: Affiche nextMarker dans le résultat lorsqu’il est spécifié.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: ext_storage-blob-preview_az_storage_container_restore
+  name: az storage container restore
+  summary: Restaure le conteneur supprimé de manière réversible.
+  description: "L’opération est réussie uniquement si elle est utilisée dans le nombre de jours spécifié défini dans la stratégie de rétention de suppression.  .. VersionAdded :: 12.4.0 cette opération a été introduite dans la version de l’API' 2019-12-12 '."
+  syntax: >-
+    az storage container restore --deleted-version
+                                 --name
+                                 [--account-key]
+                                 [--account-name]
+                                 [--auth-mode {key, login}]
+                                 [--connection-string]
+                                 [--sas-token]
+                                 [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --deleted-version
+    summary: Spécifiez la version du conteneur supprimé à restaurer.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Spécifiez le nom du conteneur supprimé à restaurer.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+commands:
+- ext_storage-blob-preview_az_storage_container_generate_sas
+- ext_storage-blob-preview_az_storage_container_list
+- ext_storage-blob-preview_az_storage_container_restore
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
+  ms.openlocfilehash: 1d36752e80845b34f913f7a7f9b4387858e8231f
+  ms.sourcegitcommit: bd2dbc80328936dadd211764d25c32a14fc58083
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 01/04/2021
+  ms.locfileid: "102843214"
