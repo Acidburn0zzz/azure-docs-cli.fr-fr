@@ -1,0 +1,224 @@
+### YamlMime:AzureCLIGroup
+uid: az_hdinsight_script_action
+name: az hdinsight script-action
+summary: Gérer les actions de script HDInsight.
+description: ''
+directCommands:
+- uid: az_hdinsight_script_action_delete
+  name: az hdinsight script-action delete
+  summary: Supprime l’action de script persistante spécifiée du cluster.
+  description: ''
+  syntax: >-
+    az hdinsight script-action delete --cluster-name
+                                      --name
+                                      --resource-group
+                                      [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du script.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_script_action_execute
+  name: az hdinsight script-action execute
+  summary: Exécute des actions de script sur le cluster HDInsight spécifié.
+  description: ''
+  syntax: >-
+    az hdinsight script-action execute --cluster-name
+                                       --name
+                                       --resource-group
+                                       --roles
+                                       --script-uri
+                                       [--persist-on-success]
+                                       [--script-parameters]
+                                       [--subscription]
+  examples:
+  - summary: Exécute une action de script et persiste en cas de réussite.
+    syntax: >-
+      az hdinsight script-action execute -g MyResourceGroup -n MyScriptActionName \
+
+      --cluster-name MyCluster \
+
+      --script-uri https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh \
+
+      --roles headnode workernode \
+
+      --persist-on-success
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’action de script.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --roles
+    summary: Liste de rôles (nœuds) délimités par des espaces où le script sera exécuté. Les rôles valides sont nœud principal, workernode, zookeepernode, périmètre.
+    description: ''
+  - isRequired: true
+    name: --script-uri
+    summary: URI du script.
+    description: ''
+  optionalParameters:
+  - name: --persist-on-success
+    summary: Si les scripts doivent être rendus persistants.
+    description: ''
+  - name: --script-parameters
+    summary: Paramètres du script.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_script_action_list
+  name: az hdinsight script-action list
+  summary: Répertorie toutes les actions de script persistantes pour le cluster spécifié.
+  description: ''
+  syntax: >-
+    az hdinsight script-action list --cluster-name
+                                    --resource-group
+                                    [--query-examples]
+                                    [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_script_action_list_execution_history
+  name: az hdinsight script-action list-execution-history
+  summary: Répertorie l’historique d’exécution de tous les scripts pour le cluster spécifié.
+  description: ''
+  syntax: >-
+    az hdinsight script-action list-execution-history --cluster-name
+                                                      --resource-group
+                                                      [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_script_action_promote
+  name: az hdinsight script-action promote
+  summary: Promeut l’exécution de script ad hoc spécifiée dans un script persistant.
+  description: ''
+  syntax: >-
+    az hdinsight script-action promote --cluster-name
+                                       --execution-id
+                                       --resource-group
+                                       [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --execution-id
+    summary: ID d’exécution du script.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_script_action_show_execution_details
+  name: az hdinsight script-action show-execution-details
+  summary: Obtient le détail de l’exécution du script pour l’ID d’exécution du script donné.
+  description: ''
+  syntax: >-
+    az hdinsight script-action show-execution-details --cluster-name
+                                                      --execution-id
+                                                      --resource-group
+                                                      [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --execution-id
+    summary: ID d’exécution du script.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+commands:
+- az_hdinsight_script_action_delete
+- az_hdinsight_script_action_execute
+- az_hdinsight_script_action_list
+- az_hdinsight_script_action_list_execution_history
+- az_hdinsight_script_action_promote
+- az_hdinsight_script_action_show_execution_details
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les actions de script HDInsight.
+  ms.openlocfilehash: 94a2a2175ce6eb8653ae6433578c95f9c1dfbc4a
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102969815"

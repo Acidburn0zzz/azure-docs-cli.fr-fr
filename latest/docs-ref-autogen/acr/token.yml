@@ -1,0 +1,241 @@
+### YamlMime:AzureCLIGroup
+uid: az_acr_token
+name: az acr token
+summary: Gérer des jetons pour un Azure Container Registry.
+description: ''
+directCommands:
+- uid: az_acr_token_create
+  name: az acr token create
+  summary: Créer un jeton associé à un mappage d’étendue pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr token create --name
+                        --registry
+                        [--expiration]
+                        [--expiration-in-days]
+                        [--gateway]
+                        [--no-passwords {false, true}]
+                        [--repository]
+                        [--resource-group]
+                        [--scope-map]
+                        [--status {disabled, enabled}]
+                        [--subscription]
+  examples:
+  - summary: Créez un jeton avec les autorisations de référentiel définies dans le mappage d’étendue’MyScopeMap'.
+    syntax: az acr token create -n MyToken -r MyRegistry --scope-map MyScopeMap
+  - summary: Créez un jeton qui a des autorisations de lecture sur le référentiel Hello World.
+    syntax: az acr token create -n myToken -r MyRegistry --repository hello-world content/read metadata/read
+  - summary: Créez un jeton sans informations d’identification et toutes les autorisations de la passerelle.
+    syntax: >-
+      az acr token create -n myToken -r MyRegistry --repository hello-world content/read
+        --gateway registry config/read config/write message/read message/write --no-passwords
+  - summary: Créez un jeton dans état désactivé.
+    syntax: az acr token create -n MyToken -r MyRegistry --scope-map MyScopeMap --status disabled
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du jeton.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --expiration
+    summary: Heure UTC à laquelle les informations d’identification sont valides. Au format% Y-% m-% dT% H :%M :% SZ, par exemple 2025-12-31T12:59:59Z.
+    description: ''
+  - name: --expiration-in-days
+    summary: Nombre de jours pendant lesquels les informations d’identification seront valides. S’il n’est pas spécifié, l’expiration prendra par défaut la valeur maximale « 9999-12-31T23:59:59.999999 + 00:00 ».
+    description: ''
+  - name: --gateway
+    summary: Autorisations de la passerelle. Utilisez le format « --passerelle de passerelle [ACTION1 ACTION2...] » par indicateur. Les actions valides sont « message/écriture », « config/lecture », « message/lecture », « configuration/écriture »}.
+    description: ''
+  - name: --no-passwords
+    parameterValueGroup: false, true
+    summary: Ne générez pas de mots de passe à la place, utilisez « AZ ACR Token information Generate ».
+    description: ''
+  - name: --repository
+    summary: Autorisations de référentiel. Utilisez le format « --Repository référentiel [ACTION1 ACTION2...] » par indicateur. Les actions valides sont {« content/Read », « content/Delete », « content/Write », « Metadata/Read », « Metadata/Write »}.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --scope-map
+    summary: Nom du mappage d’étendue avec les autorisations de référentiel préconfigurées. Utilisez « --Repository » et/ou « --Gateway » si vous souhaitez que l’interface CLI en configure un pour vous.
+    description: ''
+  - name: --status
+    defaultValue: enabled
+    parameterValueGroup: disabled, enabled
+    summary: État du jeton.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_token_delete
+  name: az acr token delete
+  summary: Supprimer un jeton pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr token delete --name
+                        --registry
+                        [--resource-group]
+                        [--subscription]
+                        [--yes]
+  examples:
+  - summary: Supprimez le jeton « MyToken ».
+    syntax: az acr token delete -n MyToken -r MyRegistry
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du jeton.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_token_list
+  name: az acr token list
+  summary: Répertorie tous les jetons pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr token list --registry
+                      [--query-examples]
+                      [--resource-group]
+                      [--subscription]
+  examples:
+  - summary: Répertorier les jetons sous le registre « MyRegistry ».
+    syntax: az acr token list -r MyRegistry
+  requiredParameters:
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_token_show
+  name: az acr token show
+  summary: Affichez les détails et les attributs d’un jeton pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr token show --name
+                      --registry
+                      [--query-examples]
+                      [--resource-group]
+                      [--subscription]
+  examples:
+  - summary: Obtenir des informations sur le jeton « MyToken ».
+    syntax: az acr token show -n MyToken -r MyRegistry
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du jeton.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_token_update
+  name: az acr token update
+  summary: Mettre à jour un jeton (remplacer le mappage d’étendue associé) pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr token update --name
+                        --registry
+                        [--resource-group]
+                        [--scope-map]
+                        [--status {disabled, enabled}]
+                        [--subscription]
+  examples:
+  - summary: Mettez à jour le jeton « MyToken », en le faisant associé au mappage d’étendue « MyNewScopeMap ».
+    syntax: az acr token update -n MyToken -r MyRegistry --scope-map MyNewScopeMap
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du jeton.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --scope-map
+    summary: Nom du mappage d’étendue associé au jeton. S’il n’est pas spécifié, l’exécution de cette commande dissocie le mappage de l’étendue actuelle en rapport avec le jeton.
+    description: ''
+  - name: --status
+    defaultValue: enabled
+    parameterValueGroup: disabled, enabled
+    summary: État du jeton.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+commands:
+- az_acr_token_create
+- az_acr_token_credential
+- az_acr_token_credential_delete
+- az_acr_token_credential_generate
+- az_acr_token_delete
+- az_acr_token_list
+- az_acr_token_show
+- az_acr_token_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/26/2021
+  description: Gérer des jetons pour un Azure Container Registry.
+  ms.openlocfilehash: 286ed781bef61eeba83e6fe8bf45dabfc7fe8edb
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103541442"

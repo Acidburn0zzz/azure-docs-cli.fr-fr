@@ -186,6 +186,7 @@ directCommands:
                  [--data-disk-sizes-gb]
                  [--enable-agent {false, true}]
                  [--enable-auto-update {false, true}]
+                 [--enable-hotpatching {false, true}]
                  [--encryption-at-host {false, true}]
                  [--ephemeral-os-disk {false, true}]
                  [--eviction-policy {Deallocate, Delete}]
@@ -205,7 +206,7 @@ directCommands:
                  [--os-disk-name]
                  [--os-disk-size-gb]
                  [--os-type {linux, windows}]
-                 [--patch-mode {AutomaticByOS, AutomaticByPlatform, Manual}]
+                 [--patch-mode]
                  [--plan-name]
                  [--plan-product]
                  [--plan-promotion-code]
@@ -351,6 +352,10 @@ directCommands:
     parameterValueGroup: false, true
     summary: Indiquez si la Mises à jour automatiques est activée pour la machine virtuelle Windows.
     description: ''
+  - name: --enable-hotpatching
+    parameterValueGroup: false, true
+    summary: Corriger les machines virtuelles sans redémarrage. --Enable-agent doit être défini et--patch-mode doit être défini sur AutomaticByPlatform.
+    description: ''
   - name: --encryption-at-host
     parameterValueGroup: false, true
     summary: Activez le chiffrement de l’hôte pour la machine virtuelle ou VMSS. Cela active le chiffrement pour tous les disques, y compris le disque de ressource/Temp sur l’hôte lui-même.
@@ -417,7 +422,6 @@ directCommands:
     summary: Type de système d’exploitation installé sur un disque dur virtuel personnalisé. N’utilisez pas lors de la spécification d’un alias URN ou URN.
     description: ''
   - name: --patch-mode
-    parameterValueGroup: AutomaticByOS, AutomaticByPlatform, Manual
     summary: 'Mode de mise à jour corrective en invité vers une machine virtuelle IaaS. Les valeurs possibles sont : Manual : vous contrôlez l’application des correctifs sur une machine virtuelle. Pour ce faire, vous devez appliquer les correctifs manuellement à l’intérieur de la machine virtuelle. Dans ce mode, les mises à jour automatiques sont désactivées. le paramètre paramétrer--Enable-Auto-Update doit avoir la valeur false. AutomaticByOS : la machine virtuelle est automatiquement mise à jour par le système d’exploitation. Le paramètre--Enable-Auto-Update doit avoir la valeur true. AutomaticByPlatform : l’ordinateur virtuel est automatiquement mis à jour par le système d’exploitation. Le paramètre--enable-agent et--Enable-Auto-Update doit avoir la valeur true.'
     description: ''
   - name: --plan-name
@@ -1493,11 +1497,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/05/2021
+  ms.date: 02/24/2021
   description: Gérer des machines virtuelles Linux ou Windows.
-  ms.openlocfilehash: 310d92b2202cae97d856766bdd46c8bb968c618b
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: 6a1ff75f6c942e1600afaf274189147d47e9a51c
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102969557"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103526040"

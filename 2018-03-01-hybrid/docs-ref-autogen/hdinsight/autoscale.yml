@@ -1,0 +1,286 @@
+### YamlMime:AzureCLIGroup
+uid: az_hdinsight_autoscale
+name: az hdinsight autoscale
+summary: Gérer la configuration de la mise à l’échelle automatique du cluster HDInsight.
+description: ''
+directCommands:
+- uid: az_hdinsight_autoscale_create
+  name: az hdinsight autoscale create
+  summary: Activez la mise à l’échelle automatique pour un cluster en cours d’exécution.
+  description: ''
+  syntax: >-
+    az hdinsight autoscale create --cluster-name
+                                  --resource-group
+                                  --type {Load, Schedule}
+                                  [--days {Friday, Monday, Saturday, Sunday, Thursday, Tuesday, Wednesday}]
+                                  [--max-workernode-count]
+                                  [--min-workernode-count]
+                                  [--no-wait]
+                                  [--subscription]
+                                  [--time]
+                                  [--timezone]
+                                  [--workernode-count]
+                                  [--yes]
+  examples:
+  - summary: Activez la mise à l’échelle automatique basée sur la charge pour un cluster en cours d’exécution.
+    syntax: >-
+      az hdinsight autoscale create --resource-group MyResourceGroup --cluster-name MyCluster --type Load \
+
+      --min-workernode-count 3 --max-workernode-count 5
+  - summary: Activez la mise à l’échelle automatique basée sur la planification pour un cluster en cours d’exécution.
+    syntax: >-
+      az hdinsight autoscale create --resource-group MyResourceGroup --cluster-name MyCluster --type Schedule \
+
+      --timezone "Pacific Standard Time" --days Monday Tuesday --time 09:00 --workernode-count 5
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --type
+    parameterValueGroup: Load, Schedule
+    summary: Type de mise à l’échelle automatique.
+    description: ''
+  optionalParameters:
+  - name: --days
+    parameterValueGroup: Friday, Monday, Saturday, Sunday, Thursday, Tuesday, Wednesday
+    summary: Liste délimitée par des espaces de jour de planification.
+    description: ''
+  - name: --max-workernode-count
+    summary: Nombre maximal de workernode pour les atuoscale basés sur la charge.
+    description: ''
+  - name: --min-workernode-count
+    summary: Nombre minimal de workernode pour les atuoscale basés sur la charge.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --time
+    summary: 'Heure de 24 heures au format xx : XX en jours.'
+    description: ''
+  - name: --timezone
+    summary: Fuseau horaire de la planification du type de mise à l’échelle automatique. Valeurs provenant de `az hdinsight autoscale list-timezones`.
+    description: ''
+  - name: --workernode-count
+    summary: Nombre de workernode de planification.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_autoscale_delete
+  name: az hdinsight autoscale delete
+  summary: Désactivez la mise à l’échelle automatique pour un cluster en cours d’exécution.
+  description: ''
+  syntax: >-
+    az hdinsight autoscale delete --cluster-name
+                                  --resource-group
+                                  [--no-wait]
+                                  [--subscription]
+                                  [--yes]
+  examples:
+  - summary: Désactivez la mise à l’échelle automatique pour un cluster en cours d’exécution.
+    syntax: az hdinsight autoscale delete --resource-group MyResourceGroup --cluster-name MyCluster
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_autoscale_list_timezones
+  name: az hdinsight autoscale list-timezones
+  summary: Répertorie le nom de fuseau horaire disponible lors de l’activation de la mise à l’échelle automatique basée sur une planification.
+  description: ''
+  syntax: az hdinsight autoscale list-timezones [--subscription]
+  examples:
+  - summary: Répertorie le nom de fuseau horaire disponible.
+    syntax: az hdinsight autoscale list-timezones
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_autoscale_show
+  name: az hdinsight autoscale show
+  summary: Obtient la configuration de la mise à l’échelle automatique d’un cluster spécifié.
+  description: ''
+  syntax: >-
+    az hdinsight autoscale show --cluster-name
+                                --resource-group
+                                [--query-examples]
+                                [--subscription]
+  examples:
+  - summary: Obtient la configuration de la mise à l’échelle automatique.
+    syntax: az hdinsight autoscale show --resource-group MyResourceGroup --cluster-name MyCluster
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_autoscale_update
+  name: az hdinsight autoscale update
+  summary: Mettez à jour la configuration de la mise à l’échelle automatique.
+  description: ''
+  syntax: >-
+    az hdinsight autoscale update --cluster-name
+                                  --resource-group
+                                  [--max-workernode-count]
+                                  [--min-workernode-count]
+                                  [--no-wait]
+                                  [--subscription]
+                                  [--timezone]
+  examples:
+  - summary: Mettre à jour la configuration liée à la mise à l’échelle automatique basée sur la charge.
+    syntax: az hdinsight autoscale update --resource-group MyResourceGroup --cluster-name MyCluster --max-workernode-count 5
+  - summary: Met à jour la configuration liée à la mise à l’échelle automatique basée sur une planification.
+    syntax: az hdinsight autoscale update --resource-group MyResourceGroup --cluster-name MyCluster --timezone "China Standard Time"
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --max-workernode-count
+    summary: Nombre maximal de workernode pour les atuoscale basés sur la charge.
+    description: ''
+  - name: --min-workernode-count
+    summary: Nombre minimal de workernode pour les atuoscale basés sur la charge.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timezone
+    summary: Fuseau horaire de la planification du type de mise à l’échelle automatique. Valeurs provenant de `az hdinsight autoscale list-timezones`.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_autoscale_wait
+  name: az hdinsight autoscale wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une opération soit terminée.
+  description: ''
+  syntax: >-
+    az hdinsight autoscale wait --name
+                                --resource-group
+                                [--created]
+                                [--custom]
+                                [--deleted]
+                                [--exists]
+                                [--interval]
+                                [--subscription]
+                                [--timeout]
+                                [--updated]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+commands:
+- az_hdinsight_autoscale_condition
+- az_hdinsight_autoscale_condition_create
+- az_hdinsight_autoscale_condition_delete
+- az_hdinsight_autoscale_condition_list
+- az_hdinsight_autoscale_condition_update
+- az_hdinsight_autoscale_condition_wait
+- az_hdinsight_autoscale_create
+- az_hdinsight_autoscale_delete
+- az_hdinsight_autoscale_list_timezones
+- az_hdinsight_autoscale_show
+- az_hdinsight_autoscale_update
+- az_hdinsight_autoscale_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer la configuration de la mise à l’échelle automatique du cluster HDInsight.
+  ms.openlocfilehash: 908aecbb3a488d4571a2a9230f5e4931822a5520
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102969827"
