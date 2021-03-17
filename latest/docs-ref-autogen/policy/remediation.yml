@@ -1,0 +1,277 @@
+### YamlMime:AzureCLIGroup
+uid: az_policy_remediation
+name: az policy remediation
+summary: Gérer les mises à jour de la stratégie de ressource.
+description: ''
+directCommands:
+- uid: az_policy_remediation_cancel
+  name: az policy remediation cancel
+  summary: Annuler une correction de stratégie de ressource.
+  description: ''
+  syntax: >-
+    az policy remediation cancel --name
+                                 [--management-group]
+                                 [--namespace]
+                                 [--parent]
+                                 [--resource]
+                                 [--resource-group]
+                                 [--resource-type]
+                                 [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la mise à jour.
+    description: ''
+  optionalParameters:
+  - name: --management-group -m
+    summary: Nom du groupe d’administration.
+    description: ''
+  - name: --namespace
+    summary: Espace de noms du fournisseur (par exemple, Microsoft. Provider).
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : resourceTypeA/NAMEA/resourceTypeB/nameB).'
+    description: ''
+  - name: --resource
+    summary: ID de ressource ou nom de ressource. Si un nom est donné, indiquez le groupe de ressources et les autres arguments d’ID de ressource pertinents.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par ex. : resourceTypeC).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_remediation_create
+  name: az policy remediation create
+  summary: Créer une correction de stratégie de ressource.
+  description: ''
+  syntax: >-
+    az policy remediation create --name
+                                 --policy-assignment
+                                 [--definition-reference-id]
+                                 [--location-filters]
+                                 [--management-group]
+                                 [--namespace]
+                                 [--parent]
+                                 [--resource]
+                                 [--resource-discovery-mode {ExistingNonCompliant, ReEvaluateCompliance}]
+                                 [--resource-group]
+                                 [--resource-type]
+                                 [--subscription]
+  examples:
+  - summary: Créer une correction au niveau de l’étendue du groupe de ressources pour une attribution de stratégie
+    syntax: az policy remediation create -g myRg -n myRemediation --policy-assignment eeb18edc813c42d0ad5a9eab
+  - summary: Créer une correction au niveau de l’étendue du groupe de ressources pour une attribution de stratégie à l’aide de l’ID de ressource d’attribution de stratégie
+    syntax: az policy remediation create -g myRg -n myRemediation --policy-assignment "/subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/providers/Microsoft.Authorization/policyAssignments/myPa"
+  - summary: Créer une correction au niveau de l’étendue de l’abonnement pour une affectation de jeu de stratégies
+    syntax: az policy remediation create -n myRemediation --policy-assignment eeb18edc813c42d0ad5a9eab --definition-reference-id auditVMPolicyReference
+  - summary: Créer une correction au niveau de l’étendue du groupe d’administration pour des emplacements de ressources spécifiques
+    syntax: az policy remediation create -m myMg -n myRemediation --policy-assignment eeb18edc813c42d0ad5a9eab --location-filters eastus westeurope
+  - summary: Créer une mise à jour pour une ressource spécifique à l’aide de l’ID de ressource
+    syntax: az policy remediation create --resource "/subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myRg/providers/Microsoft.Compute/virtualMachines/myVm" -n myRemediation --policy-assignment eeb18edc813c42d0ad5a9eab
+  - summary: Créer une correction qui réévaluera la conformité avant la correction
+    syntax: az policy remediation create -g myRg -n myRemediation --policy-assignment eeb18edc813c42d0ad5a9eab --resource-discovery-mode ReEvaluateCompliance
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la mise à jour.
+    description: ''
+  - isRequired: true
+    name: --policy-assignment -a
+    summary: Nom ou ID de ressource de l’attribution de stratégie.
+    description: ''
+  optionalParameters:
+  - name: --definition-reference-id
+    summary: ID de référence de définition de stratégie dans la définition de l’ensemble de stratégies. Obligatoire uniquement quand l’attribution de stratégie affecte une définition d’ensemble de stratégies.
+    description: ''
+  - name: --location-filters
+    summary: Liste d’emplacements de ressources séparés par des espaces qui doivent être corrigés (par ex., westeurope central).
+    description: ''
+  - name: --management-group -m
+    summary: Nom du groupe d’administration.
+    description: ''
+  - name: --namespace
+    summary: Espace de noms du fournisseur (par exemple, Microsoft. Provider).
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : resourceTypeA/NAMEA/resourceTypeB/nameB).'
+    description: ''
+  - name: --resource
+    summary: ID de ressource ou nom de ressource. Si un nom est donné, indiquez le groupe de ressources et les autres arguments d’ID de ressource pertinents.
+    description: ''
+  - name: --resource-discovery-mode
+    parameterValueGroup: ExistingNonCompliant, ReEvaluateCompliance
+    summary: La façon dont les ressources à corriger sont découvertes. La valeur par défaut est ExistingNonCompliant si elle n’est pas spécifiée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par ex. : resourceTypeC).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_remediation_delete
+  name: az policy remediation delete
+  summary: Supprimer une correction de stratégie de ressource.
+  description: ''
+  syntax: >-
+    az policy remediation delete --name
+                                 [--management-group]
+                                 [--namespace]
+                                 [--parent]
+                                 [--resource]
+                                 [--resource-group]
+                                 [--resource-type]
+                                 [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la mise à jour.
+    description: ''
+  optionalParameters:
+  - name: --management-group -m
+    summary: Nom du groupe d’administration.
+    description: ''
+  - name: --namespace
+    summary: Espace de noms du fournisseur (par exemple, Microsoft. Provider).
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : resourceTypeA/NAMEA/resourceTypeB/nameB).'
+    description: ''
+  - name: --resource
+    summary: ID de ressource ou nom de ressource. Si un nom est donné, indiquez le groupe de ressources et les autres arguments d’ID de ressource pertinents.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par ex. : resourceTypeC).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_remediation_list
+  name: az policy remediation list
+  summary: Répertorier les corrections de stratégie de ressource.
+  description: ''
+  syntax: >-
+    az policy remediation list [--management-group]
+                               [--namespace]
+                               [--parent]
+                               [--query-examples]
+                               [--resource]
+                               [--resource-group]
+                               [--resource-type]
+                               [--subscription]
+  optionalParameters:
+  - name: --management-group -m
+    summary: Nom du groupe d’administration.
+    description: ''
+  - name: --namespace
+    summary: Espace de noms du fournisseur (par exemple, Microsoft. Provider).
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : resourceTypeA/NAMEA/resourceTypeB/nameB).'
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource
+    summary: ID de ressource ou nom de ressource. Si un nom est donné, indiquez le groupe de ressources et les autres arguments d’ID de ressource pertinents.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par ex. : resourceTypeC).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_remediation_show
+  name: az policy remediation show
+  summary: Afficher une correction de stratégie de ressource.
+  description: ''
+  syntax: >-
+    az policy remediation show --name
+                               [--management-group]
+                               [--namespace]
+                               [--parent]
+                               [--query-examples]
+                               [--resource]
+                               [--resource-group]
+                               [--resource-type]
+                               [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la mise à jour.
+    description: ''
+  optionalParameters:
+  - name: --management-group -m
+    summary: Nom du groupe d’administration.
+    description: ''
+  - name: --namespace
+    summary: Espace de noms du fournisseur (par exemple, Microsoft. Provider).
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : resourceTypeA/NAMEA/resourceTypeB/nameB).'
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource
+    summary: ID de ressource ou nom de ressource. Si un nom est donné, indiquez le groupe de ressources et les autres arguments d’ID de ressource pertinents.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par ex. : resourceTypeC).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+commands:
+- az_policy_remediation_cancel
+- az_policy_remediation_create
+- az_policy_remediation_delete
+- az_policy_remediation_deployment
+- az_policy_remediation_deployment_list
+- az_policy_remediation_list
+- az_policy_remediation_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les mises à jour de la stratégie de ressource.
+  ms.openlocfilehash: c75f6870c44bf624c0e3e1360767078774b7d8a2
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102969179"

@@ -1,0 +1,301 @@
+### YamlMime:AzureCLIGroup
+uid: az_monitor_autoscale
+name: az monitor autoscale
+summary: Gérer les paramètres de mise à l’échelle automatique.
+description: 'Pour plus d’informations sur la mise à l’échelle automatique, visitez : <a href="https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings">https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings</a> .'
+directCommands:
+- uid: az_monitor_autoscale_create
+  name: az monitor autoscale create
+  summary: Créez de nouveaux paramètres de mise à l’échelle automatique.
+  description: 'Pour plus d’informations sur la mise à l’échelle automatique, visitez : <a href="https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings">https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings</a> .'
+  syntax: >-
+    az monitor autoscale create --count
+                                --resource
+                                [--action]
+                                [--disabled {false, true}]
+                                [--email-administrator {false, true}]
+                                [--email-coadministrators {false, true}]
+                                [--location]
+                                [--max-count]
+                                [--min-count]
+                                [--name]
+                                [--resource-group]
+                                [--resource-namespace]
+                                [--resource-parent]
+                                [--resource-type]
+                                [--subscription]
+                                [--tags]
+  examples:
+  - summary: Créez des paramètres de mise à l’échelle automatique pour mettre à l’échelle entre 2 et 5 instances (3 par défaut). Envoyez un e-mail à l’administrateur lorsque la mise à l’échelle se produit.
+    syntax: >-
+      az monitor autoscale create -g {myrg} --resource {resource-id} --min-count 2 --max-count 5 \
+        --count 3 --email-administrator
+
+      az monitor autoscale rule create -g {myrg} --autoscale-name {resource-name} --scale out 1 \
+        --condition "Percentage CPU > 75 avg 5m"
+
+      az monitor autoscale rule create -g {myrg} --autoscale-name {resource-name} --scale in 1 \
+        --condition "Percentage CPU < 25 avg 5m"
+  - summary: Créez des paramètres de mise à l’échelle automatique pour exactement 4 instances.
+    syntax: az monitor autoscale create -g {myrg} --resource {resource-id} --count 4
+  - summary: Créez de nouveaux paramètres de mise à l’échelle automatique. généré automatiquement
+    syntax: az monitor autoscale create --count 3 --max-count 5 --min-count 2 --name MyAutoscaleSettings --resource myScaleSet --resource-group MyResourceGroup --resource-type Microsoft.Compute/virtualMachineScaleSets
+  requiredParameters:
+  - isRequired: true
+    name: --count
+    summary: Nombre d’instances à utiliser. S’il est utilisé avec--min/max-Count, le nombre par défaut d’instances à utiliser.
+    description: ''
+  - isRequired: true
+    name: --resource
+    summary: Nom ou ID de la ressource cible.
+    description: ''
+  optionalParameters:
+  - name: --action -a
+    summary: Ajoutez une action à activer lorsqu’un événement de mise à l’échelle se produit.
+    description: Utilisation :--clé de TYPE d’action [ARG...] E-mail :--action envoyer un webhook bob@contoso.comann @contoso.com :--action webhook <a href="https://www.contoso.com/alert">https://www.contoso.com/alert</a> apikey = valeur webhook :--action le webhook <a href="https://www.contoso.com/alert?apiKey=value">https://www.contoso.com/alert?apiKey=value</a> plusieurs actions peuvent être spécifiées à l’aide de plusieurs `--action` arguments.
+  - name: --disabled
+    parameterValueGroup: false, true
+    summary: Créez les paramètres de mise à l’échelle automatique dans un état désactivé.
+    description: ''
+  - name: --email-administrator
+    parameterValueGroup: false, true
+    summary: Envoyer un e-mail à l’administrateur de l’abonnement sur la mise à l’échelle.
+    description: ''
+  - name: --email-coadministrators
+    parameterValueGroup: false, true
+    summary: Envoyer un e-mail aux coadministrateurs de l’abonnement sur la mise à l’échelle.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --max-count
+    summary: Nombre maximal d’instances.
+    description: ''
+  - name: --min-count
+    summary: Nombre minimal d’instances.
+    description: ''
+  - name: --name -n
+    summary: Nom des paramètres de mise à l’échelle automatique.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-namespace
+    summary: Espace de noms du fournisseur de ressources cible.
+    description: ''
+  - name: --resource-parent
+    summary: Chemin parent de la ressource cible, le cas échéant.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource cible. Peut également accepter le format d’espace de noms/type (par exemple : « Microsoft. Compute/virtualMachines »).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_autoscale_delete
+  name: az monitor autoscale delete
+  summary: Paramètres de suppression et de mise à l’échelle automatique.
+  description: ''
+  syntax: >-
+    az monitor autoscale delete [--ids]
+                                [--name]
+                                [--resource-group]
+                                [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom des paramètres de mise à l’échelle automatique.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_autoscale_list
+  name: az monitor autoscale list
+  summary: Répertorie les paramètres de mise à l’échelle automatique pour un groupe de ressources.
+  description: ''
+  syntax: >-
+    az monitor autoscale list --resource-group
+                              [--query-examples]
+                              [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_autoscale_show
+  name: az monitor autoscale show
+  summary: Afficher les détails du paramètre de mise à l’échelle automatique.
+  description: ''
+  syntax: >-
+    az monitor autoscale show [--ids]
+                              [--name]
+                              [--query-examples]
+                              [--resource-group]
+                              [--subscription]
+  examples:
+  - summary: Afficher les détails du paramètre de mise à l’échelle automatique. généré automatiquement
+    syntax: az monitor autoscale show --name MyAutoscaleSettings --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom des paramètres de mise à l’échelle automatique.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_autoscale_update
+  name: az monitor autoscale update
+  summary: Mettez à jour les paramètres de mise à l’échelle automatique.
+  description: 'Pour plus d’informations sur la mise à l’échelle automatique, visitez : <a href="https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings">https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings</a> .'
+  syntax: >-
+    az monitor autoscale update [--add]
+                                [--add-action]
+                                [--count]
+                                [--email-administrator {false, true}]
+                                [--email-coadministrators {false, true}]
+                                [--enabled {false, true}]
+                                [--force-string]
+                                [--ids]
+                                [--max-count]
+                                [--min-count]
+                                [--name]
+                                [--remove]
+                                [--remove-action]
+                                [--resource-group]
+                                [--set]
+                                [--subscription]
+                                [--tags]
+  examples:
+  - summary: Mettez à jour les paramètres de mise à l’échelle automatique pour utiliser par défaut des 3 instances fixes.
+    syntax: az monitor autoscale update -g {myrg} -n {autoscale-name} --count 3
+  - summary: Mettez à jour les paramètres de mise à l’échelle automatique pour supprimer une notification par courrier électronique.
+    syntax: >-
+      az monitor autoscale update -g {myrg} -n {autoscale-name} \
+        --remove-action email bob@contoso.com
+  - summary: Mettez à jour les paramètres de mise à l’échelle automatique. généré automatiquement
+    syntax: az monitor autoscale update --count 3 --email-administrator true --enabled true --max-count 5 --min-count 2 --name MyAutoscaleSettings --resource-group MyResourceGroup --tags key[=value]
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --add-action -a
+    summary: Ajoutez une action à activer lorsqu’un événement de mise à l’échelle se produit.
+    description: Utilisation :--Add-action TYPE KEY [ARG...] E-mail :--Add-action email bob@contoso.comann @contoso.com webhook :--Add-action webhook <a href="https://www.contoso.com/alert">https://www.contoso.com/alert</a> apikey = value webhook :--Add-action webhook <a href="https://www.contoso.com/alert?apiKey=value">https://www.contoso.com/alert?apiKey=value</a> plusieurs actions peuvent être spécifiées à l’aide de plusieurs `--add-action` arguments.
+  - name: --count
+    summary: Nombre d’instances à utiliser. S’il est utilisé avec--min/max-Count, le nombre par défaut d’instances à utiliser.
+    description: ''
+  - name: --email-administrator
+    parameterValueGroup: false, true
+    summary: Envoyer un e-mail à l’administrateur de l’abonnement sur la mise à l’échelle.
+    description: ''
+  - name: --email-coadministrators
+    parameterValueGroup: false, true
+    summary: Envoyer un e-mail aux coadministrateurs de l’abonnement sur la mise à l’échelle.
+    description: ''
+  - name: --enabled
+    parameterValueGroup: false, true
+    summary: État de la mise à l’échelle automatique activé.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --max-count
+    summary: Nombre maximal d’instances.
+    description: ''
+  - name: --min-count
+    summary: Nombre minimal d’instances.
+    description: ''
+  - name: --name -n
+    summary: Nom des paramètres de mise à l’échelle automatique.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --remove-action -r
+    summary: Supprimez une ou plusieurs actions.
+    description: Utilisation :--Remove-action de TYPE clé [clé...] E-mail :--Remove-action e-mail bob@contoso.comann @contoso.com webhook :--Remove-action webhook <a href="https://contoso.com/alert">https://contoso.com/alert</a> <a href="https://alerts.contoso.com">https://alerts.contoso.com</a> .
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+commands:
+- az_monitor_autoscale_create
+- az_monitor_autoscale_delete
+- az_monitor_autoscale_list
+- az_monitor_autoscale_profile
+- az_monitor_autoscale_profile_create
+- az_monitor_autoscale_profile_delete
+- az_monitor_autoscale_profile_list
+- az_monitor_autoscale_profile_list_timezones
+- az_monitor_autoscale_profile_show
+- az_monitor_autoscale_rule
+- az_monitor_autoscale_rule_copy
+- az_monitor_autoscale_rule_create
+- az_monitor_autoscale_rule_delete
+- az_monitor_autoscale_rule_list
+- az_monitor_autoscale_show
+- az_monitor_autoscale_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/23/2021
+  description: 'Pour plus d’informations sur la mise à l’échelle automatique, visitez : <a href="https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings">https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings</a> .'
+  ms.openlocfilehash: e9db96fa7826c0816f7f1f97d26c99c43ded3bb8
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103540796"

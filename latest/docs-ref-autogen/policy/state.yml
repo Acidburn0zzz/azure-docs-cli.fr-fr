@@ -1,0 +1,277 @@
+### YamlMime:AzureCLIGroup
+uid: az_policy_state
+name: az policy state
+summary: Gérer les États de conformité de la stratégie.
+description: ''
+directCommands:
+- uid: az_policy_state_list
+  name: az policy state list
+  summary: Répertorier les États de conformité de la stratégie.
+  description: ''
+  syntax: >-
+    az policy state list [--all]
+                         [--apply]
+                         [--expand]
+                         [--filter]
+                         [--from]
+                         [--management-group]
+                         [--namespace]
+                         [--order-by]
+                         [--parent]
+                         [--policy-assignment]
+                         [--policy-definition]
+                         [--policy-set-definition]
+                         [--query-examples]
+                         [--resource]
+                         [--resource-group]
+                         [--resource-type]
+                         [--select]
+                         [--subscription]
+                         [--to]
+                         [--top]
+  examples:
+  - summary: Obtient les derniers États de stratégie à l’étendue de l’abonnement actuel.
+    syntax: az policy state list
+  - summary: Obtient tous les États de stratégie à l’étendue de l’abonnement actuel.
+    syntax: az policy state list --all
+  - summary: Obtient les derniers États de stratégie au niveau de l’étendue du groupe d’administration.
+    syntax: az policy state list -m "myMg"
+  - summary: Obtient les derniers États de stratégie au niveau de l’étendue du groupe de ressources dans l’abonnement actuel.
+    syntax: az policy state list -g "myRg"
+  - summary: Obtenir les derniers États de stratégie pour une ressource à l’aide de l’ID de ressource.
+    syntax: az policy state list --resource "/subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup /providers/Microsoft.EventHub/namespaces/myns1/eventhubs/eh1/consumergroups/cg1"
+  - summary: Obtenir les derniers États de stratégie pour une ressource à l’aide du nom de ressource.
+    syntax: az policy state list --resource "myKeyVault" --namespace "Microsoft.KeyVault" --resource-type "vaults" -g "myresourcegroup"
+  - summary: Obtenir les derniers États de stratégie pour une ressource imbriquée à l’aide du nom de ressource.
+    syntax: az policy state list --resource "myRule1" --namespace "Microsoft.Network" --resource-type "securityRules" --parent "networkSecurityGroups/mysecuritygroup1" -g "myresourcegroup"
+  - summary: Obtenir les derniers États de stratégie pour une définition d’ensemble de stratégies dans l’abonnement actuel.
+    syntax: az policy state list -s "fff58873-fff8-fff5-fffc-fffbe7c9d697"
+  - summary: Obtenir les derniers États de stratégie pour une définition de stratégie dans l’abonnement actuel.
+    syntax: az policy state list -d "fff69973-fff8-fff5-fffc-fffbe7c9d698"
+  - summary: Obtenir les derniers États de stratégie pour une attribution de stratégie dans l’abonnement actuel.
+    syntax: az policy state list -a "ddd8ef92e3714a5ea3d208c1"
+  - summary: Obtenir les derniers États de stratégie pour une attribution de stratégie dans le groupe de ressources spécifié dans l’abonnement actuel.
+    syntax: az policy state list -g "myRg" -a "ddd8ef92e3714a5ea3d208c1"
+  - summary: Obtenir les 5 premiers États de stratégie dans abonnement actuel, en sélectionnant un sous-ensemble de propriétés et en personnalisant le classement.
+    syntax: az policy state list --top 5 --order-by "timestamp desc, policyAssignmentName asc" --select "timestamp, resourceId, policyAssignmentId, policySetDefinitionId, policyDefinitionId"
+  - summary: Obtenir les derniers États de stratégie dans l’abonnement actuel pendant un intervalle de temps personnalisé.
+    syntax: az policy state list --from "2018-03-08T00:00:00Z" --to "2018-03-15T00:00:00Z"
+  - summary: Obtenir les derniers États de stratégie dans les résultats de filtrage d’abonnement actuels en fonction de certaines valeurs de propriété.
+    syntax: az policy state list --filter "(policyDefinitionAction eq 'deny' or policyDefinitionAction eq 'audit') and resourceLocation ne 'eastus'"
+  - summary: Obtient le nombre d’États de stratégie les plus récents dans l’abonnement actuel.
+    syntax: az policy state list --apply "aggregate($count as numberOfRecords)"
+  - summary: Obtenir les derniers États de stratégie dans les résultats de regroupement d’abonnements en fonction de certaines propriétés.
+    syntax: az policy state list --apply "groupby((policyAssignmentId, policySetDefinitionId, policyDefinitionReferenceId, policyDefinitionId), aggregate($count as numStates))"
+  - summary: Obtenir les derniers États de stratégie dans les résultats de regroupement d’abonnements en fonction de certaines propriétés.
+    syntax: az policy state list --apply "groupby((policyAssignmentName, resourceId))"
+  - summary: Obtenir les derniers États de la stratégie dans l’agrégation d’abonnement actuel résultats en fonction de certaines propriétés spécifiant plusieurs regroupements.
+    syntax: az policy state list --apply "groupby((policyAssignmentId, policySetDefinitionId, policyDefinitionReferenceId, policyDefinitionId, resourceId))/groupby((policyAssignmentId, policySetDefinitionId, policyDefinitionReferenceId, policyDefinitionId), aggregate($count as numNonCompliantResources))"
+  - summary: Obtenir les derniers États de stratégie pour une ressource, y compris les détails d’évaluation de la stratégie.
+    syntax: az policy state list --resource "myKeyVault" --namespace "Microsoft.KeyVault" --resource-type "vaults" -g "myresourcegroup" --expand PolicyEvaluationDetails
+  optionalParameters:
+  - name: --all
+    summary: Dans l’intervalle de temps spécifié, récupérez tous les États de stratégie au lieu de la dernière uniquement.
+    description: ''
+  - name: --apply
+    summary: Appliquer l’expression pour les agrégations à l’aide de la notation OData.
+    description: ''
+  - name: --expand
+    summary: Développez expression avec la notation OData.
+    description: ''
+  - name: --filter
+    summary: Expression de filtre à l’aide de la notation OData.
+    description: ''
+  - name: --from
+    summary: Horodatage au format ISO 8601 spécifiant l’heure de début de l’intervalle à interroger.
+    description: ''
+  - name: --management-group -m
+    summary: Nom du groupe d’administration.
+    description: ''
+  - name: --namespace
+    summary: Espace de noms du fournisseur (par exemple, Microsoft. Provider).
+    description: ''
+  - name: --order-by
+    summary: Classement de l’expression à l’aide de la notation OData.
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : resourceTypeA/NAMEA/resourceTypeB/nameB).'
+    description: ''
+  - name: --policy-assignment -a
+    summary: Nom de l’attribution de stratégie.
+    description: ''
+  - name: --policy-definition -d
+    summary: Nom de la définition de stratégie.
+    description: ''
+  - name: --policy-set-definition -s
+    summary: Nom de la définition de l’ensemble de stratégies.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource
+    summary: ID de ressource ou nom de ressource. Si un nom est donné, indiquez le groupe de ressources et les autres arguments d’ID de ressource pertinents.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par ex. : resourceTypeC).'
+    description: ''
+  - name: --select
+    summary: Sélectionnez expression en utilisant la notation OData.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --to
+    summary: Horodatage au format ISO 8601 spécifiant l’heure de fin de l’intervalle à interroger.
+    description: ''
+  - name: --top
+    summary: Nombre maximal d’enregistrements à retourner.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_state_summarize
+  name: az policy state summarize
+  summary: Résumez les États de conformité de la stratégie.
+  description: ''
+  syntax: >-
+    az policy state summarize [--filter]
+                              [--from]
+                              [--management-group]
+                              [--namespace]
+                              [--parent]
+                              [--policy-assignment]
+                              [--policy-definition]
+                              [--policy-set-definition]
+                              [--resource]
+                              [--resource-group]
+                              [--resource-type]
+                              [--subscription]
+                              [--to]
+                              [--top]
+  examples:
+  - summary: Récupérez le dernier récapitulatif des États de la stratégie non conforme à l’étendue de l’abonnement actuel.
+    syntax: az policy state summarize
+  - summary: Récupérez le dernier récapitulatif des États de la stratégie non conforme au niveau de l’étendue du groupe d’administration.
+    syntax: az policy state summarize -m "myMg"
+  - summary: Récupérez le dernier résumé des États de stratégie non conformes au niveau de l’étendue du groupe de ressources dans l’abonnement actuel.
+    syntax: az policy state summarize -g "myRg"
+  - summary: Obtenir le dernier récapitulatif des États de la stratégie non conforme pour une ressource à l’aide de l’ID de ressource.
+    syntax: az policy state summarize --resource "/subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup /providers/Microsoft.EventHub/namespaces/myns1/eventhubs/eh1/consumergroups/cg1"
+  - summary: Obtenir le dernier résumé des États de stratégie non conformes pour une ressource à l’aide du nom de ressource.
+    syntax: az policy state summarize --resource "myKeyVault" --namespace "Microsoft.KeyVault" --resource-type "vaults" -g "myresourcegroup"
+  - summary: Obtenir le dernier résumé des États de stratégie non conformes pour une ressource imbriquée à l’aide du nom de ressource.
+    syntax: az policy state summarize --resource "myRule1" --namespace "Microsoft.Network" --resource-type "securityRules" --parent "networkSecurityGroups/mysecuritygroup1" -g "myresourcegroup"
+  - summary: Obtenir le dernier résumé des États de stratégie non conformes pour une définition d’ensemble de stratégies dans l’abonnement actuel.
+    syntax: az policy state summarize -s "fff58873-fff8-fff5-fffc-fffbe7c9d697"
+  - summary: Obtenir le dernier récapitulatif des États de la stratégie non conforme pour une définition de stratégie dans l’abonnement actuel.
+    syntax: az policy state summarize -d "fff69973-fff8-fff5-fffc-fffbe7c9d698"
+  - summary: Obtenir le dernier récapitulatif des États de la stratégie non conforme pour une attribution de stratégie dans l’abonnement actuel.
+    syntax: az policy state summarize -a "ddd8ef92e3714a5ea3d208c1"
+  - summary: Obtenir le dernier résumé des États de stratégie non conformes pour une attribution de stratégie dans le groupe de ressources spécifié dans l’abonnement actuel.
+    syntax: az policy state summarize -g "myRg" -a "ddd8ef92e3714a5ea3d208c1"
+  - summary: Récupérer le dernier résumé des États de la stratégie non conforme dans l’abonnement actuel, ce qui limite le résumé des affectations aux 5 premiers.
+    syntax: az policy state summarize --top 5
+  - summary: Obtenir le dernier récapitulatif des États de la stratégie non conforme dans l’abonnement actuel pour un intervalle de temps personnalisé.
+    syntax: az policy state summarize --from "2018-03-08T00:00:00Z" --to "2018-03-15T00:00:00Z"
+  - summary: Obtenir le dernier résumé des États de la stratégie non conforme dans les résultats du filtrage de l’abonnement actuel en fonction de certaines valeurs de propriété.
+    syntax: az policy state summarize --filter "(policyDefinitionAction eq 'deny' or policyDefinitionAction eq 'audit') and resourceLocation ne 'eastus'"
+  optionalParameters:
+  - name: --filter
+    summary: Expression de filtre à l’aide de la notation OData.
+    description: ''
+  - name: --from
+    summary: Horodatage au format ISO 8601 spécifiant l’heure de début de l’intervalle à interroger.
+    description: ''
+  - name: --management-group -m
+    summary: Nom du groupe d’administration.
+    description: ''
+  - name: --namespace
+    summary: Espace de noms du fournisseur (par exemple, Microsoft. Provider).
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : resourceTypeA/NAMEA/resourceTypeB/nameB).'
+    description: ''
+  - name: --policy-assignment -a
+    summary: Nom de l’attribution de stratégie.
+    description: ''
+  - name: --policy-definition -d
+    summary: Nom de la définition de stratégie.
+    description: ''
+  - name: --policy-set-definition -s
+    summary: Nom de la définition de l’ensemble de stratégies.
+    description: ''
+  - name: --resource
+    summary: ID de ressource ou nom de ressource. Si un nom est donné, indiquez le groupe de ressources et les autres arguments d’ID de ressource pertinents.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par ex. : resourceTypeC).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --to
+    summary: Horodatage au format ISO 8601 spécifiant l’heure de fin de l’intervalle à interroger.
+    description: ''
+  - name: --top
+    summary: Nombre maximal d’enregistrements à retourner.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_state_trigger_scan
+  name: az policy state trigger-scan
+  summary: Déclenchez une évaluation de conformité de la stratégie pour une étendue.
+  description: ''
+  syntax: >-
+    az policy state trigger-scan [--no-wait]
+                                 [--resource-group]
+                                 [--subscription]
+  examples:
+  - summary: Déclenchez une évaluation de conformité de la stratégie au niveau de l’étendue actuelle de l’abonnement.
+    syntax: az policy state trigger-scan
+  - summary: Déclencher une évaluation de la conformité de la stratégie pour un groupe de ressources.
+    syntax: az policy state trigger-scan -g "myRg"
+  - summary: Déclencher une évaluation de la conformité de la stratégie pour un groupe de ressources et ne pas attendre la fin de son exécution.
+    syntax: az policy state trigger-scan -g "myRg" --no-wait
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+commands:
+- az_policy_state_list
+- az_policy_state_summarize
+- az_policy_state_trigger_scan
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les États de conformité de la stratégie.
+  ms.openlocfilehash: 76b9bc633ff734c4364f60c377d42733f678b519
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102969160"
