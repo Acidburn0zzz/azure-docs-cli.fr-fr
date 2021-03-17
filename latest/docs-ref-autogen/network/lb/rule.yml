@@ -1,0 +1,328 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_lb_rule
+name: az network lb rule
+summary: Gérer les règles d’équilibrage de charge.
+description: ''
+directCommands:
+- uid: az_network_lb_rule_create
+  name: az network lb rule create
+  summary: Créez une règle d’équilibrage de charge.
+  description: ''
+  syntax: >-
+    az network lb rule create --backend-port
+                              --frontend-port
+                              --lb-name
+                              --name
+                              --protocol {All, Tcp, Udp}
+                              --resource-group
+                              [--backend-pool-name]
+                              [--disable-outbound-snat {false, true}]
+                              [--enable-tcp-reset {false, true}]
+                              [--floating-ip {false, true}]
+                              [--frontend-ip-name]
+                              [--idle-timeout]
+                              [--load-distribution {Default, SourceIP, SourceIPProtocol}]
+                              [--probe-name]
+                              [--subscription]
+  examples:
+  - summary: Créer une règle d’équilibrage de charge qui affecte une configuration et un port de l’adresse IP frontale à un pool d’adresses et à un port.
+    syntax: >-
+      az network lb rule create -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol Tcp \
+          --frontend-ip-name MyFrontEndIp --frontend-port 80 \
+          --backend-pool-name MyAddressPool --backend-port 80
+  - summary: Créer une règle d’équilibrage de charge qui affecte une configuration et un port d’adresse IP frontale à un pool d’adresses et à un port avec la fonctionnalité d’adresse IP flottante.
+    syntax: >-
+      az network lb rule create -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol Tcp \
+          --frontend-ip-name MyFrontEndIp --backend-pool-name MyAddressPool  \
+          --floating-ip true --frontend-port 80 --backend-port 80
+  - summary: Créer une règle d’équilibrage de charge de ports haute disponibilité qui affecte une adresse IP et un port de serveur frontal pour utiliser toutes les adresses IP principales disponibles dans un pool sur le même port.
+    syntax: >-
+      az network lb rule create -g MyResourceGroup --lb-name MyLb -n MyHAPortsRule \
+          --protocol All --frontend-port 0 --backend-port 0 --frontend-ip-name MyFrontendIp \
+          --backend-pool-name MyAddressPool
+  requiredParameters:
+  - isRequired: true
+    name: --backend-port
+    summary: Numéro de port.
+    description: ''
+  - isRequired: true
+    name: --frontend-port
+    summary: Numéro de port.
+    description: ''
+  - isRequired: true
+    name: --lb-name
+    summary: Nom de l’équilibreur de charge.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle d’équilibrage de charge.
+    description: ''
+  - isRequired: true
+    name: --protocol
+    parameterValueGroup: All, Tcp, Udp
+    summary: Protocole de transport réseau.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --backend-pool-name
+    summary: Nom du pool d’adresses principales. S’il n’existe qu’un seul, omettez pour l’utiliser comme valeur par défaut.
+    description: ''
+  - name: --disable-outbound-snat
+    parameterValueGroup: false, true
+    summary: Configure SNAT pour les machines virtuelles du pool principal afin d’utiliser l’adresse adresse IP publique spécifiée dans le serveur frontal de la règle d’équilibrage de charge.
+    description: ''
+  - name: --enable-tcp-reset
+    parameterValueGroup: false, true
+    summary: Réception d’une réinitialisation TCP bidirectionnelle sur le délai d’inactivité du workflow TCP ou l’arrêt inattendu de la connexion. Utilisé uniquement lorsque le protocole est défini sur TCP.
+    description: ''
+  - name: --floating-ip
+    parameterValueGroup: false, true
+    summary: Activez l’adresse IP flottante.
+    description: ''
+  - name: --frontend-ip-name
+    summary: Nom de la configuration d’adresse IP frontale. S’il n’existe qu’un seul, omettez pour l’utiliser comme valeur par défaut.
+    description: ''
+  - name: --idle-timeout
+    summary: Délai d’inactivité en minutes.
+    description: ''
+  - name: --load-distribution
+    defaultValue: default
+    parameterValueGroup: Default, SourceIP, SourceIPProtocol
+    summary: Paramètres de règle d’affinité.
+    description: ''
+  - name: --probe-name
+    summary: Nom d’une sonde existante à associer à cette règle.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_rule_delete
+  name: az network lb rule delete
+  summary: Supprimer une règle d’équilibrage de charge.
+  description: ''
+  syntax: >-
+    az network lb rule delete --lb-name
+                              --name
+                              --resource-group
+                              [--subscription]
+  examples:
+  - summary: Supprimer une règle d’équilibrage de charge.
+    syntax: az network lb rule delete -g MyResourceGroup --lb-name MyLb -n MyLbRule
+  requiredParameters:
+  - isRequired: true
+    name: --lb-name
+    summary: Le nom de l’équilibreur de charge.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle d’équilibrage de charge.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_rule_list
+  name: az network lb rule list
+  summary: Répertorier les règles d’équilibrage de charge.
+  description: ''
+  syntax: >-
+    az network lb rule list --lb-name
+                            --resource-group
+                            [--query-examples]
+                            [--subscription]
+  examples:
+  - summary: Répertorier les règles d’équilibrage de charge.
+    syntax: az network lb rule list -g MyResourceGroup --lb-name MyLb -o table
+  requiredParameters:
+  - isRequired: true
+    name: --lb-name
+    summary: Le nom de l’équilibreur de charge.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_rule_show
+  name: az network lb rule show
+  summary: Obtenir les détails d’une règle d’équilibrage de charge.
+  description: ''
+  syntax: >-
+    az network lb rule show --lb-name
+                            --name
+                            --resource-group
+                            [--query-examples]
+                            [--subscription]
+  examples:
+  - summary: Obtenir les détails d’une règle d’équilibrage de charge.
+    syntax: az network lb rule show -g MyResourceGroup --lb-name MyLb -n MyLbRule
+  requiredParameters:
+  - isRequired: true
+    name: --lb-name
+    summary: Le nom de l’équilibreur de charge.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle d’équilibrage de charge.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_lb_rule_update
+  name: az network lb rule update
+  summary: Mettez à jour une règle d’équilibrage de charge.
+  description: ''
+  syntax: >-
+    az network lb rule update [--add]
+                              [--backend-pool-name]
+                              [--backend-port]
+                              [--disable-outbound-snat {false, true}]
+                              [--enable-tcp-reset {false, true}]
+                              [--floating-ip {false, true}]
+                              [--force-string]
+                              [--frontend-ip-name]
+                              [--frontend-port]
+                              [--idle-timeout]
+                              [--ids]
+                              [--lb-name]
+                              [--load-distribution {Default, SourceIP, SourceIPProtocol}]
+                              [--name]
+                              [--probe-name]
+                              [--protocol {All, Tcp, Udp}]
+                              [--remove]
+                              [--resource-group]
+                              [--set]
+                              [--subscription]
+  examples:
+  - summary: Mettez à jour une règle d’équilibrage de charge pour modifier le protocole en UDP.
+    syntax: az network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol Udp
+  - summary: Mettez à jour une règle d’équilibrage de charge pour prendre en charge les ports HA.
+    syntax: az network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule \ --protocol All --frontend-port 0 --backend-port 0
+  - summary: Mettez à jour une règle d’équilibrage de charge. généré automatiquement
+    syntax: az network lb rule update --disable-outbound-snat true --lb-name MyLb --name MyLbRule --resource-group MyResourceGroup
+  - summary: Mettez à jour une règle d’équilibrage de charge. généré automatiquement
+    syntax: az network lb rule update --idle-timeout 5 --lb-name MyLb --name MyLbRule --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --backend-pool-name
+    summary: Nom du pool d’adresses principales.
+    description: ''
+  - name: --backend-port
+    summary: Numéro de port.
+    description: ''
+  - name: --disable-outbound-snat
+    parameterValueGroup: false, true
+    summary: Configure SNAT pour les machines virtuelles du pool principal afin d’utiliser l’adresse adresse IP publique spécifiée dans le serveur frontal de la règle d’équilibrage de charge.
+    description: ''
+  - name: --enable-tcp-reset
+    parameterValueGroup: false, true
+    summary: Réception d’une réinitialisation TCP bidirectionnelle sur le délai d’inactivité du workflow TCP ou l’arrêt inattendu de la connexion. Utilisé uniquement lorsque le protocole est défini sur TCP.
+    description: ''
+  - name: --floating-ip
+    parameterValueGroup: false, true
+    summary: Activez l’adresse IP flottante.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --frontend-ip-name
+    summary: Nom de la configuration d’adresse IP frontale.
+    description: ''
+  - name: --frontend-port
+    summary: Numéro de port.
+    description: ''
+  - name: --idle-timeout
+    summary: Délai d’inactivité en minutes.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --lb-name
+    summary: Nom de l’équilibreur de charge.
+    description: ''
+  - name: --load-distribution
+    defaultValue: default
+    parameterValueGroup: Default, SourceIP, SourceIPProtocol
+    summary: Paramètres de règle d’affinité.
+    description: ''
+  - name: --name -n
+    summary: Nom de la règle d’équilibrage de charge.
+    description: ''
+  - name: --probe-name
+    summary: Nom d’une sonde existante à associer à cette règle.
+    description: ''
+  - name: --protocol
+    parameterValueGroup: All, Tcp, Udp
+    summary: Protocole de transport réseau.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_lb_rule_create
+- az_network_lb_rule_delete
+- az_network_lb_rule_list
+- az_network_lb_rule_show
+- az_network_lb_rule_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer les règles d’équilibrage de charge.
+  ms.openlocfilehash: d09dc3c13fca79353569610e5fad7533161494f3
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963735"
