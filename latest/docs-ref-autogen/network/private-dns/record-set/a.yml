@@ -1,36 +1,28 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_dns_record_set_srv
-name: az network dns record-set srv
-summary: Gérer les enregistrements SRV DNS.
+uid: az_network_private_dns_record_set_a
+name: az network private-dns record-set a
+summary: Gérer les enregistrements de DNS privé A.
 description: ''
 directCommands:
-- uid: az_network_dns_record_set_srv_add_record
-  name: az network dns record-set srv add-record
-  summary: Ajoutez un enregistrement SRV.
+- uid: az_network_private_dns_record_set_a_add_record
+  name: az network private-dns record-set a add-record
+  summary: Ajoutez un enregistrement A.
   description: ''
   syntax: >-
-    az network dns record-set srv add-record --port
-                                             --priority
-                                             --record-set-name
-                                             --resource-group
-                                             --target
-                                             --weight
-                                             --zone-name
-                                             [--if-none-match]
-                                             [--subscription]
+    az network private-dns record-set a add-record --ipv4-address
+                                                   --record-set-name
+                                                   --resource-group
+                                                   --zone-name
+                                                   [--subscription]
   examples:
-  - summary: Ajoutez un enregistrement SRV.
+  - summary: Ajoutez un enregistrement A.
     syntax: >-
-      az network dns record-set srv add-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -t webserver.mysite.com -r 8081 -p 10 -w 10
+      az network private-dns record-set a add-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -a MyIpv4Address
   requiredParameters:
   - isRequired: true
-    name: --port -r
-    summary: Port de service.
-    description: ''
-  - isRequired: true
-    name: --priority -p
-    summary: Mesure de priorité.
+    name: --ipv4-address -a
+    summary: Adresse IPV4 en notation de chaîne.
     description: ''
   - isRequired: true
     name: --record-set-name -n
@@ -41,49 +33,32 @@ directCommands:
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   - isRequired: true
-    name: --target -t
-    summary: Nom de domaine cible.
-    description: ''
-  - isRequired: true
-    name: --weight -w
-    summary: Mesure du poids.
-    description: ''
-  - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
-  - name: --if-none-match
-    summary: Créez le jeu d’enregistrements uniquement s’il n’existe pas déjà.
-    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_srv_create
-  name: az network dns record-set srv create
-  summary: Créez un jeu d’enregistrements SRV vide.
+- uid: az_network_private_dns_record_set_a_create
+  name: az network private-dns record-set a create
+  summary: Créez un jeu d’enregistrements vide.
   description: ''
   syntax: >-
-    az network dns record-set srv create --name
-                                         --resource-group
-                                         --zone-name
-                                         [--if-match]
-                                         [--if-none-match]
-                                         [--metadata]
-                                         [--subscription]
-                                         [--ttl]
+    az network private-dns record-set a create --name
+                                               --resource-group
+                                               --zone-name
+                                               [--metadata]
+                                               [--subscription]
+                                               [--ttl]
   examples:
-  - summary: Créez un jeu d’enregistrements SRV vide.
-    syntax: >-
-      az network dns record-set srv create -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet
-  - summary: Créez un jeu d’enregistrements SRV vide. généré automatiquement
-    syntax: az network dns record-set srv create --metadata owner=WebTeam --name MyRecordSet --resource-group MyResourceGroup --ttl 30 --zone-name www.mysite.com
+  - summary: Créez un jeu d’enregistrements vide.
+    syntax: az network private-dns record-set a create -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
-    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone de DNS privé.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -91,15 +66,9 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
-  - name: --if-match
-    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours remplacer le jeu d’enregistrements actuel. Spécifiez la valeur d’ETag la plus récente pour éviter que accidentellement overwritting les modifications simultanées.
-    description: ''
-  - name: --if-none-match
-    summary: Créez le jeu d’enregistrements uniquement s’il n’existe pas déjà.
-    description: ''
   - name: --metadata
     summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
     description: ''
@@ -111,24 +80,24 @@ directCommands:
     summary: Durée de vie du jeu d’enregistrements (durée de vie).
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_srv_delete
-  name: az network dns record-set srv delete
-  summary: Supprimer un jeu d’enregistrements SRV et tous les enregistrements associés.
+- uid: az_network_private_dns_record_set_a_delete
+  name: az network private-dns record-set a delete
+  summary: Supprimer un jeu d’enregistrements A et tous les enregistrements associés.
   description: ''
   syntax: >-
-    az network dns record-set srv delete --name
-                                         --resource-group
-                                         --zone-name
-                                         [--if-match]
-                                         [--subscription]
-                                         [--yes]
+    az network private-dns record-set a delete --name
+                                               --resource-group
+                                               --zone-name
+                                               [--if-match]
+                                               [--subscription]
+                                               [--yes]
   examples:
-  - summary: Supprimer un jeu d’enregistrements SRV et tous les enregistrements associés.
-    syntax: az network dns record-set srv delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Supprimer un jeu d’enregistrements A et tous les enregistrements associés.
+    syntax: az network private-dns record-set a delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
-    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone de DNS privé.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -136,11 +105,11 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
   - name: --if-match
-    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours supprimer le jeu d’enregistrements actuel. Spécifiez la dernière valeur eTag visible pour empêcher la suppression accidentelle des modifications simultanées.
+    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours supprimer le jeu d’enregistrements actuel. Spécifiez la dernière valeur ETag visible pour empêcher la suppression accidentelle des modifications simultanées.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -149,18 +118,18 @@ directCommands:
     summary: Ne pas demander de confirmation.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_srv_list
-  name: az network dns record-set srv list
-  summary: Répertorie tous les jeux d’enregistrements SRV dans une zone.
+- uid: az_network_private_dns_record_set_a_list
+  name: az network private-dns record-set a list
+  summary: Répertorie tous les jeux d’enregistrements A dans une zone.
   description: ''
   syntax: >-
-    az network dns record-set srv list --resource-group
-                                       --zone-name
-                                       [--query-examples]
-                                       [--subscription]
+    az network private-dns record-set a list --resource-group
+                                             --zone-name
+                                             [--query-examples]
+                                             [--subscription]
   examples:
-  - summary: Répertorie tous les jeux d’enregistrements SRV dans une zone.
-    syntax: az network dns record-set srv list -g MyResourceGroup -z www.mysite.com
+  - summary: Répertorie tous les jeux d’enregistrements A dans une zone.
+    syntax: az network private-dns record-set a list -g MyResourceGroup -z www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --resource-group -g
@@ -168,7 +137,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
   - name: --query-examples
@@ -178,33 +147,26 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_srv_remove_record
-  name: az network dns record-set srv remove-record
-  summary: Suppression d’un enregistrement SRV de son jeu d’enregistrements.
+- uid: az_network_private_dns_record_set_a_remove_record
+  name: az network private-dns record-set a remove-record
+  summary: Supprimer un enregistrement A de son jeu d’enregistrements.
   description: Par défaut, si le dernier enregistrement d’un jeu est supprimé, le jeu d’enregistrements est supprimé. Pour conserver le jeu d’enregistrements vide, incluez--Keep-vide-record-Set.
   syntax: >-
-    az network dns record-set srv remove-record --port
-                                                --priority
-                                                --record-set-name
-                                                --resource-group
-                                                --target
-                                                --weight
-                                                --zone-name
-                                                [--keep-empty-record-set]
-                                                [--subscription]
+    az network private-dns record-set a remove-record --ipv4-address
+                                                      --record-set-name
+                                                      --resource-group
+                                                      --zone-name
+                                                      [--keep-empty-record-set]
+                                                      [--subscription]
   examples:
-  - summary: Suppression d’un enregistrement SRV de son jeu d’enregistrements.
+  - summary: Supprimer un enregistrement A de son jeu d’enregistrements.
     syntax: >-
-      az network dns record-set srv remove-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -t webserver.mysite.com -r 8081 -p 10 -w 10
+      az network private-dns record-set a remove-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -a MyIpv4Address
   requiredParameters:
   - isRequired: true
-    name: --port -r
-    summary: Port de service.
-    description: ''
-  - isRequired: true
-    name: --priority -p
-    summary: Mesure de priorité.
+    name: --ipv4-address -a
+    summary: Adresse IPV4 en notation de chaîne.
     description: ''
   - isRequired: true
     name: --record-set-name -n
@@ -215,16 +177,8 @@ directCommands:
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   - isRequired: true
-    name: --target -t
-    summary: Nom de domaine cible.
-    description: ''
-  - isRequired: true
-    name: --weight -w
-    summary: Mesure du poids.
-    description: ''
-  - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
   - name: --keep-empty-record-set
@@ -234,23 +188,23 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_srv_show
-  name: az network dns record-set srv show
-  summary: Obtient les détails d’un jeu d’enregistrements SRV.
+- uid: az_network_private_dns_record_set_a_show
+  name: az network private-dns record-set a show
+  summary: Obtenir les détails d’un jeu d’enregistrements A.
   description: ''
   syntax: >-
-    az network dns record-set srv show --name
-                                       --resource-group
-                                       --zone-name
-                                       [--query-examples]
-                                       [--subscription]
+    az network private-dns record-set a show --name
+                                             --resource-group
+                                             --zone-name
+                                             [--query-examples]
+                                             [--subscription]
   examples:
-  - summary: Obtient les détails d’un jeu d’enregistrements SRV.
-    syntax: az network dns record-set srv show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Obtenir les détails d’un jeu d’enregistrements A.
+    syntax: az network private-dns record-set a show -g MyResourceGroup -n MyRecordSet -z www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --name -n
-    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone de DNS privé.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -258,7 +212,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
   - name: --query-examples
@@ -268,31 +222,32 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_srv_update
-  name: az network dns record-set srv update
-  summary: Mettre à jour un jeu d’enregistrements SRV.
+- uid: az_network_private_dns_record_set_a_update
+  name: az network private-dns record-set a update
+  summary: Mettre à jour un jeu d’enregistrements A.
   description: ''
   syntax: >-
-    az network dns record-set srv update --name
-                                         --resource-group
-                                         --zone-name
-                                         [--add]
-                                         [--force-string]
-                                         [--if-match]
-                                         [--if-none-match]
-                                         [--metadata]
-                                         [--remove]
-                                         [--set]
-                                         [--subscription]
+    az network private-dns record-set a update --name
+                                               --resource-group
+                                               --zone-name
+                                               [--add]
+                                               [--force-string]
+                                               [--if-match]
+                                               [--metadata]
+                                               [--remove]
+                                               [--set]
+                                               [--subscription]
   examples:
-  - summary: Mettre à jour un jeu d’enregistrements SRV.
+  - summary: Mettre à jour un jeu d’enregistrements A.
     syntax: >-
-      az network dns record-set srv update -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet --metadata owner=WebTeam
+      az network private-dns record-set a update -g MyResourceGroup -n MyRecordSet \
+          -z www.mysite.com --metadata owner=WebTeam
+  - summary: Mettre à jour un jeu d’enregistrements A. généré automatiquement
+    syntax: az network private-dns record-set a update --name MyRecordSet --resource-group MyResourceGroup --set useRemoteGateways=true --subscription MySubscription --zone-name www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --name -n
-    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone de DNS privé.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -300,7 +255,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
   - name: --add
@@ -310,10 +265,7 @@ directCommands:
     summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
     description: ''
   - name: --if-match
-    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours remplacer le jeu d’enregistrements actuel. Spécifiez la valeur d’ETag la plus récente pour éviter que accidentellement overwritting les modifications simultanées.
-    description: ''
-  - name: --if-none-match
-    summary: Défini sur « \* » pour autoriser la création d’un nouveau jeu d’enregistrements, mais pour empêcher la mise à jour d’un jeu d’enregistrements existant. Les autres valeurs sont ignorées.
+    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours remplacer le jeu d’enregistrements actuel. Spécifiez la dernière valeur ETag visible pour empêcher le remplacement accidentel des modifications simultanées.
     description: ''
   - name: --metadata
     summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
@@ -329,13 +281,13 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_dns_record_set_srv_add_record
-- az_network_dns_record_set_srv_create
-- az_network_dns_record_set_srv_delete
-- az_network_dns_record_set_srv_list
-- az_network_dns_record_set_srv_remove_record
-- az_network_dns_record_set_srv_show
-- az_network_dns_record_set_srv_update
+- az_network_private_dns_record_set_a_add_record
+- az_network_private_dns_record_set_a_create
+- az_network_private_dns_record_set_a_delete
+- az_network_private_dns_record_set_a_list
+- az_network_private_dns_record_set_a_remove_record
+- az_network_private_dns_record_set_a_show
+- az_network_private_dns_record_set_a_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -353,11 +305,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/25/2021
-  description: Gérer les enregistrements SRV DNS.
-  ms.openlocfilehash: 450053c5ec1ec36bbadb599abd82ce94f9d36e95
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.date: 02/03/2021
+  description: Gérer les enregistrements de DNS privé A.
+  ms.openlocfilehash: 333c43903088e7b77bf99532a645400c88360996
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103507629"
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102968699"

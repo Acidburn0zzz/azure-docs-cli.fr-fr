@@ -1,30 +1,33 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_dns_record_set_ptr
-name: az network dns record-set ptr
-summary: Gérer les enregistrements PTR DNS.
+uid: az_network_private_dns_record_set_mx
+name: az network private-dns record-set mx
+summary: Gérer les enregistrements DNS privé MX.
 description: ''
 directCommands:
-- uid: az_network_dns_record_set_ptr_add_record
-  name: az network dns record-set ptr add-record
-  summary: Ajoutez un enregistrement PTR.
+- uid: az_network_private_dns_record_set_mx_add_record
+  name: az network private-dns record-set mx add-record
+  summary: Ajoutez un enregistrement MX.
   description: ''
   syntax: >-
-    az network dns record-set ptr add-record --ptrdname
-                                             --record-set-name
-                                             --resource-group
-                                             --zone-name
-                                             [--if-none-match]
-                                             [--subscription]
-                                             [--ttl]
+    az network private-dns record-set mx add-record --exchange
+                                                    --preference
+                                                    --record-set-name
+                                                    --resource-group
+                                                    --zone-name
+                                                    [--subscription]
   examples:
-  - summary: Ajoutez un enregistrement PTR.
+  - summary: Ajoutez un enregistrement MX.
     syntax: >-
-      az network dns record-set ptr add-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -d another.site.com
+      az network private-dns record-set mx add-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -e mail.mysite.com -p 10
   requiredParameters:
   - isRequired: true
-    name: --ptrdname -d
-    summary: Nom de domaine cible PTR.
+    name: --exchange -e
+    summary: Métrique Exchange.
+    description: ''
+  - isRequired: true
+    name: --preference -p
+    summary: Mesure de préférence.
     description: ''
   - isRequired: true
     name: --record-set-name -n
@@ -36,43 +39,31 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
-  - name: --if-none-match
-    summary: Créez le jeu d’enregistrements uniquement s’il n’existe pas déjà.
-    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
-  - name: --ttl
-    defaultValue: "3600"
-    summary: Durée de vie du jeu d’enregistrements (durée de vie).
-    description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_ptr_create
-  name: az network dns record-set ptr create
-  summary: Créez un jeu d’enregistrements PTR vide.
+- uid: az_network_private_dns_record_set_mx_create
+  name: az network private-dns record-set mx create
+  summary: Créez un jeu d’enregistrements MX vide.
   description: ''
   syntax: >-
-    az network dns record-set ptr create --name
-                                         --resource-group
-                                         --zone-name
-                                         [--if-match]
-                                         [--if-none-match]
-                                         [--metadata]
-                                         [--subscription]
-                                         [--target-resource]
-                                         [--ttl]
+    az network private-dns record-set mx create --name
+                                                --resource-group
+                                                --zone-name
+                                                [--metadata]
+                                                [--subscription]
+                                                [--ttl]
   examples:
-  - summary: Créez un jeu d’enregistrements PTR vide.
-    syntax: az network dns record-set ptr create -g MyResourceGroup -z www.mysite.com -n MyRecordSet
-  - summary: Créez un jeu d’enregistrements PTR vide. généré automatiquement
-    syntax: az network dns record-set ptr create --name MyRecordSet --resource-group MyResourceGroup --subscription MySubscription --zone-name www.mysite.com
+  - summary: Créez un jeu d’enregistrements MX vide.
+    syntax: az network private-dns record-set mx create -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
-    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone de DNS privé.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -80,49 +71,38 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
-  - name: --if-match
-    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours remplacer le jeu d’enregistrements actuel. Spécifiez la valeur d’ETag la plus récente pour éviter que accidentellement overwritting les modifications simultanées.
-    description: ''
-  - name: --if-none-match
-    summary: Créez le jeu d’enregistrements uniquement s’il n’existe pas déjà.
-    description: ''
   - name: --metadata
     summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
-  - name: --target-resource
-    summary: ID d’une ressource Azure à partir de laquelle la valeur de ressource DNS est prise.
-    description: ''
   - name: --ttl
     defaultValue: "3600"
     summary: Durée de vie du jeu d’enregistrements (durée de vie).
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_ptr_delete
-  name: az network dns record-set ptr delete
-  summary: Supprimer un jeu d’enregistrements PTR et tous les enregistrements associés.
+- uid: az_network_private_dns_record_set_mx_delete
+  name: az network private-dns record-set mx delete
+  summary: Supprimer un jeu d’enregistrements MX et tous les enregistrements associés.
   description: ''
   syntax: >-
-    az network dns record-set ptr delete --name
-                                         --resource-group
-                                         --zone-name
-                                         [--if-match]
-                                         [--subscription]
-                                         [--yes]
+    az network private-dns record-set mx delete --name
+                                                --resource-group
+                                                --zone-name
+                                                [--if-match]
+                                                [--subscription]
+                                                [--yes]
   examples:
-  - summary: Supprimer un jeu d’enregistrements PTR et tous les enregistrements associés.
-    syntax: az network dns record-set ptr delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
-  - summary: Supprimer un jeu d’enregistrements PTR et tous les enregistrements associés. généré automatiquement
-    syntax: az network dns record-set ptr delete --name MyRecordSet --resource-group MyResourceGroup --subscription MySubscription --yes --zone-name www.mysite.com
+  - summary: Supprimer un jeu d’enregistrements MX et tous les enregistrements associés.
+    syntax: az network private-dns record-set mx delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
-    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone de DNS privé.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -130,11 +110,11 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
   - name: --if-match
-    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours supprimer le jeu d’enregistrements actuel. Spécifiez la dernière valeur eTag visible pour empêcher la suppression accidentelle des modifications simultanées.
+    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours supprimer le jeu d’enregistrements actuel. Spécifiez la dernière valeur ETag visible pour empêcher la suppression accidentelle des modifications simultanées.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -143,20 +123,18 @@ directCommands:
     summary: Ne pas demander de confirmation.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_ptr_list
-  name: az network dns record-set ptr list
-  summary: Répertorie tous les jeux d’enregistrements PTR dans une zone.
+- uid: az_network_private_dns_record_set_mx_list
+  name: az network private-dns record-set mx list
+  summary: Répertorie tous les jeux d’enregistrements MX dans une zone.
   description: ''
   syntax: >-
-    az network dns record-set ptr list --resource-group
-                                       --zone-name
-                                       [--query-examples]
-                                       [--subscription]
+    az network private-dns record-set mx list --resource-group
+                                              --zone-name
+                                              [--query-examples]
+                                              [--subscription]
   examples:
-  - summary: Répertorie tous les jeux d’enregistrements PTR dans une zone.
-    syntax: az network dns record-set ptr list -g MyResourceGroup -z www.mysite.com
-  - summary: Répertorie tous les jeux d’enregistrements PTR dans une zone. généré automatiquement
-    syntax: az network dns record-set ptr list --resource-group MyResourceGroup --subscription MySubscription --zone-name www.mysite.com
+  - summary: Répertorie tous les jeux d’enregistrements MX dans une zone.
+    syntax: az network private-dns record-set mx list -g MyResourceGroup -z www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --resource-group -g
@@ -164,7 +142,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
   - name: --query-examples
@@ -174,26 +152,31 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_ptr_remove_record
-  name: az network dns record-set ptr remove-record
-  summary: Supprimer un enregistrement PTR de son jeu d’enregistrements.
+- uid: az_network_private_dns_record_set_mx_remove_record
+  name: az network private-dns record-set mx remove-record
+  summary: Supprimer un enregistrement MX de son jeu d’enregistrements.
   description: Par défaut, si le dernier enregistrement d’un jeu est supprimé, le jeu d’enregistrements est supprimé. Pour conserver le jeu d’enregistrements vide, incluez--Keep-vide-record-Set.
   syntax: >-
-    az network dns record-set ptr remove-record --ptrdname
-                                                --record-set-name
-                                                --resource-group
-                                                --zone-name
-                                                [--keep-empty-record-set]
-                                                [--subscription]
+    az network private-dns record-set mx remove-record --exchange
+                                                       --preference
+                                                       --record-set-name
+                                                       --resource-group
+                                                       --zone-name
+                                                       [--keep-empty-record-set]
+                                                       [--subscription]
   examples:
-  - summary: Supprimer un enregistrement PTR de son jeu d’enregistrements.
+  - summary: Supprimer un enregistrement MX de son jeu d’enregistrements.
     syntax: >-
-      az network dns record-set ptr remove-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -d another.site.com
+      az network private-dns record-set mx remove-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -e mail.mysite.com -p 10
   requiredParameters:
   - isRequired: true
-    name: --ptrdname -d
-    summary: Nom de domaine cible PTR.
+    name: --exchange -e
+    summary: Métrique Exchange.
+    description: ''
+  - isRequired: true
+    name: --preference -p
+    summary: Mesure de préférence.
     description: ''
   - isRequired: true
     name: --record-set-name -n
@@ -205,7 +188,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
   - name: --keep-empty-record-set
@@ -215,23 +198,23 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_ptr_show
-  name: az network dns record-set ptr show
-  summary: Obtient les détails d’un jeu d’enregistrements PTR.
+- uid: az_network_private_dns_record_set_mx_show
+  name: az network private-dns record-set mx show
+  summary: Obtient les détails d’un jeu d’enregistrements MX.
   description: ''
   syntax: >-
-    az network dns record-set ptr show --name
-                                       --resource-group
-                                       --zone-name
-                                       [--query-examples]
-                                       [--subscription]
+    az network private-dns record-set mx show --name
+                                              --resource-group
+                                              --zone-name
+                                              [--query-examples]
+                                              [--subscription]
   examples:
-  - summary: Obtient les détails d’un jeu d’enregistrements PTR.
-    syntax: az network dns record-set ptr show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Obtient les détails d’un jeu d’enregistrements MX.
+    syntax: az network private-dns record-set mx show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
-    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone de DNS privé.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -239,7 +222,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
   - name: --query-examples
@@ -249,32 +232,30 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_ptr_update
-  name: az network dns record-set ptr update
-  summary: Mettre à jour un jeu d’enregistrements PTR.
+- uid: az_network_private_dns_record_set_mx_update
+  name: az network private-dns record-set mx update
+  summary: Mettre à jour un jeu d’enregistrements MX.
   description: ''
   syntax: >-
-    az network dns record-set ptr update --name
-                                         --resource-group
-                                         --zone-name
-                                         [--add]
-                                         [--force-string]
-                                         [--if-match]
-                                         [--if-none-match]
-                                         [--metadata]
-                                         [--remove]
-                                         [--set]
-                                         [--subscription]
-                                         [--target-resource]
+    az network private-dns record-set mx update --name
+                                                --resource-group
+                                                --zone-name
+                                                [--add]
+                                                [--force-string]
+                                                [--if-match]
+                                                [--metadata]
+                                                [--remove]
+                                                [--set]
+                                                [--subscription]
   examples:
-  - summary: Mettre à jour un jeu d’enregistrements PTR.
+  - summary: Mettre à jour un jeu d’enregistrements MX.
     syntax: >-
-      az network dns record-set ptr update -g MyResourceGroup -z www.mysite.com \
+      az network private-dns record-set mx update -g MyResourceGroup -z www.mysite.com \
           -n MyRecordSet --metadata owner=WebTeam
   requiredParameters:
   - isRequired: true
     name: --name -n
-    summary: Nom du jeu d’enregistrements, relatif au nom de la zone.
+    summary: Nom du jeu d’enregistrements, relatif au nom de la zone de DNS privé.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -282,7 +263,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --zone-name -z
-    summary: Nom de la zone.
+    summary: Nom de la zone de DNS privé.
     description: ''
   optionalParameters:
   - name: --add
@@ -292,10 +273,7 @@ directCommands:
     summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
     description: ''
   - name: --if-match
-    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours remplacer le jeu d’enregistrements actuel. Spécifiez la valeur d’ETag la plus récente pour éviter que accidentellement overwritting les modifications simultanées.
-    description: ''
-  - name: --if-none-match
-    summary: Défini sur « \* » pour autoriser la création d’un nouveau jeu d’enregistrements, mais pour empêcher la mise à jour d’un jeu d’enregistrements existant. Les autres valeurs sont ignorées.
+    summary: ETag du jeu d’enregistrements. Omettez cette valeur pour toujours remplacer le jeu d’enregistrements actuel. Spécifiez la dernière valeur ETag visible pour empêcher le remplacement accidentel des modifications simultanées.
     description: ''
   - name: --metadata
     summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
@@ -309,18 +287,15 @@ directCommands:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
-  - name: --target-resource
-    summary: ID d’une ressource Azure à partir de laquelle la valeur de ressource DNS est prise.
-    description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_dns_record_set_ptr_add_record
-- az_network_dns_record_set_ptr_create
-- az_network_dns_record_set_ptr_delete
-- az_network_dns_record_set_ptr_list
-- az_network_dns_record_set_ptr_remove_record
-- az_network_dns_record_set_ptr_show
-- az_network_dns_record_set_ptr_update
+- az_network_private_dns_record_set_mx_add_record
+- az_network_private_dns_record_set_mx_create
+- az_network_private_dns_record_set_mx_delete
+- az_network_private_dns_record_set_mx_list
+- az_network_private_dns_record_set_mx_remove_record
+- az_network_private_dns_record_set_mx_show
+- az_network_private_dns_record_set_mx_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -338,11 +313,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/25/2021
-  description: Gérer les enregistrements PTR DNS.
-  ms.openlocfilehash: af284acb443c092fcf6509133095897241d6b9b2
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.date: 02/03/2021
+  description: Gérer les enregistrements DNS privé MX.
+  ms.openlocfilehash: d8d4d515abc22535fd028c85266a783e06f2a522
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103526737"
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102968688"
