@@ -19,7 +19,9 @@ directCommands:
   - summary: Ajouter une intégration de réseau virtuel régional à un functionapp
     syntax: az functionapp vnet-integration add -g MyResourceGroup -n MyFunctionapp --vnet MyVnetName --subnet MySubnetName -s [slot]
   - summary: Ajouter une intégration de réseau virtuel régional à un functionapp à l’aide de l’ID de ressource de réseau virtuel
-    syntax: az functionapp vnet-integration add -g MyResourceGroup -n MyFunctionapp --vnet '/subscriptions/[sub id]/resourceGroups/[rg]/providers/Microsoft.Network/virtualNetworks/[virtual network name]' --subnet MySubnetName -s [slot]
+    syntax: az functionapp vnet-integration add -g MyResourceGroup -n MyFunctionapp --vnet '/subscriptions/[sub id]/resourceGroups/[MyResourceGroup]/providers/Microsoft.Network/virtualNetworks/[MyVnetName]' --subnet MySubnetName -s [slot]
+  - summary: Ajouter une intégration de réseau virtuel régional à un functionapp à l’aide de l’ID de ressource de sous-réseau
+    syntax: az functionapp vnet-integration add -g MyResourceGroup -n MyFunctionapp --vnet MyVnetName --subnet '/subscriptions/[sub id]/resourceGroups/[MyResourceGroup]/providers/Microsoft.Network/virtualNetworks/[MyVnetName]/subnets/MySubnetName' -s [slot]
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -31,7 +33,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --subnet
-    summary: Nom du sous-réseau.
+    summary: Nom ou ID de ressource du sous-réseau.
     description: ''
   - isRequired: true
     name: --vnet
@@ -128,11 +130,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 01/19/2021
+  ms.date: 02/26/2021
   description: Méthodes qui répertorient, ajoutent et suppriment des intégrations de réseaux virtuels à partir d’un functionapp.
-  ms.openlocfilehash: 63c2e2384a6050107c9f30c95caf7227e9e4bd24
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: f76ef4758e59a67e4ef1db48c586b52f59453b76
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102970292"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103524833"

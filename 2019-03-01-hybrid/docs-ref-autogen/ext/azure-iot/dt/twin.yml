@@ -19,11 +19,14 @@ directCommands:
     az dt twin create --dt-name
                       --dtmi
                       --twin-id
+                      [--if-none-match]
                       [--properties]
                       [--resource-group]
   examples:
   - summary: Créez une représentation numérique à partir d’un modèle existant (créé au préalable).
     syntax: az dt twin create -n {instance_or_hostname} --dtmi "dtmi:com:example:Room;1" --twin-id {twin_id}
+  - summary: Créez une représentation numérique à partir d’un modèle existant (créé au préalable) avec la balise If-None-Match.
+    syntax: az dt twin create -n {instance_or_hostname} --dtmi "dtmi:com:example:Room;1" --twin-id {twin_id} --if-none-match
   - summary: Créez une représentation numérique à partir d’un modèle existant (créé au préalable). Instanciez avec des valeurs de propriété.
     syntax: "az dt twin create -n {instance_or_hostname} --dtmi \"dtmi:com:example:DeviceInformation;1\" --twin-id {twin_id} --properties '{\"manufacturer\": \"Microsoft\"}'"
   - summary: Créer une représentation numérique avec un composant à partir de modèles existants (créés auparavant). Instanciez le composant avec les propriétés minimales.
@@ -56,6 +59,9 @@ directCommands:
     summary: ID de représentation numérique.
     description: ''
   optionalParameters:
+  - name: --if-none-match
+    summary: Indique que l’opération de création doit échouer si une représentation existante portant le même ID existe.
+    description: ''
   - name: --properties -p
     summary: Valeurs de propriété initiales pour l’instanciation d’une représentation numérique ou de composants associés. Fournissez un chemin de fichier ou un JSON en ligne. Les propriétés sont requises pour les représentations qui contiennent des composants. au minimum, vous devez fournir un objet $metadata vide pour chaque composant.
     description: ''
@@ -69,10 +75,13 @@ directCommands:
   syntax: >-
     az dt twin delete --dt-name
                       --twin-id
+                      [--etag]
                       [--resource-group]
   examples:
   - summary: Supprimer une représentation numérique par son ID.
     syntax: az dt twin delete -n {instance_or_hostname} --twin-id {twin_id}
+  - summary: Supprimez un numéro de représentation numérique à l’aide de l’ETag.
+    syntax: az dt twin delete -n {instance_or_hostname} --twin-id {twin_id} --etag {etag}
   requiredParameters:
   - isRequired: true
     name: --dt-name --dtn -n
@@ -83,6 +92,9 @@ directCommands:
     summary: ID de représentation numérique.
     description: ''
   optionalParameters:
+  - name: --etag -e
+    summary: Valeur de balise d’entité. La commande est réussie si l’ETag correspond à l’ETag actuel pour la ressource.
+    description: ''
   - name: --resource-group -g
     summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
@@ -149,10 +161,13 @@ directCommands:
     az dt twin update --dt-name
                       --json-patch
                       --twin-id
+                      [--etag]
                       [--resource-group]
   examples:
   - summary: Mise à jour d’une spécification de patch numérique par le biais de JSON.
     syntax: "az dt twin update -n {instance_or_hostname} --twin-id {twin_id} --json-patch '{\"op\":\"replace\", \"path\":\"/Temperature\", \"value\": 20.5}'"
+  - summary: Mettez à jour un fil numérique via une spécification de correctif JSON et utilisez ETag.
+    syntax: "az dt twin update -n {instance_or_hostname} --twin-id {twin_id} --etag {etag} --json-patch '{\"op\":\"replace\", \"path\":\"/Temperature\", \"value\": 20.5}'"
   - summary: Mise à jour d’une spécification de patch numérique par le biais de JSON.
     syntax: >-
       az dt twin update -n {instance_or_hostname} --twin-id {twin_id} --json-patch '[
@@ -175,6 +190,9 @@ directCommands:
     summary: ID de représentation numérique.
     description: ''
   optionalParameters:
+  - name: --etag -e
+    summary: Valeur de balise d’entité. La commande est réussie si l’ETag correspond à l’ETag actuel pour la ressource.
+    description: ''
   - name: --resource-group -g
     summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
@@ -212,9 +230,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérer et configurer les représentations numériques d’une instance représentations numérique.
-  ms.openlocfilehash: 581e3b64c425905646c7f0cb4c07bdbd4f71bb16
-  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.openlocfilehash: 1fb1a2d57ad9c6bb70be1a5168bda02d01adfe1c
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 12/16/2020
-  ms.locfileid: "102822626"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103517625"
