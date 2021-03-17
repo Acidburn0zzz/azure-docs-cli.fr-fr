@@ -1,0 +1,115 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_application_gateway_waf_config
+name: az network application-gateway waf-config
+summary: Configurez les paramètres d’un pare-feu d’applications Web.
+description: Ces commandes s’appliquent uniquement aux passerelles d’application avec le type de référence WAF. Pour en savoir plus, visitez <a href="https://docs.microsoft.com/azure/application-gateway/application-gateway-web-application-firewall-cli">https://docs.microsoft.com/azure/application-gateway/application-gateway-web-application-firewall-cli</a> .
+directCommands:
+- uid: az_network_application_gateway_waf_config_set
+  name: az network application-gateway waf-config set
+  summary: Mettez à jour la configuration du pare-feu d’une application Web.
+  description: Cette commande s’applique uniquement aux passerelles d’application avec le type de référence WAF. Pour en savoir plus, visitez <a href="https://docs.microsoft.com/azure/application-gateway/application-gateway-web-application-firewall-cli">https://docs.microsoft.com/azure/application-gateway/application-gateway-web-application-firewall-cli</a> .
+  syntax: >-
+    az network application-gateway waf-config set --enabled {false, true}
+                                                  [--gateway-name]
+                                                  [--ids]
+                                                  [--no-wait]
+                                                  [--resource-group]
+                                                  [--subscription]
+  examples:
+  - summary: Configurer WAF sur une passerelle Application Gateway en mode de détection avec les valeurs par défaut
+    syntax: >-
+      az network application-gateway waf-config set -g MyResourceGroup --gateway-name MyAppGateway \
+          --enabled true --firewall-mode Detection --rule-set-version 3.0
+  - summary: Désactivez les règles de validation de l’analyse du corps de la demande et de l’injection SQL.
+    syntax: >-
+      az network application-gateway waf-config set -g MyResourceGroup --gateway-name MyAppGateway \
+          --enabled true --rule-set-type OWASP --rule-set-version 3.0 \
+          --disabled-rule-groups REQUEST-942-APPLICATION-ATTACK-SQLI \
+          --disabled-rules 920130 920140
+  - summary: Configurez WAF sur une passerelle Application Gateway avec des exclusions.
+    syntax: >-
+      az network application-gateway waf-config set -g MyResourceGroup --gateway-name MyAppGateway \
+          --enabled true --firewall-mode Detection --rule-set-version 3.0 \
+          --exclusion "RequestHeaderNames StartsWith x-header" \
+          --exclusion "RequestArgNames Equals IgnoreThis"
+  requiredParameters:
+  - isRequired: true
+    name: --enabled
+    parameterValueGroup: false, true
+    summary: Spécifiez si le pare-feu d’applications est activé.
+    description: ''
+  optionalParameters:
+  - name: --gateway-name
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_waf_config_show
+  name: az network application-gateway waf-config show
+  summary: Obtenir la configuration du pare-feu d’une application Web.
+  description: ''
+  syntax: >-
+    az network application-gateway waf-config show [--gateway-name]
+                                                   [--ids]
+                                                   [--query-examples]
+                                                   [--resource-group]
+                                                   [--subscription]
+  examples:
+  - summary: Obtenir la configuration du pare-feu d’une application Web.
+    syntax: az network application-gateway waf-config show -g MyResourceGroup --gateway-name MyAppGateway
+  optionalParameters:
+  - name: --gateway-name
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_application_gateway_waf_config_set
+- az_network_application_gateway_waf_config_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Ces commandes s’appliquent uniquement aux passerelles d’application avec le type de référence WAF. Pour en savoir plus, visitez <a href="https://docs.microsoft.com/azure/application-gateway/application-gateway-web-application-firewall-cli">https://docs.microsoft.com/azure/application-gateway/application-gateway-web-application-firewall-cli</a> .
+  ms.openlocfilehash: 6e315c9610fcb2f31a07fc4f49d2e67ac2d6d8eb
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963564"

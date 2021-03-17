@@ -1,0 +1,273 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_application_gateway_rule
+name: az network application-gateway rule
+summary: Évaluer les informations de sonde et définir des règles de routage.
+description: Pour plus d’informations, consultez <a href="https://docs.microsoft.com/azure/application-gateway/application-gateway-customize-waf-rules-cli">https://docs.microsoft.com/azure/application-gateway/application-gateway-customize-waf-rules-cli</a> .
+directCommands:
+- uid: az_network_application_gateway_rule_create
+  name: az network application-gateway rule create
+  summary: Créez une règle.
+  description: Les règles sont exécutées dans l’ordre dans lequel elles sont créées.
+  syntax: >-
+    az network application-gateway rule create --gateway-name
+                                               --name
+                                               --resource-group
+                                               [--address-pool]
+                                               [--http-listener]
+                                               [--http-settings]
+                                               [--no-wait]
+                                               [--priority]
+                                               [--rule-type]
+                                               [--subscription]
+                                               [--url-path-map]
+  examples:
+  - summary: Créez une règle de base.
+    syntax: >-
+      az network application-gateway rule create -g MyResourceGroup --gateway-name MyAppGateway \
+          -n MyRule --http-listener MyBackendListener --rule-type Basic --address-pool MyAddressPool --http-settings MyHttpSettings
+  requiredParameters:
+  - isRequired: true
+    name: --gateway-name
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de routage des demandes.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --address-pool
+    summary: Nom ou ID du pool d’adresses principal. S’il n’existe qu’un seul, omettez pour l’utiliser comme valeur par défaut.
+    description: ''
+  - name: --http-listener
+    summary: Nom ou ID de l’écouteur HTTP. S’il n’existe qu’un seul, omettez pour l’utiliser comme valeur par défaut.
+    description: ''
+  - name: --http-settings
+    summary: Nom ou ID des paramètres HTTP. S’il n’existe qu’un seul, omettez pour l’utiliser comme valeur par défaut.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --priority
+    summary: Priorité de la règle de routage des demandes. Plage comprise entre 1 et 2000.
+    description: ''
+  - name: --rule-type
+    defaultValue: Basic
+    summary: Type de règle (de base, PathBasedRouting).
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --url-path-map
+    summary: Nom ou ID du mappage de chemin d’accès d’URL.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_rule_delete
+  name: az network application-gateway rule delete
+  summary: Supprimer une règle.
+  description: ''
+  syntax: >-
+    az network application-gateway rule delete [--gateway-name]
+                                               [--ids]
+                                               [--name]
+                                               [--no-wait]
+                                               [--resource-group]
+                                               [--subscription]
+  examples:
+  - summary: Supprimer une règle.
+    syntax: az network application-gateway rule delete -g MyResourceGroup --gateway-name MyAppGateway -n MyRule
+  optionalParameters:
+  - name: --gateway-name
+    summary: Nom de la passerelle Application Gateway.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la règle de routage des demandes.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_rule_list
+  name: az network application-gateway rule list
+  summary: Répertorier les règles.
+  description: ''
+  syntax: >-
+    az network application-gateway rule list --gateway-name
+                                             --resource-group
+                                             [--query-examples]
+                                             [--subscription]
+  examples:
+  - summary: Répertorier les règles.
+    syntax: az network application-gateway rule list -g MyResourceGroup --gateway-name MyAppGateway
+  requiredParameters:
+  - isRequired: true
+    name: --gateway-name
+    summary: Nom de la passerelle Application Gateway.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_rule_show
+  name: az network application-gateway rule show
+  summary: Obtenir les détails d’une règle.
+  description: ''
+  syntax: >-
+    az network application-gateway rule show [--gateway-name]
+                                             [--ids]
+                                             [--name]
+                                             [--query-examples]
+                                             [--resource-group]
+                                             [--subscription]
+  examples:
+  - summary: Obtenir les détails d’une règle.
+    syntax: az network application-gateway rule show -g MyResourceGroup --gateway-name MyAppGateway -n MyRule
+  optionalParameters:
+  - name: --gateway-name
+    summary: Nom de la passerelle Application Gateway.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la règle de routage des demandes.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_rule_update
+  name: az network application-gateway rule update
+  summary: Mettre à jour une règle.
+  description: ''
+  syntax: >-
+    az network application-gateway rule update [--add]
+                                               [--address-pool]
+                                               [--force-string]
+                                               [--gateway-name]
+                                               [--http-listener]
+                                               [--http-settings]
+                                               [--ids]
+                                               [--name]
+                                               [--no-wait]
+                                               [--priority]
+                                               [--remove]
+                                               [--resource-group]
+                                               [--rule-type]
+                                               [--set]
+                                               [--subscription]
+                                               [--url-path-map]
+  examples:
+  - summary: Mettre à jour une règle utilisez un nouvel écouteur HTTP.
+    syntax: >-
+      az network application-gateway rule update -g MyResourceGroup --gateway-name MyAppGateway \
+          -n MyRule --http-listener MyNewBackendListener
+  - summary: Mettre à jour une règle. généré automatiquement
+    syntax: az network application-gateway rule update --address-pool MyAddressPool --gateway-name MyAppGateway --name MyRule --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --address-pool
+    summary: Nom ou ID du pool d’adresses principal.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --gateway-name
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --http-listener
+    summary: Nom ou ID de l’écouteur HTTP.
+    description: ''
+  - name: --http-settings
+    summary: Nom ou ID des paramètres HTTP du serveur principal.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la règle de routage des demandes.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --priority
+    summary: Priorité de la règle de routage des demandes. Plage comprise entre 1 et 2000.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --rule-type
+    summary: Type de règle (de base, PathBasedRouting).
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --url-path-map
+    summary: Nom ou ID du mappage de chemin d’accès d’URL.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_application_gateway_rule_create
+- az_network_application_gateway_rule_delete
+- az_network_application_gateway_rule_list
+- az_network_application_gateway_rule_show
+- az_network_application_gateway_rule_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Pour plus d’informations, consultez <a href="https://docs.microsoft.com/azure/application-gateway/application-gateway-customize-waf-rules-cli">https://docs.microsoft.com/azure/application-gateway/application-gateway-customize-waf-rules-cli</a> .
+  ms.openlocfilehash: e2ac04bc8c727ba73e34891707a88003a4a5c9ae
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963567"

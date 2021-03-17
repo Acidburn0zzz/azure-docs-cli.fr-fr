@@ -1,0 +1,242 @@
+### YamlMime:AzureCLIGroup
+uid: az_sql_server_ms_support_audit_policy
+name: az sql server ms-support audit-policy
+summary: Gérer la stratégie d’audit des opérations de support Microsoft d’un serveur.
+description: ''
+directCommands:
+- uid: az_sql_server_ms_support_audit_policy_show
+  name: az sql server ms-support audit-policy show
+  summary: Affiche la stratégie d’audit des opérations du support Microsoft du serveur.
+  description: ''
+  syntax: >-
+    az sql server ms-support audit-policy show [--ids]
+                                               [--name]
+                                               [--query-examples]
+                                               [--resource-group]
+                                               [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_server_ms_support_audit_policy_update
+  name: az sql server ms-support audit-policy update
+  summary: Mettez à jour la stratégie d’audit des opérations du support Microsoft d’un serveur.
+  description: Si la stratégie d’exploitation du support Microsoft est activée, `--storage-account` ou si `--storage-endpoint` et `--storage-key` doivent être spécifiés.
+  syntax: >-
+    az sql server ms-support audit-policy update [--add]
+                                                 [--blob-storage-target-state {Disabled, Enabled}]
+                                                 [--eh]
+                                                 [--ehari]
+                                                 [--ehts {Disabled, Enabled}]
+                                                 [--force-string]
+                                                 [--ids]
+                                                 [--lats {Disabled, Enabled}]
+                                                 [--lawri]
+                                                 [--name]
+                                                 [--no-wait]
+                                                 [--remove]
+                                                 [--resource-group]
+                                                 [--set]
+                                                 [--state {Disabled, Enabled}]
+                                                 [--storage-account]
+                                                 [--storage-endpoint]
+                                                 [--storage-key]
+                                                 [--subscription]
+  examples:
+  - summary: Activez le nom du compte de stockage.
+    syntax: >-
+      az sql server ms-support audit-policy update -g mygroup -n myserver --state Enabled \
+          --bsts Enabled --storage-account mystorage
+  - summary: Activez par le point de terminaison de stockage et la clé.
+    syntax: >-
+      az sql server ms-support audit-policy update -g mygroup -n myserver --state Enabled \
+          --bsts Enabled --storage-endpoint https://mystorage.blob.core.windows.net \
+          --storage-key MYKEY==
+  - summary: Désactivez une stratégie d’audit des opérations du support Microsoft.
+    syntax: az sql server ms-support audit-policy update -g mygroup -n myserver --state Disabled
+  - summary: Désactivez un stockage d’objets BLOB stratégie d’audit des opérations de support Microsoft.
+    syntax: az sql server ms-support audit-policy update -g mygroup -n myserver --bsts Disabled
+  - summary: Activez une stratégie d’audit des opérations de support Microsoft log Analytics.
+    syntax: >-
+      az sql server ms-support audit-policy update -g mygroup -n myserver --state Enabled \
+          --lats Enabled --lawri myworkspaceresourceid
+  - summary: Désactivez une stratégie d’audit des opérations de support Microsoft log Analytics.
+    syntax: >-
+      az sql server ms-support audit-policy update -g mygroup -n myserver
+          --lats Disabled
+  - summary: Activez un Event Hub stratégie d’audit des opérations du support Microsoft.
+    syntax: >-
+      az sql server ms-support audit-policy update -g mygroup -n myserver --state Enabled \
+          --event-hub-target-state Enabled \
+          --event-hub-authorization-rule-id eventhubauthorizationruleid \
+          --event-hub eventhubname
+  - summary: Activez un Event Hub stratégie d’audit des opérations de support Microsoft pour les Event Hub par défaut.
+    syntax: >-
+      az sql server ms-support audit-policy update -g mygroup -n myserver --state Enabled \
+          --event-hub-target-state Enabled \
+          --event-hub-authorization-rule-id eventhubauthorizationruleid
+  - summary: Désactivez une Event Hub stratégie d’audit des opérations du support Microsoft.
+    syntax: >-
+      az sql server ms-support audit-policy update -g mygroup -n myserver
+          --event-hub-target-state Disabled
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --blob-storage-target-state --bsts
+    parameterValueGroup: Disabled, Enabled
+    summary: Indiquez si le stockage d’objets BLOB est une destination pour les enregistrements d’audit.
+    description: ''
+  - name: --eh --event-hub
+    summary: Nom du hub d’événements. Si aucune valeur n’est spécifiée lors de la fourniture d’event_hub_authorization_rule_id, la Event Hub par défaut est sélectionnée.
+    description: ''
+  - name: --ehari --event-hub-authorization-rule-id
+    summary: ID de ressource pour la règle d’autorisation Event Hub.
+    description: ''
+  - name: --ehts --event-hub-target-state
+    parameterValueGroup: Disabled, Enabled
+    summary: Indiquez si Event Hub est une destination pour les enregistrements d’audit.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --lats --log-analytics-target-state
+    parameterValueGroup: Disabled, Enabled
+    summary: Indiquez si log Analytics est une destination pour les enregistrements d’audit.
+    description: ''
+  - name: --lawri --log-analytics-workspace-resource-id
+    summary: ID de l’espace de travail (ID de ressource d’un espace de travail Log Analytics) pour un espace de travail Log Analytics auquel vous souhaitez envoyer des journaux d’audit.
+    description: ''
+  - name: --name -n
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --state
+    parameterValueGroup: Disabled, Enabled
+    summary: État de la stratégie d’audit.
+    description: ''
+  - name: --storage-account
+    summary: Nom du compte de stockage.
+    description: ''
+  - name: --storage-endpoint
+    summary: Point de terminaison du compte de stockage.
+    description: ''
+  - name: --storage-key
+    summary: Clé d’accès pour le compte de stockage.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_server_ms_support_audit_policy_wait
+  name: az sql server ms-support audit-policy wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de la stratégie d’audit des opérations du support Microsoft du serveur soit remplie.
+  description: ''
+  syntax: >-
+    az sql server ms-support audit-policy wait [--created]
+                                               [--custom]
+                                               [--deleted]
+                                               [--exists]
+                                               [--ids]
+                                               [--interval]
+                                               [--name]
+                                               [--resource-group]
+                                               [--subscription]
+                                               [--timeout]
+                                               [--updated]
+  examples:
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’elle détermine que la stratégie d’audit des opérations du support Microsoft du serveur existe
+    syntax: az sql server ms-support audit-policy wait -g mygroup -n myserver --exists
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --name -n
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+commands:
+- az_sql_server_ms_support_audit_policy_show
+- az_sql_server_ms_support_audit_policy_update
+- az_sql_server_ms_support_audit_policy_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/28/2021
+  description: Gérer la stratégie d’audit des opérations de support Microsoft d’un serveur.
+  ms.openlocfilehash: 1afe187da5f08bd33c8a1b08c50e111ea19a4f2b
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963489"
