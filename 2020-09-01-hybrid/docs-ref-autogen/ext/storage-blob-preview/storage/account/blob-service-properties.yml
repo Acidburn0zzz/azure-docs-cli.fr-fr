@@ -4,7 +4,7 @@ name: az storage account blob-service-properties
 extensionInformation: >-
   > [!Note]
 
-  > Cette référence fait partie de l’extension **Storage-BLOB-Preview** pour Azure CLI et requiert la version 2.14.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ storage account BLOB-service-Properties** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+  > Cette référence fait partie de l’extension **Storage-BLOB-Preview** pour Azure CLI et requiert la version 2.16.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ storage account BLOB-service-Properties** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
 summary: Gérez les propriétés du service BLOB d’un compte de stockage.
 description: ''
 directCommands:
@@ -34,8 +34,10 @@ directCommands:
   syntax: >-
     az storage account blob-service-properties update --account-name
                                                       [--add]
+                                                      [--change-feed-days]
                                                       [--container-days]
                                                       [--container-retention {false, true}]
+                                                      [--default-service-version]
                                                       [--delete-retention-days]
                                                       [--enable-change-feed {false, true}]
                                                       [--enable-delete-retention {false, true}]
@@ -48,14 +50,18 @@ directCommands:
                                                       [--restore-days]
                                                       [--set]
   examples:
-  - summary: Activez le flux de modification pour le compte de stockage « mystorageaccount » dans le groupe de ressources « MyResourceGroup ».
-    syntax: az storage account blob-service-properties update --enable-change-feed true -n mystorageaccount -g MyResourceGroup
-  - summary: Activez supprimer la stratégie de rétention et définissez les jours de rétention de suppression sur 100 pour le compte de stockage « mystorageaccount » dans le groupe de ressources « MyResourceGroup ».
-    syntax: az storage account blob-service-properties update --enable-delete-retention true --delete-retention-days 100 -n mystorageaccount -g MyResourceGroup
-  - summary: Activez le contrôle de version pour le compte de stockage « mystorageaccount » dans le groupe de ressources « MyResourceGroup ».
-    syntax: az storage account blob-service-properties update --enable-versioning -n mystorageaccount -g MyResourceGroup
+  - summary: Activer le flux de modification et définir les jours de rétention du flux de modification sur infini pour le compte de stockage « mystorageaccount » dans le groupe de ressources « myresourcegroup ».
+    syntax: az storage account blob-service-properties update --enable-change-feed true -n mystorageaccount -g myresourcegroup
+  - summary: Activez le flux de modification et définissez les jours de rétention du flux de modification sur 100 pour le compte de stockage « mystorageaccount » dans le groupe de ressources « myresourcegroup ».
+    syntax: az storage account blob-service-properties update --enable-change-feed --change-feed-days 100 -n mystorageaccount -g myresourcegroup
+  - summary: Désactivez le flux de modification pour le compte de stockage « mystorageaccount » dans le groupe de ressources « myresourcegroup ».
+    syntax: az storage account blob-service-properties update --enable-change-feed false -n mystorageaccount -g myresourcegroup
+  - summary: Activez supprimer la stratégie de rétention et définissez les jours de rétention de suppression sur 100 pour le compte de stockage « mystorageaccount » dans le groupe de ressources « myresourcegroup ».
+    syntax: az storage account blob-service-properties update --enable-delete-retention true --delete-retention-days 100 -n mystorageaccount -g myresourcegroup
+  - summary: Activez le contrôle de version pour le compte de stockage « mystorageaccount » dans le groupe de ressources « myresourcegroup ».
+    syntax: az storage account blob-service-properties update --enable-versioning -n mystorageaccount -g myresourcegroup
   - summary: Définissez la version par défaut pour la demande entrante pour le compte de stockage « mystorageaccount ».
-    syntax: az storage account blob-service-properties update --default-service-version 2020-04-08 -n mystorageaccount -g MyResourceGroup
+    syntax: az storage account blob-service-properties update --default-service-version 2020-04-08 -n mystorageaccount -g myresourcegroup
   requiredParameters:
   - isRequired: true
     name: --account-name -n
@@ -65,12 +71,18 @@ directCommands:
   - name: --add
     summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
     description: ''
+  - name: --change-feed-days --change-feed-retention-days
+    summary: Indiquez la durée de rétention offrir en jours. La valeur minimale est 1 jour et la valeur maximale est de 146000 jours (400 ans). Une valeur null indique une rétention infinie du flux de modification. (Utilisez `--enable-change-feed` sans `--change-feed-days` pour indiquer null).
+    description: ''
   - name: --container-days --container-delete-retention-days
     summary: Indiquez le nombre de jours pendant lesquels le conteneur supprimé doit être conservé. La valeur minimale spécifiée peut être 1 et la valeur maximale peut être 365.
     description: ''
   - name: --container-retention --enable-container-delete-retention
     parameterValueGroup: false, true
     summary: Activez la stratégie de rétention de suppression de conteneur pour la suppression réversible de conteneur lorsqu’elle est définie sur true. Désactiver la stratégie de rétention de suppression de conteneur lorsque la valeur est false.
+    description: ''
+  - name: --default-service-version -d
+    summary: Indiquez la version par défaut à utiliser pour les demandes au service BLOB si la version d’une demande entrante n’est pas spécifiée.
     description: ''
   - name: --delete-retention-days
     summary: Indiquez le nombre de jours pendant lesquels l’objet BLOB supprimé doit être conservé. La valeur doit être comprise dans la plage [1 365]. Elle doit être fournie lorsque la `--enable-delete-retention` propriété a la valeur true.
@@ -130,9 +142,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérez les propriétés du service BLOB d’un compte de stockage.
-  ms.openlocfilehash: 79547db9ed1c58eed053bf445b800514a48162c0
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: 29d6ebb57301b9ab548d7e8667f7117452926d40
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102965385"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103517387"

@@ -1,39 +1,22 @@
 ### YamlMime:AzureCLIGroup
-uid: az_storage_blob_metadata
-name: az storage blob metadata
-summary: Gérer les métadonnées d’objet BLOB.
+uid: az_storage_blob_service_properties
+name: az storage blob service-properties
+summary: Gérer les propriétés du service blob de stockage.
 description: ''
 directCommands:
-- uid: az_storage_blob_metadata_show
-  name: az storage blob metadata show
-  summary: Retourne toutes les métadonnées définies par l’utilisateur pour l’objet BLOB ou l’instantané spécifié.
+- uid: az_storage_blob_service_properties_show
+  name: az storage blob service-properties show
+  summary: Obtient les propriétés du service BLOB d’un compte de stockage, y compris Azure Storage Analytics.
   description: ''
   syntax: >-
-    az storage blob metadata show --container-name
-                                  --name
-                                  [--account-key]
-                                  [--account-name]
-                                  [--auth-mode {key, login}]
-                                  [--connection-string]
-                                  [--if-match]
-                                  [--if-modified-since]
-                                  [--if-none-match]
-                                  [--if-unmodified-since]
-                                  [--lease-id]
-                                  [--query-examples]
-                                  [--sas-token]
-                                  [--snapshot]
-                                  [--subscription]
-                                  [--timeout]
-  requiredParameters:
-  - isRequired: true
-    name: --container-name -c
-    summary: Nom du conteneur.
-    description: ''
-  - isRequired: true
-    name: --name -n
-    summary: Nom de l’objet BLOB.
-    description: ''
+    az storage blob service-properties show [--account-key]
+                                            [--account-name]
+                                            [--auth-mode {key, login}]
+                                            [--connection-string]
+                                            [--query-examples]
+                                            [--sas-token]
+                                            [--subscription]
+                                            [--timeout]
   optionalParameters:
   - name: --account-key
     summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
@@ -48,29 +31,11 @@ directCommands:
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
     description: ''
-  - name: --if-match
-    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
-    description: ''
-  - name: --if-modified-since
-    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
-    description: ''
-  - name: --if-none-match
-    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
-    description: ''
-  - name: --if-unmodified-since
-    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
-    description: ''
-  - name: --lease-id
-    summary: Obligatoire si l'objet blob a un bail actif.
-    description: ''
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
     description: ''
   - name: --sas-token
     summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
-    description: ''
-  - name: --snapshot
-    summary: Le paramètre snapshot est une valeur opaque qui, lorsqu’elle est présente, spécifie l’instantané d’objet blob à récupérer.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -79,41 +44,42 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
-- uid: az_storage_blob_metadata_update
-  name: az storage blob metadata update
-  summary: Définit les métadonnées définies par l’utilisateur pour l’objet blob spécifié en tant qu’une ou plusieurs paires nom-valeur.
+- uid: az_storage_blob_service_properties_update
+  name: az storage blob service-properties update
+  summary: Mettez à jour les propriétés du service blob de stockage.
   description: ''
   syntax: >-
-    az storage blob metadata update --container-name
-                                    --name
-                                    [--account-key]
-                                    [--account-name]
-                                    [--auth-mode {key, login}]
-                                    [--connection-string]
-                                    [--if-match]
-                                    [--if-modified-since]
-                                    [--if-none-match]
-                                    [--if-unmodified-since]
-                                    [--lease-id]
-                                    [--metadata]
-                                    [--sas-token]
-                                    [--subscription]
-                                    [--timeout]
-  requiredParameters:
-  - isRequired: true
-    name: --container-name -c
-    summary: Nom du conteneur.
-    description: ''
-  - isRequired: true
-    name: --name -n
-    summary: Nom de l’objet BLOB.
-    description: ''
+    az storage blob service-properties update [--404-document]
+                                              [--account-key]
+                                              [--account-name]
+                                              [--add]
+                                              [--auth-mode {key, login}]
+                                              [--connection-string]
+                                              [--delete-retention {false, true}]
+                                              [--delete-retention-period]
+                                              [--force-string]
+                                              [--index-document]
+                                              [--remove]
+                                              [--sas-token]
+                                              [--set]
+                                              [--static-website {false, true}]
+                                              [--subscription]
+                                              [--timeout]
+  examples:
+  - summary: Mettez à jour les propriétés du service blob de stockage. généré automatiquement
+    syntax: az storage blob service-properties update --404-document error.html --account-name mystorageccount --account-key 00000000 --index-document index.html --static-website true
   optionalParameters:
+  - name: --404-document
+    summary: Représente le chemin d’accès au document d’erreur qui doit s’afficher lorsqu’une erreur 404 est émise, en d’autres termes, lorsqu’un navigateur demande une page qui n’existe pas.
+    description: ''
   - name: --account-key
     summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
     description: ''
   - name: --account-name
     summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
     description: ''
   - name: --auth-mode
     parameterValueGroup: key, login
@@ -122,26 +88,31 @@ directCommands:
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
     description: ''
-  - name: --if-match
-    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+  - name: --delete-retention
+    parameterValueGroup: false, true
+    summary: Active la suppression réversible.
     description: ''
-  - name: --if-modified-since
-    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+  - name: --delete-retention-period
+    summary: Nombre de jours pendant lesquels l’objet BLOB supprimé de manière réversible sera conservé. Doit se trouver dans la plage [1 365].
     description: ''
-  - name: --if-none-match
-    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
     description: ''
-  - name: --if-unmodified-since
-    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+  - name: --index-document
+    summary: Représente le nom du document d’index. Il s’agit généralement de « index.html ».
     description: ''
-  - name: --lease-id
-    summary: Obligatoire si l'objet blob a un bail actif.
-    description: ''
-  - name: --metadata
-    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
     description: ''
   - name: --sas-token
     summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --static-website
+    parameterValueGroup: false, true
+    summary: Active le site Web statique.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -151,8 +122,11 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
 commands:
-- az_storage_blob_metadata_show
-- az_storage_blob_metadata_update
+- az_storage_blob_service_properties_delete_policy
+- az_storage_blob_service_properties_delete_policy_show
+- az_storage_blob_service_properties_delete_policy_update
+- az_storage_blob_service_properties_show
+- az_storage_blob_service_properties_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -170,11 +144,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/26/2021
-  description: Gérer les métadonnées d’objet BLOB.
-  ms.openlocfilehash: 7c82b5db57740b953ff873d32e6d8cf9d5996336
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.date: 02/02/2021
+  description: Gérer les propriétés du service blob de stockage.
+  ms.openlocfilehash: d9a0fabb978ba4e8ccacc5ae7745d08a8f35a716
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103538467"
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102966120"
