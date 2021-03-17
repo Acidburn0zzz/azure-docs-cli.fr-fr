@@ -1,0 +1,321 @@
+### YamlMime:AzureCLIGroup
+uid: ext_notification-hub_az_notification_hub
+name: az notification-hub
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de **Hub de notification** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ notification-Hub** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérez Notification Hubs.
+description: ''
+directCommands:
+- uid: ext_notification-hub_az_notification_hub_check_availability
+  name: az notification-hub check-availability
+  summary: Vérifiez la disponibilité du notificationHub donné dans un espace de noms.
+  description: ''
+  syntax: >-
+    az notification-hub check-availability --name
+                                           --namespace-name
+                                           --resource-group
+  examples:
+  - summary: Vérifier la disponibilité du nom de notificationHub donné
+    syntax: >-
+      az notification-hub check-availability --resource-group MyResourceGroup \
+
+      --namespace-name "locp-newns" --name my-hub
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Hub de notification à vérifier.
+    description: ''
+  - isRequired: true
+    name: --namespace-name
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_notification-hub_az_notification_hub_create
+  name: az notification-hub create
+  summary: Créez un NotificationHub dans un espace de noms.
+  description: ''
+  syntax: >-
+    az notification-hub create --location
+                               --name
+                               --namespace-name
+                               --resource-group
+                               [--registration-ttl]
+                               [--tags]
+  examples:
+  - summary: Création d’un concentrateur de notification
+    syntax: >-
+      az notification-hub create --resource-group MyResourceGroup --namespace-name my-namespace \
+
+      --name my-hub --location "South Central US"
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Hub de notification.
+    description: ''
+  - isRequired: true
+    name: --namespace-name
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --registration-ttl
+    summary: RegistrationTtl du NotificationHub créé.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_notification-hub_az_notification_hub_delete
+  name: az notification-hub delete
+  summary: Supprimer un concentrateur de notification associé à un espace de noms.
+  description: ''
+  syntax: >-
+    az notification-hub delete --name
+                               --namespace-name
+                               --resource-group
+                               [--yes]
+  examples:
+  - summary: Supprimer un concentrateur de notification
+    syntax: >-
+      az notification-hub delete --resource-group MyResourceGroup --namespace-name my-namespace \
+
+      --name my-hub
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Hub de notification.
+    description: ''
+  - isRequired: true
+    name: --namespace-name
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_notification-hub_az_notification_hub_list
+  name: az notification-hub list
+  summary: Répertorie les hubs de notification associés à un espace de noms.
+  description: ''
+  syntax: >-
+    az notification-hub list --namespace-name
+                             --resource-group
+  examples:
+  - summary: Répertorier les hubs de notification
+    syntax: az notification-hub list --resource-group MyResourceGroup --namespace-name my-namespace
+  requiredParameters:
+  - isRequired: true
+    name: --namespace-name
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_notification-hub_az_notification_hub_show
+  name: az notification-hub show
+  summary: Affichez les informations du Hub de notification.
+  description: ''
+  syntax: >-
+    az notification-hub show --name
+                             --namespace-name
+                             --resource-group
+  examples:
+  - summary: Afficher les informations du Hub de notification
+    syntax: >-
+      az notification-hub show --resource-group MyResourceGroup --namespace-name my-namespace \
+
+      --name my-hub
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Hub de notification.
+    description: ''
+  - isRequired: true
+    name: --namespace-name
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_notification-hub_az_notification_hub_test_send
+  name: az notification-hub test-send
+  summary: Le test envoie une notification push.
+  description: ''
+  syntax: >-
+    az notification-hub test-send --namespace-name
+                                  --notification-format {apple, baidu, gcm, template, windows, windowsphone}
+                                  --notification-hub-name
+                                  --resource-group
+                                  [--message]
+                                  [--payload]
+                                  [--tag]
+                                  [--title]
+  examples:
+  - summary: tester l’envoi d’une notification avec le corps du message
+    syntax: >-
+      az notification-hub test-send --resource-group MyResourceGroup --namespace-name \
+
+      my-namespace --notification-hub-name my-hub --notification-format gcm \
+
+      --message "test notification"
+  - summary: tester l’envoi d’une notification à partir d’un fichier
+    syntax: >-
+      az notification-hub test-send --resource-group MyResourceGroup --namespace-name \
+
+      my-namespace --notification-hub-name my-hub --notification-format gcm \
+
+      --payload @path/to/file
+  - summary: tester la notification d’envoi avec une chaîne JSON
+    syntax: >-
+      az notification-hub test-send --resource-group MyResourceGroup --namespace-name \
+
+      my-namespace --notification-hub-name my-hub --notification-format gcm \
+
+      --payload "{\"data\":{\"message\":\"test notification\"}}"
+  requiredParameters:
+  - isRequired: true
+    name: --namespace-name
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --notification-format
+    parameterValueGroup: apple, baidu, gcm, template, windows, windowsphone
+    summary: Format du message de notification.
+    description: ''
+  - isRequired: true
+    name: --notification-hub-name
+    summary: Nom du Hub de notification.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --message
+    summary: Corps du message à envoyer. Si aucun élément n’est présent, la charge utile sera ignorée.
+    description: ''
+  - name: --payload
+    summary: Charge utile pour le message au format JSON.
+    description: ''
+  - name: --tag
+    summary: Vous pouvez envoyer des notifications de test à un ensemble spécifique d’inscriptions à l’aide de cette option. Laissez ce champ vide si vous souhaitez envoyer des notifications push à 10 inscriptions aléatoires sur la plateforme sélectionnée.
+    description: ''
+  - name: --title
+    summary: Titre de la notification.
+    description: ''
+- uid: ext_notification-hub_az_notification_hub_update
+  name: az notification-hub update
+  summary: Mettre à jour un concentrateur de notification dans un espace de noms.
+  description: ''
+  syntax: >-
+    az notification-hub update --name
+                               --namespace-name
+                               --resource-group
+                               [--tags]
+  examples:
+  - summary: Mettre à jour le hub de notification
+    syntax: >-
+      az notification-hub update --resource-group MyResourceGroup --namespace-name \
+
+      my-namespace --name "sdk-notificationHubs-8708"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Hub de notification.
+    description: ''
+  - isRequired: true
+    name: --namespace-name
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+commands:
+- ext_notification-hub_az_notification_hub_authorization_rule
+- ext_notification-hub_az_notification_hub_authorization_rule_create
+- ext_notification-hub_az_notification_hub_authorization_rule_delete
+- ext_notification-hub_az_notification_hub_authorization_rule_list
+- ext_notification-hub_az_notification_hub_authorization_rule_list_keys
+- ext_notification-hub_az_notification_hub_authorization_rule_regenerate_keys
+- ext_notification-hub_az_notification_hub_authorization_rule_show
+- ext_notification-hub_az_notification_hub_check_availability
+- ext_notification-hub_az_notification_hub_create
+- ext_notification-hub_az_notification_hub_credential
+- ext_notification-hub_az_notification_hub_credential_adm
+- ext_notification-hub_az_notification_hub_credential_adm_update
+- ext_notification-hub_az_notification_hub_credential_apns
+- ext_notification-hub_az_notification_hub_credential_apns_update
+- ext_notification-hub_az_notification_hub_credential_baidu
+- ext_notification-hub_az_notification_hub_credential_baidu_update
+- ext_notification-hub_az_notification_hub_credential_gcm
+- ext_notification-hub_az_notification_hub_credential_gcm_update
+- ext_notification-hub_az_notification_hub_credential_list
+- ext_notification-hub_az_notification_hub_credential_mpns
+- ext_notification-hub_az_notification_hub_credential_mpns_update
+- ext_notification-hub_az_notification_hub_credential_wns
+- ext_notification-hub_az_notification_hub_credential_wns_update
+- ext_notification-hub_az_notification_hub_delete
+- ext_notification-hub_az_notification_hub_list
+- ext_notification-hub_az_notification_hub_namespace
+- ext_notification-hub_az_notification_hub_namespace_authorization_rule
+- ext_notification-hub_az_notification_hub_namespace_authorization_rule_create
+- ext_notification-hub_az_notification_hub_namespace_authorization_rule_delete
+- ext_notification-hub_az_notification_hub_namespace_authorization_rule_list
+- ext_notification-hub_az_notification_hub_namespace_authorization_rule_list_keys
+- ext_notification-hub_az_notification_hub_namespace_authorization_rule_regenerate_keys
+- ext_notification-hub_az_notification_hub_namespace_authorization_rule_show
+- ext_notification-hub_az_notification_hub_namespace_check_availability
+- ext_notification-hub_az_notification_hub_namespace_create
+- ext_notification-hub_az_notification_hub_namespace_delete
+- ext_notification-hub_az_notification_hub_namespace_list
+- ext_notification-hub_az_notification_hub_namespace_show
+- ext_notification-hub_az_notification_hub_namespace_update
+- ext_notification-hub_az_notification_hub_namespace_wait
+- ext_notification-hub_az_notification_hub_show
+- ext_notification-hub_az_notification_hub_test_send
+- ext_notification-hub_az_notification_hub_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérez Notification Hubs.
+  ms.openlocfilehash: 35868310da7807112605f5daae734437fc8b7e16
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102837520"
