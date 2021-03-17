@@ -1,0 +1,342 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_queue
+name: az storage queue
+summary: Gérer les files d’attente de stockage.
+description: ''
+directCommands:
+- uid: az_storage_queue_create
+  name: az storage queue create
+  summary: Crée une file d’attente sous le compte donné.
+  description: ''
+  syntax: >-
+    az storage queue create --name
+                            [--account-key]
+                            [--account-name]
+                            [--auth-mode {key, login}]
+                            [--connection-string]
+                            [--fail-on-exist]
+                            [--metadata]
+                            [--sas-token]
+                            [--subscription]
+                            [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: le nom de la file d’attente ;
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --fail-on-exist
+    summary: Spécifie s’il faut lever une exception si la file d’attente existe déjà.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_queue_delete
+  name: az storage queue delete
+  summary: Supprime la file d’attente spécifiée et tous les messages qu’elle contient.
+  description: Lorsqu’une file d’attente est supprimée avec succès, elle est immédiatement marquée pour suppression et n’est plus accessible aux clients. La file d’attente est ensuite supprimée de la service de File d’attente lors de la garbage collection.  Notez que la suppression d’une file d’attente est susceptible de prendre au moins 40 secondes.  Si une opération est tentée sur la file d’attente pendant sa suppression, une AzureConflictHttpError est levée.
+  syntax: >-
+    az storage queue delete --name
+                            [--account-key]
+                            [--account-name]
+                            [--auth-mode {key, login}]
+                            [--connection-string]
+                            [--fail-not-exist]
+                            [--sas-token]
+                            [--subscription]
+                            [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: le nom de la file d’attente ;
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --fail-not-exist
+    summary: Spécifie s’il faut lever une exception si la file d’attente n’existe pas.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_queue_exists
+  name: az storage queue exists
+  summary: Retourne une valeur booléenne indiquant si la file d’attente existe.
+  description: ''
+  syntax: >-
+    az storage queue exists --name
+                            [--account-key]
+                            [--account-name]
+                            [--auth-mode {key, login}]
+                            [--connection-string]
+                            [--sas-token]
+                            [--subscription]
+                            [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: le nom de la file d’attente ;
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_queue_generate_sas
+  name: az storage queue generate-sas
+  summary: Génère une signature d’accès partagé pour la file d’attente.
+  description: Utilisez la signature retournée avec le paramètre sas_token de QueueService.
+  syntax: >-
+    az storage queue generate-sas --name
+                                  [--account-key]
+                                  [--account-name]
+                                  [--auth-mode {key, login}]
+                                  [--connection-string]
+                                  [--expiry]
+                                  [--https-only]
+                                  [--ip]
+                                  [--permissions]
+                                  [--policy-name]
+                                  [--sas-token]
+                                  [--start]
+                                  [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: le nom de la file d’attente ;
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --expiry
+    summary: Spécifie la date/heure UTC (Y-m-d’T’H :M’Z') à laquelle la signature d’accès partagé n’est plus valide. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur.
+    description: ''
+  - name: --https-only
+    summary: Autorise uniquement les demandes effectuées avec le protocole HTTPs. En cas d’omission, les demandes du protocole HTTP et HTTPs sont autorisées.
+    description: ''
+  - name: --ip
+    summary: Spécifie l’adresse IP ou la plage d’adresses IP à partir de laquelle accepter les demandes. Prend uniquement en charge les adresses de style IPv4.
+    description: ''
+  - name: --permissions
+    summary: 'Autorisations accordées par la signature d’accès partagé. Valeurs autorisées : (a) JJ (p) tionnaire (r) IRE (u) mise à l’une. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur. Peut être combiné.'
+    description: ''
+  - name: --policy-name
+    summary: Nom d’une stratégie d’accès stockée dans la liste de contrôle d’accès du partage.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --start
+    summary: Spécifie la date/heure UTC (Y-m-d’T’H :M’Z') à laquelle la signature d’accès partagé devient valide. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur. La valeur par défaut est l’heure de la demande.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_queue_list
+  name: az storage queue list
+  summary: Répertorier les files d’attente dans un compte de stockage.
+  description: ''
+  syntax: >-
+    az storage queue list [--account-key]
+                          [--account-name]
+                          [--auth-mode {key, login}]
+                          [--connection-string]
+                          [--include-metadata]
+                          [--marker]
+                          [--num-results]
+                          [--prefix]
+                          [--query-examples]
+                          [--sas-token]
+                          [--subscription]
+                          [--timeout]
+  examples:
+  - summary: Répertorier les files d’attente dont les noms commencent par « myprefix » dans le compte de stockage « mystorageaccount » (nom du compte)
+    syntax: az storage queue list --prefix myprefix --account-name mystorageaccount
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --include-metadata
+    summary: Spécifie que les métadonnées de conteneur doivent être retournées dans la réponse.
+    description: ''
+  - name: --marker
+    summary: Jeton de continuation opaque. Cette valeur peut être récupérée à partir du champ next_marker d’un objet générateur précédent si num_results a été spécifié et que le générateur a terminé l’énumération des résultats. S’il est spécifié, ce générateur commencera à retourner des résultats à partir du point où le générateur précédent s’est arrêté.
+    description: ''
+  - name: --num-results
+    summary: Nombre maximal de files d’attente à retourner.
+    description: ''
+  - name: --prefix
+    summary: Filtre les résultats afin de ne renvoyer que les files d'attente dont les noms commencent par le préfixe spécifié.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_queue_stats
+  name: az storage queue stats
+  summary: Récupère des statistiques relatives à la réplication pour le service de File d'attente.
+  description: Elle est disponible uniquement lorsque la réplication géo-redondante avec accès en lecture est activée pour le compte de stockage.  Avec la réplication géo-redondante, le stockage Azure maintient vos données durables dans deux emplacements. Dans les deux emplacements, le stockage Azure conserve constamment plusieurs réplicas sains de vos données. L’emplacement où vous lisez, créez, mettez à jour ou supprimez des données est l’emplacement du compte de stockage principal.  L’emplacement principal existe dans la région que vous choisissez au moment où vous créez un compte via le portail Azure Classic de gestion Azure, par exemple, nord du Centre des États-Unis. L’emplacement dans lequel vos données sont répliquées est l’emplacement secondaire. L’emplacement secondaire est automatiquement déterminé en fonction de l’emplacement de la base de données primaire. Il se trouve dans un deuxième centre de données qui réside dans la même région que l’emplacement principal. L’accès en lecture seule est disponible à partir de l’emplacement secondaire, si la réplication géo-redondante avec accès en lecture est activée pour votre compte de stockage.
+  syntax: >-
+    az storage queue stats [--account-key]
+                           [--account-name]
+                           [--auth-mode {key, login}]
+                           [--connection-string]
+                           [--sas-token]
+                           [--subscription]
+                           [--timeout]
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_queue_create
+- az_storage_queue_delete
+- az_storage_queue_exists
+- az_storage_queue_generate_sas
+- az_storage_queue_list
+- az_storage_queue_metadata
+- az_storage_queue_metadata_show
+- az_storage_queue_metadata_update
+- az_storage_queue_policy
+- az_storage_queue_policy_create
+- az_storage_queue_policy_delete
+- az_storage_queue_policy_list
+- az_storage_queue_policy_show
+- az_storage_queue_policy_update
+- az_storage_queue_stats
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/26/2021
+  description: Gérer les files d’attente de stockage.
+  ms.openlocfilehash: b6808a75c7ed019dc3e30d7acfc210b37daa035e
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103506048"
