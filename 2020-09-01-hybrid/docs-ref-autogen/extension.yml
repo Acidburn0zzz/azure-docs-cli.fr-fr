@@ -1,0 +1,193 @@
+### YamlMime:AzureCLIGroup
+uid: az_extension
+name: az extension
+summary: Gérez et mettez à jour les extensions CLI.
+description: ''
+directCommands:
+- uid: az_extension_add
+  name: az extension add
+  summary: Ajouter une extension.
+  description: Pour en savoir plus sur l’installation automatique des extensions, visitez <a href="https://aka.ms/AzExtDynamicInstall">https://aka.ms/AzExtDynamicInstall</a> .
+  syntax: >-
+    az extension add [--name]
+                     [--pip-extra-index-urls]
+                     [--pip-proxy]
+                     [--source]
+                     [--system]
+                     [--upgrade]
+                     [--version]
+                     [--yes]
+  examples:
+  - summary: Ajouter l’extension par nom
+    syntax: az extension add --name anextension
+  - summary: Ajouter une extension à partir d’une URL
+    syntax: az extension add --source https://contoso.com/anextension-0.0.1-py2.py3-none-any.whl
+  - summary: Ajouter une extension à partir du disque local
+    syntax: az extension add --source ~/anextension-0.0.1-py2.py3-none-any.whl
+  - summary: Ajouter une extension à partir du disque local et utiliser le proxy PIP pour les dépendances
+    syntax: az extension add --source ~/anextension-0.0.1-py2.py3-none-any.whl --pip-proxy https://user:pass@proxy.server:8080
+  - summary: Ajouter une extension au répertoire système
+    syntax: az extension add --name anextension --system
+  - summary: Ajouter une version spécifique de l’extension
+    syntax: az extension add --name anextension --version 1.0.0
+  - summary: Mettre à niveau l’extension si elle est déjà installée
+    syntax: az extension add --upgrade --name anextension
+  optionalParameters:
+  - name: --name -n
+    summary: Nom de l’extension.
+    description: ''
+  - name: --pip-extra-index-urls
+    summary: Liste séparée par des espaces d’URL supplémentaires d’index de package à utiliser, qui doit pointer vers un référentiel conforme à PEP 503 (l’API de référentiel simple) ou un répertoire local du même format.
+    description: ''
+  - name: --pip-proxy
+    summary: 'Proxy pour PIP à utiliser pour les dépendances d’extension sous la forme [utilisateur : passwd@] proxy. serveur : port.'
+    description: ''
+  - name: --source -s
+    summary: FilePath ou URL d’une extension.
+    description: ''
+  - name: --system
+    summary: Utilisez un répertoire système pour l’extension.
+    description: Le chemin d’accès par défaut est le dossier Azure-CLI-extensions sous l’interface CLI exécutant le chemin d’accès lib de l’environnement Python, configurable par la variable d’environnement AZURE_EXTENSION_SYS_DIR. Sur Windows, vous devrez peut-être ouvrir votre shell en tant qu’administrateur pour exécuter avec l’autorisation appropriée.
+  - name: --upgrade
+    summary: Mettez à jour l’extension si elle est déjà installée, sinon Installez simplement l’extension.
+    description: ''
+  - name: --version
+    defaultValue: latest
+    summary: Version spécifique d’une extension.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/extension/_help.py
+- uid: az_extension_list
+  name: az extension list
+  summary: Répertorie les extensions installées.
+  description: ''
+  syntax: az extension list [--query-examples]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/extension/_help.py
+- uid: az_extension_list_available
+  name: az extension list-available
+  summary: Répertorier les extensions disponibles publiquement.
+  description: ''
+  syntax: az extension list-available [--show-details]
+  examples:
+  - summary: Répertorier toutes les extensions disponibles publiquement
+    syntax: az extension list-available
+  - summary: Répertorier les détails d’une extension particulière
+    syntax: az extension list-available --show-details --query anextension
+  optionalParameters:
+  - name: --show-details -d
+    summary: Affichez les données brutes de l’index d’extension.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/extension/_help.py
+- uid: az_extension_list_versions
+  name: az extension list-versions
+  summary: Répertorier les versions disponibles pour une extension.
+  description: ''
+  syntax: az extension list-versions --name
+  examples:
+  - summary: Répertorier les versions disponibles pour une extension
+    syntax: az extension list-versions --name anextension
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’extension.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/extension/_help.py
+- uid: az_extension_remove
+  name: az extension remove
+  summary: Supprimer une extension.
+  description: ''
+  syntax: az extension remove --name
+  examples:
+  - summary: Supprimer une extension. généré automatiquement
+    syntax: az extension remove --name MyExtension
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’extension.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/extension/_help.py
+- uid: az_extension_show
+  name: az extension show
+  summary: Affichez une extension.
+  description: ''
+  syntax: >-
+    az extension show --name
+                      [--query-examples]
+  examples:
+  - summary: Affichez une extension. généré automatiquement
+    syntax: az extension show --name MyExtension
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’extension.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/extension/_help.py
+- uid: az_extension_update
+  name: az extension update
+  summary: Mettez à jour une extension.
+  description: ''
+  syntax: >-
+    az extension update --name
+                        [--pip-extra-index-urls]
+                        [--pip-proxy]
+  examples:
+  - summary: Mettre à jour une extension par nom
+    syntax: az extension update --name anextension
+  - summary: Mettre à jour une extension par nom et utiliser le proxy PIP pour les dépendances
+    syntax: az extension update --name anextension --pip-proxy https://user:pass@proxy.server:8080
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’extension.
+    description: ''
+  optionalParameters:
+  - name: --pip-extra-index-urls
+    summary: Liste séparée par des espaces d’URL supplémentaires d’index de package à utiliser, qui doit pointer vers un référentiel conforme à PEP 503 (l’API de référentiel simple) ou un répertoire local du même format.
+    description: ''
+  - name: --pip-proxy
+    summary: 'Proxy pour PIP à utiliser pour les dépendances d’extension sous la forme [utilisateur : passwd@] proxy. serveur : port.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/extension/_help.py
+commands:
+- az_extension_add
+- az_extension_list
+- az_extension_list_available
+- az_extension_list_versions
+- az_extension_remove
+- az_extension_show
+- az_extension_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 09/16/2020
+  description: Gérez et mettez à jour les extensions CLI.
+  ms.openlocfilehash: 1d2e9a2dee72ffce12284ed287b9247563fdcc03
+  ms.sourcegitcommit: f379fad9c4e873cd2ca68b5494b6c240a5016b5b
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/09/2020
+  ms.locfileid: "102821408"

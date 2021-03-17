@@ -1,0 +1,162 @@
+### YamlMime:AzureCLIGroup
+uid: az_vmss_run_command
+name: az vmss run-command
+summary: Gérer les commandes exécuter sur un groupe de machines virtuelles identiques.
+description: Pour plus d’informations, consultez <a href="https://docs.microsoft.com/azure/virtual-machines/windows/run-command">https://docs.microsoft.com/azure/virtual-machines/windows/run-command</a> ou <a href="https://docs.microsoft.com/azure/virtual-machines/linux/run-command">https://docs.microsoft.com/azure/virtual-machines/linux/run-command</a> .
+directCommands:
+- uid: az_vmss_run_command_invoke
+  name: az vmss run-command invoke
+  summary: Exécuter une commande exécuter spécifique sur une instance de groupe de machines virtuelles identiques.
+  description: '`az vmss run-command show` retourne des informations utiles sur chaque exécution-commande. Découvrez exécuter l’ID de commande via `az vmss run-command list` .'
+  syntax: >-
+    az vmss run-command invoke --command-id
+                               [--ids]
+                               [--instance-id]
+                               [--name]
+                               [--parameters]
+                               [--resource-group]
+                               [--scripts]
+                               [--subscription]
+  examples:
+  - summary: Installez Nginx sur une instance VMSS.
+    syntax: az vmss run-command invoke -g MyResourceGroup -n MyVMSS --command-id RunShellScript \ --instance-id 0 --scripts "sudo apt-get update && sudo apt-get install -y nginx"
+  - summary: Appelez une commande Run-Command avec des paramètres sur une instance VMSS.
+    syntax: az vmss run-command invoke -g MyResourceGroup -n MyVMSS --command-id RunShellScript \ --instance-id 4 --scripts 'echo $1 $2' --parameters hello world
+  - summary: 'Appelez la commande sur toutes les instances VMSS à l’aide des ID de ressource d’instance VMSS. Remarque : « @- » se développe en stdin.'
+    syntax: >-
+      az vmss list-instances -n MyVMSS -g my-rg --query "[].id" --output tsv | \
+
+      az vmss run-command invoke --scripts 'echo $1 $2' --parameters hello world  \
+          --command-id RunShellScript --ids @-
+  - summary: Exécutez le script PowerShell sur une instance Windows VMSS avec des paramètres. Script fourni en ligne. Méfiez-vous des guillemets simples dans CMD.exe.
+    syntax: >-
+      az vmss run-command invoke  --command-id RunPowerShellScript --name win-vm -g my-resource-group \
+          --scripts 'param([string]$arg1,[string]$arg2)' \
+          'Write-Host This is a sample script with parameters $arg1 and $arg2' \
+          --parameters 'arg1=somefoo' 'arg2=somebar' --instance-id 2
+  - summary: Exécutez le script PowerShell sur une instance Windows VMSS avec des paramètres. Script fourni à partir du fichier.
+    syntax: >-
+      # script.ps1
+
+      #   param(
+
+      #       [string]$arg1,
+
+      #       [string]$arg2
+
+      #   )
+
+      #   Write-Host This is a sample script with parameters $arg1 and $arg2
+
+
+      az vmss run-command invoke  --command-id RunPowerShellScript --name win-vm -g my-resource-group \
+          --scripts @script.ps1 --parameters "arg1=somefoo" "arg2=somebar" --instance-id 5
+  requiredParameters:
+  - isRequired: true
+    name: --command-id
+    summary: ID de la commande.
+    description: ''
+    valueFrom: az vmss run-command list
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --instance-id
+    summary: ID d’instance de machine virtuelle du groupe identique.
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe identique. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vmss=<name>` .
+    description: ''
+  - name: --parameters
+    summary: Paramètres séparés par des espaces au format « [name =] valeur ».
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --scripts
+    summary: Lignes de script séparées par des espaces. Utilisez @ {file} pour charger le script à partir d’un fichier.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vmss_run_command_list
+  name: az vmss run-command list
+  summary: Répertorie toutes les commandes d’exécution disponibles pour un abonnement dans un emplacement.
+  description: ''
+  syntax: >-
+    az vmss run-command list --location
+                             [--query-examples]
+                             [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vmss_run_command_show
+  name: az vmss run-command show
+  summary: Obtient une commande d’exécution spécifique pour un abonnement dans un emplacement.
+  description: ''
+  syntax: >-
+    az vmss run-command show --command-id
+                             --location
+                             [--query-examples]
+                             [--subscription]
+  examples:
+  - summary: Obtient une commande d’exécution spécifique pour un abonnement dans un emplacement. généré automatiquement
+    syntax: az vmss run-command show --command-id RunShellScript --location westus2 --subscription mysubscription
+  requiredParameters:
+  - isRequired: true
+    name: --command-id
+    summary: ID de la commande.
+    description: ''
+    valueFrom: az vmss run-command list
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+commands:
+- az_vmss_run_command_invoke
+- az_vmss_run_command_list
+- az_vmss_run_command_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/05/2021
+  description: Pour plus d’informations, consultez <a href="https://docs.microsoft.com/azure/virtual-machines/windows/run-command">https://docs.microsoft.com/azure/virtual-machines/windows/run-command</a> ou <a href="https://docs.microsoft.com/azure/virtual-machines/linux/run-command">https://docs.microsoft.com/azure/virtual-machines/linux/run-command</a> .
+  ms.openlocfilehash: 4fe17eed5824d275cb4fcbef0781aae6e6759d65
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102969056"

@@ -1,0 +1,258 @@
+### YamlMime:AzureCLIGroup
+uid: az_cdn_origin_group
+name: az cdn origin-group
+summary: Gérer les groupes d’origine d’un point de terminaison.
+description: ''
+directCommands:
+- uid: az_cdn_origin_group_create
+  name: az cdn origin-group create
+  summary: Créez un groupe d’origine.
+  description: ''
+  syntax: >-
+    az cdn origin-group create --endpoint-name
+                               --name
+                               --profile-name
+                               --resource-group
+                               [--origins]
+                               [--probe-interval]
+                               [--probe-method {GET, HEAD}]
+                               [--probe-path]
+                               [--probe-protocol {HTTP, HTTPS}]
+                               [--subscription]
+  examples:
+  - summary: Créer un groupe d’origine
+    syntax: az cdn origin-group create -g group --profile-name profile --endpoint-name endpoint -n origin-group --origins origin-0,origin-1
+  - summary: Créer un groupe d’origine avec une sonde d’intégrité personnalisée
+    syntax: az cdn origin-group create -g group --profile-name profile --endpoint-name endpoint -n origin-group --origins origin-0,origin-1 --probe-path /healthz --probe-interval 90 --probe-protocol HTTPS --probe-method GET
+  requiredParameters:
+  - isRequired: true
+    name: --endpoint-name
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe d’origine.
+    description: ''
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --origins
+    summary: La charge d’origines est équilibrée par ce groupe d’origine, sous la forme d’une liste séparée par des virgules de noms d’origine ou d’ID de ressource d’origine.
+    description: ''
+  - name: --probe-interval
+    defaultValue: "240"
+    summary: Fréquence d’exécution des sondes d’intégrité en secondes.
+    description: ''
+  - name: --probe-method
+    defaultValue: HEAD
+    parameterValueGroup: GET, HEAD
+    summary: Méthode de demande à utiliser pour les sondes d’intégrité.
+    description: ''
+  - name: --probe-path
+    summary: Chemin d’accès relatif à l’origine utilisée pour déterminer l’intégrité de l’origine.
+    description: ''
+  - name: --probe-protocol
+    defaultValue: HTTP
+    parameterValueGroup: HTTP, HTTPS
+    summary: Protocole à utiliser pour les sondes d’intégrité.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_origin_group_delete
+  name: az cdn origin-group delete
+  summary: Supprime un groupe d’origine existant au sein d’un point de terminaison.
+  description: ''
+  syntax: >-
+    az cdn origin-group delete [--endpoint-name]
+                               [--ids]
+                               [--name]
+                               [--profile-name]
+                               [--resource-group]
+                               [--subscription]
+                               [--yes]
+  optionalParameters:
+  - name: --endpoint-name
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe d’origine.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_origin_group_list
+  name: az cdn origin-group list
+  summary: Répertorie tous les groupes d’origine existants au sein d’un point de terminaison.
+  description: ''
+  syntax: >-
+    az cdn origin-group list --endpoint-name
+                             --profile-name
+                             --resource-group
+                             [--query-examples]
+                             [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --endpoint-name
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_origin_group_show
+  name: az cdn origin-group show
+  summary: Obtient un groupe d’origine existant au sein d’un point de terminaison.
+  description: ''
+  syntax: >-
+    az cdn origin-group show [--endpoint-name]
+                             [--ids]
+                             [--name]
+                             [--profile-name]
+                             [--query-examples]
+                             [--resource-group]
+                             [--subscription]
+  optionalParameters:
+  - name: --endpoint-name
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe d’origine.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_origin_group_update
+  name: az cdn origin-group update
+  summary: Mettre à jour un groupe d’origine.
+  description: ''
+  syntax: >-
+    az cdn origin-group update [--endpoint-name]
+                               [--ids]
+                               [--name]
+                               [--origins]
+                               [--probe-interval]
+                               [--probe-method {GET, HEAD}]
+                               [--probe-path]
+                               [--probe-protocol {HTTP, HTTPS}]
+                               [--profile-name]
+                               [--resource-group]
+                               [--subscription]
+  examples:
+  - summary: Mettez à jour les origines incluses dans un groupe d’origine.
+    syntax: az cdn origin-group update -g group --profile-name profile --endpoint-name endpoint -n origin-group --origins origin-0,origin-2
+  - summary: Mettre à jour un groupe d’origine avec une sonde d’intégrité personnalisée
+    syntax: az cdn origin-group update -g group --profile-name profile --endpoint-name endpoint -n origin-group --origins origin-0,origin-1 --probe-path /healthz --probe-interval 90 --probe-protocol HTTPS --probe-method GET
+  optionalParameters:
+  - name: --endpoint-name
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe d’origine.
+    description: ''
+  - name: --origins
+    summary: La charge d’origines est équilibrée par ce groupe d’origine, sous la forme d’une liste séparée par des virgules des noms d’origine des ID d’origine du point de terminaison parent.
+    description: ''
+  - name: --probe-interval
+    summary: Fréquence d’exécution des sondes d’intégrité en secondes.
+    description: ''
+  - name: --probe-method
+    parameterValueGroup: GET, HEAD
+    summary: Méthode de demande à utiliser pour les sondes d’intégrité.
+    description: ''
+  - name: --probe-path
+    summary: Chemin d’accès relatif à l’origine utilisée pour déterminer l’intégrité de l’origine.
+    description: ''
+  - name: --probe-protocol
+    parameterValueGroup: HTTP, HTTPS
+    summary: Protocole à utiliser pour les sondes d’intégrité.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+commands:
+- az_cdn_origin_group_create
+- az_cdn_origin_group_delete
+- az_cdn_origin_group_list
+- az_cdn_origin_group_show
+- az_cdn_origin_group_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/02/2020
+  description: Gérer les groupes d’origine d’un point de terminaison.
+  ms.openlocfilehash: 8c8bd69093f10ac1c90f329da6d52dfc780e5665
+  ms.sourcegitcommit: f379fad9c4e873cd2ca68b5494b6c240a5016b5b
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/09/2020
+  ms.locfileid: "102821564"

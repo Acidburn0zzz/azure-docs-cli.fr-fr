@@ -1,0 +1,257 @@
+### YamlMime:AzureCLIGroup
+uid: az_cdn_endpoint_rule
+name: az cdn endpoint rule
+summary: Gérer les règles de remise pour un point de terminaison.
+description: ''
+directCommands:
+- uid: az_cdn_endpoint_rule_add
+  name: az cdn endpoint rule add
+  summary: Ajoutez une règle de remise à un point de terminaison CDN.
+  description: ''
+  syntax: >-
+    az cdn endpoint rule add --action-name
+                             --order
+                             --rule-name
+                             [--cache-behavior {BypassCache, Override, SetIfMissing}]
+                             [--cache-duration]
+                             [--custom-fragment]
+                             [--custom-hostname]
+                             [--custom-path]
+                             [--custom-querystring]
+                             [--destination]
+                             [--header-action {Append, Delete, Overwrite}]
+                             [--header-name]
+                             [--header-value]
+                             [--ids]
+                             [--match-values]
+                             [--match-variable]
+                             [--name]
+                             [--negate-condition {false, true}]
+                             [--operator]
+                             [--preserve-unmatched-path {false, true}]
+                             [--profile-name]
+                             [--query-parameters]
+                             [--query-string-behavior {Exclude, ExcludeAll, Include, IncludeAll}]
+                             [--redirect-protocol {Http, Https, MatchRequest}]
+                             [--redirect-type {Found, Moved, PermanentRedirect, TemporaryRedirect}]
+                             [--resource-group]
+                             [--selector]
+                             [--source-pattern]
+                             [--subscription]
+                             [--transform {Lowercase, Uppercase}]
+  examples:
+  - summary: Créez une règle globale pour désactiver la mise en cache.
+    syntax: az cdn endpoint rule add -g group -n endpoint --profile-name profile --order 0 --rule-name global --action-name CacheExpiration --cache-behavior BypassCache
+  - summary: Créer une règle pour la redirection HTTP vers https
+    syntax: az cdn endpoint rule add -g group -n endpoint --profile-name profile --order 1 --rule-name "redirect" --match-variable RequestScheme --operator Equal --match-values HTTPS --action-name "UrlRedirect" --redirect-protocol Https --redirect-type Moved
+  requiredParameters:
+  - isRequired: true
+    name: --action-name
+    summary: Nom de l'action.
+    description: ''
+  - isRequired: true
+    name: --order
+    summary: Ordre de la règle. Le numéro de commande doit commencer par 0 et consécutif.                    Une règle avec un ordre supérieur sera appliquée plus tard.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle.
+    description: ''
+  optionalParameters:
+  - name: --cache-behavior
+    parameterValueGroup: BypassCache, Override, SetIfMissing
+    summary: Comportement de mise en cache pour les requêtes.
+    description: ''
+  - name: --cache-duration
+    summary: 'Durée pendant laquelle le contenu doit être mis en cache.                    Le format autorisé est [d.] HH : mm : SS.'
+    description: ''
+  - name: --custom-fragment
+    summary: Fragment à ajouter à l’URL de redirection.
+    description: ''
+  - name: --custom-hostname
+    summary: Hôte à rediriger.                    Laissez vide pour utiliser l’hôte entrant comme ordinateur hôte de destination.
+    description: ''
+  - name: --custom-path
+    summary: Chemin d’accès complet à rediriger. Le chemin d’accès ne peut pas être vide et doit commencer par/.                    Laissez vide pour utiliser le chemin d’accès entrant comme chemin d’accès de destination.
+    description: ''
+  - name: --custom-querystring
+    summary: Ensemble de chaînes de requête à placer dans l’URL de redirection.                    laissez vide pour conserver la chaîne de requête entrante.
+    description: ''
+  - name: --destination
+    summary: Chemin d’accès de destination à utiliser lors de la réécriture.
+    description: ''
+  - name: --header-action
+    parameterValueGroup: Append, Delete, Overwrite
+    summary: Action d’en-tête pour les demandes.
+    description: ''
+  - name: --header-name
+    summary: Nom de l’en-tête à modifier.
+    description: ''
+  - name: --header-value
+    summary: Valeur de l'en-tête.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --match-values
+    summary: Valeurs de correspondance de la condition de correspondance (séparées par des virgules).
+    description: ''
+  - name: --match-variable
+    summary: Nom de la condition de correspondance.
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --negate-condition
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, nie la condition.
+    description: ''
+  - name: --operator
+    summary: Opérateur de la condition de correspondance.
+    description: ''
+  - name: --preserve-unmatched-path
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, le chemin d’accès restant après le modèle source est ajouté au nouveau chemin d’accès de destination.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-parameters
+    summary: Paramètres de requête à inclure ou à exclure (séparés par des virgules).
+    description: ''
+  - name: --query-string-behavior
+    parameterValueGroup: Exclude, ExcludeAll, Include, IncludeAll
+    summary: Comportement de la chaîne de requête pour les demandes.
+    description: ''
+  - name: --redirect-protocol
+    parameterValueGroup: Http, Https, MatchRequest
+    summary: Protocole à utiliser pour la redirection.
+    description: ''
+  - name: --redirect-type
+    parameterValueGroup: Found, Moved, PermanentRedirect, TemporaryRedirect
+    summary: Type de redirection que la règle utilisera lors de la redirection du trafic.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --selector
+    summary: Sélecteur de la condition de correspondance.
+    description: ''
+  - name: --source-pattern
+    summary: Modèle d’URI de requête qui identifie le type de demandes qui peuvent être réécrites.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --transform
+    parameterValueGroup: Lowercase, Uppercase
+    summary: Transformation à appliquer avant la correspondance.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_endpoint_rule_remove
+  name: az cdn endpoint rule remove
+  summary: Supprimer une règle de remise d’un point de terminaison.
+  description: ''
+  syntax: >-
+    az cdn endpoint rule remove --rule-name
+                                [--ids]
+                                [--name]
+                                [--profile-name]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: Supprimez la règle globale.
+    syntax: az cdn endpoint rule remove -g group -n endpoint --profile-name profile --rule-name Global
+  requiredParameters:
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_endpoint_rule_show
+  name: az cdn endpoint rule show
+  summary: Affiche les règles de remise asscociate avec le point de terminaison.
+  description: ''
+  syntax: >-
+    az cdn endpoint rule show [--ids]
+                              [--name]
+                              [--profile-name]
+                              [--query-examples]
+                              [--resource-group]
+                              [--subscription]
+  examples:
+  - summary: affiche les règles de remise asscociate avec le point de terminaison.
+    syntax: az cdn endpoint rule show -g group -n endpoint --profile-name profile
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+commands:
+- az_cdn_endpoint_rule_action
+- az_cdn_endpoint_rule_action_add
+- az_cdn_endpoint_rule_action_remove
+- az_cdn_endpoint_rule_action_show
+- az_cdn_endpoint_rule_add
+- az_cdn_endpoint_rule_condition
+- az_cdn_endpoint_rule_condition_add
+- az_cdn_endpoint_rule_condition_remove
+- az_cdn_endpoint_rule_condition_show
+- az_cdn_endpoint_rule_remove
+- az_cdn_endpoint_rule_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/02/2020
+  description: Gérer les règles de remise pour un point de terminaison.
+  ms.openlocfilehash: ea0afe290c89a310069a68d34d476fdc8588238c
+  ms.sourcegitcommit: f379fad9c4e873cd2ca68b5494b6c240a5016b5b
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/09/2020
+  ms.locfileid: "102821624"

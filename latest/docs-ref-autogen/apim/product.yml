@@ -1,0 +1,358 @@
+### YamlMime:AzureCLIGroup
+uid: az_apim_product
+name: az apim product
+summary: Gérer les produits de gestion des API Azure.
+description: ''
+directCommands:
+- uid: az_apim_product_create
+  name: az apim product create
+  summary: Crée un produit.
+  description: ''
+  syntax: >-
+    az apim product create --product-name
+                           --resource-group
+                           --service-name
+                           [--approval-required]
+                           [--description]
+                           [--legal-terms]
+                           [--no-wait]
+                           [--product-id]
+                           [--state {notPublished, published}]
+                           [--subscription]
+                           [--subscription-required]
+                           [--subscriptions-limit]
+  examples:
+  - summary: Crée un produit.
+    syntax: az apim product create --resource-group MyResourceGroup  --service-name MyServiceName --product-id MyProductID --product-name MyProductName --description MyDescription --legal-terms MyTerms --subscription-required true --approval-required true --subscriptions-limit 8 --state "published"
+  requiredParameters:
+  - isRequired: true
+    name: --product-name
+    summary: Nom du produit.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --approval-required
+    summary: Si l’approbation de l’abonnement est requise. Si la valeur est false, les nouveaux abonnements sont approuvés automatiquement, ce qui permet aux développeurs d’appeler les API du produit immédiatement après l’abonnement. Si la valeur est true, les administrateurs doivent approuver manuellement l’abonnement pour que le développeur puisse l’une des API du produit. Peut être présent uniquement si la propriété subscriptionRequired est présente et a la valeur false.
+    description: ''
+  - name: --description
+    summary: Description du produit. Peut comporter des balises de mise en forme.
+    description: ''
+  - name: --legal-terms
+    summary: Conditions d’utilisation du produit. Les développeurs qui veulent s’abonner au produit devront consulter et accepter ces conditions pour pouvoir terminer le processus d’abonnement.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --product-id
+    summary: Identificateur de produit. Doit être unique dans l’instance actuelle du service gestion des API.
+    description: ''
+  - name: --state
+    parameterValueGroup: notPublished, published
+    summary: Indique si le produit est publié ou non. Les produits publiés sont détectables par les utilisateurs du portail des développeurs. Les produits non publiés ne sont visibles que pour les administrateurs. L’État par défaut du produit est notPublished.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --subscription-required -s
+    summary: Si un abonnement à un produit est requis pour accéder aux API incluses dans ce produit.
+    description: ''
+  - name: --subscriptions-limit
+    summary: Indique si le nombre d’abonnements qu’un utilisateur peut avoir à ce produit en même temps. Affectez la valeur null ou omettez pour autoriser un nombre illimité d’abonnements par utilisateur. Peut être présent uniquement si la propriété subscriptionRequired est présente et a la valeur false.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+- uid: az_apim_product_delete
+  name: az apim product delete
+  summary: Supprime un produit.
+  description: ''
+  syntax: >-
+    az apim product delete --product-id
+                           --resource-group
+                           --service-name
+                           [--delete-subscriptions]
+                           [--if-match]
+                           [--no-wait]
+                           [--subscription]
+                           [--yes]
+  examples:
+  - summary: Supprimer le produit avec tous les abonnements à ce produit.
+    syntax: az apim product delete --resource-group MyResourceGroup  --service-name MyServiceName --product-id MyProductID --delete-subscriptions true
+  requiredParameters:
+  - isRequired: true
+    name: --product-id
+    summary: Identificateur de produit. Doit être unique dans l’instance actuelle du service gestion des API.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --delete-subscriptions
+    summary: Supprimez les abonnements existants associés au produit.
+    description: ''
+  - name: --if-match
+    summary: ETag de l’entité.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+- uid: az_apim_product_list
+  name: az apim product list
+  summary: Répertorie un ensemble de produits dans l’instance de service spécifiée.
+  description: ''
+  syntax: >-
+    az apim product list --resource-group
+                         --service-name
+                         [--query-examples]
+                         [--subscription]
+  examples:
+  - summary: Répertorie tous les produits pour cette instance APIM.
+    syntax: az apim product list --resource-group MyResourceGroup --service-name MyServiceName
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+- uid: az_apim_product_show
+  name: az apim product show
+  summary: Obtient les détails du produit spécifié par son identificateur.
+  description: ''
+  syntax: >-
+    az apim product show --product-id
+                         --resource-group
+                         --service-name
+                         [--query-examples]
+                         [--subscription]
+  examples:
+  - summary: Obtient les détails du produit spécifié par son identificateur.
+    syntax: az apim product show --resource-group MyResourceGroup --service-name MyServiceName  --product-id MyProductID
+  requiredParameters:
+  - isRequired: true
+    name: --product-id
+    summary: Identificateur de produit. Doit être unique dans l’instance actuelle du service gestion des API.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+- uid: az_apim_product_update
+  name: az apim product update
+  summary: Mettez à jour les détails du produit existant.
+  description: ''
+  syntax: >-
+    az apim product update --product-id
+                           --resource-group
+                           --service-name
+                           [--add]
+                           [--approval-required]
+                           [--description]
+                           [--force-string]
+                           [--if-match]
+                           [--legal-terms]
+                           [--no-wait]
+                           [--product-name]
+                           [--remove]
+                           [--set]
+                           [--state {notPublished, published}]
+                           [--subscription]
+                           [--subscription-required]
+                           [--subscriptions-limit]
+  examples:
+  - summary: Mettez à jour les détails du produit existant.
+    syntax: az apim product update --resource-group MyResourceGroup  --service-name MyServiceName --product-id MyProductID --product-name MyNewProductName --description MyNewDescription --legal-terms MyNewTerms --subscription-required false --state "notPublished"
+  requiredParameters:
+  - isRequired: true
+    name: --product-id
+    summary: Identificateur de produit. Doit être unique dans l’instance actuelle du service gestion des API.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --approval-required
+    summary: Si l’approbation de l’abonnement est requise. Si la valeur est false, les nouveaux abonnements sont approuvés automatiquement, ce qui permet aux développeurs d’appeler les API du produit immédiatement après l’abonnement. Si la valeur est true, les administrateurs doivent approuver manuellement l’abonnement pour que le développeur puisse l’une des API du produit. Peut être présent uniquement si la propriété subscriptionRequired est présente et a la valeur false.
+    description: ''
+  - name: --description
+    summary: Description du produit. Peut comporter des balises de mise en forme.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --if-match
+    summary: ETag de l’entité.
+    description: ''
+  - name: --legal-terms
+    summary: Conditions d’utilisation du produit. Les développeurs qui veulent s’abonner au produit devront consulter et accepter ces conditions pour pouvoir terminer le processus d’abonnement.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --product-name
+    summary: Nom du produit.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --state
+    parameterValueGroup: notPublished, published
+    summary: Indique si le produit est publié ou non. Les produits publiés sont détectables par les utilisateurs du portail des développeurs. Les produits non publiés ne sont visibles que pour les administrateurs. L’État par défaut du produit est notPublished.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --subscription-required -s
+    summary: Si un abonnement à un produit est requis pour accéder aux API incluses dans ce produit.
+    description: ''
+  - name: --subscriptions-limit
+    summary: Indique si le nombre d’abonnements qu’un utilisateur peut avoir à ce produit en même temps. Affectez la valeur null ou omettez pour autoriser un nombre illimité d’abonnements par utilisateur. Peut être présent uniquement si la propriété subscriptionRequired est présente et a la valeur false.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+- uid: az_apim_product_wait
+  name: az apim product wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’un produit APIM soit remplie.
+  description: ''
+  syntax: >-
+    az apim product wait --product-id
+                         --resource-group
+                         --service-name
+                         [--created]
+                         [--custom]
+                         [--deleted]
+                         [--exists]
+                         [--interval]
+                         [--subscription]
+                         [--timeout]
+                         [--updated]
+  examples:
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’un APIM soit remplie. généré automatiquement
+    syntax: az apim product wait --created --resource-group MyResourceGroup --service-name MyServiceName --product-id MyProductID
+  requiredParameters:
+  - isRequired: true
+    name: --product-id
+    summary: Identificateur de produit. Doit être unique dans l’instance actuelle du service gestion des API.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+commands:
+- az_apim_product_api
+- az_apim_product_api_add
+- az_apim_product_api_check
+- az_apim_product_api_delete
+- az_apim_product_api_list
+- az_apim_product_create
+- az_apim_product_delete
+- az_apim_product_list
+- az_apim_product_show
+- az_apim_product_update
+- az_apim_product_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/01/2020
+  description: Gérer les produits de gestion des API Azure.
+  ms.openlocfilehash: 68709aa4b1a898ff4c059d0e71d5f12df233a9cd
+  ms.sourcegitcommit: f379fad9c4e873cd2ca68b5494b6c240a5016b5b
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/09/2020
+  ms.locfileid: "102821321"

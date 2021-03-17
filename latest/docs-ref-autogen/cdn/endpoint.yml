@@ -1,0 +1,510 @@
+### YamlMime:AzureCLIGroup
+uid: az_cdn_endpoint
+name: az cdn endpoint
+summary: Gérer les points de terminaison CDN.
+description: ''
+directCommands:
+- uid: az_cdn_endpoint_create
+  name: az cdn endpoint create
+  summary: Créez un point de terminaison nommé pour vous connecter à un CDN.
+  description: ''
+  syntax: >-
+    az cdn endpoint create --name
+                           --origin
+                           --profile-name
+                           --resource-group
+                           [--content-types-to-compress]
+                           [--enable-compression {false, true}]
+                           [--location]
+                           [--no-http {false, true}]
+                           [--no-https {false, true}]
+                           [--no-wait]
+                           [--origin-host-header]
+                           [--origin-path]
+                           [--query-string-caching-behavior]
+                           [--subscription]
+                           [--tags]
+  examples:
+  - summary: Créez un point de terminaison pour le contenu du service pour le nom d’hôte sur HTTP ou HTTPs.
+    syntax: az cdn endpoint create -g group -n endpoint --profile-name profile --origin www.example.com
+  - summary: Créez un point de terminaison avec une origine de domaine personnalisée avec des ports HTTP et HTTPs.
+    syntax: az cdn endpoint create -g group -n endpoint --profile-name profile --origin www.example.com 88 4444
+  - summary: Créez un point de terminaison avec une origine de domaine personnalisée avec un lien privé activé.
+    syntax: az cdn endpoint create -g group -n endpoint --profile-name profile --origin www.example.com 80 443 /subscriptions/subid/resourcegroups/rg1/providers/Microsoft.Network/privateLinkServices/pls1 eastus "Please approve this request"
+  - summary: Créez un point de terminaison avec un domaine personnalisé avec compression et HTTPs uniquement.
+    syntax: az cdn endpoint create -g group -n endpoint --profile-name profile --origin www.example.com --no-http --enable-compression
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - isRequired: true
+    name: --origin
+    summary: 'Origine du point de terminaison spécifiée par les 6 tuples délimités par des espaces suivants : `www.example.com http_port https_port private_link_resource_id private_link_location private_link_approval_message` . Les ports HTTP et HTTPs et l’ID de ressource de liaison privée et l’emplacement sont facultatifs. Les ports HTTP et HTTPs ont par défaut la valeur 80 et 443, respectivement. Les champs de lien privé sont uniquement valides pour la référence SKU Standard_Microsoft, et private_link_location est requis si private_link_resource_id est défini.'
+    description: ''
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --content-types-to-compress
+    summary: Liste des types de contenu auxquels la compression s’applique. La valeur doit être un type MIME valide.
+    description: ''
+  - name: --enable-compression
+    parameterValueGroup: false, true
+    summary: Si la compression est activée, le contenu est pris en charge comme compressé si l’utilisateur demande une version compressée. Le contenu n’est pas compressé sur le CDN lorsque le contenu demandé est inférieur à 1 octet ou supérieur à 1 Mo.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-http
+    parameterValueGroup: false, true
+    summary: Indique si le trafic HTTP n’est pas autorisé sur le point de terminaison. La valeur par défaut autorise le trafic HTTP.
+    description: ''
+  - name: --no-https
+    parameterValueGroup: false, true
+    summary: Indique si le trafic HTTPs n’est pas autorisé sur le point de terminaison. La valeur par défaut autorise le trafic HTTPs.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --origin-host-header
+    summary: Valeur d’en-tête de l’hôte envoyée à l’origine avec chaque demande. Cette propriété au point de terminaison est uniquement autorisée lorsque le point de terminaison utilise une seule origine et peut être substitué par la même propriété spécifiée à l’origine. Si vous laissez ce champ vide, le nom d’hôte de la demande détermine cette valeur. Azure CDN origines, telles que les Web Apps, le stockage d’objets BLOB et les services Cloud, requièrent que cette valeur d’en-tête d’hôte corresponde au nom d’hôte d’origine par défaut.
+    description: ''
+  - name: --origin-path
+    summary: Chemin d’accès de répertoire sur l’origine que le CDN peut utiliser pour récupérer le contenu de, par exemple contoso.cloudapp.net/originpath.
+    description: ''
+  - name: --query-string-caching-behavior
+    summary: Définit comment CDN met en cache les demandes qui incluent des chaînes de requête. Vous pouvez ignorer les chaînes de requête lors de la mise en cache, ignorer la mise en cache pour empêcher les demandes qui contiennent des chaînes de requête d’être mises en cache, ou mettre en cache chaque demande avec une URL unique.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_endpoint_delete
+  name: az cdn endpoint delete
+  summary: Supprimer un point de terminaison CDN.
+  description: ''
+  syntax: >-
+    az cdn endpoint delete [--ids]
+                           [--name]
+                           [--no-wait]
+                           [--profile-name]
+                           [--resource-group]
+                           [--subscription]
+  examples:
+  - summary: Supprimer un point de terminaison CDN.
+    syntax: az cdn endpoint delete -g group -n endpoint --profile-name profile-name
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_endpoint_list
+  name: az cdn endpoint list
+  summary: Répertorier les points de terminaison disponibles pour un CDN.
+  description: ''
+  syntax: >-
+    az cdn endpoint list --profile-name
+                         --resource-group
+                         [--query-examples]
+                         [--subscription]
+  examples:
+  - summary: Répertorie tous les points de terminaison au sein d’un profil CDN donné.
+    syntax: az cdn endpoint list -g group --profile-name profile-name
+  requiredParameters:
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_endpoint_load
+  name: az cdn endpoint load
+  summary: Préchargez le contenu pour un point de terminaison CDN.
+  description: ''
+  syntax: >-
+    az cdn endpoint load --content-paths
+                         [--ids]
+                         [--name]
+                         [--no-wait]
+                         [--profile-name]
+                         [--resource-group]
+                         [--subscription]
+  examples:
+  - summary: Préchargez le contenu JavaScript et CSS pour un point de terminaison.
+    syntax: az cdn endpoint load -g group -n endpoint --profile-name profile-name --content-paths '/scripts/app.js' '/styles/main.css'
+  requiredParameters:
+  - isRequired: true
+    name: --content-paths
+    summary: Chemin d’accès au contenu à charger. Le chemin d’accès doit être une URL de fichier relative de l’origine.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_endpoint_purge
+  name: az cdn endpoint purge
+  summary: Videz le contenu préchargé pour un point de terminaison CDN.
+  description: ''
+  syntax: >-
+    az cdn endpoint purge --content-paths
+                          [--ids]
+                          [--name]
+                          [--no-wait]
+                          [--profile-name]
+                          [--resource-group]
+                          [--subscription]
+  examples:
+  - summary: Videz le contenu JavaScript et CSS préchargé.
+    syntax: az cdn endpoint purge -g group -n endpoint --profile-name profile-name --content-paths '/scripts/app.js' '/styles/*'
+  requiredParameters:
+  - isRequired: true
+    name: --content-paths
+    summary: Chemin d’accès au contenu à purger. Peut décrire un chemin de fichier ou un répertoire générique.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_endpoint_show
+  name: az cdn endpoint show
+  summary: Obtient un point de terminaison CDN existant avec le nom de point de terminaison spécifié sous l’abonnement, le groupe de ressources et le profil spécifiés.
+  description: ''
+  syntax: >-
+    az cdn endpoint show [--ids]
+                         [--name]
+                         [--profile-name]
+                         [--query-examples]
+                         [--resource-group]
+                         [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_endpoint_start
+  name: az cdn endpoint start
+  summary: Démarrez un point de terminaison CDN.
+  description: ''
+  syntax: >-
+    az cdn endpoint start [--ids]
+                          [--name]
+                          [--no-wait]
+                          [--profile-name]
+                          [--resource-group]
+                          [--subscription]
+  examples:
+  - summary: Démarrez un point de terminaison CDN.
+    syntax: az cdn endpoint start -g group -n endpoint --profile-name profile-name
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_endpoint_stop
+  name: az cdn endpoint stop
+  summary: Arrêtez un point de terminaison CDN.
+  description: ''
+  syntax: >-
+    az cdn endpoint stop [--ids]
+                         [--name]
+                         [--no-wait]
+                         [--profile-name]
+                         [--resource-group]
+                         [--subscription]
+  examples:
+  - summary: Arrêtez un point de terminaison CDN.
+    syntax: az cdn endpoint stop -g group -n endpoint --profile-name profile-name
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_endpoint_update
+  name: az cdn endpoint update
+  summary: Mettez à jour un point de terminaison CDN pour gérer la remise du contenu.
+  description: ''
+  syntax: >-
+    az cdn endpoint update [--add]
+                           [--content-types-to-compress]
+                           [--default-origin-group]
+                           [--enable-compression {false, true}]
+                           [--force-string]
+                           [--ids]
+                           [--name]
+                           [--no-http {false, true}]
+                           [--no-https {false, true}]
+                           [--no-wait]
+                           [--origin-host-header]
+                           [--origin-path]
+                           [--profile-name]
+                           [--query-string-caching {BypassCaching, IgnoreQueryString, NotSet, UseQueryString}]
+                           [--remove]
+                           [--resource-group]
+                           [--set]
+                           [--subscription]
+                           [--tags]
+  examples:
+  - summary: Désactivez le trafic HTTP pour un point de terminaison.
+    syntax: az cdn endpoint update -g group -n endpoint --profile-name profile --no-http
+  - summary: Activez la compression de contenu pour un point de terminaison.
+    syntax: az cdn endpoint update -g group -n endpoint --profile-name profile --enable-compression
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --content-types-to-compress
+    summary: Liste des types de contenu auxquels la compression s’applique. La valeur doit être un type MIME valide.
+    description: ''
+  - name: --default-origin-group
+    summary: Groupe d’origine à utiliser pour les origines qui ne sont pas explicitement incluses dans un groupe d’origine. Peut être spécifié sous la forme d’un ID de ressource ou du nom d’un groupe d’origine de ce point de terminaison.
+    description: ''
+  - name: --enable-compression
+    parameterValueGroup: false, true
+    summary: Si la compression est activée, le contenu est pris en charge comme compressé si l’utilisateur demande une version compressée. Le contenu n’est pas compressé sur le CDN lorsque le contenu demandé est inférieur à 1 octet ou supérieur à 1 Mo.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --no-http
+    parameterValueGroup: false, true
+    summary: Indique si le trafic HTTP n’est pas autorisé sur le point de terminaison. La valeur par défaut autorise le trafic HTTP.
+    description: ''
+  - name: --no-https
+    parameterValueGroup: false, true
+    summary: Indique si le trafic HTTPs n’est pas autorisé sur le point de terminaison. La valeur par défaut autorise le trafic HTTPs.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --origin-host-header
+    summary: Valeur d’en-tête de l’hôte envoyée à l’origine avec chaque demande. Cette propriété au point de terminaison est uniquement autorisée lorsque le point de terminaison utilise une seule origine et peut être substitué par la même propriété spécifiée à l’origine. Si vous laissez ce champ vide, le nom d’hôte de la demande détermine cette valeur. Azure CDN origines, telles que les Web Apps, le stockage d’objets BLOB et les services Cloud, requièrent que cette valeur d’en-tête d’hôte corresponde au nom d’hôte d’origine par défaut.
+    description: ''
+  - name: --origin-path
+    summary: Chemin d’accès de répertoire sur l’origine que le CDN peut utiliser pour récupérer le contenu de, par exemple contoso.cloudapp.net/originpath.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-string-caching
+    parameterValueGroup: BypassCaching, IgnoreQueryString, NotSet, UseQueryString
+    summary: Définit comment CDN met en cache les demandes qui incluent des chaînes de requête. Vous pouvez ignorer les chaînes de requête lors de la mise en cache, ignorer la mise en cache pour empêcher les demandes qui contiennent des chaînes de requête d’être mises en cache, ou mettre en cache chaque demande avec une URL unique.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_endpoint_validate_custom_domain
+  name: az cdn endpoint validate-custom-domain
+  summary: Valide le mappage de domaine personnalisé pour s’assurer qu’il est mappé au point de terminaison CDN correct dans DNS.
+  description: ''
+  syntax: >-
+    az cdn endpoint validate-custom-domain --host-name
+                                           [--ids]
+                                           [--name]
+                                           [--profile-name]
+                                           [--resource-group]
+                                           [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --host-name
+    summary: Nom d’hôte du domaine personnalisé. Doit être un nom de domaine.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison CDN.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+commands:
+- az_cdn_endpoint_create
+- az_cdn_endpoint_delete
+- az_cdn_endpoint_list
+- az_cdn_endpoint_load
+- az_cdn_endpoint_purge
+- az_cdn_endpoint_rule
+- az_cdn_endpoint_rule_action
+- az_cdn_endpoint_rule_action_add
+- az_cdn_endpoint_rule_action_remove
+- az_cdn_endpoint_rule_action_show
+- az_cdn_endpoint_rule_add
+- az_cdn_endpoint_rule_condition
+- az_cdn_endpoint_rule_condition_add
+- az_cdn_endpoint_rule_condition_remove
+- az_cdn_endpoint_rule_condition_show
+- az_cdn_endpoint_rule_remove
+- az_cdn_endpoint_rule_show
+- az_cdn_endpoint_show
+- az_cdn_endpoint_start
+- az_cdn_endpoint_stop
+- az_cdn_endpoint_update
+- az_cdn_endpoint_validate_custom_domain
+- az_cdn_endpoint_waf
+- az_cdn_endpoint_waf_policy
+- az_cdn_endpoint_waf_policy_remove
+- az_cdn_endpoint_waf_policy_set
+- az_cdn_endpoint_waf_policy_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/02/2020
+  description: Gérer les points de terminaison CDN.
+  ms.openlocfilehash: 52642e2d4c5ec7028a3ef839f4388d069cdb29fb
+  ms.sourcegitcommit: f379fad9c4e873cd2ca68b5494b6c240a5016b5b
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/09/2020
+  ms.locfileid: "102821816"
