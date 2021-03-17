@@ -1,0 +1,317 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_express_route_peering
+name: az network express-route peering
+summary: Gérer l’homologation ExpressRoute d’un circuit ExpressRoute.
+description: ''
+directCommands:
+- uid: az_network_express_route_peering_create
+  name: az network express-route peering create
+  summary: Créer des paramètres d’homologation pour un circuit ExpressRoute.
+  description: ''
+  syntax: >-
+    az network express-route peering create --circuit-name
+                                            --peer-asn
+                                            --peering-type {AzurePrivatePeering, AzurePublicPeering, MicrosoftPeering}
+                                            --primary-peer-subnet
+                                            --resource-group
+                                            --secondary-peer-subnet
+                                            --vlan-id
+                                            [--advertised-public-prefixes]
+                                            [--customer-asn]
+                                            [--legacy-mode]
+                                            [--route-filter]
+                                            [--routing-registry-name {AFRINIC, ALTDB, APNIC, ARIN, LACNIC, LEVEL3, RADB, RIPENCC}]
+                                            [--shared-key]
+                                            [--subscription]
+  examples:
+  - summary: Créez des paramètres d’homologation Microsoft avec la configuration IPv4.
+    syntax: >-
+      az network express-route peering create -g MyResourceGroup --circuit-name MyCircuit \
+          --peering-type MicrosoftPeering --peer-asn 10002 --vlan-id 103 \
+          --primary-peer-subnet 101.0.0.0/30 --secondary-peer-subnet 102.0.0.0/30 \
+          --advertised-public-prefixes 101.0.0.0/30
+  - summary: Créer des paramètres d’homologation pour un circuit ExpressRoute. généré automatiquement
+    syntax: az network express-route peering create --circuit-name MyCircuit --peer-asn 10002 --peering-type AzurePublicPeering --primary-peer-subnet 101.0.0.0/30 --resource-group MyResourceGroup --secondary-peer-subnet 102.0.0.0/30 --shared-key Abc123 --vlan-id 103
+  requiredParameters:
+  - isRequired: true
+    name: --circuit-name
+    summary: Nom du circuit ExpressRoute.
+    description: ''
+  - isRequired: true
+    name: --peer-asn
+    summary: Numéro de système autonome du fournisseur de connectivité/client.
+    description: ''
+  - isRequired: true
+    name: --peering-type
+    parameterValueGroup: AzurePrivatePeering, AzurePublicPeering, MicrosoftPeering
+    summary: Type d’appairage BGP pour le circuit.
+    description: ''
+  - isRequired: true
+    name: --primary-peer-subnet
+    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface principale.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --secondary-peer-subnet
+    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface secondaire.
+    description: ''
+  - isRequired: true
+    name: --vlan-id
+    summary: Identificateur utilisé pour identifier le client.
+    description: ''
+  optionalParameters:
+  - name: --advertised-public-prefixes
+    summary: Liste séparée par des espaces des préfixes à publier par le biais de l’homologation BGP.
+    description: ''
+  - name: --customer-asn
+    summary: Numéro de système autonome du client.
+    description: ''
+  - name: --legacy-mode
+    summary: Entier représentant le mode hérité de l’homologation.
+    description: ''
+  - name: --route-filter
+    summary: Nom ou ID d’un filtre de routage à appliquer aux paramètres d’homologation.
+    description: ''
+  - name: --routing-registry-name
+    parameterValueGroup: AFRINIC, ALTDB, APNIC, ARIN, LACNIC, LEVEL3, RADB, RIPENCC
+    summary: Registre de routage Internet/registre Internet régional.
+    description: ''
+  - name: --shared-key
+    summary: Clé pour la génération d’un MD5 pour la session BGP.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_express_route_peering_delete
+  name: az network express-route peering delete
+  summary: Supprimer les paramètres d’homologation.
+  description: ''
+  syntax: >-
+    az network express-route peering delete [--circuit-name]
+                                            [--ids]
+                                            [--name]
+                                            [--resource-group]
+                                            [--subscription]
+  examples:
+  - summary: Supprimer l’homologation privée.
+    syntax: az network express-route peering delete -g MyResourceGroup --circuit-name MyCircuit -n AzurePrivatePeering
+  optionalParameters:
+  - name: --circuit-name
+    summary: Nom du circuit ExpressRoute.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’homologation.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_express_route_peering_list
+  name: az network express-route peering list
+  summary: Répertorier les paramètres d’homologation d’un circuit ExpressRoute.
+  description: ''
+  syntax: >-
+    az network express-route peering list --circuit-name
+                                          --resource-group
+                                          [--query-examples]
+                                          [--subscription]
+  examples:
+  - summary: Répertorier les paramètres d’homologation d’un circuit ExpressRoute.
+    syntax: az network express-route peering list -g MyResourceGroup --circuit-name MyCircuit
+  requiredParameters:
+  - isRequired: true
+    name: --circuit-name
+    summary: Nom du circuit ExpressRoute.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_express_route_peering_show
+  name: az network express-route peering show
+  summary: Obtient les détails d’une homologation Express route.
+  description: ''
+  syntax: >-
+    az network express-route peering show [--circuit-name]
+                                          [--ids]
+                                          [--name]
+                                          [--query-examples]
+                                          [--resource-group]
+                                          [--subscription]
+  examples:
+  - summary: Obtient les détails de l’homologation privée d’un circuit ExpressRoute.
+    syntax: az network express-route peering show -g MyResourceGroup --circuit-name MyCircuit -n AzurePrivatePeering
+  optionalParameters:
+  - name: --circuit-name
+    summary: Nom du circuit ExpressRoute.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’homologation.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_express_route_peering_update
+  name: az network express-route peering update
+  summary: Met à jour les paramètres d’homologation d’un circuit ExpressRoute.
+  description: ''
+  syntax: >-
+    az network express-route peering update [--add]
+                                            [--advertised-public-prefixes]
+                                            [--circuit-name]
+                                            [--customer-asn]
+                                            [--force-string]
+                                            [--ids]
+                                            [--ip-version {IPv4, IPv6}]
+                                            [--legacy-mode]
+                                            [--name]
+                                            [--peer-asn]
+                                            [--primary-peer-subnet]
+                                            [--remove]
+                                            [--resource-group]
+                                            [--route-filter]
+                                            [--routing-registry-name {AFRINIC, ALTDB, APNIC, ARIN, LACNIC, LEVEL3, RADB, RIPENCC}]
+                                            [--secondary-peer-subnet]
+                                            [--set]
+                                            [--shared-key]
+                                            [--subscription]
+                                            [--vlan-id]
+  examples:
+  - summary: Ajoutez les paramètres d’homologation Microsoft IPv6 à la configuration IPv4 existante.
+    syntax: >-
+      az network express-route peering update -g MyResourceGroup --circuit-name MyCircuit \
+          --ip-version ipv6 --primary-peer-subnet 2002:db00::/126 \
+          --secondary-peer-subnet 2003:db00::/126 --advertised-public-prefixes 2002:db00::/126
+  - summary: Met à jour les paramètres d’homologation d’un circuit ExpressRoute. généré automatiquement
+    syntax: az network express-route peering update --circuit-name MyCircuit --name MyPeering --peer-asn 10002 --primary-peer-subnet 2002:db00::/126 --resource-group MyResourceGroup --secondary-peer-subnet 2003:db00::/126 --shared-key Abc123 --vlan-id 103
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --advertised-public-prefixes
+    summary: Liste séparée par des espaces des préfixes à publier par le biais de l’homologation BGP.
+    description: ''
+  - name: --circuit-name
+    summary: Nom du circuit ExpressRoute.
+    description: ''
+  - name: --customer-asn
+    summary: Numéro de système autonome du client.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --ip-version
+    defaultValue: IPv4
+    parameterValueGroup: IPv4, IPv6
+    summary: Version IP pour laquelle mettre à jour les paramètres d’homologation Microsoft.
+    description: ''
+  - name: --legacy-mode
+    summary: Entier représentant le mode hérité de l’homologation.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’homologation.
+    description: ''
+  - name: --peer-asn
+    summary: Numéro de système autonome du fournisseur de connectivité/client.
+    description: ''
+  - name: --primary-peer-subnet
+    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface principale.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --route-filter
+    summary: Nom ou ID d’un filtre de routage à appliquer aux paramètres d’homologation.
+    description: ''
+  - name: --routing-registry-name
+    parameterValueGroup: AFRINIC, ALTDB, APNIC, ARIN, LACNIC, LEVEL3, RADB, RIPENCC
+    summary: Registre de routage Internet/registre Internet régional.
+    description: ''
+  - name: --secondary-peer-subnet
+    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface secondaire.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --shared-key
+    summary: Clé pour la génération d’un MD5 pour la session BGP.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vlan-id
+    summary: Identificateur utilisé pour identifier le client.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_express_route_peering_connection
+- az_network_express_route_peering_connection_create
+- az_network_express_route_peering_connection_delete
+- az_network_express_route_peering_connection_show
+- az_network_express_route_peering_create
+- az_network_express_route_peering_delete
+- az_network_express_route_peering_list
+- az_network_express_route_peering_peer_connection
+- az_network_express_route_peering_peer_connection_list
+- az_network_express_route_peering_peer_connection_show
+- az_network_express_route_peering_show
+- az_network_express_route_peering_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer l’homologation ExpressRoute d’un circuit ExpressRoute.
+  ms.openlocfilehash: b263ac53eccd6bcf5541dcd39ca956e965f4f35e
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963756"
