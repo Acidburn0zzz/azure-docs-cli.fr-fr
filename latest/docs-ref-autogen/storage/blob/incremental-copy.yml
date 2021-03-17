@@ -1,0 +1,200 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_blob_incremental_copy
+name: az storage blob incremental-copy
+summary: Gérer les opérations de copie incrémentielle d’un objet BLOB.
+description: ''
+directCommands:
+- uid: az_storage_blob_incremental_copy_cancel
+  name: az storage blob incremental-copy cancel
+  summary: Abandonne une opération de copy_blob en attente et laisse un objet blob de destination avec une longueur nulle et des métadonnées complètes.
+  description: ''
+  syntax: >-
+    az storage blob incremental-copy cancel --container-name
+                                            --copy-id
+                                            --name
+                                            [--account-key]
+                                            [--account-name]
+                                            [--auth-mode {key, login}]
+                                            [--connection-string]
+                                            [--lease-id]
+                                            [--sas-token]
+                                            [--subscription]
+                                            [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --copy-id
+    summary: Identificateur de copie fourni dans le copy.id de l’opération d’copy_blob d’origine.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si l'objet blob de destination a un bail infini actif.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_incremental_copy_start
+  name: az storage blob incremental-copy start
+  summary: Copie de façon asynchrone une copie incrémentielle d’un objet BLOB.
+  description: Cette opération retourne un objet de propriétés d’opération de copie, y compris un ID de copie, que vous pouvez utiliser pour vérifier ou abandonner l’opération de copie. Le service BLOB copie sur une base du meilleur effort. L’objet BLOB source pour une opération de copie incrémentielle doit être un objet blob de pages. Appelez get_blob_properties sur l’objet blob de destination pour vérifier l’état de l’opération de copie. L’objet blob final est validé à la fin de la copie.
+  syntax: >-
+    az storage blob incremental-copy start --destination-blob
+                                           --destination-container
+                                           [--account-key]
+                                           [--account-name]
+                                           [--auth-mode {key, login}]
+                                           [--connection-string]
+                                           [--destination-if-match]
+                                           [--destination-if-modified-since]
+                                           [--destination-if-none-match]
+                                           [--destination-if-unmodified-since]
+                                           [--destination-lease-id]
+                                           [--metadata]
+                                           [--sas-token]
+                                           [--source-account-key]
+                                           [--source-account-name]
+                                           [--source-blob]
+                                           [--source-container]
+                                           [--source-lease-id]
+                                           [--source-sas]
+                                           [--source-snapshot]
+                                           [--source-uri]
+                                           [--subscription]
+                                           [--timeout]
+  examples:
+  - summary: Téléchargez tous les fichiers qui se terminent par. py, sauf si l’objet BLOB existe et a été modifié depuis la date donnée.
+    syntax: az storage blob incremental-copy start --source-container MySourceContainer --source-blob MyBlob --source-account-name MySourceAccount --source-account-key MySourceKey --source-snapshot MySnapshot --destination-container MyDestinationContainer --destination-blob MyDestinationBlob
+  - summary: Copie de façon asynchrone une copie incrémentielle d’un objet BLOB. généré automatiquement
+    syntax: az storage blob incremental-copy start --account-key 00000000 --account-name MyAccount --destination-blob MyDestinationBlob --destination-container MyDestinationContainer --source-account-key MySourceKey --source-account-name MySourceAccount --source-blob MyBlob --source-container MySourceContainer --source-snapshot MySnapshot
+  - summary: Copiez une copie incrémentielle d’un objet blob de manière asynchrone. généré automatiquement
+    syntax: az storage blob incremental-copy start --connection-string myconnectionstring --destination-blob mydestinationblob --destination-container MyDestinationContainer --source-uri https://storage.blob.core.windows.net/photos
+  requiredParameters:
+  - isRequired: true
+    name: --destination-blob -b
+    summary: Nom de l’objet blob de destination. Si existe, il est remplacé.
+    description: ''
+  - isRequired: true
+    name: --destination-container -c
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --destination-if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez une valeur ETag pour cet en-tête conditionnel pour copier l’objet BLOB uniquement si la valeur ETag spécifiée correspond à la valeur ETag d’un objet blob de destination existant. Si l’ETag de l’objet blob de destination ne correspond pas à l’ETag spécifié pour If-Match, le service BLOB retourne le code d’État 412 (échec de la précondition).
+    description: ''
+  - name: --destination-if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --destination-if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez une valeur d'ETag pour cet en-tête conditionnel pour copier l'objet blob uniquement si la valeur d'ETag spécifiée ne correspond pas à la valeur d'ETag pour l'objet blob de destination. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si l’objet blob de destination n’existe pas. Si la condition spécifiée n'est pas remplie, le service BLOB retourne le code d'état 412 (Échec de la précondition).
+    description: ''
+  - name: --destination-if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --destination-lease-id
+    summary: L'ID de bail spécifié pour cet en-tête doit correspondre à l'ID de bail de l'objet blob de destination. Si la demande n'inclut pas l'ID de bail ou si elle n'est pas valide, l'opération échoue avec un code d'état 412 (Échec de la précondition).
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --source-account-key
+    summary: Clé de compte de stockage de l’objet BLOB source.
+    description: ''
+  - name: --source-account-name
+    summary: Nom du compte de stockage de l’objet BLOB source.
+    description: ''
+  - name: --source-blob
+    summary: Nom de l’objet BLOB pour le compte de stockage source.
+    description: ''
+  - name: --source-container
+    summary: Nom du conteneur pour le compte de stockage source.
+    description: ''
+  - name: --source-lease-id
+    summary: Spécifiez cette valeur pour effectuer l’opération de copie d’objet BLOB uniquement si l’ID de bail donné correspond à l’ID de bail actif de l’objet BLOB source.
+    description: ''
+  - name: --source-sas
+    summary: Signature d’accès partagé pour le compte de stockage source.
+    description: ''
+  - name: --source-snapshot
+    summary: Instantané d’objet BLOB pour le compte de stockage source.
+    description: ''
+  - name: --source-uri -u
+    summary: "URL d’une longueur maximale de 2 Ko qui spécifie un objet blob de pages Azure. La valeur doit être encodée sous forme d'URL, comme dans une URI de demande. La source de copie doit être un instantané et inclure un jeton SAS valide ou être public. Exemple : `https://myaccount.blob.core.windows.net/mycontainer/myblob?snapshot=<DateTime>&sastoken`."
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_blob_incremental_copy_cancel
+- az_storage_blob_incremental_copy_start
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les opérations de copie incrémentielle d’un objet BLOB.
+  ms.openlocfilehash: e090add5a5f6543cdc697bf54be7b9744bb92933
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963351"
