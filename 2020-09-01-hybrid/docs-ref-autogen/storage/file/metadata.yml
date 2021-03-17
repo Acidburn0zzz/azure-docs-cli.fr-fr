@@ -1,27 +1,32 @@
 ### YamlMime:AzureCLIGroup
-uid: az_storage_container_metadata
-name: az storage container metadata
-summary: Gérer les métadonnées de conteneur.
+uid: az_storage_file_metadata
+name: az storage file metadata
+summary: Gérer les métadonnées de fichier.
 description: ''
 directCommands:
-- uid: az_storage_container_metadata_show
-  name: az storage container metadata show
-  summary: Retourne toutes les métadonnées définies par l’utilisateur pour le conteneur spécifié.
+- uid: az_storage_file_metadata_show
+  name: az storage file metadata show
+  summary: Retourne toutes les métadonnées définies par l’utilisateur pour le fichier spécifié.
   description: ''
   syntax: >-
-    az storage container metadata show --name
-                                       [--account-key]
-                                       [--account-name]
-                                       [--connection-string]
-                                       [--lease-id]
-                                       [--query-examples]
-                                       [--sas-token]
-                                       [--subscription]
-                                       [--timeout]
+    az storage file metadata show --path
+                                  --share-name
+                                  [--account-key]
+                                  [--account-name]
+                                  [--connection-string]
+                                  [--query-examples]
+                                  [--sas-token]
+                                  [--snapshot]
+                                  [--subscription]
+                                  [--timeout]
   requiredParameters:
   - isRequired: true
-    name: --name -n
-    summary: Nom du conteneur.
+    name: --path -p
+    summary: Chemin d’accès au fichier dans le partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
     description: ''
   optionalParameters:
   - name: --account-key
@@ -33,14 +38,14 @@ directCommands:
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
     description: ''
-  - name: --lease-id
-    summary: S’il est spécifié, get_container_metadata se déroule uniquement si le bail du conteneur est actif et correspond à cet ID.
-    description: ''
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
     description: ''
   - name: --sas-token
     summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --snapshot
+    summary: Chaîne qui représente la version de l’instantané, le cas échéant.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -49,25 +54,28 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
-- uid: az_storage_container_metadata_update
-  name: az storage container metadata update
-  summary: Définit une ou plusieurs paires nom-valeur définies par l’utilisateur pour le conteneur spécifié.
-  description: Chaque appel à cette opération remplace toutes les métadonnées existantes attachées au conteneur. Pour supprimer toutes les métadonnées du conteneur, appelez cette opération sans dict de métadonnées.
+- uid: az_storage_file_metadata_update
+  name: az storage file metadata update
+  summary: Définit des métadonnées définies par l’utilisateur pour le fichier spécifié sous la forme d’une ou plusieurs paires nom-valeur.
+  description: ''
   syntax: >-
-    az storage container metadata update --name
-                                         [--account-key]
-                                         [--account-name]
-                                         [--connection-string]
-                                         [--if-modified-since]
-                                         [--lease-id]
-                                         [--metadata]
-                                         [--sas-token]
-                                         [--subscription]
-                                         [--timeout]
+    az storage file metadata update --path
+                                    --share-name
+                                    [--account-key]
+                                    [--account-name]
+                                    [--connection-string]
+                                    [--metadata]
+                                    [--sas-token]
+                                    [--subscription]
+                                    [--timeout]
   requiredParameters:
   - isRequired: true
-    name: --name -n
-    summary: Nom du conteneur.
+    name: --path -p
+    summary: Chemin d’accès au fichier dans le partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
     description: ''
   optionalParameters:
   - name: --account-key
@@ -78,12 +86,6 @@ directCommands:
     description: ''
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
-    description: ''
-  - name: --if-modified-since
-    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
-    description: ''
-  - name: --lease-id
-    summary: S’il est spécifié, set_container_metadata se déroule uniquement si le bail du conteneur est actif et correspond à cet ID.
     description: ''
   - name: --metadata
     summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
@@ -99,8 +101,8 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
 commands:
-- az_storage_container_metadata_show
-- az_storage_container_metadata_update
+- az_storage_file_metadata_show
+- az_storage_file_metadata_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -119,10 +121,10 @@ globalParameters:
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/26/2021
-  description: Gérer les métadonnées de conteneur.
-  ms.openlocfilehash: 762af79d421ba2a33500ceec0134fc334d3bbfce
+  description: Gérer les métadonnées de fichier.
+  ms.openlocfilehash: 6f52e5e3ed98922386deedd8639da8b594d0f654
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103520475"
+  ms.locfileid: "103527774"
