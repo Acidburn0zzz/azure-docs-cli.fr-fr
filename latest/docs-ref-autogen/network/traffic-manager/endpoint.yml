@@ -1,0 +1,347 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_traffic_manager_endpoint
+name: az network traffic-manager endpoint
+summary: Gérer les points de terminaison Azure Traffic Manager.
+description: ''
+directCommands:
+- uid: az_network_traffic_manager_endpoint_create
+  name: az network traffic-manager endpoint create
+  summary: Créez un point de terminaison Traffic Manager.
+  description: ''
+  syntax: >-
+    az network traffic-manager endpoint create --name
+                                               --profile-name
+                                               --resource-group
+                                               --type {azureEndpoints, externalEndpoints, nestedEndpoints}
+                                               [--custom-headers]
+                                               [--endpoint-location]
+                                               [--endpoint-monitor-status]
+                                               [--endpoint-status {Disabled, Enabled}]
+                                               [--geo-mapping]
+                                               [--min-child-endpoints]
+                                               [--priority]
+                                               [--subnets]
+                                               [--subscription]
+                                               [--target]
+                                               [--target-resource-id]
+                                               [--weight]
+  examples:
+  - summary: Créez un point de terminaison pour un profil de performances pour pointer vers un point de terminaison d’application Web Azure.
+    syntax: >-
+      az network traffic-manager endpoint create -g MyResourceGroup --profile-name MyTmProfile \
+          -n MyEndpoint --type azureEndpoints --target-resource-id $MyWebApp1Id --endpoint-status enabled
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du point de terminaison.
+    description: ''
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil parent.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --type -t
+    parameterValueGroup: azureEndpoints, externalEndpoints, nestedEndpoints
+    summary: Type de point de terminaison.
+    description: ''
+  optionalParameters:
+  - name: --custom-headers
+    summary: Liste d’en-têtes personnalisés séparés par des espaces au format clé = valeur.
+    description: ''
+  - name: --endpoint-location
+    summary: Emplacement des points de terminaison externes ou imbriqués lors de l’utilisation de la méthode de routage « performance ».
+    description: ''
+  - name: --endpoint-monitor-status
+    summary: État de surveillance du point de terminaison.
+    description: ''
+  - name: --endpoint-status
+    parameterValueGroup: Disabled, Enabled
+    summary: État du point de terminaison. Si cette option est activée, le point de terminaison est interrogé pour vérifier l’intégrité des points de terminaison et inclus dans la méthode de routage du trafic.
+    description: ''
+  - name: --geo-mapping
+    summary: Liste séparée par des espaces des codes de pays/région mappés à ce point de terminaison lors de l’utilisation de la méthode de routage « géographique ».
+    description: ''
+    valueFrom: az network traffic-manager endpoint show-geographic-hierarchy
+  - name: --min-child-endpoints
+    summary: Nombre minimal de points de terminaison qui doivent être disponibles dans le profil enfant pour que le profil parent soit considéré comme disponible. Applicable uniquement à un point de terminaison de type « NestedEndpoints ».
+    description: ''
+  - name: --priority
+    summary: Priorité du point de terminaison lors de l’utilisation de la méthode de routage du trafic « priorité ». Les valeurs sont comprises entre 1 et 1000, avec des valeurs inférieures représentant une priorité plus élevée.
+    description: ''
+  - name: --subnets
+    summary: Liste séparée par des espaces des préfixes CIDR de sous-réseau (10.0.0.0/24) ou des plages de sous-réseau (10.0.0.0-11.0.0.0).
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --target
+    summary: Nom DNS complet du point de terminaison.
+    description: ''
+  - name: --target-resource-id
+    summary: URI de ressource Azure du point de terminaison. Non applicable pour les points de terminaison de type « ExternalEndpoints ».
+    description: ''
+  - name: --weight
+    summary: Poids du point de terminaison lors de l’utilisation de la méthode de routage du trafic « pondéré ». Les valeurs sont comprises entre 1 et 1000.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_traffic_manager_endpoint_delete
+  name: az network traffic-manager endpoint delete
+  summary: Supprimer un point de terminaison Traffic Manager.
+  description: ''
+  syntax: >-
+    az network traffic-manager endpoint delete [--ids]
+                                               [--name]
+                                               [--profile-name]
+                                               [--resource-group]
+                                               [--subscription]
+                                               [--type {azureEndpoints, externalEndpoints, nestedEndpoints}]
+  examples:
+  - summary: Supprimer un point de terminaison Traffic Manager.
+    syntax: az network traffic-manager endpoint delete -g MyResourceGroup \ --profile-name MyTmProfile -n MyEndpoint --type azureEndpoints
+  - summary: Supprimer un point de terminaison Traffic Manager. généré automatiquement
+    syntax: az network traffic-manager endpoint delete --name MyEndpoint --profile-name MyTmProfile --resource-group MyResourceGroup --subscription MySubscription --type azureEndpoints
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil parent.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --type -t
+    parameterValueGroup: azureEndpoints, externalEndpoints, nestedEndpoints
+    summary: Type de point de terminaison.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_traffic_manager_endpoint_list
+  name: az network traffic-manager endpoint list
+  summary: Répertorier les points de terminaison Traffic Manager.
+  description: ''
+  syntax: >-
+    az network traffic-manager endpoint list --profile-name
+                                             --resource-group
+                                             [--query-examples]
+                                             [--subscription]
+                                             [--type {azureEndpoints, externalEndpoints, nestedEndpoints}]
+  examples:
+  - summary: Répertorier les points de terminaison Traffic Manager.
+    syntax: az network traffic-manager endpoint list -g MyResourceGroup --profile-name MyTmProfile
+  requiredParameters:
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil parent.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --type -t
+    parameterValueGroup: azureEndpoints, externalEndpoints, nestedEndpoints
+    summary: Type de point de terminaison.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_traffic_manager_endpoint_show
+  name: az network traffic-manager endpoint show
+  summary: Obtenir les détails d’un point de terminaison Traffic Manager.
+  description: ''
+  syntax: >-
+    az network traffic-manager endpoint show [--ids]
+                                             [--name]
+                                             [--profile-name]
+                                             [--query-examples]
+                                             [--resource-group]
+                                             [--subscription]
+                                             [--type {azureEndpoints, externalEndpoints, nestedEndpoints}]
+  examples:
+  - summary: Obtenir les détails d’un point de terminaison Traffic Manager.
+    syntax: >-
+      az network traffic-manager endpoint show -g MyResourceGroup \
+          --profile-name MyTmProfile -n MyEndpoint --type azureEndpoints
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil parent.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --type -t
+    parameterValueGroup: azureEndpoints, externalEndpoints, nestedEndpoints
+    summary: Type de point de terminaison.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_traffic_manager_endpoint_show_geographic_hierarchy
+  name: az network traffic-manager endpoint show-geographic-hierarchy
+  summary: Obtient la hiérarchie géographique par défaut utilisée par la méthode de routage du trafic géographique.
+  description: ''
+  syntax: az network traffic-manager endpoint show-geographic-hierarchy [--subscription]
+  examples:
+  - summary: Obtient la hiérarchie géographique par défaut utilisée par la méthode de routage du trafic géographique.
+    syntax: az network traffic-manager endpoint show-geographic-hierarchy
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_traffic_manager_endpoint_update
+  name: az network traffic-manager endpoint update
+  summary: Mettez à jour un point de terminaison Traffic Manager.
+  description: ''
+  syntax: >-
+    az network traffic-manager endpoint update [--add]
+                                               [--custom-headers]
+                                               [--endpoint-location]
+                                               [--endpoint-monitor-status]
+                                               [--endpoint-status {Disabled, Enabled}]
+                                               [--force-string]
+                                               [--geo-mapping]
+                                               [--ids]
+                                               [--min-child-endpoints]
+                                               [--name]
+                                               [--priority]
+                                               [--profile-name]
+                                               [--remove]
+                                               [--resource-group]
+                                               [--set]
+                                               [--subnets]
+                                               [--subscription]
+                                               [--target]
+                                               [--target-resource-id]
+                                               [--type {azureEndpoints, externalEndpoints, nestedEndpoints}]
+                                               [--weight]
+  examples:
+  - summary: Mettez à jour un point de terminaison Traffic Manager pour modifier son poids.
+    syntax: az network traffic-manager endpoint update -g MyResourceGroup --profile-name MyTmProfile \ -n MyEndpoint --weight 20 --type azureEndpoints
+  - summary: Mettez à jour un point de terminaison Traffic Manager. généré automatiquement
+    syntax: az network traffic-manager endpoint update --name MyEndpoint --profile-name MyTmProfile --resource-group MyResourceGroup --target webserver.mysite.com --type azureEndpoints
+  - summary: Mettez à jour un point de terminaison Traffic Manager. généré automatiquement
+    syntax: az network traffic-manager endpoint update --endpoint-status Enabled --name MyEndpoint --profile-name MyTmProfile --resource-group MyResourceGroup --type azureEndpoints
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --custom-headers
+    summary: Liste d’en-têtes personnalisés séparés par des espaces au format clé = valeur.
+    description: ''
+  - name: --endpoint-location
+    summary: Emplacement des points de terminaison externes ou imbriqués lors de l’utilisation de la méthode de routage « performance ».
+    description: ''
+  - name: --endpoint-monitor-status
+    summary: État de surveillance du point de terminaison.
+    description: ''
+  - name: --endpoint-status
+    parameterValueGroup: Disabled, Enabled
+    summary: État du point de terminaison. Si cette option est activée, le point de terminaison est interrogé pour vérifier l’intégrité des points de terminaison et inclus dans la méthode de routage du trafic.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --geo-mapping
+    summary: Liste séparée par des espaces des codes de pays/région mappés à ce point de terminaison lors de l’utilisation de la méthode de routage « géographique ».
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --min-child-endpoints
+    summary: Nombre minimal de points de terminaison qui doivent être disponibles dans le profil enfant pour que le profil parent soit considéré comme disponible. Applicable uniquement à un point de terminaison de type « NestedEndpoints ».
+    description: ''
+  - name: --name -n
+    summary: Nom du point de terminaison.
+    description: ''
+  - name: --priority
+    summary: Priorité du point de terminaison lors de l’utilisation de la méthode de routage du trafic « priorité ». Les valeurs sont comprises entre 1 et 1000, avec des valeurs inférieures représentant une priorité plus élevée.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil parent.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subnets
+    summary: Liste séparée par des espaces des préfixes CIDR de sous-réseau (10.0.0.0/24) ou des plages de sous-réseau (10.0.0.0-11.0.0.0).
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --target
+    summary: Nom DNS complet du point de terminaison.
+    description: ''
+  - name: --target-resource-id
+    summary: URI de ressource Azure du point de terminaison. Non applicable pour les points de terminaison de type « ExternalEndpoints ».
+    description: ''
+  - name: --type -t
+    parameterValueGroup: azureEndpoints, externalEndpoints, nestedEndpoints
+    summary: Type de point de terminaison.
+    description: ''
+  - name: --weight
+    summary: Poids du point de terminaison lors de l’utilisation de la méthode de routage du trafic « pondéré ». Les valeurs sont comprises entre 1 et 1000.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_traffic_manager_endpoint_create
+- az_network_traffic_manager_endpoint_delete
+- az_network_traffic_manager_endpoint_list
+- az_network_traffic_manager_endpoint_show
+- az_network_traffic_manager_endpoint_show_geographic_hierarchy
+- az_network_traffic_manager_endpoint_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/25/2021
+  description: Gérer les points de terminaison Azure Traffic Manager.
+  ms.openlocfilehash: 2c31c66fbf053ba9d8b42922545e278bd490fc97
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103504433"
