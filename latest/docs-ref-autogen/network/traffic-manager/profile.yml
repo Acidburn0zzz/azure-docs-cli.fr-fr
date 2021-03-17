@@ -1,0 +1,329 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_traffic_manager_profile
+name: az network traffic-manager profile
+summary: Gérer les profils de Traffic Manager Azure.
+description: ''
+directCommands:
+- uid: az_network_traffic_manager_profile_check_dns
+  name: az network traffic-manager profile check-dns
+  summary: Vérifiez la disponibilité d’un nom DNS relatif.
+  description: Cela vérifie le avabilility des préfixes DNS pour trafficmanager.net.
+  syntax: >-
+    az network traffic-manager profile check-dns --name
+                                                 [--subscription]
+  examples:
+  - summary: Vérifiez la disponibilité de « mywebapp.trafficmanager.net » dans Azure.
+    syntax: az network traffic-manager profile check-dns -n mywebapp
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Préfixe DNS pour vérifier la disponibilité de.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_traffic_manager_profile_create
+  name: az network traffic-manager profile create
+  summary: Créez un profil Traffic Manager.
+  description: ''
+  syntax: >-
+    az network traffic-manager profile create --name
+                                              --resource-group
+                                              --routing-method {Geographic, Multivalue, Performance, Priority, Subnet, Weighted}
+                                              --unique-dns-name
+                                              [--custom-headers]
+                                              [--interval]
+                                              [--max-failures]
+                                              [--max-return]
+                                              [--path]
+                                              [--port]
+                                              [--protocol {HTTP, HTTPS, TCP}]
+                                              [--status {Disabled, Enabled}]
+                                              [--status-code-ranges]
+                                              [--subscription]
+                                              [--tags]
+                                              [--timeout]
+                                              [--ttl]
+  examples:
+  - summary: Créez un profil Traffic Manager avec routage des performances.
+    syntax: >-
+      az network traffic-manager profile create -g MyResourceGroup -n MyTmProfile --routing-method Performance \
+          --unique-dns-name mywebapp --ttl 30 --protocol HTTP --port 80 --path "/"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du profil Traffic Manager.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --routing-method
+    parameterValueGroup: Geographic, Multivalue, Performance, Priority, Subnet, Weighted
+    summary: Méthode de routage.
+    description: ''
+  - isRequired: true
+    name: --unique-dns-name
+    summary: Nom DNS relatif pour le profil Traffic Manager. Le nom de domaine complet résultant sera `<unique-dns-name>.trafficmanager.net` et doit être globalement unique.
+    description: ''
+  optionalParameters:
+  - name: --custom-headers
+    summary: Liste de paires nom = valeur séparées par des espaces.
+    description: ''
+  - name: --interval
+    summary: Intervalle, en secondes, auquel les contrôles d’intégrité sont effectués.
+    description: ''
+  - name: --max-failures
+    summary: Nombre de contrôles d’intégrité en échec consécutifs tolérés avant qu’un point de terminaison soit considéré comme détérioré.
+    description: ''
+  - name: --max-return
+    summary: Nombre maximal de points de terminaison à retourner pour le type de routage à valeurs multiples.
+    description: ''
+  - name: --path
+    summary: Chemin d’accès à surveiller. Utilisez « » («" » dans PowerShell) pour aucun.
+    description: ''
+  - name: --port
+    defaultValue: "80"
+    summary: Port à surveiller.
+    description: ''
+  - name: --protocol
+    defaultValue: HTTP
+    parameterValueGroup: HTTP, HTTPS, TCP
+    summary: Protocole Monitor.
+    description: ''
+  - name: --status
+    defaultValue: Enabled
+    parameterValueGroup: Disabled, Enabled
+    summary: État du profil de Traffic Manager.
+    description: ''
+  - name: --status-code-ranges
+    summary: Liste séparée par des espaces de codes d’État au format MIN-MAX ou VAL.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --timeout
+    summary: Durée, en secondes, autorisée pour les points de terminaison pour répondre à un contrôle d’intégrité.
+    description: ''
+  - name: --ttl
+    defaultValue: "30"
+    summary: Durée de vie de la configuration DNS en secondes.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_traffic_manager_profile_delete
+  name: az network traffic-manager profile delete
+  summary: Supprimer un profil Traffic Manager.
+  description: ''
+  syntax: >-
+    az network traffic-manager profile delete [--ids]
+                                              [--name]
+                                              [--resource-group]
+                                              [--subscription]
+  examples:
+  - summary: Supprimer un profil Traffic Manager.
+    syntax: az network traffic-manager profile delete -g MyResourceGroup -n MyTmProfile
+  - summary: Supprimer un profil Traffic Manager. généré automatiquement
+    syntax: az network traffic-manager profile delete --name MyTmProfile --resource-group MyResourceGroup --subscription MySubscription
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du profil de Traffic Manager à supprimer.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_traffic_manager_profile_list
+  name: az network traffic-manager profile list
+  summary: Répertorier les profils Traffic Manager.
+  description: ''
+  syntax: >-
+    az network traffic-manager profile list [--query-examples]
+                                            [--resource-group]
+                                            [--subscription]
+  examples:
+  - summary: Répertorier les profils Traffic Manager.
+    syntax: az network traffic-manager profile list -g MyResourceGroup
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_traffic_manager_profile_show
+  name: az network traffic-manager profile show
+  summary: Obtenir les détails d’un profil Traffic Manager.
+  description: ''
+  syntax: >-
+    az network traffic-manager profile show [--ids]
+                                            [--name]
+                                            [--query-examples]
+                                            [--resource-group]
+                                            [--subscription]
+  examples:
+  - summary: Obtenir les détails d’un profil Traffic Manager.
+    syntax: az network traffic-manager profile show -g MyResourceGroup -n MyTmProfile
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du profil de Traffic Manager.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_traffic_manager_profile_update
+  name: az network traffic-manager profile update
+  summary: Mettre à jour un profil Traffic Manager.
+  description: ''
+  syntax: >-
+    az network traffic-manager profile update [--add]
+                                              [--custom-headers]
+                                              [--force-string]
+                                              [--ids]
+                                              [--interval]
+                                              [--max-failures]
+                                              [--max-return]
+                                              [--name]
+                                              [--path]
+                                              [--port]
+                                              [--protocol {HTTP, HTTPS, TCP}]
+                                              [--remove]
+                                              [--resource-group]
+                                              [--routing-method {Geographic, Multivalue, Performance, Priority, Subnet, Weighted}]
+                                              [--set]
+                                              [--status {Disabled, Enabled}]
+                                              [--status-code-ranges]
+                                              [--subscription]
+                                              [--tags]
+                                              [--timeout]
+                                              [--ttl]
+  examples:
+  - summary: Mettez à jour un profil Traffic Manager pour modifier la durée de vie sur 300.
+    syntax: az network traffic-manager profile update -g MyResourceGroup -n MyTmProfile --ttl 300
+  - summary: Mettre à jour un profil Traffic Manager. généré automatiquement
+    syntax: az network traffic-manager profile update --name MyTmProfile --resource-group MyResourceGroup --status Enabled
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --custom-headers
+    summary: Liste de paires nom = valeur séparées par des espaces.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --interval
+    summary: Intervalle, en secondes, auquel les contrôles d’intégrité sont effectués.
+    description: ''
+  - name: --max-failures
+    summary: Nombre de contrôles d’intégrité en échec consécutifs tolérés avant qu’un point de terminaison soit considéré comme détérioré.
+    description: ''
+  - name: --max-return
+    summary: Nombre maximal de points de terminaison à retourner pour le type de routage à valeurs multiples.
+    description: ''
+  - name: --name -n
+    summary: Nom du profil de Traffic Manager.
+    description: ''
+  - name: --path
+    summary: Chemin d’accès à surveiller. Utilisez « » («" » dans PowerShell) pour aucun.
+    description: ''
+  - name: --port
+    summary: Port à surveiller.
+    description: ''
+  - name: --protocol
+    parameterValueGroup: HTTP, HTTPS, TCP
+    summary: Protocole Monitor.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --routing-method
+    parameterValueGroup: Geographic, Multivalue, Performance, Priority, Subnet, Weighted
+    summary: Méthode de routage.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --status
+    parameterValueGroup: Disabled, Enabled
+    summary: État du profil de Traffic Manager.
+    description: ''
+  - name: --status-code-ranges
+    summary: Liste séparée par des espaces de codes d’État au format MIN-MAX ou VAL.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --timeout
+    summary: Durée, en secondes, autorisée pour les points de terminaison pour répondre à un contrôle d’intégrité.
+    description: ''
+  - name: --ttl
+    summary: Durée de vie de la configuration DNS en secondes.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_traffic_manager_profile_check_dns
+- az_network_traffic_manager_profile_create
+- az_network_traffic_manager_profile_delete
+- az_network_traffic_manager_profile_list
+- az_network_traffic_manager_profile_show
+- az_network_traffic_manager_profile_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/25/2021
+  description: Gérer les profils de Traffic Manager Azure.
+  ms.openlocfilehash: 312509b5d3a8fac03eec69ee3463c1348cf34846
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103497745"
