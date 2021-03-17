@@ -1,0 +1,180 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-devops_az_devops_wiki
+name: az devops wiki
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-devops** pour Azure CLI et requiert la version 2.2.0 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ devops wiki** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les wikis.
+description: ''
+directCommands:
+- uid: ext_azure-devops_az_devops_wiki_create
+  name: az devops wiki create
+  summary: Créer un wiki.
+  description: ''
+  syntax: >-
+    az devops wiki create [--detect {false, true}]
+                          [--mapped-path]
+                          [--name]
+                          [--org]
+                          [--project]
+                          [--repository]
+                          [--type {codewiki, projectwiki}]
+                          [--version]
+  examples:
+  - summary: Créer un wiki de projet
+    syntax: az devops wiki create --name myprojectwiki
+  - summary: Créer un wiki de code à partir d’un dossier dans un dépôt de code
+    syntax: >-
+      az devops wiki create --name WIKI_NAME --type codewiki --version BRANCH_NAME
+
+      --repository REPO_NAME --mapped-path PATH_TO_PUBLISH
+  optionalParameters:
+  - name: --detect
+    parameterValueGroup: false, true
+    summary: Détection automatique de l’organisation.
+    description: ''
+  - name: --mapped-path
+    summary: '[Requis pour le type de codewiki] Chemin d’accès mappé du nouveau wiki, par exemple « / » pour publier à partir de la racine du référentiel.'
+    description: ''
+  - name: --name
+    summary: Nom du nouveau wiki.
+    description: ''
+  - name: --org --organization
+    summary: 'URL de l’organisation Azure DevOps. Vous pouvez configurer l’organisation par défaut à l’aide de la commande AZ devops configure-d Organization = ORG_URL. Obligatoire s’il n’est pas configuré comme valeur par défaut ou récupéré via la configuration git. Exemple : <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a> .'
+    description: ''
+  - name: --project -p
+    summary: Nom ou ID du projet. Vous pouvez configurer le projet par défaut à l’aide de la commande AZ devops configure-d Project = NAME_OR_ID. Obligatoire s’il n’est pas configuré comme valeur par défaut ou récupéré via la configuration git.
+    description: ''
+  - name: --repository -r
+    summary: '[Requis pour le type de codewiki] Nom ou ID du référentiel à partir duquel publier le wiki.'
+    description: ''
+  - name: --type --wiki-type
+    defaultValue: projectwiki
+    parameterValueGroup: codewiki, projectwiki
+    summary: Type de wiki à créer.
+    description: ''
+  - name: --version -v
+    summary: '[Requis pour le type de codewiki] Nom de la branche de référentiel à partir de laquelle publier le wiki de code.'
+    description: ''
+- uid: ext_azure-devops_az_devops_wiki_delete
+  name: az devops wiki delete
+  summary: Supprimer un wiki.
+  description: ''
+  syntax: >-
+    az devops wiki delete --wiki
+                          [--detect {false, true}]
+                          [--org]
+                          [--project]
+                          [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --wiki
+    summary: Nom ou ID du wiki à supprimer.
+    description: ''
+  optionalParameters:
+  - name: --detect
+    parameterValueGroup: false, true
+    summary: Détection automatique de l’organisation.
+    description: ''
+  - name: --org --organization
+    summary: 'URL de l’organisation Azure DevOps. Vous pouvez configurer l’organisation par défaut à l’aide de la commande AZ devops configure-d Organization = ORG_URL. Obligatoire s’il n’est pas configuré comme valeur par défaut ou récupéré via la configuration git. Exemple : <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a> .'
+    description: ''
+  - name: --project -p
+    summary: Nom ou ID du projet. Vous pouvez configurer le projet par défaut à l’aide de la commande AZ devops configure-d Project = NAME_OR_ID. Obligatoire s’il n’est pas configuré comme valeur par défaut ou récupéré via la configuration git.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_azure-devops_az_devops_wiki_list
+  name: az devops wiki list
+  summary: Répertorie tous les wikis dans un projet ou une organisation.
+  description: ''
+  syntax: >-
+    az devops wiki list [--detect {false, true}]
+                        [--org]
+                        [--project]
+                        [--scope {organization, project}]
+  examples:
+  - summary: Répertorier tous les wikis pour un projet
+    syntax: az devops wiki list
+  - summary: Répertorier tous les wikis de l’Organisation
+    syntax: az devops wiki list --scope organization
+  optionalParameters:
+  - name: --detect
+    parameterValueGroup: false, true
+    summary: Détection automatique de l’organisation.
+    description: ''
+  - name: --org --organization
+    summary: 'URL de l’organisation Azure DevOps. Vous pouvez configurer l’organisation par défaut à l’aide de la commande AZ devops configure-d Organization = ORG_URL. Obligatoire s’il n’est pas configuré comme valeur par défaut ou récupéré via la configuration git. Exemple : <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a> .'
+    description: ''
+  - name: --project -p
+    summary: Nom ou ID du projet. Vous pouvez configurer le projet par défaut à l’aide de la commande AZ devops configure-d Project = NAME_OR_ID. Obligatoire s’il n’est pas configuré comme valeur par défaut ou récupéré via la configuration git.
+    description: ''
+  - name: --scope
+    defaultValue: project
+    parameterValueGroup: organization, project
+    summary: Répertoriez les wikis au niveau du projet ou de l’organisation.
+    description: ''
+- uid: ext_azure-devops_az_devops_wiki_show
+  name: az devops wiki show
+  summary: Affichez les détails d’un wiki.
+  description: ''
+  syntax: >-
+    az devops wiki show --wiki
+                        [--detect {false, true}]
+                        [--open]
+                        [--org]
+                        [--project]
+  requiredParameters:
+  - isRequired: true
+    name: --wiki
+    summary: Nom ou ID du wiki.
+    description: ''
+  optionalParameters:
+  - name: --detect
+    parameterValueGroup: false, true
+    summary: Détection automatique de l’organisation.
+    description: ''
+  - name: --open
+    summary: Ouvrez le wiki dans votre navigateur Web.
+    description: ''
+  - name: --org --organization
+    summary: 'URL de l’organisation Azure DevOps. Vous pouvez configurer l’organisation par défaut à l’aide de la commande AZ devops configure-d Organization = ORG_URL. Obligatoire s’il n’est pas configuré comme valeur par défaut ou récupéré via la configuration git. Exemple : <a href="https://dev.azure.com/MyOrganizationName/">https://dev.azure.com/MyOrganizationName/</a> .'
+    description: ''
+  - name: --project -p
+    summary: Nom ou ID du projet. Vous pouvez configurer le projet par défaut à l’aide de la commande AZ devops configure-d Project = NAME_OR_ID. Obligatoire s’il n’est pas configuré comme valeur par défaut ou récupéré via la configuration git.
+    description: ''
+commands:
+- ext_azure-devops_az_devops_wiki_create
+- ext_azure-devops_az_devops_wiki_delete
+- ext_azure-devops_az_devops_wiki_list
+- ext_azure-devops_az_devops_wiki_page
+- ext_azure-devops_az_devops_wiki_page_create
+- ext_azure-devops_az_devops_wiki_page_delete
+- ext_azure-devops_az_devops_wiki_page_show
+- ext_azure-devops_az_devops_wiki_page_update
+- ext_azure-devops_az_devops_wiki_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les wikis.
+  ms.openlocfilehash: 1a54ff3d1a89a99f2205e1022fbd1eddcf27c0ef
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102836817"
