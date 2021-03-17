@@ -1,0 +1,226 @@
+### YamlMime:AzureCLIGroup
+uid: az_sql_instance_failover_group
+name: az sql instance-failover-group
+summary: Gérer les groupes de basculement d’instance SQL.
+description: ''
+directCommands:
+- uid: az_sql_instance_failover_group_create
+  name: az sql instance-failover-group create
+  summary: Crée un groupe de basculement d’instance entre deux instances gérées connectées.
+  description: Si une panne se produit sur le serveur principal, la période de grâce indique que la base de données managée SQL Azure ne lancera pas le basculement automatique avant l’expiration de la période de grâce. Notez que l’opération de basculement avec l’option--Allow-Data-Loss peut entraîner une perte de données en raison de la nature de la synchronisation asynchrone.
+  syntax: >-
+    az sql instance-failover-group create --mi
+                                          --name
+                                          --partner-mi
+                                          --partner-resource-group
+                                          --resource-group
+                                          [--failover-policy {Automatic, Manual}]
+                                          [--grace-period]
+                                          [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --mi --source-mi
+    summary: Nom de l’instance Azure SQL Managed instance.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de basculement d’instance.
+    description: ''
+  - isRequired: true
+    name: --partner-mi
+    summary: Nom de l’instance gérée par le partenaire d’un groupe de basculement d’instance.
+    description: ''
+  - isRequired: true
+    name: --partner-resource-group
+    summary: Nom du groupe de ressources de l’instance gérée par le partenaire.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --failover-policy
+    defaultValue: Automatic
+    parameterValueGroup: Automatic, Manual
+    summary: Stratégie de basculement du groupe de basculement d’instance.
+    description: ''
+  - name: --grace-period
+    defaultValue: "1"
+    summary: Intervalle en heures avant le basculement automatique si une panne se produit sur le serveur principal. Cela indique que Azure SQL Database ne lancera pas le basculement automatique avant l’expiration de la période de grâce. Notez que l’opération de basculement avec l’option--Allow-Data-Loss peut entraîner une perte de données en raison de la nature de la synchronisation asynchrone.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_instance_failover_group_delete
+  name: az sql instance-failover-group delete
+  summary: Supprime un groupe de basculement.
+  description: ''
+  syntax: >-
+    az sql instance-failover-group delete --location
+                                          --name
+                                          --resource-group
+                                          [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de basculement d’instance.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_instance_failover_group_set_primary
+  name: az sql instance-failover-group set-primary
+  summary: Définissez le principal du groupe de basculement d’instance en basculant toutes les bases de données à partir de l’instance managée principale actuelle.
+  description: ''
+  syntax: >-
+    az sql instance-failover-group set-primary --location
+                                               --name
+                                               --resource-group
+                                               [--allow-data-loss]
+                                               [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de basculement d’instance.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --allow-data-loss
+    summary: Effectuer le basculement même si cela peut entraîner une perte de données. Cela permettra au basculement de continuer même si une base de données primaire n’est pas disponible.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_instance_failover_group_show
+  name: az sql instance-failover-group show
+  summary: Obtient un groupe de basculement.
+  description: ''
+  syntax: >-
+    az sql instance-failover-group show --location
+                                        --name
+                                        --resource-group
+                                        [--query-examples]
+                                        [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de basculement d’instance.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_instance_failover_group_update
+  name: az sql instance-failover-group update
+  summary: Met à jour le groupe de basculement d’instance.
+  description: ''
+  syntax: >-
+    az sql instance-failover-group update --location
+                                          --name
+                                          --resource-group
+                                          [--add]
+                                          [--failover-policy {Automatic, Manual}]
+                                          [--force-string]
+                                          [--grace-period]
+                                          [--remove]
+                                          [--set]
+                                          [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de basculement d’instance.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --failover-policy
+    parameterValueGroup: Automatic, Manual
+    summary: Stratégie de basculement du groupe de basculement d’instance.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --grace-period
+    summary: Intervalle en heures avant le basculement automatique si une panne se produit sur le serveur principal. Cela indique que Azure SQL Database ne lancera pas le basculement automatique avant l’expiration de la période de grâce. Notez que l’opération de basculement avec l’option--Allow-Data-Loss peut entraîner une perte de données en raison de la nature de la synchronisation asynchrone.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+commands:
+- az_sql_instance_failover_group_create
+- az_sql_instance_failover_group_delete
+- az_sql_instance_failover_group_set_primary
+- az_sql_instance_failover_group_show
+- az_sql_instance_failover_group_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/18/2021
+  description: Gérer les groupes de basculement d’instance SQL.
+  ms.openlocfilehash: 9f77fc0f548313cd407201231f4bc17bb0999c84
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103515891"
