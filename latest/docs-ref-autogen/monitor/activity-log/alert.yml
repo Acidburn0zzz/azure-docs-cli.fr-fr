@@ -1,0 +1,243 @@
+### YamlMime:AzureCLIGroup
+uid: az_monitor_activity_log_alert
+name: az monitor activity-log alert
+summary: Gérer les alertes de journal d’activité.
+description: ''
+directCommands:
+- uid: az_monitor_activity_log_alert_create
+  name: az monitor activity-log alert create
+  summary: Créer une alerte de journal d’activité par défaut.
+  description: Cette commande crée un journal d’activité par défaut avec une condition qui compare si le champ « Category » du journal des activités est égal à « ServiceHealth ». L’alerte de journal d’activité nouvellement créée n’a pas de groupes d’actions attachés.
+  syntax: >-
+    az monitor activity-log alert create --name
+                                         --resource-group
+                                         [--action-group]
+                                         [--condition]
+                                         [--description]
+                                         [--disable]
+                                         [--scope]
+                                         [--subscription]
+                                         [--tags]
+                                         [--webhook-properties]
+  examples:
+  - summary: Créer une alerte avec les paramètres par défaut.
+    syntax: az monitor activity-log alert create -n {AlertName} -g {ResourceGroup}
+  - summary: Créez une alerte avec condition à propos du journal d’intégrité du service de niveau d’erreur.
+    syntax: >-
+      az monitor activity-log alert create -n {AlertName} -g {ResourceGroup} \
+        --condition category=ServiceHealth and level=Error
+  - summary: Créez une alerte avec un groupe d’actions et spécifiez les propriétés du webhook.
+    syntax: >-
+      az monitor activity-log alert create -n {AlertName} -g {ResourceGroup} \
+        -a /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/microsoft.insights/actionGroups/{ActionGroup} \
+        -w usage=test owner=jane
+  - summary: Créez une alerte qui est initialement désactivée.
+    syntax: az monitor activity-log alert create -n {AlertName} -g {ResourceGroup} --disable
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom des alertes du journal d’activité.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --action-group -a
+    summary: Ajoutez un groupe d’actions. Accepte les identificateurs de groupe d’actions séparés par des espaces. L’identificateur peut être le nom du groupe d’actions ou son ID de ressource.
+    description: ''
+  - name: --condition -c
+    summary: Condition qui déclenchera l’activation de l’alerte. Le format est champ = valeur [et champ = valeur...].
+    description: Les valeurs possibles pour le champ sont « resourceId », « Category », « Caller », « Level », « NomOpération », « groupe de ressources », « resourceProvider », « Status », « SubStatus », « resourceType » ou tout qui commence par « Properties ».
+  - name: --description
+    summary: Description de cette alerte de journal d’activité.
+    description: ''
+  - name: --disable
+    summary: Désactivez l’alerte de journal d’activité après sa création.
+    description: ''
+  - name: --scope -s
+    summary: Liste de chaînes qui seront utilisées comme préfixes.
+    description: L’alerte s’applique uniquement aux journaux d’activité avec des ID qui appartiennent à l’un de ces préfixes. S’il n’est pas fourni, le chemin d’accès au groupe de ressources sera utilisé.
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --webhook-properties -w
+    summary: Propriétés de webhook séparées par des espaces dans le format’key [= value] '. Ces propriétés sont associées aux groupes d’actions ajoutés dans cette commande.
+    description: Pour tout récepteur de webhook dans ce groupe d’actions, ces données sont ajoutées à la charge utile du webhook. Pour associer différentes propriétés de webhook à différents groupes d’actions, ajoutez les groupes d’actions dans des commandes de mise à jour-action distinctes.
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_activity_log_alert_delete
+  name: az monitor activity-log alert delete
+  summary: Supprimer une alerte de journal d’activité.
+  description: ''
+  syntax: >-
+    az monitor activity-log alert delete [--ids]
+                                         [--name]
+                                         [--resource-group]
+                                         [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’alerte de journal d’activité.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_activity_log_alert_list
+  name: az monitor activity-log alert list
+  summary: Répertorier les alertes du journal d’activité sous un groupe de ressources ou l’abonnement actuel.
+  description: ''
+  syntax: >-
+    az monitor activity-log alert list [--query-examples]
+                                       [--resource-group]
+                                       [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources sous lequel les alertes du journal d’activité sont répertoriées. S’il est omis, toutes les alertes de journal d’activité sous l’abonnement actuel sont répertoriées.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_activity_log_alert_show
+  name: az monitor activity-log alert show
+  summary: Obtient une alerte de journal d’activité.
+  description: ''
+  syntax: >-
+    az monitor activity-log alert show [--ids]
+                                       [--name]
+                                       [--query-examples]
+                                       [--resource-group]
+                                       [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’alerte de journal d’activité.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_activity_log_alert_update
+  name: az monitor activity-log alert update
+  summary: Mettez à jour les détails de cette alerte de journal d’activité.
+  description: ''
+  syntax: >-
+    az monitor activity-log alert update [--add]
+                                         [--condition]
+                                         [--description]
+                                         [--enabled {false, true}]
+                                         [--force-string]
+                                         [--ids]
+                                         [--name]
+                                         [--remove]
+                                         [--resource-group]
+                                         [--set]
+                                         [--subscription]
+                                         [--tags]
+  examples:
+  - summary: Mettre à jour la condition
+    syntax: >-
+      az monitor activity-log alert update -n {AlertName} -g {ResourceGroup} \
+        --condition category=ServiceHealth and level=Error
+  - summary: Désactiver une alerte
+    syntax: az monitor activity-log alert update -n {AlertName} -g {ResourceGroup} --enable false
+  - summary: Mettre à jour les détails de cette alerte de journal d’activité (générée automatiquement)
+    syntax: az monitor activity-log alert update --enabled true --name MyActivityLogAlerts --resource-group MyResourceGroup --subscription MySubscription
+  - summary: Mettez à jour les détails de cette alerte de journal d’activité. généré automatiquement
+    syntax: az monitor activity-log alert update --name MyActivityLogAlerts --resource-group MyResourceGroup --tags key=value
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --condition -c
+    summary: Expression conditionnelle qui déclenchera l’activation de l’alerte. Le format est champ = valeur [et champ = valeur...].
+    description: Les valeurs possibles pour le champ sont « resourceId », « Category », « Caller », « Level », « NomOpération », « groupe de ressources », « resourceProvider », « Status », « SubStatus », « resourceType » ou tout qui commence par « Properties ».
+  - name: --description
+    summary: Description de cette alerte de journal d’activité.
+    description: ''
+  - name: --enabled
+    parameterValueGroup: false, true
+    summary: ''
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’alerte de journal d’activité.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+commands:
+- az_monitor_activity_log_alert_action_group
+- az_monitor_activity_log_alert_action_group_add
+- az_monitor_activity_log_alert_action_group_remove
+- az_monitor_activity_log_alert_create
+- az_monitor_activity_log_alert_delete
+- az_monitor_activity_log_alert_list
+- az_monitor_activity_log_alert_scope
+- az_monitor_activity_log_alert_scope_add
+- az_monitor_activity_log_alert_scope_remove
+- az_monitor_activity_log_alert_show
+- az_monitor_activity_log_alert_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer les alertes de journal d’activité.
+  ms.openlocfilehash: 1ef16aed916ab3e674473fbf84eed5e84c91a8a7
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102847879"

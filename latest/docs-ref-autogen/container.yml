@@ -1,0 +1,559 @@
+### YamlMime:AzureCLIGroup
+uid: az_container
+name: az container
+summary: Gérez Azure Container Instances.
+description: ''
+directCommands:
+- uid: az_container_attach
+  name: az container attach
+  summary: Attacher des flux de sortie et d’erreur standard locaux à un conteneur dans un groupe de conteneurs.
+  description: ''
+  syntax: >-
+    az container attach [--container-name]
+                        [--ids]
+                        [--name]
+                        [--resource-group]
+                        [--subscription]
+  examples:
+  - summary: Attacher des flux de sortie et d’erreur standard locaux à un conteneur dans un groupe de conteneurs. généré automatiquement
+    syntax: az container attach --name MyContainerGroup --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --container-name
+    summary: Conteneur auquel effectuer l’attachement. En cas d’omission, le premier conteneur du groupe de conteneurs est choisi.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe de conteneurs.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/container/_help.py
+- uid: az_container_create
+  name: az container create
+  summary: Créez un groupe de conteneurs.
+  description: ''
+  syntax: >-
+    az container create --resource-group
+                        [--assign-identity]
+                        [--azure-file-volume-account-key]
+                        [--azure-file-volume-account-name]
+                        [--azure-file-volume-mount-path]
+                        [--azure-file-volume-share-name]
+                        [--command-line]
+                        [--cpu]
+                        [--dns-name-label]
+                        [--environment-variables]
+                        [--file]
+                        [--gitrepo-dir]
+                        [--gitrepo-mount-path]
+                        [--gitrepo-revision]
+                        [--gitrepo-url]
+                        [--image]
+                        [--ip-address {Private, Public}]
+                        [--location]
+                        [--log-analytics-workspace]
+                        [--log-analytics-workspace-key]
+                        [--memory]
+                        [--name]
+                        [--network-profile]
+                        [--no-wait]
+                        [--os-type {Linux, Windows}]
+                        [--ports]
+                        [--protocol {TCP, UDP}]
+                        [--registry-login-server]
+                        [--registry-password]
+                        [--registry-username]
+                        [--restart-policy {Always, Never, OnFailure}]
+                        [--role]
+                        [--scope]
+                        [--secrets]
+                        [--secrets-mount-path]
+                        [--secure-environment-variables]
+                        [--subnet]
+                        [--subnet-address-prefix]
+                        [--subscription]
+                        [--vnet]
+                        [--vnet-address-prefix]
+                        [--vnet-name]
+  examples:
+  - summary: Créez un conteneur dans un groupe de conteneurs avec 1 cœur et 1 Go de mémoire.
+    syntax: az container create -g MyResourceGroup --name myapp --image myimage:latest --cpu 1 --memory 1
+  - summary: Créez un conteneur dans un groupe de conteneurs qui exécute Windows, avec 2 cœurs et 3,5 Go de mémoire.
+    syntax: az container create -g MyResourceGroup --name mywinapp --image winappimage:latest --os-type Windows --cpu 2 --memory 3.5
+  - summary: Créez un conteneur dans un groupe de conteneurs avec une adresse IP publique, des ports et une étiquette de nom DNS.
+    syntax: az container create -g MyResourceGroup --name myapp --image myimage:latest --ports 80 443 --dns-name-label contoso
+  - summary: Créez un conteneur dans un groupe de conteneurs qui appelle un script lors du démarrage.
+    syntax: az container create -g MyResourceGroup --name myapp --image myimage:latest --command-line "/bin/sh -c '/path to/myscript.sh'"
+  - summary: Créez un conteneur dans un groupe de conteneurs qui exécute une commande et arrêtez le conteneur par la suite.
+    syntax: az container create -g MyResourceGroup --name myapp --image myimage:latest --command-line "echo hello" --restart-policy Never
+  - summary: Créez un conteneur dans un groupe de conteneurs avec des variables d’environnement.
+    syntax: az container create -g MyResourceGroup --name myapp --image myimage:latest --environment-variables key1=value1 key2=value2
+  - summary: Créez un conteneur dans un groupe de conteneurs à l’aide d’une image de conteneur à partir de Azure Container Registry.
+    syntax: az container create -g MyResourceGroup --name myapp --image myAcrRegistry.azurecr.io/myimage:latest --registry-password password
+  - summary: Créez un conteneur dans un groupe de conteneurs qui monte un partage de fichiers Azure en tant que volume.
+    syntax: az container create -g MyResourceGroup --name myapp --image myimage:latest --command-line "cat /mnt/azfile/myfile" --azure-file-volume-share-name myshare --azure-file-volume-account-name mystorageaccount --azure-file-volume-account-key mystoragekey --azure-file-volume-mount-path /mnt/azfile
+  - summary: Créez un conteneur dans un groupe de conteneurs qui monte un référentiel git en tant que volume.
+    syntax: az container create -g MyResourceGroup --name myapp --image myimage:latest --command-line "cat /mnt/gitrepo" --gitrepo-url https://github.com/user/myrepo.git --gitrepo-dir ./dir1 --gitrepo-mount-path /mnt/gitrepo
+  - summary: Créez un conteneur dans un groupe de conteneurs à l’aide d’un fichier YAML.
+    syntax: az container create -g MyResourceGroup -f containerGroup.yaml
+  - summary: Créez un groupe de conteneurs à l’aide de Log Analytics à partir d’un nom d’espace de travail.
+    syntax: az container create -g MyResourceGroup --name myapp --log-analytics-workspace myworkspace
+  - summary: Créez un groupe de conteneurs avec une identité attribuée par le système.
+    syntax: az container create -g MyResourceGroup --name myapp --image myimage:latest --assign-identity
+  - summary: Créez un groupe de conteneurs avec une identité attribuée par le système. Le groupe aura un rôle « contributeur » pour accéder à un compte de stockage.
+    syntax: az container create -g MyResourceGroup --name myapp --image myimage:latest --assign-identity --scope /subscriptions/99999999-1bf0-4dda-aec3-cb9272f09590/MyResourceGroup/myRG/providers/Microsoft.Storage/storageAccounts/storage1
+  - summary: Créez un groupe de conteneurs avec une identité affectée à l’utilisateur.
+    syntax: az container create -g MyResourceGroup --name myapp --image myimage:latest --assign-identity  /subscriptions/mySubscriptionId/resourcegroups/myRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myID
+  - summary: Créez un groupe de conteneurs avec l’identité attribuée par le système et l’utilisateur.
+    syntax: az container create -g MyResourceGroup --name myapp --image myimage:latest --assign-identity [system] /subscriptions/mySubscriptionId/resourcegroups/myRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myID
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --assign-identity
+    summary: Liste séparée par des espaces des identités affectées. Les identités affectées sont des identités affectées par l’utilisateur (ID de ressource) et/ou l’identité attribuée par le système (« [System] »). Pour plus d’informations, consultez les exemples.
+    description: ''
+  - name: --azure-file-volume-account-key
+    summary: Clé d’accès du compte de stockage utilisée pour accéder au partage de fichiers Azure.
+    description: ''
+  - name: --azure-file-volume-account-name
+    summary: Nom du compte de stockage qui contient le partage de fichiers Azure.
+    description: ''
+  - name: --azure-file-volume-mount-path
+    summary: Chemin d’accès au sein du conteneur dans lequel le volume de fichiers Azure doit être monté. Ne doivent pas contenir le signe deux-points «  : ».
+    description: ''
+  - name: --azure-file-volume-share-name
+    summary: Nom du partage de fichiers Azure à monter en tant que volume.
+    description: ''
+  - name: --command-line
+    summary: Ligne de commande à exécuter lors du démarrage du conteneur, par exemple « /bin/bash-c myscript.sh ».
+    description: ''
+  - name: --cpu
+    defaultValue: "1"
+    summary: Nombre requis de cœurs d’UC des conteneurs, avec précision pour une décimale.
+    description: ''
+  - name: --dns-name-label
+    summary: Étiquette de nom DNS pour le groupe de conteneurs avec une adresse IP publique.
+    description: ''
+  - name: --environment-variables -e
+    summary: Liste de variables d’environnement pour le conteneur. Valeurs séparées par des espaces dans le format’key = value'.
+    description: ''
+  - name: --file -f
+    summary: Chemin d’accès au fichier d’entrée.
+    description: ''
+  - name: --gitrepo-dir
+    defaultValue: .
+    summary: Chemin d’accès au répertoire cible dans le référentiel git. Ne doit pas contenir'.. '.
+    description: ''
+  - name: --gitrepo-mount-path
+    summary: Chemin d’accès au sein du conteneur où le volume référentiel git doit être monté. Ne doivent pas contenir le signe deux-points «  : ».
+    description: ''
+  - name: --gitrepo-revision
+    summary: Hachage de validation pour la révision spécifiée.
+    description: ''
+  - name: --gitrepo-url
+    summary: URL d’un référentiel git à monter en tant que volume.
+    description: ''
+  - name: --image
+    summary: Nom de l’image de conteneur.
+    description: ''
+  - name: --ip-address
+    parameterValueGroup: Private, Public
+    summary: Type d’adresse IP du groupe de conteneurs.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --log-analytics-workspace
+    summary: Nom ou ID de l’espace de travail Log Analytics. Utilisez l’abonnement actuel ou utilisez l’indicateur--Subscription pour définir l’abonnement souhaité.
+    description: ''
+  - name: --log-analytics-workspace-key
+    summary: Clé de l’espace de travail Log Analytics.
+    description: ''
+  - name: --memory
+    defaultValue: "1.5"
+    summary: La mémoire requise des conteneurs, en Go, précise à une décimale.
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe de conteneurs.
+    description: ''
+  - name: --network-profile
+    summary: Nom ou ID du profil réseau.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --os-type
+    defaultValue: Linux
+    parameterValueGroup: Linux, Windows
+    summary: Type de système d’exploitation des conteneurs.
+    description: ''
+  - name: --ports
+    defaultValue: '[80]'
+    summary: Liste des ports à ouvrir. Liste de ports séparés par des espaces.
+    description: ''
+  - name: --protocol
+    parameterValueGroup: TCP, UDP
+    summary: Protocole réseau à utiliser.
+    description: ''
+  - name: --registry-login-server
+    summary: Serveur de connexion au registre de l’image conteneur.
+    description: ''
+  - name: --registry-password
+    summary: Mot de passe pour la connexion au serveur de registre d’image de conteneur.
+    description: ''
+  - name: --registry-username
+    summary: Nom d’utilisateur pour la connexion au serveur de registre d’image de conteneur.
+    description: ''
+  - name: --restart-policy
+    defaultValue: Always
+    parameterValueGroup: Always, Never, OnFailure
+    summary: Stratégie de redémarrage pour tous les conteneurs présents dans le groupe de conteneurs.
+    description: ''
+  - name: --role
+    defaultValue: Contributor
+    summary: Nom de rôle ou ID dont l’identité a été affectée par le système.
+    description: ''
+  - name: --scope
+    summary: Étendue à laquelle le système affecté à l’identité peut accéder.
+    description: ''
+  - name: --secrets
+    summary: Secrets séparés par des espaces dans le format’key = value'.
+    description: ''
+  - name: --secrets-mount-path
+    summary: Chemin d’accès au sein du conteneur où le volume de secrets doit être monté. Ne doivent pas contenir le signe deux-points «  : ».
+    description: ''
+  - name: --secure-environment-variables
+    summary: Liste de variables d’environnement sécurisées pour le conteneur. Valeurs séparées par des espaces dans le format’key = value'.
+    description: ''
+  - name: --subnet
+    summary: Nom du sous-réseau lors de la création d’un réseau virtuel ou référencement d’un réseau existant. Peut également faire référence à un sous-réseau existant par son ID.
+    description: ''
+  - name: --subnet-address-prefix
+    defaultValue: 10.0.0.0/24
+    summary: Préfixe d’adresse IP de sous-réseau à utiliser lors de la création d’un nouveau réseau virtuel au format CIDR.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet
+    summary: Nom du réseau virtuel lors de la création d’un nouveau ou référencement d’un réseau virtuel existant. Peut également faire référence à un réseau virtuel existant par son ID. Cela permet l’utilisation de réseaux virtuels à partir d’autres groupes de ressources.
+    description: ''
+  - name: --vnet-address-prefix
+    defaultValue: 10.0.0.0/16
+    summary: Préfixe d’adresse IP à utiliser lors de la création d’un nouveau réseau virtuel au format CIDR.
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel lors de la création d’un nouveau ou référencement d’un réseau virtuel existant.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/container/_help.py
+- uid: az_container_delete
+  name: az container delete
+  summary: Supprimer un groupe de conteneurs.
+  description: ''
+  syntax: >-
+    az container delete [--ids]
+                        [--name]
+                        [--resource-group]
+                        [--subscription]
+                        [--yes]
+  examples:
+  - summary: Supprimer un groupe de conteneurs. généré automatiquement
+    syntax: az container delete --name MyContainerGroup --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe de conteneurs.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/container/_help.py
+- uid: az_container_exec
+  name: az container exec
+  summary: Exécuter une commande à partir d’un conteneur en cours d’exécution d’un groupe de conteneurs.
+  description: Le cas d’utilisation le plus courant consiste à ouvrir un interpréteur de commandes bash interactif. Voir les exemples ci-dessous. Cette commande n’est actuellement pas prise en charge pour les ordinateurs Windows.
+  syntax: >-
+    az container exec --exec-command
+                      [--container-name]
+                      [--ids]
+                      [--name]
+                      [--resource-group]
+                      [--subscription]
+                      [--terminal-col-size]
+                      [--terminal-row-size]
+  examples:
+  - summary: Diffuser un interpréteur de commandes à partir d’un conteneur nginx.
+    syntax: az container exec -g MyResourceGroup --name mynginx --container-name nginx --exec-command "/bin/bash"
+  requiredParameters:
+  - isRequired: true
+    name: --exec-command
+    summary: Commande à exécuter à partir du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --container-name
+    summary: Nom du conteneur dans lequel la commande doit être exécutée. Peut être ommitted pour les groupes de conteneurs avec un seul conteneur.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe de conteneurs.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --terminal-col-size
+    defaultValue: "80"
+    summary: Taille de col pour la sortie de commande.
+    description: ''
+  - name: --terminal-row-size
+    defaultValue: "20"
+    summary: Taille de ligne pour la sortie de la commande.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/container/_help.py
+- uid: az_container_export
+  name: az container export
+  summary: Exportez un groupe de conteneurs au format YAML.
+  description: ''
+  syntax: >-
+    az container export --file
+                        [--ids]
+                        [--name]
+                        [--resource-group]
+                        [--subscription]
+  examples:
+  - summary: Exportez un groupe de conteneurs dans YAML.
+    syntax: az container export -g MyResourceGroup --name mynginx -f output.yaml
+  requiredParameters:
+  - isRequired: true
+    name: --file -f
+    summary: Chemin d’accès du fichier pour exporter le groupe de conteneurs.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe de conteneurs.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/container/_help.py
+- uid: az_container_list
+  name: az container list
+  summary: Répertorier les groupes de conteneurs.
+  description: ''
+  syntax: >-
+    az container list [--query-examples]
+                      [--resource-group]
+                      [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/container/_help.py
+- uid: az_container_logs
+  name: az container logs
+  summary: Examinez les journaux d’un conteneur dans un groupe de conteneurs.
+  description: ''
+  syntax: >-
+    az container logs [--container-name]
+                      [--follow]
+                      [--ids]
+                      [--name]
+                      [--resource-group]
+                      [--subscription]
+  examples:
+  - summary: Examinez les journaux d’un conteneur dans un groupe de conteneurs. généré automatiquement
+    syntax: az container logs --name MyContainerGroup --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --container-name
+    summary: Nom du conteneur à la fin des journaux. En cas d’omission, le premier conteneur du groupe de conteneurs est choisi.
+    description: ''
+  - name: --follow
+    summary: Indiquez qu’il faut diffuser les journaux de la fin.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe de conteneurs.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/container/_help.py
+- uid: az_container_restart
+  name: az container restart
+  summary: Redémarre tous les conteneurs d’un groupe de conteneurs.
+  description: Redémarre tous les conteneurs d’un groupe de conteneurs sur place. Si l’image de conteneur contient des mises à jour, la nouvelle image est téléchargée.
+  syntax: >-
+    az container restart --name
+                         --resource-group
+                         [--no-wait]
+                         [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de conteneurs.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/container/_help.py
+- uid: az_container_show
+  name: az container show
+  summary: Obtenir les détails d’un groupe de conteneurs.
+  description: ''
+  syntax: >-
+    az container show [--ids]
+                      [--name]
+                      [--query-examples]
+                      [--resource-group]
+                      [--subscription]
+  examples:
+  - summary: Obtenir les détails d’un groupe de conteneurs. généré automatiquement
+    syntax: az container show --name MyContainerGroup --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe de conteneurs.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/container/_help.py
+- uid: az_container_start
+  name: az container start
+  summary: Démarre tous les conteneurs d’un groupe de conteneurs.
+  description: Démarre tous les conteneurs d’un groupe de conteneurs.
+  syntax: >-
+    az container start --name
+                       --resource-group
+                       [--no-wait]
+                       [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de conteneurs.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/container/_help.py
+- uid: az_container_stop
+  name: az container stop
+  summary: Arrête tous les conteneurs dans un groupe de conteneurs.
+  description: Arrête tous les conteneurs dans un groupe de conteneurs. Les ressources de calcul sont désallouées et la facturation est arrêtée.
+  syntax: >-
+    az container stop --name
+                      --resource-group
+                      [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de conteneurs.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/container/_help.py
+commands:
+- az_container_attach
+- az_container_create
+- az_container_delete
+- az_container_exec
+- az_container_export
+- az_container_list
+- az_container_logs
+- az_container_restart
+- az_container_show
+- az_container_start
+- az_container_stop
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/23/2020
+  description: Gérez Azure Container Instances.
+  ms.openlocfilehash: 472a0b7ec45e8be10433c9f5f9bfeb9fd80add89
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102841861"
