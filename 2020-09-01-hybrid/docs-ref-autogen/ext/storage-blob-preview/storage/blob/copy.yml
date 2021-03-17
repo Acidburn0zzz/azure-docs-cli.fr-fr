@@ -1,0 +1,191 @@
+### YamlMime:AzureCLIGroup
+uid: ext_storage-blob-preview_az_storage_blob_copy
+name: az storage blob copy
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Storage-BLOB-Preview** pour Azure CLI et requiert la version 2.14.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Storage BLOB Copy** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les opérations de copie d’objets BLOB. Utilisez `az storage blob show` pour vérifier l’état des objets BLOB.
+description: ''
+directCommands:
+- uid: ext_storage-blob-preview_az_storage_blob_copy_start
+  name: az storage blob copy start
+  summary: Répertorier les objets BLOB dans un conteneur donné.
+  description: ''
+  syntax: >-
+    az storage blob copy start --destination-blob
+                               --destination-container
+                               [--account-key]
+                               [--account-name]
+                               [--auth-mode {key, login}]
+                               [--blob-url]
+                               [--connection-string]
+                               [--destination-if-match]
+                               [--destination-if-modified-since]
+                               [--destination-if-none-match]
+                               [--destination-if-unmodified-since]
+                               [--destination-lease-id]
+                               [--destination-tags-condition]
+                               [--metadata]
+                               [--rehydrate-priority]
+                               [--requires-sync {false, true}]
+                               [--sas-token]
+                               [--source-account-key]
+                               [--source-account-name]
+                               [--source-blob]
+                               [--source-container]
+                               [--source-if-match]
+                               [--source-if-modified-since]
+                               [--source-if-none-match]
+                               [--source-if-unmodified-since]
+                               [--source-lease-id]
+                               [--source-path]
+                               [--source-sas]
+                               [--source-share]
+                               [--source-snapshot]
+                               [--source-tags-condition]
+                               [--source-uri]
+                               [--tags]
+                               [--tier]
+                               [--timeout]
+  examples:
+  - summary: Copiez un objet blob de manière asynchrone. Utilisez `az storage blob show` pour vérifier l’état des objets BLOB.
+    syntax: az storage blob copy start --account-key 00000000 --account-name MyAccount --destination-blob MyDestinationBlob --destination-container MyDestinationContainer --source-uri https://storage.blob.core.windows.net/photos
+  - summary: Copiez un objet blob de manière asynchrone. Utilisez `az storage blob show` pour vérifier l’état des objets BLOB.
+    syntax: az storage blob copy start --account-name MyAccount --destination-blob MyDestinationBlob --destination-container MyDestinationContainer --sas-token $sas --source-uri https://storage.blob.core.windows.net/photos
+  requiredParameters:
+  - isRequired: true
+    name: --destination-blob -b
+    summary: Nom de l’objet blob de destination. Si existe, il est remplacé.
+    description: ''
+  - isRequired: true
+    name: --destination-container -c
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --blob-url
+    summary: URL complète du point de terminaison de l’objet BLOB, y compris le jeton SAS et l’instantané, s’il est utilisé. Il peut s’agir du point de terminaison principal ou du point de terminaison secondaire en fonction du actuel `location_mode` .
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --destination-if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --destination-if-modified-since
+    summary: Valeur DateTime. Azure s’attend à ce que la valeur de date transmise soit UTC. Si TimeZone est inclus, tous les DateTime non UTC sont convertis en UTC. Si une date est passée sans informations de fuseau horaire, elle est supposée être UTC. Spécifiez cet en-tête conditionnel pour copier l'objet blob uniquement si l'objet blob de destination a été modifié depuis la date/l'heure indiquées. Si l'objet blob de destination n'a pas été modifié, le service BLOB retourne le code d'état 412 (Échec de la précondition).
+    description: ''
+  - name: --destination-if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --destination-if-unmodified-since
+    summary: Valeur DateTime. Azure s’attend à ce que la valeur de date transmise soit UTC. Si TimeZone est inclus, tous les DateTime non UTC sont convertis en UTC. Si une date est passée sans informations de fuseau horaire, elle est supposée être UTC. Spécifiez cet en-tête conditionnel pour copier l'objet blob uniquement si l'objet blob de destination n'a pas été modifié depuis la date/l'heure indiquées. Si l'objet blob de destination a été modifié, le service BLOB retourne le code d'état 412 (Échec de la précondition).
+    description: ''
+  - name: --destination-lease-id
+    summary: L’ID de bail spécifié pour cet en-tête doit correspondre à l’ID de bail de l’objet BLOB estination. Si la demande n'inclut pas l'ID de bail ou si elle n'est pas valide, l'opération échoue avec un code d'état 412 (Échec de la précondition).
+    description: ''
+  - name: --destination-tags-condition
+    summary: Spécifiez une clause SQL WHERE sur les balises d’objet BLOB pour qu’elle fonctionne uniquement sur les objets BLOB avec une valeur correspondante.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --rehydrate-priority -r
+    summary: Indiquez la priorité de réalimentation d’un objet BLOB archivé.
+    description: ''
+  - name: --requires-sync
+    parameterValueGroup: false, true
+    summary: Imposer que le service ne retourne pas de réponse tant que la copie n’est pas terminée.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --source-account-key
+    summary: Clé de compte de stockage de l’objet BLOB source.
+    description: ''
+  - name: --source-account-name
+    summary: Nom du compte de stockage de l’objet BLOB source.
+    description: ''
+  - name: --source-blob
+    summary: Nom de l’objet BLOB pour le compte de stockage source.
+    description: ''
+  - name: --source-container
+    summary: Nom du conteneur pour le compte de stockage source.
+    description: ''
+  - name: --source-if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --source-if-modified-since
+    summary: Valeur DateTime. Azure s’attend à ce que la valeur de date transmise soit UTC. Si TimeZone est inclus, tous les DateTime non UTC sont convertis en UTC. Si une date est passée sans informations de fuseau horaire, elle est supposée être UTC. Spécifiez cet en-tête conditionnel pour copier l'objet blob uniquement si l'objet blob source a été modifié depuis la date/l'heure indiquées.
+    description: ''
+  - name: --source-if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --source-if-unmodified-since
+    summary: Valeur DateTime. Azure s’attend à ce que la valeur de date transmise soit UTC. Si TimeZone est inclus, tous les DateTime non UTC sont convertis en UTC. Si une date est passée sans informations de fuseau horaire, elle est supposée être UTC. Spécifiez cet en-tête conditionnel pour copier l'objet blob uniquement si l'objet blob source n'a pas été modifié depuis la date/l'heure indiquées.
+    description: ''
+  - name: --source-lease-id
+    summary: Spécifiez cette valeur pour effectuer l’opération de copie d’objet BLOB uniquement si l’ID de bail donné correspond à l’ID de bail actif de l’objet BLOB source.
+    description: ''
+  - name: --source-path
+    summary: Chemin d’accès du fichier pour le compte de stockage source.
+    description: ''
+  - name: --source-sas
+    summary: Signature d’accès partagé pour le compte de stockage source.
+    description: ''
+  - name: --source-share
+    summary: Nom de partage du compte de stockage source.
+    description: ''
+  - name: --source-snapshot
+    summary: Instantané d’objet BLOB pour le compte de stockage source.
+    description: ''
+  - name: --source-tags-condition
+    summary: Spécifiez une clause SQL WHERE sur les balises d’objet BLOB pour qu’elle fonctionne uniquement sur les objets BLOB avec une valeur correspondante.
+    description: ''
+  - name: --source-uri -u
+    summary: "URL d’une longueur maximale de 2 Ko qui spécifie un fichier ou un objet BLOB Azure. La valeur doit être encodée sous forme d'URL, comme dans une URI de demande. Si la source se trouve dans un autre compte, la source doit être publique ou authentifiée via une signature d’accès partagé. Si la source est publique, aucune authentification n’est requise. Exemples : `https://myaccount.blob.core.windows.net/mycontainer/myblob` , `https://myaccount.blob.core.windows.net/mycontainer/myblob?snapshot=<DateTime>` , `https://otheraccount.blob.core.windows.net/mycontainer/myblob?sastoken` ."
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Les balises respectent la casse. L’ensemble de balises peut contenir au maximum 10 balises.  Les clés de balise doivent être comprises entre 1 et 128 caractères, et les valeurs de balise doivent être comprises entre 0 et 256 caractères. Une clé de balise et des caractères de valeur valides sont les suivants : lettres minuscules et majuscules, chiffres (0-9), espace ( ` ` +), moins (-), point (.), unie (/), deux-points ( :), égal à (=), trait de soulignement (_).'
+    description: ''
+  - name: --tier
+    summary: Valeur de niveau vers laquelle définir l’objet BLOB. Pour un objet blob de pages, le niveau correspond à la taille de l’objet BLOB et au nombre d’e/s par seconde autorisées. Les valeurs possibles sont P10, P15, P20, P30, P4, P40, P50, P6, P60, P70, P80 et cela s’applique uniquement aux objets BLOB de pages sur les comptes de stockage Premium. Pour les objets BLOB de blocs, les valeurs possibles sont Archive, froid et chaud. Cela s’applique uniquement aux objets BLOB de blocs sur les comptes de stockage standard.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+commands:
+- ext_storage-blob-preview_az_storage_blob_copy_start
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les opérations de copie d’objets BLOB. Utilisez `az storage blob show` pour vérifier l’état des objets BLOB.
+  ms.openlocfilehash: 35e9ac5024ba2609dfa36b5abfce7add029d23c7
+  ms.sourcegitcommit: bd2dbc80328936dadd211764d25c32a14fc58083
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 01/04/2021
+  ms.locfileid: "102843142"

@@ -1,0 +1,137 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_dt_role_assignment
+name: az dt role-assignment
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ DT Role-Assignment** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les attributions de rôles RBAC pour une instance représentations numérique.
+description: >-
+  Notez que pour effectuer des attributions de rôles, le principal connecté a besoin d’autorisations telles que propriétaire ou administrateur de l’accès utilisateur au niveau de l’étendue attribuée.
+
+
+  Ce groupe de commandes est fourni pour des raisons pratiques. Pour les scénarios d’attribution de rôle plus complexes, utilisez le groupe de commandes « AZ Role Assignment ».
+directCommands:
+- uid: ext_azure-iot_az_dt_role_assignment_create
+  name: az dt role-assignment create
+  summary: Assigner un utilisateur, un groupe ou un principal du service à un rôle par rapport à une instance représentations numérique.
+  description: Notez que pour effectuer des attributions de rôles, le principal connecté a besoin d’autorisations telles que propriétaire ou administrateur de l’accès utilisateur au niveau de l’étendue attribuée.
+  syntax: >-
+    az dt role-assignment create --assignee
+                                 --dt-name
+                                 --role
+                                 [--resource-group]
+  examples:
+  - summary: Attribuez un utilisateur (par e-mail) le rôle de propriétaire représentations numérique intégré à une instance cible.
+    syntax: az dt role-assignment create -n {instance_name} --assignee "owneruser@microsoft.com" --role "Azure Digital Twins Data Owner"
+  - summary: Assigner un utilisateur (par ID d’objet) au rôle de lecteur représentations numérique intégré sur une instance cible.
+    syntax: az dt role-assignment create -n {instance_name} --assignee "97a89267-0966-4054-a156-b7d86ef8e216" --role "Azure Digital Twins Data Reader"
+  - summary: Affectez un principal de service à un rôle personnalisé par rapport à une instance cible.
+    syntax: az dt role-assignment create -n {instance_name} --assignee {service_principal_name_or_id} --role {role_name_or_id}
+  requiredParameters:
+  - isRequired: true
+    name: --assignee
+    summary: 'Représente un utilisateur, un groupe ou un principal du service. format pris en charge : ID d’objet, nom de connexion de l’utilisateur ou nom de principal du service.'
+    description: ''
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique.
+    description: ''
+  - isRequired: true
+    name: --role
+    summary: Nom ou ID du rôle.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_role_assignment_delete
+  name: az dt role-assignment delete
+  summary: Supprimer un utilisateur, un groupe ou une attribution de rôle de principal du service d’une instance représentations numérique.
+  description: Notez que pour effectuer des attributions de rôles, le principal connecté a besoin d’autorisations telles que propriétaire ou administrateur de l’accès utilisateur au niveau de l’étendue attribuée.
+  syntax: >-
+    az dt role-assignment delete --dt-name
+                                 [--assignee]
+                                 [--resource-group]
+                                 [--role]
+  examples:
+  - summary: Suppression d’un utilisateur d’une attribution de rôle spécifique d’une instance de représentations numérique.
+    syntax: az dt role-assignment delete -n {instance_name} --assignee "removeuser@microsoft.com" --role "Azure Digital Twins Data Reader"
+  - summary: Suppression d’un utilisateur de tous les rôles attribués d’une instance de représentations numérique.
+    syntax: az dt role-assignment delete -n {instance_name} --assignee "removeuser@microsoft.com"
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique.
+    description: ''
+  optionalParameters:
+  - name: --assignee
+    summary: 'Représente un utilisateur, un groupe ou un principal du service. format pris en charge : ID d’objet, nom de connexion de l’utilisateur ou nom de principal du service.'
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --role
+    summary: Nom ou ID du rôle.
+    description: ''
+- uid: ext_azure-iot_az_dt_role_assignment_list
+  name: az dt role-assignment list
+  summary: Répertorier les attributions de rôles existantes d’une instance représentations numérique.
+  description: ''
+  syntax: >-
+    az dt role-assignment list --dt-name
+                               [--include-inherited {false, true}]
+                               [--resource-group]
+                               [--role]
+  examples:
+  - summary: Répertorier les attributions de rôles sur une instance cible.
+    syntax: az dt role-assignment list -n {instance_name}
+  - summary: Répertorier les attributions de rôles sur une instance cible et filtrer par rôle.
+    syntax: az dt role-assignment list -n {instance_name} --role {role_name_or_id}
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique.
+    description: ''
+  optionalParameters:
+  - name: --include-inherited
+    parameterValueGroup: false, true
+    summary: Inclure les affectations appliquées aux étendues parentes.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --role
+    summary: Nom ou ID du rôle.
+    description: ''
+commands:
+- ext_azure-iot_az_dt_role_assignment_create
+- ext_azure-iot_az_dt_role_assignment_delete
+- ext_azure-iot_az_dt_role_assignment_list
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: >-
+    Notez que pour effectuer des attributions de rôles, le principal connecté a besoin d’autorisations telles que propriétaire ou administrateur de l’accès utilisateur au niveau de l’étendue attribuée.
+
+
+    Ce groupe de commandes est fourni pour des raisons pratiques. Pour les scénarios d’attribution de rôle plus complexes, utilisez le groupe de commandes « AZ Role Assignment ».
+  ms.openlocfilehash: 1bc97bf327ce3cfce1424fe46348abca090970ea
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102831889"
