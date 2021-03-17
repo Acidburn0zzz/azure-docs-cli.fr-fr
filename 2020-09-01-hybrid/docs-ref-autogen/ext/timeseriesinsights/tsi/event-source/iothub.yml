@@ -1,0 +1,144 @@
+### YamlMime:AzureCLIGroup
+uid: ext_timeseriesinsights_az_tsi_event_source_iothub
+name: az tsi event-source iothub
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **timeseriesinsights** pour Azure CLI et requiert la version 2.11.0 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ TSI event-source iothub** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer la source d’événements avec le sous-groupe timeseriesinsights IOT-Hub.
+description: ''
+directCommands:
+- uid: ext_timeseriesinsights_az_tsi_event_source_iothub_create
+  name: az tsi event-source iothub create
+  summary: Créer une source d’événement sous l’environnement spécifié.
+  description: ''
+  syntax: >-
+    az tsi event-source iothub create --consumer-group-name
+                                      --environment-name
+                                      --event-source-name
+                                      --event-source-resource-id
+                                      --iot-hub-name
+                                      --key-name
+                                      --location
+                                      --resource-group
+                                      --shared-access-key
+                                      [--local-timestamp]
+                                      [--tags]
+                                      [--timestamp-property-name]
+  examples:
+  - summary: CreateIotHubEventSource
+    syntax: az tsi event-source iothub create -g "rg" --environment-name "env1" --name "eventsource" --consumer-group-name "consumer-group" --iot-hub-name "iothub" --location westus --key-name "key-name" --shared-access-key "someSecretvalue" --event-source-resource-id "resource-id"
+  requiredParameters:
+  - isRequired: true
+    name: --consumer-group-name
+    summary: Nom du groupe de consommateurs du Hub IOT qui contient les partitions à partir desquelles les événements seront lus.
+    description: ''
+  - isRequired: true
+    name: --environment-name
+    summary: Nom de l’environnement de Time Series Insights associé au groupe de ressources spécifié.
+    description: ''
+  - isRequired: true
+    name: --event-source-name --name -n
+    summary: Nom de la source d’événements Time Series Insights associée à l’environnement spécifié.
+    description: ''
+  - isRequired: true
+    name: --event-source-resource-id --resource-id
+    summary: ID de ressource de la source de l’événement dans Azure Resource Manager.
+    description: ''
+  - isRequired: true
+    name: --iot-hub-name
+    summary: Nom de l’IOT Hub.
+    description: ''
+  - isRequired: true
+    name: --key-name --shared-access-policy-name
+    summary: Nom de la clé de la stratégie d’accès partagé qui accorde au service Time Series Insights l’accès au hub IOT. Cette clé de stratégie d’accès partagé doit accorder des autorisations’service Connect’à l’IOT Hub.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources de l’environnement. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --shared-access-key
+    summary: Valeur de la clé de la stratégie d’accès partagé qui accorde au service Time Series Insights l’accès en lecture au hub IOT. Cette propriété n’est pas affichée dans les réponses de source d’événements.
+    description: ''
+  optionalParameters:
+  - name: --local-timestamp
+    summary: 'Objet qui représente la propriété d’horodatage locale. Il contient le format de l’horodateur local qui doit être utilisé et les informations de décalage de fuseau horaire correspondantes. Si une valeur n’est pas spécifiée pour localTimestamp, ou si la valeur est null, l’horodateur local n’est pas entré avec les événements. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --timestamp-property-name --ts-property-name
+    summary: Propriété de l’événement qui sera utilisée comme horodateur de la source de l’événement. Si aucune valeur n’est spécifiée pour timestampPropertyName, ou si la valeur Null ou une chaîne vide est spécifiée, l’heure de création de l’événement sera utilisée.
+    description: ''
+- uid: ext_timeseriesinsights_az_tsi_event_source_iothub_update
+  name: az tsi event-source iothub update
+  summary: Met à jour une source d’événement dans l’environnement spécifié.
+  description: ''
+  syntax: >-
+    az tsi event-source iothub update --environment-name
+                                      --event-source-name
+                                      --resource-group
+                                      [--local-timestamp]
+                                      [--shared-access-key]
+                                      [--tags]
+                                      [--timestamp-property-name]
+  examples:
+  - summary: UpdateIotHubEventSource
+    syntax: az tsi event-source iothub update -g "rg" --environment-name "env1" --name "eventsource"  --timestamp-property-name timestampProp --shared-access-key "someSecretvalue" --tags test=tag
+  requiredParameters:
+  - isRequired: true
+    name: --environment-name
+    summary: Nom de l’environnement de Time Series Insights associé au groupe de ressources spécifié.
+    description: ''
+  - isRequired: true
+    name: --event-source-name --name -n
+    summary: Nom de la source d’événements Time Series Insights associée à l’environnement spécifié.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources de l’environnement. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --local-timestamp
+    summary: 'Objet qui représente la propriété d’horodatage locale. Il contient le format de l’horodateur local qui doit être utilisé et les informations de décalage de fuseau horaire correspondantes. Si une valeur n’est pas spécifiée pour localTimestamp, ou si la valeur est null, l’horodateur local n’est pas entré avec les événements. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --shared-access-key
+    summary: Valeur de la clé de la stratégie d’accès partagé qui accorde au service Time Series Insights l’accès en lecture au hub IOT. Cette propriété n’est pas affichée dans les réponses de source d’événements.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --timestamp-property-name --ts-property-name
+    summary: Propriété de l’événement qui sera utilisée comme horodateur de la source de l’événement. Si aucune valeur n’est spécifiée pour timestampPropertyName, ou si la valeur Null ou une chaîne vide est spécifiée, l’heure de création de l’événement sera utilisée.
+    description: ''
+commands:
+- ext_timeseriesinsights_az_tsi_event_source_iothub_create
+- ext_timeseriesinsights_az_tsi_event_source_iothub_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer la source d’événements avec le sous-groupe timeseriesinsights IOT-Hub.
+  ms.openlocfilehash: 388f50262cc9a2b7654a93d246c79885a0c49daa
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102967819"

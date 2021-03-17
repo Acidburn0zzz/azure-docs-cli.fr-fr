@@ -22,24 +22,32 @@ directCommands:
   description: ''
   syntax: >-
     az quantum workspace create [--location]
+                                [--provider-sku-list]
                                 [--resource-group]
                                 [--skip-role-assignment]
                                 [--storage-account]
                                 [--workspace-name]
   examples:
-  - summary: Créez un nouvel espace de travail Quantum Azure.
+  - summary: Créez un nouvel espace de travail Quantum Azure avec le fournisseur par défaut.
     syntax: >-
       az quantum workspace create -g MyResourceGroup -w MyWorkspace -l MyLocation \
           -a MyStorageAccountName
+  - summary: Créez un nouvel espace de travail Quantum Azure avec une liste spécifique de fournisseurs.
+    syntax: >-
+      az quantum workspace create -g MyResourceGroup -w MyWorkspace -l MyLocation \
+          -r "MyProvider1 / MySKU1, MyProvider2 / MySKU2" -a MyStorageAccountName
   optionalParameters:
   - name: --location -l
     summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --provider-sku-list -r
+    summary: Liste séparée par des virgules de paires fournisseur/référence SKU.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   - name: --skip-role-assignment
-    summary: Ignore l’étape d’attribution de rôle pour l’espace de travail Quantum dans le compte de stockage.
+    summary: Ignorez l’étape d’attribution de rôle pour l’espace de travail Quantum dans le compte de stockage.
     description: ''
   - name: --storage-account -a
     summary: Nom du compte de stockage à utiliser par un espace de travail Quantum.
@@ -177,9 +185,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérer les espaces de travail Quantum Azure.
-  ms.openlocfilehash: a182e9330c36bfa9842d0833bb996ec88bf28af9
-  ms.sourcegitcommit: 3e79897e0aeca4d74bc8ff0410121b011b5884ec
+  ms.openlocfilehash: fe1b77dd9f9fe30a9de01b3241f8cd1d36fe9013
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/03/2021
-  ms.locfileid: "102845200"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103543091"
