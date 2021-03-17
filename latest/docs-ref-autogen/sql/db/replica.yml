@@ -1,0 +1,252 @@
+### YamlMime:AzureCLIGroup
+uid: az_sql_db_replica
+name: az sql db replica
+summary: Gérer la réplication entre les bases de données.
+description: ''
+directCommands:
+- uid: az_sql_db_replica_create
+  name: az sql db replica create
+  summary: Créer une base de données en tant que réplica secondaire accessible en lecture d’une base de données existante.
+  description: Une liste complète des options de niveau de performance peut être consultée en exécutant `az sql db list-editions -a -o table -l LOCATION` . La base de données secondaire doit avoir la même édition que la base de données primaire.
+  syntax: >-
+    az sql db replica create --name
+                             --partner-server
+                             --resource-group
+                             --server
+                             [--auto-pause-delay]
+                             [--backup-storage-redundancy]
+                             [--capacity]
+                             [--compute-model {Provisioned, Serverless}]
+                             [--elastic-pool]
+                             [--family]
+                             [--license-type {BasePrice, LicenseIncluded}]
+                             [--min-capacity]
+                             [--no-wait]
+                             [--partner-database]
+                             [--partner-resource-group]
+                             [--read-replicas]
+                             [--read-scale {Disabled, Enabled}]
+                             [--secondary-type]
+                             [--service-objective]
+                             [--subscription]
+                             [--tags]
+                             [--zone-redundant {false, true}]
+  examples:
+  - summary: Créer une base de données avec le niveau de performance S0 comme réplica secondaire d’une base de données standard existante.
+    syntax: az sql db replica create -g mygroup -s myserver -n originalDb --partner-server newDb --service-objective S0
+  - summary: Créer une base de données avec GeneralPurpose Edition, Gen4 Hardware et 1 vcore comme réplica secondaire d’une base de données GeneralPurpose existante
+    syntax: az sql db replica create -g mygroup -s myserver -n originalDb --partner-server newDb -f Gen4 -c 1
+  - summary: Créer une base de données avec un stockage de sauvegarde redondant dans une zone comme réplica secondaire d’une base de données existante.
+    syntax: az sql db replica create -g mygroup -s myserver -n originalDb --partner-server newDb --backup-storage-redundancy Zone
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’Azure SQL Database.
+    description: ''
+  - isRequired: true
+    name: --partner-server
+    summary: Nom du serveur dans lequel créer le réplica.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --auto-pause-delay
+    summary: Durée en minutes après laquelle la base de données est suspendue automatiquement. La valeur-1 signifie que la suspension automatique est désactivée.
+    description: ''
+  - name: --backup-storage-redundancy --bsr
+    summary: 'Redondance de stockage de sauvegarde utilisée pour stocker les sauvegardes. Les valeurs autorisées sont les suivantes : local, zone, géo.'
+    description: ''
+  - name: --capacity -c
+    summary: Composant de capacité de la référence (SKU) dans un nombre entier de DTU ou vcores.
+    description: ''
+  - name: --compute-model
+    parameterValueGroup: Provisioned, Serverless
+    summary: Modèle de calcul de la base de données.
+    description: ''
+  - name: --elastic-pool
+    summary: Nom ou ID de ressource du pool élastique dans lequel créer la base de données.
+    description: ''
+  - name: --family -f
+    summary: 'Composant de génération de calcul de la référence (SKU vcore uniquement). Les valeurs autorisées sont les suivantes : gen4, Gen5.'
+    description: ''
+  - name: --license-type
+    parameterValueGroup: BasePrice, LicenseIncluded
+    summary: Type de licence à appliquer pour cette base de données. `LicenseIncluded` Si vous avez besoin d’une licence ou `BasePrice` si vous disposez d’une licence et que vous êtes éligible à la Azure Hybrid Benefit.
+    description: ''
+  - name: --min-capacity
+    summary: Capacité minimale allouée par la base de données, si elle n’est pas suspendue.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --partner-database
+    summary: Nom du nouveau réplica. S’il n’est pas spécifié, la valeur par défaut est le nom de la base de données source.
+    description: ''
+  - name: --partner-resource-group
+    summary: Nom du groupe de ressources dans lequel créer le réplica. S’il n’est pas spécifié, le groupe de ressources d’origine est utilisé par défaut.
+    description: ''
+  - name: --read-replicas
+    summary: Nombre de réplicas en lecture seule à approvisionner pour la base de données. Définissable uniquement pour l’édition hyperscale.
+    description: ''
+  - name: --read-scale
+    parameterValueGroup: Disabled, Enabled
+    summary: Si cette option est activée, les connexions dont l’intention d’application est définie sur ReadOnly dans leur chaîne de connexion peuvent être acheminées vers un réplica secondaire en lecture seule. Cette propriété est définissable uniquement pour les bases de données Premium et critique pour l’entreprise.
+    description: ''
+  - name: --secondary-type
+    summary: 'Type de réplica secondaire à créer. Les valeurs autorisées sont les suivantes : géo, nommé.'
+    description: ''
+  - name: --service-objective
+    summary: 'L’objectif de service pour la nouvelle base de données. Par exemple : Basic, S0, P1, GP_Gen4_1, GP_Gen5_S_8, BC_Gen5_2, HS_Gen5_32.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --zone-redundant -z
+    parameterValueGroup: false, true
+    summary: Spécifie s’il faut activer la redondance de zone.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_db_replica_delete_link
+  name: az sql db replica delete-link
+  summary: Arrêtez définitivement la réplication des données entre deux réplicas de base de données.
+  description: ''
+  syntax: >-
+    az sql db replica delete-link --partner-server
+                                  [--ids]
+                                  [--name]
+                                  [--partner-resource-group]
+                                  [--resource-group]
+                                  [--server]
+                                  [--subscription]
+                                  [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --partner-server
+    summary: Nom du serveur dans lequel se trouve l’autre réplica.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’Azure SQL Database.
+    description: ''
+  - name: --partner-resource-group
+    summary: Nom du groupe de ressources dans lequel se trouve l’autre réplica. S’il n’est pas spécifié, la valeur par défaut est le groupe de ressources de la première base de données.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_db_replica_list_links
+  name: az sql db replica list-links
+  summary: Répertorier les réplicas d’une base de données et leur état de réplication.
+  description: ''
+  syntax: >-
+    az sql db replica list-links [--ids]
+                                 [--name]
+                                 [--resource-group]
+                                 [--server]
+                                 [--subscription]
+  examples:
+  - summary: Répertorier les réplicas d’une base de données et leur état de réplication. généré automatiquement
+    syntax: az sql db replica list-links --name MyAzureSQLDatabase --resource-group MyResourceGroup --server myserver
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’Azure SQL Database.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_db_replica_set_primary
+  name: az sql db replica set-primary
+  summary: Définissez la base de données du réplica principal en basculant à partir de la base de données du réplica principal actuel.
+  description: ''
+  syntax: >-
+    az sql db replica set-primary [--allow-data-loss]
+                                  [--ids]
+                                  [--name]
+                                  [--resource-group]
+                                  [--server]
+                                  [--subscription]
+  examples:
+  - summary: Définissez la base de données du réplica principal en basculant à partir de la base de données du réplica principal actuel. généré automatiquement
+    syntax: az sql db replica set-primary --allow-data-loss --name MyDatabase --resource-group MyResourceGroup --server myserver --subscription MySubscription
+  optionalParameters:
+  - name: --allow-data-loss
+    summary: S’il est spécifié, l’opération de basculement autorise la perte de données.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la base de données à basculer.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources contenant le réplica secondaire qui deviendra le nouveau réplica principal.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur contenant le réplica secondaire qui deviendra le nouveau réplica principal. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+commands:
+- az_sql_db_replica_create
+- az_sql_db_replica_delete_link
+- az_sql_db_replica_list_links
+- az_sql_db_replica_set_primary
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/18/2021
+  description: Gérer la réplication entre les bases de données.
+  ms.openlocfilehash: c69c186a422b26a3682259902b99dc46eb89126b
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103516061"
