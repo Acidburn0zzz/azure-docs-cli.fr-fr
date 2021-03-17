@@ -1,0 +1,100 @@
+### YamlMime:AzureCLIGroup
+uid: az_appconfig_revision
+name: az appconfig revision
+summary: Gérez les révisions pour les valeurs de clé stockées dans une configuration d’application.
+description: ''
+directCommands:
+- uid: az_appconfig_revision_list
+  name: az appconfig revision list
+  summary: Répertorie l’historique de révision des valeurs de clé.
+  description: ''
+  syntax: >-
+    az appconfig revision list [--all]
+                               [--auth-mode {key, login}]
+                               [--connection-string]
+                               [--datetime]
+                               [--endpoint]
+                               [--fields {content_type, etag, key, label, last_modified, locked, tags, value}]
+                               [--key]
+                               [--label]
+                               [--name]
+                               [--query-examples]
+                               [--subscription]
+                               [--top]
+  examples:
+  - summary: Répertorier l’historique de révision d’une clé-valeur à l’aide du nom de configuration d’application.
+    syntax: az appconfig revision list -n MyAppConfiguration --key color --label test
+  - summary: Répertorier l’historique de révision d’une clé-valeur avec plusieurs étiquettes.
+    syntax: az appconfig revision list -n MyAppConfiguration --key color --label test,prod,\0
+  - summary: Répertorier l’historique de révision pour la « couleur » de clé avec des étiquettes à l’aide de la chaîne de connexion
+    syntax: az appconfig revision list --connection-string Endpoint=https://contoso.azconfig.io;Id=xxx;Secret=xxx --key color --datetime "2019-05-01T11:24:12Z"
+  - summary: Répertorier l’historique des révisions pour tous les éléments et la clé, la valeur et les last_modified de requête uniquement.
+    syntax: az appconfig revision list --connection-string Endpoint=https://contoso.azconfig.io;Id=xxx;Secret=xxx --fields key value last_modified
+  optionalParameters:
+  - name: --all
+    summary: Répertorie tous les éléments.
+    description: ''
+  - name: --auth-mode
+    defaultValue: key
+    parameterValueGroup: key, login
+    summary: Ce paramètre peut être utilisé pour indiquer comment une opération de données doit être autorisée. Si le mode d’authentification est « clé », indiquez une chaîne de connexion ou un nom de magasin et vos clés d’accès de compte seront récupérées pour l’autorisation. Si le mode d’authentification est « connexion », indiquez le nom du point de terminaison ou du magasin, et vos informations d’identification « AZ login » seront utilisées pour l’autorisation. Vous pouvez configurer le mode d’authentification par défaut à l’aide de `az configure --defaults appconfig_auth_mode=<auth_mode>` . Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac">https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac</a>.
+    description: ''
+  - name: --connection-string
+    summary: Combinaison de la clé d’accès et du point de terminaison de la configuration de l’application. Peut être trouvé à l’aide de’AZ appconfig Credential List'. Les utilisateurs peuvent le prédéfinir à l’aide de `az configure --defaults appconfig_connection_string=<connection_string>` ou de la variable d’environnement portant le nom AZURE_APPCONFIG_CONNECTION_STRING.
+    description: ''
+  - name: --datetime
+    summary: 'Format : « YYYY-MM-DDThh : mm : ssZ ». Si aucun fuseau horaire n’est spécifié, utilisez l’heure UTC par défaut.'
+    description: ''
+  - name: --endpoint
+    summary: Si le mode d’authentification est « connexion », indiquez l’URL du point de terminaison de la configuration de l’application. Le point de terminaison peut être récupéré à l’aide de la commande « AZ appconfig Show ». Vous pouvez configurer le point de terminaison par défaut à l’aide de `az configure --defaults appconfig_endpoint=<endpoint>` .
+    description: ''
+  - name: --fields
+    parameterValueGroup: content_type, etag, key, label, last_modified, locked, tags, value
+    summary: Champs de sortie personnalisés séparés par des espaces.
+    description: ''
+  - name: --key
+    summary: Si aucune clé n’est spécifiée, retourne toutes les clés par défaut. Prendre en charge les filtres de signature en étoile, par exemple ABC \* signifie les clés avec ABC comme préfixe.
+    description: ''
+  - name: --label
+    summary: Si aucune étiquette n’est spécifiée, répertorie toutes les étiquettes. Prendre en charge les filtres de signature en étoile, par exemple ABC \* signifie des étiquettes avec ABC comme préfixe. Utilisez « 0 » pour une étiquette null.
+    description: ''
+  - name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --top -t
+    summary: Nombre maximal d’éléments à retourner. Cette valeur doit être un entier positif. La valeur par défaut est 100.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+commands:
+- az_appconfig_revision_list
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/18/2021
+  description: Gérez les révisions pour les valeurs de clé stockées dans une configuration d’application.
+  ms.openlocfilehash: 49fe843577cc73c60dff8ee1f3828e807f1b966c
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102970595"
