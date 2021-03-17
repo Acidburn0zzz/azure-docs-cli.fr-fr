@@ -1,0 +1,329 @@
+### YamlMime:AzureCLIGroup
+uid: az_afd_route
+name: az afd route
+summary: Gérer les itinéraires sous un point de terminaison AFD.
+description: Un itinéraire mappe vos domaines et les modèles de chemin d’URL correspondants à un groupe d’origine spécifique.
+directCommands:
+- uid: az_afd_route_create
+  name: az afd route create
+  summary: Crée un itinéraire dans le point de terminaison spécifié.
+  description: ''
+  syntax: >-
+    az afd route create --endpoint-name
+                        --forwarding-protocol {HttpOnly, HttpsOnly, MatchRequest}
+                        --https-redirect {Disabled, Enabled}
+                        --origin-group
+                        --profile-name
+                        --resource-group
+                        --route-name
+                        --supported-protocols {Http, Https}
+                        [--content-types-to-compress]
+                        [--custom-domains]
+                        [--enable-compression {false, true}]
+                        [--link-to-default-domain {Disabled, Enabled}]
+                        [--origin-path]
+                        [--patterns-to-match]
+                        [--query-string-caching-behavior {BypassCaching, IgnoreQueryString, NotSet, UseQueryString}]
+                        [--rule-sets]
+                        [--subscription]
+  examples:
+  - summary: Crée un itinéraire pour associer le domaine par défaut du point de terminaison avec un groupe d’origine pour toutes les requêtes HTTPs.
+    syntax: az afd route create -g group --endpoint-name endpoint1 --profile-name profile --route-name route1 --https-redirect False --origin-group og001 --supported-protocols Https --link-to-default-domain Enabled --forwarding-protocol MatchRequest
+  - summary: Crée un itinéraire pour associer le domaine par défaut du point de terminaison avec un groupe d’origine pour toutes les demandes et utilise les ensembles de règles spécifiés pour personnaliser le comportement de l’itinéraire.
+    syntax: az afd route create -g group --endpoint-name endpoint1 --profile-name profile --route-name route1 --rule-sets ruleset1 rulseset2 --origin-group og001 --supported-protocols Http Https --link-to-default-domain Enabled --forwarding-protocol MatchRequest --https-redirect False
+  - summary: Crée un itinéraire pour associer le domaine par défaut du point de terminaison et un domaine personnalisé avec un groupe d’origine pour toutes les demandes avec les modèles de chemin d’accès spécifiés et rediriger tous les trafic pour utiliser le protocole HTTPS.
+    syntax: az afd route create -g group --endpoint-name endpoint1 --profile-name profile --route-name route1 --patterns-to-match /test1/* /tes2/* --origin-group og001 --supported-protocols Http Https --custom-domains cd001 --forwarding-protocol MatchRequest --https-redirect True --link-to-default-domain Enabled
+  requiredParameters:
+  - isRequired: true
+    name: --endpoint-name
+    summary: Nom du point de terminaison,
+    description: ''
+  - isRequired: true
+    name: --forwarding-protocol
+    parameterValueGroup: HttpOnly, HttpsOnly, MatchRequest
+    summary: Protocole utilisé par cette règle pour transférer le trafic vers les serveurs principaux.
+    description: ''
+  - isRequired: true
+    name: --https-redirect
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique s’il faut rediriger automatiquement le trafic HTTP vers le trafic HTTPs.
+    description: ''
+  - isRequired: true
+    name: --origin-group
+    summary: Nom ou ID du groupe d’origine à associer.
+    description: ''
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --route-name
+    summary: Nom de l’itinéraire.
+    description: ''
+  - isRequired: true
+    name: --supported-protocols
+    parameterValueGroup: Http, Https
+    summary: Liste des protocoles pris en charge pour cet itinéraire.
+    description: ''
+  optionalParameters:
+  - name: --content-types-to-compress
+    summary: Liste des types de contenu auxquels la compression s’applique. La valeur doit être un type MIME valide.
+    description: ''
+  - name: --custom-domains
+    summary: Domaines personnalisés référencés par ce point de terminaison.
+    description: ''
+  - name: --enable-compression
+    parameterValueGroup: false, true
+    summary: Indique si la compression du contenu est activée sur AzureFrontDoor. La valeur par défaut est false. Si la compression est activée, le contenu est pris en charge comme compressé si l’utilisateur demande une version compressée. Le contenu n’est pas compressé sur AzureFrontDoor lorsque le contenu demandé est inférieur à 1 octet ou supérieur à 1 Mo.
+    description: ''
+  - name: --link-to-default-domain
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique si cet itinéraire sera lié au domaine de point de terminaison par défaut.
+    description: ''
+  - name: --origin-path
+    summary: Chemin d’accès au répertoire sur l’origine que AFD peut utiliser pour récupérer le contenu. Par exemple, « /img/ \* ».
+    description: ''
+  - name: --patterns-to-match
+    summary: Modèles de route de la règle.
+    description: ''
+  - name: --query-string-caching-behavior
+    parameterValueGroup: BypassCaching, IgnoreQueryString, NotSet, UseQueryString
+    summary: Définit comment CDN met en cache les demandes qui incluent des chaînes de requête. Vous pouvez ignorer les chaînes de requête lors de la mise en cache, ignorer la mise en cache pour empêcher les demandes qui contiennent des chaînes de requête d’être mises en cache, ou mettre en cache chaque demande avec une URL unique.
+    description: ''
+  - name: --rule-sets
+    summary: Collection d’ID ou nom de l’ensemble de règles référencé par l’itinéraire.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_route_delete
+  name: az afd route delete
+  summary: Supprimer un itinéraire existant dans le point de terminaison spécifié.
+  description: ''
+  syntax: >-
+    az afd route delete [--endpoint-name]
+                        [--ids]
+                        [--profile-name]
+                        [--resource-group]
+                        [--route-name]
+                        [--subscription]
+                        [--yes]
+  examples:
+  - summary: Supprimez un itinéraire nommé route1.
+    syntax: az afd route delete -g group --profile-name profile --endpoint-name endpoint1 --route-name route1
+  optionalParameters:
+  - name: --endpoint-name
+    summary: Nom du point de terminaison,
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --route-name
+    summary: Nom de l’itinéraire.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_afd_route_list
+  name: az afd route list
+  summary: Répertorie tous les itinéraires dans le point de terminaison spécifié.
+  description: ''
+  syntax: >-
+    az afd route list --endpoint-name
+                      --profile-name
+                      --resource-group
+                      [--query-examples]
+                      [--subscription]
+  examples:
+  - summary: Répertorie tous les itinéraires dans le point de terminaison spécifié.
+    syntax: az afd route list -g group --profile-name profile --endpoint-name endpoint1
+  requiredParameters:
+  - isRequired: true
+    name: --endpoint-name
+    summary: Nom du point de terminaison,
+    description: ''
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_route_show
+  name: az afd route show
+  summary: Afficher les détails de l’itinéraire.
+  description: ''
+  syntax: >-
+    az afd route show [--endpoint-name]
+                      [--ids]
+                      [--profile-name]
+                      [--query-examples]
+                      [--resource-group]
+                      [--route-name]
+                      [--subscription]
+  examples:
+  - summary: Affichez les détails de l’itinéraire nommé route1.
+    syntax: az afd route show -g group --profile-name profile  --endpoint-name endpoint1 --route-name route1
+  optionalParameters:
+  - name: --endpoint-name
+    summary: Nom du point de terminaison,
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --route-name
+    summary: Nom de l’itinéraire.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_route_update
+  name: az afd route update
+  summary: Met à jour un itinéraire existant dans le point de terminaison spécifié.
+  description: ''
+  syntax: >-
+    az afd route update [--content-types-to-compress]
+                        [--custom-domains]
+                        [--enable-compression {false, true}]
+                        [--endpoint-name]
+                        [--forwarding-protocol {HttpOnly, HttpsOnly, MatchRequest}]
+                        [--https-redirect {Disabled, Enabled}]
+                        [--ids]
+                        [--link-to-default-domain {Disabled, Enabled}]
+                        [--origin-group]
+                        [--origin-path]
+                        [--patterns-to-match]
+                        [--profile-name]
+                        [--query-string-caching-behavior {BypassCaching, IgnoreQueryString, NotSet, UseQueryString}]
+                        [--resource-group]
+                        [--route-name]
+                        [--rule-sets]
+                        [--subscription]
+                        [--supported-protocols {Http, Https}]
+  examples:
+  - summary: Mettez à jour un itinéraire pour accepter les requêtes http et HTTPS et rediriger tous les trafic pour utiliser le protocole HTTPS.
+    syntax: az afd route update -g group --endpoint-name endpoint1 --profile-name profile --route-name route1 --supported-protocols Http Https --https-redirect True
+  - summary: Mettez à jour les paramètres de l’ensemble de règles d’un itinéraire pour personnaliser le comportement de l’itinéraire.
+    syntax: az afd route update -g group --endpoint-name endpoint1 --profile-name profile --route-name route1 --rule-sets ruleset1 rulseset2
+  - summary: Mettez à jour les paramètres de compression d’un itinéraire pour activer la compression pour les types de contenu spécifiés.
+    syntax: az afd route update -g group --endpoint-name endpoint1 --profile-name profile --route-name route1 --query-string-caching-behavior IgnoreQueryString --enable-compression true --content-types-to-compress text/javascript text/plain
+  optionalParameters:
+  - name: --content-types-to-compress
+    summary: Liste des types de contenu auxquels la compression s’applique. La valeur doit être un type MIME valide.
+    description: ''
+  - name: --custom-domains
+    summary: Domaines personnalisés référencés par ce point de terminaison.
+    description: ''
+  - name: --enable-compression
+    parameterValueGroup: false, true
+    summary: Indique si la compression du contenu est activée sur AzureFrontDoor. La valeur par défaut est false. Si la compression est activée, le contenu est pris en charge comme compressé si l’utilisateur demande une version compressée. Le contenu n’est pas compressé sur AzureFrontDoor lorsque le contenu demandé est inférieur à 1 octet ou supérieur à 1 Mo.
+    description: ''
+  - name: --endpoint-name
+    summary: Nom du point de terminaison,
+    description: ''
+  - name: --forwarding-protocol
+    parameterValueGroup: HttpOnly, HttpsOnly, MatchRequest
+    summary: Protocole utilisé par cette règle pour transférer le trafic vers les serveurs principaux.
+    description: ''
+  - name: --https-redirect
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique s’il faut rediriger automatiquement le trafic HTTP vers le trafic HTTPs.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --link-to-default-domain
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique si cet itinéraire sera lié au domaine de point de terminaison par défaut.
+    description: ''
+  - name: --origin-group
+    summary: Nom ou ID du groupe d’origine à associer.
+    description: ''
+  - name: --origin-path
+    summary: Chemin d’accès au répertoire sur l’origine que AFD peut utiliser pour récupérer le contenu. Par exemple, « /img/ \* ».
+    description: ''
+  - name: --patterns-to-match
+    summary: Modèles de route de la règle.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-string-caching-behavior
+    parameterValueGroup: BypassCaching, IgnoreQueryString, NotSet, UseQueryString
+    summary: Définit comment CDN met en cache les demandes qui incluent des chaînes de requête. Vous pouvez ignorer les chaînes de requête lors de la mise en cache, ignorer la mise en cache pour empêcher les demandes qui contiennent des chaînes de requête d’être mises en cache, ou mettre en cache chaque demande avec une URL unique.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --route-name
+    summary: Nom de l’itinéraire.
+    description: ''
+  - name: --rule-sets
+    summary: Collection d’ID ou nom de l’ensemble de règles référencé par l’itinéraire.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --supported-protocols
+    parameterValueGroup: Http, Https
+    summary: Liste des protocoles pris en charge pour cet itinéraire.
+    description: ''
+commands:
+- az_afd_route_create
+- az_afd_route_delete
+- az_afd_route_list
+- az_afd_route_show
+- az_afd_route_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Un itinéraire mappe vos domaines et les modèles de chemin d’URL correspondants à un groupe d’origine spécifique.
+  ms.openlocfilehash: 242a3a388935d55a26d553b6a0f2bf2cbd5de826
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103551140"

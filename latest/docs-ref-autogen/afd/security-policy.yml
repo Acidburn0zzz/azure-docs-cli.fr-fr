@@ -1,0 +1,196 @@
+### YamlMime:AzureCLIGroup
+uid: az_afd_security_policy
+name: az afd security-policy
+summary: Gérer les stratégies de sécurité dans le profil spécifié.
+description: Les stratégies de sécurité peuvent être utilisées pour appliquer une stratégie de pare-feu d’applications Web afin de protéger vos applications Web contre les vulnérabilités de OWASP Top-10 et de bloquer les robots malveillants.
+directCommands:
+- uid: az_afd_security_policy_create
+  name: az afd security-policy create
+  summary: Crée une stratégie de sécurité dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd security-policy create --domains
+                                  --profile-name
+                                  --resource-group
+                                  --security-policy-name
+                                  --waf-policy
+                                  [--subscription]
+  examples:
+  - summary: Crée une stratégie de sécurité pour appliquer la stratégie WAF spécifiée au domaine par défaut d’un point de terminaison et à un domaine personnalisé.
+    syntax: az afd security-policy create -g group --profile-name profile --security-policy-name sp1 --domains /subscriptions/sub1/resourcegroups/rg1/providers/Microsoft.Cdn/profiles/profile1/afdEndpoints/endpoint1 /subscriptions/sub1/resourcegroups/rg1/providers/Microsoft.Cdn/profiles/profile1/customDomains/customDomain1 --waf-policy /subscriptions/sub1/resourcegroups/rg1/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/waf1
+  requiredParameters:
+  - isRequired: true
+    name: --domains
+    summary: Domaines à associer à la stratégie WAF. Il peut s’agir de l’ID d’un point de terminaison (le domaine par défaut sera utilisé dans ce cas) ou de l’ID d’un domaine personnalisé.
+    description: ''
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --security-policy-name
+    summary: Nom de la stratégie de sécurité.
+    description: ''
+  - isRequired: true
+    name: --waf-policy
+    summary: ID de la stratégie WAF de la porte d’entrée.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_security_policy_delete
+  name: az afd security-policy delete
+  summary: Supprime une stratégie de sécurité existante au sein du profil.
+  description: ''
+  syntax: >-
+    az afd security-policy delete [--ids]
+                                  [--profile-name]
+                                  [--resource-group]
+                                  [--security-policy-name]
+                                  [--subscription]
+                                  [--yes]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --security-policy-name
+    summary: Nom de la stratégie de sécurité.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_afd_security_policy_list
+  name: az afd security-policy list
+  summary: Répertorie les stratégies de sécurité associées au profil.
+  description: ''
+  syntax: >-
+    az afd security-policy list --profile-name
+                                --resource-group
+                                [--query-examples]
+                                [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_security_policy_show
+  name: az afd security-policy show
+  summary: Obtient une stratégie de sécurité existante au sein d’un profil.
+  description: ''
+  syntax: >-
+    az afd security-policy show [--ids]
+                                [--profile-name]
+                                [--query-examples]
+                                [--resource-group]
+                                [--security-policy-name]
+                                [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --security-policy-name
+    summary: Nom de la stratégie de sécurité.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_security_policy_update
+  name: az afd security-policy update
+  summary: Mettre à jour une stratégie de sécurité existante dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd security-policy update [--domains]
+                                  [--ids]
+                                  [--profile-name]
+                                  [--resource-group]
+                                  [--security-policy-name]
+                                  [--subscription]
+                                  [--waf-policy]
+  examples:
+  - summary: Met à jour la liste de domaines de la stratégie de sécurité spécifiée.
+    syntax: az afd security-policy update -g group --security-policy-name sp1 --profile-name profile --domains /subscriptions/sub1/resourcegroups/rg1/providers/Microsoft.Cdn/profiles/profile1/customDomains/customDomain1
+  optionalParameters:
+  - name: --domains
+    summary: Domaines à associer à la stratégie WAF. Il peut s’agir de l’ID d’un point de terminaison (le domaine par défaut sera utilisé dans ce cas) ou de l’ID d’un domaine personnalisé.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --security-policy-name
+    summary: Nom de la stratégie de sécurité.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --waf-policy
+    summary: ID de la stratégie WAF de la porte d’entrée.
+    description: ''
+commands:
+- az_afd_security_policy_create
+- az_afd_security_policy_delete
+- az_afd_security_policy_list
+- az_afd_security_policy_show
+- az_afd_security_policy_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Les stratégies de sécurité peuvent être utilisées pour appliquer une stratégie de pare-feu d’applications Web afin de protéger vos applications Web contre les vulnérabilités de OWASP Top-10 et de bloquer les robots malveillants.
+  ms.openlocfilehash: 51f403fb46128de822efa8cbb696f14586f42837
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103551120"

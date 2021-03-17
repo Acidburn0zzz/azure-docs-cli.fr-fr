@@ -1,0 +1,248 @@
+### YamlMime:AzureCLIGroup
+uid: az_afd_origin_group
+name: az afd origin-group
+summary: Gérer les groupes d’origine sous le profil spécifié.
+description: Un groupe d’origine est un ensemble d’origines auquel la charge de la porte frontale équilibre vos demandes de client.
+directCommands:
+- uid: az_afd_origin_group_create
+  name: az afd origin-group create
+  summary: Crée un nouveau groupe d’origine dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd origin-group create --additional-latency-in-milliseconds
+                               --origin-group-name
+                               --probe-path
+                               --probe-protocol {Http, Https, NotSet}
+                               --probe-request-type {GET, HEAD, NotSet}
+                               --profile-name
+                               --resource-group
+                               --sample-size
+                               --successful-samples-required
+                               [--probe-interval-in-seconds]
+                               [--subscription]
+  examples:
+  - summary: Crée un nouveau groupe d’origine dans le profil spécifié.
+    syntax: az afd origin-group create -g group --origin-group-name og1 --profile-name profile --probe-request-type GET --probe-protocol Http --probe-interval-in-seconds 120 --probe-path /test1/azure.txt --sample-size 4 --successful-samples-required 3 --additional-latency-in-milliseconds 50
+  requiredParameters:
+  - isRequired: true
+    name: --additional-latency-in-milliseconds
+    summary: Latence supplémentaire, en millisecondes, pour que les sondes soient incluses dans l’intervalle de latence le plus faible.
+    description: ''
+  - isRequired: true
+    name: --origin-group-name
+    summary: Nom du groupe d’origine.
+    description: ''
+  - isRequired: true
+    name: --probe-path
+    summary: Chemin d’accès relatif à l’origine utilisée pour déterminer l’intégrité de l’origine.
+    description: ''
+  - isRequired: true
+    name: --probe-protocol
+    parameterValueGroup: Http, Https, NotSet
+    summary: Protocole à utiliser pour la sonde d’intégrité.
+    description: ''
+  - isRequired: true
+    name: --probe-request-type
+    parameterValueGroup: GET, HEAD, NotSet
+    summary: Type de demande de sonde d’intégrité effectué.
+    description: ''
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --sample-size
+    summary: Nombre d’échantillons à prendre en compte pour les décisions d’équilibrage de charge.
+    description: ''
+  - isRequired: true
+    name: --successful-samples-required
+    summary: Nombre d’échantillons dans la période d’échantillonnage qui doivent être exécutés.
+    description: ''
+  optionalParameters:
+  - name: --probe-interval-in-seconds
+    defaultValue: "240"
+    summary: Nombre de secondes entre les sondes d’intégrité.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_origin_group_delete
+  name: az afd origin-group delete
+  summary: Supprime un groupe d’origine existant dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd origin-group delete [--ids]
+                               [--origin-group-name]
+                               [--profile-name]
+                               [--resource-group]
+                               [--subscription]
+                               [--yes]
+  examples:
+  - summary: Supprime un groupe d’origine existant dans un profil.
+    syntax: az afd origin-group delete -g group --origin-group-name og1 --profile-name profile
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --origin-group-name
+    summary: Nom du groupe d’origine.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_afd_origin_group_list
+  name: az afd origin-group list
+  summary: Répertorie tous les groupes d’origine existants au sein d’un profil.
+  description: ''
+  syntax: >-
+    az afd origin-group list --profile-name
+                             --resource-group
+                             [--query-examples]
+                             [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_origin_group_show
+  name: az afd origin-group show
+  summary: Obtient un groupe d’origine existant dans un profil.
+  description: ''
+  syntax: >-
+    az afd origin-group show [--ids]
+                             [--origin-group-name]
+                             [--profile-name]
+                             [--query-examples]
+                             [--resource-group]
+                             [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --origin-group-name
+    summary: Nom du groupe d’origine.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_origin_group_update
+  name: az afd origin-group update
+  summary: Crée un nouveau groupe d’origine dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd origin-group update [--additional-latency-in-milliseconds]
+                               [--ids]
+                               [--origin-group-name]
+                               [--probe-interval-in-seconds]
+                               [--probe-path]
+                               [--probe-protocol {Http, Https, NotSet}]
+                               [--probe-request-type {GET, HEAD, NotSet}]
+                               [--profile-name]
+                               [--resource-group]
+                               [--sample-size]
+                               [--subscription]
+                               [--successful-samples-required]
+  examples:
+  - summary: Met à jour le paramètre de sonde du groupe d’origine spécifié.
+    syntax: az afd origin-group update -g group --origin-group-name og1 --profile-name profile --probe-request-type HEAD --probe-protocol Https --probe-interval-in-seconds 120 --probe-path /test1/azure.txt
+  optionalParameters:
+  - name: --additional-latency-in-milliseconds
+    summary: Latence supplémentaire, en millisecondes, pour que les sondes soient incluses dans l’intervalle de latence le plus faible.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --origin-group-name
+    summary: Nom du groupe d’origine.
+    description: ''
+  - name: --probe-interval-in-seconds
+    summary: Nombre de secondes entre les sondes d’intégrité.
+    description: ''
+  - name: --probe-path
+    summary: Chemin d’accès relatif à l’origine utilisée pour déterminer l’intégrité de l’origine.
+    description: ''
+  - name: --probe-protocol
+    parameterValueGroup: Http, Https, NotSet
+    summary: Protocole à utiliser pour la sonde d’intégrité.
+    description: ''
+  - name: --probe-request-type
+    parameterValueGroup: GET, HEAD, NotSet
+    summary: Type de demande de sonde d’intégrité effectué.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --sample-size
+    summary: Nombre d’échantillons à prendre en compte pour les décisions d’équilibrage de charge.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --successful-samples-required
+    summary: Nombre d’échantillons dans la période d’échantillonnage qui doivent être exécutés.
+    description: ''
+commands:
+- az_afd_origin_group_create
+- az_afd_origin_group_delete
+- az_afd_origin_group_list
+- az_afd_origin_group_show
+- az_afd_origin_group_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Un groupe d’origine est un ensemble d’origines auquel la charge de la porte frontale équilibre vos demandes de client.
+  ms.openlocfilehash: 1edf0049ac325b9f2a4ab9e50180f01b8ac17626
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103551183"

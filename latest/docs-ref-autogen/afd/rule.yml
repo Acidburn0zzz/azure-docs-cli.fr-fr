@@ -1,0 +1,294 @@
+### YamlMime:AzureCLIGroup
+uid: az_afd_rule
+name: az afd rule
+summary: Gérer les règles de remise au sein de l’ensemble de règles spécifié.
+description: ''
+directCommands:
+- uid: az_afd_rule_create
+  name: az afd rule create
+  summary: Crée une nouvelle règle de remise dans l’ensemble de règles spécifié.
+  description: ''
+  syntax: >-
+    az afd rule create --action-name
+                       --order
+                       --profile-name
+                       --resource-group
+                       --rule-name
+                       --rule-set-name
+                       [--cache-behavior {BypassCache, Override, SetIfMissing}]
+                       [--cache-duration]
+                       [--custom-fragment]
+                       [--custom-hostname]
+                       [--custom-path]
+                       [--custom-querystring]
+                       [--destination]
+                       [--header-action {Append, Delete, Overwrite}]
+                       [--header-name]
+                       [--header-value]
+                       [--match-processing-behavior {Continue, Stop}]
+                       [--match-values]
+                       [--match-variable {Cookies, HttpVersion, IsDevice, PostArgs, QueryString, RemoteAddress, RequestBody, RequestHeader, RequestMethod, RequestScheme, RequestUri, UrlFileExtension, UrlFileName, UrlPath}]
+                       [--negate-condition {false, true}]
+                       [--operator]
+                       [--preserve-unmatched-path {false, true}]
+                       [--query-parameters]
+                       [--query-string-behavior {Exclude, ExcludeAll, Include, IncludeAll}]
+                       [--redirect-protocol {Http, Https, MatchRequest}]
+                       [--redirect-type {Found, Moved, PermanentRedirect, TemporaryRedirect}]
+                       [--selector]
+                       [--source-pattern]
+                       [--subscription]
+                       [--transform {Lowercase, Uppercase}]
+  examples:
+  - summary: Créez une règle pour ajouter un en-tête de réponse pour les demandes de Thaïlande.
+    syntax: az afd rule create -g group --rule-set-name ruleset1 --profile-name profile --order 2 --match-variable RemoteAddress --operator GeoMatch --match-values TH --rule-name disablecahing --action-name ModifyResponseHeader --header-action Append --header-name X-CDN --header-value AFDX
+  - summary: Créer une règle pour la redirection HTTP vers https
+    syntax: az afd rule create -g group --rule-set-name ruleset1 --profile-name profile --order 1 --rule-name "redirect" --match-variable RequestScheme --operator Equal --match-values HTTP --action-name "UrlRedirect" --redirect-protocol Https --redirect-type Moved
+  requiredParameters:
+  - isRequired: true
+    name: --action-name
+    summary: Nom de l'action.
+    description: ''
+  - isRequired: true
+    name: --order
+    summary: Ordre de la règle. Le numéro de commande doit commencer par 0 et consécutif. Une règle avec un ordre supérieur sera appliquée plus tard.
+    description: ''
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle.
+    description: ''
+  - isRequired: true
+    name: --rule-set-name
+    summary: Nom de l’ensemble de règles.
+    description: ''
+  optionalParameters:
+  - name: --cache-behavior
+    parameterValueGroup: BypassCache, Override, SetIfMissing
+    summary: Comportement de mise en cache pour les requêtes.
+    description: ''
+  - name: --cache-duration
+    summary: 'Durée pendant laquelle le contenu doit être mis en cache.                Le format autorisé est [d.] HH : mm : SS.'
+    description: ''
+  - name: --custom-fragment
+    summary: Fragment à ajouter à l’URL de redirection.
+    description: ''
+  - name: --custom-hostname
+    summary: Hôte à rediriger.                Laissez vide pour utiliser l’hôte entrant comme ordinateur hôte de destination.
+    description: ''
+  - name: --custom-path
+    summary: Chemin d’accès complet à rediriger. Le chemin d’accès ne peut pas être vide et doit commencer par/.                Laissez vide pour utiliser le chemin d’accès entrant comme chemin d’accès de destination.
+    description: ''
+  - name: --custom-querystring
+    summary: Ensemble de chaînes de requête à placer dans l’URL de redirection.                laissez vide pour conserver la chaîne de requête entrante.
+    description: ''
+  - name: --destination
+    summary: Chemin d’accès de destination à utiliser lors de la réécriture.
+    description: ''
+  - name: --header-action
+    parameterValueGroup: Append, Delete, Overwrite
+    summary: Action d’en-tête pour les demandes.
+    description: ''
+  - name: --header-name
+    summary: Nom de l’en-tête à modifier.
+    description: ''
+  - name: --header-value
+    summary: Valeur de l'en-tête.
+    description: ''
+  - name: --match-processing-behavior
+    parameterValueGroup: Continue, Stop
+    summary: Indiquez si le moteur de règles doit continuer à exécuter les règles restantes ou s’arrêter en cas de correspondance. La valeur par défaut est continue.
+    description: ''
+  - name: --match-values
+    summary: Valeurs de correspondance de la condition de correspondance (séparées par des virgules).
+    description: ''
+  - name: --match-variable
+    parameterValueGroup: Cookies, HttpVersion, IsDevice, PostArgs, QueryString, RemoteAddress, RequestBody, RequestHeader, RequestMethod, RequestScheme, RequestUri, UrlFileExtension, UrlFileName, UrlPath
+    summary: Nom de la condition de correspondance.
+    description: ''
+  - name: --negate-condition
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, nie la condition.
+    description: ''
+  - name: --operator
+    summary: Opérateur de la condition de correspondance.
+    description: ''
+  - name: --preserve-unmatched-path
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, le chemin d’accès restant après le modèle source est ajouté au nouveau chemin d’accès de destination.
+    description: ''
+  - name: --query-parameters
+    summary: Paramètres de requête à inclure ou à exclure (séparés par des virgules).
+    description: ''
+  - name: --query-string-behavior
+    parameterValueGroup: Exclude, ExcludeAll, Include, IncludeAll
+    summary: Comportement de la chaîne de requête pour les demandes.
+    description: ''
+  - name: --redirect-protocol
+    parameterValueGroup: Http, Https, MatchRequest
+    summary: Protocole à utiliser pour la redirection.
+    description: ''
+  - name: --redirect-type
+    parameterValueGroup: Found, Moved, PermanentRedirect, TemporaryRedirect
+    summary: Type de redirection que la règle utilisera lors de la redirection du trafic.
+    description: ''
+  - name: --selector
+    summary: Sélecteur de la condition de correspondance.
+    description: ''
+  - name: --source-pattern
+    summary: Modèle d’URI de requête qui identifie le type de demandes qui peuvent être réécrites.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --transform
+    parameterValueGroup: Lowercase, Uppercase
+    summary: Transformation à appliquer avant la correspondance.
+    description: ''
+- uid: az_afd_rule_delete
+  name: az afd rule delete
+  summary: Supprimer une règle de remise de l’ensemble de règles.
+  description: ''
+  syntax: >-
+    az afd rule delete [--ids]
+                       [--profile-name]
+                       [--resource-group]
+                       [--rule-name]
+                       [--rule-set-name]
+                       [--subscription]
+                       [--yes]
+  examples:
+  - summary: Supprimez une règle portant le nom Rule1.
+    syntax: az afd rule delete -g group --rule-set-name ruleSetName --profile-name profile --rule-name rule1
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --rule-name
+    summary: Nom de la règle.
+    description: ''
+  - name: --rule-set-name
+    summary: Nom de l’ensemble de règles.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_afd_rule_list
+  name: az afd rule list
+  summary: Répertorie toutes les règles de remise existantes au sein d’un ensemble de règles.
+  description: ''
+  syntax: >-
+    az afd rule list --profile-name
+                     --resource-group
+                     --rule-set-name
+                     [--query-examples]
+                     [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-set-name
+    summary: Nom de l’ensemble de règles.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_rule_show
+  name: az afd rule show
+  summary: Affichez les détails de la règle de remise.
+  description: ''
+  syntax: >-
+    az afd rule show [--ids]
+                     [--profile-name]
+                     [--query-examples]
+                     [--resource-group]
+                     [--rule-name]
+                     [--rule-set-name]
+                     [--subscription]
+  examples:
+  - summary: Affichez les détails de la règle de remise portant le nom Rule1.
+    syntax: az afd rule show -g group --rule-set-name ruleSetName --profile-name profile --rule-name rule1
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --rule-name
+    summary: Nom de la règle.
+    description: ''
+  - name: --rule-set-name
+    summary: Nom de l’ensemble de règles.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_afd_rule_action
+- az_afd_rule_action_add
+- az_afd_rule_action_list
+- az_afd_rule_action_remove
+- az_afd_rule_condition
+- az_afd_rule_condition_add
+- az_afd_rule_condition_list
+- az_afd_rule_condition_remove
+- az_afd_rule_create
+- az_afd_rule_delete
+- az_afd_rule_list
+- az_afd_rule_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les règles de remise au sein de l’ensemble de règles spécifié.
+  ms.openlocfilehash: b286eea010b849d0113adb951ef84e2228734087
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103551123"

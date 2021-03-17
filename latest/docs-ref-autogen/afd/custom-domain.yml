@@ -1,0 +1,298 @@
+### YamlMime:AzureCLIGroup
+uid: az_afd_custom_domain
+name: az afd custom-domain
+summary: Gérer les domaines personnalisés dans le profil spécifié.
+description: ''
+directCommands:
+- uid: az_afd_custom_domain_create
+  name: az afd custom-domain create
+  summary: Créez un domaine personnalisé dans le profil spécifié.
+  description: Vous devez créer un enregistrement TXT DNS pour prouver la propriété du domaine personnalisé pour que l’opération réussisse. Suggérer d’utiliser « --no-Wait » si la mise à jour DNS prend beaucoup de temps. Utilisez « AZ AFD Custom-Domain Show » pour obtenir le jeton de validation et créer un enregistrement TXT DNS pour l’enregistrement «_dnsauth. {votre domaine personnalisé}» avec le jeton de validation comme valeur.
+  syntax: >-
+    az afd custom-domain create --certificate-type {CustomerCertificate, ManagedCertificate}
+                                --custom-domain-name
+                                --host-name
+                                --minimum-tls-version {TLS10, TLS12}
+                                --profile-name
+                                --resource-group
+                                [--azure-dns-zone]
+                                [--no-wait]
+                                [--secret]
+                                [--subscription]
+  examples:
+  - summary: Créez un domaine personnalisé qui utilise le cerficate géré par AFD pour le chiffrement SSL/TLS.
+    syntax: az afd custom-domain create -g group --custom-domain-name customDomain --profile-name profile --host-name www.contoso.com --minimum-tls-version TLS12 --certificate-type ManagedCertificate
+  - summary: Créer un domaine personnalisé qui utilise votre propre cerficate pour le chiffrement SSL/TLS, le certificat est stocké dans Azure Key Vault et référencé par un secret AFD.
+    syntax: az afd custom-domain create -g group --custom-domain-name customDomain --profile-name profile --host-name www.contoso.com --minimum-tls-version TLS12 --certificate-type CustomerCertificate --secret secretName
+  requiredParameters:
+  - isRequired: true
+    name: --certificate-type
+    parameterValueGroup: CustomerCertificate, ManagedCertificate
+    summary: Définit la source du certificat SSL.
+    description: ''
+  - isRequired: true
+    name: --custom-domain-name
+    summary: Nom du domaine personnalisé.
+    description: ''
+  - isRequired: true
+    name: --host-name
+    summary: Nom d’hôte du domaine. Doit être un nom de domaine.
+    description: ''
+  - isRequired: true
+    name: --minimum-tls-version
+    parameterValueGroup: TLS10, TLS12
+    summary: Version du protocole TLS qui sera utilisée pour HTTPS.
+    description: ''
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --azure-dns-zone
+    summary: ID de la zone de Azure DNS.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --secret
+    summary: ID du certificat du coffre de clés Azure.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_custom_domain_delete
+  name: az afd custom-domain delete
+  summary: Supprimer un domaine personnalisé.
+  description: ''
+  syntax: >-
+    az afd custom-domain delete [--custom-domain-name]
+                                [--ids]
+                                [--profile-name]
+                                [--resource-group]
+                                [--subscription]
+                                [--yes]
+  examples:
+  - summary: Supprimer un domaine personnalisé.
+    syntax: az afd custom-domain delete -g group --profile-name profile  --custom-domain-name customDomainName
+  optionalParameters:
+  - name: --custom-domain-name
+    summary: Nom du domaine personnalisé.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_afd_custom_domain_list
+  name: az afd custom-domain list
+  summary: Répertorie tous les domaines personnalisés dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd custom-domain list --profile-name
+                              --resource-group
+                              [--query-examples]
+                              [--subscription]
+  examples:
+  - summary: Répertorie tous les domaines personnalisés dans le profil spécifié.
+    syntax: az afd custom-domain list -g group --profile-name profile
+  requiredParameters:
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_custom_domain_show
+  name: az afd custom-domain show
+  summary: Affichez les détails du domaine personnalisé.
+  description: ''
+  syntax: >-
+    az afd custom-domain show [--custom-domain-name]
+                              [--ids]
+                              [--profile-name]
+                              [--query-examples]
+                              [--resource-group]
+                              [--subscription]
+  examples:
+  - summary: Affichez les détails du domaine personnalisé dans le profil spécifié.
+    syntax: az afd custom-domain show -g group --profile-name profile  --custom-domain-name customDomainName
+  optionalParameters:
+  - name: --custom-domain-name
+    summary: Nom du domaine personnalisé.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_custom_domain_update
+  name: az afd custom-domain update
+  summary: Met à jour un domaine personnalisé dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd custom-domain update [--azure-dns-zone]
+                                [--certificate-type {CustomerCertificate, ManagedCertificate}]
+                                [--custom-domain-name]
+                                [--ids]
+                                [--minimum-tls-version {TLS10, TLS12}]
+                                [--profile-name]
+                                [--resource-group]
+                                [--secret]
+                                [--subscription]
+  examples:
+  - summary: Mettez à jour la version TLS minimale prise en charge par le domaine personnalisé.
+    syntax: az afd custom-domain update -g group --custom-domain-name customDomain --profile-name profile --minimum-tls-version TLS12
+  - summary: Mettez à jour le type de certificat du domaine personnalisé pour le certificat géré par le certificat AFD.
+    syntax: az afd custom-domain update -g group --custom-domain-name customDomain --profile-name profile --certificate-type ManagedCertificate
+  optionalParameters:
+  - name: --azure-dns-zone
+    summary: ID de la zone de Azure DNS.
+    description: ''
+  - name: --certificate-type
+    parameterValueGroup: CustomerCertificate, ManagedCertificate
+    summary: Définit la source du certificat SSL.
+    description: ''
+  - name: --custom-domain-name
+    summary: Nom du domaine personnalisé.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --minimum-tls-version
+    parameterValueGroup: TLS10, TLS12
+    summary: Version du protocole TLS qui sera utilisée pour HTTPS.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --secret
+    summary: ID du certificat du coffre de clés Azure.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_custom_domain_wait
+  name: az afd custom-domain wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du domaine personnalisé soit remplie.
+  description: ''
+  syntax: >-
+    az afd custom-domain wait [--created]
+                              [--custom]
+                              [--custom-domain-name]
+                              [--deleted]
+                              [--exists]
+                              [--ids]
+                              [--interval]
+                              [--profile-name]
+                              [--resource-group]
+                              [--subscription]
+                              [--timeout]
+                              [--updated]
+  examples:
+  - summary: Patientez jusqu’à la création d’un domaine personnalisé.
+    syntax: az afd custom-domain wait -g MyResourceGroup --profile-name MyProfle --custom-domain-name MyCustomDomain --created
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --custom-domain-name
+    summary: Nom du domaine personnalisé.
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_afd_custom_domain_create
+- az_afd_custom_domain_delete
+- az_afd_custom_domain_list
+- az_afd_custom_domain_show
+- az_afd_custom_domain_update
+- az_afd_custom_domain_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les domaines personnalisés dans le profil spécifié.
+  ms.openlocfilehash: 738a321c9affe49b82c1852a6d5517b031fc3572
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103551603"

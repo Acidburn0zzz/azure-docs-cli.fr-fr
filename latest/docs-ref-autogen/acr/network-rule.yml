@@ -1,0 +1,143 @@
+### YamlMime:AzureCLIGroup
+uid: az_acr_network_rule
+name: az acr network-rule
+summary: Gérer les règles de réseau pour les registres de conteneurs Azure.
+description: ''
+directCommands:
+- uid: az_acr_network_rule_add
+  name: az acr network-rule add
+  summary: Ajoutez une règle de réseau.
+  description: ''
+  syntax: >-
+    az acr network-rule add --name
+                            [--ip-address]
+                            [--resource-group]
+                            [--subnet]
+                            [--subscription]
+                            [--vnet-name]
+  examples:
+  - summary: Ajoutez une règle pour autoriser l’accès à un sous-réseau dans le même groupe de ressources que le registre.
+    syntax: az acr network-rule add -n MyRegistry --vnet-name myvnet --subnet mysubnet
+  - summary: Ajoutez une règle pour autoriser l’accès à un sous-réseau dans un autre abonnement ou groupe de ressources.
+    syntax: az acr network-rule add -n MyRegistry --subnet /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRG/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet
+  - summary: Ajoutez une règle pour autoriser l’accès à une plage d’adresses IP spécifique.
+    syntax: az acr network-rule add -n MyRegistry --ip-address 23.45.1.0/24
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --ip-address
+    summary: Adresse IPv4 ou plage CIDR.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subnet
+    summary: Nom ou ID du sous-réseau. Si le nom est fourni, `--vnet-name` doit être fourni.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet-name
+    summary: Nom d’un réseau virtuel.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_network_rule_list
+  name: az acr network-rule list
+  summary: Répertorier les règles de réseau.
+  description: ''
+  syntax: >-
+    az acr network-rule list --name
+                             [--query-examples]
+                             [--resource-group]
+                             [--subscription]
+  examples:
+  - summary: Répertorier les règles de réseau d’un registre.
+    syntax: az acr network-rule list -n MyRegistry
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_network_rule_remove
+  name: az acr network-rule remove
+  summary: Supprimer une règle de réseau.
+  description: ''
+  syntax: >-
+    az acr network-rule remove --name
+                               [--ip-address]
+                               [--resource-group]
+                               [--subnet]
+                               [--subscription]
+                               [--vnet-name]
+  examples:
+  - summary: Supprimer une règle qui autorise l’accès à un sous-réseau dans le même groupe de ressources que le registre.
+    syntax: az acr network-rule remove -n MyRegistry --vnet-name myvnet --subnet mysubnet
+  - summary: Supprimer une règle qui autorise l’accès à un sous-réseau dans un autre abonnement ou groupe de ressources.
+    syntax: az acr network-rule remove -n MyRegistry --subnet /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRG/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet
+  - summary: Supprimer une règle qui autorise l’accès pour une plage d’adresses IP spécifique.
+    syntax: az acr network-rule remove -n MyRegistry --ip-address 23.45.1.0/24
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --ip-address
+    summary: Adresse IPv4 ou plage CIDR.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subnet
+    summary: Nom ou ID du sous-réseau. Si le nom est fourni, `--vnet-name` doit être fourni.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet-name
+    summary: Nom d’un réseau virtuel.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+commands:
+- az_acr_network_rule_add
+- az_acr_network_rule_list
+- az_acr_network_rule_remove
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/26/2021
+  description: Gérer les règles de réseau pour les registres de conteneurs Azure.
+  ms.openlocfilehash: d47921eb5e30cfa5a7e76ccefd5ef4bf2b862aa2
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102971009"
