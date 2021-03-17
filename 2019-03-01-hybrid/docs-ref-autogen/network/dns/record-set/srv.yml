@@ -1,35 +1,36 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_dns_record_set_mx
-name: az network dns record-set mx
-summary: Gérer les enregistrements DNS MX.
+uid: az_network_dns_record_set_srv
+name: az network dns record-set srv
+summary: Gérer les enregistrements SRV DNS.
 description: ''
 directCommands:
-- uid: az_network_dns_record_set_mx_add_record
-  name: az network dns record-set mx add-record
-  summary: Ajoutez un enregistrement MX.
+- uid: az_network_dns_record_set_srv_add_record
+  name: az network dns record-set srv add-record
+  summary: Ajoutez un enregistrement SRV.
   description: ''
   syntax: >-
-    az network dns record-set mx add-record --exchange
-                                            --preference
-                                            --record-set-name
-                                            --resource-group
-                                            --zone-name
-                                            [--if-none-match]
-                                            [--subscription]
-                                            [--ttl]
+    az network dns record-set srv add-record --port
+                                             --priority
+                                             --record-set-name
+                                             --resource-group
+                                             --target
+                                             --weight
+                                             --zone-name
+                                             [--if-none-match]
+                                             [--subscription]
   examples:
-  - summary: Ajoutez un enregistrement MX.
+  - summary: Ajoutez un enregistrement SRV.
     syntax: >-
-      az network dns record-set mx add-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -e mail.mysite.com -p 10
+      az network dns record-set srv add-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -t webserver.mysite.com -r 8081 -p 10 -w 10
   requiredParameters:
   - isRequired: true
-    name: --exchange -e
-    summary: Métrique Exchange.
+    name: --port -r
+    summary: Port de service.
     description: ''
   - isRequired: true
-    name: --preference -p
-    summary: Mesure de préférence.
+    name: --priority -p
+    summary: Mesure de priorité.
     description: ''
   - isRequired: true
     name: --record-set-name -n
@@ -38,6 +39,14 @@ directCommands:
   - isRequired: true
     name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --target -t
+    summary: Nom de domaine cible.
+    description: ''
+  - isRequired: true
+    name: --weight -w
+    summary: Mesure du poids.
     description: ''
   - isRequired: true
     name: --zone-name -z
@@ -50,29 +59,27 @@ directCommands:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
-  - name: --ttl
-    defaultValue: "3600"
-    summary: Durée de vie du jeu d’enregistrements (durée de vie).
-    description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_create
-  name: az network dns record-set mx create
-  summary: Créez un jeu d’enregistrements MX vide.
+- uid: az_network_dns_record_set_srv_create
+  name: az network dns record-set srv create
+  summary: Créez un jeu d’enregistrements SRV vide.
   description: ''
   syntax: >-
-    az network dns record-set mx create --name
-                                        --resource-group
-                                        --zone-name
-                                        [--if-match]
-                                        [--if-none-match]
-                                        [--metadata]
-                                        [--subscription]
-                                        [--ttl]
+    az network dns record-set srv create --name
+                                         --resource-group
+                                         --zone-name
+                                         [--if-match]
+                                         [--if-none-match]
+                                         [--metadata]
+                                         [--subscription]
+                                         [--ttl]
   examples:
-  - summary: Créez un jeu d’enregistrements MX vide.
-    syntax: az network dns record-set mx create -g MyResourceGroup -z www.mysite.com -n MyRecordSet
-  - summary: Créez un jeu d’enregistrements MX vide. généré automatiquement
-    syntax: az network dns record-set mx create --name MyRecordSet --resource-group MyResourceGroup --ttl 30 --zone-name www.mysite.com
+  - summary: Créez un jeu d’enregistrements SRV vide.
+    syntax: >-
+      az network dns record-set srv create -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet
+  - summary: Créez un jeu d’enregistrements SRV vide. généré automatiquement
+    syntax: az network dns record-set srv create --metadata owner=WebTeam --name MyRecordSet --resource-group MyResourceGroup --ttl 30 --zone-name www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -104,20 +111,20 @@ directCommands:
     summary: Durée de vie du jeu d’enregistrements (durée de vie).
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_delete
-  name: az network dns record-set mx delete
-  summary: Supprimer un jeu d’enregistrements MX et tous les enregistrements associés.
+- uid: az_network_dns_record_set_srv_delete
+  name: az network dns record-set srv delete
+  summary: Supprimer un jeu d’enregistrements SRV et tous les enregistrements associés.
   description: ''
   syntax: >-
-    az network dns record-set mx delete --name
-                                        --resource-group
-                                        --zone-name
-                                        [--if-match]
-                                        [--subscription]
-                                        [--yes]
+    az network dns record-set srv delete --name
+                                         --resource-group
+                                         --zone-name
+                                         [--if-match]
+                                         [--subscription]
+                                         [--yes]
   examples:
-  - summary: Supprimer un jeu d’enregistrements MX et tous les enregistrements associés.
-    syntax: az network dns record-set mx delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Supprimer un jeu d’enregistrements SRV et tous les enregistrements associés.
+    syntax: az network dns record-set srv delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -142,20 +149,18 @@ directCommands:
     summary: Ne pas demander de confirmation.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_list
-  name: az network dns record-set mx list
-  summary: Répertorie tous les jeux d’enregistrements MX dans une zone.
+- uid: az_network_dns_record_set_srv_list
+  name: az network dns record-set srv list
+  summary: Répertorie tous les jeux d’enregistrements SRV dans une zone.
   description: ''
   syntax: >-
-    az network dns record-set mx list --resource-group
-                                      --zone-name
-                                      [--query-examples]
-                                      [--subscription]
+    az network dns record-set srv list --resource-group
+                                       --zone-name
+                                       [--query-examples]
+                                       [--subscription]
   examples:
-  - summary: Répertorie tous les jeux d’enregistrements MX dans une zone.
-    syntax: az network dns record-set mx list -g MyResourceGroup -z www.mysite.com
-  - summary: Liste de tous les jeux d’enregistrements MX dans une zone (génération générée automatiquement)
-    syntax: az network dns record-set mx list --resource-group MyResourceGroup --subscription MySubscription --zone-name www.mysite.com
+  - summary: Répertorie tous les jeux d’enregistrements SRV dans une zone.
+    syntax: az network dns record-set srv list -g MyResourceGroup -z www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --resource-group -g
@@ -173,31 +178,33 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_remove_record
-  name: az network dns record-set mx remove-record
-  summary: Supprimer un enregistrement MX de son jeu d’enregistrements.
+- uid: az_network_dns_record_set_srv_remove_record
+  name: az network dns record-set srv remove-record
+  summary: Suppression d’un enregistrement SRV de son jeu d’enregistrements.
   description: Par défaut, si le dernier enregistrement d’un jeu est supprimé, le jeu d’enregistrements est supprimé. Pour conserver le jeu d’enregistrements vide, incluez--Keep-vide-record-Set.
   syntax: >-
-    az network dns record-set mx remove-record --exchange
-                                               --preference
-                                               --record-set-name
-                                               --resource-group
-                                               --zone-name
-                                               [--keep-empty-record-set]
-                                               [--subscription]
+    az network dns record-set srv remove-record --port
+                                                --priority
+                                                --record-set-name
+                                                --resource-group
+                                                --target
+                                                --weight
+                                                --zone-name
+                                                [--keep-empty-record-set]
+                                                [--subscription]
   examples:
-  - summary: Supprimer un enregistrement MX de son jeu d’enregistrements.
+  - summary: Suppression d’un enregistrement SRV de son jeu d’enregistrements.
     syntax: >-
-      az network dns record-set mx remove-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -e mail.mysite.com -p 10
+      az network dns record-set srv remove-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -t webserver.mysite.com -r 8081 -p 10 -w 10
   requiredParameters:
   - isRequired: true
-    name: --exchange -e
-    summary: Métrique Exchange.
+    name: --port -r
+    summary: Port de service.
     description: ''
   - isRequired: true
-    name: --preference -p
-    summary: Mesure de préférence.
+    name: --priority -p
+    summary: Mesure de priorité.
     description: ''
   - isRequired: true
     name: --record-set-name -n
@@ -206,6 +213,14 @@ directCommands:
   - isRequired: true
     name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --target -t
+    summary: Nom de domaine cible.
+    description: ''
+  - isRequired: true
+    name: --weight -w
+    summary: Mesure du poids.
     description: ''
   - isRequired: true
     name: --zone-name -z
@@ -219,19 +234,19 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_show
-  name: az network dns record-set mx show
-  summary: Obtient les détails d’un jeu d’enregistrements MX.
+- uid: az_network_dns_record_set_srv_show
+  name: az network dns record-set srv show
+  summary: Obtient les détails d’un jeu d’enregistrements SRV.
   description: ''
   syntax: >-
-    az network dns record-set mx show --name
-                                      --resource-group
-                                      --zone-name
-                                      [--query-examples]
-                                      [--subscription]
+    az network dns record-set srv show --name
+                                       --resource-group
+                                       --zone-name
+                                       [--query-examples]
+                                       [--subscription]
   examples:
-  - summary: Obtient les détails d’un jeu d’enregistrements MX.
-    syntax: az network dns record-set mx show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Obtient les détails d’un jeu d’enregistrements SRV.
+    syntax: az network dns record-set srv show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -253,29 +268,27 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_update
-  name: az network dns record-set mx update
-  summary: Mettre à jour un jeu d’enregistrements MX.
+- uid: az_network_dns_record_set_srv_update
+  name: az network dns record-set srv update
+  summary: Mettre à jour un jeu d’enregistrements SRV.
   description: ''
   syntax: >-
-    az network dns record-set mx update --name
-                                        --resource-group
-                                        --zone-name
-                                        [--add]
-                                        [--force-string]
-                                        [--if-match]
-                                        [--if-none-match]
-                                        [--metadata]
-                                        [--remove]
-                                        [--set]
-                                        [--subscription]
+    az network dns record-set srv update --name
+                                         --resource-group
+                                         --zone-name
+                                         [--add]
+                                         [--force-string]
+                                         [--if-match]
+                                         [--if-none-match]
+                                         [--metadata]
+                                         [--remove]
+                                         [--set]
+                                         [--subscription]
   examples:
-  - summary: Mettre à jour un jeu d’enregistrements MX.
+  - summary: Mettre à jour un jeu d’enregistrements SRV.
     syntax: >-
-      az network dns record-set mx update -g MyResourceGroup -z www.mysite.com \
+      az network dns record-set srv update -g MyResourceGroup -z www.mysite.com \
           -n MyRecordSet --metadata owner=WebTeam
-  - summary: Mettre à jour un jeu d’enregistrements MX. généré automatiquement
-    syntax: az network dns record-set mx update --name MyRecordSet --resource-group MyResourceGroup --set tags.CostCenter=MyBusinessGroup --zone-name www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -316,13 +329,13 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_dns_record_set_mx_add_record
-- az_network_dns_record_set_mx_create
-- az_network_dns_record_set_mx_delete
-- az_network_dns_record_set_mx_list
-- az_network_dns_record_set_mx_remove_record
-- az_network_dns_record_set_mx_show
-- az_network_dns_record_set_mx_update
+- az_network_dns_record_set_srv_add_record
+- az_network_dns_record_set_srv_create
+- az_network_dns_record_set_srv_delete
+- az_network_dns_record_set_srv_list
+- az_network_dns_record_set_srv_remove_record
+- az_network_dns_record_set_srv_show
+- az_network_dns_record_set_srv_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -341,10 +354,10 @@ globalParameters:
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/25/2021
-  description: Gérer les enregistrements DNS MX.
-  ms.openlocfilehash: cbbea9dfc060548a3c5ae98c150d2bf7aa7b9960
+  description: Gérer les enregistrements SRV DNS.
+  ms.openlocfilehash: 450053c5ec1ec36bbadb599abd82ce94f9d36e95
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103538977"
+  ms.locfileid: "103538908"
