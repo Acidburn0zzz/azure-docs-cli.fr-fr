@@ -1,0 +1,749 @@
+### YamlMime:AzureCLIGroup
+uid: az_hdinsight
+name: az hdinsight
+summary: Gérer les ressources HDInsight.
+description: ''
+directCommands:
+- uid: az_hdinsight_create
+  name: az hdinsight create
+  summary: Créez un cluster.
+  description: ''
+  syntax: >-
+    az hdinsight create --name
+                        --resource-group
+                        --type
+                        [--assign-identity]
+                        [--autoscale-count]
+                        [--autoscale-max-count]
+                        [--autoscale-min-count]
+                        [--autoscale-type {Load, Schedule}]
+                        [--cluster-admin-account]
+                        [--cluster-admin-password]
+                        [--cluster-configurations]
+                        [--cluster-tier {Premium, Standard}]
+                        [--cluster-users-group-dns]
+                        [--component-version]
+                        [--compute-isolation {false, true}]
+                        [--days {Friday, Monday, Saturday, Sunday, Thursday, Tuesday, Wednesday}]
+                        [--domain]
+                        [--edgenode-size]
+                        [--enable-private-link {false, true}]
+                        [--encryption-algorithm {RSA-OAEP, RSA-OAEP-256, RSA1_5}]
+                        [--encryption-at-host {false, true}]
+                        [--encryption-in-transit {false, true}]
+                        [--encryption-key-name]
+                        [--encryption-key-version]
+                        [--encryption-vault-uri]
+                        [--esp]
+                        [--headnode-size]
+                        [--host-sku]
+                        [--http-password]
+                        [--http-user]
+                        [--idbroker]
+                        [--kafka-client-group-id]
+                        [--kafka-client-group-name]
+                        [--kafka-management-node-count]
+                        [--kafka-management-node-size]
+                        [--ldaps-urls]
+                        [--location]
+                        [--minimal-tls-version {1.0, 1.1, 1.2}]
+                        [--no-validation-timeout]
+                        [--no-wait]
+                        [--resource-provider-connection {Inbound, Outbound}]
+                        [--ssh-password]
+                        [--ssh-public-key]
+                        [--ssh-user]
+                        [--storage-account]
+                        [--storage-account-key]
+                        [--storage-account-managed-identity]
+                        [--storage-container]
+                        [--storage-filesystem]
+                        [--subnet]
+                        [--subscription]
+                        [--tags]
+                        [--time]
+                        [--timezone]
+                        [--version]
+                        [--vnet-name]
+                        [--workernode-count]
+                        [--workernode-data-disk-size]
+                        [--workernode-data-disk-storage-account-type {premium_lrs, standard_lrs}]
+                        [--workernode-data-disks-per-node]
+                        [--workernode-size]
+                        [--zookeepernode-size]
+  examples:
+  - summary: Créez un cluster avec un compte de stockage existant.
+    syntax: >-
+      az hdinsight create -t spark -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" \
+
+      --storage-account MyStorageAccount
+  - summary: Créez un cluster avec une version TLS minimale.
+    syntax: >-
+      az hdinsight create -t spark -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" \
+
+      --storage-account MyStorageAccount --minimal-tls-version 1.2
+  - summary: Créez un cluster qui active le chiffrement en transit.
+    syntax: >-
+      az hdinsight create -t spark -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" \
+
+      --storage-account MyStorageAccount --encryption-in-transit true
+  - summary: Créez un cluster avec chiffrement sur l’hôte.
+    syntax: >-
+      az hdinsight create -t spark -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" \
+
+      --storage-account MyStorageAccount --encryption-at-host true
+  - summary: Créez un cluster avec le Pack Sécurité Entreprise (ESP).
+    syntax: >-
+      az hdinsight create --esp -t spark -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" \
+
+      --storage-account MyStorageAccount \
+
+      --subnet "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MyRG/providers/Microsoft.Network/virtualNetworks/MyVnet/subnets/subnet1" \
+
+      --domain "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MyRG/providers/Microsoft.AAD/domainServices/MyDomain.onmicrosoft.com" \
+
+      --assign-identity "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/MyMsiRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MyMSI" \
+
+      --cluster-admin-account MyAdminAccount@MyDomain.onmicrosoft.com \
+
+      --cluster-users-group-dns MyGroup
+  - summary: Créez un cluster avec le Pack Sécurité Entreprise (ESP) et activez HDInsight ID Broker.
+    syntax: >-
+      az hdinsight create --esp --idbroker -t spark -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" \
+
+      --storage-account MyStorageAccount \
+
+      --subnet "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MyRG/providers/Microsoft.Network/virtualNetworks/MyVnet/subnets/subnet1" \
+
+      --domain "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MyRG/providers/Microsoft.AAD/domainServices/MyDomain.onmicrosoft.com" \
+
+      --assign-identity "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/MyMsiRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MyMSI" \
+
+      --cluster-admin-account MyAdminAccount@MyDomain.onmicrosoft.com \
+
+      --cluster-users-group-dns MyGroup
+  - summary: Créez un cluster Kafka avec le chiffrement de disque. Consultez https://docs.microsoft.com/azure/hdinsight/kafka/apache-kafka-byok.
+    syntax: >-
+      az hdinsight create -t kafka -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" --workernode-data-disks-per-node 2 \
+
+      --storage-account MyStorageAccount \
+
+      --encryption-key-name kafkaClusterKey \
+
+      --encryption-key-version 00000000000000000000000000000000 \
+
+      --encryption-vault-uri https://MyKeyVault.vault.azure.net \
+
+      --assign-identity MyMSI
+  - summary: Créez un cluster Kafka avec le proxy Rest Kafka.
+    syntax: >-
+      az hdinsight create -t kafka -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" --workernode-data-disks-per-node 2 \
+
+      --storage-account MyStorageAccount \
+
+      --kafka-management-node-size "Standard_D4_v2" \
+
+      --kafka-client-group-id MySecurityGroupId \
+
+      --kafka-client-group-name MySecurityGroupName
+
+      --component-version kafka=2.1
+  - summary: Créer un cluster avec Azure Data Lake Storage Gen2
+    syntax: >-
+      az hdinsight create -t spark -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" \
+
+      --storage-account MyStorageAccount \
+
+      --storage-account-managed-identity MyMSI
+  - summary: Créez un cluster avec une configuration à partir d’une chaîne JSON.
+    syntax: >-
+      az hdinsight create -t spark -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" \
+
+      --storage-account MyStorageAccount \
+
+      --cluster-configuration {'gateway':{'restAuthCredential.username':'admin'}}
+  - summary: Créer un cluster avec une configuration à partir d’un fichier local.
+    syntax: >-
+      az hdinsight create -t spark -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" \
+
+      --storage-account MyStorageAccount \
+
+      --cluster-configuration @config.json
+  - summary: Créez un cluster avec une mise à l’échelle automatique basée sur la charge.
+    syntax: >-
+      az hdinsight create -t spark --version 3.6 -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" --storage-account MyStorageAccount \
+
+      --autoscale-type Load --autoscale-min-workernode-count 3 --autoscale-max-workernode-count 5
+  - summary: Créez un cluster avec une mise à l’échelle automatique basée sur une planification.
+    syntax: >-
+      az hdinsight create -t spark --version 3.6 -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" --storage-account MyStorageAccount \
+
+      --autoscale-type Schedule --timezone "Pacific Standard Time" --days Monday \
+
+      --time 09:00 --autoscale-workernode-count 5
+  - summary: Créer un cluster avec une fonctionnalité de relais sortant et de liaison privée.
+    syntax: >-
+      az hdinsight create -t spark --version 3.6 -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" --storage-account MyStorageAccount \
+
+      --subnet "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.Network/virtualNetworks/fakevnet/subnets/default" \
+
+      --resource-provider-connection Outbound --enable-private-link
+  - summary: Créez un cluster avec la fonctionnalité d’isolation de calcul.
+    syntax: >-
+      az hdinsight create -t spark --version 3.6 -g MyResourceGroup -n MyCluster \
+
+      -p "HttpPassword1234!" --storage-account MyStorageAccount \
+
+      --enable-compute-isolation --workernode-size "Standard_E8S_V3" --headnode-size "Standard_E8S_V3"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --type -t
+    summary: 'Type de cluster HDInsight, par exemple : hadoop, interactivehive, hbase, kafka, storm, spark, rserver, mlservices. Voir aussi : <a href="https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#cluster-types">https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#cluster-types</a> .'
+    description: ''
+  optionalParameters:
+  - name: --assign-identity
+    summary: Nom ou ID de l’identité affectée à l’utilisateur.
+    description: ''
+  - name: --autoscale-count --autoscale-workernode-count
+    summary: Nombre de workernode planifié.
+    description: ''
+  - name: --autoscale-max-count --autoscale-max-workernode-count
+    summary: Nombre maximal de workernode pour les atuoscale basés sur la charge.
+    description: ''
+  - name: --autoscale-min-count --autoscale-min-workernode-count
+    summary: Nombre minimal de workernode pour les atuoscale basés sur la charge.
+    description: ''
+  - name: --autoscale-type
+    parameterValueGroup: Load, Schedule
+    summary: Type de mise à l’échelle automatique.
+    description: ''
+  - name: --cluster-admin-account
+    summary: Compte d’utilisateur de domaine qui aura des privilèges d’administrateur sur le cluster. Obligatoire uniquement lors de la création d’un cluster avec Pack Sécurité Entreprise.
+    description: ''
+  - name: --cluster-admin-password
+    summary: Mot de passe de l’administrateur de domaine. Obligatoire uniquement lors de la création d’un cluster avec Pack Sécurité Entreprise.
+    description: ''
+  - name: --cluster-configurations
+    summary: 'Configurations supplémentaires de différents composants. Les configurations peuvent être fournies à partir d’un fichier à l’aide de la `@{path}` syntaxe ou d’une chaîne JSON. Voir aussi : <a href="https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-customize-cluster-bootstrap">https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-customize-cluster-bootstrap</a> .'
+    description: ''
+  - name: --cluster-tier
+    parameterValueGroup: Premium, Standard
+    summary: Niveau du cluster.
+    description: ''
+  - name: --cluster-users-group-dns
+    summary: Liste délimitée par des espaces de noms uniques pour les groupes d’utilisateurs de cluster. Obligatoire uniquement lors de la création d’un cluster avec Pack Sécurité Entreprise.
+    description: ''
+  - name: --component-version
+    summary: 'Versions des différents composants Hadoop, séparées par des espaces, au format « composant=version ». Exemple : Spark = 2.0 Hadoop = 2.7.3 Voir aussi : <a href="https://docs.microsoft.com/azure/hdinsight/hdinsight-component-versioning#hadoop-components-available-with-different-hdinsight-versions">https://docs.microsoft.com/azure/hdinsight/hdinsight-component-versioning#hadoop-components-available-with-different-hdinsight-versions</a> .'
+    description: ''
+  - name: --compute-isolation --enable-compute-isolation
+    parameterValueGroup: false, true
+    summary: Indique s’il faut activer l’isolation de calcul ou non.
+    description: ''
+  - name: --days
+    parameterValueGroup: Friday, Monday, Saturday, Sunday, Thursday, Tuesday, Wednesday
+    summary: Liste délimitée par des espaces de jour de planification.
+    description: ''
+  - name: --domain
+    summary: Nom ou ID de ressource du service de domaine Azure Active Directory de l’utilisateur. Obligatoire uniquement lors de la création d’un cluster avec Pack Sécurité Entreprise.
+    description: ''
+  - name: --edgenode-size
+    summary: 'Taille du nœud. Voir aussi : <a href="https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#configure-cluster-size">https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#configure-cluster-size</a> .'
+    description: ''
+  - name: --enable-private-link
+    parameterValueGroup: false, true
+    summary: Indiquez si vous activez ou non le lien privé.
+    description: ''
+  - name: --encryption-algorithm
+    defaultValue: RSA-OAEP
+    parameterValueGroup: RSA-OAEP, RSA-OAEP-256, RSA1_5
+    summary: Identificateur d’algorithme pour le chiffrement.
+    description: ''
+  - name: --encryption-at-host
+    parameterValueGroup: false, true
+    summary: Indique si l’activation du chiffrement sur l’hôte ou non.
+    description: ''
+  - name: --encryption-in-transit
+    parameterValueGroup: false, true
+    summary: Indique si active le chiffrement en transit.
+    description: ''
+  - name: --encryption-key-name
+    summary: Nom de clé utilisé pour activer le chiffrement de disque.
+    description: ''
+  - name: --encryption-key-version
+    summary: Version de clé utilisée pour activer le chiffrement de disque.
+    description: ''
+  - name: --encryption-vault-uri
+    summary: URI de base du coffre de clés dans lequel se trouve la clé Customers, par exemple. <a href="https://myvault.vault.azure.net">https://myvault.vault.azure.net</a>.
+    description: ''
+  - name: --esp
+    summary: Spécifiez pour créer un cluster avec Pack Sécurité Entreprise. En cas d’omission, la création d’un cluster avec Pack Sécurité Entreprise n’est pas autorisée.
+    description: ''
+  - name: --headnode-size
+    defaultValue: large
+    summary: 'Taille du nœud. Voir aussi : <a href="https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#configure-cluster-size">https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#configure-cluster-size</a> .'
+    description: ''
+  - name: --host-sku
+    summary: Référence SKU de l’hôte dédié de l’isolation de calcul.
+    description: ''
+  - name: --http-password -p
+    summary: Mot de passe HTTP pour le cluster. Invite s’il n’est pas donné.
+    description: ''
+  - name: --http-user -u
+    summary: 'Nom d’utilisateur HTTP pour le cluster.  Valeur par défaut : admin.'
+    description: ''
+  - name: --idbroker
+    summary: Spécifiez pour créer un cluster ESP avec HDInsight ID Broker. En cas d’omission, la création d’un cluster ESP avec HDInsight ID Broker n’est pas autorisée.
+    description: ''
+  - name: --kafka-client-group-id
+    summary: ID du groupe de sécurité AAD client pour le proxy Rest Kafka.
+    description: ''
+  - name: --kafka-client-group-name
+    summary: Nom du groupe de sécurité AAD client pour le proxy Rest Kafka.
+    description: ''
+  - name: --kafka-management-node-count
+    defaultValue: "2"
+    summary: Le nombre de nœuds de gestion Kafka dans le cluster.
+    description: ''
+  - name: --kafka-management-node-size
+    summary: 'Taille du nœud. Voir aussi : <a href="https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#configure-cluster-size">https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#configure-cluster-size</a> .'
+    description: ''
+  - name: --ldaps-urls
+    summary: Liste délimitée par des espaces des URL de protocole LDAPs pour communiquer avec le Active Directory. Obligatoire uniquement lors de la création d’un cluster avec Pack Sécurité Entreprise.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --minimal-tls-version
+    parameterValueGroup: 1.0, 1.1, 1.2
+    summary: Version TLS minimale prise en charge.
+    description: ''
+  - name: --no-validation-timeout
+    summary: Erreur d’expiration de délai lors de la phase de validation d’argument. En cas d’omission, l’erreur de dépassement de délai de validation sera autorisée.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-provider-connection --rp-connection
+    parameterValueGroup: Inbound, Outbound
+    summary: Type de connexion du fournisseur de ressources.
+    description: ''
+  - name: --ssh-password -P
+    summary: Mot de passe SSH pour les nœuds de cluster. Si aucun paramètre n’est spécifié, utilise le mot de passe HTTP.
+    description: ''
+  - name: --ssh-public-key -K
+    summary: Clé publique SSH pour les nœuds de cluster.
+    description: ''
+  - name: --ssh-user -U
+    defaultValue: sshuser
+    summary: Nom d’utilisateur SSH pour les nœuds de cluster.
+    description: ''
+  - name: --storage-account
+    summary: Nom ou ID du compte de stockage.
+    description: ''
+  - name: --storage-account-key
+    summary: La clé du compte de stockage. Une clé peut être récupérée automatiquement si l’utilisateur a accès au compte de stockage.
+    description: ''
+  - name: --storage-account-managed-identity
+    summary: Identité gérée affectée par l’utilisateur avec un accès au système de fichiers du compte de stockage. Obligatoire uniquement lorsque le type de compte de stockage est Azure Data Lake Storage Gen2.
+    description: ''
+  - name: --storage-container
+    summary: Le conteneur de stockage que le cluster utilisera. Utilise le nom du cluster si aucun n’a été spécifié. (WASB uniquement).
+    description: ''
+  - name: --storage-filesystem
+    summary: Le système de fichiers de stockage utilisé par le cluster. Utilise le nom du cluster si aucun n’a été spécifié. (DFS uniquement).
+    description: ''
+  - name: --subnet
+    summary: Nom ou ID du sous-réseau. Si le nom est fourni, `--vnet-name` doit être fourni.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --time
+    summary: 'Heure de 24 heures au format xx : XX en jours.'
+    description: ''
+  - name: --timezone
+    summary: Fuseau horaire de la planification du type de mise à l’échelle automatique. Valeurs provenant de `az hdinsight autoscale list-timezones`.
+    description: ''
+  - name: --version -v
+    defaultValue: default
+    summary: 'Version du cluster HDInsight Voir aussi : <a href="https://docs.microsoft.com/azure/hdinsight/hdinsight-component-versioning#supported-hdinsight-versions">https://docs.microsoft.com/azure/hdinsight/hdinsight-component-versioning#supported-hdinsight-versions</a> .'
+    description: ''
+  - name: --vnet-name
+    summary: Nom d’un réseau virtuel.
+    description: ''
+  - name: --workernode-count -c
+    defaultValue: "3"
+    summary: Nombre de nœuds Worker figurant dans le cluster.
+    description: ''
+  - name: --workernode-data-disk-size
+    summary: Taille du disque de données en Go, par exemple 1023.
+    description: ''
+  - name: --workernode-data-disk-storage-account-type
+    parameterValueGroup: premium_lrs, standard_lrs
+    summary: 'Type de compte de stockage qui sera utilisé pour les disques de données : standard_lrs ou premium_lrs.'
+    description: ''
+  - name: --workernode-data-disks-per-node
+    summary: Nombre de disques de données à utiliser par nœud Worker.
+    description: ''
+  - name: --workernode-size
+    defaultValue: large
+    summary: 'Taille du nœud. Voir aussi : <a href="https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#configure-cluster-size">https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#configure-cluster-size</a> .'
+    description: ''
+  - name: --zookeepernode-size
+    summary: 'Taille du nœud. Voir aussi : <a href="https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#configure-cluster-size">https://docs.microsoft.com/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters#configure-cluster-size</a> .'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_delete
+  name: az hdinsight delete
+  summary: Supprime le cluster HDInsight spécifié.
+  description: ''
+  syntax: >-
+    az hdinsight delete --name
+                        --resource-group
+                        [--no-wait]
+                        [--subscription]
+                        [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_list
+  name: az hdinsight list
+  summary: Répertorier les clusters HDInsight dans un groupe de ressources ou un abonnement.
+  description: ''
+  syntax: >-
+    az hdinsight list [--query-examples]
+                      [--resource-group]
+                      [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_list_usage
+  name: az hdinsight list-usage
+  summary: Répertorie les utilisations de l’emplacement spécifié.
+  description: ''
+  syntax: >-
+    az hdinsight list-usage --location
+                            [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_resize
+  name: az hdinsight resize
+  summary: Redimensionne le cluster HDInsight spécifié à la taille spécifiée.
+  description: ''
+  syntax: >-
+    az hdinsight resize --name
+                        --resource-group
+                        --workernode-count
+                        [--no-wait]
+                        [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workernode-count -c
+    summary: Nombre d’instances du nœud Worker cible pour l’opération.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_rotate_disk_encryption_key
+  name: az hdinsight rotate-disk-encryption-key
+  summary: Faire pivoter la clé de chiffrement de disque du cluster HDInsight spécifié.
+  description: ''
+  syntax: >-
+    az hdinsight rotate-disk-encryption-key --encryption-key-name
+                                            --encryption-key-version
+                                            --encryption-vault-uri
+                                            --name
+                                            --resource-group
+                                            [--no-wait]
+                                            [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --encryption-key-name
+    summary: Nom de clé utilisé pour activer le chiffrement de disque.
+    description: ''
+  - isRequired: true
+    name: --encryption-key-version
+    summary: Version de clé utilisée pour activer le chiffrement de disque.
+    description: ''
+  - isRequired: true
+    name: --encryption-vault-uri
+    summary: URI de base du coffre de clés dans lequel se trouve la clé Customers, par exemple. <a href="https://myvault.vault.azure.net">https://myvault.vault.azure.net</a>.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_show
+  name: az hdinsight show
+  summary: Obtient le cluster spécifié.
+  description: ''
+  syntax: >-
+    az hdinsight show --name
+                      --resource-group
+                      [--query-examples]
+                      [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_update
+  name: az hdinsight update
+  summary: Correctif du cluster HDInsight avec les paramètres spécifiés.
+  description: ''
+  syntax: >-
+    az hdinsight update --name
+                        --resource-group
+                        [--no-wait]
+                        [--subscription]
+                        [--tags]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+- uid: az_hdinsight_wait
+  name: az hdinsight wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une opération soit terminée.
+  description: ''
+  syntax: >-
+    az hdinsight wait --name
+                      --resource-group
+                      [--created]
+                      [--custom]
+                      [--deleted]
+                      [--exists]
+                      [--interval]
+                      [--subscription]
+                      [--timeout]
+                      [--updated]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/hdinsight/_help.py
+commands:
+- az_hdinsight_application
+- az_hdinsight_application_create
+- az_hdinsight_application_delete
+- az_hdinsight_application_list
+- az_hdinsight_application_show
+- az_hdinsight_application_wait
+- az_hdinsight_autoscale
+- az_hdinsight_autoscale_condition
+- az_hdinsight_autoscale_condition_create
+- az_hdinsight_autoscale_condition_delete
+- az_hdinsight_autoscale_condition_list
+- az_hdinsight_autoscale_condition_update
+- az_hdinsight_autoscale_condition_wait
+- az_hdinsight_autoscale_create
+- az_hdinsight_autoscale_delete
+- az_hdinsight_autoscale_list_timezones
+- az_hdinsight_autoscale_show
+- az_hdinsight_autoscale_update
+- az_hdinsight_autoscale_wait
+- az_hdinsight_create
+- az_hdinsight_delete
+- az_hdinsight_host
+- az_hdinsight_host_list
+- az_hdinsight_host_restart
+- az_hdinsight_list
+- az_hdinsight_list_usage
+- az_hdinsight_monitor
+- az_hdinsight_monitor_disable
+- az_hdinsight_monitor_enable
+- az_hdinsight_monitor_show
+- az_hdinsight_resize
+- az_hdinsight_rotate_disk_encryption_key
+- az_hdinsight_script_action
+- az_hdinsight_script_action_delete
+- az_hdinsight_script_action_execute
+- az_hdinsight_script_action_list
+- az_hdinsight_script_action_list_execution_history
+- az_hdinsight_script_action_promote
+- az_hdinsight_script_action_show_execution_details
+- az_hdinsight_show
+- az_hdinsight_update
+- az_hdinsight_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les ressources HDInsight.
+  ms.openlocfilehash: 3a954fcaeabe0e56e253cdc72eb20f50ed2da03f
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102850042"

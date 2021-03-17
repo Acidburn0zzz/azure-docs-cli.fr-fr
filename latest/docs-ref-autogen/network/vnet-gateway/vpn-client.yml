@@ -1,0 +1,113 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_vnet_gateway_vpn_client
+name: az network vnet-gateway vpn-client
+summary: Téléchargez une configuration de client VPN requise pour la connexion à Azure via une connexion de point à site.
+description: ''
+directCommands:
+- uid: az_network_vnet_gateway_vpn_client_generate
+  name: az network vnet-gateway vpn-client generate
+  summary: Générez la configuration du client VPN.
+  description: La commande génère une URL vers un fichier zip pour la configuration du client VPN généré.
+  syntax: >-
+    az network vnet-gateway vpn-client generate [--authentication-method {EAPMSCHAPv2, EAPTLS}]
+                                                [--client-root-certificates]
+                                                [--ids]
+                                                [--name]
+                                                [--processor-architecture {Amd64, X86}]
+                                                [--radius-server-auth-certificate]
+                                                [--resource-group]
+                                                [--subscription]
+                                                [--use-legacy {false, true}]
+  examples:
+  - summary: Créez la configuration du client VPN pour RADIUS avec l’authentification EAP-MSCHAV2.
+    syntax: az network vnet-gateway vpn-client generate -g MyResourceGroup -n MyVnetGateway --authentication-method EAPMSCHAPv2
+  - summary: Créez la configuration du client VPN pour l’architecture AMD64.
+    syntax: az network vnet-gateway vpn-client generate -g MyResourceGroup -n MyVnetGateway --processor-architecture Amd64
+  - summary: Générez la configuration du client VPN. généré automatiquement
+    syntax: az network vnet-gateway vpn-client generate --name MyVnetGateway --processor-architecture Amd64 --resource-group MyResourceGroup --subscription MySubscription
+  optionalParameters:
+  - name: --authentication-method
+    parameterValueGroup: EAPMSCHAPv2, EAPTLS
+    summary: Méthode utilisée pour l’authentification auprès du client généré.
+    description: ''
+  - name: --client-root-certificates
+    summary: Liste séparée par des espaces des données de certificat public du certificat racine du client au format de base 64. Facultatif pour l’authentification RADIUS externe avec EAPTLS.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la passerelle de réseau virtuel.
+    description: ''
+  - name: --processor-architecture
+    parameterValueGroup: Amd64, X86
+    summary: Architecture du processeur du système cible.
+    description: ''
+  - name: --radius-server-auth-certificate
+    summary: Données de certificat public pour le certificat d’authentification de serveur RADIUS au format de base 64. Obligatoire uniquement si l’authentification RADIUS externe a été configurée avec l’authentification EAPTLS.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --use-legacy
+    parameterValueGroup: false, true
+    summary: Générez un package client VPN à l’aide de l’implémentation héritée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_vnet_gateway_vpn_client_show_url
+  name: az network vnet-gateway vpn-client show-url
+  summary: Récupérez une configuration de client VPN prégénérée.
+  description: Le profil doit être généré en premier à l’aide de la commande VPN-client Generate.
+  syntax: >-
+    az network vnet-gateway vpn-client show-url [--ids]
+                                                [--name]
+                                                [--resource-group]
+                                                [--subscription]
+  examples:
+  - summary: Récupérez le client VPN de point à site pré-généré de la passerelle de réseau virtuel.
+    syntax: az network vnet-gateway vpn-client show-url -g MyResourceGroup -n MyVnetGateway
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la passerelle de réseau virtuel.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_vnet_gateway_vpn_client_generate
+- az_network_vnet_gateway_vpn_client_show_url
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Téléchargez une configuration de client VPN requise pour la connexion à Azure via une connexion de point à site.
+  ms.openlocfilehash: 3d2a2cc289b9d05c797972addaa397ad624f8f8a
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965688"
