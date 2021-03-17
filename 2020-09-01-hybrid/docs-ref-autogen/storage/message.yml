@@ -1,0 +1,344 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_message
+name: az storage message
+summary: Gérer les messages de stockage de file d’attente.
+description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
+directCommands:
+- uid: az_storage_message_clear
+  name: az storage message clear
+  summary: Supprime tous les messages de la file d’attente spécifiée.
+  description: ''
+  syntax: >-
+    az storage message clear --queue-name
+                             [--account-key]
+                             [--account-name]
+                             [--auth-mode {key, login}]
+                             [--connection-string]
+                             [--sas-token]
+                             [--subscription]
+                             [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --queue-name -q
+    summary: le nom de la file d’attente ;
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_message_delete
+  name: az storage message delete
+  summary: Supprime le message spécifié.
+  description: 'Normalement, une fois qu’un client a récupéré un message avec l’opération de get_messages, le client est censé traiter et supprimer le message. Pour supprimer le message, vous devez disposer de deux éléments de données : ID et pop_receipt. L’ID est retourné à partir de l’opération de get_messages précédente. La pop_receipt est retournée à partir de l’opération get_messages () ou update_message () la plus récente. Pour que l’opération de delete_message aboutisse, le pop_receipt spécifié sur la demande doit correspondre à la pop_receipt retournée par l’opération get_messages () ou update_message ().'
+  syntax: >-
+    az storage message delete --id
+                              --pop-receipt
+                              --queue-name
+                              [--account-key]
+                              [--account-name]
+                              [--auth-mode {key, login}]
+                              [--connection-string]
+                              [--sas-token]
+                              [--subscription]
+                              [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: ID du message identifiant le message à supprimer.
+    description: ''
+  - isRequired: true
+    name: --pop-receipt
+    summary: Une valeur d’accusé de réception pop valide retournée par un appel antérieur à la get_messages () ou update_message ().
+    description: ''
+  - isRequired: true
+    name: --queue-name -q
+    summary: le nom de la file d’attente ;
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_message_get
+  name: az storage message get
+  summary: Récupère un ou plusieurs messages du début de la file d’attente.
+  description: Lorsqu’un message est récupéré de la file d’attente, la réponse comprend le contenu du message et une valeur de pop_receipt, ce qui est nécessaire pour supprimer le message.  Le message n’est pas automatiquement supprimé de la file d’attente, mais une fois qu’il a été récupéré, il n’est pas visible pour les autres clients pendant l’intervalle de temps spécifié par le paramètre visibility_timeout.  Si le champ Key-Encryption-Key ou Resolver est défini sur l’objet service local, les messages sont déchiffrés avant d’être retournés.
+  syntax: >-
+    az storage message get --queue-name
+                           [--account-key]
+                           [--account-name]
+                           [--auth-mode {key, login}]
+                           [--connection-string]
+                           [--num-messages]
+                           [--sas-token]
+                           [--subscription]
+                           [--timeout]
+                           [--visibility-timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --queue-name -q
+    summary: le nom de la file d’attente ;
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --num-messages
+    summary: Une valeur entière différente de zéro qui spécifie le nombre de messages à récupérer de la file d'attente, avec un maximum de 32. Si le nombre de messages est inférieur, tous les messages visibles sont retournés. Par défaut, cette opération ne récupère qu'un seul message de la file d'attente.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  - name: --visibility-timeout
+    summary: Spécifie la nouvelle valeur du délai de visibilité, en secondes, par rapport au temps serveur. La nouvelle valeur doit être supérieure ou égale à 1 seconde, et ne peut pas être supérieure à 7 jours. Le délai d'expiration de la visibilité d'un message peut être défini à une valeur ultérieure au délai d'expiration.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_message_peek
+  name: az storage message peek
+  summary: Récupère un ou plusieurs messages du début de la file d’attente, mais ne modifie pas la visibilité du message.
+  description: Seuls les messages visibles peuvent être récupérés. Lorsqu’un message est récupéré pour la première fois avec un appel à get_messages, sa propriété dequeue_count a la valeur 1. S’il n’est pas supprimé et qu’il est ensuite récupéré à nouveau, la propriété dequeue_count est incrémentée. Le client peut utiliser cette valeur pour déterminer le nombre de fois où un message a été récupéré. Notez qu’un appel à peek_messages n’incrémente pas la valeur de DequeueCount, mais retourne cette valeur pour le client à lire.  Si le champ Key-Encryption-Key ou Resolver est défini sur l’objet service local, les messages sont déchiffrés avant d’être retournés.
+  syntax: >-
+    az storage message peek --queue-name
+                            [--account-key]
+                            [--account-name]
+                            [--auth-mode {key, login}]
+                            [--connection-string]
+                            [--num-messages]
+                            [--sas-token]
+                            [--subscription]
+                            [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --queue-name -q
+    summary: le nom de la file d’attente ;
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --num-messages
+    summary: Une valeur entière différente de zéro qui spécifie le nombre de messages à examiner à partir de la file d'attente, avec un maximum de 32. Par défaut, cette opération ne donne un aperçu que d'un seul message de la file d'attente.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_message_put
+  name: az storage message put
+  summary: Ajoute un nouveau message à l’arrière de la file d’attente de messages.
+  description: Le délai de visibilité spécifie l’heure à laquelle le message sera invisible. Une fois ce délai expiré, le message est visible.  Si un délai de visibilité n'est pas spécifié, la valeur par défaut 0 est utilisée.  La durée de vie du message spécifie la durée pendant laquelle un message est conservé dans la file d’attente. Le message sera supprimé de la file d’attente lorsque la durée de vie expirera.  Si le champ Key-Encryption-Key est défini sur l’objet service local, cette méthode chiffre le contenu avant le chargement.
+  syntax: >-
+    az storage message put --content
+                           --queue-name
+                           [--account-key]
+                           [--account-name]
+                           [--auth-mode {key, login}]
+                           [--connection-string]
+                           [--sas-token]
+                           [--subscription]
+                           [--time-to-live]
+                           [--timeout]
+                           [--visibility-timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --content
+    summary: Contenu du message, d’une taille maximale de 64 Ko.
+    description: ''
+  - isRequired: true
+    name: --queue-name -q
+    summary: le nom de la file d’attente ;
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --time-to-live
+    summary: Spécifie l'intervalle de durée de vie du message, en secondes. La durée de vie peut être n’importe quel nombre positif ou-1 pour l’infini. Si ce paramètre est omis, la durée de vie par défaut est de 7 jours.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  - name: --visibility-timeout
+    summary: En l'absence de spécification, la valeur par défaut est 0. Spécifie la nouvelle valeur du délai de visibilité, en secondes, par rapport au temps serveur. La valeur doit être supérieure ou égale à 0 et ne peut pas être supérieure à 7 jours. Le délai d'expiration de la visibilité d'un message ne peut pas être défini à une valeur ultérieure au délai d'expiration. visibility_timeout doit être défini sur une valeur inférieure à la valeur de durée de vie.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_message_update
+  name: az storage message update
+  summary: Met à jour le délai de visibilité d’un message.
+  description: Vous pouvez également utiliser cette opération pour mettre à jour le contenu d'un message.  Cette opération peut être utilisée pour étendre continuellement l’invisibilité d’un message de file d’attente. Cette fonctionnalité peut être utile si vous souhaitez qu’un rôle de travail « loue » un message de file d’attente. Par exemple, si un rôle de travail appelle get_messages et reconnaît qu’il a besoin de plus de temps pour traiter un message, il peut prolonger continuellement l’invisibilité du message jusqu’à ce qu’il soit traité. Si le rôle de travail a échoué lors du traitement, le message finit par devenir visible et un autre rôle de travail peut le traiter.  Si le champ Key-Encryption-Key est défini sur l’objet service local, cette méthode chiffre le contenu avant le chargement.
+  syntax: >-
+    az storage message update --id
+                              --pop-receipt
+                              --queue-name
+                              --visibility-timeout
+                              [--account-key]
+                              [--account-name]
+                              [--auth-mode {key, login}]
+                              [--connection-string]
+                              [--content]
+                              [--sas-token]
+                              [--subscription]
+                              [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: ID du message identifiant le message à mettre à jour.
+    description: ''
+  - isRequired: true
+    name: --pop-receipt
+    summary: Une valeur d’accusé de réception pop valide retournée par un appel antérieur à l’opération get_messages () ou update_message ().
+    description: ''
+  - isRequired: true
+    name: --queue-name -q
+    summary: le nom de la file d’attente ;
+    description: ''
+  - isRequired: true
+    name: --visibility-timeout
+    summary: Spécifie la nouvelle valeur du délai de visibilité, en secondes, par rapport au temps serveur. La nouvelle valeur doit être supérieure ou égale à 0 et ne peut pas être supérieure à 7 jours. Le délai d'expiration de la visibilité d'un message ne peut pas être défini à une valeur ultérieure au délai d'expiration. Un message peut être mis à jour tant qu'il n'a pas été supprimé ou qu'il n'a pas expiré.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --content
+    summary: Contenu du message, d’une taille maximale de 64 Ko.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_message_clear
+- az_storage_message_delete
+- az_storage_message_get
+- az_storage_message_peek
+- az_storage_message_put
+- az_storage_message_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/26/2021
+  description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
+  ms.openlocfilehash: 865184870e59e734c4335fc93c136322093982fb
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103527519"

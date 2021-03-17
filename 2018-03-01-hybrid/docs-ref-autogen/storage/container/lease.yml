@@ -1,0 +1,295 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_container_lease
+name: az storage container lease
+summary: Gérer les baux de conteneurs de stockage d’objets BLOB.
+description: ''
+directCommands:
+- uid: az_storage_container_lease_acquire
+  name: az storage container lease acquire
+  summary: Demande un nouveau bail.
+  description: Si le conteneur n'a pas de bail actif, le service BLOB crée un bail dans le conteneur et retourne un nouvel ID de bail.
+  syntax: >-
+    az storage container lease acquire --container-name
+                                       [--account-key]
+                                       [--account-name]
+                                       [--connection-string]
+                                       [--if-modified-since]
+                                       [--if-unmodified-since]
+                                       [--lease-duration]
+                                       [--proposed-lease-id]
+                                       [--sas-token]
+                                       [--subscription]
+                                       [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-duration
+    defaultValue: "-1"
+    summary: Spécifie la durée de bail, en secondes, ou moins un (- 1) pour un bail qui n'expire jamais. Un bail qui n'est pas infini peut durer entre 15 et 60 secondes. Une durée de bail ne peut pas être modifiée à l’aide de Renew ou change. La valeur par défaut est-1 (bail infini).
+    description: ''
+  - name: --proposed-lease-id
+    summary: ID de bail proposé, dans un format de chaîne GUID. Le service BLOB retourne 400 (demande non valide) si l’ID de bail proposé n’est pas au bon format.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_lease_break
+  name: az storage container lease break
+  summary: Interrompez le bail si le conteneur a un bail actif.
+  description: Une fois un bail résilié, il ne peut pas être renouvelé. Toute demande autorisée peut résilier le bail ; la demande ne spécifie pas obligatoirement un ID de bail correspondant. Lorsqu’un bail est rompu, la période de résiliation du bail est autorisée à s’écouler, pendant laquelle aucune opération de bail, à l’exception de l’arrêt et de la mise en service, ne peut être effectuée sur le conteneur. Lorsqu'un bail est correctement résilié, la réponse indique l'intervalle en secondes avant qu'un nouveau bail puisse être acquis.
+  syntax: >-
+    az storage container lease break --container-name
+                                     [--account-key]
+                                     [--account-name]
+                                     [--connection-string]
+                                     [--if-modified-since]
+                                     [--if-unmodified-since]
+                                     [--lease-break-period]
+                                     [--sas-token]
+                                     [--subscription]
+                                     [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-break-period
+    summary: Il s’agit de la durée proposée en secondes pendant laquelle le bail doit continuer avant d’être interrompu, entre 0 et 60 secondes. Cette période de résiliation n'est utilisée que si elle est plus courte que la durée du bail restante. Si elle est plus longue, la durée restante du bail est utilisée. Un nouveau bail ne sera pas disponible avant l'expiration de la période de résiliation, mais le bail peut être conservé au-delà de cette période. Si cet en-tête n’apparaît pas avec une opération d’arrêt, un bail à durée fixe s’interrompt après la fin de la période de bail restante, et un bail infini s’interrompt immédiatement.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_lease_change
+  name: az storage container lease change
+  summary: Modifier l’ID de bail d’un bail actif.
+  description: Une modification doit inclure l’ID de bail actuel et un nouvel ID de bail.
+  syntax: >-
+    az storage container lease change --container-name
+                                      --lease-id
+                                      --proposed-lease-id
+                                      [--account-key]
+                                      [--account-name]
+                                      [--connection-string]
+                                      [--if-modified-since]
+                                      [--if-unmodified-since]
+                                      [--sas-token]
+                                      [--subscription]
+                                      [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --lease-id
+    summary: ID de bail pour le bail actif.
+    description: ''
+  - isRequired: true
+    name: --proposed-lease-id
+    summary: ID de bail proposé, dans un format de chaîne GUID. Le service BLOB retourne 400 (demande non valide) si l’ID de bail proposé n’est pas au bon format.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_lease_release
+  name: az storage container lease release
+  summary: Permet de libérer le bail.
+  description: Le bail peut être libéré si le lease_id spécifié correspond à celui associé au conteneur. La libération du bail permet à un autre client d'acquérir immédiatement le bail pour le conteneur dès que la libération est terminée.
+  syntax: >-
+    az storage container lease release --container-name
+                                       --lease-id
+                                       [--account-key]
+                                       [--account-name]
+                                       [--connection-string]
+                                       [--if-modified-since]
+                                       [--if-unmodified-since]
+                                       [--sas-token]
+                                       [--subscription]
+                                       [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --lease-id
+    summary: ID de bail pour le bail actif.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_lease_renew
+  name: az storage container lease renew
+  summary: Renouvelle le bail.
+  description: Le bail peut être renouvelé si l’ID de bail spécifié correspond à celui associé au conteneur. Notez que le bail peut être renouvelé même s'il a expiré, tant que le conteneur n'a pas été reloué depuis l'expiration de ce bail. Lorsque vous renouvelez un bail, la durée de bail est réinitialisée.
+  syntax: >-
+    az storage container lease renew --container-name
+                                     --lease-id
+                                     [--account-key]
+                                     [--account-name]
+                                     [--connection-string]
+                                     [--if-modified-since]
+                                     [--if-unmodified-since]
+                                     [--sas-token]
+                                     [--subscription]
+                                     [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --lease-id
+    summary: ID de bail pour le bail actif.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_container_lease_acquire
+- az_storage_container_lease_break
+- az_storage_container_lease_change
+- az_storage_container_lease_release
+- az_storage_container_lease_renew
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/26/2021
+  description: Gérer les baux de conteneurs de stockage d’objets BLOB.
+  ms.openlocfilehash: e13da940fa346be88217b60a86ec5e96561825f3
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103499316"
