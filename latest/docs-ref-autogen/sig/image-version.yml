@@ -1,0 +1,407 @@
+### YamlMime:AzureCLIGroup
+uid: az_sig_image_version
+name: az sig image-version
+summary: Créez une nouvelle version à partir d’une définition d’image.
+description: ''
+directCommands:
+- uid: az_sig_image_version_create
+  name: az sig image-version create
+  summary: Créez une nouvelle version de l’image.
+  description: Cette opération peut prendre beaucoup de temps en fonction du numéro de la région répliquée. Nous vous recommandons d’utiliser « --no-Wait ».
+  syntax: >-
+    az sig image-version create --gallery-image-definition
+                                --gallery-image-version
+                                --gallery-name
+                                --resource-group
+                                [--data-snapshot-luns]
+                                [--data-snapshots]
+                                [--end-of-life-date]
+                                [--exclude-from-latest {false, true}]
+                                [--location]
+                                [--managed-image]
+                                [--no-wait]
+                                [--os-snapshot]
+                                [--replica-count]
+                                [--storage-account-type {Premium_LRS, Standard_LRS, Standard_ZRS}]
+                                [--subscription]
+                                [--tags]
+                                [--target-region-encryption]
+                                [--target-regions]
+  examples:
+  - summary: Ajouter une nouvelle version de l’image à partir d’une image managée
+    syntax: az sig image-version create -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --managed-image /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/images/MyManagedImage
+  - summary: Ajouter une nouvelle version de l’image à partir d’une machine virtuelle
+    syntax: az sig image-version create -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --managed-image /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/virtualMachines/MyVM
+  - summary: Ajouter une nouvelle version de l’image à partir d’une autre version de l’image
+    syntax: az sig image-version create -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --managed-image /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/galleries/MyGallery/images/MyImageDefinition/versions/1.0.0
+  - summary: Ajouter une nouvelle version de l’image à partir d’une capture instantanée d’un disque de système d’exploitation.
+    syntax: az sig image-version create -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --os-snapshot /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/snapshots/MyOsDiskSnapshot
+  - summary: Ajouter une nouvelle version de l’image à partir d’une capture instantanée d’un disque de système d’exploitation et ajouter des disques de données supplémentaires
+    syntax: az sig image-version create -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --os-snapshot /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/snapshots/MyOsDiskSnapshot --data-snapshots /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/snapshots/MyDiskSnapshot --data-snapshot-luns 0
+  - summary: Ajouter une nouvelle version de l’image à partir d’un disque géré
+    syntax: az sig image-version create -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --os-snapshot /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyOSDisk
+  - summary: Ajouter une nouvelle version de l’image à partir d’un disque géré et ajouter des disques de données supplémentaires
+    syntax: az sig image-version create -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --os-snapshot /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyOSDisk --data-snapshots /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyDataDisk --data-snapshot-luns 0
+  - summary: Ajouter une nouvelle version d’image contenant une combinaison de captures instantanées et de disques managés
+    syntax: az sig image-version create -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --os-snapshot /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyOSDisk --data-snapshots /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/snapshots/MyDiskSnapshot1 /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyDataDisk2 --data-snapshot-luns 1 2
+  - summary: Ajoutez une nouvelle version d’image répliquée dans plusieurs régions avec des nombres de réplication différents. Le nombre de réplicas de Eastus2 sera défini sur le nombre de réplicas par défaut.
+    syntax: >-
+      az sig image-version create -g MyResourceGroup --gallery-name MyGallery \
+
+      --gallery-image-definition MyImage --gallery-image-version 1.0.0 \
+
+      --managed-image image-name --target-regions eastus2 ukwest=3 southindia=2
+  - summary: Ajoutez une nouvelle version d’image et n’attendez pas dessus. Plus tard, vous pouvez appeler la commande « AZ SIG image-version Wait » quand vous êtes prêt à créer une machine virtuelle à partir de la version de l’image de la Galerie
+    syntax: >-
+      az sig image-version create --no-wait -g MyResourceGroup --gallery-name MyGallery \
+
+      --gallery-image-definition MyImage --gallery-image-version 1.0.0 \
+
+      --managed-image imageInTheSameResourceGroup
+  - summary: Ajouter une nouvelle version d’image avec des régions cibles ayant des types de compte de stockage et des nombres de réplicas différents
+    syntax: >-
+      az sig image-version create -g MyResourceGroup --gallery-image-version 1.0.0 \
+
+      --target-regions westus=2=standard_lrs eastus=3=standard_zrs \
+
+      --gallery-name MyGallery --gallery-image-definition MyImage \
+
+      --managed-image imageInTheSameResourceGroup
+  - summary: Ajoutez une nouvelle version d’image à l’aide d’une machine virtuelle avec des régions cibles et des clés gérées par le client pour le chiffrement. Vous spécifiez les disques dans la version de l’image à chiffrer. Les disques chiffrés dans une région doivent être chiffrés dans une autre région avec un chiffrement de disque différent.
+    syntax: az sig image-version create -g MyResourceGroup --gallery-image-version 1.0.0 --target-regions westus=2=standard eastus --target-region-encryption WestUSDiskEncryptionSet1,0,WestUSDiskEncryptionSet2 EastUSDiskEncryptionSet1,0,EastUSDiskEncryptionSet2 --gallery-name MyGallery --gallery-image-definition MyImage --managed-image /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/virtualMachines/MyVM
+  - summary: Ajoutez une nouvelle version d’image à l’aide de disques avec des régions cibles et des clés gérées par le client pour le chiffrement. Vous spécifiez les disques dans la version de l’image à chiffrer. Les disques chiffrés dans une région doivent être chiffrés dans une autre région avec un chiffrement de disque différent.
+    syntax: az sig image-version create -g MyResourceGroup --gallery-image-version 1.0.0 --target-regions westus=2=standard eastus --target-region-encryption WestUSDiskEncryptionSet1,0,WestUSDiskEncryptionSet2 EastUSDiskEncryptionSet1,0,EastUSDiskEncryptionSet2 --gallery-name MyGallery --gallery-image-definition MyImage --os-snapshot /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyOSDisk --data-snapshots /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyDataDisk --data-snapshot-luns 0
+  requiredParameters:
+  - isRequired: true
+    name: --gallery-image-definition -i
+    summary: Définition de l’image de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --gallery-image-version -e
+    summary: Version de l’image de la galerie dans le modèle de version sémantique. Les caractères autorisés sont digit et period. Les chiffres doivent se trouver dans la plage d’un entier 32 bits, par exemple `<MajorVersion>.<MinorVersion>.<Patch>` .
+    description: ''
+  - isRequired: true
+    name: --gallery-name -r
+    summary: Nom de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --data-snapshot-luns
+    summary: Numéros d’unités logiques (délimités par des espaces) des captures instantanées de disque de données.
+    description: ''
+  - name: --data-snapshots
+    summary: Noms ou ID (délimités par des espaces) des captures instantanées de disque de données.
+    description: ''
+  - name: --end-of-life-date
+    summary: Date de fin de vie, par exemple « 2020-12-31 ».
+    description: ''
+  - name: --exclude-from-latest
+    parameterValueGroup: false, true
+    summary: L’indicateur signifie que s’il est défini sur true, les personnes qui déploient des machines virtuelles avec une version omise n’utilisent pas cette version.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --managed-image
+    summary: Nom de l’image (si elle est dans le même groupe de ressources) ou ID de ressource.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --os-snapshot
+    summary: Nom ou ID de l’instantané du disque du système d’exploitation.
+    description: ''
+  - name: --replica-count
+    summary: Nombre par défaut de réplicas à créer par région. Pour définir le nombre de réplications régionales, utilisez--Target-regions.
+    description: ''
+  - name: --storage-account-type
+    parameterValueGroup: Premium_LRS, Standard_LRS, Standard_ZRS
+    summary: Type de compte de stockage par défaut à utiliser par région. Pour définir les types de comptes de stockage régionaux, utilisez--Target-regions.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --target-region-encryption
+    summary: 'Liste séparée par des espaces de clés gérées par le client pour le chiffrement du système d’exploitation et des disques de données dans l’artefact de la Galerie pour chaque région. Format pour chaque région : `<os_des>,<lun1>,<lun1_des>,<lun2>,<lun2_des>` . Utilisez « null » en tant qu’espace réservé.'
+    description: ''
+  - name: --target-regions
+    summary: Liste séparée par des espaces des régions et nombre de réplicas. Utilisez `<region>[=<replica count>][=<storage account type>]` cette option pour définir le nombre de réplicas et/ou le type de compte de stockage pour chaque région. Si aucun nombre de réplicas n’est spécifié, le nombre de réplicas par défaut est utilisé. Si aucun type de compte de stockage n’est spécifié, le type de compte de stockage par défaut est utilisé.
+    description: ''
+- uid: az_sig_image_version_delete
+  name: az sig image-version delete
+  summary: Supprimer une version d’image de la Galerie.
+  description: ''
+  syntax: >-
+    az sig image-version delete --gallery-image-definition
+                                --gallery-image-version
+                                --gallery-name
+                                --resource-group
+                                [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --gallery-image-definition -i
+    summary: Définition de l’image de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --gallery-image-version -e
+    summary: Version de l’image de la galerie dans le modèle de version sémantique. Les caractères autorisés sont digit et period. Les chiffres doivent se trouver dans la plage d’un entier 32 bits, par exemple `<MajorVersion>.<MinorVersion>.<Patch>` .
+    description: ''
+  - isRequired: true
+    name: --gallery-name -r
+    summary: Nom de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sig_image_version_list
+  name: az sig image-version list
+  summary: Répertorier les versions d’images de la galerie dans une définition d’image de Galerie.
+  description: ''
+  syntax: >-
+    az sig image-version list --gallery-image-definition
+                              --gallery-name
+                              --resource-group
+                              [--query-examples]
+                              [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --gallery-image-definition -i
+    summary: Définition de l’image de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --gallery-name -r
+    summary: Nom de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sig_image_version_show
+  name: az sig image-version show
+  summary: Récupère des informations sur la version d’une image de Galerie.
+  description: ''
+  syntax: >-
+    az sig image-version show --gallery-image-definition
+                              --gallery-image-version
+                              --gallery-name
+                              --resource-group
+                              [--expand]
+                              [--query-examples]
+                              [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --gallery-image-definition -i
+    summary: Définition de l’image de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --gallery-image-version -e
+    summary: Version de l’image de la galerie dans le modèle de version sémantique. Les caractères autorisés sont digit et period. Les chiffres doivent se trouver dans la plage d’un entier 32 bits, par exemple `<MajorVersion>.<MinorVersion>.<Patch>` .
+    description: ''
+  - isRequired: true
+    name: --gallery-name -r
+    summary: Nom de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --expand
+    summary: Expression Expand à appliquer à l’opération, par exemple « Connectingtosource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sig_image_version_update
+  name: az sig image-version update
+  summary: Mettez à jour une version d’image de partage.
+  description: ''
+  syntax: >-
+    az sig image-version update --gallery-image-definition
+                                --gallery-image-version
+                                --gallery-name
+                                --resource-group
+                                [--add]
+                                [--force-string]
+                                [--no-wait]
+                                [--remove]
+                                [--replica-count]
+                                [--set]
+                                [--subscription]
+                                [--target-regions]
+  examples:
+  - summary: Réplication vers un nouvel ensemble de régions
+    syntax: az sig image-version update -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --target-regions westcentralus=2 eastus2
+  - summary: Réplication vers une autre région
+    syntax: az sig image-version update -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --add publishingProfile.targetRegions name=westcentralus
+  - summary: Ajouter une région avec un autre nombre de réplicas régionaux
+    syntax: az sig image-version update -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --add publishingProfile.targetRegions name=westcentralus regionalReplicaCount=3
+  - summary: Supprimer une région
+    syntax: az sig image-version update -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --remove publishingProfile.targetRegions name=westcentralus
+  - summary: Indiquez si une image doit être incluse en considération pour la dernière version dans la définition de l’image. Si cette valeur est définie sur true, l’image n’est pas prise en compte et la définition de cette valeur sur false inclut l’image à prendre en compte.
+    syntax: az sig image-version update -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --set publishingProfile.excludeFromLatest=true
+  - summary: Mettez à jour une version d’image de partage. généré automatiquement
+    syntax: az sig image-version update --gallery-image-definition MyImage --gallery-image-version 1.0.0 --gallery-name MyGallery --resource-group MyResourceGroup --set publishingProfile.excludeFromLatest=true
+  requiredParameters:
+  - isRequired: true
+    name: --gallery-image-definition -i
+    summary: Définition de l’image de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --gallery-image-version -e
+    summary: Version de l’image de la galerie dans le modèle de version sémantique. Les caractères autorisés sont digit et period. Les chiffres doivent se trouver dans la plage d’un entier 32 bits, par exemple `<MajorVersion>.<MinorVersion>.<Patch>` .
+    description: ''
+  - isRequired: true
+    name: --gallery-name -r
+    summary: Nom de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --replica-count
+    summary: Nombre par défaut de réplicas à créer par région. Pour définir le nombre de réplications régionales, utilisez--Target-regions.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --target-regions
+    summary: Liste séparée par des espaces des régions et nombre de réplicas. Utilisez `<region>[=<replica count>][=<storage account type>]` cette option pour définir le nombre de réplicas et/ou le type de compte de stockage pour chaque région. Si aucun nombre de réplicas n’est spécifié, le nombre de réplicas par défaut est utilisé. Si aucun type de compte de stockage n’est spécifié, le type de compte de stockage par défaut est utilisé.
+    description: ''
+- uid: az_sig_image_version_wait
+  name: az sig image-version wait
+  summary: Attendez l’opération associée à la version de l’image.
+  description: ''
+  syntax: >-
+    az sig image-version wait --gallery-image-definition
+                              --gallery-image-version
+                              --gallery-name
+                              --resource-group
+                              [--created]
+                              [--custom]
+                              [--deleted]
+                              [--exists]
+                              [--expand]
+                              [--interval]
+                              [--subscription]
+                              [--timeout]
+                              [--updated]
+  examples:
+  - summary: attendre la mise à jour d’une version d’image
+    syntax: az sig image-version wait --updated -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0
+  - summary: Attendez l’opération associée à la version de l’image. généré automatiquement
+    syntax: az sig image-version wait --created --gallery-image-definition MyImage --gallery-image-version 1.0.0 --gallery-name MyGallery --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --gallery-image-definition -i
+    summary: Définition de l’image de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --gallery-image-version -e
+    summary: Version de l’image de la galerie dans le modèle de version sémantique. Les caractères autorisés sont digit et period. Les chiffres doivent se trouver dans la plage d’un entier 32 bits, par exemple `<MajorVersion>.<MinorVersion>.<Patch>` .
+    description: ''
+  - isRequired: true
+    name: --gallery-name -r
+    summary: Nom de la Galerie.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --expand
+    summary: Expression Expand à appliquer à l’opération.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_sig_image_version_create
+- az_sig_image_version_delete
+- az_sig_image_version_list
+- az_sig_image_version_show
+- az_sig_image_version_update
+- az_sig_image_version_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Créez une nouvelle version à partir d’une définition d’image.
+  ms.openlocfilehash: 0c54e1ce511f697c73e7b2f02d439653691b7ffa
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103500370"

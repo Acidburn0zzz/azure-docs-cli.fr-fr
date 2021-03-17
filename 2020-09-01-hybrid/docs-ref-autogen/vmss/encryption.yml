@@ -1,0 +1,156 @@
+### YamlMime:AzureCLIGroup
+uid: az_vmss_encryption
+name: az vmss encryption
+summary: Gérer le chiffrement de VMSS.
+description: 'Pour plus d’informations, consultez : <a href="https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview">https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview</a> .'
+directCommands:
+- uid: az_vmss_encryption_disable
+  name: az vmss encryption disable
+  summary: Désactivez le chiffrement sur un VMSS avec des disques managés.
+  description: ''
+  syntax: >-
+    az vmss encryption disable [--force]
+                               [--ids]
+                               [--name]
+                               [--resource-group]
+                               [--subscription]
+                               [--volume-type {ALL, DATA, OS}]
+  examples:
+  - summary: désactiver le chiffrement d’un VMSS
+    syntax: az vmss encryption disable -g MyResourceGroup -n MyVm
+  optionalParameters:
+  - name: --force
+    summary: Continuez en ignorant les erreurs de validation côté client.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe identique. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vmss=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --volume-type
+    parameterValueGroup: ALL, DATA, OS
+    summary: Type de volume sur lequel l’opération de chiffrement est effectuée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vmss_encryption_enable
+  name: az vmss encryption enable
+  summary: Chiffrer un VMSS avec des disques managés.
+  description: 'Pour plus d’informations, consultez : pour plus d’informations, consultez <a href="https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview">https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview</a> .'
+  syntax: >-
+    az vmss encryption enable --disk-encryption-keyvault
+                              [--force]
+                              [--ids]
+                              [--key-encryption-algorithm]
+                              [--key-encryption-key]
+                              [--key-encryption-keyvault]
+                              [--name]
+                              [--resource-group]
+                              [--subscription]
+                              [--volume-type {ALL, DATA, OS}]
+  examples:
+  - summary: chiffrer un jeu de mise à l’échelle de machine virtuelle à l’aide d’un coffre de clés dans le même groupe de ressources
+    syntax: az vmss encryption enable -g MyResourceGroup -n MyVmss --disk-encryption-keyvault MyVault
+  - summary: Chiffrer un VMSS avec des disques managés. généré automatiquement
+    syntax: az vmss encryption enable --disk-encryption-keyvault MyVault --name MyVmss --resource-group MyResourceGroup --volume-type DATA
+  requiredParameters:
+  - isRequired: true
+    name: --disk-encryption-keyvault
+    summary: Nom ou ID du coffre de clés dans lequel la clé de chiffrement générée sera placée.
+    description: ''
+  optionalParameters:
+  - name: --force
+    summary: Continuez en ignorant les erreurs de validation côté client.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --key-encryption-algorithm
+    defaultValue: RSA-OAEP
+    summary: ''
+    description: ''
+  - name: --key-encryption-key
+    summary: Nom ou URL de clé du coffre de clés utilisé pour chiffrer la clé de chiffrement de disque.
+    description: ''
+  - name: --key-encryption-keyvault
+    summary: Nom ou ID du coffre de clés contenant la clé de chiffrement à clé utilisée pour chiffrer la clé de chiffrement de disque. S’il est manquant, l’interface CLI utilise `--disk-encryption-keyvault` .
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe identique. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vmss=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --volume-type
+    parameterValueGroup: ALL, DATA, OS
+    summary: Type de volume sur lequel l’opération de chiffrement est effectuée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vmss_encryption_show
+  name: az vmss encryption show
+  summary: Afficher l’état du chiffrement.
+  description: ''
+  syntax: >-
+    az vmss encryption show [--ids]
+                            [--name]
+                            [--query-examples]
+                            [--resource-group]
+                            [--subscription]
+  examples:
+  - summary: Afficher l’état du chiffrement. généré automatiquement
+    syntax: az vmss encryption show --name MyScaleSet --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe identique. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vmss=<name>` .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+commands:
+- az_vmss_encryption_disable
+- az_vmss_encryption_enable
+- az_vmss_encryption_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/05/2021
+  description: 'Pour plus d’informations, consultez : <a href="https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview">https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview</a> .'
+  ms.openlocfilehash: 9e3a0ceccec1a29fa7341578f5288ba838d9f49c
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965130"
