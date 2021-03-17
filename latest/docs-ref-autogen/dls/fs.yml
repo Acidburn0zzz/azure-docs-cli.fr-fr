@@ -1,0 +1,519 @@
+### YamlMime:AzureCLIGroup
+uid: az_dls_fs
+name: az dls fs
+summary: Gérer un système de fichiers Data Lake Store.
+description: ''
+directCommands:
+- uid: az_dls_fs_append
+  name: az dls fs append
+  summary: Ajouter du contenu à un fichier dans un compte Data Lake Store.
+  description: ''
+  syntax: >-
+    az dls fs append --content
+                     --path
+                     [--account]
+                     [--ids]
+                     [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --content
+    summary: Contenu à ajouter au fichier.
+    description: ''
+  - isRequired: true
+    name: --path
+    summary: Chemin d’accès dans le compte de Data Lake Store spécifié dans lequel l’action doit être effectuée. Au format « /Folder/file.txt », où le premier « / » après le DNS indique la racine du système de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_create
+  name: az dls fs create
+  summary: Crée un fichier ou un dossier dans un compte Data Lake Store.
+  description: ''
+  syntax: >-
+    az dls fs create --account
+                     --path
+                     [--content]
+                     [--folder]
+                     [--force]
+                     [--subscription]
+  examples:
+  - summary: Crée un fichier ou un dossier dans un compte Data Lake Store. généré automatiquement
+    syntax: az dls fs create --account {account} --folder  --path {path}
+  requiredParameters:
+  - isRequired: true
+    name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - isRequired: true
+    name: --path
+    summary: Chemin d’accès dans le compte de Data Lake Store spécifié dans lequel l’action doit être effectuée. Au format « /Folder/file.txt », où le premier « / » après le DNS indique la racine du système de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --content
+    summary: Contenu du fichier à inclure lors de la création.
+    description: ''
+  - name: --folder
+    summary: Indique que ce nouvel élément est un dossier et non un fichier.
+    description: ''
+  - name: --force
+    summary: Indique que, si le fichier ou le dossier existe, il doit être remplacé.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_delete
+  name: az dls fs delete
+  summary: Supprimer un fichier ou un dossier dans un compte Data Lake Store.
+  description: ''
+  syntax: >-
+    az dls fs delete --path
+                     [--account]
+                     [--ids]
+                     [--recurse]
+                     [--subscription]
+  examples:
+  - summary: Supprimer un fichier ou un dossier dans un compte Data Lake Store. généré automatiquement
+    syntax: az dls fs delete --account {account} --path {path}
+  requiredParameters:
+  - isRequired: true
+    name: --path
+    summary: Chemin d’accès dans le compte de Data Lake Store spécifié dans lequel l’action doit être effectuée. Au format « /Folder/file.txt », où le premier « / » après le DNS indique la racine du système de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --recurse
+    summary: Indique qu’il doit s’agir d’une suppression récursive du dossier.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_download
+  name: az dls fs download
+  summary: Téléchargez un fichier ou un dossier à partir d’un compte Data Lake Store sur l’ordinateur local.
+  description: ''
+  syntax: >-
+    az dls fs download --destination-path
+                       --source-path
+                       [--account]
+                       [--block-size]
+                       [--buffer-size]
+                       [--chunk-size]
+                       [--ids]
+                       [--overwrite]
+                       [--subscription]
+                       [--thread-count]
+  examples:
+  - summary: Téléchargez un fichier ou un dossier à partir d’un compte Data Lake Store sur l’ordinateur local. généré automatiquement
+    syntax: az dls fs download --account {account} --destination-path {destination-path} --source-path {source-path}
+  requiredParameters:
+  - isRequired: true
+    name: --destination-path
+    summary: Chemin d’accès local où le fichier ou le dossier sera téléchargé.
+    description: ''
+  - isRequired: true
+    name: --source-path
+    summary: Chemin d’accès complet dans le système de fichiers Data Lake Store à partir duquel Télécharger le fichier ou le dossier.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --block-size
+    defaultValue: "4194304"
+    summary: Taille d’un bloc, en octets.
+    description: Dans chaque bloc, un bloc plus petit est écrit pour chaque appel d’API. Un bloc ne peut pas être plus grand qu’un bloc et doit être plus grand qu’une mémoire tampon.
+  - name: --buffer-size
+    defaultValue: "4194304"
+    summary: Taille de la mémoire tampon de transfert, en octets.
+    description: Un tampon ne peut pas être plus grand qu’un bloc et ne peut pas être plus petit qu’un bloc.
+  - name: --chunk-size
+    defaultValue: "268435456"
+    summary: Taille d’un segment, en octets.
+    description: Les fichiers volumineux sont fractionnés en segments. Les fichiers dont la taille est inférieure à cette taille sont toujours transférés dans un thread unique.
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --overwrite
+    summary: Indique que, si le fichier ou le dossier de destination existe, il doit être remplacé.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --thread-count
+    summary: 'Parallélisme du téléchargement. Valeur par défaut : le nombre de cœurs dans l’ordinateur local.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_join
+  name: az dls fs join
+  summary: Joindre des fichiers dans un compte Data Lake Store dans un seul fichier.
+  description: ''
+  syntax: >-
+    az dls fs join --destination-path
+                   --source-paths
+                   [--account]
+                   [--force]
+                   [--ids]
+                   [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --destination-path
+    summary: Chemin d’accès de destination dans le compte Data Lake Store.
+    description: ''
+  - isRequired: true
+    name: --source-paths
+    summary: Liste de fichiers séparés par des espaces dans le compte Data Lake Store à joindre.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --force
+    summary: Indique que, si le fichier de destination existe déjà, il doit être remplacé.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_list
+  name: az dls fs list
+  summary: Répertorier les fichiers et les dossiers dans un compte Data Lake Store.
+  description: ''
+  syntax: >-
+    az dls fs list --path
+                   [--account]
+                   [--ids]
+                   [--query-examples]
+                   [--subscription]
+  examples:
+  - summary: Répertorier les fichiers et les dossiers dans un compte Data Lake Store. généré automatiquement
+    syntax: az dls fs list --account {account} --path {path}
+  requiredParameters:
+  - isRequired: true
+    name: --path
+    summary: Chemin d’accès dans le compte de Data Lake Store spécifié dans lequel l’action doit être effectuée. Au format « /Folder/file.txt », où le premier « / » après le DNS indique la racine du système de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_move
+  name: az dls fs move
+  summary: Déplacer un fichier ou un dossier dans un compte Data Lake Store.
+  description: ''
+  syntax: >-
+    az dls fs move --destination-path
+                   --source-path
+                   [--account]
+                   [--force]
+                   [--ids]
+                   [--subscription]
+  examples:
+  - summary: Déplacer un fichier ou un dossier dans un compte Data Lake Store. généré automatiquement
+    syntax: az dls fs move --account {account} --destination-path {destination-path} --source-path {source-path}
+  requiredParameters:
+  - isRequired: true
+    name: --destination-path
+    summary: Chemin d’accès de destination dans le compte Data Lake Store.
+    description: ''
+  - isRequired: true
+    name: --source-path
+    summary: Fichier ou dossier à déplacer.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --force
+    summary: Indique que, si le fichier ou le dossier de destination existe déjà, il doit être remplacé et remplacé par le fichier ou le dossier en cours de déplacement.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_preview
+  name: az dls fs preview
+  summary: Affichez un aperçu du contenu d’un fichier dans un compte Data Lake Store.
+  description: ''
+  syntax: >-
+    az dls fs preview --path
+                      [--account]
+                      [--force]
+                      [--ids]
+                      [--length]
+                      [--offset]
+                      [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --path
+    summary: Chemin d’accès dans le compte de Data Lake Store spécifié dans lequel l’action doit être effectuée. Au format « /Folder/file.txt », où le premier « / » après le DNS indique la racine du système de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --force
+    summary: Indique que, si la version préliminaire est supérieure à 1 Mo, vous la récupérez toujours. Cela peut être très lent, en fonction de la taille du fichier.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --length
+    summary: Quantité de données à prévisualiser, en octets.
+    description: S’il n’est pas spécifié, tente d’afficher un aperçu du fichier complet. Si le fichier est > 1 Mo `--force` doit être spécifié.
+  - name: --offset
+    summary: Position, en octets, à partir de laquelle la prévisualisation doit être démarrée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_remove_expiry
+  name: az dls fs remove-expiry
+  summary: Supprimer l’heure d’expiration d’un fichier.
+  description: ''
+  syntax: >-
+    az dls fs remove-expiry --path
+                            [--account]
+                            [--ids]
+                            [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --path
+    summary: Chemin d’accès dans le compte de Data Lake Store spécifié dans lequel l’action doit être effectuée. Au format « /Folder/file.txt », où le premier « / » après le DNS indique la racine du système de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_set_expiry
+  name: az dls fs set-expiry
+  summary: Définir l’heure d’expiration d’un fichier.
+  description: ''
+  syntax: >-
+    az dls fs set-expiry --expiration-time
+                         --path
+                         [--account]
+                         [--ids]
+                         [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --expiration-time
+    summary: Valeur absolue de l’heure d’expiration exprimée en millisecondes depuis l’époque.
+    description: ''
+  - isRequired: true
+    name: --path
+    summary: Chemin d’accès dans le compte de Data Lake Store spécifié dans lequel l’action doit être effectuée. Au format « /Folder/file.txt », où le premier « / » après le DNS indique la racine du système de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_show
+  name: az dls fs show
+  summary: Obtenir les informations de fichier ou de dossier dans un compte Data Lake Store.
+  description: ''
+  syntax: >-
+    az dls fs show --path
+                   [--account]
+                   [--ids]
+                   [--query-examples]
+                   [--subscription]
+  examples:
+  - summary: Obtenir les informations de fichier ou de dossier dans un compte Data Lake Store. généré automatiquement
+    syntax: az dls fs show --account {account} --path {path}
+  requiredParameters:
+  - isRequired: true
+    name: --path
+    summary: Chemin d’accès dans le compte de Data Lake Store spécifié dans lequel l’action doit être effectuée. Au format « /Folder/file.txt », où le premier « / » après le DNS indique la racine du système de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_test
+  name: az dls fs test
+  summary: Testez l’existence d’un fichier ou d’un dossier dans un compte Data Lake Store.
+  description: ''
+  syntax: >-
+    az dls fs test --path
+                   [--account]
+                   [--ids]
+                   [--subscription]
+  examples:
+  - summary: Testez l’existence d’un fichier ou d’un dossier dans un compte Data Lake Store. généré automatiquement
+    syntax: az dls fs test --account {account} --path {path}
+  requiredParameters:
+  - isRequired: true
+    name: --path
+    summary: Chemin d’accès dans le compte de Data Lake Store spécifié dans lequel l’action doit être effectuée. Au format « /Folder/file.txt », où le premier « / » après le DNS indique la racine du système de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+- uid: az_dls_fs_upload
+  name: az dls fs upload
+  summary: Chargez un fichier ou un dossier dans un compte Data Lake Store.
+  description: ''
+  syntax: >-
+    az dls fs upload --destination-path
+                     --source-path
+                     [--account]
+                     [--block-size]
+                     [--buffer-size]
+                     [--chunk-size]
+                     [--ids]
+                     [--overwrite]
+                     [--subscription]
+                     [--thread-count]
+  examples:
+  - summary: Chargez un fichier ou un dossier dans un compte Data Lake Store. généré automatiquement
+    syntax: az dls fs upload --account {account} --destination-path {destination-path} --overwrite  --source-path {source-path}
+  requiredParameters:
+  - isRequired: true
+    name: --destination-path
+    summary: Chemin d’accès complet dans le système de fichiers Data Lake Store vers lequel le fichier ou le dossier doit être téléchargé.
+    description: ''
+  - isRequired: true
+    name: --source-path
+    summary: Chemin d’accès du fichier ou du dossier à télécharger.
+    description: ''
+  optionalParameters:
+  - name: --account -n
+    summary: Nom du compte Data Lake Store.
+    description: ''
+  - name: --block-size
+    defaultValue: "4194304"
+    summary: Taille d’un bloc, en octets.
+    description: Dans chaque bloc, un bloc plus petit est écrit pour chaque appel d’API. Un bloc ne peut pas être plus grand qu’un bloc et doit être plus grand qu’une mémoire tampon.
+  - name: --buffer-size
+    defaultValue: "4194304"
+    summary: Taille de la mémoire tampon de transfert, en octets.
+    description: Un tampon ne peut pas être plus grand qu’un bloc et ne peut pas être plus petit qu’un bloc.
+  - name: --chunk-size
+    defaultValue: "268435456"
+    summary: Taille d’un segment, en octets.
+    description: Les fichiers volumineux sont fractionnés en segments. Les fichiers dont la taille est inférieure à cette taille sont toujours transférés dans un thread unique.
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --overwrite
+    summary: Indique que, si le fichier ou le dossier de destination existe, il doit être remplacé.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --thread-count
+    summary: 'Parallélisme du chargement. Valeur par défaut : le nombre de cœurs dans l’ordinateur local.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dls/_help.py
+commands:
+- az_dls_fs_access
+- az_dls_fs_access_remove_all
+- az_dls_fs_access_remove_entry
+- az_dls_fs_access_set
+- az_dls_fs_access_set_entry
+- az_dls_fs_access_set_owner
+- az_dls_fs_access_set_permission
+- az_dls_fs_access_show
+- az_dls_fs_append
+- az_dls_fs_create
+- az_dls_fs_delete
+- az_dls_fs_download
+- az_dls_fs_join
+- az_dls_fs_list
+- az_dls_fs_move
+- az_dls_fs_preview
+- az_dls_fs_remove_expiry
+- az_dls_fs_set_expiry
+- az_dls_fs_show
+- az_dls_fs_test
+- az_dls_fs_upload
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 06/21/2019
+  description: Gérer un système de fichiers Data Lake Store.
+  ms.openlocfilehash: d3255b99bd6573af889caa7ea0b13c34f5ae28e9
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820295"

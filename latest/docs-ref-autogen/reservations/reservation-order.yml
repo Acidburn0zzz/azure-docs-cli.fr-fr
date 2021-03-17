@@ -1,0 +1,231 @@
+### YamlMime:AzureCLIGroup
+uid: az_reservations_reservation_order
+name: az reservations reservation-order
+summary: Gérer l’ordre de réservation, qui est le conteneur des réservations.
+description: ''
+directCommands:
+- uid: az_reservations_reservation_order_calculate
+  name: az reservations reservation-order calculate
+  summary: Calculer le prix d’une commande de réservation.
+  description: Calculer le prix pour le placement d’une commande de réservation.
+  syntax: >-
+    az reservations reservation-order calculate --applied-scope-type {Shared, Single}
+                                                --billing-scope
+                                                --display-name
+                                                --quantity
+                                                --reserved-resource-type {CosmosDb, RedHat, RedHatOsa, SqlDataWarehouse, SqlDatabases, SuseLinux, VMwareCloudSimple, VirtualMachines}
+                                                --sku
+                                                --term {P1Y, P3Y}
+                                                [--applied-scope]
+                                                [--billing-plan {Monthly, Upfront}]
+                                                [--instance-flexibility]
+                                                [--location]
+                                                [--renew {false, true}]
+                                                [--subscription]
+  examples:
+  - summary: Calculer le prix et obtenir un devis pour un type de ressource spécifique.
+    syntax: az reservations reservation-order calculate --sku standard_b1ls --location westus --reserved-resource-type VirtualMachines --billing-scope {SubId} --term P1Y --billing-plan Upfront --quantity 1 --applied-scope-type Single --applied-scope SubId --display-name test
+  requiredParameters:
+  - isRequired: true
+    name: --applied-scope-type
+    parameterValueGroup: Shared, Single
+    summary: Type de l’étendue appliquée à laquelle mettre à jour la réservation.
+    description: ''
+  - isRequired: true
+    name: --billing-scope
+    summary: Abonnement qui sera facturé pour l’achat de la réservation.
+    description: ''
+  - isRequired: true
+    name: --display-name
+    summary: Nom convivial permettant à l’utilisateur d’identifier facilement la réservation.
+    description: ''
+  - isRequired: true
+    name: --quantity
+    summary: Quantité de produit pour le calcul du prix ou de l’achat.
+    description: ''
+  - isRequired: true
+    name: --reserved-resource-type
+    parameterValueGroup: CosmosDb, RedHat, RedHatOsa, SqlDataWarehouse, SqlDatabases, SuseLinux, VMwareCloudSimple, VirtualMachines
+    summary: Type de la ressource pour laquelle les références SKU doivent être fournies.
+    description: ''
+  - isRequired: true
+    name: --sku
+    summary: Nom de la référence, récupérez la liste des références à l’aide de la commande AZ reservations Catalog Show.
+    description: ''
+  - isRequired: true
+    name: --term
+    parameterValueGroup: P1Y, P3Y
+    summary: Conditions de réservation disponibles pour cette ressource.
+    description: ''
+  optionalParameters:
+  - name: --applied-scope
+    summary: Abonnement auquel l’avantage sera appliqué. Obligatoire si--application-Scope-type est Single. Ne spécifiez pas if--application-Scope-type est partagé.
+    description: ''
+  - name: --billing-plan
+    parameterValueGroup: Monthly, Upfront
+    summary: Options de plan de facturation disponibles pour cette référence (SKU).
+    description: ''
+  - name: --instance-flexibility
+    summary: Type de la flexibilité de l’instance avec laquelle mettre à jour la réservation.
+    description: ''
+  - name: --location
+    summary: 'Valeurs provenant de : `az account list-locations`.'
+    description: ''
+  - name: --renew
+    parameterValueGroup: false, true
+    summary: Affectez la valeur true pour acheter automatiquement une nouvelle réservation à la date et l’heure d’expiration.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/reservations/_help.py
+- uid: az_reservations_reservation_order_list
+  name: az reservations reservation-order list
+  summary: Obtient toutes les commandes de réservation.
+  description: Liste de toutes les commandes de réservation auxquelles l’utilisateur a accès dans le locataire actuel.
+  syntax: >-
+    az reservations reservation-order list [--query-examples]
+                                           [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/reservations/_help.py
+- uid: az_reservations_reservation_order_purchase
+  name: az reservations reservation-order purchase
+  summary: Commande de réservation d’achat.
+  description: Achetez l’ordre de réservation et créez la ressource sous l’URI spécifié.
+  syntax: >-
+    az reservations reservation-order purchase --applied-scope-type {Shared, Single}
+                                               --billing-scope
+                                               --display-name
+                                               --quantity
+                                               --reservation-order-id
+                                               --reserved-resource-type {CosmosDb, RedHat, RedHatOsa, SqlDataWarehouse, SqlDatabases, SuseLinux, VMwareCloudSimple, VirtualMachines}
+                                               --sku
+                                               --term {P1Y, P3Y}
+                                               [--applied-scope]
+                                               [--billing-plan {Monthly, Upfront}]
+                                               [--instance-flexibility]
+                                               [--location]
+                                               [--renew {false, true}]
+                                               [--subscription]
+  examples:
+  - summary: Ordre de réservation des achats
+    syntax: az reservations reservation-order purchase --reservation-order-id {reservationOrderId} --sku standard_b1ls --location westus --reserved-resource-type VirtualMachines --billing-scope {SubId} --term P1Y --billing-plan Upfront --quantity 1 --applied-scope-type Single --applied-scope {SubId} --display-name test
+  requiredParameters:
+  - isRequired: true
+    name: --applied-scope-type
+    parameterValueGroup: Shared, Single
+    summary: Type de l’étendue appliquée à laquelle mettre à jour la réservation.
+    description: ''
+  - isRequired: true
+    name: --billing-scope
+    summary: Abonnement qui sera facturé pour l’achat de la réservation.
+    description: ''
+  - isRequired: true
+    name: --display-name
+    summary: Nom convivial permettant à l’utilisateur d’identifier facilement la réservation.
+    description: ''
+  - isRequired: true
+    name: --quantity
+    summary: Quantité de produit pour le calcul du prix ou de l’achat.
+    description: ''
+  - isRequired: true
+    name: --reservation-order-id
+    summary: ID de la commande de réservation à acheter, générer par `az reservations reservation-order calculate` .
+    description: ''
+  - isRequired: true
+    name: --reserved-resource-type
+    parameterValueGroup: CosmosDb, RedHat, RedHatOsa, SqlDataWarehouse, SqlDatabases, SuseLinux, VMwareCloudSimple, VirtualMachines
+    summary: Type de la ressource pour laquelle les références SKU doivent être fournies.
+    description: ''
+  - isRequired: true
+    name: --sku
+    summary: Nom de la référence, récupérez la liste des références à l’aide de la commande AZ reservations Catalog Show.
+    description: ''
+  - isRequired: true
+    name: --term
+    parameterValueGroup: P1Y, P3Y
+    summary: Conditions de réservation disponibles pour cette ressource.
+    description: ''
+  optionalParameters:
+  - name: --applied-scope
+    summary: Abonnement auquel l’avantage sera appliqué. Obligatoire si--application-Scope-type est Single. Ne spécifiez pas if--application-Scope-type est partagé.
+    description: ''
+  - name: --billing-plan
+    parameterValueGroup: Monthly, Upfront
+    summary: Options de plan de facturation disponibles pour cette référence (SKU).
+    description: ''
+  - name: --instance-flexibility
+    summary: Type de la flexibilité de l’instance avec laquelle mettre à jour la réservation.
+    description: ''
+  - name: --location
+    summary: 'Valeurs provenant de : `az account list-locations`.'
+    description: ''
+  - name: --renew
+    parameterValueGroup: false, true
+    summary: Affectez la valeur true pour acheter automatiquement une nouvelle réservation à la date et l’heure d’expiration.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/reservations/_help.py
+- uid: az_reservations_reservation_order_show
+  name: az reservations reservation-order show
+  summary: Obtenir un ordre de réservation spécifique.
+  description: Obtient les détails de l’ordre de réservation.
+  syntax: >-
+    az reservations reservation-order show --reservation-order-id
+                                           [--expand]
+                                           [--query-examples]
+                                           [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --reservation-order-id
+    summary: ID de l’ordre de réservation à rechercher.
+    description: ''
+  optionalParameters:
+  - name: --expand
+    summary: Peut être utilisé pour développer le planInformation.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/reservations/_help.py
+commands:
+- az_reservations_reservation_order_calculate
+- az_reservations_reservation_order_list
+- az_reservations_reservation_order_purchase
+- az_reservations_reservation_order_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 11/21/2019
+  description: Gérer l’ordre de réservation, qui est le conteneur des réservations.
+  ms.openlocfilehash: 98ab4138a7352dfa3923df5a6965497fa8e59a95
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820226"

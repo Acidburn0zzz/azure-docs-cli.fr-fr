@@ -1,0 +1,207 @@
+### YamlMime:AzureCLIGroup
+uid: az_eventgrid_partner_namespace_event_channel
+name: az eventgrid partner namespace event-channel
+summary: Gérer les canaux d’événements des partenaires.
+description: ''
+directCommands:
+- uid: az_eventgrid_partner_namespace_event_channel_create
+  name: az eventgrid partner namespace event-channel create
+  summary: Créez un canal d’événement sous un espace de noms de partenaire.
+  description: ''
+  syntax: >-
+    az eventgrid partner namespace event-channel create --desination-topic-name
+                                                        --destination-resource-group-name
+                                                        --destination-subscription-id
+                                                        --name
+                                                        --partner-namespace-name
+                                                        --resource-group
+                                                        --source
+                                                        [--activation-expiration-date]
+                                                        [--partner-topic-description]
+                                                        [--publisher-filter]
+                                                        [--subscription]
+  examples:
+  - summary: Créez un canal d’événement spécifique.
+    syntax: az eventgrid partner namespace event-channel create -g rg1 --partner-namespace-name partnernamespace1 -n eventChannelName1 --source SourceExample1 --destination-subscription-id 61f7c265-374d-499e-866d-5f4cc302b888 --destination-resource-group-name rg2 --desination-topic-name topicName1
+  - summary: Créez un canal d’événement spécifique avec un délai d’expiration de l’activation et une description conviviale de la rubrique partenaire.
+    syntax: az eventgrid partner namespace event-channel create -g rg1 --partner-namespace-name partnernamespace1 -n eventChannelName1 --source SourceExample1 --destination-subscription-id 61f7c265-374d-499e-866d-5f4cc302b888 --destination-resource-group-name rg2 --desination-topic-name topicName1 --activation-expiration-date '2020-05-20T10:00' --partner-topic-description 'This topic is created by Costoco corp on user behavior.'
+  - summary: Créez un canal d’événement spécifique avec les filtres de l’éditeur.
+    syntax: az eventgrid partner namespace event-channel create -g rg1 --partner-namespace-name partnernamespace1 -n eventChannelName1 --source SourceExample1 --destination-subscription-id 61f7c265-374d-499e-866d-5f4cc302b888 --destination-resource-group-name rg2 --desination-topic-name topicName1 --publisher-filter data.key1 NumberIn 2 3 4 100 200 --publisher-filter data.key2 StringIn 2 3 4 100 200
+  requiredParameters:
+  - isRequired: true
+    name: --desination-topic-name
+    summary: Nom de la rubrique partenaire associée au canal d’événement.
+    description: ''
+  - isRequired: true
+    name: --destination-resource-group-name
+    summary: Groupe de ressources Azure du client qui crée le canal d’événement. La rubrique partenaire associée au canal d’événement sera créée sous ce groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --destination-subscription-id
+    summary: ID d’abonnement Azure du client qui crée le canal d’événement. La rubrique partenaire associée au canal d’événement sera créée sous cet abonnement Azure.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du canal d’événement.
+    description: ''
+  - isRequired: true
+    name: --partner-namespace-name
+    summary: Nom de l’espace de noms du partenaire.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --source
+    summary: Identificateur de la ressource qui forme la source du partenaire des événements. Cela représente une ressource unique dans le modèle de ressource du partenaire.
+    description: ''
+  optionalParameters:
+  - name: --activation-expiration-date
+    summary: Date ou DateTime au format UTC ISO 8601 (par exemple, « 2022-02-17T01:59:59 + 00:00 » ou « 2022-02-17 ») après laquelle le canal d’événement et la rubrique de partenaire correspondante expirent et sont supprimés automatiquement. Si cette heure n’est pas spécifiée, la date d’expiration est définie sur sept jours par défaut.
+    description: ''
+  - name: --partner-topic-description
+    summary: Description conviviale de la rubrique partenaire correspondante. Il sera utile de supprimer toute ambiguïté quant à l’origine de la création de la rubrique partenaire pour le client.
+    description: ''
+  - name: --publisher-filter
+    summary: Filtre d’éditeur utilisé pour activer le filtrage des événements en fonction d’une propriété d’événement spécifique. Cet ensemble de filtres spécifiés par l’éditeur afin de déterminer les événements à recevoir par l’abonné.
+    description: Utilisation :--éditeur-clé de filtre [. INNERKEY] FILTEROPERATOR VALEUR [VALEUR...] Chaîne :--serveur de publication-filtrer les données. Couleur de la chaîne en bleu rouge orange jaune StringNotIn :--Publisher-filtrer les données. Couleur StringNotIn bleu rouge orange jaune StringContains :--éditeur-filtre objet StringContains bleu rouge StringBeginsWith :--éditeur-filtre objet StringBeginsWith bleu rouge StringEndsWith :--éditeur-filtre objet StringEndsWith img png jpg numéro in :--Publisher-Filter Data. property1 Number in 5 10 20 NumberNotIn :--Publisher-Filter Data. Property2 NumberNotIn 100 200 300 NumberLessThan :--Publisher-Filter Data. property3 NumberLessThan 100 NumberLessThanOrEquals :--Publisher-Filter Data. Property2 NumberLessThanOrEquals 100 NumberGreaterThan :--Publisher-Filter Data. property3 NumberGreaterThan 100 NumberGreaterThanOrEquals :--Publisher-Filter Data. Property2 NumberGreaterThanOrEquals 100 BoolEquals :--Publisher-Filter Data. property3 BoolEquals `--publisher-filter` true.
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
+- uid: az_eventgrid_partner_namespace_event_channel_delete
+  name: az eventgrid partner namespace event-channel delete
+  summary: Supprimer un espace de noms de partenaire.
+  description: ''
+  syntax: >-
+    az eventgrid partner namespace event-channel delete [--ids]
+                                                        [--name]
+                                                        [--partner-namespace-name]
+                                                        [--resource-group]
+                                                        [--subscription]
+                                                        [--yes]
+  examples:
+  - summary: Supprimer un espace de noms de partenaire spécifique.
+    syntax: az eventgrid partner namespace event-channel delete -g rg1 --partner-namespace-name partnernamespace1 -n eventChannelName1
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du canal d’événement.
+    description: ''
+  - name: --partner-namespace-name
+    summary: Nom de l’espace de noms du partenaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
+- uid: az_eventgrid_partner_namespace_event_channel_list
+  name: az eventgrid partner namespace event-channel list
+  summary: Répertorier les canaux d’événements de partenaires disponibles.
+  description: ''
+  syntax: >-
+    az eventgrid partner namespace event-channel list --partner-namespace-name
+                                                      --resource-group
+                                                      [--odata-query]
+                                                      [--query-examples]
+                                                      [--subscription]
+  examples:
+  - summary: Répertorie tous les canaux d’événements dans un espace de noms partenaire spécifique.
+    syntax: az eventgrid partner namespace event-channel list -g rg1 --partner-namespace-name partnernamespace1
+  - summary: Répertorie tous les canaux d’événements sous un espace de noms de partenaire dont le nom contient le modèle « XYZ »
+    syntax: az eventgrid partner namespace event-channel list -g rg1 --partner-namespace-name partnernamespace1  --odata-query "Contains(name, 'XYZ')"
+  requiredParameters:
+  - isRequired: true
+    name: --partner-namespace-name
+    summary: Nom de l’espace de noms du partenaire.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --odata-query
+    summary: 'Requête OData utilisée pour filtrer les résultats de la liste. Le filtrage est actuellement autorisé sur la propriété Name uniquement. Les opérations prises en charge sont les suivantes : CONTAINs, EQ (for Equal), ne (for inequal), AND, OR et NOT.'
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
+- uid: az_eventgrid_partner_namespace_event_channel_show
+  name: az eventgrid partner namespace event-channel show
+  summary: Obtenir les détails d’un canal d’événements sous un espace de noms de partenaire.
+  description: ''
+  syntax: >-
+    az eventgrid partner namespace event-channel show [--ids]
+                                                      [--name]
+                                                      [--partner-namespace-name]
+                                                      [--query-examples]
+                                                      [--resource-group]
+                                                      [--subscription]
+  examples:
+  - summary: Affichez les détails d’un canal d’événement.
+    syntax: az eventgrid partner namespace event-channel show -g rg1 --partner-namespace-name partnernamespace1 -n eventChannelName1
+  - summary: Affichez les détails d’un canal d’événements en fonction de l’ID de ressource.
+    syntax: az eventgrid partner namespace event-channel show --ids /subscriptions/{SubID}/resourceGroups/{RG}/providers/Microsoft.EventGrid/partnenamespaces/partnernamespace1/eventChannels/eventChannelName1
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du canal d’événement.
+    description: ''
+  - name: --partner-namespace-name
+    summary: Nom de l’espace de noms du partenaire.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
+commands:
+- az_eventgrid_partner_namespace_event_channel_create
+- az_eventgrid_partner_namespace_event_channel_delete
+- az_eventgrid_partner_namespace_event_channel_list
+- az_eventgrid_partner_namespace_event_channel_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 07/06/2020
+  description: Gérer les canaux d’événements des partenaires.
+  ms.openlocfilehash: db77f4d24c08370685a9164a2dd7bbd3bb7eb986
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820484"
