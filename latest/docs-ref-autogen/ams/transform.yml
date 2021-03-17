@@ -1,0 +1,246 @@
+### YamlMime:AzureCLIGroup
+uid: az_ams_transform
+name: az ams transform
+summary: Gérer les transformations d’un compte de Azure Media Services.
+description: ''
+directCommands:
+- uid: az_ams_transform_create
+  name: az ams transform create
+  summary: Créer une transformation.
+  description: ''
+  syntax: >-
+    az ams transform create --account-name
+                            --name
+                            --preset
+                            --resource-group
+                            [--audio-language]
+                            [--description]
+                            [--insights-to-extract {AllInsights, AudioInsightsOnly, VideoInsightsOnly}]
+                            [--on-error {ContinueJob, StopProcessingJob}]
+                            [--relative-priority {High, Low, Normal}]
+                            [--resolution]
+                            [--subscription]
+  examples:
+  - summary: Créez une transformation avec la présélection intégrée AdaptiveStreaming et la priorité relative haute.
+    syntax: az ams transform create -a myAmsAccount -n transformName -g myResourceGroup --preset AdaptiveStreaming --relative-priority High
+  - summary: Créer une transformation avec un encodeur standard personnalisé prédéfini à partir d’un fichier JSON et une priorité relative faible.
+    syntax: az ams transform create -a myAmsAccount -n transformName -g myResourceGroup --preset "C:\MyPresets\CustomPreset.json" --relative-priority Low
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la transformation.
+    description: ''
+  - isRequired: true
+    name: --preset
+    summary: 'Présélection qui décrit les opérations qui seront utilisées pour modifier, Transcoder ou extraire des informations à partir du fichier source afin de générer la sortie de transformation. Valeurs autorisées : H264SingleBitrateSD, H264SingleBitrate720p, H264SingleBitrate1080p, AdaptiveStreaming, AACGoodQualityAudio, ContentAwareEncodingExperimental, ContentAwareEncoding, H264MultipleBitrate1080p, H264MultipleBitrate720p, H264MultipleBitrateSD, AudioAnalyzer, VideoAnalyzer, FaceDetector. Outre les valeurs autorisées, vous pouvez également transmettre un chemin d’accès à un fichier JSON prédéfini standard d’encodeur personnalisé. <a href="https://docs.microsoft.com/rest/api/media/transforms/createorupdate#standardencoderpreset">https://docs.microsoft.com/rest/api/media/transforms/createorupdate#standardencoderpreset</a>Pour plus d’informations sur les paramètres à utiliser pour créer une présélection personnalisée, consultez.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --audio-language
+    summary: 'Langue de la charge utile audio dans l’entrée à l’aide du format BCP-47 « Language tag-Region » (par exemple : en-US). S’il n’est pas spécifié, la détection automatique de la langue est utilisée. Cette fonctionnalité prend actuellement en charge l’anglais, le chinois, le français, l’allemand, l’italien, le japonais, l’espagnol, le russe et le portugais. La détection automatique fonctionne mieux avec les enregistrements audio avec une reconnaissance vocale claire. Si la détection automatique ne parvient pas à trouver la langue, la transcription pourrait revenir à l’anglais. Valeurs autorisées : en-US, en-GB, es-ES, es-MX, fr-FR, IT-IT, ja-JP, PT-BR, zh-CN, de-fr, AR-EG, ru-RU, hi-IN.'
+    description: ''
+  - name: --description
+    summary: Description de la transformation.
+    description: ''
+  - name: --insights-to-extract
+    parameterValueGroup: AllInsights, AudioInsightsOnly, VideoInsightsOnly
+    summary: Type d’Insights à extraire. Si la valeur n’est pas définie, le type est sélectionné en fonction du type de contenu. Si le contenu est uniquement audio, seuls les Insights audio sont extraits et, s’il s’agit d’une vidéo, les Insights vidéo sont extraits.
+    description: ''
+  - name: --on-error
+    parameterValueGroup: ContinueJob, StopProcessingJob
+    summary: Une transformation peut définir plusieurs sorties. Cette propriété définit ce que le service doit faire lorsqu’une sortie échoue, soit continuer à produire d’autres sorties, soit arrêter les autres sorties. L’état général de la tâche ne reflète pas les échecs des sorties spécifiées avec « ContinueJob ». La valeur par défaut est « StopProcessingJob ».
+    description: ''
+  - name: --relative-priority
+    parameterValueGroup: High, Low, Normal
+    summary: Définit la priorité relative des sorties de transformation dans une transformation. Cela définit la priorité que le service utilise pour le traitement des TransformOutputs. La priorité par défaut est normal.
+    description: ''
+  - name: --resolution
+    summary: 'Spécifie la résolution maximale à laquelle votre vidéo est analysée. Le comportement par défaut est « SourceResolution », ce qui permet de conserver la vidéo d’entrée à sa résolution d’origine lorsqu’elle est analysée. L’utilisation de StandardDefinition redimensionne les vidéos d’entrée en définition standard tout en conservant les proportions appropriées. Elle est redimensionnée uniquement si la vidéo est d’une résolution plus élevée. Par exemple, une entrée 1920 x 1080 est mise à l’échelle vers 640 x 360 avant le traitement. Le passage à « StandardDefinition » permet de réduire le temps nécessaire pour traiter la vidéo haute résolution. Cela peut également réduire le coût d’utilisation de ce composant ( <a href="https://azure.microsoft.com/en-us/pricing/details/media-services/#analytics">https://azure.microsoft.com/en-us/pricing/details/media-services/#analytics</a> pour plus d’informations, consultez). Toutefois, les visages qui finissent par être trop petits dans la vidéo redimensionnée peuvent ne pas être détectés. Valeurs autorisées : StandardDefinition, SourceResolution.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_transform_delete
+  name: az ams transform delete
+  summary: Supprimer une transformation.
+  description: ''
+  syntax: >-
+    az ams transform delete [--account-name]
+                            [--ids]
+                            [--name]
+                            [--resource-group]
+                            [--subscription]
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la transformation.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_transform_list
+  name: az ams transform list
+  summary: Répertorie toutes les transformations d’un compte de Azure Media Services.
+  description: ''
+  syntax: >-
+    az ams transform list --account-name
+                          --resource-group
+                          [--filter]
+                          [--orderby]
+                          [--query-examples]
+                          [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --filter
+    summary: Restreint l’ensemble des éléments retournés.
+    description: ''
+  - name: --orderby
+    summary: Spécifie la clé par laquelle la collection de résultats doit être triée.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_transform_show
+  name: az ams transform show
+  summary: Affiche les détails d’une transformation.
+  description: ''
+  syntax: >-
+    az ams transform show [--account-name]
+                          [--ids]
+                          [--name]
+                          [--query-examples]
+                          [--resource-group]
+                          [--subscription]
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la transformation.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_transform_update
+  name: az ams transform update
+  summary: Met à jour les détails d’une transformation.
+  description: ''
+  syntax: >-
+    az ams transform update [--account-name]
+                            [--add]
+                            [--description]
+                            [--force-string]
+                            [--ids]
+                            [--name]
+                            [--remove]
+                            [--resource-group]
+                            [--set]
+                            [--subscription]
+  examples:
+  - summary: Mettez à jour la première transformation de sortie d’une transformation en affectant à sa priorité relative la valeur High.
+    syntax: az ams transform update -a myAmsAccount -n transformName -g myResourceGroup --set outputs[0].relativePriority=High
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --description
+    summary: Description de la transformation.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la transformation.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+commands:
+- az_ams_transform_create
+- az_ams_transform_delete
+- az_ams_transform_list
+- az_ams_transform_output
+- az_ams_transform_output_add
+- az_ams_transform_output_remove
+- az_ams_transform_show
+- az_ams_transform_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 07/28/2020
+  description: Gérer les transformations d’un compte de Azure Media Services.
+  ms.openlocfilehash: 870d522bec54e6d499718afab823277ded549a7b
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820196"

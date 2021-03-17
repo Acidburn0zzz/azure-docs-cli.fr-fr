@@ -1,0 +1,222 @@
+### YamlMime:AzureCLIGroup
+uid: az_synapse_sql_audit_policy
+name: az synapse sql audit-policy
+summary: Gérer la stratégie d’audit SQL.
+description: ''
+directCommands:
+- uid: az_synapse_sql_audit_policy_show
+  name: az synapse sql audit-policy show
+  summary: Obtenir une stratégie d’audit SQL.
+  description: ''
+  syntax: >-
+    az synapse sql audit-policy show --resource-group
+                                     --workspace-name
+                                     [--query-examples]
+                                     [--subscription]
+  examples:
+  - summary: Obtenir une stratégie d’audit SQL.
+    syntax: az synapse sql audit-policy show --workspace-name testsynapseworkspace --resource-group rg
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_sql_audit_policy_update
+  name: az synapse sql audit-policy update
+  summary: Mettre à jour une stratégie d’audit SQL.
+  description: Si la stratégie est activée, `--storage-account` ou si `--storage-endpoint` et `--storage-key` doivent être spécifiés.
+  syntax: >-
+    az synapse sql audit-policy update --resource-group
+                                       --workspace-name
+                                       [--actions]
+                                       [--add]
+                                       [--enable-azure-monitor {false, true}]
+                                       [--force-string]
+                                       [--no-wait]
+                                       [--queue-delay-milliseconds]
+                                       [--remove]
+                                       [--retention-days]
+                                       [--set]
+                                       [--state {Disabled, Enabled}]
+                                       [--storage-account]
+                                       [--storage-endpoint]
+                                       [--storage-key]
+                                       [--storage-subscription]
+                                       [--subscription]
+                                       [--use-secondary-key {false, true}]
+  examples:
+  - summary: Activez le nom du compte de stockage.
+    syntax: >-
+      az synapse sql audit-policy update --workspace-name testsynapseworkspace --resource-group rg \
+
+      --state Enabled --storage-account mystorageaccount
+  - summary: Activez par le point de terminaison de stockage et la clé.
+    syntax: >-
+      az synapse sql audit-policy update --workspace-name testsynapseworkspace --resource-group rg \
+
+      --state Enabled --storage-endpoint https://mystorage.blob.core.windows.net --storage-key MYKEY==
+  - summary: Définissez la liste des actions d’audit.
+    syntax: >-
+      az synapse sql audit-policy update --workspace-name testsynapseworkspace --resource-group rg \
+
+      --actions FAILED_DATABASE_AUTHENTICATION_GROUP 'UPDATE on database::mydb by public'
+  - summary: Désactivez une stratégie d’audit.
+    syntax: >-
+      az synapse sql audit-policy update --workspace-name testsynapseworkspace --resource-group rg \
+
+      --state Disabled
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --actions
+    summary: Liste des actions et des groupes d’actions à auditer.
+    description: ''
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --enable-azure-monitor
+    parameterValueGroup: false, true
+    summary: Indique si l’activation d’Azure Monitor cible ou non.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --queue-delay-milliseconds --queue-delay-time
+    summary: Durée, en millisecondes, qui peut s’écouler avant le traitement forcé des actions d’audit.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --retention-days
+    summary: Nombre de jours pendant lesquels conserver les journaux d’audit.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --state
+    parameterValueGroup: Disabled, Enabled
+    summary: État de la stratégie d’audit.
+    description: ''
+  - name: --storage-account
+    summary: Nom du compte de stockage.
+    description: ''
+  - name: --storage-endpoint
+    summary: Point de terminaison du compte de stockage.
+    description: ''
+  - name: --storage-key
+    summary: Clé d’accès pour le compte de stockage.
+    description: ''
+  - name: --storage-subscription
+    summary: ID d’abonnement du compte de stockage.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --use-secondary-key
+    parameterValueGroup: false, true
+    summary: Indique si l’utilisation de la clé de stockage secondaire ou non.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_sql_audit_policy_wait
+  name: az synapse sql audit-policy wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition soit remplie.
+  description: ''
+  syntax: >-
+    az synapse sql audit-policy wait --resource-group
+                                     --workspace-name
+                                     [--created]
+                                     [--custom]
+                                     [--deleted]
+                                     [--exists]
+                                     [--interval]
+                                     [--subscription]
+                                     [--timeout]
+                                     [--updated]
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+commands:
+- az_synapse_sql_audit_policy_show
+- az_synapse_sql_audit_policy_update
+- az_synapse_sql_audit_policy_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/26/2021
+  description: Gérer la stratégie d’audit SQL.
+  ms.openlocfilehash: 64c9e149162873b25cebd46a3c558b5d8596fed5
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102849013"

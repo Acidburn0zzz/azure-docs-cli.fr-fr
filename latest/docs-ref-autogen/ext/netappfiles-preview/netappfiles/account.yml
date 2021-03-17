@@ -1,0 +1,208 @@
+### YamlMime:AzureCLIGroup
+uid: ext_netappfiles-preview_az_netappfiles_account
+name: az netappfiles account
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **netappfiles-Preview** pour Azure CLI et requiert la version 2.0.56 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ netappfiles Account** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les ressources de compte Azure NetApp Files (et).
+description: ''
+directCommands:
+- uid: ext_netappfiles-preview_az_netappfiles_account_create
+  name: az netappfiles account create
+  summary: Créez un compte de Azure NetApp Files (et). Notez qu’Active Directory ne peut être appliqué qu’à un compte existant (à l’aide de Set/Update).
+  description: ''
+  syntax: >-
+    az netappfiles account create --account-name
+                                  --location
+                                  --resource-group
+                                  [--active-directories]
+                                  [--tags]
+  examples:
+  - summary: Créer un compte et
+    syntax: az netappfiles account create -g group --account-name name -l location
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a -n
+    summary: Nom du compte et.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --active-directories
+    summary: Répertoires actifs.
+    description: ''
+  - name: --tags
+    summary: Liste de balises séparées par des espaces à appliquer au compte.
+    description: ''
+- uid: ext_netappfiles-preview_az_netappfiles_account_delete
+  name: az netappfiles account delete
+  summary: Supprimer le compte et spécifié.
+  description: ''
+  syntax: >-
+    az netappfiles account delete --account-name
+                                  --resource-group
+  examples:
+  - summary: Supprimer un compte et
+    syntax: az netappfiles account delete -g group --account-name name
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a -n
+    summary: Nom du compte et.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_netappfiles-preview_az_netappfiles_account_list
+  name: az netappfiles account list
+  summary: Répertoriez les comptes et.
+  description: ''
+  syntax: az netappfiles account list --resource-group
+  examples:
+  - summary: Répertorier les comptes et dans un groupe de ressources
+    syntax: az netappfiles account list -g group
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_netappfiles-preview_az_netappfiles_account_set
+  name: az netappfiles account set
+  summary: Définit les balises ou les détails Active Directory pour un compte et spécifié. Affecte exactement à la propriété Active Directory ce qui est fourni. Si aucune valeur n’est fournie, le répertoire Active Directory est supprimé, ce qui signifie qu’il doit être vide [].
+  description: ''
+  syntax: >-
+    az netappfiles account set --account-name
+                               --location
+                               --resource-group
+                               [--active-directories]
+                               [--tags]
+  examples:
+  - summary: Mettre à jour les balises et Active Directory d’un compte et
+    syntax: "az netappfiles account set -g group --account-name name --tags 'key[=value] key[=value]' --active-directories '[{\"username\": \"aduser\", \"password\": \"aduser\", \"smbservername\": \"SMBSERVER\", \"dns\": \"1.2.3.4\", \"domain\": \"westcentralus\"}]' -l westus2"
+  - summary: Supprimer Active Directory du compte et
+    syntax: az netappfiles account set -g group --account-name name --active-directories '[]' -l westus2
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a -n
+    summary: Nom du compte et.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --active-directories
+    summary: Tableau de paramètres Active Directory (AD) au format JSON. Limiter une publicité/un abonnement. Se compose des champs nom d’utilisateur (nom d’utilisateur de Active Directory administrateur de domaine), mot de passe (mot de passe en texte brut de Active Directory administrateur de domaine), domaine (nom du domaine Active Directory), DNS (liste séparée par des virgules des adresses IP du serveur DNS pour le domaine Active Directory), smb_server_name (nom NetBIOS du serveur SMB). Ce nom sera enregistré en tant que compte d’ordinateur dans AD et utilisé pour monter les volumes. Doit être inférieur ou égal à 10 caractères), organizational_unit (l’unité d’organisation (UO) dans le Active Directory Windows).
+    description: ''
+  - name: --tags
+    summary: Liste de balises séparées par des espaces à appliquer au compte.
+    description: ''
+- uid: ext_netappfiles-preview_az_netappfiles_account_show
+  name: az netappfiles account show
+  summary: Obtient le compte et spécifié.
+  description: ''
+  syntax: >-
+    az netappfiles account show --account-name
+                                --resource-group
+  examples:
+  - summary: Obtient un compte et
+    syntax: az netappfiles account show -g group --account-name name
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a -n
+    summary: Nom du compte et.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_netappfiles-preview_az_netappfiles_account_update
+  name: az netappfiles account update
+  summary: Définissez/modifiez les balises ou les détails Active Directory pour un compte et spécifié. Les paramètres Active Directory sont ajoutés uniquement-si aucun n’est présent, aucune modification n’est apportée, sinon Active Directory est remplacé par celui qui est fourni.
+  description: ''
+  syntax: >-
+    az netappfiles account update --account-name
+                                  --location
+                                  --resource-group
+                                  [--active-directories]
+                                  [--add]
+                                  [--force-string]
+                                  [--remove]
+                                  [--set]
+                                  [--tags]
+  examples:
+  - summary: Mettre à jour les balises et Active Directory d’un compte et
+    syntax: "az netappfiles account update -g group --account-name name --tags 'key[=value] key[=value]' --active-directories '[{\"username\": \"aduser\", \"password\": \"aduser\", \"smbservername\": \"SMBSERVER\", \"dns\": \"1.2.3.4\", \"domain\": \"westcentralus\"}]' -l westus2"
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a -n
+    summary: Nom du compte et.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --active-directories
+    summary: Tableau de paramètres Active Directory (AD) au format JSON. Limiter une publicité/un abonnement. Se compose des champs nom d’utilisateur (nom d’utilisateur de Active Directory administrateur de domaine), mot de passe (mot de passe en texte brut de Active Directory administrateur de domaine), domaine (nom du domaine Active Directory), DNS (liste séparée par des virgules des adresses IP du serveur DNS pour le domaine Active Directory), smb_server_name (nom NetBIOS du serveur SMB). Ce nom sera enregistré en tant que compte d’ordinateur dans AD et utilisé pour monter les volumes. Doit être inférieur ou égal à 10 caractères), organizational_unit (l’unité d’organisation (UO) dans le Active Directory Windows).
+    description: ''
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --tags
+    summary: Liste de balises séparées par des espaces à appliquer au compte.
+    description: ''
+commands:
+- ext_netappfiles-preview_az_netappfiles_account_create
+- ext_netappfiles-preview_az_netappfiles_account_delete
+- ext_netappfiles-preview_az_netappfiles_account_list
+- ext_netappfiles-preview_az_netappfiles_account_set
+- ext_netappfiles-preview_az_netappfiles_account_show
+- ext_netappfiles-preview_az_netappfiles_account_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les ressources de compte Azure NetApp Files (et).
+  ms.openlocfilehash: 1f9fda219a97037fa5eabbf411fb6b6fb278fdf6
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102837544"
