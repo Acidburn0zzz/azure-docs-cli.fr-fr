@@ -1,0 +1,220 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_dt_twin
+name: az dt twin
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ DT dedouble** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer et configurer les représentations numériques d’une instance représentations numérique.
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_dt_twin_create
+  name: az dt twin create
+  summary: Créez un double numérique sur une instance.
+  description: >-
+    --les propriétés peuvent être inline JSON ou le chemin d’accès au fichier.
+
+    Remarque :--les propriétés sont requises pour les représentations qui contiennent des composants.
+  syntax: >-
+    az dt twin create --dt-name
+                      --dtmi
+                      --twin-id
+                      [--properties]
+                      [--resource-group]
+  examples:
+  - summary: Créez une représentation numérique à partir d’un modèle existant (créé au préalable).
+    syntax: az dt twin create -n {instance_or_hostname} --dtmi "dtmi:com:example:Room;1" --twin-id {twin_id}
+  - summary: Créez une représentation numérique à partir d’un modèle existant (créé au préalable). Instanciez avec des valeurs de propriété.
+    syntax: "az dt twin create -n {instance_or_hostname} --dtmi \"dtmi:com:example:DeviceInformation;1\" --twin-id {twin_id} --properties '{\"manufacturer\": \"Microsoft\"}'"
+  - summary: Créer une représentation numérique avec un composant à partir de modèles existants (créés auparavant). Instanciez le composant avec les propriétés minimales.
+    syntax: >-
+      az dt twin create -n {instance_or_hostname} --dtmi "dtmi:com:example:TemperatureController;1" --twin-id {twin_id} --properties '{
+          "Thermostat": {
+              "$metadata": {},
+          }
+      }'
+  - summary: Créer une représentation numérique avec un composant à partir de modèles existants (créés auparavant). Instanciez avec des valeurs de propriété.
+    syntax: >-
+      az dt twin create -n {instance_or_hostname} --dtmi "dtmi:com:example:TemperatureController;1" --twin-id {twin_id} --properties '{
+          "Temperature": 10.2,
+          "Thermostat": {
+              "$metadata": {},
+              "setPointTemp": 23.12
+          }
+      }'
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --dtmi --model-id -m
+    summary: 'ID de modèle Digital représentations. exemple : dtmi : com : example : Room ; 2.'
+    description: ''
+  - isRequired: true
+    name: --twin-id -t
+    summary: ID de représentation numérique.
+    description: ''
+  optionalParameters:
+  - name: --properties -p
+    summary: Valeurs de propriété initiales pour l’instanciation d’une représentation numérique ou de composants associés. Fournissez un chemin de fichier ou un JSON en ligne. Les propriétés sont requises pour les représentations qui contiennent des composants. au minimum, vous devez fournir un objet $metadata vide pour chaque composant.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_twin_delete
+  name: az dt twin delete
+  summary: Retirez une représentation numérique. Toutes les relations faisant référence à cette représentation doivent déjà être supprimées.
+  description: ''
+  syntax: >-
+    az dt twin delete --dt-name
+                      --twin-id
+                      [--resource-group]
+  examples:
+  - summary: Supprimer une représentation numérique par son ID.
+    syntax: az dt twin delete -n {instance_or_hostname} --twin-id {twin_id}
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --twin-id -t
+    summary: ID de représentation numérique.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_twin_query
+  name: az dt twin query
+  summary: Interrogez les représentations numériques d’une instance. Permet de parcourir les relations et de filtrer les valeurs de propriété.
+  description: ''
+  syntax: >-
+    az dt twin query --dt-name
+                     --query-command
+                     [--cost {false, true}]
+                     [--resource-group]
+  examples:
+  - summary: Interrogez toutes les représentations numériques dans l’instance cible et projetez tous les attributs. Affichez également les coûts dans les unités de requête.
+    syntax: az dt twin query -n {instance_or_hostname} -q "select * from digitaltwins" --show-cost
+  - summary: Interrogez par modèle et projetez tous les attributs.
+    syntax: az dt twin query -n {instance_or_hostname} -q "select * from digitaltwins T where IS_OF_MODEL(T, 'dtmi:com:example:Room;2')"
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --query-command -q
+    summary: Requête utilisateur à exécuter.
+    description: ''
+  optionalParameters:
+  - name: --cost --show-cost
+    parameterValueGroup: false, true
+    summary: Calcule et affiche les frais de requête.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_twin_show
+  name: az dt twin show
+  summary: Affichez les détails d’une représentation numérique.
+  description: ''
+  syntax: >-
+    az dt twin show --dt-name
+                    --twin-id
+                    [--resource-group]
+  examples:
+  - summary: Affichez les détails d’une représentation numérique.
+    syntax: az dt twin show -n {instance_or_hostname} --twin-id {twin_id}
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --twin-id -t
+    summary: ID de représentation numérique.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_twin_update
+  name: az dt twin update
+  summary: Mettre à jour une représentation numérique par une instance via une spécification de correctif JSON.
+  description: Les mises à jour apportées aux valeurs de propriété et $model éléments peuvent se produire dans la même requête. Les opérations sont limitées à l’ajout, au remplacement et à la suppression.
+  syntax: >-
+    az dt twin update --dt-name
+                      --json-patch
+                      --twin-id
+                      [--resource-group]
+  examples:
+  - summary: Mise à jour d’une spécification de patch numérique par le biais de JSON.
+    syntax: "az dt twin update -n {instance_or_hostname} --twin-id {twin_id} --json-patch '{\"op\":\"replace\", \"path\":\"/Temperature\", \"value\": 20.5}'"
+  - summary: Mise à jour d’une spécification de patch numérique par le biais de JSON.
+    syntax: >-
+      az dt twin update -n {instance_or_hostname} --twin-id {twin_id} --json-patch '[
+        {"op":"replace", "path":"/Temperature", "value": 20.5},
+        {"op":"add", "path":"/Areas", "value": ["ControlSystem"]}
+      ]'
+  - summary: Mettre à jour une représentation numérique via une spécification de correctif JSON définie dans un fichier.
+    syntax: az dt twin update -n {instance_or_hostname} --twin-id {twin_id} --json-patch ./my/patch/document.json
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --json-patch --patch
+    summary: Spécification de mise à jour décrite par JSON-patch. Les mises à jour apportées aux valeurs de propriété et $model éléments peuvent se produire dans la même requête. Les opérations sont limitées à l’ajout, au remplacement et à la suppression. Fournissez un chemin de fichier ou un JSON en ligne.
+    description: ''
+  - isRequired: true
+    name: --twin-id -t
+    summary: ID de représentation numérique.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_azure-iot_az_dt_twin_component
+- ext_azure-iot_az_dt_twin_component_show
+- ext_azure-iot_az_dt_twin_component_update
+- ext_azure-iot_az_dt_twin_create
+- ext_azure-iot_az_dt_twin_delete
+- ext_azure-iot_az_dt_twin_query
+- ext_azure-iot_az_dt_twin_relationship
+- ext_azure-iot_az_dt_twin_relationship_create
+- ext_azure-iot_az_dt_twin_relationship_delete
+- ext_azure-iot_az_dt_twin_relationship_list
+- ext_azure-iot_az_dt_twin_relationship_show
+- ext_azure-iot_az_dt_twin_relationship_update
+- ext_azure-iot_az_dt_twin_show
+- ext_azure-iot_az_dt_twin_telemetry
+- ext_azure-iot_az_dt_twin_telemetry_send
+- ext_azure-iot_az_dt_twin_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer et configurer les représentations numériques d’une instance représentations numérique.
+  ms.openlocfilehash: 581e3b64c425905646c7f0cb4c07bdbd4f71bb16
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102822626"
