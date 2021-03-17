@@ -1,0 +1,163 @@
+### YamlMime:AzureCLIGroup
+uid: az_sql_db_threat_policy
+name: az sql db threat-policy
+summary: Gérer les stratégies de détection des menaces d’une base de données.
+description: ''
+directCommands:
+- uid: az_sql_db_threat_policy_show
+  name: az sql db threat-policy show
+  summary: Obtient la stratégie de détection des menaces d’une base de données.
+  description: ''
+  syntax: >-
+    az sql db threat-policy show [--ids]
+                                 [--name]
+                                 [--query-examples]
+                                 [--resource-group]
+                                 [--server]
+                                 [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’Azure SQL Database.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_db_threat_policy_update
+  name: az sql db threat-policy update
+  summary: Mettez à jour la stratégie de détection des menaces d’une base de données.
+  description: Si la stratégie est activée, storage_account ou les deux storage_endpoint et storage_account_access_key doivent être spécifiés.
+  syntax: >-
+    az sql db threat-policy update [--add]
+                                   [--disabled-alerts]
+                                   [--email-account-admins {Disabled, Enabled}]
+                                   [--email-addresses]
+                                   [--force-string]
+                                   [--ids]
+                                   [--name]
+                                   [--remove]
+                                   [--resource-group]
+                                   [--retention-days]
+                                   [--server]
+                                   [--set]
+                                   [--state {Disabled, Enabled, New}]
+                                   [--storage-account]
+                                   [--storage-endpoint]
+                                   [--storage-key]
+                                   [--subscription]
+  examples:
+  - summary: Activez le nom du compte de stockage.
+    syntax: >-
+      az sql db threat-policy update -g mygroup -s myserver -n mydb \
+          --state Enabled --storage-account mystorage
+  - summary: Activez par le point de terminaison de stockage et la clé.
+    syntax: >-
+      az sql db threat-policy update -g mygroup -s myserver -n mydb \
+          --state Enabled --storage-endpoint https://mystorage.blob.core.windows.net \
+          --storage-key MYKEY==
+  - summary: Désactivez un sous-ensemble de types d’alerte.
+    syntax: >-
+      az sql db threat-policy update -g mygroup -s myserver -n mydb \
+          --disabled-alerts Sql_Injection_Vulnerability Access_Anomaly
+  - summary: Configurez les destinataires du courrier électronique pour une stratégie.
+    syntax: >-
+      az sql db threat-policy update -g mygroup -s myserver -n mydb \
+          --email-addresses me@examlee.comyou@example.com \
+          --email-account-admins Enabled
+  - summary: Désactivez une stratégie de menace.
+    syntax: az sql db threat-policy update -g mygroup -s myserver -n mydb --state Disabled
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --disabled-alerts
+    summary: Liste des alertes désactivées.
+    description: ''
+  - name: --email-account-admins
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique si l’alerte est envoyée aux administrateurs de compte.
+    description: ''
+  - name: --email-addresses
+    summary: Liste des adresses de messagerie auxquelles les alertes sont envoyées.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’Azure SQL Database.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --retention-days
+    summary: Nombre de jours pendant lesquels conserver les journaux de détection des menaces.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --state
+    parameterValueGroup: Disabled, Enabled, New
+    summary: État de la stratégie de détection des menaces.
+    description: ''
+  - name: --storage-account
+    summary: Nom du compte de stockage.
+    description: ''
+  - name: --storage-endpoint
+    summary: Point de terminaison du compte de stockage.
+    description: ''
+  - name: --storage-key
+    summary: Clé d’accès pour le compte de stockage.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+commands:
+- az_sql_db_threat_policy_show
+- az_sql_db_threat_policy_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/28/2021
+  description: Gérer les stratégies de détection des menaces d’une base de données.
+  ms.openlocfilehash: 06fc4294f5f8039e2e7bff8ae9341298731d4a0e
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965454"
