@@ -1,0 +1,401 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_share_rm
+name: az storage share-rm
+summary: Gérer les partages de fichiers Azure à l’aide du fournisseur de ressources Microsoft. Storage.
+description: ''
+directCommands:
+- uid: az_storage_share_rm_create
+  name: az storage share-rm create
+  summary: Créez un partage de fichiers Azure sous le compte de stockage spécifié.
+  description: ''
+  syntax: >-
+    az storage share-rm create --name
+                               --storage-account
+                               [--access-tier {Cool, Hot, Premium, TransactionOptimized}]
+                               [--enabled-protocols {NFS, SMB}]
+                               [--metadata]
+                               [--quota]
+                               [--resource-group]
+                               [--root-squash {AllSquash, NoRootSquash, RootSquash}]
+                               [--subscription]
+  examples:
+  - summary: Créez un nouveau partage de fichiers Azure « myfileshare » avec des métadonnées et un quota de 10 Go sous le compte de stockage « mystorageaccount » (nom de compte) dans le groupe de ressources « MyResourceGroup ».
+    syntax: az storage share-rm create -g MyResourceGroup --storage-account mystorageaccount --name myfileshare --quota 10 --metadata key1=value1 key2=value2
+  - summary: Créez un nouveau partage de fichiers Azure « myfileshare » avec des métadonnées et un quota de 6000 Go sous le compte de stockage « mystorageaccount » (nom de compte) qui active le partage de fichiers volumineux dans le groupe de ressources « MyResourceGroup ».
+    syntax: >-
+      az storage account update -g MyResourceGroup --name mystorageaccount --enable-large-file-share
+
+      az storage share-rm create -g MyResourceGroup --storage-account mystorageaccount --name myfileshare --quota 6000 --metadata key1=value1 key2=value2
+  - summary: Créez un nouveau partage de fichiers Azure « myfileshare » avec des métadonnées et un quota de 10 Go sous le compte de stockage « mystorageaccount » (ID de compte).
+    syntax: az storage share-rm create --storage-account mystorageaccount --name myfileshare --quota 10 --metadata key1=value1 key2=value2
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --storage-account
+    summary: Nom ou ID du compte de stockage.
+    description: ''
+  optionalParameters:
+  - name: --access-tier
+    parameterValueGroup: Cool, Hot, Premium, TransactionOptimized
+    summary: Niveau d’accès pour un partage spécifique. Le compte GpV2 peut choisir entre TransactionOptimized (par défaut), chaud et froid. Le compte FileStorage peut choisir Premium.
+    description: ''
+  - name: --enabled-protocols
+    parameterValueGroup: NFS, SMB
+    summary: Propriété immuable pour le protocole de partages de fichiers. Le protocole NFS est uniquement disponible pour les partages de fichiers Premium (partages de fichiers dans le type de compte FileStorage).
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces et associées au partage. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --quota -q
+    summary: Taille maximale du partage en gigaoctets. Doit être supérieure à 0, et inférieure ou égale à 5 To (5120) Pour les partages de fichiers volumineux, la taille maximale est de 102400.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --root-squash
+    parameterValueGroup: AllSquash, NoRootSquash, RootSquash
+    summary: Réduction des droits d’accès pour le superutilisateur distant.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_share_rm_delete
+  name: az storage share-rm delete
+  summary: Supprimer le partage de fichiers Azure spécifié.
+  description: ''
+  syntax: >-
+    az storage share-rm delete [--ids]
+                               [--name]
+                               [--resource-group]
+                               [--storage-account]
+                               [--subscription]
+                               [--x-ms-snapshot]
+                               [--yes]
+  examples:
+  - summary: Suppression d’un partage de fichiers Azure « myfileshare » sous le compte de stockage « mystorageaccount » (nom de compte) dans le groupe de ressources « MyResourceGroup ».
+    syntax: az storage share-rm delete -g MyResourceGroup --storage-account mystorageaccount --name myfileshare
+  - summary: Supprimez un partage de fichiers Azure « myfileshare » sous le compte de stockage « mystorageaccount » (ID de compte).
+    syntax: az storage share-rm delete --storage-account mystorageaccount --name myfileshare
+  - summary: Supprimer un partage de fichiers Azure par ID de ressource.
+    syntax: az storage share-rm delete --ids file-share-id
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du partage de fichiers.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --storage-account
+    summary: Nom ou ID du compte de stockage.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --x-ms-snapshot
+    summary: Facultatif, utilisé pour supprimer un instantané.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_share_rm_exists
+  name: az storage share-rm exists
+  summary: Vérifiez l’existence d’un partage de fichiers Azure.
+  description: ''
+  syntax: >-
+    az storage share-rm exists [--ids]
+                               [--name]
+                               [--resource-group]
+                               [--storage-account]
+                               [--subscription]
+  examples:
+  - summary: Vérifiez l’existence d’un partage de fichiers Azure « myfileshare » sous le compte de stockage « mystorageaccount » (nom de compte) dans le groupe de ressources « MyResourceGroup ».
+    syntax: az storage share-rm exists -g MyResourceGroup --storage-account mystorageaccount --name myfileshare
+  - summary: Vérifiez l’existence d’un partage de fichiers Azure « myfileshare » sous le compte de stockage « mystorageaccount » (ID de compte).
+    syntax: az storage share-rm exists --storage-account mystorageaccount --name myfileshare
+  - summary: Vérifiez l’existence d’un partage de fichiers Azure par ID de ressource.
+    syntax: az storage share-rm exists --ids file-share-id
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du partage de fichiers.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --storage-account
+    summary: Nom ou ID du compte de stockage.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_share_rm_list
+  name: az storage share-rm list
+  summary: Répertorier les partages de fichiers Azure dans le compte de stockage spécifié.
+  description: ''
+  syntax: >-
+    az storage share-rm list --storage-account
+                             [--include-deleted]
+                             [--query-examples]
+                             [--resource-group]
+                             [--subscription]
+  examples:
+  - summary: Répertoriez les partages de fichiers Azure sous le compte de stockage « mystorageaccount » (nom du compte) dans le groupe de ressources « MyResourceGroup ».
+    syntax: az storage share-rm list -g MyResourceGroup --storage-account mystorageaccount
+  - summary: Répertoriez les partages de fichiers Azure sous le compte de stockage « mystorageaccount » (ID de compte).
+    syntax: az storage share-rm list --storage-account mystorageaccount
+  - summary: La liste de tous les partages de fichiers est supprimée sous le compte de stockage « mystorageaccount ».
+    syntax: az storage share-rm list --storage-account mystorageaccount --include-deleted
+  requiredParameters:
+  - isRequired: true
+    name: --storage-account
+    summary: Nom ou ID du compte de stockage.
+    description: ''
+  optionalParameters:
+  - name: --include-deleted
+    summary: Inclure les partages de fichiers supprimés de manière réversible lorsqu’ils sont spécifiés.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_share_rm_restore
+  name: az storage share-rm restore
+  summary: Restaurez un partage de fichiers dans un délai de rétention valide si la suppression réversible est activée.
+  description: ''
+  syntax: >-
+    az storage share-rm restore --deleted-version
+                                [--ids]
+                                [--name]
+                                [--resource-group]
+                                [--restored-name]
+                                [--storage-account]
+                                [--subscription]
+  examples:
+  - summary: Restaurez un partage de fichiers dans un délai de rétention valide si la suppression réversible est activée.
+    syntax: az storage share-rm restore -n deletedshare --deleted-version 01D64EB9886F00C4 -g MyResourceGroup --storage-account mystorageaccount
+  - summary: Restaurez un partage de fichiers dans un délai de rétention valide si la suppression réversible est activée pour un nouveau nom.
+    syntax: az storage share-rm restore -n deletedshare --deleted-version 01D64EB9886F00C4 --restored-name newname -g MyResourceGroup --storage-account mystorageaccount
+  requiredParameters:
+  - isRequired: true
+    name: --deleted-version
+    summary: Identifiez la version du partage supprimé qui sera restaurée.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du partage de fichiers. Identifiez le nom du partage supprimé qui sera restauré.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --restored-name
+    summary: Nouveau nom de partage de fichiers à restaurer. S’il n’est pas spécifié, le nom de partage supprimé sera utilisé.
+    description: ''
+  - name: --storage-account
+    summary: Nom ou ID du compte de stockage.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_share_rm_show
+  name: az storage share-rm show
+  summary: Affichez les propriétés d’un partage de fichiers Azure spécifié.
+  description: ''
+  syntax: >-
+    az storage share-rm show [--expand]
+                             [--ids]
+                             [--name]
+                             [--query-examples]
+                             [--resource-group]
+                             [--storage-account]
+                             [--subscription]
+                             [--x-ms-snapshot]
+  examples:
+  - summary: Affichez les propriétés d’un partage de fichiers Azure « myfileshare » sous le compte de stockage « mystorageaccount » (nom du compte) dans le groupe de ressources « MyResourceGroup ».
+    syntax: az storage share-rm show -g MyResourceGroup --storage-account mystorageaccount --name myfileshare
+  - summary: Affichez les propriétés d’un partage de fichiers Azure « myfileshare » sous le compte de stockage « mystorageaccount » (ID de compte).
+    syntax: az storage share-rm show --storage-account mystorageaccount --name myfileshare
+  - summary: Affichez les propriétés d’un partage de fichiers Azure par ID de ressource.
+    syntax: az storage share-rm show --ids file-share-id
+  optionalParameters:
+  - name: --expand
+    summary: Facultatif, utilisé pour développer les propriétés dans les propriétés du partage.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du partage de fichiers.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --storage-account
+    summary: Nom ou ID du compte de stockage.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --x-ms-snapshot
+    summary: Facultatif, utilisé pour récupérer les propriétés d’un instantané.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_share_rm_stats
+  name: az storage share-rm stats
+  summary: Obtient les octets d’utilisation des données stockées sur le partage.
+  description: ''
+  syntax: >-
+    az storage share-rm stats [--ids]
+                              [--name]
+                              [--resource-group]
+                              [--storage-account]
+                              [--subscription]
+  examples:
+  - summary: Obtient les octets d’utilisation des données stockées sur le partage.
+    syntax: az storage share-rm stats -g MyResourceGroup --storage-account mystorageaccount --name myfileshare
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du partage de fichiers.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --storage-account
+    summary: Nom ou ID du compte de stockage.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_share_rm_update
+  name: az storage share-rm update
+  summary: Mettez à jour les propriétés d’un partage de fichiers Azure.
+  description: ''
+  syntax: >-
+    az storage share-rm update [--access-tier {Cool, Hot, Premium, TransactionOptimized}]
+                               [--add]
+                               [--force-string]
+                               [--ids]
+                               [--metadata]
+                               [--name]
+                               [--quota]
+                               [--remove]
+                               [--resource-group]
+                               [--root-squash {AllSquash, NoRootSquash, RootSquash}]
+                               [--set]
+                               [--storage-account]
+                               [--subscription]
+                               [--x-ms-snapshot]
+  examples:
+  - summary: Mettez à jour les propriétés d’un partage de fichiers Azure « myfileshare » sous le compte de stockage « mystorageaccount » (nom du compte) dans le groupe de ressources « MyResourceGroup ».
+    syntax: az storage share-rm update -g MyResourceGroup --storage-account mystorageaccount --name myfileshare --quota 3 --metadata key1=value1 key2=value2
+  - summary: Mettez à jour les propriétés d’un partage de fichiers Azure « myfileshare » sous le compte de stockage « mystorageaccount » (ID de compte).
+    syntax: az storage share-rm update --storage-account mystorageaccount --name myfileshare --quota 3 --metadata key1=value1 key2=value2
+  - summary: Mettez à jour les propriétés d’un partage de fichiers Azure par ID de ressource.
+    syntax: az storage share-rm update --ids file-share-id --quota 3 --metadata key1=value1 key2=value2
+  optionalParameters:
+  - name: --access-tier
+    parameterValueGroup: Cool, Hot, Premium, TransactionOptimized
+    summary: Niveau d’accès pour un partage spécifique. Le compte GpV2 peut choisir entre TransactionOptimized (par défaut), chaud et froid. Le compte FileStorage peut choisir Premium.
+    description: ''
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces et associées au partage. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --name -n
+    summary: Nom du partage de fichiers.
+    description: ''
+  - name: --quota -q
+    summary: Taille maximale du partage en gigaoctets. Doit être supérieure à 0, et inférieure ou égale à 5 To (5120) Pour les partages de fichiers volumineux, la taille maximale est de 102400.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --root-squash
+    parameterValueGroup: AllSquash, NoRootSquash, RootSquash
+    summary: Réduction des droits d’accès pour le superutilisateur distant.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --storage-account
+    summary: Nom ou ID du compte de stockage.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --x-ms-snapshot
+    summary: Facultatif, utilisé pour récupérer les propriétés d’un instantané.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_share_rm_create
+- az_storage_share_rm_delete
+- az_storage_share_rm_exists
+- az_storage_share_rm_list
+- az_storage_share_rm_restore
+- az_storage_share_rm_show
+- az_storage_share_rm_stats
+- az_storage_share_rm_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/26/2021
+  description: Gérer les partages de fichiers Azure à l’aide du fournisseur de ressources Microsoft. Storage.
+  ms.openlocfilehash: 82850ca0e1fccf764a82ed12f55e5ed6c245f296
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103530069"
