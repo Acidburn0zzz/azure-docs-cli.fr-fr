@@ -1,0 +1,142 @@
+### YamlMime:AzureCLIGroup
+uid: az_vm_identity
+name: az vm identity
+summary: Gérer les identités de service d’une machine virtuelle.
+description: ''
+directCommands:
+- uid: az_vm_identity_assign
+  name: az vm identity assign
+  summary: Activez l’identité du service administré sur une machine virtuelle.
+  description: Cela est nécessaire pour s’authentifier et interagir avec d’autres services Azure à l’aide de jetons de porteur.
+  syntax: >-
+    az vm identity assign [--identities]
+                          [--ids]
+                          [--name]
+                          [--resource-group]
+                          [--role]
+                          [--scope]
+                          [--subscription]
+  examples:
+  - summary: Activez l’identité attribuée par le système sur une machine virtuelle avec le rôle « lecteur ».
+    syntax: az vm identity assign -g MyResourceGroup -n MyVm --role Reader --scope /subscriptions/db5eb68e-73e2-4fa8-b18a-0123456789999/resourceGroups/MyResourceGroup
+  - summary: Activez l’identité attribuée par le système et l’identité affectée à l’utilisateur sur une machine virtuelle.
+    syntax: az vm identity assign -g MyResourceGroup -n MyVm --role Reader --identities [system] myAssignedId
+  optionalParameters:
+  - name: --identities
+    summary: 'Identités séparées par des espaces à assigner. Utilisez « [System] » pour faire référence à l’identité attribuée par le système. Valeur par défaut : « [System] ».'
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --role
+    defaultValue: Contributor
+    summary: Nom de rôle ou ID dont l’identité a été affectée par le système.
+    description: ''
+  - name: --scope
+    summary: Étendue à laquelle le système affecté à l’identité peut accéder.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_identity_remove
+  name: az vm identity remove
+  summary: Supprimer les identités de service managées d’une machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm identity remove [--identities]
+                          [--ids]
+                          [--name]
+                          [--resource-group]
+                          [--subscription]
+  examples:
+  - summary: Supprimer l’identité attribuée par le système
+    syntax: az vm identity remove -g MyResourceGroup -n MyVm
+  - summary: Supprimer une identité affectée par l’utilisateur
+    syntax: az vm identity remove -g MyResourceGroup -n MyVm --identities readerId
+  - summary: Supprimer 2 identités qui se trouvent dans le même groupe de ressources avec la machine virtuelle
+    syntax: az vm identity remove -g MyResourceGroup -n MyVm --identities readerId writerId
+  - summary: Supprimer l’identité attribuée par le système et une identité de l’utilisateur
+    syntax: az vm identity remove -g MyResourceGroup -n MyVm --identities [system] readerId
+  optionalParameters:
+  - name: --identities
+    summary: 'Identités séparées par des espaces à supprimer. Utilisez « [System] » pour faire référence à l’identité attribuée par le système. Valeur par défaut : « [System] ».'
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_identity_show
+  name: az vm identity show
+  summary: Affichez les informations d’identité gérées de la machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm identity show [--ids]
+                        [--name]
+                        [--query-examples]
+                        [--resource-group]
+                        [--subscription]
+  examples:
+  - summary: Affichez les informations d’identité gérées de la machine virtuelle. généré automatiquement
+    syntax: az vm identity show --name MyVirtualMachine --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+commands:
+- az_vm_identity_assign
+- az_vm_identity_remove
+- az_vm_identity_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/05/2021
+  description: Gérer les identités de service d’une machine virtuelle.
+  ms.openlocfilehash: e4e99587ae37343044901b7b065595abed9eff6c
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965205"

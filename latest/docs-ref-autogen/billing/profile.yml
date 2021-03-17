@@ -1,0 +1,268 @@
+### YamlMime:AzureCLIGroup
+uid: az_billing_profile
+name: az billing profile
+summary: Gérez le profil de facturation du compte de facturation.
+description: ''
+directCommands:
+- uid: az_billing_profile_create
+  name: az billing profile create
+  summary: Crée ou met à jour un profil de facturation. L’opération est prise en charge pour les comptes de facturation dont le type de contrat est contrat client Microsoft ou contrat de partenariat Microsoft.
+  description: ''
+  syntax: >-
+    az billing profile create --account-name
+                              --name
+                              [--bill-to]
+                              [--display-name]
+                              [--enabled-azure-plans]
+                              [--invoice-email-opt-in {false, true}]
+                              [--invoice-sections-value]
+                              [--no-wait]
+                              [--po-number]
+                              [--subscription]
+  examples:
+  - summary: Créer un profil de facturation
+    syntax: az billing profile create --account-name "{billingAccountName}" --name "{billingProfileName}" --bill-to address-line1="Test Address 1" city="Redmond" country="US" first-name="Test" last-name="User" postal-code="12345" region="WA" --display-name "Finance" --enabled-azure-plans sku-id="0001" --enabled-azure-plans sku-id="0002" --invoice-email-opt-in true --po-number "ABC12345"
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: ID qui identifie de façon unique un compte de facturation.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: ID qui identifie de façon unique un profil de facturation.
+    description: ''
+  optionalParameters:
+  - name: --bill-to
+    summary: Adresse de facturation.
+    description: Utilisation :--Bill-to First-Name = XX Last-Name = XX société-Name = XX Address-ligne1 = XX Address-ligne2 = XX Address-ligne3 = XX City = XX district = XX Region = XX pays = XX postal-code = XX email = XX Phone-Number = XX.
+  - name: --display-name
+    summary: Nom du profil de facturation.
+    description: ''
+  - name: --enabled-azure-plans
+    summary: Informations sur les plans Azure activés.
+    description: 'Utilisation :--Enabled-Azure-plans SKU-ID = XX SKU-ID : ID de référence (SKU). Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments activés-Azure-planes.'
+  - name: --invoice-email-opt-in
+    parameterValueGroup: false, true
+    summary: Indicateur contrôlant si les factures du profil de facturation sont envoyées par courrier électronique.
+    description: ''
+  - name: --invoice-sections-value
+    summary: 'Sections de facture associées au profil de facturation. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --po-number
+    summary: Nom du bon de commande qui s’affichera sur les factures générées pour le profil de facturation.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/billing/_help.py
+- uid: az_billing_profile_list
+  name: az billing profile list
+  summary: Répertoriez les profils de facturation auxquels un utilisateur a accès. L’opération est prise en charge pour les comptes de facturation dont le type de contrat est contrat client Microsoft ou contrat de partenariat Microsoft.
+  description: ''
+  syntax: >-
+    az billing profile list --account-name
+                            [--expand]
+                            [--query-examples]
+                            [--subscription]
+  examples:
+  - summary: Répertorier les profils de facturation avec les propriétés par défaut
+    syntax: az billing profile list --account-name "{billingAccountName}"
+  - summary: Répertorier les profils de facturation avec les propriétés développées souhaitées
+    syntax: az billing profile list --expand "invoiceSections" --account-name "{billingAccountName}"
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: ID qui identifie de façon unique un compte de facturation.
+    description: ''
+  optionalParameters:
+  - name: --expand
+    summary: Peut être utilisé pour développer les sections de la facture.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/billing/_help.py
+- uid: az_billing_profile_show
+  name: az billing profile show
+  summary: Obtenir un profil de facturation par son ID. L’opération est prise en charge pour les comptes de facturation dont le type de contrat est contrat client Microsoft ou contrat de partenariat Microsoft.
+  description: ''
+  syntax: >-
+    az billing profile show --account-name
+                            --name
+                            [--expand]
+                            [--query-examples]
+                            [--subscription]
+  examples:
+  - summary: Afficher un profil de facturation avec les propriétés par défaut
+    syntax: az billing profile show --account-name "{billingAccountName}" --name "{billingProfileName}"
+  - summary: Afficher un profil de facturation avec des propriétés exvisibles
+    syntax: az billing profile show --expand "invoiceSections" --account-name "{billingAccountName}" --name "{billingProfileName}"
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: ID qui identifie de façon unique un compte de facturation.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: ID qui identifie de façon unique un profil de facturation.
+    description: ''
+  optionalParameters:
+  - name: --expand
+    summary: Peut être utilisé pour développer les sections de la facture.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/billing/_help.py
+- uid: az_billing_profile_update
+  name: az billing profile update
+  summary: Crée ou met à jour un profil de facturation. L’opération est prise en charge pour les comptes de facturation dont le type de contrat est contrat client Microsoft ou contrat de partenariat Microsoft.
+  description: ''
+  syntax: >-
+    az billing profile update --account-name
+                              --name
+                              [--bill-to]
+                              [--display-name]
+                              [--enabled-azure-plans]
+                              [--invoice-email-opt-in {false, true}]
+                              [--invoice-sections-value]
+                              [--no-wait]
+                              [--po-number]
+                              [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: ID qui identifie de façon unique un compte de facturation.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: ID qui identifie de façon unique un profil de facturation.
+    description: ''
+  optionalParameters:
+  - name: --bill-to
+    summary: Adresse de facturation.
+    description: Utilisation :--Bill-to First-Name = XX Last-Name = XX société-Name = XX Address-ligne1 = XX Address-ligne2 = XX Address-ligne3 = XX City = XX district = XX Region = XX pays = XX postal-code = XX email = XX Phone-Number = XX.
+  - name: --display-name
+    summary: Nom du profil de facturation.
+    description: ''
+  - name: --enabled-azure-plans
+    summary: Informations sur les plans Azure activés.
+    description: 'Utilisation :--Enabled-Azure-plans SKU-ID = XX SKU-ID : ID de référence (SKU). Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments activés-Azure-planes.'
+  - name: --invoice-email-opt-in
+    parameterValueGroup: false, true
+    summary: Indicateur contrôlant si les factures du profil de facturation sont envoyées par courrier électronique.
+    description: ''
+  - name: --invoice-sections-value
+    summary: 'Sections de facture associées au profil de facturation. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --po-number
+    summary: Nom du bon de commande qui s’affichera sur les factures générées pour le profil de facturation.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/billing/_help.py
+- uid: az_billing_profile_wait
+  name: az billing profile wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du profil de facturation soit remplie.
+  description: ''
+  syntax: >-
+    az billing profile wait --account-name
+                            --name
+                            [--created]
+                            [--custom]
+                            [--deleted]
+                            [--exists]
+                            [--expand]
+                            [--interval]
+                            [--subscription]
+                            [--timeout]
+                            [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que le profil de facturation soit créé avec succès.
+    syntax: az billing profile wait --expand "invoiceSections" --account-name "{billingAccountName}" --name "{billingProfileName}" --created
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que le profil de facturation soit correctement mis à jour.
+    syntax: az billing profile wait --expand "invoiceSections" --account-name "{billingAccountName}" --name "{billingProfileName}" --updated
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: ID qui identifie de façon unique un compte de facturation.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: ID qui identifie de façon unique un profil de facturation.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --expand
+    summary: Peut être utilisé pour développer les sections de la facture.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/billing/_help.py
+commands:
+- az_billing_profile_create
+- az_billing_profile_list
+- az_billing_profile_show
+- az_billing_profile_update
+- az_billing_profile_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/26/2020
+  description: Gérez le profil de facturation du compte de facturation.
+  ms.openlocfilehash: ddd82873e4916e4aa7ed62fd337406c8a272c05e
+  ms.sourcegitcommit: 753de7d5c45062d5138be86ced7eacddd5696ca3
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 11/20/2020
+  ms.locfileid: "102821213"

@@ -1,0 +1,388 @@
+### YamlMime:AzureCLIGroup
+uid: ext_storage-blob-preview_az_storage_blob_lease
+name: az storage blob lease
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Storage-BLOB-Preview** pour Azure CLI et requiert la version 2.14.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Storage BLOB Lease** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les baux d’objets BLOB de stockage.
+description: ''
+directCommands:
+- uid: ext_storage-blob-preview_az_storage_blob_lease_acquire
+  name: az storage blob lease acquire
+  summary: Demandez un nouveau bail.
+  description: ''
+  syntax: >-
+    az storage blob lease acquire --blob-name
+                                  --container-name
+                                  [--account-key]
+                                  [--account-name]
+                                  [--auth-mode {key, login}]
+                                  [--connection-string]
+                                  [--if-match]
+                                  [--if-modified-since]
+                                  [--if-none-match]
+                                  [--if-unmodified-since]
+                                  [--lease-duration]
+                                  [--proposed-lease-id]
+                                  [--sas-token]
+                                  [--tags-condition]
+                                  [--timeout]
+  examples:
+  - summary: Demandez un nouveau bail.
+    syntax: az storage blob lease acquire -b myblob -c mycontainer --account-name mystorageaccount --account-key 0000-0000
+  requiredParameters:
+  - isRequired: true
+    name: --blob-name -b
+    summary: Nom de l’objet BLOB.
+    description: ''
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-duration
+    defaultValue: "-1"
+    summary: Spécifiez la durée du bail, en secondes, ou une valeur négative (-1) pour un bail qui n’expire jamais. Un bail qui n'est pas infini peut durer entre 15 et 60 secondes. Une durée de bail ne peut pas être modifiée à l’aide de Renew ou change. La valeur par défaut est-1 (bail infini).
+    description: ''
+  - name: --proposed-lease-id
+    summary: ID de bail proposé, dans un format de chaîne GUID. Le service BLOB retourne 400 (demande non valide) si l’ID de bail proposé n’est pas au bon format.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --tags-condition
+    summary: Spécifiez une clause SQL WHERE sur les balises d’objet BLOB pour qu’elle fonctionne uniquement sur les objets BLOB avec une valeur correspondante.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: ext_storage-blob-preview_az_storage_blob_lease_break
+  name: az storage blob lease break
+  summary: Interrompez le bail si le conteneur ou l’objet BLOB a un bail actif.
+  description: Une fois un bail résilié, il ne peut pas être renouvelé. Toute demande autorisée peut résilier le bail ; la demande ne spécifie pas obligatoirement un ID de bail correspondant. Lorsqu’un bail est rompu, la période de résiliation du bail est autorisée à s’écouler, au cours de laquelle aucune opération de bail, à l’exception de l’arrêt et de la mise en service, ne peut être effectuée sur le conteneur ou l’objet BLOB. Lorsqu'un bail est correctement résilié, la réponse indique l'intervalle en secondes avant qu'un nouveau bail puisse être acquis.
+  syntax: >-
+    az storage blob lease break --blob-name
+                                --container-name
+                                [--account-key]
+                                [--account-name]
+                                [--auth-mode {key, login}]
+                                [--connection-string]
+                                [--if-match]
+                                [--if-modified-since]
+                                [--if-none-match]
+                                [--if-unmodified-since]
+                                [--lease-break-period]
+                                [--sas-token]
+                                [--tags-condition]
+                                [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --blob-name -b
+    summary: Nom de l’objet BLOB.
+    description: ''
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-break-period
+    summary: Il s’agit de la durée proposée en secondes pendant laquelle le bail doit continuer avant d’être interrompu, entre 0 et 60 secondes. Cette période de résiliation n'est utilisée que si elle est plus courte que la durée du bail restante. Si elle est plus longue, la durée restante du bail est utilisée. Un nouveau bail ne sera pas disponible avant l'expiration de la période de résiliation, mais le bail peut être conservé au-delà de cette période. Si cet en-tête n’apparaît pas avec une opération d’arrêt, un bail à durée fixe s’interrompt après la fin de la période de bail restante, et un bail infini s’interrompt immédiatement.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --tags-condition
+    summary: Spécifiez une clause SQL WHERE sur les balises d’objet BLOB pour qu’elle fonctionne uniquement sur les objets BLOB avec une valeur correspondante.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: ext_storage-blob-preview_az_storage_blob_lease_change
+  name: az storage blob lease change
+  summary: Modifier l’ID de bail d’un bail actif.
+  description: ''
+  syntax: >-
+    az storage blob lease change --blob-name
+                                 --container-name
+                                 --lease-id
+                                 --proposed-lease-id
+                                 [--account-key]
+                                 [--account-name]
+                                 [--auth-mode {key, login}]
+                                 [--connection-string]
+                                 [--if-match]
+                                 [--if-modified-since]
+                                 [--if-none-match]
+                                 [--if-unmodified-since]
+                                 [--sas-token]
+                                 [--tags-condition]
+                                 [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --blob-name -b
+    summary: Nom de l’objet BLOB.
+    description: ''
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --lease-id
+    summary: Obligatoire si l'objet blob a un bail actif.
+    description: ''
+  - isRequired: true
+    name: --proposed-lease-id
+    summary: ID de bail proposé, dans un format de chaîne GUID. Le service BLOB retourne 400 (demande non valide) si l’ID de bail proposé n’est pas au bon format.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --tags-condition
+    summary: Spécifiez une clause SQL WHERE sur les balises d’objet BLOB pour qu’elle fonctionne uniquement sur les objets BLOB avec une valeur correspondante.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: ext_storage-blob-preview_az_storage_blob_lease_release
+  name: az storage blob lease release
+  summary: Permet de libérer le bail.
+  description: "Le bail peut être libéré si l’ID de bail du client spécifié correspond à celui associé au conteneur ou à l’objet BLOB. La libération du bail permet à un autre client d’acquérir immédiatement le bail pour le conteneur ou l’objet BLOB dès que la mise en sortie est terminée.  : mot clé ~ DateTime. DateTime if_modified_since : valeur DateTime. Azure s’attend à ce que la valeur de date transmise soit UTC.     Si TimeZone est inclus, tous les DateTime non UTC sont convertis en UTC.     Si une date est passée sans informations de fuseau horaire, elle est supposée être UTC.     Spécifiez cet en-tête pour exécuter l’opération uniquement si la ressource a été modifiée depuis l’heure spécifiée. : mot clé ~ DateTime. DateTime if_unmodified_since : valeur DateTime. Azure s’attend à ce que la valeur de date transmise soit UTC.     Si TimeZone est inclus, tous les DateTime non UTC sont convertis en UTC.     Si une date est passée sans informations de fuseau horaire, elle est supposée être UTC.     Spécifiez cet en-tête pour exécuter l’opération uniquement si la ressource n’a pas été modifiée depuis la date/l’heure spécifiées. : mot clé Str ETag : valeur ETag ou caractère générique (*). Utilisé pour vérifier si la ressource a changé et agir en fonction de la condition spécifiée par le `match_condition` paramètre. : mot clé ~ Azure. Core. MatchConditions match_condition : condition de correspondance à utiliser sur l’ETag. : mot clé Str if_tags_match_condition spécifiez une clause SQL WHERE sur les balises BLOB pour fonctionner uniquement sur un objet BLOB avec une valeur correspondante.     par exemple \"\" TagName \"= 'My tag'\".. VersionAdded :: 12.4.0 : mot clé int timeout : le paramètre timeout est exprimé en secondes. : retour : aucun."
+  syntax: >-
+    az storage blob lease release --blob-name
+                                  --container-name
+                                  --lease-id
+                                  [--account-key]
+                                  [--account-name]
+                                  [--auth-mode {key, login}]
+                                  [--connection-string]
+                                  [--if-match]
+                                  [--if-modified-since]
+                                  [--if-none-match]
+                                  [--if-unmodified-since]
+                                  [--sas-token]
+                                  [--tags-condition]
+                                  [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --blob-name -b
+    summary: Nom de l’objet BLOB.
+    description: ''
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --lease-id
+    summary: Obligatoire si l'objet blob a un bail actif.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --tags-condition
+    summary: Spécifiez une clause SQL WHERE sur les balises d’objet BLOB pour qu’elle fonctionne uniquement sur les objets BLOB avec une valeur correspondante.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: ext_storage-blob-preview_az_storage_blob_lease_renew
+  name: az storage blob lease renew
+  summary: Permet de renouveler le bail.
+  description: ''
+  syntax: >-
+    az storage blob lease renew --blob-name
+                                --container-name
+                                --lease-id
+                                [--account-key]
+                                [--account-name]
+                                [--auth-mode {key, login}]
+                                [--connection-string]
+                                [--if-match]
+                                [--if-modified-since]
+                                [--if-none-match]
+                                [--if-unmodified-since]
+                                [--sas-token]
+                                [--tags-condition]
+                                [--timeout]
+  examples:
+  - summary: Permet de renouveler le bail.
+    syntax: az storage blob lease renew -b myblob -c mycontainer --lease-id "32fe23cd-4779-4919-adb3-357e76c9b1bb" --account-name mystorageaccount --account-key 0000-0000
+  requiredParameters:
+  - isRequired: true
+    name: --blob-name -b
+    summary: Nom de l’objet BLOB.
+    description: ''
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --lease-id
+    summary: Obligatoire si l'objet blob a un bail actif.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --tags-condition
+    summary: Spécifiez une clause SQL WHERE sur les balises d’objet BLOB pour qu’elle fonctionne uniquement sur les objets BLOB avec une valeur correspondante.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+commands:
+- ext_storage-blob-preview_az_storage_blob_lease_acquire
+- ext_storage-blob-preview_az_storage_blob_lease_break
+- ext_storage-blob-preview_az_storage_blob_lease_change
+- ext_storage-blob-preview_az_storage_blob_lease_release
+- ext_storage-blob-preview_az_storage_blob_lease_renew
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les baux d’objets BLOB de stockage.
+  ms.openlocfilehash: 967544c9136d207620c6f41cdc9fedb6ca150d18
+  ms.sourcegitcommit: bd2dbc80328936dadd211764d25c32a14fc58083
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 01/04/2021
+  ms.locfileid: "102843145"
