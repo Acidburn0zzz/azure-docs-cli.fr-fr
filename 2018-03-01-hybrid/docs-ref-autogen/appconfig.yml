@@ -1,0 +1,262 @@
+### YamlMime:AzureCLIGroup
+uid: az_appconfig
+name: az appconfig
+summary: Gérer les configurations des applications.
+description: ''
+directCommands:
+- uid: az_appconfig_create
+  name: az appconfig create
+  summary: Créer une configuration d’application.
+  description: ''
+  syntax: >-
+    az appconfig create --location
+                        --name
+                        --resource-group
+                        [--assign-identity]
+                        [--enable-public-network {false, true}]
+                        [--sku {Free, Standard}]
+                        [--subscription]
+  examples:
+  - summary: Créez une configuration d’application avec le nom, l’emplacement, la référence SKU et le groupe de ressources.
+    syntax: az appconfig create -g MyResourceGroup -n MyAppConfiguration -l westus --sku Standard
+  - summary: Créez une configuration d’application avec le nom, l’emplacement, la référence SKU et le groupe de ressources avec l’identité attribuée par le système.
+    syntax: az appconfig create -g MyResourceGroup -n MyAppConfiguration -l westus --sku Standard --assign-identity
+  - summary: Créez une configuration d’application avec le nom, l’emplacement, la référence SKU et le groupe de ressources avec l’identité attribuée par l’utilisateur.
+    syntax: az appconfig create -g MyResourceGroup -n MyAppConfiguration -l westus --sku Standard --assign-identity /subscriptions/<SUBSCRIPTON ID>/resourcegroups/<RESOURCEGROUP>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentity
+  - summary: Créez une configuration d’application avec le nom, l’emplacement et le groupe de ressources, et activez l’accès au réseau public.
+    syntax: az appconfig create -g MyResourceGroup -n MyAppConfiguration -l westus --enable-public-network
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --assign-identity
+    summary: Accepter les identités affectées par le système ou l’utilisateur, séparées par des espaces. Utilisez « [System] » pour faire référence à l’identité attribuée par le système ou à un ID de ressource pour faire référence à l’identité attribuée par l’utilisateur. Utilisez l’identité attribuée par le système si elle n’est pas spécifiée.
+    description: ''
+  - name: --enable-public-network -e
+    parameterValueGroup: false, true
+    summary: Lorsque la valeur est true, les demandes provenant de réseaux publics ont l’autorisation d’accéder à ce magasin alors que le point de terminaison privé est activé. Si la valeur est false, seules les demandes effectuées via des liens privés peuvent atteindre ce magasin.
+    description: ''
+  - name: --sku
+    defaultValue: Standard
+    parameterValueGroup: Free, Standard
+    summary: Référence SKU de la configuration de l’application.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_delete
+  name: az appconfig delete
+  summary: Supprimer une configuration d’application.
+  description: ''
+  syntax: >-
+    az appconfig delete --name
+                        [--resource-group]
+                        [--subscription]
+                        [--yes]
+  examples:
+  - summary: Supprimer une configuration d’application sous un groupe de ressources
+    syntax: az appconfig delete -g MyResourceGroup -n MyAppConfiguration
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_list
+  name: az appconfig list
+  summary: Répertorie toutes les configurations d’application sous l’abonnement actuel.
+  description: ''
+  syntax: >-
+    az appconfig list [--query-examples]
+                      [--resource-group]
+                      [--subscription]
+  examples:
+  - summary: Répertorier toutes les configurations d’application dans un groupe de ressources
+    syntax: az appconfig list -g MyResourceGroup
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_show
+  name: az appconfig show
+  summary: Affichez les propriétés d’une configuration d’application.
+  description: ''
+  syntax: >-
+    az appconfig show --name
+                      [--query-examples]
+                      [--resource-group]
+                      [--subscription]
+  examples:
+  - summary: Afficher les propriétés d’une configuration d’application
+    syntax: az appconfig show -g MyResourceGroup -n MyAppConfiguration
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_update
+  name: az appconfig update
+  summary: Mettre à jour une configuration d’application.
+  description: ''
+  syntax: >-
+    az appconfig update --name
+                        [--enable-public-network {false, true}]
+                        [--encryption-key-name]
+                        [--encryption-key-vault]
+                        [--encryption-key-version]
+                        [--identity-client-id]
+                        [--resource-group]
+                        [--sku {Free, Standard}]
+                        [--subscription]
+                        [--tags]
+  examples:
+  - summary: Mettre à jour les balises d’une configuration d’application
+    syntax: az appconfig update -g MyResourceGroup -n MyAppConfiguration --tags key1=value1 key2=value2
+  - summary: Mettre à niveau la référence SKU d’une configuration d’application vers standard
+    syntax: az appconfig update -g MyResourceGroup -n MyAppConfiguration --sku Standard
+  - summary: Activer la clé de chiffrement du client avec l’identité attribuée par le système
+    syntax: az appconfig update -g MyResourceGroup -n MyAppConfiguration --encryption-key-name myKey --encryption-key-version keyVersion --encryption-key-vault https://keyVaultName.vault.azure.net
+  - summary: Supprimer la clé de chiffrement client
+    syntax: az appconfig update -g MyResourceGroup -n MyAppConfiguration --encryption-key-name ""
+  - summary: Mettez à jour une configuration d’application pour activer l’accès au réseau public.
+    syntax: az appconfig update -g MyResourceGroup -n MyAppConfiguration --enable-public-network true
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --enable-public-network -e
+    parameterValueGroup: false, true
+    summary: Lorsque la valeur est true, les demandes provenant de réseaux publics ont l’autorisation d’accéder à ce magasin alors que le point de terminaison privé est activé. Si la valeur est false, seules les demandes effectuées via des liens privés peuvent atteindre ce magasin.
+    description: ''
+  - name: --encryption-key-name
+    summary: Nom de la clé de coffre de clés.
+    description: ''
+  - name: --encryption-key-vault
+    summary: URI du coffre de stockage.
+    description: ''
+  - name: --encryption-key-version
+    summary: Version de la clé du coffre de clés. Utilisez la version la plus récente par défaut.
+    description: ''
+  - name: --identity-client-id
+    summary: ID client de l’identité gérée avec retour à la ligne et désencapsulage de la clé de chiffrement. Utilisez l’identité attribuée par le système par défaut.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --sku
+    parameterValueGroup: Free, Standard
+    summary: Référence SKU de la configuration de l’application.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+commands:
+- az_appconfig_create
+- az_appconfig_credential
+- az_appconfig_credential_list
+- az_appconfig_credential_regenerate
+- az_appconfig_delete
+- az_appconfig_feature
+- az_appconfig_feature_delete
+- az_appconfig_feature_disable
+- az_appconfig_feature_enable
+- az_appconfig_feature_filter
+- az_appconfig_feature_filter_add
+- az_appconfig_feature_filter_delete
+- az_appconfig_feature_filter_list
+- az_appconfig_feature_filter_show
+- az_appconfig_feature_list
+- az_appconfig_feature_lock
+- az_appconfig_feature_set
+- az_appconfig_feature_show
+- az_appconfig_feature_unlock
+- az_appconfig_identity
+- az_appconfig_identity_assign
+- az_appconfig_identity_remove
+- az_appconfig_identity_show
+- az_appconfig_kv
+- az_appconfig_kv_delete
+- az_appconfig_kv_export
+- az_appconfig_kv_import
+- az_appconfig_kv_list
+- az_appconfig_kv_lock
+- az_appconfig_kv_restore
+- az_appconfig_kv_set
+- az_appconfig_kv_set_keyvault
+- az_appconfig_kv_show
+- az_appconfig_kv_unlock
+- az_appconfig_list
+- az_appconfig_revision
+- az_appconfig_revision_list
+- az_appconfig_show
+- az_appconfig_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/18/2021
+  description: Gérer les configurations des applications.
+  ms.openlocfilehash: 329282991963a084ede0008d58e6c7979467b1e3
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102968123"
