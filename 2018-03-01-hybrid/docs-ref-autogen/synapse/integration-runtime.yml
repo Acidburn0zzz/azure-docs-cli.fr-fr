@@ -1,0 +1,555 @@
+### YamlMime:AzureCLIGroup
+uid: az_synapse_integration_runtime
+name: az synapse integration-runtime
+summary: Gérer les runtimes d’intégration de Synapse.
+description: ''
+directCommands:
+- uid: az_synapse_integration_runtime_create
+  name: az synapse integration-runtime create
+  summary: Créez un Runtime d’intégration.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime create --name
+                                          --resource-group
+                                          --type {Managed, SelfHosted}
+                                          --workspace-name
+                                          [--compute-type {ComputeOptimized, General, MemoryOptimized}]
+                                          [--core-count]
+                                          [--description]
+                                          [--if-match]
+                                          [--location]
+                                          [--no-wait]
+                                          [--subscription]
+                                          [--time-to-live]
+  examples:
+  - summary: Créez un Runtime d’intégration.
+    syntax: >-
+      az synapse integration-runtime create --workspace-name testsynapseworkspace --resource-group rg \
+        --name testintegrationruntime --type Managed
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --type
+    parameterValueGroup: Managed, SelfHosted
+    summary: Type de runtime d’intégration.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --compute-type
+    defaultValue: General
+    parameterValueGroup: ComputeOptimized, General, MemoryOptimized
+    summary: Type de calcul du cluster de workflow qui exécutera la tâche de Workflow.
+    description: ''
+  - name: --core-count
+    defaultValue: "8"
+    summary: Nombre de cœurs du cluster de workflow qui exécutera la tâche de Workflow.
+    description: ''
+  - name: --description
+    summary: Description du runtime d’intégration.
+    description: ''
+  - name: --if-match
+    summary: ETag de l’entité du runtime d’intégration. Doit uniquement être spécifié pour la mise à jour, pour laquelle il doit correspondre à une entité existante ou peut être \* pour une mise à jour inconditionnelle.
+    description: ''
+  - name: --location -l
+    defaultValue: AutoResolve
+    summary: Emplacement du runtime d’intégration.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --time-to-live
+    summary: Paramètre de durée de vie (en minutes) du cluster de workflow qui exécutera la tâche de Workflow.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_delete
+  name: az synapse integration-runtime delete
+  summary: Supprimer un Runtime d’intégration.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime delete [--ids]
+                                          [--name]
+                                          [--no-wait]
+                                          [--resource-group]
+                                          [--subscription]
+                                          [--workspace-name]
+                                          [--yes]
+  examples:
+  - summary: Supprimer un Runtime d’intégration.
+    syntax: >-
+      az synapse integration-runtime delete --workspace-name testsynapseworkspace --resource-group rg \
+        --name testintegrationruntime
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_get_connection_info
+  name: az synapse integration-runtime get-connection-info
+  summary: Obtient les informations de connexion du runtime d’intégration.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime get-connection-info [--ids]
+                                                       [--name]
+                                                       [--resource-group]
+                                                       [--subscription]
+                                                       [--workspace-name]
+  examples:
+  - summary: Obtient les informations de connexion du runtime d’intégration.
+    syntax: >-
+      az synapse integration-runtime get-connection-info --workspace-name testsynapseworkspace --resource-group rg \
+        --name selfhostedintegrationruntime
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_get_monitoring_data
+  name: az synapse integration-runtime get-monitoring-data
+  summary: Obtenir des données de métriques pour un Runtime d’intégration auto-hébergé.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime get-monitoring-data [--ids]
+                                                       [--name]
+                                                       [--resource-group]
+                                                       [--subscription]
+                                                       [--workspace-name]
+  examples:
+  - summary: Obtenir des données de métriques pour un Runtime d’intégration auto-hébergé.
+    syntax: >-
+      az synapse integration-runtime get-monitoring-data --workspace-name testsynapseworkspace --resource-group rg \
+        --name selfhostedintegrationruntime
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_get_status
+  name: az synapse integration-runtime get-status
+  summary: Obtient des informations d’État détaillées pour un Runtime d’intégration.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime get-status [--ids]
+                                              [--name]
+                                              [--resource-group]
+                                              [--subscription]
+                                              [--workspace-name]
+  examples:
+  - summary: Obtient des informations d’État détaillées pour un Runtime d’intégration.
+    syntax: >-
+      az synapse integration-runtime get-status --workspace-name testsynapseworkspace --resource-group rg \
+        --name selfhostedintegrationruntime
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_list
+  name: az synapse integration-runtime list
+  summary: Répertorier les runtimes d’intégration.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime list --resource-group
+                                        --workspace-name
+                                        [--query-examples]
+                                        [--subscription]
+  examples:
+  - summary: Répertorier les runtimes d’intégration.
+    syntax: az synapse integration-runtime list --workspace-name testsynapseworkspace --resource-group rg
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_list_auth_key
+  name: az synapse integration-runtime list-auth-key
+  summary: Obtenir des clés pour un Runtime d’intégration auto-hébergé.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime list-auth-key --name
+                                                 --resource-group
+                                                 --workspace-name
+                                                 [--subscription]
+  examples:
+  - summary: Obtenir des clés pour un Runtime d’intégration auto-hébergé.
+    syntax: >-
+      az synapse integration-runtime list-auth-key --workspace-name testsynapseworkspace --resource-group rg \
+        --name selfhostedintegrationruntime
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_regenerate_auth_key
+  name: az synapse integration-runtime regenerate-auth-key
+  summary: Régénération de la clé Runtime d’intégration auto-hébergée.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime regenerate-auth-key [--ids]
+                                                       [--key-name {authKey1, authKey2}]
+                                                       [--name]
+                                                       [--resource-group]
+                                                       [--subscription]
+                                                       [--workspace-name]
+  examples:
+  - summary: Régénération de la clé Runtime d’intégration auto-hébergée.
+    syntax: >-
+      az synapse integration-runtime regenerate-auth-key --workspace-name testsynapseworkspace --resource-group rg \
+        --name selfhostedintegrationruntime --key-name authKey1
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --key-name
+    parameterValueGroup: authKey1, authKey2
+    summary: Nom de la clé d’authentification à régénérer.
+    description: ''
+  - name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_show
+  name: az synapse integration-runtime show
+  summary: Procurez-vous un Runtime d’intégration.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime show [--ids]
+                                        [--if-none-match]
+                                        [--name]
+                                        [--query-examples]
+                                        [--resource-group]
+                                        [--subscription]
+                                        [--workspace-name]
+  examples:
+  - summary: Procurez-vous un Runtime d’intégration.
+    syntax: >-
+      az synapse integration-runtime show --workspace-name testsynapseworkspace --resource-group rg \
+        --name testintegrationruntime
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --if-none-match
+    summary: ETag de l’entité du runtime d’intégration. Doit uniquement être spécifié pour la récupération. Si l’ETag correspond à la balise d’entité existante, ou si \* a été fourni, aucun contenu n’est retourné.
+    description: ''
+  - name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_sync_credentials
+  name: az synapse integration-runtime sync-credentials
+  summary: Synchroniser les informations d’identification entre les nœuds du runtime d’intégration.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime sync-credentials [--ids]
+                                                    [--name]
+                                                    [--resource-group]
+                                                    [--subscription]
+                                                    [--workspace-name]
+  examples:
+  - summary: Synchroniser les informations d’identification entre les nœuds du runtime d’intégration.
+    syntax: >-
+      az synapse integration-runtime sync-credentials --workspace-name testsynapseworkspace --resource-group rg \
+        --name selfhostedintegrationruntime
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_update
+  name: az synapse integration-runtime update
+  summary: Mettez à jour un Runtime d’intégration.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime update [--auto-update {Off, On}]
+                                          [--ids]
+                                          [--name]
+                                          [--resource-group]
+                                          [--subscription]
+                                          [--update-delay-offset]
+                                          [--workspace-name]
+  examples:
+  - summary: Mettez à jour un Runtime d’intégration.
+    syntax: >-
+      az synapse integration-runtime update --workspace-name testsynapseworkspace --resource-group rg \
+        --name testintegrationruntime --auto-update On --update-delay-offset '"PT03H"'
+  optionalParameters:
+  - name: --auto-update
+    parameterValueGroup: Off, On
+    summary: Activez ou désactivez la mise à jour automatique du runtime d’intégration auto-hébergé.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --update-delay-offset
+    summary: Heure du jour de la mise à jour automatique du runtime d’intégration auto-hébergé.
+    description: ''
+  - name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_upgrade
+  name: az synapse integration-runtime upgrade
+  summary: Mettez à niveau le runtime d’intégration auto-hébergé.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime upgrade [--ids]
+                                           [--name]
+                                           [--resource-group]
+                                           [--subscription]
+                                           [--workspace-name]
+  examples:
+  - summary: Mettez à niveau le runtime d’intégration auto-hébergé.
+    syntax: >-
+      az synapse integration-runtime upgrade --workspace-name testsynapseworkspace --resource-group rg \
+        --name testintegrationruntime
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_integration_runtime_wait
+  name: az synapse integration-runtime wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’un Runtime d’intégration soit remplie.
+  description: ''
+  syntax: >-
+    az synapse integration-runtime wait --name
+                                        --resource-group
+                                        --workspace-name
+                                        [--created]
+                                        [--custom]
+                                        [--deleted]
+                                        [--exists]
+                                        [--if-none-match]
+                                        [--interval]
+                                        [--subscription]
+                                        [--timeout]
+                                        [--updated]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du runtime d’intégration.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --if-none-match
+    summary: ETag de l’entité du runtime d’intégration. Doit uniquement être spécifié pour la récupération. Si l’ETag correspond à la balise d’entité existante, ou si \* a été fourni, aucun contenu n’est retourné.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+commands:
+- az_synapse_integration_runtime_create
+- az_synapse_integration_runtime_delete
+- az_synapse_integration_runtime_get_connection_info
+- az_synapse_integration_runtime_get_monitoring_data
+- az_synapse_integration_runtime_get_status
+- az_synapse_integration_runtime_list
+- az_synapse_integration_runtime_list_auth_key
+- az_synapse_integration_runtime_regenerate_auth_key
+- az_synapse_integration_runtime_show
+- az_synapse_integration_runtime_sync_credentials
+- az_synapse_integration_runtime_update
+- az_synapse_integration_runtime_upgrade
+- az_synapse_integration_runtime_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/26/2021
+  description: Gérer les runtimes d’intégration de Synapse.
+  ms.openlocfilehash: 554c811586d57f1922a58436875082279d18e06d
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102969752"
