@@ -1,0 +1,150 @@
+### YamlMime:AzureCLIGroup
+uid: ext_timeseriesinsights_az_tsi_environment_gen1
+name: az tsi environment gen1
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **timeseriesinsights** pour Azure CLI et requiert la version 2.11.0 ou une version ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ TSI Environment Gen1** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérez un environnement Gen1 dans l’abonnement et le groupe de ressources spécifiés.
+description: ''
+directCommands:
+- uid: ext_timeseriesinsights_az_tsi_environment_gen1_create
+  name: az tsi environment gen1 create
+  summary: Créez un environnement Gen1 dans l’abonnement et le groupe de ressources spécifiés.
+  description: ''
+  syntax: >-
+    az tsi environment gen1 create --data-retention-time
+                                   --environment-name
+                                   --location
+                                   --resource-group
+                                   --sku
+                                   [--exceeded-behavior {PauseIngress, PurgeOldData}]
+                                   [--key-properties]
+                                   [--no-wait]
+                                   [--tags]
+  examples:
+  - summary: EnvironmentsGen1Create
+    syntax: az tsi environment gen1 create --name "env1" --location westus --data-retention-time "P31D" --partition-key-properties name="DeviceId1" type="String" --sku name="S1" capacity=1 --resource-group "rg1"
+  requiredParameters:
+  - isRequired: true
+    name: --data-retention-time
+    summary: ISO8601 TimeSpan spécifiant le nombre minimal de jours pendant lesquels les événements de l’environnement seront disponibles pour la requête.
+    description: ''
+  - isRequired: true
+    name: --environment-name --name -n
+    summary: Nom de l’environnement.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --sku
+    summary: La référence détermine le type d’environnement, à savoir S1 ou S2. Pour les environnements Gen1, la référence détermine la capacité de l’environnement, le taux d’entrée et le taux de facturation.
+    description: >-
+      Utilisation :--SKU Name = XX Capacity = XX
+
+
+      nom : obligatoire. Nom de cette référence (SKU).
+
+      capacité : obligatoire. Capacité de la référence (SKU). Cette valeur peut être modifiée pour prendre en charge la mise à l’échelle des environnements après leur création.
+  optionalParameters:
+  - name: --exceeded-behavior --storage-limit-exceeded-behavior
+    parameterValueGroup: PauseIngress, PurgeOldData
+    summary: Comportement que le service Time Series Insights doit prendre lorsque la capacité de l’environnement est dépassée. Si « PauseIngress » est spécifié, les nouveaux événements ne seront pas lus à partir de la source de l’événement. Si « PurgeOldData » est spécifié, les nouveaux événements continuent à être lus et les anciens événements sont supprimés de l’environnement. Le comportement par défaut est PurgeOldData.
+    description: ''
+  - name: --key-properties --partition-key-properties
+    summary: Liste des propriétés d’événement qui seront utilisées pour partitionner les données dans l’environnement. Actuellement, une seule propriété de clé de partition est prise en charge.
+    description: >-
+      Utilisation :--partition-Key-Properties Name = XX type = XX
+
+
+      nom : nom de la propriété.
+
+      type : type de la propriété.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--partition-Key-Properties.
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_timeseriesinsights_az_tsi_environment_gen1_update
+  name: az tsi environment gen1 update
+  summary: Met à jour un environnement Gen1 dans l’abonnement et le groupe de ressources spécifiés.
+  description: ''
+  syntax: >-
+    az tsi environment gen1 update --environment-name
+                                   --resource-group
+                                   [--data-retention-time]
+                                   [--exceeded-behavior {PauseIngress, PurgeOldData}]
+                                   [--no-wait]
+                                   [--sku]
+                                   [--tags]
+  examples:
+  - summary: EnvironmentsGen1Update
+    syntax: az tsi environment gen1 update --name "env1" --sku name="S1" capacity=2                --resource-group "rg1" --data-retention-time "P30D" --storage-limit-exceeded-behavior PurgeOldData
+  requiredParameters:
+  - isRequired: true
+    name: --environment-name --name -n
+    summary: Nom de l’environnement.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --data-retention-time
+    summary: ISO8601 TimeSpan spécifiant le nombre minimal de jours pendant lesquels les événements de l’environnement seront disponibles pour la requête.
+    description: ''
+  - name: --exceeded-behavior --storage-limit-exceeded-behavior
+    parameterValueGroup: PauseIngress, PurgeOldData
+    summary: Comportement que le service Time Series Insights doit prendre lorsque la capacité de l’environnement est dépassée. Si « PauseIngress » est spécifié, les nouveaux événements ne seront pas lus à partir de la source de l’événement. Si « PurgeOldData » est spécifié, les nouveaux événements continuent à être lus et les anciens événements sont supprimés de l’environnement. Le comportement par défaut est PurgeOldData.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --sku
+    summary: La référence détermine le type d’environnement, à savoir S1 ou S2. Pour les environnements Gen1, la référence détermine la capacité de l’environnement, le taux d’entrée et le taux de facturation.
+    description: >-
+      Utilisation :--SKU Name = XX Capacity = XX
+
+
+      nom : obligatoire. Nom de cette référence (SKU).
+
+      capacité : obligatoire. Capacité de la référence (SKU). Cette valeur peut être modifiée pour prendre en charge la mise à l’échelle des environnements après leur création.
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+commands:
+- ext_timeseriesinsights_az_tsi_environment_gen1_create
+- ext_timeseriesinsights_az_tsi_environment_gen1_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérez un environnement Gen1 dans l’abonnement et le groupe de ressources spécifiés.
+  ms.openlocfilehash: ef4a869ca9a62f2054cdd913761af2c1173ae166
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102967840"
