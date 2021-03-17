@@ -1,0 +1,307 @@
+### YamlMime:AzureCLIGroup
+uid: ext_healthcareapis_az_healthcareapis_service
+name: az healthcareapis service
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **healthcareapis** pour Azure CLI et requiert la version 2.11.0 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ healthcareapis service** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Service Healthcareapis.
+description: ''
+directCommands:
+- uid: ext_healthcareapis_az_healthcareapis_service_create
+  name: az healthcareapis service create
+  summary: Créez les métadonnées d’une instance de service.
+  description: ''
+  syntax: >-
+    az healthcareapis service create --kind {fhir, fhir-R4, fhir-Stu3}
+                                     --location
+                                     --resource-group
+                                     --resource-name
+                                     [--access-policies]
+                                     [--authentication-configuration]
+                                     [--cors-configuration]
+                                     [--cosmos-db-configuration]
+                                     [--etag]
+                                     [--export-configuration-storage-account-name]
+                                     [--identity-type {None, SystemAssigned}]
+                                     [--no-wait]
+                                     [--private-endpoint-connections]
+                                     [--public-network-access {Disabled, Enabled}]
+                                     [--tags]
+  examples:
+  - summary: Créer ou mettre à jour un service avec tous les paramètres
+    syntax: az healthcareapis service create --resource-group "rg1" --resource-name "service1" --identity-type "SystemAssigned" --kind "fhir-R4" --location "westus2" --access-policies object-id="c487e7d1-3210-41a3-8ccc-e9372b78da47" --access-policies object-id="5b307da8-43d4-492b-8b66-b0294ade872f" --authentication-configuration audience="https://azurehealthcareapis.com" authority="https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc" smart-proxy-enabled=true --cors-configuration allow-credentials=false headers="*" max-age=1440 methods="DELETE" methods="GET" methods="OPTIONS" methods="PATCH" methods="POST" methods="PUT" origins="*" --cosmos-db-configuration key-vault-key-uri="https://my-vault.vault.azure.net/keys/my-key" offer-throughput=1000 --export-configuration-storage-account-name "existingStorageAccount" --public-network-access "Disabled"
+  - summary: Créer ou mettre à jour un service avec des paramètres minimaux
+    syntax: az healthcareapis service create --resource-group "rg1" --resource-name "service2" --kind "fhir-R4" --location "westus2" --access-policies object-id="c487e7d1-3210-41a3-8ccc-e9372b78da47"
+  requiredParameters:
+  - isRequired: true
+    name: --kind
+    parameterValueGroup: fhir, fhir-R4, fhir-Stu3
+    summary: Type du service.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Nom de l’instance de service.
+    description: ''
+  optionalParameters:
+  - name: --access-policies
+    summary: Stratégies d’accès de l’instance de service.
+    description: >-
+      Utilisation :--Access-Policies Object-ID = XX
+
+
+      Object-ID : obligatoire. Azure AD ID d’objet (utilisateur ou applications) autorisé à accéder au service FHIR.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Access-Policies.
+  - name: --authentication-configuration
+    summary: Configuration de l’authentification pour l’instance de service.
+    description: >-
+      Utilisation :--Authentication-Configuration Authority = XX audience = XX intelligent-proxy-Enabled = XX
+
+
+      Authority : URL de l’autorité pour l’audience de service : URL d’audience pour le service proxy intelligent activé : si le proxy FHIR intelligent est activé.
+  - name: --cors-configuration
+    summary: Paramètres pour la configuration CORS de l’instance de service.
+    description: >-
+      Utilisation :--cors-configuration Origins = XX en-têtes = XX méthodes = XX max-age = XX allow-Credentials = XX
+
+
+      origines : origines à autoriser via CORS.
+
+      en-têtes : les en-têtes à autoriser via CORS.
+
+      Méthodes : méthodes à autoriser via CORS.
+
+      Max-Age : âge maximal à autoriser via CORS.
+
+      allow-informations d’identification : si les informations d’identification sont autorisées via CORS.
+  - name: --cosmos-db-configuration
+    summary: Paramètres de la base de données Cosmos DB qui sauvegarde le service.
+    description: >-
+      Utilisation :--Cosmos-DB-offre de configuration-débit = XX clé-coffre-clé-URI = XX
+
+
+      offre-débit : débit approvisionné pour la base de données de sauvegarde.
+
+      clé-coffre-Key-URI : l’URI de la clé gérée par le client pour la base de données de sauvegarde.
+  - name: --etag
+    summary: ETag associé à la ressource, utilisé pour l’accès concurrentiel optimiste lors de sa modification.
+    description: ''
+  - name: --export-configuration-storage-account-name
+    summary: Nom du compte de stockage d’exportation par défaut.
+    description: ''
+  - name: --identity-type
+    parameterValueGroup: None, SystemAssigned
+    summary: Type d’identité spécifié. actuellement, SystemAssigned et None sont autorisés.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --private-endpoint-connections
+    summary: Liste des connexions de point de terminaison privées configurées pour cette ressource.
+    description: >-
+      Utilisation :--Private-Endpoint-connections Status = XX Description = XX actions-required = XX
+
+
+      État : indique si la connexion a été approuvée/rejetée/supprimée par le propriétaire du service.
+
+      Description : raison de l’approbation/du rejet de la connexion.
+
+      actions-requis : message indiquant si les modifications apportées au fournisseur de services nécessitent des mises à jour sur le consommateur.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Private-Endpoint-Connections.
+  - name: --public-network-access
+    parameterValueGroup: Disabled, Enabled
+    summary: Autorisation Control pour le trafic de plan de données provenant de réseaux publics alors que le point de terminaison privé est activé.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_healthcareapis_az_healthcareapis_service_delete
+  name: az healthcareapis service delete
+  summary: Supprimer une instance de service.
+  description: ''
+  syntax: >-
+    az healthcareapis service delete --resource-group
+                                     --resource-name
+                                     [--no-wait]
+                                     [--yes]
+  examples:
+  - summary: Suppression du service
+    syntax: az healthcareapis service delete --resource-group "rg1" --resource-name "service1"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Nom de l’instance de service.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_healthcareapis_az_healthcareapis_service_list
+  name: az healthcareapis service list
+  summary: Récupération de toutes les instances de service dans un groupe de ressources. Et obtiennent toutes les instances de service dans un abonnement.
+  description: ''
+  syntax: az healthcareapis service list [--resource-group]
+  examples:
+  - summary: Répertorier tous les services dans le groupe de ressources
+    syntax: az healthcareapis service list --resource-group "rgname"
+  - summary: Répertorier tous les services dans l’abonnement
+    syntax: az healthcareapis service list
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_healthcareapis_az_healthcareapis_service_show
+  name: az healthcareapis service show
+  summary: Obtient les métadonnées d’une instance de service.
+  description: ''
+  syntax: >-
+    az healthcareapis service show --resource-group
+                                   --resource-name
+  examples:
+  - summary: Récupérer les métadonnées
+    syntax: az healthcareapis service show --resource-group "rg1" --resource-name "service1"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Nom de l’instance de service.
+    description: ''
+- uid: ext_healthcareapis_az_healthcareapis_service_update
+  name: az healthcareapis service update
+  summary: Met à jour les métadonnées d’une instance de service.
+  description: ''
+  syntax: >-
+    az healthcareapis service update --resource-group
+                                     --resource-name
+                                     [--no-wait]
+                                     [--public-network-access {Disabled, Enabled}]
+                                     [--tags]
+  examples:
+  - summary: Service correctif
+    syntax: az healthcareapis service update --resource-group "rg1" --resource-name "service1" --tags tag1="value1" tag2="value2"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Nom de l’instance de service.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --public-network-access
+    parameterValueGroup: Disabled, Enabled
+    summary: Autorisation Control pour le trafic de plan de données provenant de réseaux publics alors que le point de terminaison privé est activé.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_healthcareapis_az_healthcareapis_service_wait
+  name: az healthcareapis service wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du service healthcareapis soit remplie.
+  description: ''
+  syntax: >-
+    az healthcareapis service wait --resource-group
+                                   --resource-name
+                                   [--created]
+                                   [--custom]
+                                   [--deleted]
+                                   [--exists]
+                                   [--interval]
+                                   [--timeout]
+                                   [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que le service healthcareapis soit correctement créé.
+    syntax: az healthcareapis service wait --resource-group "rg1" --resource-name "service1" --created
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que le service healthcareapis soit correctement mis à jour.
+    syntax: az healthcareapis service wait --resource-group "rg1" --resource-name "service1" --updated
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que le service healthcareapis soit correctement supprimé.
+    syntax: az healthcareapis service wait --resource-group "rg1" --resource-name "service1" --deleted
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Nom de l’instance de service.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- ext_healthcareapis_az_healthcareapis_service_create
+- ext_healthcareapis_az_healthcareapis_service_delete
+- ext_healthcareapis_az_healthcareapis_service_list
+- ext_healthcareapis_az_healthcareapis_service_show
+- ext_healthcareapis_az_healthcareapis_service_update
+- ext_healthcareapis_az_healthcareapis_service_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Service Healthcareapis.
+  ms.openlocfilehash: 622218fbc824aa1cea357ea7d189989eb50e8257
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102840121"

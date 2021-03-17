@@ -1,0 +1,299 @@
+### YamlMime:AzureCLIGroup
+uid: az_ts
+name: az ts
+summary: Gérer les spécifications de modèle au niveau de l’abonnement ou de l’étendue du groupe de ressources.
+description: ''
+directCommands:
+- uid: az_ts_create
+  name: az ts create
+  summary: Créez une spécification de modèle et une version de spécification de modèle.
+  description: ''
+  syntax: >-
+    az ts create --name
+                 --resource-group
+                 [--description]
+                 [--display-name]
+                 [--location]
+                 [--subscription]
+                 [--tags]
+                 [--template-file]
+                 [--version]
+                 [--version-description]
+                 [--yes]
+  examples:
+  - summary: Créer une spécification de modèle.
+    syntax: az ts create -g testRG --name TemplateSpecName -l WestUS --display-name "MyDisplayName" --description "Simple template spec" --tags key1=value1
+  - summary: Créez une version de spécification de modèle.
+    syntax: az ts create -g testRG --name TemplateSpecName -v 2.0 -l WestUS --template-file templateSpec.json --version-description "Less simple template spec" --tags key1=value1 key3=value3
+  - summary: Créez une spécification de modèle et une version de la spécification du modèle.
+    syntax: az ts create -g testRG --name TemplateSpecName -v 1.0 -l WestUS --template-file templateSpec.json --display-name "MyDisplayName" --description "Simple template spec" --version-description "Version of simple template spec" --tags key1=value1 key2=value2
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la spécification du modèle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --description
+    summary: Description de la spécification du modèle parent.
+    description: ''
+  - name: --display-name -d
+    summary: Nom complet de la spécification du modèle.
+    description: ''
+  - name: --location -l
+    summary: Emplacement pour stocker la ou les versions de spécification de modèle et de spécification de modèle. Ne peut pas être modifié après la création.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --template-file -f
+    summary: Chemin d’accès à un fichier de modèle ou à un fichier bicep dans le système de fichiers.
+    description: ''
+  - name: --version -v
+    summary: Version de la spécification du modèle.
+    description: ''
+  - name: --version-description
+    summary: Description de la version de la spécification du modèle.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_ts_delete
+  name: az ts delete
+  summary: Supprimer une spécification de modèle ou une version de spécification de modèle spécifiée par nom ou ID de ressource.
+  description: ''
+  syntax: >-
+    az ts delete [--name]
+                 [--resource-group]
+                 [--subscription]
+                 [--template-spec]
+                 [--version]
+                 [--yes]
+  examples:
+  - summary: Supprimer la spécification de modèle spécifiée et toutes les versions.
+    syntax: az ts delete -g MyResourceGroup --name TemplateSpecName
+  - summary: Supprimer la version spécifiée de la spécification du modèle.
+    syntax: az ts delete -g MyResourceGroup --name TemplateSpecName --version VersionName
+  - summary: Supprimez la spécification ou la version du modèle en fonction de l’ID de ressource.
+    syntax: az ts delete --template-spec resourceID
+  optionalParameters:
+  - name: --name -n
+    summary: Nom de la spécification du modèle.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --template-spec -s
+    summary: ID de ressource de spécification de modèle.
+    description: ''
+  - name: --version -v
+    summary: Version de la spécification du modèle.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_ts_export
+  name: az ts export
+  summary: Exporte la version de spécification de modèle spécifiée et les artefacts (le cas échéant) vers le dossier de sortie spécifié.
+  description: ''
+  syntax: >-
+    az ts export --output-folder
+                 [--name]
+                 [--resource-group]
+                 [--subscription]
+                 [--template-spec]
+                 [--version]
+  examples:
+  - summary: Exportez la version de spécification de modèle spécifiée en fonction de l’ID de ressource.
+    syntax: az ts export -s resourceID --output-folder C:/path/
+  - summary: Exportez la version de spécification de modèle spécifiée.
+    syntax: az ts export -g testrg --name TemplateSpecName --version VersionName --output-folder C:/path/
+  requiredParameters:
+  - isRequired: true
+    name: --output-folder
+    summary: Dossier existant vers la ou les exportations de sortie.
+    description: ''
+  optionalParameters:
+  - name: --name -n
+    summary: Nom de la spécification du modèle.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --template-spec -s
+    summary: ID de ressource de spécification de modèle.
+    description: ''
+  - name: --version -v
+    summary: Version de la spécification du modèle.
+    description: ''
+- uid: az_ts_list
+  name: az ts list
+  summary: Répertorier les spécifications de modèle ou les spécifications de modèle.
+  description: ''
+  syntax: >-
+    az ts list [--name]
+               [--query-examples]
+               [--resource-group]
+               [--subscription]
+  examples:
+  - summary: Répertorie toutes les spécifications de modèle dans l’abonnement par défaut actuel.
+    syntax: az ts list
+  - summary: Répertorie toutes les spécifications de modèle dans l’abonnement spécifié.
+    syntax: az ts list --subscription Subscription
+  - summary: Répertorie toutes les spécifications de modèle dans le groupe de ressources.
+    syntax: az ts list -g MyResourceGroup
+  - summary: Répertorie toutes les versions de la spécification du modèle parent.
+    syntax: az ts list -g MyResourceGroup -n TemplateSpecName
+  optionalParameters:
+  - name: --name -n
+    summary: Nom de la spécification du modèle.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_ts_show
+  name: az ts show
+  summary: Obtient la spécification de modèle ou la version de spécification de modèle spécifiée.
+  description: ''
+  syntax: >-
+    az ts show [--name]
+               [--query-examples]
+               [--resource-group]
+               [--subscription]
+               [--template-spec]
+               [--version]
+  examples:
+  - summary: Affiche la spécification de modèle spécifiée.
+    syntax: az ts show -g testrg --name TemplateSpecName
+  - summary: Affiche la version de spécification de modèle spécifiée.
+    syntax: az ts show -g testrg --name TemplateSpecName --version VersionName
+  - summary: Affiche la spécification de modèle spécifiée ou la version de spécification de modèle en fonction de l’ID de ressource.
+    syntax: az ts show --template-spec resourceID
+  optionalParameters:
+  - name: --name -n
+    summary: Nom de la spécification du modèle.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --template-spec -s
+    summary: ID de ressource de spécification de modèle.
+    description: ''
+  - name: --version -v
+    summary: Version de la spécification du modèle.
+    description: ''
+- uid: az_ts_update
+  name: az ts update
+  summary: Mettez à jour une version de spécification de modèle.
+  description: ''
+  syntax: >-
+    az ts update [--description]
+                 [--display-name]
+                 [--name]
+                 [--resource-group]
+                 [--subscription]
+                 [--tags]
+                 [--template-file]
+                 [--template-spec]
+                 [--version]
+                 [--version-description]
+                 [--yes]
+  examples:
+  - summary: Mettez à jour le contenu du modèle d’une spécification de modèle ou de spécification de modèle en fonction de l’ID de ressource.
+    syntax: az ts update --template-spec resourceID -f updatedFile.json
+  - summary: Mettez à jour le nom complet et la ou les balises d’une spécification de modèle en fonction de l’ID de ressource.
+    syntax: az ts update --template-spec resourceID --display-name "NewParentDisplayName" --tags key1=value1
+  - summary: Mettez à jour la description d’une version de spécification de modèle sans invite.
+    syntax: az ts update -g ExistingRG --name ExistingName -v 3.0 --version-description "New description" --yes
+  - summary: Met à jour toutes les propriétés d’une version de spécification de modèle.
+    syntax: az ts update -g ExistingRG --name ExistingName -v 3.0 -f updatedTemplate.json --display-name "New parent display name" --description "New parent description" --version-description "New child description"
+  - summary: Supprimez la ou les balises de la version de spécification de modèle sans invite.
+    syntax: az ts update -g ExistingRG --name ExistingName -v 3.0 -f updatedTemplate.json --tags --yes
+  optionalParameters:
+  - name: --description
+    summary: Description de la spécification du modèle parent.
+    description: ''
+  - name: --display-name -d
+    summary: Nom complet de la spécification du modèle.
+    description: ''
+  - name: --name -n
+    summary: Nom de la spécification du modèle.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --template-file -f
+    summary: Chemin d’accès à un fichier de modèle ou à un fichier bicep dans le système de fichiers.
+    description: ''
+  - name: --template-spec -s
+    summary: ID de ressource de spécification de modèle.
+    description: ''
+  - name: --version -v
+    summary: Version de la spécification du modèle.
+    description: ''
+  - name: --version-description
+    summary: Description de la version de la spécification du modèle.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+commands:
+- az_ts_create
+- az_ts_delete
+- az_ts_export
+- az_ts_list
+- az_ts_show
+- az_ts_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les spécifications de modèle au niveau de l’abonnement ou de l’étendue du groupe de ressources.
+  ms.openlocfilehash: 0c18e9528cd8045d477cfc8c30e108e1935e1a93
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103496929"
