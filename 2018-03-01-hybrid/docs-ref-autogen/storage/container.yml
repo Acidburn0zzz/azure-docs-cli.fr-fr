@@ -1,0 +1,506 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_container
+name: az storage container
+summary: Gérer les conteneurs de stockage d’objets BLOB.
+description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
+directCommands:
+- uid: az_storage_container_create
+  name: az storage container create
+  summary: Créez un conteneur dans un compte de stockage.
+  description: Par défaut, les données du conteneur sont privées (« désactivées ») par rapport au propriétaire du compte. Utilisez « BLOB » pour autoriser l’accès en lecture public pour les objets BLOB. Utilisez « container » pour autoriser l’accès public en lecture et en liste à l’ensemble du conteneur. Vous pouvez configurer le--public-Access à l’aide de `az storage container set-permission -n CONTAINER_NAME --public-access blob/container/off` .
+  syntax: >-
+    az storage container create --name
+                                [--account-key]
+                                [--account-name]
+                                [--connection-string]
+                                [--default-encryption-scope]
+                                [--fail-on-exist]
+                                [--metadata]
+                                [--prevent-encryption-scope-override {false, true}]
+                                [--public-access {blob, container, off}]
+                                [--resource-group]
+                                [--sas-token]
+                                [--subscription]
+                                [--timeout]
+  examples:
+  - summary: Créez un conteneur de stockage dans un compte de stockage.
+    syntax: az storage container create -n mystoragecontainer
+  - summary: Créer un conteneur de stockage dans un compte de stockage et retourner une erreur si le conteneur existe déjà.
+    syntax: az storage container create -n mystoragecontainer --fail-on-exist
+  - summary: Créez un conteneur de stockage dans un compte de stockage et autorisez l’accès en lecture public pour les objets BLOB.
+    syntax: az storage container create -n mystoragecontainer --public-access blob
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --default-encryption-scope -d
+    summary: Par défaut, le conteneur utilise la portée de chiffrement spécifiée pour toutes les écritures.
+    description: ''
+  - name: --fail-on-exist
+    summary: Lève une exception si le conteneur existe déjà.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --prevent-encryption-scope-override -p
+    parameterValueGroup: false, true
+    summary: Bloquer la substitution de l’étendue de chiffrement à partir de la valeur de conteneur par défaut.
+    description: ''
+  - name: --public-access
+    parameterValueGroup: blob, container, off
+    summary: Spécifie si les données du conteneur sont accessibles publiquement.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_delete
+  name: az storage container delete
+  summary: Marque le conteneur spécifié pour la suppression.
+  description: Le conteneur et les objets blob contenus dans ce conteneur sont supprimés lors du garbage collection.
+  syntax: >-
+    az storage container delete --name
+                                [--account-key]
+                                [--account-name]
+                                [--bypass-immutability-policy]
+                                [--connection-string]
+                                [--fail-not-exist]
+                                [--if-modified-since]
+                                [--if-unmodified-since]
+                                [--lease-id]
+                                [--sas-token]
+                                [--subscription]
+                                [--timeout]
+  examples:
+  - summary: Marque le conteneur spécifié pour la suppression. généré automatiquement
+    syntax: az storage container delete --account-key 00000000 --account-name MyAccount --name mycontainer
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --bypass-immutability-policy
+    summary: Ignore le comportement de service à venir qui empêchera la suppression d’un conteneur s’il possède une stratégie d’immuabilité. Si vous spécifiez cette option, les arguments ne seront pas utilisés pour identifier le conteneur (« --Name », « --Account-Name »).
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --fail-not-exist
+    summary: Lève une exception si le conteneur n’existe pas.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: S’il est spécifié, delete_container se déroule uniquement si le bail du conteneur est actif et correspond à cet ID. Obligatoire si le conteneur a un bail actif.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_exists
+  name: az storage container exists
+  summary: Vérifiez l’existence d’un conteneur de stockage.
+  description: ''
+  syntax: >-
+    az storage container exists --name
+                                [--account-key]
+                                [--account-name]
+                                [--connection-string]
+                                [--sas-token]
+                                [--subscription]
+                                [--timeout]
+  examples:
+  - summary: Vérifiez l’existence d’un conteneur de stockage. généré automatiquement
+    syntax: az storage container exists --account-name mystorageccount --account-key 00000000 --name mycontainer
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_generate_sas
+  name: az storage container generate-sas
+  summary: Générez un jeton SAP pour un conteneur de stockage.
+  description: ''
+  syntax: >-
+    az storage container generate-sas --name
+                                      [--account-key]
+                                      [--account-name]
+                                      [--cache-control]
+                                      [--connection-string]
+                                      [--content-disposition]
+                                      [--content-encoding]
+                                      [--content-language]
+                                      [--content-type]
+                                      [--expiry]
+                                      [--https-only]
+                                      [--ip]
+                                      [--permissions]
+                                      [--policy-name]
+                                      [--sas-token]
+                                      [--start]
+                                      [--subscription]
+  examples:
+  - summary: Générez un jeton SAP pour le conteneur d’objets BLOB et utilisez-le pour charger un objet BLOB.
+    syntax: >-
+      end=`date -u -d "30 minutes" '+%Y-%m-%dT%H:%MZ'`
+
+      sas=`az storage container generate-sas -n mycontainer --https-only --permissions dlrw --expiry $end -o tsv`
+
+      az storage blob upload -n MyBlob -c mycontainer -f file.txt --sas-token $sas
+  - summary: Générer une signature d’accès partagé pour le conteneur (généré automatiquement)
+    syntax: az storage container generate-sas --account-key 00000000 --account-name mystorageaccount --expiry 2020-01-01 --name mycontainer --permissions dlrw
+  - summary: Générez un jeton SAP pour un conteneur de stockage. généré automatiquement
+    syntax: az storage container generate-sas --account-name mystorageaccount --as-user --auth-mode login --expiry 2020-01-01 --name container1 --permissions dlrw
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --cache-control
+    summary: Valeur d’en-tête de réponse pour Cache-Control lorsque la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --content-disposition
+    summary: Valeur d’en-tête de réponse pour Content-disposition lorsque la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --content-encoding
+    summary: Valeur d’en-tête de réponse pour Content-Encoding quand la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --content-language
+    summary: Valeur d’en-tête de réponse pour Content-Language lorsque la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --content-type
+    summary: Valeur d’en-tête de réponse pour Content-type quand la ressource est accessedusing cette signature d’accès partagé.
+    description: ''
+  - name: --expiry
+    summary: Spécifie la date/heure UTC (Y-m-d’T’H :M’Z') à laquelle la signature d’accès partagé n’est plus valide. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur.
+    description: ''
+  - name: --https-only
+    summary: Autorise uniquement les demandes effectuées avec le protocole HTTPs. En cas d’omission, les demandes du protocole HTTP et HTTPs sont autorisées.
+    description: ''
+  - name: --ip
+    summary: Spécifie l’adresse IP ou la plage d’adresses IP à partir de laquelle accepter les demandes. Prend uniquement en charge les adresses de style IPv4.
+    description: ''
+  - name: --permissions
+    summary: 'Autorisations accordées par la signature d’accès partagé. Valeurs autorisées : (d) supprim (l) IST (r) IRE (w) °. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur. Peut être combiné.'
+    description: ''
+  - name: --policy-name
+    summary: Nom d’une stratégie d’accès stockée au sein de la liste de contrôle d’accès du conteneur.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --start
+    summary: Spécifie la date/heure UTC (Y-m-d’T’H :M’Z') à laquelle la signature d’accès partagé devient valide. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur. La valeur par défaut est l’heure de la demande.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_list
+  name: az storage container list
+  summary: Répertorie les conteneurs dans un compte de stockage.
+  description: ''
+  syntax: >-
+    az storage container list [--account-key]
+                              [--account-name]
+                              [--connection-string]
+                              [--include-metadata]
+                              [--marker]
+                              [--num-results]
+                              [--prefix]
+                              [--query-examples]
+                              [--sas-token]
+                              [--subscription]
+                              [--timeout]
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --include-metadata
+    summary: Spécifie que les métadonnées de conteneur doivent être retournées dans la réponse.
+    description: ''
+  - name: --marker
+    summary: Jeton de continuation opaque. Cette valeur peut être récupérée à partir du champ next_marker d’un objet générateur précédent si num_results a été spécifié et que le générateur a terminé l’énumération des résultats. S’il est spécifié, ce générateur commencera à retourner des résultats à partir du point où le générateur précédent s’est arrêté.
+    description: ''
+  - name: --num-results
+    defaultValue: "5000"
+    summary: Spécifie le nombre maximal de résultats à retourner. Fournissez « \* » pour retourner tous les.
+    description: ''
+  - name: --prefix
+    summary: Filtre les résultats pour retourner uniquement les conteneurs dont les noms commencent par le préfixe spécifié.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_set_permission
+  name: az storage container set-permission
+  summary: Définit les autorisations pour le conteneur spécifié ou les stratégies d’accès stockées qui peuvent être utilisées avec les signatures d’accès partagé.
+  description: Les autorisations indiquent si les objets blob dans un conteneur sont accessibles publiquement.
+  syntax: >-
+    az storage container set-permission --name
+                                        [--account-key]
+                                        [--account-name]
+                                        [--connection-string]
+                                        [--if-modified-since]
+                                        [--if-unmodified-since]
+                                        [--lease-id]
+                                        [--public-access {blob, container, off}]
+                                        [--sas-token]
+                                        [--subscription]
+                                        [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: S’il est spécifié, set_container_acl se déroule uniquement si le bail du conteneur est actif et correspond à cet ID.
+    description: ''
+  - name: --public-access
+    parameterValueGroup: blob, container, off
+    summary: Spécifie si les données du conteneur sont accessibles publiquement.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_show
+  name: az storage container show
+  summary: Retourne toutes les métadonnées définies par l’utilisateur et les propriétés système pour le conteneur spécifié.
+  description: Les données renvoyées ne comprennent pas la liste d'objets blob du conteneur.
+  syntax: >-
+    az storage container show --name
+                              [--account-key]
+                              [--account-name]
+                              [--connection-string]
+                              [--lease-id]
+                              [--query-examples]
+                              [--sas-token]
+                              [--subscription]
+                              [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --lease-id
+    summary: S’il est spécifié, get_container_properties se déroule uniquement si le bail du conteneur est actif et correspond à cet ID.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_show_permission
+  name: az storage container show-permission
+  summary: Obtient les autorisations pour le conteneur spécifié.
+  description: Les autorisations indiquent si les données de conteneur sont accessibles publiquement.
+  syntax: >-
+    az storage container show-permission --name
+                                         [--account-key]
+                                         [--account-name]
+                                         [--connection-string]
+                                         [--lease-id]
+                                         [--sas-token]
+                                         [--subscription]
+                                         [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --lease-id
+    summary: S’il est spécifié, get_container_acl se déroule uniquement si le bail du conteneur est actif et correspond à cet ID.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_container_create
+- az_storage_container_delete
+- az_storage_container_exists
+- az_storage_container_generate_sas
+- az_storage_container_lease
+- az_storage_container_lease_acquire
+- az_storage_container_lease_break
+- az_storage_container_lease_change
+- az_storage_container_lease_release
+- az_storage_container_lease_renew
+- az_storage_container_list
+- az_storage_container_metadata
+- az_storage_container_metadata_show
+- az_storage_container_metadata_update
+- az_storage_container_policy
+- az_storage_container_policy_create
+- az_storage_container_policy_delete
+- az_storage_container_policy_list
+- az_storage_container_policy_show
+- az_storage_container_policy_update
+- az_storage_container_set_permission
+- az_storage_container_show
+- az_storage_container_show_permission
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
+  ms.openlocfilehash: 356644da1c8b93c035da2c45be01602a5ca7aa42
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102970700"

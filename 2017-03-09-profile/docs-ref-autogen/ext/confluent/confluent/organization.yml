@@ -1,0 +1,229 @@
+### YamlMime:AzureCLIGroup
+uid: ext_confluent_az_confluent_organization
+name: az confluent organization
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **confluent** pour Azure CLI et requiert la version 2.17.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ confluent Organization** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer l’organisation avec confluent.
+description: ''
+directCommands:
+- uid: ext_confluent_az_confluent_organization_create
+  name: az confluent organization create
+  summary: Créer une ressource d’organisation.
+  description: ''
+  syntax: >-
+    az confluent organization create --name
+                                     --resource-group
+                                     [--location]
+                                     [--no-wait]
+                                     [--offer-detail]
+                                     [--tags]
+                                     [--user-detail]
+  examples:
+  - summary: Organization_Create
+    syntax: az confluent organization create --location "West US" --offer-detail id="string" plan-id="string" plan-name="string" publisher-id="string" term-unit="string" --user-detail email-address="contoso@microsoft.com" first-name="string" last-name="string" --tags Environment="Dev" --name "myOrganization" --resource-group "myResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --name --organization-name -n
+    summary: Nom de ressource de l’organisation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --offer-detail
+    summary: Détails de l’offre de confluent.
+    description: >-
+      Utilisation :--offer-detail-id-éditeur = xx ID = XX plan-ID = XX plan-Name = XX term-Unit = XX Status = XX
+
+
+      éditeur-ID : ID d’ID de l’éditeur : plan d’ID d’offre-ID : offre de l’ID de plan de l’offre-nom : nom du plan d’offre terme-unité : offre du plan d’offre état de l’unité : état de l’offre SaaS.
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --user-detail
+    summary: Détails de l’abonné.
+    description: >-
+      Utilisation :--User-Detail First-Name = XX Last-Name = XX e-mail-address = XX
+
+
+      First-Name : Last Name Nom-Prénom : Last Name adresse e-mail : adresse E-mail.
+- uid: ext_confluent_az_confluent_organization_delete
+  name: az confluent organization delete
+  summary: Supprimer la ressource de l’organisation.
+  description: ''
+  syntax: >-
+    az confluent organization delete --name
+                                     --resource-group
+                                     [--no-wait]
+                                     [--yes]
+  examples:
+  - summary: Supprimer l’Organisation
+    syntax: az confluent organization delete --name "myOrganization" --resource-group "myResourceGroup"
+  - summary: Supprimer l’organisation à l’aide d’ID
+    syntax: az confluent organization delete --ids "/subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Confluent/organizations/{myOrganization}"
+  requiredParameters:
+  - isRequired: true
+    name: --name --organization-name -n
+    summary: Nom de ressource de l’organisation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_confluent_az_confluent_organization_list
+  name: az confluent organization list
+  summary: Répertorie toutes les organisations sous le groupe de ressources spécifié. Et répertorient toutes les organisations sous l’abonnement spécifié.
+  description: ''
+  syntax: az confluent organization list [--resource-group]
+  examples:
+  - summary: Organization_ListByResourceGroup
+    syntax: az confluent organization list --resource-group "myResourceGroup"
+  - summary: Organization_ListBySubscription
+    syntax: az confluent organization list
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_confluent_az_confluent_organization_show
+  name: az confluent organization show
+  summary: Obtient les propriétés d’une ressource d’organisation spécifique.
+  description: ''
+  syntax: >-
+    az confluent organization show --name
+                                   --resource-group
+  examples:
+  - summary: Afficher l’Organisation
+    syntax: az confluent organization show --name "myOrganization" --resource-group "myResourceGroup"
+  - summary: Afficher l’organisation à l’aide des ID
+    syntax: az confluent organization show --ids "/subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Confluent/organizations/{myOrganization}"
+  requiredParameters:
+  - isRequired: true
+    name: --name --organization-name -n
+    summary: Nom de ressource de l’organisation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_confluent_az_confluent_organization_update
+  name: az confluent organization update
+  summary: Mettez à jour la ressource d’organisation.
+  description: ''
+  syntax: >-
+    az confluent organization update --name
+                                     --resource-group
+                                     [--tags]
+  examples:
+  - summary: Confluent_Update
+    syntax: az confluent organization update --tags client="dev-client" env="dev" --name "myOrganization" --resource-group "myResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --name --organization-name -n
+    summary: Nom de ressource de l’organisation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_confluent_az_confluent_organization_wait
+  name: az confluent organization wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de l’organisation confluente soit remplie.
+  description: ''
+  syntax: >-
+    az confluent organization wait --name
+                                   --resource-group
+                                   [--created]
+                                   [--custom]
+                                   [--deleted]
+                                   [--exists]
+                                   [--interval]
+                                   [--timeout]
+                                   [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à la création réussie de l’organisation confluente.
+    syntax: az confluent organization wait --name "myOrganization" --resource-group "myResourceGroup" --created
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que l’organisation confluent ait été supprimée avec succès.
+    syntax: az confluent organization wait --name "myOrganization" --resource-group "myResourceGroup" --deleted
+  requiredParameters:
+  - isRequired: true
+    name: --name --organization-name -n
+    summary: Nom de ressource de l’organisation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- ext_confluent_az_confluent_organization_create
+- ext_confluent_az_confluent_organization_delete
+- ext_confluent_az_confluent_organization_list
+- ext_confluent_az_confluent_organization_show
+- ext_confluent_az_confluent_organization_update
+- ext_confluent_az_confluent_organization_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer l’organisation avec confluent.
+  ms.openlocfilehash: ca7f64b968e6f2cc81642c0d5765904bd8e70999
+  ms.sourcegitcommit: 823cf850ebc2ad90e22f02453f0e58fafbf81f9f
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 01/29/2021
+  ms.locfileid: "102845002"
