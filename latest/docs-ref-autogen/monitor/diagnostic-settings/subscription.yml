@@ -1,0 +1,237 @@
+### YamlMime:AzureCLIGroup
+uid: az_monitor_diagnostic_settings_subscription
+name: az monitor diagnostic-settings subscription
+summary: Gérer les paramètres de diagnostic pour l’abonnement.
+description: ''
+directCommands:
+- uid: az_monitor_diagnostic_settings_subscription_create
+  name: az monitor diagnostic-settings subscription create
+  summary: Créer des paramètres de diagnostic pour un abonnement.
+  description: ''
+  syntax: >-
+    az monitor diagnostic-settings subscription create --location
+                                                       --logs
+                                                       --name
+                                                       [--event-hub-auth-rule]
+                                                       [--event-hub-name]
+                                                       [--service-bus-rule]
+                                                       [--storage-account]
+                                                       [--subscription]
+                                                       [--workspace]
+  examples:
+  - summary: Créer des paramètres de diagnostic pour un abonnement avec EventHub.
+    syntax: >-
+      az monitor diagnostic-settings subscription create -n {name} --location westus --event-hub-auth-rule {eventHubRuleID} --storage-account {storageAccount} \
+
+      --logs '[
+         {
+           "category": "Security",
+           "enabled": true,
+         },
+         {
+           "category": "Administrative",
+           "enabled": true,
+         },
+         {
+           "category": "ServiceHealth",
+           "enabled": true,
+         },
+         {
+           "category": "Alert",
+           "enabled": true,
+         },
+         {
+           "category": "Recommendation",
+           "enabled": true,
+         },
+         {
+           "category": "Policy",
+           "enabled": true,
+         },
+         {
+           "category": "Autoscale",
+           "enabled": true,
+         },
+         {
+           "category": "ResourceHealth",
+           "enabled": true,
+         }
+         ]'
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --logs
+    summary: Liste des paramètres de journal codés au format JSON. Utilisez « @ {file} » pour charger à partir d’un fichier.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du paramètre de diagnostic.
+    description: ''
+  optionalParameters:
+  - name: --event-hub-auth-rule
+    summary: ID de ressource pour la règle d’autorisation Event Hub.
+    description: ''
+  - name: --event-hub-name
+    summary: Nom du hub d’événements. Si aucun n’est spécifié, la Event Hub par défaut est sélectionnée.
+    description: ''
+  - name: --service-bus-rule
+    summary: ID de règle service bus de l’espace de noms service bus dans lequel vous souhaitez que Event Hubs créé pour la diffusion en continu du journal d’activité. L’ID de règle est au format « {ID de ressource service bus}/authorizationrules/{nom name} ».
+    description: ''
+  - name: --storage-account
+    summary: L’ID de ressource du compte de stockage auquel vous souhaitez envoyer le journal d’activité.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace
+    summary: ID de ressource de l’espace de travail log Analytics.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_diagnostic_settings_subscription_delete
+  name: az monitor diagnostic-settings subscription delete
+  summary: Supprime les paramètres de diagnostic d’abonnement existants pour la ressource spécifiée.
+  description: ''
+  syntax: >-
+    az monitor diagnostic-settings subscription delete --name
+                                                       [--subscription]
+                                                       [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du paramètre de diagnostic.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_diagnostic_settings_subscription_list
+  name: az monitor diagnostic-settings subscription list
+  summary: Obtient la liste des paramètres de diagnostic de l’abonnement actif pour le subscriptionId spécifié.
+  description: ''
+  syntax: >-
+    az monitor diagnostic-settings subscription list [--query-examples]
+                                                     [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_diagnostic_settings_subscription_show
+  name: az monitor diagnostic-settings subscription show
+  summary: Obtient les paramètres de diagnostic d’abonnement actifs pour la ressource spécifiée.
+  description: ''
+  syntax: >-
+    az monitor diagnostic-settings subscription show --name
+                                                     [--query-examples]
+                                                     [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du paramètre de diagnostic.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_diagnostic_settings_subscription_update
+  name: az monitor diagnostic-settings subscription update
+  summary: Met à jour les paramètres de diagnostic d’un abonnement.
+  description: ''
+  syntax: >-
+    az monitor diagnostic-settings subscription update --name
+                                                       [--add]
+                                                       [--event-hub-auth-rule]
+                                                       [--event-hub-name]
+                                                       [--force-string]
+                                                       [--logs]
+                                                       [--remove]
+                                                       [--service-bus-rule]
+                                                       [--set]
+                                                       [--storage-account]
+                                                       [--subscription]
+                                                       [--workspace]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du paramètre de diagnostic.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --event-hub-auth-rule
+    summary: ID de ressource pour la règle d’autorisation Event Hub.
+    description: ''
+  - name: --event-hub-name
+    summary: Nom du hub d’événements. Si aucun n’est spécifié, la Event Hub par défaut est sélectionnée.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --logs
+    summary: Liste des paramètres de journal codés au format JSON. Utilisez « @ {file} » pour charger à partir d’un fichier.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --service-bus-rule
+    summary: ID de règle service bus de l’espace de noms service bus dans lequel vous souhaitez que Event Hubs créé pour la diffusion en continu du journal d’activité. L’ID de règle est au format « {ID de ressource service bus}/authorizationrules/{nom name} ».
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --storage-account
+    summary: L’ID de ressource du compte de stockage auquel vous souhaitez envoyer le journal d’activité.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace
+    summary: ID de ressource de l’espace de travail log Analytics.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+commands:
+- az_monitor_diagnostic_settings_subscription_create
+- az_monitor_diagnostic_settings_subscription_delete
+- az_monitor_diagnostic_settings_subscription_list
+- az_monitor_diagnostic_settings_subscription_show
+- az_monitor_diagnostic_settings_subscription_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/23/2021
+  description: Gérer les paramètres de diagnostic pour l’abonnement.
+  ms.openlocfilehash: cfcbf8acdeb96d0990323064a0a2b77e0fbd18ef
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103516316"
