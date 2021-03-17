@@ -1,0 +1,147 @@
+### YamlMime:AzureCLIGroup
+uid: az_webapp_identity
+name: az webapp identity
+summary: Gérez l’identité du service administré de l’application Web.
+description: ''
+directCommands:
+- uid: az_webapp_identity_assign
+  name: az webapp identity assign
+  summary: Affectez l’identité de service managée à l’application Web.
+  description: ''
+  syntax: >-
+    az webapp identity assign [--identities]
+                              [--ids]
+                              [--name]
+                              [--resource-group]
+                              [--role]
+                              [--scope]
+                              [--slot]
+                              [--subscription]
+  examples:
+  - summary: Affectez l’identité locale et affectez un rôle de lecteur au groupe de ressources actuel.
+    syntax: az webapp identity assign -g MyResourceGroup -n MyUniqueApp --role reader --scope /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/MyResourceGroup
+  - summary: activez l’identité pour l’application Web.
+    syntax: az webapp identity assign -g MyResourceGroup -n MyUniqueApp
+  - summary: affecter une identité locale et une identité affectée par l’utilisateur à une application Web.
+    syntax: az webapp identity assign -g MyResourceGroup -n MyUniqueApp --identities [system] myAssignedId
+  optionalParameters:
+  - name: --identities
+    summary: 'Identités séparées par des espaces à assigner. Utilisez « [System] » pour faire référence à l’identité attribuée par le système. Valeur par défaut : « [System] ».'
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --role
+    defaultValue: Contributor
+    summary: Nom de rôle ou ID auquel l’identité managée sera affectée.
+    description: ''
+  - name: --scope
+    summary: Étendue à laquelle l’identité managée a accès.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_identity_remove
+  name: az webapp identity remove
+  summary: Désactivez l’identité de service managée de l’application Web.
+  description: ''
+  syntax: >-
+    az webapp identity remove [--identities]
+                              [--ids]
+                              [--name]
+                              [--resource-group]
+                              [--slot]
+                              [--subscription]
+  examples:
+  - summary: Désactiver l’identité du service administré du système de l’application Web
+    syntax: az webapp identity remove --name MyWebApp --resource-group MyResourceGroup
+  - summary: Désactiver l’identité du service administré du système de l’application Web et une identité gérée par l’utilisateur
+    syntax: az webapp identity remove --name MyWebApp --resource-group MyResourceGroup --identities [system] myAssignedId
+  optionalParameters:
+  - name: --identities
+    summary: 'Identités séparées par des espaces à assigner. Utilisez « [System] » pour faire référence à l’identité attribuée par le système. Valeur par défaut : « [System] ».'
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_identity_show
+  name: az webapp identity show
+  summary: Affichez l’identité du service administré de l’application Web.
+  description: ''
+  syntax: >-
+    az webapp identity show [--ids]
+                            [--name]
+                            [--query-examples]
+                            [--resource-group]
+                            [--slot]
+                            [--subscription]
+  examples:
+  - summary: afficher l’identité du service administré de WebApp (générée automatiquement)
+    syntax: az webapp identity show --name MyWebapp --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_webapp_identity_assign
+- az_webapp_identity_remove
+- az_webapp_identity_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérez l’identité du service administré de l’application Web.
+  ms.openlocfilehash: 603f0e3ab641954eea015563b68c9eb7d4932322
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102841975"

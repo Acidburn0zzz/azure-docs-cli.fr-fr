@@ -1,0 +1,279 @@
+### YamlMime:AzureCLIGroup
+uid: az_sql_failover_group
+name: az sql failover-group
+summary: Gérer les groupes de basculement SQL.
+description: ''
+directCommands:
+- uid: az_sql_failover_group_create
+  name: az sql failover-group create
+  summary: Crée un groupe de basculement.
+  description: ''
+  syntax: >-
+    az sql failover-group create --name
+                                 --partner-server
+                                 --resource-group
+                                 --server
+                                 [--add-db]
+                                 [--failover-policy {Automatic, Manual}]
+                                 [--grace-period]
+                                 [--partner-resource-group]
+                                 [--subscription]
+  examples:
+  - summary: Crée un groupe de basculement. généré automatiquement
+    syntax: az sql failover-group create --name MyFailoverGroup --partner-server newDb --resource-group MyResourceGroup --server myserver --subscription MySubscription
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de basculement.
+    description: ''
+  - isRequired: true
+    name: --partner-server
+    summary: Nom du serveur partenaire d’un groupe de basculement.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --add-db
+    summary: Liste des bases de données à ajouter au groupe de basculement.
+    description: ''
+  - name: --failover-policy
+    defaultValue: Automatic
+    parameterValueGroup: Automatic, Manual
+    summary: Stratégie de basculement du groupe de basculement.
+    description: ''
+  - name: --grace-period
+    defaultValue: "1"
+    summary: Intervalle en heures avant le basculement automatique si une panne se produit sur le serveur principal. Cela indique que Azure SQL Database ne lancera pas le basculement automatique avant l’expiration de la période de grâce. Notez que l’opération de basculement avec l’option--Allow-Data-Loss peut entraîner une perte de données en raison de la nature de la synchronisation asynchrone.
+    description: ''
+  - name: --partner-resource-group
+    summary: Nom du groupe de ressources du serveur partenaire.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_failover_group_delete
+  name: az sql failover-group delete
+  summary: Supprime un groupe de basculement.
+  description: ''
+  syntax: >-
+    az sql failover-group delete --name
+                                 [--ids]
+                                 [--resource-group]
+                                 [--server]
+                                 [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de basculement.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_failover_group_list
+  name: az sql failover-group list
+  summary: Répertorie les groupes de basculement d’un serveur.
+  description: ''
+  syntax: >-
+    az sql failover-group list [--ids]
+                               [--query-examples]
+                               [--resource-group]
+                               [--server]
+                               [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_failover_group_set_primary
+  name: az sql failover-group set-primary
+  summary: Définit le principal du groupe de basculement en basculant toutes les bases de données à partir du serveur principal actuel.
+  description: ''
+  syntax: >-
+    az sql failover-group set-primary --name
+                                      [--allow-data-loss]
+                                      [--ids]
+                                      [--resource-group]
+                                      [--server]
+                                      [--subscription]
+  examples:
+  - summary: Définit le principal du groupe de basculement en basculant toutes les bases de données à partir du serveur principal actuel. généré automatiquement
+    syntax: az sql failover-group set-primary --name MyFailoverGroup --resource-group MyResourceGroup --server myserver
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de basculement.
+    description: ''
+  optionalParameters:
+  - name: --allow-data-loss
+    summary: Effectuer le basculement même si cela peut entraîner une perte de données. Cela permettra au basculement de continuer même si une base de données primaire n’est pas disponible.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_failover_group_show
+  name: az sql failover-group show
+  summary: Obtient un groupe de basculement.
+  description: ''
+  syntax: >-
+    az sql failover-group show --name
+                               [--ids]
+                               [--query-examples]
+                               [--resource-group]
+                               [--server]
+                               [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de basculement.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_failover_group_update
+  name: az sql failover-group update
+  summary: Met à jour le groupe de basculement.
+  description: ''
+  syntax: >-
+    az sql failover-group update --name
+                                 [--add]
+                                 [--add-db]
+                                 [--failover-policy {Automatic, Manual}]
+                                 [--force-string]
+                                 [--grace-period]
+                                 [--ids]
+                                 [--remove]
+                                 [--remove-db]
+                                 [--resource-group]
+                                 [--server]
+                                 [--set]
+                                 [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de basculement.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --add-db
+    summary: Liste des bases de données à ajouter au groupe de basculement.
+    description: ''
+  - name: --failover-policy
+    parameterValueGroup: Automatic, Manual
+    summary: Stratégie de basculement du groupe de basculement.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --grace-period
+    summary: Intervalle en heures avant le basculement automatique si une panne se produit sur le serveur principal. Cela indique que Azure SQL Database ne lancera pas le basculement automatique avant l’expiration de la période de grâce. Notez que l’opération de basculement avec l’option--Allow-Data-Loss peut entraîner une perte de données en raison de la nature de la synchronisation asynchrone.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --remove-db
+    summary: Liste des bases de données à supprimer du groupe de basculement.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+commands:
+- az_sql_failover_group_create
+- az_sql_failover_group_delete
+- az_sql_failover_group_list
+- az_sql_failover_group_set_primary
+- az_sql_failover_group_show
+- az_sql_failover_group_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/18/2021
+  description: Gérer les groupes de basculement SQL.
+  ms.openlocfilehash: 2e21b4f2f5844653aa3316d3d60857263844e7a7
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103515874"

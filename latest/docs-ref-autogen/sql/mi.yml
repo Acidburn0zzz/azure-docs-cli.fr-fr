@@ -42,6 +42,8 @@ directCommands:
     syntax: az sql mi create -g mygroup -n myinstance -l mylocation -i -u myusername -p mypassword --license-type LicenseIncluded --subnet /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Network/virtualNetworks/{VNETName}/subnets/{SubnetName} --capacity 8 --storage 32GB --edition GeneralPurpose --family Gen5 --tags tagName1=tagValue1 tagName2=tagValue2
   - summary: Créer une instance gérée avec les paramètres spécifiés et la redondance de stockage de sauvegarde spécifiée
     syntax: az sql mi create -g mygroup -n myinstance -l mylocation -i -u myusername -p mypassword --license-type LicenseIncluded --subnet /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Network/virtualNetworks/{VNETName}/subnets/{SubnetName} --capacity 8 --storage 32GB --edition GeneralPurpose --family Gen5 --backup-storage-redundancy Local
+  - summary: Créer une instance gérée avec la configuration de maintenance
+    syntax: az sql mi create -g mygroup -n myinstance -l mylocation -i -u myusername -p mypassword --subnet /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Network/virtualNetworks/{VNETName}/subnets/{SubnetName} -m /subscriptions/{SubID}/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_{Region}_{MaintenanceConfigName}
   requiredParameters:
   - isRequired: true
     name: --admin-password -p
@@ -289,6 +291,10 @@ directCommands:
     syntax: az sql mi update --name myinstance --proxy-override Default --resource-group mygroup --subscription MySubscription
   - summary: Mettez à jour une instance gérée. généré automatiquement
     syntax: az sql mi update --name myinstance --public-data-endpoint-enabled true --resource-group mygroup --subscription MySubscription
+  - summary: Mettre à jour une instance gérée avec la configuration de maintenance
+    syntax: az sql mi update -g mygroup  -n myinstance -m /subscriptions/{SubID}/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_{Region}_{MaintenanceConfigName}
+  - summary: Supprimer la configuration de maintenance de l’instance gérée
+    syntax: az sql mi update -g mygroup  -n myinstance -m /subscriptions/{SubID}/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default
   optionalParameters:
   - name: --add
     summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
@@ -403,11 +409,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 01/28/2021
+  ms.date: 02/18/2021
   description: Gérer les instances managées SQL.
-  ms.openlocfilehash: cc45675182d69431b6cca80f7fdbf79e409504ab
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: 65b78f8c0f47de10a2df51eaae96d15d253ffd72
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102965445"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103515840"
