@@ -1,0 +1,199 @@
+### YamlMime:AzureCLIGroup
+uid: az_ad_app_permission
+name: az ad app permission
+summary: Gérer les autorisations OAuth2 d’une application.
+description: ''
+directCommands:
+- uid: az_ad_app_permission_add
+  name: az ad app permission add
+  summary: Ajoutez une autorisation d’API.
+  description: >-
+    L’appel de « AZ ad App permission Grant » est nécessaire pour l’activer.
+
+
+    Pour bénéficier des autorisations disponibles pour l’application de ressource, exécutez `az ad sp show --id <resource-appId>` . Par exemple, pour obtenir les autorisations disponibles pour API Graph :
+      - Azure Active Directory graphique : `az ad sp show --id 00000002-0000-0000-c000-000000000000`
+      - Microsoft Graph : `az ad sp show --id 00000003-0000-0000-c000-000000000000` les autorisations de l’application sous la `appRoles` propriété correspondent aux `Role` autorisations de l’API. Les autorisations déléguées sous la `oauth2Permissions` propriété correspondent aux `Scope` autorisations de l’API.
+  syntax: >-
+    az ad app permission add --api
+                             --api-permissions
+                             --id
+  examples:
+  - summary: Ajoutez Azure Active Directory utilisateur de l’autorisation déléguée au graphique. lecture (se connecter et lire le profil utilisateur).
+    syntax: az ad app permission add --id eeba0b46-78e5-4a1a-a1aa-cafe6c123456 --api 00000002-0000-0000-c000-000000000000 --api-permissions 311a71cc-e848-46a1-bdf8-97ff7156d8e6=Scope
+  - summary: Ajoutez Azure Active Directory application d’autorisation d’application Graph. ReadWrite. All (lire et écrire toutes les applications).
+    syntax: az ad app permission add --id eeba0b46-78e5-4a1a-a1aa-cafe6c123456 --api 00000002-0000-0000-c000-000000000000 --api-permissions 1cda74f2-2616-4834-b122-5cb1b07f8a59=Role
+  requiredParameters:
+  - isRequired: true
+    name: --api
+    summary: Spécifiez `RequiredResourceAccess.resourceAppId` -l’identificateur unique de la ressource à laquelle l’application doit accéder. Cette valeur doit être égale à l'appId déclaré pour l'application de ressource cible.
+    description: ''
+  - isRequired: true
+    name: --api-permissions
+    summary: Spécifiez `ResourceAccess.id` -l’identificateur unique de l’une des instances de OAuth2Permission ou APPROLE que l’application de ressource expose. Liste séparée par des espaces de `<resource-access-id>=<type>` .
+    description: ''
+  - isRequired: true
+    name: --id
+    summary: URI de l’identificateur, ID de l’application ou ID de l’objet.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_app_permission_admin_consent
+  name: az ad app permission admin-consent
+  summary: Accordez à l’application & des autorisations déléguées par le biais de l’administrateur.
+  description: Vous devez vous connecter en tant qu’administrateur d’annuaire.
+  syntax: az ad app permission admin-consent --id
+  examples:
+  - summary: Accordez à l’application & des autorisations déléguées par le biais de l’administrateur. généré automatiquement
+    syntax: az ad app permission admin-consent --id 00000000-0000-0000-0000-000000000000
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: URI de l’identificateur, ID de l’application ou ID de l’objet.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_app_permission_delete
+  name: az ad app permission delete
+  summary: Supprimer une autorisation d’API.
+  description: ''
+  syntax: >-
+    az ad app permission delete --api
+                                --id
+                                [--api-permissions]
+  examples:
+  - summary: Supprimez Azure Active Directory autorisations du graphique.
+    syntax: az ad app permission delete --id eeba0b46-78e5-4a1a-a1aa-cafe6c123456 --api 00000002-0000-0000-c000-000000000000
+  - summary: Supprimez Azure Active Directory utilisateur de l’autorisation déléguée du graphique. lecture (se connecter et lire le profil utilisateur).
+    syntax: az ad app permission delete --id eeba0b46-78e5-4a1a-a1aa-cafe6c123456 --api 00000002-0000-0000-c000-000000000000 --api-permissions 311a71cc-e848-46a1-bdf8-97ff7156d8e6
+  requiredParameters:
+  - isRequired: true
+    name: --api
+    summary: Spécifiez `RequiredResourceAccess.resourceAppId` -l’identificateur unique de la ressource à laquelle l’application doit accéder. Cette valeur doit être égale à l'appId déclaré pour l'application de ressource cible.
+    description: ''
+  - isRequired: true
+    name: --id
+    summary: URI de l’identificateur, ID de l’application ou ID de l’objet.
+    description: ''
+  optionalParameters:
+  - name: --api-permissions
+    summary: Spécifiez `ResourceAccess.id` -l’identificateur unique de l’une des instances de OAuth2Permission ou APPROLE que l’application de ressource expose. Liste séparée par des espaces de `<resource-access-id>` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_app_permission_grant
+  name: az ad app permission grant
+  summary: Accordez à l’application des autorisations déléguées à l’API.
+  description: >-
+    Un principal de service doit exister pour l’application lors de l’exécution de cette commande. Pour créer un principal de service correspondant, utilisez `az ad sp create --id {appId}` .
+
+    Pour les autorisations d’application, veuillez utiliser « AD application permission admin-consentement ».
+  syntax: >-
+    az ad app permission grant --api
+                               --id
+                               [--consent-type {AllPrincipals, Principal}]
+                               [--expires]
+                               [--principal-id]
+                               [--scope]
+  examples:
+  - summary: Accorder à une application native des autorisations pour accéder à une API existante avec une TTL de 2 ans
+    syntax: az ad app permission grant --id e042ec79-34cd-498f-9d9f-1234234 --api a0322f79-57df-498f-9d9f-12678 --expires 2
+  requiredParameters:
+  - isRequired: true
+    name: --api
+    summary: Spécifiez `RequiredResourceAccess.resourceAppId` -l’identificateur unique de la ressource à laquelle l’application doit accéder. Cette valeur doit être égale à l'appId déclaré pour l'application de ressource cible.
+    description: ''
+  - isRequired: true
+    name: --id
+    summary: URI de l’identificateur, ID de l’application ou ID de l’objet.
+    description: ''
+  optionalParameters:
+  - name: --consent-type
+    defaultValue: AllPrincipals
+    parameterValueGroup: AllPrincipals, Principal
+    summary: Indique si le consentement a été fourni par l’administrateur (pour le compte de l’organisation) ou par un individu.
+    description: ''
+  - name: --expires
+    defaultValue: "1"
+    summary: Date d’expiration des autorisations en années. par exemple, 1, 2 ou « jamais ».
+    description: ''
+  - name: --principal-id
+    summary: Si--type de consentement est « principal », cet argument spécifie l’objet de l’utilisateur qui a donné son consentement et s’applique uniquement à cet utilisateur.
+    description: ''
+  - name: --scope
+    defaultValue: user_impersonation
+    summary: Spécifie la valeur de la revendication d’étendue que l’application de ressource doit attendre dans le jeton d’accès OAuth 2,0, par exemple User. Read.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_app_permission_list
+  name: az ad app permission list
+  summary: Répertorier les autorisations d’API demandées par l’application.
+  description: ''
+  syntax: >-
+    az ad app permission list --id
+                              [--query-examples]
+  examples:
+  - summary: Répertorier les autorisations OAuth2 pour une application AAD existante
+    syntax: az ad app permission list --id e042ec79-34cd-498f-9d9f-1234234
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: URI d’identificateur, ID d’application ou ID d’objet de l’application associée.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_app_permission_list_grants
+  name: az ad app permission list-grants
+  summary: Liste des octrois d’autorisation Oauth2.
+  description: ''
+  syntax: >-
+    az ad app permission list-grants [--filter]
+                                     [--id]
+                                     [--show-resource-name {false, true}]
+  examples:
+  - summary: répertorier les autorisations oauth2 accordées au principal du service
+    syntax: az ad app permission list-grants --id e042ec79-34cd-498f-9d9f-1234234123456
+  optionalParameters:
+  - name: --filter
+    summary: Filtre OData, par exemple--Filter « DisplayName EQ’test » et servicePrincipalType EQ’application'.
+    description: ''
+  - name: --id
+    summary: URI de l’identificateur, ID de l’application ou ID de l’objet.
+    description: ''
+  - name: --show-resource-name -r
+    parameterValueGroup: false, true
+    summary: Afficher le nom complet de la ressource.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+commands:
+- az_ad_app_permission_add
+- az_ad_app_permission_admin_consent
+- az_ad_app_permission_delete
+- az_ad_app_permission_grant
+- az_ad_app_permission_list
+- az_ad_app_permission_list_grants
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/20/2021
+  description: Gérer les autorisations OAuth2 d’une application.
+  ms.openlocfilehash: a4462626a79aa26da9996ceaa347b3ec5484df17
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102968192"
