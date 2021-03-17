@@ -1,0 +1,355 @@
+### YamlMime:AzureCLIGroup
+uid: ext_blueprint_az_blueprint_assignment
+name: az blueprint assignment
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Blueprint** pour Azure CLI et requiert la version 2.3.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Blueprint Assignment** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer l’affectation des plans.
+description: ''
+directCommands:
+- uid: ext_blueprint_az_blueprint_assignment_create
+  name: az blueprint assignment create
+  summary: Créer une affectation de plan.
+  description: ''
+  syntax: >-
+    az blueprint assignment create --name
+                                   [--blueprint-version]
+                                   [--description]
+                                   [--display-name]
+                                   [--identity-type {None, SystemAssigned, UserAssigned}]
+                                   [--location]
+                                   [--locks-excluded-principals]
+                                   [--locks-mode {AllResourcesDoNotDelete, AllResourcesReadOnly, None}]
+                                   [--management-group]
+                                   [--parameters]
+                                   [--resource-group-value]
+                                   [--subscription]
+                                   [--user-assigned-identity]
+  examples:
+  - summary: Affectation avec une identité gérée affectée par le système
+    syntax: >-
+      az blueprint assignment create --subscription MySubscription --name \
+
+      MyBlueprintAssignment --location eastus --identity-type SystemAssigned \
+
+      --description "Enforce pre-defined MyBlueprint to this subscription." \
+
+      --blueprint-version "/providers/Microsoft.Management/managementGroups/ContosoOnlineGroup/provid \
+
+      ers/Microsoft.Blueprint/blueprints/MyBlueprint/versions/v2" \
+
+      --resource-group-value artifact_name=rg-art-1 name=rg1 location=westus \
+
+      --resource-group-value artifact_name=rg-art-2 name=rg2 location=eastus \
+
+      --parameters "path/to/parameter/file" \
+  - summary: Affectation avec une identité gérée affectée par l’utilisateur
+    syntax: >-
+      az blueprint assignment create --subscription MySubscription --name \
+
+      MyBlueprintAssignment --location eastus --identity-type UserAssigned \
+
+      --user-assigned-identity "/subscriptions/00000000-0000-0000-0000-000000000000 \
+
+      /resourcegroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myIdentity"\
+
+      --description "Enforce pre-defined MyBlueprint to this subscription." \
+
+      --blueprint-version "/providers/Microsoft.Management/managementGroups/ContosoOnlineGroup \
+
+      /providers/Microsoft.Blueprint/blueprints/MyBlueprint/versions/v2" \
+
+      --resource-group-value artifact_name=rg-art-1 name=rg1 location=eastus \
+
+      --parameters "path/to/parameter/file" \
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’affectation de Blueprint.
+    description: ''
+  optionalParameters:
+  - name: --blueprint-version
+    summary: ID de ressource de la version publiée d’une définition de plan.
+    description: ''
+  - name: --description
+    summary: Description sur plusieurs lignes de cette ressource.
+    description: ''
+  - name: --display-name
+    summary: Une chaîne à une seule doublure explique cette ressource.
+    description: ''
+  - name: --identity-type
+    defaultValue: SystemAssigned
+    parameterValueGroup: None, SystemAssigned, UserAssigned
+    summary: Type de l’identité managée.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --locks-excluded-principals
+    summary: Liste des principaux AAD exclus des verrous de plan. Jusqu’à 5 principaux sont autorisés.
+    description: ''
+  - name: --locks-mode
+    parameterValueGroup: AllResourcesDoNotDelete, AllResourcesReadOnly, None
+    summary: Mode de verrouillage.
+    description: ''
+  - name: --management-group -m
+    summary: Utilisez le groupe d’administration pour l’étendue cible de l’affectation de Blueprint. Elle est réservée pour un usage futur. Utilisez à la place--Subscription.
+    description: ''
+  - name: --parameters -p
+    summary: Valeurs de paramètre d’assignation Blueprint. Il peut s’agir d’une chaîne JSON ou d’un chemin d’accès au fichier JSON.
+    description: ''
+  - name: --resource-group-value
+    summary: Paires clé = valeur pour un groupe de ressources. Les clés incluent « artifact_name » (obligatoire), « Name », « location ».
+    description: ''
+  - name: --subscription -s
+    summary: Utilisez l’abonnement pour l’étendue cible de l’affectation de Blueprint. La valeur par défaut de abonnement est utilisée si l’option n’est pas spécifiée.
+    description: ''
+  - name: --user-assigned-identity
+    summary: Identité gérée affectée par l’utilisateur et associée à la ressource.
+    description: ''
+- uid: ext_blueprint_az_blueprint_assignment_delete
+  name: az blueprint assignment delete
+  summary: Supprimer une affectation de plan.
+  description: ''
+  syntax: >-
+    az blueprint assignment delete --name
+                                   [--management-group]
+                                   [--subscription]
+                                   [--yes]
+  examples:
+  - summary: Supprimer une affectation
+    syntax: >-
+      az blueprint assignment delete --subscription MySubscription \
+
+      --name MyBlueprintAssignment
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’affectation de Blueprint.
+    description: ''
+  optionalParameters:
+  - name: --management-group -m
+    summary: Utilisez le groupe d’administration pour l’étendue cible de l’affectation de Blueprint. Elle est réservée pour un usage futur. Utilisez à la place--Subscription.
+    description: ''
+  - name: --subscription -s
+    summary: Utilisez l’abonnement pour l’étendue cible de l’affectation de Blueprint. La valeur par défaut de abonnement est utilisée si l’option n’est pas spécifiée.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_blueprint_az_blueprint_assignment_list
+  name: az blueprint assignment list
+  summary: Répertorier les affectations de plan au sein d’un abonnement.
+  description: ''
+  syntax: >-
+    az blueprint assignment list [--management-group]
+                                 [--subscription]
+  examples:
+  - summary: Liste des affectations
+    syntax: az blueprint assignment list --subscription MySubscription
+  optionalParameters:
+  - name: --management-group -m
+    summary: Utilisez le groupe d’administration pour l’étendue cible de l’affectation de Blueprint. Elle est réservée pour un usage futur. Utilisez à la place--Subscription.
+    description: ''
+  - name: --subscription -s
+    summary: Utilisez l’abonnement pour l’étendue cible de l’affectation de Blueprint. La valeur par défaut de abonnement est utilisée si l’option n’est pas spécifiée.
+    description: ''
+- uid: ext_blueprint_az_blueprint_assignment_show
+  name: az blueprint assignment show
+  summary: Obtenir une affectation de Blueprint.
+  description: ''
+  syntax: >-
+    az blueprint assignment show --name
+                                 [--management-group]
+                                 [--subscription]
+  examples:
+  - summary: Afficher une attribution
+    syntax: >-
+      az blueprint assignment show --subscription MySubscription \
+
+      --name MyBlueprintAssignment
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’affectation de Blueprint.
+    description: ''
+  optionalParameters:
+  - name: --management-group -m
+    summary: Utilisez le groupe d’administration pour l’étendue cible de l’affectation de Blueprint. Elle est réservée pour un usage futur. Utilisez à la place--Subscription.
+    description: ''
+  - name: --subscription -s
+    summary: Utilisez l’abonnement pour l’étendue cible de l’affectation de Blueprint. La valeur par défaut de abonnement est utilisée si l’option n’est pas spécifiée.
+    description: ''
+- uid: ext_blueprint_az_blueprint_assignment_update
+  name: az blueprint assignment update
+  summary: Mettre à jour une affectation de Blueprint.
+  description: ''
+  syntax: >-
+    az blueprint assignment update --name
+                                   [--blueprint-version]
+                                   [--description]
+                                   [--display-name]
+                                   [--identity-type {None, SystemAssigned, UserAssigned}]
+                                   [--location]
+                                   [--locks-excluded-principals]
+                                   [--locks-mode {AllResourcesDoNotDelete, AllResourcesReadOnly, None}]
+                                   [--management-group]
+                                   [--parameters]
+                                   [--resource-group-value]
+                                   [--subscription]
+                                   [--user-assigned-identity]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’affectation de Blueprint.
+    description: ''
+  optionalParameters:
+  - name: --blueprint-version
+    summary: ID de ressource de la version publiée d’une définition de plan.
+    description: ''
+  - name: --description
+    summary: Description sur plusieurs lignes de cette ressource.
+    description: ''
+  - name: --display-name
+    summary: Une chaîne à une seule doublure explique cette ressource.
+    description: ''
+  - name: --identity-type
+    parameterValueGroup: None, SystemAssigned, UserAssigned
+    summary: Type de l’identité managée.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --locks-excluded-principals
+    summary: Liste des principaux AAD exclus des verrous de plan. Jusqu’à 5 principaux sont autorisés.
+    description: ''
+  - name: --locks-mode
+    parameterValueGroup: AllResourcesDoNotDelete, AllResourcesReadOnly, None
+    summary: Mode de verrouillage.
+    description: ''
+  - name: --management-group -m
+    summary: Utilisez le groupe d’administration pour l’étendue cible de l’affectation de Blueprint. Elle est réservée pour un usage futur. Utilisez à la place--Subscription.
+    description: ''
+  - name: --parameters -p
+    summary: Valeurs de paramètre d’assignation Blueprint. Il peut s’agir d’une chaîne JSON ou d’un chemin d’accès au fichier JSON.
+    description: ''
+  - name: --resource-group-value
+    summary: Paires clé = valeur pour un groupe de ressources. Les clés incluent « artifact_name » (obligatoire), « Name », « location ».
+    description: ''
+  - name: --subscription -s
+    summary: Utilisez l’abonnement pour l’étendue cible de l’affectation de Blueprint. La valeur par défaut de abonnement est utilisée si l’option n’est pas spécifiée.
+    description: ''
+  - name: --user-assigned-identity
+    summary: Identité gérée affectée par l’utilisateur et associée à la ressource.
+    description: ''
+- uid: ext_blueprint_az_blueprint_assignment_wait
+  name: az blueprint assignment wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de l’affectation de Blueprint soit remplie.
+  description: ''
+  syntax: >-
+    az blueprint assignment wait --name
+                                 [--created]
+                                 [--custom]
+                                 [--deleted]
+                                 [--exists]
+                                 [--interval]
+                                 [--management-group]
+                                 [--subscription]
+                                 [--timeout]
+                                 [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que l’attribution de Blueprint soit correctement approvisionnée.
+    syntax: az blueprint assignment wait --subscription MySubscription \ --name MyBlueprintAssignment --created
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’affectation de Blueprint.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --management-group -m
+    summary: Utilisez le groupe d’administration pour l’étendue cible de l’affectation de Blueprint. Elle est réservée pour un usage futur. Utilisez à la place--Subscription.
+    description: ''
+  - name: --subscription -s
+    summary: Utilisez l’abonnement pour l’étendue cible de l’affectation de Blueprint. La valeur par défaut de abonnement est utilisée si l’option n’est pas spécifiée.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+- uid: ext_blueprint_az_blueprint_assignment_who
+  name: az blueprint assignment who
+  summary: Obtient le nom du principal de service du plan.
+  description: ''
+  syntax: >-
+    az blueprint assignment who --name
+                                [--management-group]
+                                [--subscription]
+  examples:
+  - summary: Obtient l’objectId SPN
+    syntax: >-
+      az blueprint assignment who --subscription MySubscription \
+
+      --name MyBlueprintAssignment
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’affectation de Blueprint.
+    description: ''
+  optionalParameters:
+  - name: --management-group -m
+    summary: Utilisez le groupe d’administration pour l’étendue cible de l’affectation de Blueprint. Elle est réservée pour un usage futur. Utilisez à la place--Subscription.
+    description: ''
+  - name: --subscription -s
+    summary: Utilisez l’abonnement pour l’étendue cible de l’affectation de Blueprint. La valeur par défaut de abonnement est utilisée si l’option n’est pas spécifiée.
+    description: ''
+commands:
+- ext_blueprint_az_blueprint_assignment_create
+- ext_blueprint_az_blueprint_assignment_delete
+- ext_blueprint_az_blueprint_assignment_list
+- ext_blueprint_az_blueprint_assignment_show
+- ext_blueprint_az_blueprint_assignment_update
+- ext_blueprint_az_blueprint_assignment_wait
+- ext_blueprint_az_blueprint_assignment_who
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer l’affectation des plans.
+  ms.openlocfilehash: 138e1acbf06613c3777cd81c5c1382e7e0aa85fc
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102837961"

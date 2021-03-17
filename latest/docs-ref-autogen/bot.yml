@@ -1,0 +1,435 @@
+### YamlMime:AzureCLIGroup
+uid: az_bot
+name: az bot
+summary: Gérez Microsoft Azure Service bot.
+description: ''
+directCommands:
+- uid: az_bot_create
+  name: az bot create
+  summary: Créez un robot du kit de développement logiciel (SDK) v4.
+  description: Créez un robot du kit de développement logiciel (SDK) v4.
+  syntax: >-
+    az bot create --appid
+                  --kind {registration, webapp}
+                  --name
+                  --resource-group
+                  [--cmk]
+                  [--description]
+                  [--display-name]
+                  [--echo {false, true}]
+                  [--endpoint]
+                  [--lang {Csharp, Javascript}]
+                  [--location]
+                  [--password]
+                  [--sku {F0, S1}]
+                  [--subscription]
+                  [--tags]
+  requiredParameters:
+  - isRequired: true
+    name: --appid
+    summary: ID du compte Microsoft (ID MSA) à utiliser avec le bot.
+    description: ''
+  - isRequired: true
+    name: --kind -k
+    parameterValueGroup: registration, webapp
+    summary: Type du bot.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: 'Nom de ressource du bot. Le nom du bot doit comporter entre 4 à 42 caractères. Il peut contenir uniquement les caractères suivants : a-z, A-Z, 0-9 et _.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --cmk --cmk-key-vault-key-url
+    summary: URL de clé du coffre de clés pour activer le chiffrement des clés gérées par le client.
+    description: ''
+  - name: --description -d
+    summary: Description du bot.
+    description: ''
+  - name: --display-name
+    summary: Nom complet du bot. S’il n’est pas spécifié, le nom du robot est utilisé par défaut.
+    description: ''
+  - name: --echo
+    parameterValueGroup: false, true
+    summary: Déployez un modèle Echo bot sur le robot d’application Web V4 nouvellement créé.
+    description: ''
+  - name: --endpoint -e
+    summary: Point de terminaison de messagerie du bot.
+    description: ''
+  - name: --lang
+    parameterValueGroup: Csharp, Javascript
+    summary: Langue à utiliser pour créer le bot.
+    description: ''
+  - name: --location -l
+    defaultValue: Central US
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --password -p
+    summary: Mot de passe du compte Microsoft (MSA) pour le bot. Permet d’autoriser les messages envoyés à partir du bot. Obligatoire lorsque « --Kind » est « WebApp ».
+    description: ''
+  - name: --sku
+    defaultValue: F0
+    parameterValueGroup: F0, S1
+    summary: Référence SKU du bot.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+- uid: az_bot_delete
+  name: az bot delete
+  summary: Supprimer un robot existant.
+  description: ''
+  syntax: >-
+    az bot delete --name
+                  --resource-group
+                  [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: 'Nom de ressource du bot. Le nom du bot doit comporter entre 4 à 42 caractères. Il peut contenir uniquement les caractères suivants : a-z, A-Z, 0-9 et _.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+- uid: az_bot_download
+  name: az bot download
+  summary: Téléchargez un robot existant.
+  description: Le code source est téléchargé à partir de l’application Web associée au bot. Vous pouvez ensuite y apporter des modifications et la publier à nouveau dans votre application.
+  syntax: >-
+    az bot download --name
+                    --resource-group
+                    [--save-path]
+                    [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: 'Nom de ressource du bot. Le nom du bot doit comporter entre 4 à 42 caractères. Il peut contenir uniquement les caractères suivants : a-z, A-Z, 0-9 et _.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --save-path
+    summary: Répertoire dans lequel Télécharger le code de bot.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+- uid: az_bot_prepare_deploy
+  name: az bot prepare-deploy
+  summary: Ajoutez des scripts/fichiers de configuration pour la publication avec `az webapp deployment` .
+  description: Ajoutez des scripts ou des fichiers de configuration à la racine de votre répertoire de code source local pour pouvoir publier à l’aide de `az webapp deployment` . Lorsque votre code est déployé sur votre App Service, les fichiers de configuration ou les scripts générés doivent apparaître dans D :homesitewwwroot sur la page Web Kudu de App Service.
+  syntax: >-
+    az bot prepare-deploy --lang {Csharp, Javascript, Typescript}
+                          [--code-dir]
+                          [--proj-file-path]
+                          [--subscription]
+  examples:
+  - summary: Préparez-vous à utiliser `az webapp` pour déployer un bot JavaScript en extrayant un fichier Node.js web.config IIS.
+    syntax: az bot prepare-deploy --lang Javascript --code-dir "MyBotCode"
+  - summary: Préparez-vous à utiliser `az webapp` pour déployer un bot CSharp en créant un fichier. Deployment.
+    syntax: az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "MyBot.csproj"
+  requiredParameters:
+  - isRequired: true
+    name: --lang
+    parameterValueGroup: Csharp, Javascript, Typescript
+    summary: Langage ou Runtime du bot.
+    description: ''
+  optionalParameters:
+  - name: --code-dir
+    summary: Répertoire dans lequel placer les fichiers de déploiement générés. La valeur par défaut est le répertoire actif à partir duquel la commande est appelée.
+    description: ''
+  - name: --proj-file-path
+    summary: Chemin d’accès au fichier. csproj relatif à--code-dir.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+- uid: az_bot_prepare_publish
+  name: az bot prepare-publish
+  summary: (Mode maintenance) Ajoutez des scripts à votre répertoire de code source local pour pouvoir les publier à l’aide `az bot publish` des robots du SDK v3.
+  description: ''
+  syntax: >-
+    az bot prepare-publish --name
+                           --proj-file-path
+                           --resource-group
+                           --sln-name
+                           [--code-dir]
+                           [--subscription]
+                           [--version {v3, v4}]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: 'Nom de ressource du bot. Le nom du bot doit comporter entre 4 à 42 caractères. Il peut contenir uniquement les caractères suivants : a-z, A-Z, 0-9 et _.'
+    description: ''
+  - isRequired: true
+    name: --proj-file-path
+    summary: Chemin d’accès au nom de fichier du projet de démarrage. (Par exemple, « ./EchoBotWithCounter.csproj ») requis uniquement pour C#.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --sln-name
+    summary: Nom du fichier de la solution de démarrage. Obligatoire uniquement pour C#.
+    description: ''
+  optionalParameters:
+  - name: --code-dir
+    summary: Répertoire dans lequel télécharger les scripts de déploiement.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --version -v
+    defaultValue: v3
+    parameterValueGroup: v3, v4
+    summary: Version du kit de développement logiciel (SDK) Microsoft Bot Builder à utiliser dans le modèle bot qui sera créé.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+- uid: az_bot_publish
+  name: az bot publish
+  summary: Publiez sur le service APP service associé à un bot.
+  description: Publiez votre code source sur le service d’application associé à votre bot. Cette valeur est déconseillée pour les robots V4 et n’est plus recommandée pour la publication de robots v4 dans Azure. Au lieu de cela `az bot prepare-deploy` , utilisez et `az webapp deployment` pour déployer votre robot v4. Pour plus d’informations, consultez <a href="https://aka.ms/deploy-your-bot">https://aka.ms/deploy-your-bot</a>.
+  syntax: >-
+    az bot publish --name
+                   --resource-group
+                   [--code-dir]
+                   [--keep-node-modules {false, true}]
+                   [--proj-file-path]
+                   [--subscription]
+                   [--timeout]
+                   [--version]
+  examples:
+  - summary: Publier du code source sur votre Azure App, à partir du dossier de code bot
+    syntax: az bot publish -n botName -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: 'Nom de ressource du bot. Le nom du bot doit comporter entre 4 à 42 caractères. Il peut contenir uniquement les caractères suivants : a-z, A-Z, 0-9 et _.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --code-dir
+    summary: Répertoire depuis lequel charger le code du bot.
+    description: ''
+  - name: --keep-node-modules
+    parameterValueGroup: false, true
+    summary: Conservez node_modules dossier et ne pas `npm install` l’exécuter sur le App service. Cela peut rapidement accélérer les commandes de publication des robots Node.js SDK.
+    description: ''
+  - name: --proj-file-path
+    summary: Chemin d’accès au nom de fichier du projet de démarrage. (Par exemple, "./EchoBotWithCounter.csproj").
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout -t
+    summary: Délai d’attente configurable, en secondes, pour vérifier l’état du déploiement.
+    description: ''
+  - name: --version -v
+    defaultValue: v4
+    summary: Version du kit de développement logiciel (SDK) Microsoft Bot Builder du bot.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+- uid: az_bot_show
+  name: az bot show
+  summary: Procurez-vous un robot existant.
+  description: Obtenir des informations sur un bot existant. Pour récupérer les informations nécessaires pour se connecter au bot, utilisez l’indicateur--msbot avec la commande.
+  syntax: >-
+    az bot show --name
+                --resource-group
+                [--msbot {false, true}]
+                [--query-examples]
+                [--subscription]
+  examples:
+  - summary: Procurez-vous les informations nécessaires pour vous connecter à un robot existant sur Azure
+    syntax: az bot show -n botName -g MyResourceGroup --msbot
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: 'Nom de ressource du bot. Le nom du bot doit comporter entre 4 à 42 caractères. Il peut contenir uniquement les caractères suivants : a-z, A-Z, 0-9 et _.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --msbot
+    parameterValueGroup: false, true
+    summary: Affichez la sortie au format JSON compatible avec un fichier. Bot.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+- uid: az_bot_update
+  name: az bot update
+  summary: Mettre à jour un bot existant.
+  description: ''
+  syntax: >-
+    az bot update --name
+                  --resource-group
+                  [--ai-api-key]
+                  [--ai-app-id]
+                  [--ai-key]
+                  [--cmk]
+                  [--cmk-off]
+                  [--description]
+                  [--display-name]
+                  [--endpoint]
+                  [--icon-url]
+                  [--sku {F0, S1}]
+                  [--subscription]
+                  [--tags]
+  examples:
+  - summary: Mettre à jour la description sur un bot
+    syntax: az bot update -n botName -g MyResourceGroup --endpoint "https://bing.com/api/messages" --display-name "Hello World"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: 'Nom de ressource du bot. Le nom du bot doit comporter entre 4 à 42 caractères. Il peut contenir uniquement les caractères suivants : a-z, A-Z, 0-9 et _.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --ai-api-key --app-insights-api-key
+    summary: Clé d’API Azure Application Insights utilisée pour lire les données du robot Analytics. Fournissez une clé si vous souhaitez afficher des analytiques sur votre robot dans le panneau analytique.
+    description: ''
+  - name: --ai-app-id --app-insights-app-id
+    summary: ID d’application Azure Application Insights utilisé pour lire les données du robot Analytics. Indiquez un ID si vous souhaitez afficher des analytiques sur votre robot dans le panneau analytique.
+    description: ''
+  - name: --ai-key --app-insights-key
+    summary: Clé Azure Application Insights utilisée pour écrire des données d’analyse du robot. Fournissez une clé si vous souhaitez recevoir le robot Analytics.
+    description: ''
+  - name: --cmk --cmk-key-vault-key-url
+    summary: URL de clé du coffre de clés pour activer le chiffrement des clés gérées par le client.
+    description: ''
+  - name: --cmk-off
+    summary: Définissez le chiffrement sur Microsoft-Managed clés.
+    description: ''
+  - name: --description
+    summary: Nouvelle description du robot.
+    description: ''
+  - name: --display-name -d
+    summary: Nouveau nom complet du bot.
+    description: ''
+  - name: --endpoint -e
+    summary: Nouveau point de terminaison du bot. Doit commencer par « https:// ».
+    description: ''
+  - name: --icon-url
+    summary: URL de l’icône pour bot avatar. Accepte les fichiers PNG avec une limite de taille de fichier de 30 Ko.
+    description: ''
+  - name: --sku
+    parameterValueGroup: F0, S1
+    summary: Référence SKU du bot.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/botservice/_help.py
+commands:
+- az_bot_authsetting
+- az_bot_authsetting_create
+- az_bot_authsetting_delete
+- az_bot_authsetting_list
+- az_bot_authsetting_list_providers
+- az_bot_authsetting_show
+- az_bot_create
+- az_bot_delete
+- az_bot_directline
+- az_bot_directline_create
+- az_bot_directline_delete
+- az_bot_directline_show
+- az_bot_directline_update
+- az_bot_download
+- az_bot_email
+- az_bot_email_create
+- az_bot_email_delete
+- az_bot_email_show
+- az_bot_facebook
+- az_bot_facebook_create
+- az_bot_facebook_delete
+- az_bot_facebook_show
+- az_bot_kik
+- az_bot_kik_create
+- az_bot_kik_delete
+- az_bot_kik_show
+- az_bot_msteams
+- az_bot_msteams_create
+- az_bot_msteams_delete
+- az_bot_msteams_show
+- az_bot_prepare_deploy
+- az_bot_prepare_publish
+- az_bot_publish
+- az_bot_show
+- az_bot_skype
+- az_bot_skype_create
+- az_bot_skype_delete
+- az_bot_skype_show
+- az_bot_slack
+- az_bot_slack_create
+- az_bot_slack_delete
+- az_bot_slack_show
+- az_bot_sms
+- az_bot_sms_create
+- az_bot_sms_delete
+- az_bot_sms_show
+- az_bot_telegram
+- az_bot_telegram_create
+- az_bot_telegram_delete
+- az_bot_telegram_show
+- az_bot_update
+- az_bot_webchat
+- az_bot_webchat_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/11/2019
+  description: Gérez Microsoft Azure Service bot.
+  ms.openlocfilehash: 2589dd924025143e4a3f9907a14d2df2edeb86a0
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102849433"

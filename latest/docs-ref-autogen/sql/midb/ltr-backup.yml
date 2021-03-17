@@ -1,0 +1,266 @@
+### YamlMime:AzureCLIGroup
+uid: az_sql_midb_ltr_backup
+name: az sql midb ltr-backup
+summary: Gérer les sauvegardes de rétention à long terme de base de données SQL Managed Instance.
+description: ''
+directCommands:
+- uid: az_sql_midb_ltr_backup_delete
+  name: az sql midb ltr-backup delete
+  summary: Supprimer une sauvegarde de rétention à long terme.
+  description: ''
+  syntax: >-
+    az sql midb ltr-backup delete [--backup-id]
+                                  [--database]
+                                  [--location]
+                                  [--managed-instance]
+                                  [--name]
+                                  [--subscription]
+                                  [--yes]
+  examples:
+  - summary: Supprimer la sauvegarde de rétention à long terme d’une base de données gérée.
+    syntax: az sql midb ltr-backup delete -l southeastasia --mi myinstance -d mymanageddb --name "3214b3fb-fba9-43e7-96a3-09e35ffcb336;132292152080000000"
+  - summary: Supprimer la sauvegarde de rétention à long terme d’une base de données gérée.
+    syntax: az sql midb ltr-backup delete --backup-id '/subscriptions/6caa113c-794c-42f8-ab9d-878d8aa104dc/resourceGroups/mygroup/providers/Microsoft.Sql/locations/southeastasia/longTermRetentionManagedInstances/myinstance/longTermRetentionDatabases/mymanageddb/longTermRetentionManagedInstanceBackups/3214b3fb-fba9-43e7-96a3-09e35ffcb336;132292152080000000'
+  optionalParameters:
+  - name: --backup-id --id
+    summary: ID de ressource des sauvegardes. Utilisez « AZ SQL MidB LTR-sauvegarde Show » ou « AZ SQL MidB LTR-Backup List » pour l’ID de sauvegarde. S’il est fourni, les autres arguments ne sont pas requis.
+    description: ''
+  - name: --database -d
+    summary: Nom de la base de données managée SQL Azure.
+    description: ''
+  - name: --location -l
+    summary: Emplacement de la ou des sauvegardes souhaitées.
+    description: ''
+  - name: --managed-instance --mi
+    summary: Nom de l’instance Azure SQL Managed instance.
+    description: ''
+  - name: --name -n
+    summary: Nom de la sauvegarde LTR. Utilisez « AZ SQL MidB LTR-Backup Show » ou « AZ SQL MidB LTR-Backup List » pour le nom de la sauvegarde.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_midb_ltr_backup_list
+  name: az sql midb ltr-backup list
+  summary: Répertorie les sauvegardes de rétention à long terme pour un emplacement, une instance ou une base de données.
+  description: ''
+  syntax: >-
+    az sql midb ltr-backup list --location
+                                [--database]
+                                [--database-state]
+                                [--latest]
+                                [--managed-instance]
+                                [--query-examples]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: Répertorier les sauvegardes de rétention à long terme pour une base de données gérée.
+    syntax: az sql midb ltr-backup list -l southeastasia --mi myinstance -d mymanageddb
+  - summary: Répertorier les sauvegardes de rétention à long terme pour une instance gérée (répertorier uniquement les dernières sauvegardes LTR, qui appartiennent à des bases de données actives).
+    syntax: az sql midb ltr-backup list -l southeastasia --mi myinstance --database-state Live --only-latest-per-database
+  - summary: Répertorier les sauvegardes de rétention à long terme pour une instance gérée (avec argument de groupe de ressources).
+    syntax: az sql midb ltr-backup list -l southeastasia -g mygroup --mi myinstance
+  - summary: Répertorier les sauvegardes de rétention à long terme pour un emplacement (répertorier uniquement les dernières sauvegardes LTR, qui appartiennent à des bases de données actives).
+    syntax: az sql midb ltr-backup list -l southeastasia --database-state Live --only-latest-per-database
+  - summary: Répertorier les sauvegardes de rétention à long terme pour un emplacement (avec l’argument groupe de ressources).
+    syntax: az sql midb ltr-backup list -l southeastasia -g mygroup
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: Emplacement de la ou des sauvegardes souhaitées.
+    description: ''
+  optionalParameters:
+  - name: --database -d
+    summary: Nom de la base de données managée SQL Azure. S’il est spécifié (avec le nom de l’instance), récupère toutes les sauvegardes demandées sous cette base de données.
+    description: ''
+  - name: --database-state --state
+    summary: « All », « Live » ou « Deleted ». Récupère uniquement les sauvegardes des bases de données de l’état spécifié. Si aucun État n’est fournis, la valeur par défaut est « All ».
+    description: ''
+  - name: --latest --only-latest-per-database
+    summary: Si la valeur est true, retourne uniquement la dernière sauvegarde pour chaque base de données.
+    description: ''
+  - name: --managed-instance --mi
+    summary: Nom de l’instance Azure SQL Managed instance. S’il est spécifié, récupère toutes les sauvegardes demandées sous cette instance gérée.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_midb_ltr_backup_restore
+  name: az sql midb ltr-backup restore
+  summary: Restaurez une sauvegarde de rétention à long terme dans une nouvelle base de données.
+  description: ''
+  syntax: >-
+    az sql midb ltr-backup restore --backup-id
+                                   --dest-database
+                                   --dest-mi
+                                   --dest-resource-group
+                                   [--no-wait]
+                                   [--subscription]
+  examples:
+  - summary: Restaurez une base de données managée à l’aide de la sauvegarde LTR.
+    syntax: >-
+      az sql midb ltr-backup restore \
+          --dest-database targetmidb --dest-mi myinstance --dest-resource-group mygroup \
+          --backup-id "/subscriptions/6caa113c-794c-42f8-ab9d-878d8aa104dc/resourceGroups/mygroup/providers/Microsoft.Sql/locations/southeastasia/longTermRetentionManagedInstances/myinstance/longTermRetentionDatabases/sourcemidb/longTermRetentionManagedInstanceBackups/3214b3fb-fba9-43e7-96a3-09e35ffcb336;132292152080000000"
+  requiredParameters:
+  - isRequired: true
+    name: --backup-id --id
+    summary: ID de ressource de la sauvegarde de rétention à long terme à restaurer. Utilisez « AZ SQL MidB LTR-sauvegarde Show » ou « AZ SQL MidB LTR-Backup List » pour l’ID de sauvegarde.
+    description: ''
+  - isRequired: true
+    name: --dest-database
+    summary: Nom de la base de données gérée qui sera créée comme destination de la restauration.
+    description: ''
+  - isRequired: true
+    name: --dest-mi
+    summary: Nom de l’instance gérée dans laquelle restaurer la base de données managée.
+    description: ''
+  - isRequired: true
+    name: --dest-resource-group
+    summary: Nom du groupe de ressources de l’instance gérée dans laquelle restaurer la base de données managée.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_midb_ltr_backup_show
+  name: az sql midb ltr-backup show
+  summary: Obtenir une sauvegarde de rétention à long terme pour une base de données gérée.
+  description: ''
+  syntax: >-
+    az sql midb ltr-backup show [--backup-id]
+                                [--database]
+                                [--location]
+                                [--managed-instance]
+                                [--name]
+                                [--query-examples]
+                                [--subscription]
+  examples:
+  - summary: Affiche la sauvegarde de rétention à long terme pour une base de données gérée.
+    syntax: az sql midb ltr-backup show --backup-id '/subscriptions/6caa113c-794c-42f8-ab9d-878d8aa104dc/resourceGroups/mygroup/providers/Microsoft.Sql/locations/southeastasia/longTermRetentionManagedInstances/myinstance/longTermRetentionDatabases/mymanageddb/longTermRetentionManagedInstanceBackups/3214b3fb-fba9-43e7-96a3-09e35ffcb336;132292152080000000'
+  optionalParameters:
+  - name: --backup-id --id
+    summary: ID de ressource des sauvegardes. Utilisez « AZ SQL MidB LTR-sauvegarde Show » ou « AZ SQL MidB LTR-Backup List » pour l’ID de sauvegarde. S’il est fourni, les autres arguments ne sont pas requis.
+    description: ''
+  - name: --database -d
+    summary: Nom de la base de données managée SQL Azure.
+    description: ''
+  - name: --location -l
+    summary: Emplacement de la ou des sauvegardes souhaitées.
+    description: ''
+  - name: --managed-instance --mi
+    summary: Nom de l’instance Azure SQL Managed instance.
+    description: ''
+  - name: --name -n
+    summary: Nom de la sauvegarde LTR. Utilisez « AZ SQL MidB LTR-Backup Show » ou « AZ SQL MidB LTR-Backup List » pour le nom de la sauvegarde.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_midb_ltr_backup_wait
+  name: az sql midb ltr-backup wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de la base de données managée soit remplie.
+  description: ''
+  syntax: >-
+    az sql midb ltr-backup wait --database
+                                --managed-instance
+                                --resource-group
+                                [--created]
+                                [--custom]
+                                [--deleted]
+                                [--exists]
+                                [--interval]
+                                [--subscription]
+                                [--timeout]
+                                [--updated]
+  requiredParameters:
+  - isRequired: true
+    name: --database -d
+    summary: Nom de la base de données managée SQL Azure.
+    description: ''
+  - isRequired: true
+    name: --managed-instance --mi
+    summary: Nom de l’instance Azure SQL Managed instance.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+commands:
+- az_sql_midb_ltr_backup_delete
+- az_sql_midb_ltr_backup_list
+- az_sql_midb_ltr_backup_restore
+- az_sql_midb_ltr_backup_show
+- az_sql_midb_ltr_backup_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/28/2021
+  description: Gérer les sauvegardes de rétention à long terme de base de données SQL Managed Instance.
+  ms.openlocfilehash: 571440f4805a8b7d183446874a80b42681debc67
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965418"

@@ -1,0 +1,124 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_watcher_flow_log
+name: az network watcher flow-log
+summary: Gérer la journalisation des flows du groupe de sécurité réseau.
+description: Pour plus d’informations sur la configuration de la visite des journaux de Flow <a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-cli">https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-cli</a> .
+directCommands:
+- uid: az_network_watcher_flow_log_configure
+  name: az network watcher flow-log configure
+  summary: Configurez la journalisation de flux sur un groupe de sécurité réseau.
+  description: ''
+  syntax: >-
+    az network watcher flow-log configure --nsg
+                                          [--enabled {false, true}]
+                                          [--format {JSON}]
+                                          [--log-version]
+                                          [--resource-group]
+                                          [--retention]
+                                          [--storage-account]
+                                          [--subscription]
+                                          [--traffic-analytics {false, true}]
+                                          [--workspace]
+  examples:
+  - summary: Activez les journaux de Flow NSG.
+    syntax: az network watcher flow-log configure -g MyResourceGroup --enabled true --nsg MyNsg --storage-account MyStorageAccount
+  - summary: Désactivez les journaux de Flow NSG.
+    syntax: az network watcher flow-log configure -g MyResourceGroup --enabled false --nsg MyNsg
+  requiredParameters:
+  - isRequired: true
+    name: --nsg
+    summary: Nom ou ID du groupe de sécurité réseau à cibler.
+    description: ''
+  optionalParameters:
+  - name: --enabled
+    defaultValue: "true"
+    parameterValueGroup: false, true
+    summary: Activez la journalisation.
+    description: ''
+  - name: --format
+    parameterValueGroup: JSON
+    summary: Type de fichier du journal de bord.
+    description: ''
+  - name: --log-version
+    summary: Version (révision) du journal de Flow.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --retention
+    summary: Nombre de jours pendant lesquels conserver les journaux.
+    description: ''
+  - name: --storage-account
+    summary: Nom ou ID du compte de stockage dans lequel enregistrer les journaux de Workflow.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --traffic-analytics
+    parameterValueGroup: false, true
+    summary: Activez Traffic Analytics. La valeur par défaut est true si `--workspace` est fourni.
+    description: ''
+  - name: --workspace
+    summary: Nom ou ID d’un espace de travail Log Analytics. Doit se trouver dans la même région du journal de Flow.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_flow_log_show
+  name: az network watcher flow-log show
+  summary: Obtenir la configuration du journal de flow d’un groupe de sécurité réseau.
+  description: ''
+  syntax: >-
+    az network watcher flow-log show [--location]
+                                     [--nsg]
+                                     [--query-examples]
+                                     [--resource-group]
+                                     [--subscription]
+  examples:
+  - summary: Affichez les journaux de Flow NSG. (Déconseillé)
+    syntax: az network watcher flow-log show -g MyResourceGroup --nsg MyNsg
+  - summary: Afficher les journaux de Flow NSG avec la gestion des ressources Azure formatée.
+    syntax: az network watcher flow-log show --location MyNetworkWatcher --name MyFlowLog
+  optionalParameters:
+  - name: --location -l
+    summary: Emplacement pour identifier la Network Watcher exclusive dans une région. Un seul Network Watcher peut être existé par abonnement et par région.
+    description: ''
+  - name: --nsg
+    summary: Nom ou ID du groupe de sécurité réseau.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_watcher_flow_log_configure
+- az_network_watcher_flow_log_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Pour plus d’informations sur la configuration de la visite des journaux de Flow <a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-cli">https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-cli</a> .
+  ms.openlocfilehash: aec236ac527b86dcf655251a25f98f4fd90ceda8
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102849490"
