@@ -1,0 +1,127 @@
+### YamlMime:AzureCLIGroup
+uid: az_appconfig_identity
+name: az appconfig identity
+summary: Identités gérées pour les configurations d’application.
+description: ''
+directCommands:
+- uid: az_appconfig_identity_assign
+  name: az appconfig identity assign
+  summary: Mettez à jour les identités gérées pour une configuration d’application.
+  description: ''
+  syntax: >-
+    az appconfig identity assign --name
+                                 [--identities]
+                                 [--resource-group]
+                                 [--subscription]
+  examples:
+  - summary: Activer l’identité affectée par le système pour une configuration d’application existante
+    syntax: az appconfig identity assign -g MyResourceGroup -n MyAppConfiguration
+  - summary: Affecter une identité gérée affectée par l’utilisateur pour une configuration d’application existante
+    syntax: az appconfig identity assign -g MyResourceGroup -n MyAppConfiguration --identities "/subscriptions/<SUBSCRIPTON ID>/resourcegroups/<RESOURCEGROUP>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentity"
+  - summary: Affecter des identités affectées par le système et affectées par l’utilisateur pour une configuration d’application existante
+    syntax: az appconfig identity assign -g MyResourceGroup -n MyAppConfiguration --identities [system] "/subscriptions/<SUBSCRIPTON ID>/resourcegroups/<RESOURCEGROUP>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentity"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --identities
+    summary: Accepter les identités affectées par le système ou l’utilisateur, séparées par des espaces. Utilisez « [System] » pour faire référence à l’identité attribuée par le système ou à un ID de ressource pour faire référence à l’identité attribuée par l’utilisateur. Utilisez l’identité attribuée par le système si elle n’est pas spécifiée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_identity_remove
+  name: az appconfig identity remove
+  summary: Supprimer les identités gérées pour une configuration d’application.
+  description: ''
+  syntax: >-
+    az appconfig identity remove --name
+                                 [--identities]
+                                 [--resource-group]
+                                 [--subscription]
+  examples:
+  - summary: Supprimer l’identité affectée par le système d’une configuration d’application.
+    syntax: az appconfig identity remove -g MyResourceGroup -n MyAppConfiguration
+  - summary: Supprimer une identité affectée par l’utilisateur d’une configuration d’application.
+    syntax: az appconfig identity remove -g MyResourceGroup -n MyAppConfiguration --identities "/subscriptions/<SUBSCRIPTON ID>/resourcegroups/<RESOURCEGROUP>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentity"
+  - summary: Supprimer toutes les identités d’une configuration d’application.
+    syntax: az appconfig identity remove -g MyResourceGroup -n MyAppConfiguration --identities [all]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --identities
+    summary: Accepter les identités affectées par le système ou l’utilisateur, séparées par des espaces. Utilisez « [System] » pour faire référence à l’identité attribuée par le système, « [All] » pour toutes les identités ou un ID de ressource pour faire référence à l’identité attribuée par l’utilisateur. Supprimer l’identité attribuée par le système si elle n’est pas spécifiée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+- uid: az_appconfig_identity_show
+  name: az appconfig identity show
+  summary: Affichez les identités gérées pour une configuration d’application.
+  description: ''
+  syntax: >-
+    az appconfig identity show --name
+                               [--query-examples]
+                               [--resource-group]
+                               [--subscription]
+  examples:
+  - summary: Afficher les identités gérées pour une tâche.
+    syntax: az appconfig identity show -g MyResourceGroup -n MyAppConfiguration
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de l’application. Vous pouvez configurer le nom par défaut à l’aide de `az configure --defaults app_configuration_store=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appconfig/_help.py
+commands:
+- az_appconfig_identity_assign
+- az_appconfig_identity_remove
+- az_appconfig_identity_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/18/2021
+  description: Identités gérées pour les configurations d’application.
+  ms.openlocfilehash: ee8b1ccfa3d89668728e2ec71e124a64a4e7724c
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102970604"
