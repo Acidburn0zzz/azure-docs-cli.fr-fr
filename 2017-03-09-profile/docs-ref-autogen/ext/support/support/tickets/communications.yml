@@ -1,0 +1,127 @@
+### YamlMime:AzureCLIGroup
+uid: ext_support_az_support_tickets_communications
+name: az support tickets communications
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de **prise en charge** pour Azure CLI et requiert la version 2.0.81 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ support tickets communication** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les communications de ticket de support.
+description: ''
+directCommands:
+- uid: ext_support_az_support_tickets_communications_create
+  name: az support tickets communications create
+  summary: Ajoute une nouvelle communication client à un ticket de support Azure.
+  description: ''
+  syntax: >-
+    az support tickets communications create --communication-body
+                                             --communication-name
+                                             --communication-subject
+                                             --ticket-name
+                                             [--communication-sender]
+  examples:
+  - summary: Ajoutez la communication au ticket d’abonnement.
+    syntax: >-
+      az support tickets communications create \
+        --ticket-name "TestTicketName" \
+        --communication-name "TestTicketCommunicationName" \
+        --communication-body "TicketCommunicationBody" \
+        --communication-subject "TicketCommunicationSubject"
+  requiredParameters:
+  - isRequired: true
+    name: --communication-body
+    summary: Texte de la communication.
+    description: ''
+  - isRequired: true
+    name: --communication-name
+    summary: Nom de la communication.
+    description: ''
+  - isRequired: true
+    name: --communication-subject
+    summary: Objet de la communication.
+    description: ''
+  - isRequired: true
+    name: --ticket-name
+    summary: Nom du ticket de support.
+    description: ''
+  optionalParameters:
+  - name: --communication-sender
+    summary: Adresse de messagerie de l’expéditeur.
+    description: ''
+- uid: ext_support_az_support_tickets_communications_list
+  name: az support tickets communications list
+  summary: Répertorie toutes les communications (pièces jointes non incluses) pour un ticket de support.
+  description: ''
+  syntax: >-
+    az support tickets communications list --ticket-name
+                                           [--filters]
+  examples:
+  - summary: Répertorier les communications pour un ticket de support d’abonnement.
+    syntax: az support tickets communications list --ticket-name "TestTicketName"
+  - summary: Répertorier les communications Web pour un ticket de support d’abonnement.
+    syntax: >-
+      az support tickets communications list \
+        --ticket-name "TestTicketName" \
+        --filters "communicationType eq 'Web'"
+  - summary: Répertorier les communications Web créées à une date ou après une date spécifique pour un ticket de support d’abonnement.
+    syntax: >-
+      az support tickets communications list \
+        --ticket-name "TestTicketName" \
+        --filters "CreatedDate ge 2020-01-01 and communicationType eq 'Web'"
+  requiredParameters:
+  - isRequired: true
+    name: --ticket-name
+    summary: Nom du ticket de support.
+    description: ''
+  optionalParameters:
+  - name: --filters
+    summary: Filtre à appliquer à l’opération. Nous prenons en charge OData v 4.0 semtantics. Le filtre peut être spécifié sur « CommunicationType » à l’aide de l’opérateur eq ou sur « CreatedDate » à l’aide de gt/GE. Pour combiner les deux filtres, utilisez l’opérateur and logique.
+    description: ''
+- uid: ext_support_az_support_tickets_communications_show
+  name: az support tickets communications show
+  summary: Obtient les détails de communication pour un ticket de support.
+  description: ''
+  syntax: >-
+    az support tickets communications show --communication-name
+                                           --ticket-name
+  examples:
+  - summary: Obtenir les détails de la communication pour un ticket de support d’abonnement.
+    syntax: >-
+      az support tickets communications show \
+        --ticket-name "TestTicketName" \
+        --communication-name "TestTicketCommunicationName"
+  requiredParameters:
+  - isRequired: true
+    name: --communication-name
+    summary: Nom de la communication.
+    description: ''
+  - isRequired: true
+    name: --ticket-name
+    summary: Nom du ticket de support.
+    description: ''
+commands:
+- ext_support_az_support_tickets_communications_create
+- ext_support_az_support_tickets_communications_list
+- ext_support_az_support_tickets_communications_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les communications de ticket de support.
+  ms.openlocfilehash: 4d27804d6a1ba3fde0bff362054dfd7febf672e1
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102828609"

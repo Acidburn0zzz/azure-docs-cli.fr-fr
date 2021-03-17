@@ -1,0 +1,167 @@
+### YamlMime:AzureCLIGroup
+uid: ext_db-up_az_postgres
+name: az postgres
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **DB-up** pour Azure CLI et requiert la version 2.0.46 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ postgres** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les serveurs Azure Database pour PostgreSQL.
+description: ''
+directCommands:
+- uid: ext_db-up_az_postgres_down
+  name: az postgres down
+  summary: Supprimez le serveur PostgreSQL et ses informations mises en cache.
+  description: ''
+  syntax: >-
+    az postgres down [--delete-group]
+                     [--no-wait]
+                     [--resource-group]
+                     [--server-name]
+                     [--yes]
+  examples:
+  - summary: Supprimez le serveur et les données mises en cache, en dehors du groupe de ressources.
+    syntax: az postgres down
+  - summary: Supprimez le groupe de ressources et le cache complet.
+    syntax: az postgres down --delete-group
+  optionalParameters:
+  - name: --delete-group
+    summary: Supprimez le groupe de ressources.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server-name -s
+    summary: Nom du serveur.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_db-up_az_postgres_show_connection_string
+  name: az postgres show-connection-string
+  summary: Affichez les chaînes de connexion pour une base de données de serveur PostgreSQL.
+  description: ''
+  syntax: >-
+    az postgres show-connection-string [--admin-password]
+                                       [--admin-user]
+                                       [--database-name]
+                                       [--server-name]
+  optionalParameters:
+  - name: --admin-password -p
+    defaultValue: '{password}'
+    summary: Mot de passe de connexion de l’administrateur.
+    description: ''
+  - name: --admin-user -u
+    defaultValue: '{login}'
+    summary: Nom d’utilisateur de connexion de l’administrateur.
+    description: ''
+  - name: --database-name -d
+    defaultValue: '{database}'
+    summary: Nom d’une base de données.
+    description: ''
+  - name: --server-name -s
+    defaultValue: '{server}'
+    summary: Nom du serveur.
+    description: ''
+- uid: ext_db-up_az_postgres_up
+  name: az postgres up
+  summary: Configurez une base de données Azure pour le serveur PostgreSQL et les configurations.
+  description: ''
+  syntax: >-
+    az postgres up [--admin-password]
+                   [--admin-user]
+                   [--backup-retention]
+                   [--database-name]
+                   [--generate-password]
+                   [--geo-redundant-backup {Disabled, Enabled}]
+                   [--location]
+                   [--resource-group]
+                   [--server-name]
+                   [--sku-name]
+                   [--ssl-enforcement {Disabled, Enabled}]
+                   [--storage-size]
+                   [--tags]
+                   [--version]
+  examples:
+  - summary: Assurez-vous qu’un serveur de base de données Azure pour PostgreSQL est opérationnel et configuré pour une utilisation immédiate.
+    syntax: az postgres up
+  - summary: Pour remplacer les noms par défaut, fournissez des paramètres indiquant les valeurs souhaitées/les ressources existantes.
+    syntax: az postgres up -g MyResourceGroup -s MyServer -d MyDatabase -u MyUsername -p MyPassword
+  optionalParameters:
+  - name: --admin-password -p
+    summary: 'Mot de passe de connexion de l’administrateur. 8 caractères minimum et 128 caractères au maximum. Le mot de passe doit contenir des caractères appartenant à trois des catégories suivantes : lettres majuscules, lettres minuscules, chiffres et caractères non alphanumériques. Votre mot de passe ne peut pas contenir tout ou partie du nom de connexion. Une partie d’un nom de connexion est définie comme trois caractères alphanumériques consécutifs ou plus.'
+    description: ''
+  - name: --admin-user -u
+    summary: Nom d’utilisateur de connexion de l’administrateur.
+    description: ''
+  - name: --backup-retention
+    summary: Nombre de jours pendant lesquels une sauvegarde est conservée.
+    description: ''
+  - name: --database-name -d
+    summary: Nom d’une base de données à initialiser.
+    description: ''
+  - name: --generate-password
+    summary: Générez un mot de passe.
+    description: ''
+  - name: --geo-redundant-backup
+    defaultValue: Disabled
+    parameterValueGroup: Disabled, Enabled
+    summary: Activez géo-redondant ou non pour la sauvegarde du serveur.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server-name -s
+    summary: Nom du serveur.
+    description: ''
+  - name: --sku-name
+    defaultValue: GP_Gen5_2
+    summary: Nom de la référence SKU, en général, de niveau + famille + cœurs, par exemple B_Gen4_1, GP_Gen5_8.
+    description: ''
+  - name: --ssl-enforcement
+    defaultValue: Enabled
+    parameterValueGroup: Disabled, Enabled
+    summary: Activez la contrainte de mise en conformité SSL ou non lors de la connexion au serveur.
+    description: ''
+  - name: --storage-size
+    summary: Taille de stockage maximale du serveur. L’unité est en mégaoctets.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --version
+    defaultValue: "10"
+    summary: Version du serveur.
+    description: ''
+commands:
+- ext_db-up_az_postgres_down
+- ext_db-up_az_postgres_show_connection_string
+- ext_db-up_az_postgres_up
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les serveurs Azure Database pour PostgreSQL.
+  ms.openlocfilehash: a667122d47a4d6c9ae8b25f625c8f89765132f96
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102829180"

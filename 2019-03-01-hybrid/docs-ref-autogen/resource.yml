@@ -1,0 +1,601 @@
+### YamlMime:AzureCLIGroup
+uid: az_resource
+name: az resource
+summary: Gérer les ressources Azure.
+description: ''
+directCommands:
+- uid: az_resource_create
+  name: az resource create
+  summary: Crée une ressource.
+  description: ''
+  syntax: >-
+    az resource create --properties
+                       [--api-version]
+                       [--id]
+                       [--is-full-object]
+                       [--latest-include-preview]
+                       [--location]
+                       [--name]
+                       [--namespace]
+                       [--parent]
+                       [--resource-group]
+                       [--resource-type]
+                       [--subscription]
+  examples:
+  - summary: Créez une application API en fournissant une configuration JSON complète.
+    syntax: >-
+      az resource create -g myRG -n myApiApp --resource-type Microsoft.web/sites \
+          --is-full-object --properties "{ \"kind\": \"api\", \"location\": \
+              \"West US\", \"properties\": { \"serverFarmId\": \
+                  \"/subscriptions/{SubID}/resourcegroups/{ResourceGroup} \
+                      /providers/Microsoft.Web/serverfarms/{ServicePlan}\" } }"
+  - summary: Créer une ressource en chargeant la configuration JSON à partir d’un fichier.
+    syntax: az resource create -g myRG -n myApiApp --resource-type Microsoft.web/sites --is-full-object --properties @jsonConfigFile
+  - summary: Créez une application Web avec les informations de configuration minimales requises.
+    syntax: >-
+      az resource create -g myRG -n myWeb --resource-type Microsoft.web/sites \
+          --properties "{ \"serverFarmId\":\"/subscriptions/{SubID}/resourcegroups/ \
+              {ResourceGroup}/providers/Microsoft.Web/serverfarms/{ServicePlan}\" }"
+  - summary: Créez une ressource à l’aide de la dernière version de l’API, que cette version soit une version préliminaire.
+    syntax: az resource create -g myRG -n myApiApp --resource-type Microsoft.web/sites --is-full-object --properties @jsonConfigFile --latest-include-preview
+  requiredParameters:
+  - isRequired: true
+    name: --properties -p
+    summary: Chaîne au format JSON contenant les propriétés de ressource.
+    description: ''
+  optionalParameters:
+  - name: --api-version
+    summary: Version d’API de la ressource (omission de la dernière version stable).
+    description: ''
+  - name: --id
+    summary: ID de la ressource
+    description: ''
+  - name: --is-full-object
+    summary: Indique que l’objet Properties comprend d’autres options telles que l’emplacement, les balises, la référence (SKU) et/ou le plan.
+    description: ''
+  - name: --latest-include-preview -v
+    summary: 'Indique que la dernière version de l’API sera utilisée, qu’il s’agisse d’une version préliminaire (comme 2020-01-01-Preview) ou non. Par exemple, si la version d’API prise en charge du fournisseur de ressources est 2020-01-01-Preview et 2019-01-01 : lors du passage de ce paramètre, elle prend la version la plus récente 2020-01-01-preview. dans le cas contraire, elle prendra la dernière version stable de la version 2019-01-01 sans passer ce paramètre.'
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --name -n
+    summary: 'Nom de la ressource. (Ex : myC).'
+    description: ''
+  - name: --namespace
+    summary: "Espace de noms du fournisseur (par exemple : 'Microsoft. Provider')."
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : « resA/myA/resB/myB »).'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par exemple, « resC »). Peut également accepter le format d’espace de noms/type (par exemple : « Microsoft. Provider/resC »).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_resource_delete
+  name: az resource delete
+  summary: Supprime une ressource.
+  description: ''
+  syntax: >-
+    az resource delete [--api-version]
+                       [--ids]
+                       [--latest-include-preview]
+                       [--name]
+                       [--namespace]
+                       [--parent]
+                       [--resource-group]
+                       [--resource-type]
+                       [--subscription]
+  examples:
+  - summary: Suppression d’un ordinateur virtuel nommé « MyVm ».
+    syntax: az resource delete -g MyResourceGroup -n MyVm --resource-type "Microsoft.Compute/virtualMachines"
+  - summary: Supprimer une application Web à l’aide d’un identificateur de ressource.
+    syntax: az resource delete --ids /subscriptions/0b1f6471-1bf0-4dda-aec3-111111111111/resourceGroups/MyResourceGroup/providers/Microsoft.Web/sites/MyWebapp
+  - summary: Supprimer un sous-réseau à l’aide d’un identificateur de ressource.
+    syntax: az resource delete --ids /subscriptions/0b1f6471-1bf0-4dda-aec3-111111111111/resourceGroups/MyResourceGroup/providers/Microsoft.Network/virtualNetworks/MyVnet/subnets/MySubnet
+  - summary: Supprimez un ordinateur virtuel nommé « MyVm » à l’aide de la dernière version de l’API, que cette version soit une version préliminaire.
+    syntax: az resource delete -g MyResourceGroup -n MyVm --resource-type "Microsoft.Compute/virtualMachines" --latest-include-preview
+  optionalParameters:
+  - name: --api-version
+    summary: Version d’API de la ressource (omission de la dernière version stable).
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). S’il est fourni, aucun autre argument « Resource ID » ne doit être spécifié.
+    description: ''
+  - name: --latest-include-preview -v
+    summary: 'Indique que la dernière version de l’API sera utilisée, qu’il s’agisse d’une version préliminaire (comme 2020-01-01-Preview) ou non. Par exemple, si la version d’API prise en charge du fournisseur de ressources est 2020-01-01-Preview et 2019-01-01 : lors du passage de ce paramètre, elle prend la version la plus récente 2020-01-01-preview. dans le cas contraire, elle prendra la dernière version stable de la version 2019-01-01 sans passer ce paramètre.'
+    description: ''
+  - name: --name -n
+    summary: 'Nom de la ressource. (Ex : myC).'
+    description: ''
+  - name: --namespace
+    summary: "Espace de noms du fournisseur (par exemple : 'Microsoft. Provider')."
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : « resA/myA/resB/myB »).'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par exemple, « resC »). Peut également accepter le format d’espace de noms/type (par exemple : « Microsoft. Provider/resC »).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_resource_invoke_action
+  name: az resource invoke-action
+  summary: Appelle une action sur la ressource.
+  description: Vous trouverez une liste des actions possibles correspondant à une ressource à l’adresse <a href="https://docs.microsoft.com/rest/api/">https://docs.microsoft.com/rest/api/</a> . Toutes les demandes de publication sont des actions qui peuvent être appelées et qui sont spécifiées à la fin du chemin d’accès de l’URI. Par exemple, pour arrêter une machine virtuelle, l’URI de la demande est <a href="https://management.azure.com/subscriptions">https://management.azure.com/subscriptions</a> /{SubscriptionId}/resourceGroups/{ResourceGroup}/Providers/Microsoft.Compute/virtualMachines/{VM}/powerOff ? API-version = {APIVersion} et l’action correspondante est `powerOff` . Vous pouvez le trouver à l’adresse <a href="https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-stop">https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-stop</a> .
+  syntax: >-
+    az resource invoke-action --action
+                              [--api-version]
+                              [--ids]
+                              [--latest-include-preview]
+                              [--name]
+                              [--namespace]
+                              [--parent]
+                              [--request-body]
+                              [--resource-group]
+                              [--resource-type]
+                              [--subscription]
+  examples:
+  - summary: Mettre hors tension une machine virtuelle, spécifiée par l’ID.
+    syntax: >-
+      az resource invoke-action --action powerOff \
+        --ids /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Compute/virtualMachines/{VMName}
+  - summary: Capturer les informations d’une machine virtuelle arrêtée.
+    syntax: >-
+      az resource invoke-action --action capture \
+        --ids /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/ \
+          Microsoft.Compute/virtualMachines/{VMName} \
+        --request-body "{ \"vhdPrefix\": \"myPrefix\", \"destinationContainerName\": \
+          \"myContainer\", \"overwriteVhds\": true }"
+  - summary: Appelle une action sur la ressource. généré automatiquement
+    syntax: az resource invoke-action --action capture --name MyResource --resource-group MyResourceGroup --resource-type Microsoft.web/sites
+  requiredParameters:
+  - isRequired: true
+    name: --action
+    summary: Action qui sera appelée sur la ressource spécifiée.
+    description: ''
+  optionalParameters:
+  - name: --api-version
+    summary: Version d’API de la ressource (omission de la dernière version stable).
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). S’il est fourni, aucun autre argument « Resource ID » ne doit être spécifié.
+    description: ''
+  - name: --latest-include-preview -v
+    summary: 'Indique que la dernière version de l’API sera utilisée, qu’il s’agisse d’une version préliminaire (comme 2020-01-01-Preview) ou non. Par exemple, si la version d’API prise en charge du fournisseur de ressources est 2020-01-01-Preview et 2019-01-01 : lors du passage de ce paramètre, elle prend la version la plus récente 2020-01-01-preview. dans le cas contraire, elle prendra la dernière version stable de la version 2019-01-01 sans passer ce paramètre.'
+    description: ''
+  - name: --name -n
+    summary: 'Nom de la ressource. (Ex : myC).'
+    description: ''
+  - name: --namespace
+    summary: "Espace de noms du fournisseur (par exemple : 'Microsoft. Provider')."
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : « resA/myA/resB/myB »).'
+    description: ''
+  - name: --request-body
+    summary: Arguments de paramètre encodés JSON pour l’action qui sera passée dans le corps de la requête après. Utilisez @ {file} pour charger à partir d’un fichier.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par exemple, « resC »). Peut également accepter le format d’espace de noms/type (par exemple : « Microsoft. Provider/resC »).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_resource_list
+  name: az resource list
+  summary: Répertoriez les ressources.
+  description: ''
+  syntax: >-
+    az resource list [--location]
+                     [--name]
+                     [--namespace]
+                     [--query-examples]
+                     [--resource-group]
+                     [--resource-type]
+                     [--subscription]
+                     [--tag]
+  examples:
+  - summary: Répertorie toutes les ressources dans la région États-Unis de l’Ouest.
+    syntax: az resource list --location westus
+  - summary: Répertorie toutes les ressources portant le nom « resourceName ».
+    syntax: az resource list --name 'resourceName'
+  - summary: Répertorie toutes les ressources avec la balise « test ».
+    syntax: az resource list --tag test
+  - summary: Répertorie toutes les ressources avec une balise commençant par « test ».
+    syntax: az resource list --tag 'test*'
+  - summary: Répertorie toutes les ressources avec la balise « test » ayant la valeur « example ».
+    syntax: az resource list --tag test=example
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --name -n
+    summary: 'Nom de la ressource. (Ex : myC).'
+    description: ''
+  - name: --namespace
+    summary: "Espace de noms du fournisseur (par exemple : 'Microsoft. Provider')."
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par exemple, « resC »). Peut également accepter le format d’espace de noms/type (par exemple : « Microsoft. Provider/resC »).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tag
+    summary: Une balise unique au format « Key [= value] ». Utilisez «» pour effacer les balises existantes.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_resource_move
+  name: az resource move
+  summary: Déplace les ressources d’un groupe de ressources vers un autre (il peut s’agir d’un abonnement différent).
+  description: ''
+  syntax: >-
+    az resource move --destination-group
+                     --ids
+                     [--destination-subscription-id]
+                     [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --destination-group
+    summary: Nom du groupe de ressources de destination.
+    description: ''
+  - isRequired: true
+    name: --ids
+    summary: ID de ressource séparés par des espaces à déplacer.
+    description: ''
+  optionalParameters:
+  - name: --destination-subscription-id
+    summary: Identificateur de l’abonnement de destination.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_resource_show
+  name: az resource show
+  summary: Obtenir les détails d’une ressource.
+  description: ''
+  syntax: >-
+    az resource show [--api-version]
+                     [--ids]
+                     [--include-response-body {false, true}]
+                     [--latest-include-preview]
+                     [--name]
+                     [--namespace]
+                     [--parent]
+                     [--query-examples]
+                     [--resource-group]
+                     [--resource-type]
+                     [--subscription]
+  examples:
+  - summary: Affichez une ressource de machine virtuelle nommée « MyVm ».
+    syntax: az resource show -g MyResourceGroup -n MyVm --resource-type "Microsoft.Compute/virtualMachines"
+  - summary: Afficher une application Web à l’aide d’un identificateur de ressource.
+    syntax: az resource show --ids /subscriptions/0b1f6471-1bf0-4dda-aec3-111111111111/resourceGroups/MyResourceGroup/providers/Microsoft.Web/sites/MyWebapp
+  - summary: Affichez un sous-réseau.
+    syntax: az resource show -g MyResourceGroup -n MySubnet --namespace Microsoft.Network --parent virtualnetworks/MyVnet --resource-type subnets
+  - summary: Affichez un sous-réseau à l’aide d’un identificateur de ressource.
+    syntax: az resource show --ids /subscriptions/0b1f6471-1bf0-4dda-aec3-111111111111/resourceGroups/MyResourceGroup/providers/Microsoft.Network/virtualNetworks/MyVnet/subnets/MySubnet
+  - summary: Affichez une règle de chemin d’accès d’application Gateway.
+    syntax: az resource show -g MyResourceGroup --namespace Microsoft.Network --parent applicationGateways/ag1/urlPathMaps/map1 --resource-type pathRules -n rule1
+  - summary: Affichez une ressource de machine virtuelle nommée « MyVm » à l’aide de la dernière version de l’API, que cette version soit une version préliminaire.
+    syntax: az resource show -g MyResourceGroup -n MyVm --resource-type "Microsoft.Compute/virtualMachines" --latest-include-preview
+  optionalParameters:
+  - name: --api-version
+    summary: Version d’API de la ressource (omission de la dernière version stable).
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). S’il est fourni, aucun autre argument « Resource ID » ne doit être spécifié.
+    description: ''
+  - name: --include-response-body
+    parameterValueGroup: false, true
+    summary: Utilisez si la sortie de commande par défaut ne capture pas toutes les données de propriété.
+    description: ''
+  - name: --latest-include-preview -v
+    summary: 'Indique que la dernière version de l’API sera utilisée, qu’il s’agisse d’une version préliminaire (comme 2020-01-01-Preview) ou non. Par exemple, si la version d’API prise en charge du fournisseur de ressources est 2020-01-01-Preview et 2019-01-01 : lors du passage de ce paramètre, elle prend la version la plus récente 2020-01-01-preview. dans le cas contraire, elle prendra la dernière version stable de la version 2019-01-01 sans passer ce paramètre.'
+    description: ''
+  - name: --name -n
+    summary: 'Nom de la ressource. (Ex : myC).'
+    description: ''
+  - name: --namespace
+    summary: "Espace de noms du fournisseur (par exemple : 'Microsoft. Provider')."
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : « resA/myA/resB/myB »).'
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par exemple, « resC »). Peut également accepter le format d’espace de noms/type (par exemple : « Microsoft. Provider/resC »).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_resource_tag
+  name: az resource tag
+  summary: Baliser une ressource.
+  description: ''
+  syntax: >-
+    az resource tag --tags
+                    [--api-version]
+                    [--ids]
+                    [--is-incremental]
+                    [--latest-include-preview]
+                    [--name]
+                    [--namespace]
+                    [--parent]
+                    [--resource-group]
+                    [--resource-type]
+                    [--subscription]
+  examples:
+  - summary: Baliser l’ordinateur virtuel « MyVm » avec la clé « vmlist » et la valeur « VM1 ».
+    syntax: az resource tag --tags vmlist=vm1 -g MyResourceGroup -n MyVm --resource-type "Microsoft.Compute/virtualMachines"
+  - summary: Baliser une application Web avec la clé « vmlist » et la valeur « VM1 », à l’aide d’un identificateur de ressource.
+    syntax: az resource tag --tags vmlist=vm1 --ids /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Web/sites/{WebApp}
+  - summary: Baliser l’ordinateur virtuel « MyVm » avec la clé « vmlist » et la valeur « VM1 » de manière incrémentielle. Elle ne vide pas les balises existantes.
+    syntax: az resource tag --tags vmlist=vm1 -g MyResourceGroup -n MyVm --resource-type "Microsoft.Compute/virtualMachines" -i
+  - summary: Baliser l’ordinateur virtuel « MyVm » avec la clé « vmlist » et la valeur « VM1 » à l’aide de la dernière version de l’API, que cette version soit une version préliminaire.
+    syntax: az resource tag --tags vmlist=vm1 -g MyResourceGroup -n MyVm --resource-type "Microsoft.Compute/virtualMachines" --latest-include-preview
+  requiredParameters:
+  - isRequired: true
+    name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  optionalParameters:
+  - name: --api-version
+    summary: Version d’API de la ressource (omission de la dernière version stable).
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). S’il est fourni, aucun autre argument « Resource ID » ne doit être spécifié.
+    description: ''
+  - name: --is-incremental -i
+    summary: Option permettant d’ajouter des balises de façon incrémentielle sans supprimer les balises d’origine. Si la clé de la nouvelle balise et de la balise d’origine est dupliquée, la valeur d’origine est remplacée.
+    description: ''
+  - name: --latest-include-preview -v
+    summary: 'Indique que la dernière version de l’API sera utilisée, qu’il s’agisse d’une version préliminaire (comme 2020-01-01-Preview) ou non. Par exemple, si la version d’API prise en charge du fournisseur de ressources est 2020-01-01-Preview et 2019-01-01 : lors du passage de ce paramètre, elle prend la version la plus récente 2020-01-01-preview. dans le cas contraire, elle prendra la dernière version stable de la version 2019-01-01 sans passer ce paramètre.'
+    description: ''
+  - name: --name -n
+    summary: 'Nom de la ressource. (Ex : myC).'
+    description: ''
+  - name: --namespace
+    summary: "Espace de noms du fournisseur (par exemple : 'Microsoft. Provider')."
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : « resA/myA/resB/myB »).'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par exemple, « resC »). Peut également accepter le format d’espace de noms/type (par exemple : « Microsoft. Provider/resC »).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_resource_update
+  name: az resource update
+  summary: Met à jour une ressource.
+  description: ''
+  syntax: >-
+    az resource update [--add]
+                       [--api-version]
+                       [--force-string]
+                       [--ids]
+                       [--include-response-body {false, true}]
+                       [--latest-include-preview]
+                       [--name]
+                       [--namespace]
+                       [--parent]
+                       [--remove]
+                       [--resource-group]
+                       [--resource-type]
+                       [--set]
+                       [--subscription]
+  examples:
+  - summary: Mettez à jour un webapp à l’aide de la dernière version de l’API, que cette version soit une version préliminaire.
+    syntax: az resource update --ids /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Web/sites/{WebApp} --set tags.key=value --latest-include-preview
+  - summary: Met à jour une ressource. généré automatiquement
+    syntax: az resource update --ids $id --set properties.connectionType=Proxy
+  - summary: Met à jour une ressource. généré automatiquement
+    syntax: az resource update --name myresource --resource-group myresourcegroup --resource-type subnets --set tags.key=value
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --api-version
+    summary: Version d’API de la ressource (omission de la dernière version stable).
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). S’il est fourni, aucun autre argument « Resource ID » ne doit être spécifié.
+    description: ''
+  - name: --include-response-body
+    parameterValueGroup: false, true
+    summary: Utilisez si la sortie de commande par défaut ne capture pas toutes les données de propriété.
+    description: ''
+  - name: --latest-include-preview -v
+    summary: 'Indique que la dernière version de l’API sera utilisée, qu’il s’agisse d’une version préliminaire (comme 2020-01-01-Preview) ou non. Par exemple, si la version d’API prise en charge du fournisseur de ressources est 2020-01-01-Preview et 2019-01-01 : lors du passage de ce paramètre, elle prend la version la plus récente 2020-01-01-preview. dans le cas contraire, elle prendra la dernière version stable de la version 2019-01-01 sans passer ce paramètre.'
+    description: ''
+  - name: --name -n
+    summary: 'Nom de la ressource. (Ex : myC).'
+    description: ''
+  - name: --namespace
+    summary: "Espace de noms du fournisseur (par exemple : 'Microsoft. Provider')."
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : « resA/myA/resB/myB »).'
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par exemple, « resC »). Peut également accepter le format d’espace de noms/type (par exemple : « Microsoft. Provider/resC »).'
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_resource_wait
+  name: az resource wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’une ressource soit remplie.
+  description: ''
+  syntax: >-
+    az resource wait [--api-version]
+                     [--created]
+                     [--custom]
+                     [--deleted]
+                     [--exists]
+                     [--ids]
+                     [--include-response-body {false, true}]
+                     [--interval]
+                     [--name]
+                     [--namespace]
+                     [--parent]
+                     [--resource-group]
+                     [--resource-type]
+                     [--subscription]
+                     [--timeout]
+                     [--updated]
+  examples:
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’une ressource soit remplie. généré automatiquement
+    syntax: az resource wait --exists --ids /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Web/sites/{WebApp}
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’une ressource soit remplie. généré automatiquement
+    syntax: az resource wait --exists --ids /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Web/sites/{WebApp} --include-response-body true
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’une ressource soit remplie. généré automatiquement
+    syntax: az resource wait --exists --name MyResource --resource-group MyResourceGroup --resource-type subnets
+  optionalParameters:
+  - name: --api-version
+    summary: Version d’API de la ressource (omission de la dernière version stable).
+    description: ''
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). S’il est fourni, aucun autre argument « Resource ID » ne doit être spécifié.
+    description: ''
+  - name: --include-response-body
+    parameterValueGroup: false, true
+    summary: Utilisez si la sortie de commande par défaut ne capture pas toutes les données de propriété.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --name -n
+    summary: 'Nom de la ressource. (Ex : myC).'
+    description: ''
+  - name: --namespace
+    summary: "Espace de noms du fournisseur (par exemple : 'Microsoft. Provider')."
+    description: ''
+  - name: --parent
+    summary: 'Chemin d’accès parent (ex : « resA/myA/resB/myB »).'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: 'Type de ressource (par exemple, « resC »). Peut également accepter le format d’espace de noms/type (par exemple : « Microsoft. Provider/resC »).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+commands:
+- az_resource_create
+- az_resource_delete
+- az_resource_invoke_action
+- az_resource_link
+- az_resource_link_create
+- az_resource_link_delete
+- az_resource_link_list
+- az_resource_link_show
+- az_resource_link_update
+- az_resource_list
+- az_resource_lock
+- az_resource_lock_create
+- az_resource_lock_delete
+- az_resource_lock_list
+- az_resource_lock_show
+- az_resource_lock_update
+- az_resource_move
+- az_resource_show
+- az_resource_tag
+- az_resource_update
+- az_resource_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les ressources Azure.
+  ms.openlocfilehash: 0a096c9a63e1e740c14e2722bf211d90beb27720
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102964368"
