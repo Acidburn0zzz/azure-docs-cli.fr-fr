@@ -11,6 +11,7 @@ directCommands:
   syntax: >-
     az ams transform output add --preset
                                 [--account-name]
+                                [--audio-analysis-mode]
                                 [--audio-language]
                                 [--ids]
                                 [--insights-to-extract {AllInsights, AudioInsightsOnly, VideoInsightsOnly}]
@@ -20,6 +21,7 @@ directCommands:
                                 [--resolution]
                                 [--resource-group]
                                 [--subscription]
+                                [--video-analysis-mode]
   examples:
   - summary: Ajoutez une sortie avec un encodeur standard personnalisé prédéfini à partir d’un fichier JSON.
     syntax: az ams transform output add -a myAmsAccount -n transformName -g myResourceGroup --preset "C:\MyPresets\CustomPreset.json"
@@ -28,11 +30,14 @@ directCommands:
   requiredParameters:
   - isRequired: true
     name: --preset
-    summary: 'Présélection qui décrit les opérations qui seront utilisées pour modifier, Transcoder ou extraire des informations à partir du fichier source afin de générer la sortie de transformation. Valeurs autorisées : H264SingleBitrateSD, H264SingleBitrate720p, H264SingleBitrate1080p, AdaptiveStreaming, AACGoodQualityAudio, ContentAwareEncodingExperimental, ContentAwareEncoding, H264MultipleBitrate1080p, H264MultipleBitrate720p, H264MultipleBitrateSD, AudioAnalyzer, VideoAnalyzer, FaceDetector. Outre les valeurs autorisées, vous pouvez également transmettre un chemin d’accès à un fichier JSON prédéfini standard d’encodeur personnalisé. <a href="https://docs.microsoft.com/rest/api/media/transforms/createorupdate#standardencoderpreset">https://docs.microsoft.com/rest/api/media/transforms/createorupdate#standardencoderpreset</a>Pour plus d’informations sur les paramètres à utiliser pour créer une présélection personnalisée, consultez.'
+    summary: 'Présélection qui décrit les opérations qui seront utilisées pour modifier, Transcoder ou extraire des informations à partir du fichier source afin de générer la sortie de transformation. Valeurs autorisées : H264SingleBitrateSD, H264SingleBitrate720p, H264SingleBitrate1080p, AdaptiveStreaming, AACGoodQualityAudio, ContentAwareEncodingExperimental, ContentAwareEncoding, CopyAllBitrateNonInterleaved, H264MultipleBitrate1080p, H264MultipleBitrate720p, H264MultipleBitrateSD, AudioAnalyzer, VideoAnalyzer, FaceDetector. Outre les valeurs autorisées, vous pouvez également transmettre un chemin d’accès à un fichier JSON prédéfini standard d’encodeur personnalisé. <a href="https://docs.microsoft.com/rest/api/media/transforms/createorupdate#standardencoderpreset">https://docs.microsoft.com/rest/api/media/transforms/createorupdate#standardencoderpreset</a>Pour plus d’informations sur les paramètres à utiliser pour créer une présélection personnalisée, consultez.'
     description: ''
   optionalParameters:
   - name: --account-name -a
     summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --audio-analysis-mode
+    summary: 'Détermine l’ensemble des opérations d’analyse audio à effectuer. S’il n’est pas spécifié, le AudioAnalysisMode standard est choisi. Valeurs autorisées : standard, Basic.'
     description: ''
   - name: --audio-language
     summary: 'Langue de la charge utile audio dans l’entrée à l’aide du format BCP-47 « Language tag-Region » (par exemple : en-US). S’il n’est pas spécifié, la détection automatique de la langue est utilisée. Cette fonctionnalité prend actuellement en charge l’anglais, le chinois, le français, l’allemand, l’italien, le japonais, l’espagnol, le russe et le portugais. La détection automatique fonctionne mieux avec les enregistrements audio avec une reconnaissance vocale claire. Si la détection automatique ne parvient pas à trouver la langue, la transcription pourrait revenir à l’anglais. Valeurs autorisées : en-US, en-GB, es-ES, es-MX, fr-FR, IT-IT, ja-JP, PT-BR, zh-CN, de-fr, AR-EG, ru-RU, hi-IN.'
@@ -63,6 +68,9 @@ directCommands:
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --video-analysis-mode
+    summary: 'Détermine l’ensemble des opérations d’analyse audio à effectuer. S’il n’est pas spécifié, le AudioAnalysisMode standard est choisi. Valeurs autorisées : standard, Basic.'
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
 - uid: az_ams_transform_output_remove
@@ -121,11 +129,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 07/28/2020
+  ms.date: 02/24/2021
   description: Gérer les sorties de transformation pour un compte de Azure Media Services.
-  ms.openlocfilehash: e066c20e96ced5185036cf9a1632e7288784e390
-  ms.sourcegitcommit: b664951686e518ebcaec4b4c1ae59a69ef70302a
+  ms.openlocfilehash: e03dcb0a3a5fccdfed15aab5481cd28165de2737
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 09/15/2020
-  ms.locfileid: "102818240"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103498415"

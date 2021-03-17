@@ -1,43 +1,34 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_cross_region_lb_rule
-name: az network cross-region-lb rule
-summary: Gérer les règles d’équilibrage de charge entre les régions.
+uid: az_network_lb_inbound_nat_rule
+name: az network lb inbound-nat-rule
+summary: Gérer les règles NAT de trafic entrant d’un équilibreur de charge.
 description: ''
 directCommands:
-- uid: az_network_cross_region_lb_rule_create
-  name: az network cross-region-lb rule create
-  summary: Créez une règle d’équilibrage de charge.
+- uid: az_network_lb_inbound_nat_rule_create
+  name: az network lb inbound-nat-rule create
+  summary: Créez une règle NAT de trafic entrant.
   description: ''
   syntax: >-
-    az network cross-region-lb rule create --backend-port
-                                           --frontend-port
-                                           --lb-name
-                                           --name
-                                           --protocol {All, Tcp, Udp}
-                                           --resource-group
-                                           [--backend-pool-name]
-                                           [--floating-ip {false, true}]
-                                           [--frontend-ip-name]
-                                           [--idle-timeout]
-                                           [--load-distribution {Default, SourceIP, SourceIPProtocol}]
-                                           [--probe-name]
-                                           [--subscription]
+    az network lb inbound-nat-rule create --backend-port
+                                          --frontend-port
+                                          --lb-name
+                                          --name
+                                          --protocol {All, Tcp, Udp}
+                                          --resource-group
+                                          [--enable-tcp-reset {false, true}]
+                                          [--floating-ip {false, true}]
+                                          [--frontend-ip-name]
+                                          [--idle-timeout]
+                                          [--subscription]
   examples:
-  - summary: Créer une règle d’équilibrage de charge qui affecte une configuration et un port de l’adresse IP frontale à un pool d’adresses et à un port.
+  - summary: Créez une règle NAT de base de trafic entrant pour le port 80.
     syntax: >-
-      az network cross-region-lb rule create -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol Tcp \
-          --frontend-ip-name MyFrontEndIp --frontend-port 80 \
-          --backend-pool-name MyAddressPool --backend-port 80
-  - summary: Créer une règle d’équilibrage de charge qui affecte une configuration et un port d’adresse IP frontale à un pool d’adresses et à un port avec la fonctionnalité d’adresse IP flottante.
+      az network lb inbound-nat-rule create -g MyResourceGroup --lb-name MyLb -n MyNatRule \
+          --protocol Tcp --frontend-port 80 --backend-port 80
+  - summary: Créez une règle NAT de base pour une adresse IP frontale spécifique et activez la règle d’adresse IP flottante pour tar.
     syntax: >-
-      az network cross-region-lb rule create -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol Tcp \
-          --frontend-ip-name MyFrontEndIp --backend-pool-name MyAddressPool  \
-          --floating-ip true --frontend-port 80 --backend-port 80
-  - summary: Créer une règle d’équilibrage de charge de ports haute disponibilité qui affecte une adresse IP et un port de serveur frontal pour utiliser toutes les adresses IP principales disponibles dans un pool sur le même port.
-    syntax: >-
-      az network cross-region-lb rule create -g MyResourceGroup --lb-name MyLb -n MyHAPortsRule \
-          --protocol All --frontend-port 0 --backend-port 0 --frontend-ip-name MyFrontendIp \
-          --backend-pool-name MyAddressPool
+      az network lb inbound-nat-rule create -g MyResourceGroup --lb-name MyLb -n MyNatRule --protocol Tcp \
+          --frontend-port 5432 --backend-port 3389 --frontend-ip-name MyFrontendIp --floating-ip true
   requiredParameters:
   - isRequired: true
     name: --backend-port
@@ -53,7 +44,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --name -n
-    summary: Nom de la règle d’équilibrage de charge.
+    summary: Nom de la règle NAT de trafic entrant.
     description: ''
   - isRequired: true
     name: --protocol
@@ -65,8 +56,9 @@ directCommands:
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   optionalParameters:
-  - name: --backend-pool-name
-    summary: Nom du pool d’adresses principales. S’il n’existe qu’un seul, omettez pour l’utiliser comme valeur par défaut.
+  - name: --enable-tcp-reset
+    parameterValueGroup: false, true
+    summary: Réception d’une réinitialisation TCP bidirectionnelle sur le délai d’inactivité du workflow TCP ou l’arrêt inattendu de la connexion. Utilisé uniquement lorsque le protocole est défini sur TCP.
     description: ''
   - name: --floating-ip
     parameterValueGroup: false, true
@@ -78,30 +70,22 @@ directCommands:
   - name: --idle-timeout
     summary: Délai d’inactivité en minutes.
     description: ''
-  - name: --load-distribution
-    defaultValue: default
-    parameterValueGroup: Default, SourceIP, SourceIPProtocol
-    summary: Paramètres de règle d’affinité.
-    description: ''
-  - name: --probe-name
-    summary: Nom d’une sonde existante à associer à cette règle.
-    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_cross_region_lb_rule_delete
-  name: az network cross-region-lb rule delete
-  summary: Supprimer une règle d’équilibrage de charge.
+- uid: az_network_lb_inbound_nat_rule_delete
+  name: az network lb inbound-nat-rule delete
+  summary: Supprimer une règle NAT de trafic entrant.
   description: ''
   syntax: >-
-    az network cross-region-lb rule delete --lb-name
-                                           --name
-                                           --resource-group
-                                           [--subscription]
+    az network lb inbound-nat-rule delete --lb-name
+                                          --name
+                                          --resource-group
+                                          [--subscription]
   examples:
-  - summary: Supprimer une règle d’équilibrage de charge.
-    syntax: az network cross-region-lb rule delete -g MyResourceGroup --lb-name MyLb -n MyLbRule
+  - summary: Supprimer une règle NAT de trafic entrant.
+    syntax: az network lb inbound-nat-rule delete -g MyResourceGroup --lb-name MyLb -n MyNatRule
   requiredParameters:
   - isRequired: true
     name: --lb-name
@@ -109,7 +93,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --name -n
-    summary: Nom de la règle d’équilibrage de charge.
+    summary: Nom de la règle NAT de trafic entrant.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -120,18 +104,18 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_cross_region_lb_rule_list
-  name: az network cross-region-lb rule list
-  summary: Répertorier les règles d’équilibrage de charge.
+- uid: az_network_lb_inbound_nat_rule_list
+  name: az network lb inbound-nat-rule list
+  summary: Répertorier les règles NAT de trafic entrant.
   description: ''
   syntax: >-
-    az network cross-region-lb rule list --lb-name
-                                         --resource-group
-                                         [--query-examples]
-                                         [--subscription]
+    az network lb inbound-nat-rule list --lb-name
+                                        --resource-group
+                                        [--query-examples]
+                                        [--subscription]
   examples:
-  - summary: Répertorier les règles d’équilibrage de charge.
-    syntax: az network cross-region-lb rule list -g MyResourceGroup --lb-name MyLb -o table
+  - summary: Répertorier les règles NAT de trafic entrant.
+    syntax: az network lb inbound-nat-rule list -g MyResourceGroup --lb-name MyLb -o table
   requiredParameters:
   - isRequired: true
     name: --lb-name
@@ -149,19 +133,19 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_cross_region_lb_rule_show
-  name: az network cross-region-lb rule show
-  summary: Obtenir les détails d’une règle d’équilibrage de charge.
+- uid: az_network_lb_inbound_nat_rule_show
+  name: az network lb inbound-nat-rule show
+  summary: Obtient les détails d’une règle NAT de trafic entrant.
   description: ''
   syntax: >-
-    az network cross-region-lb rule show --lb-name
-                                         --name
-                                         --resource-group
-                                         [--query-examples]
-                                         [--subscription]
+    az network lb inbound-nat-rule show --lb-name
+                                        --name
+                                        --resource-group
+                                        [--query-examples]
+                                        [--subscription]
   examples:
-  - summary: Obtenir les détails d’une règle d’équilibrage de charge.
-    syntax: az network cross-region-lb rule show -g MyResourceGroup --lb-name MyLb -n MyLbRule
+  - summary: Obtient les détails d’une règle NAT de trafic entrant.
+    syntax: az network lb inbound-nat-rule show -g MyResourceGroup --lb-name MyLb -n MyNatRule
   requiredParameters:
   - isRequired: true
     name: --lb-name
@@ -169,7 +153,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --name -n
-    summary: Nom de la règle d’équilibrage de charge.
+    summary: Nom de la règle NAT de trafic entrant.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -183,43 +167,46 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_cross_region_lb_rule_update
-  name: az network cross-region-lb rule update
-  summary: Mettez à jour une règle d’équilibrage de charge.
+- uid: az_network_lb_inbound_nat_rule_update
+  name: az network lb inbound-nat-rule update
+  summary: Mettre à jour une règle NAT de trafic entrant.
   description: ''
   syntax: >-
-    az network cross-region-lb rule update [--add]
-                                           [--backend-pool-name]
-                                           [--backend-port]
-                                           [--floating-ip {false, true}]
-                                           [--force-string]
-                                           [--frontend-ip-name]
-                                           [--frontend-port]
-                                           [--idle-timeout]
-                                           [--ids]
-                                           [--lb-name]
-                                           [--load-distribution {Default, SourceIP, SourceIPProtocol}]
-                                           [--name]
-                                           [--probe-name]
-                                           [--protocol {All, Tcp, Udp}]
-                                           [--remove]
-                                           [--resource-group]
-                                           [--set]
-                                           [--subscription]
+    az network lb inbound-nat-rule update [--add]
+                                          [--backend-port]
+                                          [--enable-tcp-reset {false, true}]
+                                          [--floating-ip {false, true}]
+                                          [--force-string]
+                                          [--frontend-ip-name]
+                                          [--frontend-port]
+                                          [--idle-timeout]
+                                          [--ids]
+                                          [--lb-name]
+                                          [--name]
+                                          [--protocol {All, Tcp, Udp}]
+                                          [--remove]
+                                          [--resource-group]
+                                          [--set]
+                                          [--subscription]
   examples:
-  - summary: Mettez à jour une règle d’équilibrage de charge pour modifier le protocole en UDP.
-    syntax: az network cross-region-lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol Udp
-  - summary: Mettez à jour une règle d’équilibrage de charge pour prendre en charge les ports HA.
-    syntax: az network cross-region-lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule \ --protocol All --frontend-port 0 --backend-port 0
+  - summary: Mettez à jour une règle NAT entrante pour désactiver l’adresse IP flottante et modifier la durée du délai d’inactivité.
+    syntax: >-
+      az network lb inbound-nat-rule update -g MyResourceGroup --lb-name MyLb -n MyNatRule \
+          --floating-ip false --idle-timeout 5
+  - summary: Mettre à jour une règle NAT de trafic entrant. généré automatiquement
+    syntax: az network lb inbound-nat-rule update --backend-port 3389 --frontend-port 5432 --lb-name MyLb --name MyNatRule --protocol Udp --resource-group MyResourceGroup
+  - summary: Mettre à jour une règle NAT de trafic entrant. généré automatiquement
+    syntax: az network lb inbound-nat-rule update --lb-name MyLb --name MyNatRule --resource-group MyResourceGroup --set tags.CostCenter=MyBusinessGroup
   optionalParameters:
   - name: --add
     summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
     description: ''
-  - name: --backend-pool-name
-    summary: Nom du pool d’adresses principales.
-    description: ''
   - name: --backend-port
     summary: Numéro de port.
+    description: ''
+  - name: --enable-tcp-reset
+    parameterValueGroup: false, true
+    summary: Réception d’une réinitialisation TCP bidirectionnelle sur le délai d’inactivité du workflow TCP ou l’arrêt inattendu de la connexion. Utilisé uniquement lorsque le protocole est défini sur TCP.
     description: ''
   - name: --floating-ip
     parameterValueGroup: false, true
@@ -243,15 +230,8 @@ directCommands:
   - name: --lb-name
     summary: Nom de l’équilibreur de charge.
     description: ''
-  - name: --load-distribution
-    parameterValueGroup: Default, SourceIP, SourceIPProtocol
-    summary: Paramètres de règle d’affinité.
-    description: ''
   - name: --name -n
-    summary: Nom de la règle d’équilibrage de charge.
-    description: ''
-  - name: --probe-name
-    summary: Nom d’une sonde existante à associer à cette règle.
+    summary: Nom de la règle NAT de trafic entrant.
     description: ''
   - name: --protocol
     parameterValueGroup: All, Tcp, Udp
@@ -271,11 +251,11 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_cross_region_lb_rule_create
-- az_network_cross_region_lb_rule_delete
-- az_network_cross_region_lb_rule_list
-- az_network_cross_region_lb_rule_show
-- az_network_cross_region_lb_rule_update
+- az_network_lb_inbound_nat_rule_create
+- az_network_lb_inbound_nat_rule_delete
+- az_network_lb_inbound_nat_rule_list
+- az_network_lb_inbound_nat_rule_show
+- az_network_lb_inbound_nat_rule_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -293,11 +273,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/25/2021
-  description: Gérer les règles d’équilibrage de charge entre les régions.
-  ms.openlocfilehash: 79eedaea905ee9c761793f8c3e62f675a7265bc5
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.date: 02/03/2021
+  description: Gérer les règles NAT de trafic entrant d’un équilibreur de charge.
+  ms.openlocfilehash: 9094027b3dd87047f270d620f5502639ff6974af
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103545675"
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102966195"

@@ -1,0 +1,278 @@
+### YamlMime:AzureCLIGroup
+uid: az_batch_node
+name: az batch node
+summary: Gérer les nœuds de calcul batch.
+description: ''
+directCommands:
+- uid: az_batch_node_delete
+  name: az batch node delete
+  summary: Supprime les nœuds de calcul du pool spécifié.
+  description: Cette opération ne peut être exécutée que lorsque l’état d’allocation du pool est stable. Lorsque cette opération est exécutée, l’état d’allocation passe de stable à redimensionner.
+  syntax: >-
+    az batch node delete --pool-id
+                         [--account-endpoint]
+                         [--account-key]
+                         [--account-name]
+                         [--if-match]
+                         [--if-modified-since]
+                         [--if-none-match]
+                         [--if-unmodified-since]
+                         [--json-file]
+                         [--node-deallocation-option {requeue, retaineddata, taskcompletion, terminate}]
+                         [--node-list]
+                         [--resize-timeout]
+                         [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --pool-id
+    summary: ID du pool à partir duquel vous souhaitez supprimer des nœuds de calcul.
+    description: ''
+  optionalParameters:
+  - name: --account-endpoint
+    summary: 'Point de terminaison du service batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ENDPOINT.'
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCESS_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCOUNT.'
+    description: ''
+  - name: --if-match
+    summary: Valeur ETag associée à la version de la ressource connue du client. L’opération sera exécutée uniquement si l’ETag actuel de la ressource sur le service correspond exactement à la valeur spécifiée par le client.
+    description: ''
+  - name: --if-modified-since
+    summary: Horodateur qui indique l’heure de la dernière modification de la ressource connue du client. L’opération sera exécutée uniquement si la ressource sur le service a été modifiée depuis l’heure spécifiée.
+    description: ''
+  - name: --if-none-match
+    summary: Valeur ETag associée à la version de la ressource connue du client. L’opération sera exécutée uniquement si l’ETag actuel de la ressource sur le service ne correspond pas à la valeur spécifiée par le client.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Horodateur qui indique l’heure de la dernière modification de la ressource connue du client. L’opération sera exécutée uniquement si la ressource sur le service n’a pas été modifiée depuis l’heure spécifiée.
+    description: ''
+  - name: --json-file
+    summary: Fichier contenant la spécification de paramètre de suppression de nœud dans JSON (formaté pour correspondre au corps d’API REST respectif). Si ce paramètre est spécifié, tous les « arguments de suppression de nœud » sont ignorés.
+    description: ''
+  - name: --node-deallocation-option
+    parameterValueGroup: requeue, retaineddata, taskcompletion, terminate
+    summary: Détermine ce qu’il faut faire avec un nœud de calcul et ses tâches en cours d’exécution une fois qu’il a été sélectionné pour la désallocation. La valeur par défaut est requeue.
+    description: ''
+  - name: --node-list
+    summary: Obligatoire. Liste contenant les ID des nœuds de calcul à supprimer du pool spécifié. Valeurs séparées par des espaces.
+    description: ''
+  - name: --resize-timeout
+    summary: Délai d’attente de la suppression des nœuds de calcul dans le pool. La valeur par défaut est 15 minutes. La valeur minimale est de 5 minutes. Si vous spécifiez une valeur inférieure à 5 minutes, le service de traitement par lots renvoie une erreur. Si vous appelez l’API REST directement, le code d’état HTTP est 400 (requête incorrecte). Le format attendu est une durée ISO-8601.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batch/_help.py
+- uid: az_batch_node_list
+  name: az batch node list
+  summary: Répertorie les nœuds de calcul dans le pool spécifié.
+  description: ''
+  syntax: >-
+    az batch node list --pool-id
+                       [--account-endpoint]
+                       [--account-key]
+                       [--account-name]
+                       [--filter]
+                       [--query-examples]
+                       [--select]
+                       [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --pool-id
+    summary: ID du pool à partir duquel vous souhaitez répertorier les nœuds de calcul.
+    description: ''
+  optionalParameters:
+  - name: --account-endpoint
+    summary: 'Point de terminaison du service batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ENDPOINT.'
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCESS_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCOUNT.'
+    description: ''
+  - name: --filter
+    summary: Clause $filter OData. Pour plus d’informations sur la construction de ce filtre, consultez <a href="https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool">https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool</a> .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --select
+    summary: Clause $select OData.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batch/_help.py
+- uid: az_batch_node_reboot
+  name: az batch node reboot
+  summary: Redémarre le nœud de calcul spécifié.
+  description: Vous pouvez redémarrer un nœud de calcul uniquement s’il est en état d’inactivité ou en cours d’exécution.
+  syntax: >-
+    az batch node reboot --node-id
+                         --pool-id
+                         [--account-endpoint]
+                         [--account-key]
+                         [--account-name]
+                         [--node-reboot-option {requeue, retaineddata, taskcompletion, terminate}]
+                         [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --node-id
+    summary: ID du nœud de calcul que vous souhaitez redémarrer.
+    description: ''
+  - isRequired: true
+    name: --pool-id
+    summary: ID du pool qui contient le nœud de calcul.
+    description: ''
+  optionalParameters:
+  - name: --account-endpoint
+    summary: 'Point de terminaison du service batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ENDPOINT.'
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCESS_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCOUNT.'
+    description: ''
+  - name: --node-reboot-option
+    parameterValueGroup: requeue, retaineddata, taskcompletion, terminate
+    summary: Quand redémarrer le nœud de calcul et que faire avec les tâches en cours d’exécution. La valeur par défaut est requeue.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batch/_help.py
+- uid: az_batch_node_reimage
+  name: az batch node reimage
+  summary: Réinstalle le système d’exploitation sur le nœud de calcul spécifié.
+  description: Vous pouvez réinstaller le système d’exploitation sur un nœud de calcul uniquement s’il est en état d’inactivité ou en cours d’exécution. Cette API peut être appelée uniquement sur les pools créés avec la propriété de configuration de service Cloud.
+  syntax: >-
+    az batch node reimage --node-id
+                          --pool-id
+                          [--account-endpoint]
+                          [--account-key]
+                          [--account-name]
+                          [--node-reimage-option {requeue, retaineddata, taskcompletion, terminate}]
+                          [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --node-id
+    summary: ID du nœud de calcul que vous souhaitez redémarrer.
+    description: ''
+  - isRequired: true
+    name: --pool-id
+    summary: ID du pool qui contient le nœud de calcul.
+    description: ''
+  optionalParameters:
+  - name: --account-endpoint
+    summary: 'Point de terminaison du service batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ENDPOINT.'
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCESS_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCOUNT.'
+    description: ''
+  - name: --node-reimage-option
+    parameterValueGroup: requeue, retaineddata, taskcompletion, terminate
+    summary: Quand réimager le nœud de calcul et ce qu’il faut faire avec les tâches en cours d’exécution. La valeur par défaut est requeue.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batch/_help.py
+- uid: az_batch_node_show
+  name: az batch node show
+  summary: Obtient des informations sur le nœud de calcul spécifié.
+  description: ''
+  syntax: >-
+    az batch node show --node-id
+                       --pool-id
+                       [--account-endpoint]
+                       [--account-key]
+                       [--account-name]
+                       [--query-examples]
+                       [--select]
+                       [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --node-id
+    summary: ID du nœud de calcul sur lequel vous souhaitez obtenir des informations.
+    description: ''
+  - isRequired: true
+    name: --pool-id
+    summary: ID du pool qui contient le nœud de calcul.
+    description: ''
+  optionalParameters:
+  - name: --account-endpoint
+    summary: 'Point de terminaison du service batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ENDPOINT.'
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCESS_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCOUNT.'
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --select
+    summary: Clause $select OData.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batch/_help.py
+commands:
+- az_batch_node_delete
+- az_batch_node_file
+- az_batch_node_file_delete
+- az_batch_node_file_download
+- az_batch_node_file_list
+- az_batch_node_file_show
+- az_batch_node_list
+- az_batch_node_reboot
+- az_batch_node_reimage
+- az_batch_node_remote_desktop
+- az_batch_node_remote_desktop_download
+- az_batch_node_remote_login_settings
+- az_batch_node_remote_login_settings_show
+- az_batch_node_scheduling
+- az_batch_node_scheduling_disable
+- az_batch_node_scheduling_enable
+- az_batch_node_service_logs
+- az_batch_node_service_logs_upload
+- az_batch_node_show
+- az_batch_node_user
+- az_batch_node_user_create
+- az_batch_node_user_delete
+- az_batch_node_user_reset
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/07/2020
+  description: Gérer les nœuds de calcul batch.
+  ms.openlocfilehash: 06c6a959fcb26ee4fd5f599b884bd650bfb57984
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102842587"
