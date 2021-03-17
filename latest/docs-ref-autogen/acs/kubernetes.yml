@@ -1,0 +1,143 @@
+### YamlMime:AzureCLIGroup
+uid: az_acs_kubernetes
+name: az acs kubernetes
+summary: Commandes pour gérer un Azure Container Service orchestrée Kubernetes.
+description: ''
+directCommands:
+- uid: az_acs_kubernetes_browse
+  name: az acs kubernetes browse
+  summary: Lancez un proxy et parcourez l’interface utilisateur Web de Kubernetes.
+  description: ''
+  syntax: >-
+    az acs kubernetes browse --name
+                             --resource-group
+                             [--disable-browser]
+                             [--ssh-key-file]
+                             [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service de conteneur. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults acs=<name>` .
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --disable-browser
+    summary: N’ouvrez pas le navigateur après l’ouverture d’un proxy dans l’interface utilisateur Web du cluster.
+    description: ''
+  - name: --ssh-key-file
+    defaultValue: ~\.ssh\id_rsa
+    summary: Chemin d’accès à un fichier de clé SSH à utiliser.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_acs_kubernetes_get_credentials
+  name: az acs kubernetes get-credentials
+  summary: Téléchargez et installez les informations d’identification pour accéder à un cluster.  Cette commande requiert la même clé privée que celle utilisée pour créer le cluster.
+  description: ''
+  syntax: >-
+    az acs kubernetes get-credentials --name
+                                      --resource-group
+                                      [--file]
+                                      [--overwrite-existing]
+                                      [--ssh-key-file]
+                                      [--subscription]
+  examples:
+  - summary: Téléchargez et installez les informations d’identification pour accéder à un cluster.  Cette commande requiert la même clé privée que celle utilisée pour créer le cluster. généré automatiquement
+    syntax: az acs kubernetes get-credentials --name MyContainerService --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service de conteneur. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults acs=<name>` .
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --file -f
+    defaultValue: ~/.kube/config
+    summary: Où installer le fichier de configuration kubectl.
+    description: ''
+  - name: --overwrite-existing
+    summary: S’il est spécifié, remplace les informations d’identification existantes.
+    description: ''
+  - name: --ssh-key-file
+    summary: Chemin d’accès à un fichier de clé SSH à utiliser.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_acs_kubernetes_install_cli
+  name: az acs kubernetes install-cli
+  summary: Téléchargez et installez l’outil de ligne de commande Kubernetes pour un cluster.
+  description: ''
+  syntax: >-
+    az acs kubernetes install-cli [--base-src-url]
+                                  [--client-version]
+                                  [--install-location]
+                                  [--kubelogin-base-src-url]
+                                  [--kubelogin-install-location]
+                                  [--kubelogin-version]
+                                  [--subscription]
+  optionalParameters:
+  - name: --base-src-url
+    summary: URL source de téléchargement de base pour les versions de kubectl.
+    description: ''
+  - name: --client-version
+    defaultValue: latest
+    summary: Version de kubectl à installer.
+    description: ''
+  - name: --install-location
+    defaultValue: ~/.azure-kubectl/kubectl.exe
+    summary: Chemin d’installation de kubectl.
+    description: ''
+  - name: --kubelogin-base-src-url -l
+    summary: URL source de téléchargement de base pour les versions de kubelogin.
+    description: ''
+  - name: --kubelogin-install-location
+    defaultValue: ~/.azure-kubelogin/kubelogin.exe
+    summary: Chemin d’installation de kubelogin.
+    description: ''
+  - name: --kubelogin-version
+    defaultValue: latest
+    summary: Version de kubelogin à installer.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+commands:
+- az_acs_kubernetes_browse
+- az_acs_kubernetes_get_credentials
+- az_acs_kubernetes_install_cli
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/04/2021
+  description: Commandes pour gérer un Azure Container Service orchestrée Kubernetes.
+  ms.openlocfilehash: cfe017d11b9d3f973e9490ee44ef4498b75b22cc
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102967547"

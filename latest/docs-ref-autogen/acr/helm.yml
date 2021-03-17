@@ -1,0 +1,263 @@
+### YamlMime:AzureCLIGroup
+uid: az_acr_helm
+name: az acr helm
+summary: Gérez les graphiques Helm pour les registres de conteneurs Azure.
+description: ''
+directCommands:
+- uid: az_acr_helm_delete
+  name: az acr helm delete
+  summary: Supprimer une version de graphique Helm dans une Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr helm delete --name
+                       [--password]
+                       [--prov]
+                       [--resource-group]
+                       [--subscription]
+                       [--suffix]
+                       [--username]
+                       [--version]
+                       [--yes]
+                       [<CHART>]
+  examples:
+  - summary: Supprimer toutes les versions d’un graphique Helm dans une Azure Container Registry
+    syntax: az acr helm delete -n MyRegistry mychart
+  - summary: Supprimer une version de graphique Helm dans une Azure Container Registry
+    syntax: az acr helm delete -n MyRegistry mychart --version 0.3.2
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --prov
+    summary: Supprimez uniquement le fichier de provenance.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --suffix
+    summary: Suffixe de locataire dans le serveur de connexion au registre. Vous pouvez spécifier « --suffixe locataire » si votre serveur de connexion au registre est au format « registry-tenant.azurecr.io ». S’applique si vous accédez au registre à partir d’un autre abonnement ou si vous avez l’autorisation d’accéder aux images, mais pas l’autorisation de gérer la ressource du Registre.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --version
+    summary: Version du graphique Helm.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  - name: <CHART>
+    summary: Nom du graphique Helm.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_helm_install_cli
+  name: az acr helm install-cli
+  summary: Téléchargez et installez l’outil de ligne de commande Helm.
+  description: ''
+  syntax: >-
+    az acr helm install-cli [--client-version]
+                            [--install-location]
+                            [--subscription]
+                            [--yes]
+  examples:
+  - summary: Installer la version par défaut de Helm CLI à l’emplacement par défaut
+    syntax: az acr helm install-cli
+  - summary: Installer une version spécifiée de l’interface CLI Helm à l’emplacement par défaut
+    syntax: az acr helm install-cli --client-version x.x.x
+  - summary: Installer la version par défaut de l’interface CLI Helm à un emplacement spécifié
+    syntax: az acr helm install-cli --install-location /folder/filename
+  - summary: Installer une version spécifiée de l’interface CLI Helm à un emplacement spécifié
+    syntax: az acr helm install-cli --client-version x.x.x --install-location /folder/filename
+  optionalParameters:
+  - name: --client-version
+    defaultValue: 2.16.3
+    summary: 'Version de l’interface CLI Helm cible. (Attention : actuellement, Helm 3 ne fonctionne pas avec les commandes « AZ ACR Helm »).'
+    description: ''
+  - name: --install-location
+    defaultValue: ~/.azure-helm/helm.exe
+    summary: Chemin d’installation de Helm CLI (existant dans le même chemin d’accès sera remplacé).
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Acceptez la licence de Helm et ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_helm_list
+  name: az acr helm list
+  summary: Répertorie tous les graphiques Helm dans un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr helm list --name
+                     [--password]
+                     [--query-examples]
+                     [--resource-group]
+                     [--subscription]
+                     [--suffix]
+                     [--username]
+  examples:
+  - summary: Répertorier tous les graphiques Helm dans une Azure Container Registry
+    syntax: az acr helm list -n MyRegistry
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --suffix
+    summary: Suffixe de locataire dans le serveur de connexion au registre. Vous pouvez spécifier « --suffixe locataire » si votre serveur de connexion au registre est au format « registry-tenant.azurecr.io ». S’applique si vous accédez au registre à partir d’un autre abonnement ou si vous avez l’autorisation d’accéder aux images, mais pas l’autorisation de gérer la ressource du Registre.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_helm_push
+  name: az acr helm push
+  summary: Envoyer un package de graphique Helm à un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr helm push --name
+                     [--force]
+                     [--password]
+                     [--resource-group]
+                     [--subscription]
+                     [--suffix]
+                     [--username]
+                     [<CHART_PACKAGE>]
+  examples:
+  - summary: Envoyer un package de graphique à un Azure Container Registry
+    syntax: az acr helm push -n MyRegistry mychart-0.3.2.tgz
+  - summary: Transmettre un package de graphique à un Azure Container Registry, en remplaçant celui existant.
+    syntax: az acr helm push -n MyRegistry mychart-0.3.2.tgz --force
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --force
+    summary: Remplacer le package de graphiques existant.
+    description: ''
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --suffix
+    summary: Suffixe de locataire dans le serveur de connexion au registre. Vous pouvez spécifier « --suffixe locataire » si votre serveur de connexion au registre est au format « registry-tenant.azurecr.io ». S’applique si vous accédez au registre à partir d’un autre abonnement ou si vous avez l’autorisation d’accéder aux images, mais pas l’autorisation de gérer la ressource du Registre.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: <CHART_PACKAGE>
+    summary: Package de graphiques Helm.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_helm_show
+  name: az acr helm show
+  summary: Décrit un graphique Helm dans une Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr helm show --name
+                     [--password]
+                     [--query-examples]
+                     [--resource-group]
+                     [--subscription]
+                     [--suffix]
+                     [--username]
+                     [--version]
+                     [<CHART>]
+  examples:
+  - summary: Afficher toutes les versions d’un graphique Helm dans une Azure Container Registry
+    syntax: az acr helm show -n MyRegistry mychart
+  - summary: Afficher une version de graphique Helm dans une Azure Container Registry
+    syntax: az acr helm show -n MyRegistry mychart --version 0.3.2
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --suffix
+    summary: Suffixe de locataire dans le serveur de connexion au registre. Vous pouvez spécifier « --suffixe locataire » si votre serveur de connexion au registre est au format « registry-tenant.azurecr.io ». S’applique si vous accédez au registre à partir d’un autre abonnement ou si vous avez l’autorisation d’accéder aux images, mais pas l’autorisation de gérer la ressource du Registre.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --version
+    summary: Version du graphique Helm.
+    description: ''
+  - name: <CHART>
+    summary: Nom du graphique Helm.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+commands:
+- az_acr_helm_delete
+- az_acr_helm_install_cli
+- az_acr_helm_list
+- az_acr_helm_push
+- az_acr_helm_repo
+- az_acr_helm_repo_add
+- az_acr_helm_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/26/2021
+  description: Gérez les graphiques Helm pour les registres de conteneurs Azure.
+  ms.openlocfilehash: 1e692da876f146ae988bd413c09c631333fdcc22
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102967627"

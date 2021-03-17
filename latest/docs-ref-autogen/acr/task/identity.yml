@@ -1,0 +1,148 @@
+### YamlMime:AzureCLIGroup
+uid: az_acr_task_identity
+name: az acr task identity
+summary: Identités gérées pour la tâche. <a href="https://aka.ms/acr/tasks/task-create-managed-identity">https://aka.ms/acr/tasks/task-create-managed-identity</a>Pour plus d’informations, consultez.
+description: ''
+directCommands:
+- uid: az_acr_task_identity_assign
+  name: az acr task identity assign
+  summary: Mettez à jour l’identité managée pour une tâche.
+  description: ''
+  syntax: >-
+    az acr task identity assign --name
+                                --registry
+                                [--identities]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: Activez l’identité affectée par le système sur une tâche existante. Cela va remplacer toutes les identités affectées par l’utilisateur existantes pour cette tâche.
+    syntax: az acr task identity assign -n MyTask -r MyRegistry
+  - summary: Assigner des identités gérées affectées par l’utilisateur à une tâche existante. Cette opération supprimera l’identité attribuée par le système existante.
+    syntax: >-
+      az acr task identity assign -n MyTask -r MyRegistry \
+          --identities "/subscriptions/<SUBSCRIPTON ID>/resourcegroups/<RESOURCE GROUP>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentitiy"
+  - summary: Attribuez à une tâche existante les identités gérées affectées par le système et affectées à l’utilisateur.
+    syntax: >-
+      az acr task identity assign -n MyTask -r MyRegistry \
+          --identities [system] "/subscriptions/<SUBSCRIPTON ID>/resourcegroups/<RESOURCE GROUP>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentitiy"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la tâche.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --identities
+    summary: Affecte des identités gérées à la tâche. Utilisez « [System] » pour faire référence à l’identité affectée par le système ou à un ID de ressource pour faire référence à une identité affectée par l’utilisateur.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_task_identity_remove
+  name: az acr task identity remove
+  summary: Supprimer les identités gérées pour une tâche.
+  description: ''
+  syntax: >-
+    az acr task identity remove --name
+                                --registry
+                                [--identities]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: Supprimer l’identité affectée par le système d’une tâche.
+    syntax: az acr task identity remove -n MyTask -r MyRegistry
+  - summary: Supprimer une identité affectée par l’utilisateur d’une tâche.
+    syntax: >-
+      az acr task identity remove -n MyTask -r MyRegistry \
+          --identities "/subscriptions/<SUBSCRIPTON ID>/resourcegroups/<RESOURCE GROUP>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentitiy"
+  - summary: Supprimer toutes les identités gérées d’une tâche.
+    syntax: az acr task identity remove -n MyTask -r MyRegistry --identities [all]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la tâche.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --identities
+    summary: Affecte des identités gérées à la tâche. Utilisez « [System] » pour faire référence à l’identité affectée par le système ou à un ID de ressource pour faire référence à une identité affectée par l’utilisateur.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_task_identity_show
+  name: az acr task identity show
+  summary: Affichez les identités gérées pour la tâche.
+  description: ''
+  syntax: >-
+    az acr task identity show --name
+                              --registry
+                              [--query-examples]
+                              [--resource-group]
+                              [--subscription]
+  examples:
+  - summary: Afficher les identités gérées pour une tâche.
+    syntax: az acr task identity show -n MyTask -r MyRegistry
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la tâche.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+commands:
+- az_acr_task_identity_assign
+- az_acr_task_identity_remove
+- az_acr_task_identity_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/26/2021
+  description: Identités gérées pour la tâche. <a href="https://aka.ms/acr/tasks/task-create-managed-identity">https://aka.ms/acr/tasks/task-create-managed-identity</a>Pour plus d’informations, consultez.
+  ms.openlocfilehash: 168c0d9ba0bc60960de5c40a530330ee4365df9f
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102967576"

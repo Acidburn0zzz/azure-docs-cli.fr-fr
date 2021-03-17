@@ -1,0 +1,111 @@
+### YamlMime:AzureCLIGroup
+uid: az_acr_pack
+name: az acr pack
+summary: Gérer les tâches Azure Container Registry qui utilisent Buildpacks Cloud native.
+description: ''
+directCommands:
+- uid: az_acr_pack_build
+  name: az acr pack build
+  summary: Met en file d’attente une tâche de génération rapide qui génère une application et la transmet dans une Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr pack build --builder
+                      --image
+                      --registry
+                      [--agent-pool]
+                      [--auth-mode {Default, None}]
+                      [--no-format]
+                      [--no-logs]
+                      [--no-wait]
+                      [--pack-image-tag]
+                      [--platform]
+                      [--pull]
+                      [--resource-group]
+                      [--subscription]
+                      [--timeout]
+                      [<SOURCE_LOCATION>]
+  examples:
+  - summary: Mettre en file d’attente une build pour le répertoire actif avec le générateur CloudFoundry.
+    syntax: az acr pack build -r MyRegistry -t {{.Run.Registry}}/node-app:{{.Run.ID}} --builder cloudfoundry/cnb:bionic .
+  - summary: Mettre en file d’attente une build pour le référentiel GitHub donné avec Heroku Builder.
+    syntax: az acr pack build -r MyRegistry -t {{.Run.Registry}}/node-app:{{.Run.ID}} --pull --builder heroku/buildpacks:18 https://github.com/Azure-Samples/nodejs-docs-hello-world.git
+  requiredParameters:
+  - isRequired: true
+    name: --builder -b
+    summary: Nom et étiquette d’une image du générateur Buildpack.
+    description: ''
+  - isRequired: true
+    name: --image -t
+    summary: "Nom et balise de l’image en utilisant le format : '-t référentiel/image : tag'."
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --agent-pool
+    summary: Nom du pool d’agents.
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: Default, None
+    summary: Mode d’authentification du Registre source.
+    description: ''
+  - name: --no-format
+    summary: Indique si les journaux doivent être affichés au format brut.
+    description: ''
+  - name: --no-logs
+    summary: N’affichez pas les journaux après avoir correctement mis en file d’attente la Build.
+    description: ''
+  - name: --no-wait
+    summary: N’attendez pas que l’exécution se termine et qu’elle soit retournée immédiatement après la mise en file d’attente de l’exécution.
+    description: ''
+  - name: --pack-image-tag
+    defaultValue: stable
+    summary: Balise de l’image de testeur’Pack' ('mcr.microsoft.com/oryx/pack').
+    description: ''
+  - name: --platform
+    summary: Plateforme dans laquelle la génération/tâche est exécutée, par exemple, « Windows » et « Linux ». Lorsqu’il est utilisé dans les commandes de génération, il peut également être spécifié dans le format « OS/Arch/variant » pour l’image résultante. Par exemple, Linux/ARM/v7. Les parties « Arch » et « variant » sont facultatives.
+    description: ''
+  - name: --pull
+    summary: Tirez le générateur et les images d’exécution les plus récentes avant de les utiliser.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’attente en secondes.
+    description: ''
+  - name: <SOURCE_LOCATION>
+    summary: Le chemin d’accès au répertoire du code source local (par exemple, « ./SRC ») ou l’URL d’un référentiel git (par exemple, « <a href="https://github.com/Azure-Samples/acr-build-helloworld-node.git">https://github.com/Azure-Samples/acr-build-helloworld-node.git</a> ») ou un tarball distant (par exemple, « » <a href="http://server/context.tar.gz">http://server/context.tar.gz</a> ), ou le référentiel d’un artefact OCI dans un registre de conteneurs Azure (par exemple, «OCI://myregistry.azurecr.IO/myartifact :MyTag »).
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+commands:
+- az_acr_pack_build
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/26/2021
+  description: Gérer les tâches Azure Container Registry qui utilisent Buildpacks Cloud native.
+  ms.openlocfilehash: 9603d8c079c6309151656c5644becb11fdc4f921
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102967608"
