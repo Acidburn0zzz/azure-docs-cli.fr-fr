@@ -1,0 +1,208 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_iot_device
+name: az iot device
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ IOT Device** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Tirer parti des fonctionnalités de messagerie appareil-à-cloud et cloud-à-appareil.
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_iot_device_send_d2c_message
+  name: az iot device send-d2c-message
+  summary: Envoyer un message appareil-à-Cloud MQTT. La commande prend en charge l’envoi de messages avec les propriétés système et d’application.
+  description: ''
+  syntax: >-
+    az iot device send-d2c-message --device-id
+                                   [--da]
+                                   [--hub-name]
+                                   [--login]
+                                   [--mc]
+                                   [--properties]
+                                   [--qos {0, 1}]
+                                   [--resource-group]
+  examples:
+  - summary: Utilisation de base
+    syntax: az iot device send-d2c-message -n {iothub_name} -d {device_id}
+  - summary: Utilisation de base avec des données personnalisées
+    syntax: az iot device send-d2c-message -n {iothub_name} -d {device_id} --data {message_body}
+  - summary: Envoyer les propriétés de l’application
+    syntax: az iot device send-d2c-message -n {iothub_name} -d {device_id} --props 'key0=value0;key1=value1'
+  - summary: Envoyer les propriétés système (ID de message et ID de corrélation)
+    syntax: az iot device send-d2c-message -n {iothub_name} -d {device_id} --props '$.mid=<id>;$.cid=<id>'
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  optionalParameters:
+  - name: --da --data
+    defaultValue: Ping from Az CLI IoT Extension
+    summary: Corps du message.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --mc --msg-count
+    defaultValue: "1"
+    summary: Nombre de messages d’appareil à envoyer à IoT Hub.
+    description: ''
+  - name: --properties --props -p
+    summary: 'Conteneur des propriétés de message dans les paires clé-valeur au format suivant : a = b ; c = d. Pour la messagerie MQTT-vous pouvez envoyer des propriétés système à l’aide de $. <name> = valeur. Par exemple, $. cid = 12345 définit la propriété ID de corrélation du système. D’autres exemples d’identificateur de propriété système incluent $. CT pour le type de contenu, $. Mid pour l’ID de message et $. ce pour l’encodage de contenu.'
+    description: ''
+  - name: --qos
+    defaultValue: "1"
+    parameterValueGroup: 0, 1
+    summary: Qualité de service. 0 = au plus une fois, 1 = au moins une fois. 2 (une seule fois) n’est pas pris en charge.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_device_simulate
+  name: az iot device simulate
+  summary: >-
+    Simuler un appareil dans une IoT Hub Azure.
+
+
+    Pendant l’exécution de la simulation d’appareil, l’appareil reçoit et accuse réception automatiquement des messages Cloud-à-appareil (C2D). Pour la simulation MQTT, tous les messages C2D sont confirmés avec l’achèvement. Pour la simulation http, l’accusé de réception C2D est basé sur la sélection de l’utilisateur, qui peut être complète, rejetée ou abandonnée.
+
+
+    Remarque : par défaut, la commande définit le type de contenu sur application/JSON et encodage de contenu sur UTF-8. Il peut être remplacé.
+  description: ''
+  syntax: >-
+    az iot device simulate --device-id
+                           [--da]
+                           [--hub-name]
+                           [--login]
+                           [--mc]
+                           [--mi]
+                           [--properties]
+                           [--proto {http, mqtt}]
+                           [--receive-settle {abandon, complete, reject}]
+                           [--resource-group]
+  examples:
+  - summary: Utilisation de base (MQTT)
+    syntax: az iot device simulate -n {iothub_name} -d {device_id}
+  - summary: Utilisation de base (MQTT) avec l’envoi de propriétés mixtes
+    syntax: az iot device simulate -n {iothub_name} -d {device_id} --properties "myprop=myvalue;$.ct=application/json"
+  - summary: Utilisation de base (http)
+    syntax: az iot device simulate -n {iothub_name} -d {device_id} --protocol http
+  - summary: Utilisation de base (http) avec envoi de propriétés mixtes
+    syntax: az iot device simulate -n {iothub_name} -d {device_id} --protocol http --properties "iothub-app-myprop=myvalue;content-type=application/json;iothub-correlationid=12345"
+  - summary: Choisir le nombre total de messages et l’intervalle entre les messages
+    syntax: az iot device simulate -n {iothub_name} -d {device_id} --msg-count 1000 --msg-interval 5
+  - summary: Rejeter les messages C2D (http uniquement)
+    syntax: az iot device simulate -n {iothub_name} -d {device_id} --rs reject --protocol http
+  - summary: Abandonner les messages C2D (http uniquement)
+    syntax: az iot device simulate -n {iothub_name} -d {device_id} --rs abandon --protocol http
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  optionalParameters:
+  - name: --da --data
+    defaultValue: Ping from Az CLI IoT Extension
+    summary: Corps du message.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --mc --msg-count
+    defaultValue: "100"
+    summary: Nombre de messages d’appareil à envoyer à IoT Hub.
+    description: ''
+  - name: --mi --msg-interval
+    defaultValue: "3"
+    summary: Délai en secondes entre les messages appareil-à-Cloud.
+    description: ''
+  - name: --properties --props -p
+    summary: 'Conteneur des propriétés de message dans les paires clé-valeur au format suivant : a = b ; c = d. Pour la messagerie MQTT-vous pouvez envoyer des propriétés système à l’aide de $. <name> = valeur. Par exemple, $. cid = 12345 définit la propriété ID de corrélation du système. D’autres exemples d’identificateur de propriété système incluent $. CT pour le type de contenu, $. Mid pour l’ID de message et $. ce pour l’encodage de contenu.  Pour la messagerie http-les propriétés de l’application sont envoyées à l’aide de iothub-App- <name> = value, par exemple iothub-App-MyProp = MyValue. Les propriétés système sont généralement précédées de iothub <name> iothub-CorrelationId, mais il existe des exceptions telles que content-type et Content-Encoding.'
+    description: ''
+  - name: --proto --protocol
+    defaultValue: mqtt
+    parameterValueGroup: http, mqtt
+    summary: Indique le protocole de message appareil-à-Cloud.
+    description: ''
+  - name: --receive-settle --rs
+    defaultValue: complete
+    parameterValueGroup: abandon, complete, reject
+    summary: Indique comment régler la réception des messages Cloud-à-appareil. Pris en charge avec HTTP uniquement.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_device_upload_file
+  name: az iot device upload-file
+  summary: Chargez un fichier local en tant que périphérique dans un conteneur de stockage d’objets BLOB préconfiguré.
+  description: ''
+  syntax: >-
+    az iot device upload-file --content-type
+                              --device-id
+                              --file-path
+                              [--hub-name]
+                              [--login]
+                              [--resource-group]
+  requiredParameters:
+  - isRequired: true
+    name: --content-type --ct
+    summary: Type MIME du fichier.
+    description: ''
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  - isRequired: true
+    name: --file-path --fp
+    summary: Chemin d’accès au fichier à charger.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_azure-iot_az_iot_device_c2d_message
+- ext_azure-iot_az_iot_device_c2d_message_abandon
+- ext_azure-iot_az_iot_device_c2d_message_complete
+- ext_azure-iot_az_iot_device_c2d_message_purge
+- ext_azure-iot_az_iot_device_c2d_message_receive
+- ext_azure-iot_az_iot_device_c2d_message_reject
+- ext_azure-iot_az_iot_device_c2d_message_send
+- ext_azure-iot_az_iot_device_send_d2c_message
+- ext_azure-iot_az_iot_device_simulate
+- ext_azure-iot_az_iot_device_upload_file
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Tirer parti des fonctionnalités de messagerie appareil-à-cloud et cloud-à-appareil.
+  ms.openlocfilehash: 32e370adefb7e3a2c4966d8f9c67ebb94c4ddecc
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102822140"

@@ -1,28 +1,34 @@
 ### YamlMime:AzureCLIGroup
-uid: az_resource_lock
-name: az resource lock
-summary: Gérer les verrous au niveau des ressources Azure.
+uid: az_lock
+name: az lock
+summary: Gérer les verrous Azure.
 description: ''
 directCommands:
-- uid: az_resource_lock_create
-  name: az resource lock create
-  summary: Créez un verrou au niveau de la ressource.
-  description: ''
+- uid: az_lock_create
+  name: az lock create
+  summary: Créez un verrou.
+  description: 'Les verrous peuvent exister sur trois étendues différentes : abonnement, groupe de ressources et ressource.'
   syntax: >-
-    az resource lock create --lock-type {CanNotDelete, ReadOnly}
-                            --name
-                            [--namespace]
-                            [--notes]
-                            [--parent]
-                            [--resource]
-                            [--resource-group]
-                            [--resource-type]
-                            [--subscription]
+    az lock create --lock-type {CanNotDelete, ReadOnly}
+                   --name
+                   [--namespace]
+                   [--notes]
+                   [--parent]
+                   [--resource]
+                   [--resource-group]
+                   [--resource-type]
+                   [--subscription]
   examples:
-  - summary: Créer un verrou de niveau de ressource en lecture seule sur un réseau virtuel.
-    syntax: az resource lock create --lock-type ReadOnly -n lockName -g MyResourceGroup --resource myvnet --resource-type Microsoft.Network/virtualNetworks
-  - summary: Créer un verrou de niveau de ressource en lecture seule sur un réseau virtuel à l’aide d’un ID de réseau virtuel.
-    syntax: az resource lock create --lock-type ReadOnly -n lockName --resource /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Network/virtualNetworks/{VNETName}
+  - summary: Créez un verrou de niveau d’abonnement en lecture seule.
+    syntax: az lock create --name lockName --resource-group group --lock-type ReadOnly
+  - summary: Créez un verrou de niveau de ressource en lecture seule sur une ressource de réseau virtuel.
+    syntax: >-
+      az lock create --name lockName --resource-group group --lock-type ReadOnly --resource-type \
+          Microsoft.Network/virtualNetworks --resource myVnet
+  - summary: Créer un verrou de niveau de ressource en lecture seule sur une ressource de sous-réseau avec un parent spécifique.
+    syntax: >-
+      az lock create --name lockName --resource-group group --lock-type ReadOnly --resource-type \
+          Microsoft.Network/subnets --parent virtualNetworks/myVnet --resource mySubnet
   requiredParameters:
   - isRequired: true
     name: --lock-type -t
@@ -44,7 +50,7 @@ directCommands:
     summary: 'Chemin d’accès parent (ex : « resA/myA/resB/myB »).'
     description: ''
   - name: --resource --resource-name
-    summary: Si un ID est donné, les autres arguments de ressource ne doivent pas être donnés.
+    summary: Nom ou ID de la ressource verrouillée. Si un ID est donné, les autres arguments de ressource ne doivent pas être donnés.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
@@ -56,26 +62,22 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_resource_lock_delete
-  name: az resource lock delete
-  summary: Supprimer un verrou au niveau de la ressource.
+- uid: az_lock_delete
+  name: az lock delete
+  summary: Supprimer un verrou.
   description: ''
   syntax: >-
-    az resource lock delete [--ids]
-                            [--name]
-                            [--namespace]
-                            [--parent]
-                            [--resource]
-                            [--resource-group]
-                            [--resource-type]
-                            [--subscription]
+    az lock delete [--ids]
+                   [--name]
+                   [--namespace]
+                   [--parent]
+                   [--resource]
+                   [--resource-group]
+                   [--resource-type]
+                   [--subscription]
   examples:
-  - summary: Supprimer un verrou de niveau ressource
-    syntax: az resource lock delete --name lockName -g MyResourceGroup --resource myvnet --resource-type Microsoft.Network/virtualNetworks
-  - summary: Supprimer un verrou de niveau ressource sur un réseau virtuel à l’aide d’un ID de réseau virtuel.
-    syntax: az resource lock delete -n lockName --resource /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Network/virtualNetworks/{VMName}
-  - summary: Supprimer un verrou au niveau de la ressource. généré automatiquement
-    syntax: az resource lock delete --ids /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Web/sites/{WebApp}
+  - summary: Supprimer un verrou au niveau du groupe de ressources
+    syntax: az lock delete --name lockName --resource-group group
   optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). S’il est fourni, aucun autre argument « Resource ID » ne doit être spécifié.
@@ -90,7 +92,7 @@ directCommands:
     summary: 'Chemin d’accès parent (ex : « resA/myA/resB/myB »).'
     description: ''
   - name: --resource --resource-name
-    summary: Si un ID est donné, les autres arguments de ressource ne doivent pas être donnés.
+    summary: Nom ou ID de la ressource verrouillée. Si un ID est donné, les autres arguments de ressource ne doivent pas être donnés.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
@@ -102,22 +104,24 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_resource_lock_list
-  name: az resource lock list
-  summary: Répertorier les informations de verrou dans le niveau de la ressource.
+- uid: az_lock_list
+  name: az lock list
+  summary: Liste les informations sur les verrous.
   description: ''
   syntax: >-
-    az resource lock list [--filter-string]
-                          [--namespace]
-                          [--parent]
-                          [--query-examples]
-                          [--resource]
-                          [--resource-group]
-                          [--resource-type]
-                          [--subscription]
+    az lock list [--filter-string]
+                 [--namespace]
+                 [--parent]
+                 [--query-examples]
+                 [--resource]
+                 [--resource-group]
+                 [--resource-type]
+                 [--subscription]
   examples:
-  - summary: Répertorier tous les verrous sur un réseau virtuel
-    syntax: az resource lock list -g MyResourceGroup --resource myvnet --resource-type Microsoft.Network/virtualNetworks
+  - summary: Répertorier les verrous sur une ressource de réseau virtuel. Comprend des verrous dans le groupe et l’abonnement associés.
+    syntax: az lock list --resource myvnet --resource-type Microsoft.Network/virtualNetworks -g group
+  - summary: Répertorier tous les verrous au niveau de l’abonnement
+    syntax: az lock list
   optionalParameters:
   - name: --filter-string
     summary: Filtre de requête à utiliser pour restreindre les résultats.
@@ -132,7 +136,7 @@ directCommands:
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
     description: ''
   - name: --resource --resource-name
-    summary: Si un ID est donné, les autres arguments de ressource ne doivent pas être donnés.
+    summary: Nom ou ID de la ressource verrouillée. Si un ID est donné, les autres arguments de ressource ne doivent pas être donnés.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
@@ -144,23 +148,25 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_resource_lock_show
-  name: az resource lock show
-  summary: Affichez les détails d’un verrou au niveau de la ressource.
+- uid: az_lock_show
+  name: az lock show
+  summary: Affichez les propriétés d’un verrou.
   description: ''
   syntax: >-
-    az resource lock show [--ids]
-                          [--name]
-                          [--namespace]
-                          [--parent]
-                          [--query-examples]
-                          [--resource]
-                          [--resource-group]
-                          [--resource-type]
-                          [--subscription]
+    az lock show [--ids]
+                 [--name]
+                 [--namespace]
+                 [--parent]
+                 [--query-examples]
+                 [--resource]
+                 [--resource-group]
+                 [--resource-type]
+                 [--subscription]
   examples:
-  - summary: Afficher un verrou au niveau de la ressource
-    syntax: az resource lock show -n lockname -g MyResourceGroup --resource myvnet --resource-type Microsoft.Network/virtualNetworks
+  - summary: Afficher un verrou de niveau d’abonnement
+    syntax: az lock show -n lockname
+  - summary: Afficher les propriétés d’un verrou (généré automatiquement)
+    syntax: az lock show --name lockname --resource-group MyResourceGroup --resource-name MyResource --resource-type Microsoft.Network/virtualNetworks
   optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). S’il est fourni, aucun autre argument « Resource ID » ne doit être spécifié.
@@ -178,7 +184,7 @@ directCommands:
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
     description: ''
   - name: --resource --resource-name
-    summary: Si un ID est donné, les autres arguments de ressource ne doivent pas être donnés.
+    summary: Nom ou ID de la ressource verrouillée. Si un ID est donné, les autres arguments de ressource ne doivent pas être donnés.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
@@ -190,26 +196,24 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_resource_lock_update
-  name: az resource lock update
-  summary: Mettre à jour un verrou au niveau de la ressource.
+- uid: az_lock_update
+  name: az lock update
+  summary: Mettre à jour un verrou.
   description: ''
   syntax: >-
-    az resource lock update [--ids]
-                            [--lock-type {CanNotDelete, ReadOnly}]
-                            [--name]
-                            [--namespace]
-                            [--notes]
-                            [--parent]
-                            [--resource]
-                            [--resource-group]
-                            [--resource-type]
-                            [--subscription]
+    az lock update [--ids]
+                   [--lock-type {CanNotDelete, ReadOnly}]
+                   [--name]
+                   [--namespace]
+                   [--notes]
+                   [--parent]
+                   [--resource]
+                   [--resource-group]
+                   [--resource-type]
+                   [--subscription]
   examples:
-  - summary: Mettre à jour un verrou de niveau ressource avec les nouvelles notes et le type
-    syntax: az resource lock update --name lockName -g MyResourceGroup --resource myvnet --resource-type Microsoft.Network/virtualNetworks --notes newNotesHere --lock-type CanNotDelete
-  - summary: Mettre à jour un verrou au niveau de la ressource. généré automatiquement
-    syntax: az resource lock update --lock-type CanNotDelete --name lockName --namespace Microsoft.Network --resource-group MyResourceGroup --resource-name myvnet --resource-type Microsoft.Network/virtualNetworks
+  - summary: Mettre à jour un verrou de niveau groupe de ressources avec de nouvelles notes et type
+    syntax: az lock update --name lockName --resource-group group --notes newNotesHere --lock-type CanNotDelete
   optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). S’il est fourni, aucun autre argument « Resource ID » ne doit être spécifié.
@@ -231,7 +235,7 @@ directCommands:
     summary: 'Chemin d’accès parent (ex : « resA/myA/resB/myB »).'
     description: ''
   - name: --resource --resource-name
-    summary: Si un ID est donné, les autres arguments de ressource ne doivent pas être donnés.
+    summary: Nom ou ID de la ressource verrouillée. Si un ID est donné, les autres arguments de ressource ne doivent pas être donnés.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
@@ -244,11 +248,11 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
 commands:
-- az_resource_lock_create
-- az_resource_lock_delete
-- az_resource_lock_list
-- az_resource_lock_show
-- az_resource_lock_update
+- az_lock_create
+- az_lock_delete
+- az_lock_list
+- az_lock_show
+- az_lock_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -266,11 +270,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/25/2021
-  description: Gérer les verrous au niveau des ressources Azure.
-  ms.openlocfilehash: 7ba4bc08244835c43cca842a0935d9ddb8a94e17
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.date: 02/02/2021
+  description: Gérer les verrous Azure.
+  ms.openlocfilehash: 9380e0f70ad91d216ad2d2bde4374190ad996bbf
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103497320"
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102850018"

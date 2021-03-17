@@ -1,0 +1,438 @@
+### YamlMime:AzureCLIGroup
+uid: az_monitor_log_analytics_workspace
+name: az monitor log-analytics workspace
+summary: Gérer l’espace de travail Azure log Analytics.
+description: ''
+directCommands:
+- uid: az_monitor_log_analytics_workspace_create
+  name: az monitor log-analytics workspace create
+  summary: Créer une instance d’espace de travail.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace create --resource-group
+                                              --workspace-name
+                                              [--capacity-reservation-level]
+                                              [--ingestion-access {Disabled, Enabled}]
+                                              [--location]
+                                              [--no-wait]
+                                              [--query-access {Disabled, Enabled}]
+                                              [--quota]
+                                              [--retention-time]
+                                              [--sku]
+                                              [--subscription]
+                                              [--tags]
+  examples:
+  - summary: Créer une instance d’espace de travail
+    syntax: az monitor log-analytics workspace create -g MyResourceGroup -n MyWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name -n
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --capacity-reservation-level --level
+    summary: Niveau de réservation de capacité pour cet espace de travail, lorsque la référence SKU CapacityReservation est sélectionnée. La valeur maximale est 1000 et doit être un multiple de 100. Si vous souhaitez augmenter la limite, contactez LAIngestionRate@microsoft.com .
+    description: ''
+  - name: --ingestion-access
+    parameterValueGroup: Disabled, Enabled
+    summary: Type d’accès réseau public pour accéder à l’ingestion de l’espace de travail.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --query-access
+    parameterValueGroup: Disabled, Enabled
+    summary: Type d’accès réseau public pour accéder à la requête d’espace de travail.
+    description: ''
+  - name: --quota
+    summary: Quota quotidien de l’espace de travail pour l’ingestion en gigaoctets. La valeur minimale est 0,023 et la valeur par défaut est-1, ce qui signifie un nombre illimité.
+    description: ''
+  - name: --retention-time
+    defaultValue: "30"
+    summary: Rétention des données de l’espace de travail en jours.
+    description: ''
+  - name: --sku
+    defaultValue: PerGB2018
+    summary: 'Valeur prise en charge : Pargo2018, CapacityReservation.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_delete
+  name: az monitor log-analytics workspace delete
+  summary: Supprimer une instance d’espace de travail.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace delete --resource-group
+                                              --workspace-name
+                                              [--force {false, true}]
+                                              [--subscription]
+                                              [--yes]
+  examples:
+  - summary: Supprimer une instance d’espace de travail. généré automatiquement
+    syntax: az monitor log-analytics workspace delete --force true --resource-group MyResourceGroup --workspace-name MyWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name -n
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --force -f
+    parameterValueGroup: false, true
+    summary: Supprime l’espace de travail sans l’option de récupération. Un espace de travail qui a été supprimé avec cet indicateur ne peut pas être récupéré.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_get_schema
+  name: az monitor log-analytics workspace get-schema
+  summary: Obtient le schéma pour un espace de travail donné.
+  description: Schema représente la structure interne de l’espace de travail, qui peut être utilisée pendant la requête. Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/rest/api/loganalytics/workspaces%202015-03-20/getschema">https://docs.microsoft.com/en-us/rest/api/loganalytics/workspaces%202015-03-20/getschema</a>.
+  syntax: >-
+    az monitor log-analytics workspace get-schema --resource-group
+                                                  --workspace-name
+                                                  [--subscription]
+  examples:
+  - summary: Obtient le schéma pour un espace de travail donné. généré automatiquement
+    syntax: az monitor log-analytics workspace get-schema --resource-group MyResourceGroup --workspace-name MyWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name -n
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_get_shared_keys
+  name: az monitor log-analytics workspace get-shared-keys
+  summary: Obtenir les clés partagées d’un espace de travail.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace get-shared-keys --resource-group
+                                                       --workspace-name
+                                                       [--subscription]
+  examples:
+  - summary: Obtenir les clés partagées d’un espace de travail. généré automatiquement
+    syntax: az monitor log-analytics workspace get-shared-keys --resource-group MyResourceGroup --workspace-name MyWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name -n
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_list
+  name: az monitor log-analytics workspace list
+  summary: Obtenir la liste des espaces de travail sous un groupe de ressources ou un abonnement.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace list [--query-examples]
+                                            [--resource-group]
+                                            [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_list_deleted_workspaces
+  name: az monitor log-analytics workspace list-deleted-workspaces
+  summary: Obtenir la liste des espaces de travail supprimés qui peuvent être récupérés dans un abonnement ou un groupe de ressources.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace list-deleted-workspaces [--resource-group]
+                                                               [--subscription]
+  examples:
+  - summary: Obtenir la liste des espaces de travail supprimés pouvant être récupérés dans un groupe de ressources
+    syntax: az monitor log-analytics workspace list-deleted-workspaces --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_list_management_groups
+  name: az monitor log-analytics workspace list-management-groups
+  summary: Obtenir la liste des groupes d’administration connectés à un espace de travail.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace list-management-groups --resource-group
+                                                              --workspace-name
+                                                              [--subscription]
+  examples:
+  - summary: Obtenir la liste des groupes d’administration connectés à un espace de travail. généré automatiquement
+    syntax: az monitor log-analytics workspace list-management-groups --resource-group MyResourceGroup --subscription mysubscription --workspace-name MyWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name -n
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_list_usages
+  name: az monitor log-analytics workspace list-usages
+  summary: Obtient la liste des métriques d’utilisation d’un espace de travail.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace list-usages --resource-group
+                                                   --workspace-name
+                                                   [--subscription]
+  examples:
+  - summary: Obtient la liste des métriques d’utilisation d’un espace de travail. généré automatiquement
+    syntax: az monitor log-analytics workspace list-usages --resource-group MyResourceGroup --subscription MySubscription --workspace-name MyWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name -n
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_recover
+  name: az monitor log-analytics workspace recover
+  summary: Récupérez un espace de travail dans un état de suppression réversible dans un délai de 14 jours.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace recover --workspace-name
+                                               [--no-wait]
+                                               [--resource-group]
+                                               [--subscription]
+  examples:
+  - summary: Récupérer un espace de travail dans un état de suppression réversible dans les 14 jours
+    syntax: az monitor log-analytics workspace recover --resource-group MyResourceGroup -n MyWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --workspace-name -n
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_show
+  name: az monitor log-analytics workspace show
+  summary: Affichez une instance d’espace de travail.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace show --resource-group
+                                            --workspace-name
+                                            [--query-examples]
+                                            [--subscription]
+  examples:
+  - summary: Affichez une instance d’espace de travail. généré automatiquement
+    syntax: az monitor log-analytics workspace show --resource-group MyResourceGroup --workspace-name MyWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name -n
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_update
+  name: az monitor log-analytics workspace update
+  summary: Mettre à jour une instance d’espace de travail.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace update --resource-group
+                                              --workspace-name
+                                              [--add]
+                                              [--capacity-reservation-level]
+                                              [--force-string]
+                                              [--ingestion-access {Disabled, Enabled}]
+                                              [--query-access {Disabled, Enabled}]
+                                              [--quota]
+                                              [--remove]
+                                              [--retention-time]
+                                              [--set]
+                                              [--subscription]
+                                              [--tags]
+  examples:
+  - summary: Mettre à jour une instance d’espace de travail. généré automatiquement
+    syntax: az monitor log-analytics workspace update --resource-group myresourcegroup --retention-time 30 --workspace-name myworkspace
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name -n
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --capacity-reservation-level --level
+    summary: Niveau de réservation de capacité pour cet espace de travail, lorsque la référence SKU CapacityReservation est sélectionnée. La valeur maximale est 1000 et doit être un multiple de 100. Si vous souhaitez augmenter la limite, contactez LAIngestionRate@microsoft.com .
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ingestion-access
+    parameterValueGroup: Disabled, Enabled
+    summary: Type d’accès réseau public pour accéder à l’ingestion de l’espace de travail.
+    description: ''
+  - name: --query-access
+    parameterValueGroup: Disabled, Enabled
+    summary: Type d’accès réseau public pour accéder à la requête d’espace de travail.
+    description: ''
+  - name: --quota
+    summary: Quota quotidien de l’espace de travail pour l’ingestion en gigaoctets. La valeur minimale est 0,023 et la valeur par défaut est-1, ce qui signifie un nombre illimité.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --retention-time
+    defaultValue: "30"
+    summary: Rétention des données de l’espace de travail en jours.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+commands:
+- az_monitor_log_analytics_workspace_create
+- az_monitor_log_analytics_workspace_data_export
+- az_monitor_log_analytics_workspace_data_export_create
+- az_monitor_log_analytics_workspace_data_export_delete
+- az_monitor_log_analytics_workspace_data_export_list
+- az_monitor_log_analytics_workspace_data_export_show
+- az_monitor_log_analytics_workspace_data_export_update
+- az_monitor_log_analytics_workspace_delete
+- az_monitor_log_analytics_workspace_get_schema
+- az_monitor_log_analytics_workspace_get_shared_keys
+- az_monitor_log_analytics_workspace_linked_service
+- az_monitor_log_analytics_workspace_linked_service_create
+- az_monitor_log_analytics_workspace_linked_service_delete
+- az_monitor_log_analytics_workspace_linked_service_list
+- az_monitor_log_analytics_workspace_linked_service_show
+- az_monitor_log_analytics_workspace_linked_service_update
+- az_monitor_log_analytics_workspace_linked_service_wait
+- az_monitor_log_analytics_workspace_linked_storage
+- az_monitor_log_analytics_workspace_linked_storage_add
+- az_monitor_log_analytics_workspace_linked_storage_create
+- az_monitor_log_analytics_workspace_linked_storage_delete
+- az_monitor_log_analytics_workspace_linked_storage_list
+- az_monitor_log_analytics_workspace_linked_storage_remove
+- az_monitor_log_analytics_workspace_linked_storage_show
+- az_monitor_log_analytics_workspace_list
+- az_monitor_log_analytics_workspace_list_deleted_workspaces
+- az_monitor_log_analytics_workspace_list_management_groups
+- az_monitor_log_analytics_workspace_list_usages
+- az_monitor_log_analytics_workspace_pack
+- az_monitor_log_analytics_workspace_pack_disable
+- az_monitor_log_analytics_workspace_pack_enable
+- az_monitor_log_analytics_workspace_pack_list
+- az_monitor_log_analytics_workspace_recover
+- az_monitor_log_analytics_workspace_saved_search
+- az_monitor_log_analytics_workspace_saved_search_create
+- az_monitor_log_analytics_workspace_saved_search_delete
+- az_monitor_log_analytics_workspace_saved_search_list
+- az_monitor_log_analytics_workspace_saved_search_show
+- az_monitor_log_analytics_workspace_saved_search_update
+- az_monitor_log_analytics_workspace_show
+- az_monitor_log_analytics_workspace_table
+- az_monitor_log_analytics_workspace_table_list
+- az_monitor_log_analytics_workspace_table_show
+- az_monitor_log_analytics_workspace_table_update
+- az_monitor_log_analytics_workspace_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer l’espace de travail Azure log Analytics.
+  ms.openlocfilehash: dedc7d8a90ec2a3f621c2ca54fba66092ab2d3ec
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965691"

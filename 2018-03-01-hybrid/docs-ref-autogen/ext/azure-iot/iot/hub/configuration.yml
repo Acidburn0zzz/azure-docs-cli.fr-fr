@@ -1,0 +1,277 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_iot_hub_configuration
+name: az iot hub configuration
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ IOT Hub configuration** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer la configuration de la gestion automatique des appareils IoT à grande échelle.
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_iot_hub_configuration_create
+  name: az iot hub configuration create
+  summary: Créer une configuration de gestion automatique des appareils IoT dans un IoT Hub cible.
+  description: >-
+    Le contenu de configuration est JSON et varie légèrement en fonction de l’intention de l’appareil ou du module.
+
+
+    Les configurations d’appareil se présentent sous la forme {"deviceContent" : {...}} ou {"Content" : {"deviceContent" : {...}}}
+
+
+    Les configurations de module se présentent sous la forme {"moduleContent" : {...}} ou {"Content" : {"moduleContent" : {...}}}
+
+
+    Les configurations peuvent être définies avec des mesures fournies par l’utilisateur pour une évaluation à la demande.
+
+    Les métriques de l’utilisateur sont au format JSON et sous la forme {"Queries" : {...}} ou {"Metrics" : {"Queries" : {...}}}.
+
+
+    Remarque : la condition cible pour les modules doit commencer par « from Devices. modules Where ».
+  syntax: >-
+    az iot hub configuration create --config-id
+                                    --content
+                                    [--hub-name]
+                                    [--lab]
+                                    [--login]
+                                    [--metrics]
+                                    [--pri]
+                                    [--resource-group]
+                                    [--target-condition]
+  examples:
+  - summary: Créez une configuration d’appareil avec une priorité de 3 qui s’applique à la condition quand un appareil est marqué au bâtiment 9 et que l’environnement est « test ».
+    syntax: az iot hub configuration create -c {config_name} -n {iothub_name} --content device_content.json --target-condition "tags.building=9 and tags.environment='test'" --priority 3
+  - summary: Créer une configuration d’appareil avec des étiquettes et fournir des mesures de l’utilisateur en ligne (exemple de syntaxe bash)
+    syntax: "az iot hub configuration create -c {config_name} -n {iothub_name} --content device_content.json --target-condition \"tags.building=9\" --labels '{\"key0\":\"value0\", \"key1\":\"value1\"}' --priority 10 --metrics '{\"metrics\": {\"queries\": {\"mymetric\": \"select deviceId from devices where tags.location='US'\"}}}'"
+  - summary: Créer une configuration de module avec des étiquettes et fournir des mesures utilisateur inline (exemple de syntaxe cmd)
+    syntax: "az iot hub configuration create -c {config_name} -n {iothub_name} --content module_content.json --target-condition \"from devices.modules where tags.building=9\" --labels \"{\\\"key0\\\":\\\"value0\\\", \\\"key1\\\":\\\"value1\\\"}\" --metrics \"{\\\"metrics\\\": {\\\"queries\\\": {\\\"mymetric\\\": \\\"select moduleId from devices.modules where tags.location='US'\\\"}}}\""
+  - summary: Créer une configuration de module avec du contenu et des mesures utilisateur inline (exemple de syntaxe PowerShell)
+    syntax: "az iot hub configuration create -c {config_name} -n {iothub_name} --content '{\\\"moduleContent\\\": {\\\"properties.desired.chillerWaterSettings\\\": {\\\"temperature\\\": 38, \\\"pressure\\\": 78}}}' --target-condition \"from devices.modules where tags.building=9\" --priority 1 --metrics '{\\\"metrics\\\": {\\\"queries\\\": {\\\"mymetric\\\":\\\"select moduleId from devices.modules where tags.location=''US''\\\"}}}'"
+  requiredParameters:
+  - isRequired: true
+    name: --config-id -c
+    summary: Nom de la configuration de l’appareil cible.
+    description: ''
+  - isRequired: true
+    name: --content -k
+    summary: Contenu de la configuration de l’appareil. Fournissez un chemin de fichier ou un JSON brut.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --lab --labels
+    summary: 'Mappage des étiquettes à appliquer à la configuration de la cible. Exemple de format : {"Key0" : "value0", "Key1" : "value1"}.'
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --metrics -m
+    summary: Définitions de métriques de configuration d’appareil. Fournissez un chemin de fichier ou un JSON brut.
+    description: ''
+  - name: --pri --priority
+    summary: Poids de la configuration de l’appareil en cas de règles en concurrence (WINS le plus élevé).
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --target-condition --tc -t
+    summary: Condition cible à laquelle une configuration d’appareil s’applique.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_configuration_delete
+  name: az iot hub configuration delete
+  summary: Supprimer une configuration d’appareil IoT.
+  description: ''
+  syntax: >-
+    az iot hub configuration delete --config-id
+                                    [--etag]
+                                    [--hub-name]
+                                    [--login]
+                                    [--resource-group]
+  requiredParameters:
+  - isRequired: true
+    name: --config-id -c
+    summary: Nom de la configuration de l’appareil cible.
+    description: ''
+  optionalParameters:
+  - name: --etag -e
+    summary: L’ETag ou la balise d’entité correspondant au dernier état de la ressource. Si aucun ETag n’est fourni, la valeur' \* 'est utilisée.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_configuration_list
+  name: az iot hub configuration list
+  summary: Répertorier les configurations de gestion automatique des appareils IoT dans une IoT Hub.
+  description: ''
+  syntax: >-
+    az iot hub configuration list [--hub-name]
+                                  [--login]
+                                  [--resource-group]
+                                  [--top]
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --top
+    summary: Nombre maximal de configurations à retourner. Par défaut, toutes les configurations sont retournées.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_configuration_show
+  name: az iot hub configuration show
+  summary: Obtient les détails de la configuration de la gestion automatique des appareils IoT.
+  description: ''
+  syntax: >-
+    az iot hub configuration show --config-id
+                                  [--hub-name]
+                                  [--login]
+                                  [--resource-group]
+  requiredParameters:
+  - isRequired: true
+    name: --config-id -c
+    summary: Nom de la configuration de l’appareil cible.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_configuration_show_metric
+  name: az iot hub configuration show-metric
+  summary: Évaluez un utilisateur cible ou une mesure système définie dans une configuration d’appareil IoT.
+  description: ''
+  syntax: >-
+    az iot hub configuration show-metric --config-id
+                                         --metric-id
+                                         [--hub-name]
+                                         [--login]
+                                         [--metric-type {system, user}]
+                                         [--resource-group]
+  examples:
+  - summary: Évaluer la métrique « warningLimit » définie par l’utilisateur
+    syntax: az iot hub configuration show-metric -m warningLimit -c {configuration_name} -n {iothub_name}
+  - summary: Évaluer la métrique du système « appliedCount »
+    syntax: az iot hub configuration show-metric --metric-id appliedCount -c {configuration_name} -n {iothub_name} --metric-type system
+  requiredParameters:
+  - isRequired: true
+    name: --config-id -c
+    summary: Nom de la configuration de l’appareil cible.
+    description: ''
+  - isRequired: true
+    name: --metric-id -m
+    summary: Mesure cible pour l’évaluation.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --metric-type --mt
+    defaultValue: user
+    parameterValueGroup: system, user
+    summary: Indique quelle collection de mesures doit être utilisée pour rechercher une mesure.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_configuration_update
+  name: az iot hub configuration update
+  summary: >-
+    Met à jour les propriétés spécifiées d’une configuration de gestion automatique des appareils IoT.
+
+
+    Utilisez--Set suivi d’assignations de propriété pour la mise à jour d’une configuration.
+
+
+    Remarque : le contenu de configuration est immuable. Les propriétés de configuration qui peuvent être mises à jour sont « labels », « Metrics », « Priority » et « targetCondition ».
+  description: ''
+  syntax: >-
+    az iot hub configuration update --config-id
+                                    [--add]
+                                    [--etag]
+                                    [--force-string]
+                                    [--hub-name]
+                                    [--login]
+                                    [--remove]
+                                    [--resource-group]
+                                    [--set]
+  examples:
+  - summary: Modifier la priorité d’une configuration d’appareil et mettre à jour sa condition cible
+    syntax: az iot hub configuration update -c {configuration_name} -n {iothub_name} --set priority=10 targetCondition="tags.building=43 and tags.environment='dev'"
+  requiredParameters:
+  - isRequired: true
+    name: --config-id -c
+    summary: Nom de la configuration de l’appareil cible.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --etag -e
+    summary: L’ETag ou la balise d’entité correspondant au dernier état de la ressource. Si aucun ETag n’est fourni, la valeur' \* 'est utilisée.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+commands:
+- ext_azure-iot_az_iot_hub_configuration_create
+- ext_azure-iot_az_iot_hub_configuration_delete
+- ext_azure-iot_az_iot_hub_configuration_list
+- ext_azure-iot_az_iot_hub_configuration_show
+- ext_azure-iot_az_iot_hub_configuration_show_metric
+- ext_azure-iot_az_iot_hub_configuration_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer la configuration de la gestion automatique des appareils IoT à grande échelle.
+  ms.openlocfilehash: c0f5d62f9a7f2f3eecc87d2283ff5629fcd45385
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102841795"
