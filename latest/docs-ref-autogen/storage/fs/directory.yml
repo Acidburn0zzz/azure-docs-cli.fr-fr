@@ -1,0 +1,393 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_fs_directory
+name: az storage fs directory
+summary: Gérer les répertoires dans Azure Data Lake Storage Gen2 compte.
+description: ''
+directCommands:
+- uid: az_storage_fs_directory_create
+  name: az storage fs directory create
+  summary: Créez un répertoire dans ADLS Gen2 système de fichiers.
+  description: ''
+  syntax: >-
+    az storage fs directory create --file-system
+                                   --name
+                                   [--account-key]
+                                   [--account-name]
+                                   [--auth-mode {key, login}]
+                                   [--connection-string]
+                                   [--metadata]
+                                   [--permissions]
+                                   [--sas-token]
+                                   [--subscription]
+                                   [--timeout]
+                                   [--umask]
+  examples:
+  - summary: Créez un répertoire dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory create -n dir -f myfilesystem --account-name myadlsaccount --account-key 0000-0000
+  - summary: Créez un répertoire dans ADLS Gen2 système de fichiers par le biais de la chaîne de connexion.
+    syntax: az storage fs directory create -n dir -f myfilesystem --connection-string myconnectionstring
+  requiredParameters:
+  - isRequired: true
+    name: --file-system -f
+    summary: Nom du système de fichiers.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --permissions
+    summary: Autorisations d’accès POSIX pour le propriétaire du fichier, le groupe propriétaire du fichier et d’autres. Chaque classe peut recevoir une autorisation de lecture, d’écriture ou d’exécution. Le bit permanent est également pris en charge. Les notations octales symboliques (rwxrw-RW) et à 4 chiffres (par exemple, 0766) sont prises en charge. Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#levels-of-permission">https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#levels-of-permission</a> .
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  - name: --umask
+    summary: Lorsque vous créez un fichier ou un répertoire et que le dossier parent n’a pas d’ACL par défaut, l’umask limite les autorisations du fichier ou du répertoire à créer. L’autorisation obtenue est donnée par p & ^ u, où p est l’autorisation et que vous êtes l’umask. Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#umask">https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#umask</a> .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_fs_directory_delete
+  name: az storage fs directory delete
+  summary: Supprimer un répertoire dans ADLS Gen2 système de fichiers.
+  description: ''
+  syntax: >-
+    az storage fs directory delete --file-system
+                                   --name
+                                   [--account-key]
+                                   [--account-name]
+                                   [--auth-mode {key, login}]
+                                   [--connection-string]
+                                   [--sas-token]
+                                   [--subscription]
+                                   [--timeout]
+                                   [--yes]
+  examples:
+  - summary: Supprimer un répertoire dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory delete -n dir -f myfilesystem --account-name myadlsaccount --account-key 0000-0000
+  - summary: Supprimer un répertoire dans ADLS Gen2 système de fichiers. généré automatiquement
+    syntax: az storage fs directory delete --account-name myadlsaccount --auth-mode login --file-system myfilesystem --name dir --yes
+  requiredParameters:
+  - isRequired: true
+    name: --file-system -f
+    summary: Nom du système de fichiers.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_fs_directory_exists
+  name: az storage fs directory exists
+  summary: Vérifiez l’existence d’un répertoire dans ADLS Gen2 système de fichiers.
+  description: ''
+  syntax: >-
+    az storage fs directory exists --file-system
+                                   --name
+                                   [--account-key]
+                                   [--account-name]
+                                   [--auth-mode {key, login}]
+                                   [--connection-string]
+                                   [--sas-token]
+                                   [--subscription]
+                                   [--timeout]
+  examples:
+  - summary: Vérifiez l’existence d’un répertoire dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory exists -n dir -f myfilesystem --account-name myadlsaccount --account-key 0000-0000
+  - summary: Vérifiez l’existence d’un répertoire dans ADLS Gen2 système de fichiers. généré automatiquement
+    syntax: az storage fs directory exists --account-name myadlsaccount --auth-mode login --file-system myfilesystem --name dir
+  requiredParameters:
+  - isRequired: true
+    name: --file-system -f
+    summary: Nom du système de fichiers.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_fs_directory_list
+  name: az storage fs directory list
+  summary: Répertorie les répertoires dans ADLS Gen2 système de fichiers.
+  description: ''
+  syntax: >-
+    az storage fs directory list --file-system
+                                 [--account-key]
+                                 [--account-name]
+                                 [--auth-mode {key, login}]
+                                 [--connection-string]
+                                 [--num-results]
+                                 [--path]
+                                 [--query-examples]
+                                 [--recursive {false, true}]
+                                 [--sas-token]
+                                 [--subscription]
+                                 [--timeout]
+  examples:
+  - summary: Répertorie les répertoires dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory list -f myfilesystem --account-name myadlsaccount --account-key 0000-0000
+  - summary: Répertorie les répertoires dans « dir/ » pour le système de fichiers ADLS Gen2.
+    syntax: az storage fs directory list --path dir -f myfilesystem --account-name myadlsaccount --account-key 0000-0000
+  requiredParameters:
+  - isRequired: true
+    name: --file-system -f
+    summary: Nom du système de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --num-results
+    summary: Spécifiez le nombre maximal de résultats à retourner.
+    description: ''
+  - name: --path
+    summary: Filtrez les résultats pour retourner uniquement les chemins d’accès sous le chemin d’accès spécifié.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --recursive
+    defaultValue: "1"
+    parameterValueGroup: false, true
+    summary: Examiner les sous-répertoires de manière récursive lorsque la valeur est true.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_fs_directory_move
+  name: az storage fs directory move
+  summary: Déplacer un répertoire dans ADLS Gen2 système de fichiers.
+  description: ''
+  syntax: >-
+    az storage fs directory move --file-system
+                                 --name
+                                 --new-directory
+                                 [--account-key]
+                                 [--account-name]
+                                 [--auth-mode {key, login}]
+                                 [--connection-string]
+                                 [--sas-token]
+                                 [--subscription]
+                                 [--timeout]
+  examples:
+  - summary: Déplacer un répertoire d’un répertoire dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory move --new-directory newfs/dir -n dir -f myfilesystem --account-name myadlsaccount --account-key 0000-0000
+  - summary: Déplacer un répertoire dans ADLS Gen2 système de fichiers. généré automatiquement
+    syntax: az storage fs directory move --account-name myadlsaccount --auth-mode login --file-system myfilesystem --name dir --new-directory newfs/dir
+  requiredParameters:
+  - isRequired: true
+    name: --file-system -f
+    summary: Nom du système de fichiers.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du répertoire.
+    description: ''
+  - isRequired: true
+    name: --new-directory -d
+    summary: 'Nouveau nom du répertoire vers lequel déplacer les utilisateurs. La valeur doit avoir le format suivant : « {FileSystem}/{Directory}/{subdirectory} ».'
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_fs_directory_show
+  name: az storage fs directory show
+  summary: Affichez les propriétés d’un répertoire dans ADLS Gen2 système de fichiers.
+  description: ''
+  syntax: >-
+    az storage fs directory show --file-system
+                                 --name
+                                 [--account-key]
+                                 [--account-name]
+                                 [--auth-mode {key, login}]
+                                 [--connection-string]
+                                 [--query-examples]
+                                 [--sas-token]
+                                 [--subscription]
+                                 [--timeout]
+  examples:
+  - summary: Affichez les propriétés d’un répertoire dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory show -n dir -f myfilesystem --account-name myadlsaccount --account-key 0000-0000
+  - summary: Affichez les propriétés d’un sous-répertoire dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory show -n dir/subdir -f myfilesystem --account-name myadlsaccount --account-key 0000-0000
+  - summary: Affichez les propriétés d’un répertoire dans ADLS Gen2 système de fichiers. généré automatiquement
+    syntax: az storage fs directory show --account-name myadlsaccount --auth-mode login --file-system myfilesystem --name dir
+  requiredParameters:
+  - isRequired: true
+    name: --file-system -f
+    summary: Nom du système de fichiers.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_fs_directory_create
+- az_storage_fs_directory_delete
+- az_storage_fs_directory_exists
+- az_storage_fs_directory_list
+- az_storage_fs_directory_metadata
+- az_storage_fs_directory_metadata_show
+- az_storage_fs_directory_metadata_update
+- az_storage_fs_directory_move
+- az_storage_fs_directory_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/26/2021
+  description: Gérer les répertoires dans Azure Data Lake Storage Gen2 compte.
+  ms.openlocfilehash: ad6035569ee5a43ca30511fc62c0cc3369085020
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103515568"
