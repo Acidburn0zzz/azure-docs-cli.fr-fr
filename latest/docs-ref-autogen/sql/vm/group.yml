@@ -1,0 +1,276 @@
+### YamlMime:AzureCLIGroup
+uid: az_sql_vm_group
+name: az sql vm group
+summary: Gérer les groupes de machines virtuelles SQL.
+description: ''
+directCommands:
+- uid: az_sql_vm_group_create
+  name: az sql vm group create
+  summary: Crée un groupe de machines virtuelles SQL.
+  description: ''
+  syntax: >-
+    az sql vm group create --domain-fqdn
+                           --image-offer
+                           --image-sku {Developer, Enterprise}
+                           --name
+                           --operator-acc
+                           --resource-group
+                           --service-acc
+                           --storage-account
+                           [--bootstrap-acc]
+                           [--fsw-path]
+                           [--location]
+                           [--ou-path]
+                           [--sa-key]
+                           [--subscription]
+                           [--tags]
+  examples:
+  - summary: Créez un groupe de machines virtuelles SQL pour les machines virtuelles SQL2016-WS2016 Enterprise.
+    syntax: az sql vm group create -n sqlvmgroup -l eastus -g myresourcegroup --image-offer SQL2016-WS2016 --image-sku Enterprise --domain-fqdn Domain.com --operator-acc testop --service-acc testservice --sa-key {PublicKey} --storage-account 'https://storacc.blob.core.windows.net/'
+  requiredParameters:
+  - isRequired: true
+    name: --domain-fqdn -f
+    summary: Nom complet du domaine.
+    description: ''
+  - isRequired: true
+    name: --image-offer -i
+    summary: Offre d’image SQL. Il peut s’agir, par exemple, de SQL2016-WS2016, SQL2017-WS2016.
+    description: ''
+  - isRequired: true
+    name: --image-sku -s
+    parameterValueGroup: Developer, Enterprise
+    summary: Référence SKU de l’image SQL.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de machines virtuelles SQL.
+    description: ''
+  - isRequired: true
+    name: --operator-acc -p
+    summary: Nom de compte utilisé pour le cluster opérationnel, c’est-à-dire qui fera partie du groupe Administrateurs sur toutes les machines virtuelles participantes du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-acc -e
+    summary: Nom du compte sous lequel le service SQL s’exécutera sur toutes les machines virtuelles SQL participantes du cluster.
+    description: ''
+  - isRequired: true
+    name: --storage-account -u
+    summary: URL du compte de stockage du compte de stockage témoin.
+    description: ''
+  optionalParameters:
+  - name: --bootstrap-acc
+    summary: Nom du compte utilisé pour la création du cluster (au minimum, il est nécessaire d’avoir les autorisations nécessaires pour créer des objets ordinateur dans le domaine).
+    description: ''
+  - name: --fsw-path
+    summary: Chemin d’accès facultatif pour le témoin de partage de partage.
+    description: ''
+  - name: --location -l
+    summary: Lieu. S’il n’est pas fourni, le groupe est créé dans le même emplacement de groupe ressources. Vous pouvez configurer l’emplacement par défaut à l’aide de `az configure --defaults location=<location>` .
+    description: ''
+  - name: --ou-path
+    summary: 'Chemin d’accès de l’unité d’organisation dans lequel les nœuds et le cluster seront présents. Exemple : OU = WSCluster, DC = DomaineTest, DC = com.'
+    description: ''
+  - name: --sa-key -k
+    summary: Clé primaire du compte de stockage témoin.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_vm_group_delete
+  name: az sql vm group delete
+  summary: Supprime un groupe de machines virtuelles SQL.
+  description: ''
+  syntax: >-
+    az sql vm group delete [--ids]
+                           [--name]
+                           [--resource-group]
+                           [--subscription]
+                           [--yes]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe de machines virtuelles SQL.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_vm_group_list
+  name: az sql vm group list
+  summary: Répertorie tous les groupes de machines virtuelles SQL dans un groupe de ressources ou un abonnement.
+  description: ''
+  syntax: >-
+    az sql vm group list [--query-examples]
+                         [--resource-group]
+                         [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_vm_group_show
+  name: az sql vm group show
+  summary: Obtient un groupe de machines virtuelles SQL.
+  description: ''
+  syntax: >-
+    az sql vm group show [--ids]
+                         [--name]
+                         [--query-examples]
+                         [--resource-group]
+                         [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe de machines virtuelles SQL.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_vm_group_update
+  name: az sql vm group update
+  summary: Met à jour un groupe de machines virtuelles SQL si aucune machine virtuelle SQL n’est attachée au groupe.
+  description: ''
+  syntax: >-
+    az sql vm group update [--add]
+                           [--bootstrap-acc]
+                           [--domain-fqdn]
+                           [--force-string]
+                           [--fsw-path]
+                           [--ids]
+                           [--name]
+                           [--operator-acc]
+                           [--ou-path]
+                           [--remove]
+                           [--resource-group]
+                           [--sa-key]
+                           [--service-acc]
+                           [--set]
+                           [--storage-account]
+                           [--subscription]
+                           [--tags]
+  examples:
+  - summary: Mettez à jour un compte d’opérateur de groupe de machines virtuelles SQL vide.
+    syntax: az sql vm group update -n sqlvmgroup -g myresourcegroup --operator-acc testop
+  - summary: Mettez à jour un compte de stockage de groupe de machines virtuelles SQL vide et une clé.
+    syntax: az sql vm group update -n sqlvmgroup -g myresourcegroup --sa-key {PublicKey} --storage-account 'https://newstoracc.blob.core.windows.net/'
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --bootstrap-acc
+    summary: Nom du compte utilisé pour la création du cluster (au minimum, il est nécessaire d’avoir les autorisations nécessaires pour créer des objets ordinateur dans le domaine).
+    description: ''
+  - name: --domain-fqdn -f
+    summary: Nom complet du domaine.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --fsw-path
+    summary: Chemin d’accès facultatif pour le témoin de partage de partage.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du groupe de machines virtuelles SQL.
+    description: ''
+  - name: --operator-acc -p
+    summary: Nom de compte utilisé pour le cluster opérationnel, c’est-à-dire qui fera partie du groupe Administrateurs sur toutes les machines virtuelles participantes du cluster.
+    description: ''
+  - name: --ou-path
+    summary: 'Chemin d’accès de l’unité d’organisation dans lequel les nœuds et le cluster seront présents. Exemple : OU = WSCluster, DC = DomaineTest, DC = com.'
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --sa-key -k
+    summary: Clé primaire du compte de stockage témoin.
+    description: ''
+  - name: --service-acc -e
+    summary: Nom du compte sous lequel le service SQL s’exécutera sur toutes les machines virtuelles SQL participantes du cluster.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --storage-account -u
+    summary: URL du compte de stockage du compte de stockage témoin.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+commands:
+- az_sql_vm_group_ag_listener
+- az_sql_vm_group_ag_listener_create
+- az_sql_vm_group_ag_listener_delete
+- az_sql_vm_group_ag_listener_list
+- az_sql_vm_group_ag_listener_show
+- az_sql_vm_group_ag_listener_update
+- az_sql_vm_group_create
+- az_sql_vm_group_delete
+- az_sql_vm_group_list
+- az_sql_vm_group_show
+- az_sql_vm_group_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/28/2021
+  description: Gérer les groupes de machines virtuelles SQL.
+  ms.openlocfilehash: c073cd3d461515276be37f42b56504c30b9496a5
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963453"

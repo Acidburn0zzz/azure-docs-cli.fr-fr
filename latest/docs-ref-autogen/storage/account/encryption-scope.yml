@@ -1,0 +1,189 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_account_encryption_scope
+name: az storage account encryption-scope
+summary: Gérer l’étendue de chiffrement pour un compte de stockage.
+description: ''
+directCommands:
+- uid: az_storage_account_encryption_scope_create
+  name: az storage account encryption-scope create
+  summary: Créez une étendue de chiffrement dans le compte de stockage.
+  description: ''
+  syntax: >-
+    az storage account encryption-scope create --account-name
+                                               --name
+                                               [--key-source {Microsoft.KeyVault, Microsoft.Storage}]
+                                               [--key-uri]
+                                               [--resource-group]
+                                               [--subscription]
+  examples:
+  - summary: Créez une étendue de chiffrement dans le compte de stockage en fonction de la source de clé le. Storage.
+    syntax: az storage account encryption-scope create --name myencryption -s Microsoft.Storage --account-name mystorageaccount -g MyResourceGroup
+  - summary: Créez une étendue de chiffrement dans le compte de stockage en fonction de la source de clé le. keyvault.
+    syntax: az storage account encryption-scope create --name myencryption -s Microsoft.KeyVault -u "https://vaultname.vault.azure.net/keys/keyname/1f7fa7edc99f4cdf82b5b5f32f2a50a7" --account-name mystorageaccount -g MyResourceGroup
+  - summary: Créez une étendue de chiffrement dans le compte de stockage. généré automatiquement
+    syntax: az storage account encryption-scope create --account-name mystorageaccount --key-source Microsoft.Storage --name myencryption --resource-group MyResourceGroup --subscription mysubscription
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’étendue de chiffrement dans le compte de stockage spécifié.
+    description: ''
+  optionalParameters:
+  - name: --key-source -s
+    defaultValue: Microsoft.Storage
+    parameterValueGroup: Microsoft.KeyVault, Microsoft.Storage
+    summary: Fournisseur pour l’étendue de chiffrement.
+    description: ''
+  - name: --key-uri -u
+    summary: Identificateur d’objet pour un objet de clé de coffre de clés. Lorsqu’elle est appliquée, l’étendue de chiffrement utilise la clé référencée par l’identificateur pour permettre la prise en charge des clés gérées par le client sur cette étendue de chiffrement.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_account_encryption_scope_list
+  name: az storage account encryption-scope list
+  summary: Répertoriez les étendues de chiffrement dans le compte de stockage.
+  description: ''
+  syntax: >-
+    az storage account encryption-scope list --account-name
+                                             [--query-examples]
+                                             [--resource-group]
+                                             [--subscription]
+  examples:
+  - summary: Répertoriez les étendues de chiffrement dans le compte de stockage.
+    syntax: az storage account encryption-scope list --account-name mystorageaccount -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: nom du compte de stockage.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_account_encryption_scope_show
+  name: az storage account encryption-scope show
+  summary: Affichez les propriétés de l’étendue de chiffrement spécifiée au sein du compte de stockage.
+  description: ''
+  syntax: >-
+    az storage account encryption-scope show --account-name
+                                             --name
+                                             [--query-examples]
+                                             [--resource-group]
+                                             [--subscription]
+  examples:
+  - summary: Affichez les propriétés de l’étendue de chiffrement spécifiée au sein du compte de stockage.
+    syntax: az storage account encryption-scope show --name myencryption --account-name mystorageaccount -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’étendue de chiffrement dans le compte de stockage spécifié.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_account_encryption_scope_update
+  name: az storage account encryption-scope update
+  summary: Met à jour les propriétés de l’étendue de chiffrement spécifiée au sein du compte de stockage.
+  description: ''
+  syntax: >-
+    az storage account encryption-scope update --account-name
+                                               --name
+                                               [--key-source {Microsoft.KeyVault, Microsoft.Storage}]
+                                               [--key-uri]
+                                               [--resource-group]
+                                               [--state {Disabled, Enabled}]
+                                               [--subscription]
+  examples:
+  - summary: Mettez à jour une source de clé de chiffrement vers le. Storage.
+    syntax: az storage account encryption-scope update --name myencryption -s Microsoft.Storage --account-name mystorageaccount -g MyResourceGroup
+  - summary: Créez une étendue de chiffrement dans le compte de stockage en fonction de la source de clé le. keyvault.
+    syntax: az storage account encryption-scope update --name myencryption -s Microsoft.KeyVault -u "https://vaultname.vault.azure.net/keys/keyname/1f7fa7edc99f4cdf82b5b5f32f2a50a7" --account-name mystorageaccount -g MyResourceGroup
+  - summary: Désactivez une étendue de chiffrement dans le compte de stockage.
+    syntax: az storage account encryption-scope update --name myencryption --state Disabled --account-name mystorageaccount -g MyResourceGroup
+  - summary: Activez une étendue de chiffrement dans le compte de stockage.
+    syntax: az storage account encryption-scope update --name myencryption --state Enabled --account-name mystorageaccount -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --account-name
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’étendue de chiffrement dans le compte de stockage spécifié.
+    description: ''
+  optionalParameters:
+  - name: --key-source -s
+    parameterValueGroup: Microsoft.KeyVault, Microsoft.Storage
+    summary: Fournisseur pour l’étendue de chiffrement.
+    description: ''
+  - name: --key-uri -u
+    summary: Identificateur d’objet pour un objet de clé de coffre de clés. Lorsqu’elle est appliquée, l’étendue de chiffrement utilise la clé référencée par l’identificateur pour permettre la prise en charge des clés gérées par le client sur cette étendue de chiffrement.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --state
+    parameterValueGroup: Disabled, Enabled
+    summary: Modifiez l’état de l’étendue de chiffrement. Quand elle est désactivée, toutes les opérations de lecture/écriture d’objet BLOB utilisant cette portée de chiffrement échouent.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_account_encryption_scope_create
+- az_storage_account_encryption_scope_list
+- az_storage_account_encryption_scope_show
+- az_storage_account_encryption_scope_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer l’étendue de chiffrement pour un compte de stockage.
+  ms.openlocfilehash: f5e6a05ff51f306eceddb9049ea28b1115f5bb5a
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963429"
