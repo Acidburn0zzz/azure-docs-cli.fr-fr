@@ -1,35 +1,30 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_dns_record_set_mx
-name: az network dns record-set mx
-summary: Gérer les enregistrements DNS MX.
+uid: az_network_dns_record_set_ns
+name: az network dns record-set ns
+summary: Gérer les enregistrements DNS NS.
 description: ''
 directCommands:
-- uid: az_network_dns_record_set_mx_add_record
-  name: az network dns record-set mx add-record
-  summary: Ajoutez un enregistrement MX.
+- uid: az_network_dns_record_set_ns_add_record
+  name: az network dns record-set ns add-record
+  summary: Ajoutez un enregistrement NS.
   description: ''
   syntax: >-
-    az network dns record-set mx add-record --exchange
-                                            --preference
+    az network dns record-set ns add-record --nsdname
                                             --record-set-name
                                             --resource-group
                                             --zone-name
                                             [--if-none-match]
-                                            [--subscription]
+                                            [--subscriptionid]
                                             [--ttl]
   examples:
-  - summary: Ajoutez un enregistrement MX.
+  - summary: Ajoutez un enregistrement NS.
     syntax: >-
-      az network dns record-set mx add-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -e mail.mysite.com -p 10
+      az network dns record-set ns add-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -d ns.mysite.com
   requiredParameters:
   - isRequired: true
-    name: --exchange -e
-    summary: Métrique Exchange.
-    description: ''
-  - isRequired: true
-    name: --preference -p
-    summary: Mesure de préférence.
+    name: --nsdname -d
+    summary: Nom de domaine du serveur de noms.
     description: ''
   - isRequired: true
     name: --record-set-name -n
@@ -47,32 +42,33 @@ directCommands:
   - name: --if-none-match
     summary: Créez le jeu d’enregistrements uniquement s’il n’existe pas déjà.
     description: ''
-  - name: --subscription
-    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+  - name: --subscriptionid -s
+    summary: ID d’abonnement pour l’ajout de l’enregistrement de serveur de noms.
     description: ''
   - name: --ttl
     defaultValue: "3600"
     summary: Durée de vie du jeu d’enregistrements (durée de vie).
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_create
-  name: az network dns record-set mx create
-  summary: Créez un jeu d’enregistrements MX vide.
+- uid: az_network_dns_record_set_ns_create
+  name: az network dns record-set ns create
+  summary: Créez un jeu d’enregistrements NS vide.
   description: ''
   syntax: >-
-    az network dns record-set mx create --name
+    az network dns record-set ns create --name
                                         --resource-group
                                         --zone-name
                                         [--if-match]
                                         [--if-none-match]
                                         [--metadata]
                                         [--subscription]
+                                        [--target-resource]
                                         [--ttl]
   examples:
-  - summary: Créez un jeu d’enregistrements MX vide.
-    syntax: az network dns record-set mx create -g MyResourceGroup -z www.mysite.com -n MyRecordSet
-  - summary: Créez un jeu d’enregistrements MX vide. généré automatiquement
-    syntax: az network dns record-set mx create --name MyRecordSet --resource-group MyResourceGroup --ttl 30 --zone-name www.mysite.com
+  - summary: Créez un jeu d’enregistrements NS vide.
+    syntax: az network dns record-set ns create -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Créez un jeu d’enregistrements NS vide. généré automatiquement
+    syntax: az network dns record-set ns create --name MyRecordSet --resource-group MyResourceGroup --ttl 30 --zone-name www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -99,25 +95,30 @@ directCommands:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
+  - name: --target-resource
+    summary: ID d’une ressource Azure à partir de laquelle la valeur de ressource DNS est prise.
+    description: ''
   - name: --ttl
     defaultValue: "3600"
     summary: Durée de vie du jeu d’enregistrements (durée de vie).
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_delete
-  name: az network dns record-set mx delete
-  summary: Supprimer un jeu d’enregistrements MX et tous les enregistrements associés.
+- uid: az_network_dns_record_set_ns_delete
+  name: az network dns record-set ns delete
+  summary: Supprimer un jeu d’enregistrements NS et tous les enregistrements associés.
   description: ''
   syntax: >-
-    az network dns record-set mx delete --name
+    az network dns record-set ns delete --name
                                         --resource-group
                                         --zone-name
                                         [--if-match]
                                         [--subscription]
                                         [--yes]
   examples:
-  - summary: Supprimer un jeu d’enregistrements MX et tous les enregistrements associés.
-    syntax: az network dns record-set mx delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Supprimer un jeu d’enregistrements NS et tous les enregistrements associés.
+    syntax: az network dns record-set ns delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Supprimer un jeu d’enregistrements NS et tous les enregistrements associés. généré automatiquement
+    syntax: az network dns record-set ns delete --name MyRecordSet --resource-group MyResourceGroup --subscription MySubscription --yes --zone-name www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -142,20 +143,18 @@ directCommands:
     summary: Ne pas demander de confirmation.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_list
-  name: az network dns record-set mx list
-  summary: Répertorie tous les jeux d’enregistrements MX dans une zone.
+- uid: az_network_dns_record_set_ns_list
+  name: az network dns record-set ns list
+  summary: Répertorie tous les jeux d’enregistrements NS dans une zone.
   description: ''
   syntax: >-
-    az network dns record-set mx list --resource-group
+    az network dns record-set ns list --resource-group
                                       --zone-name
                                       [--query-examples]
                                       [--subscription]
   examples:
-  - summary: Répertorie tous les jeux d’enregistrements MX dans une zone.
-    syntax: az network dns record-set mx list -g MyResourceGroup -z www.mysite.com
-  - summary: Liste de tous les jeux d’enregistrements MX dans une zone (génération générée automatiquement)
-    syntax: az network dns record-set mx list --resource-group MyResourceGroup --subscription MySubscription --zone-name www.mysite.com
+  - summary: Répertorie tous les jeux d’enregistrements NS dans une zone.
+    syntax: az network dns record-set ns list -g MyResourceGroup -z www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --resource-group -g
@@ -173,31 +172,28 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_remove_record
-  name: az network dns record-set mx remove-record
-  summary: Supprimer un enregistrement MX de son jeu d’enregistrements.
+- uid: az_network_dns_record_set_ns_remove_record
+  name: az network dns record-set ns remove-record
+  summary: Supprimer un enregistrement NS de son jeu d’enregistrements.
   description: Par défaut, si le dernier enregistrement d’un jeu est supprimé, le jeu d’enregistrements est supprimé. Pour conserver le jeu d’enregistrements vide, incluez--Keep-vide-record-Set.
   syntax: >-
-    az network dns record-set mx remove-record --exchange
-                                               --preference
+    az network dns record-set ns remove-record --nsdname
                                                --record-set-name
                                                --resource-group
                                                --zone-name
                                                [--keep-empty-record-set]
                                                [--subscription]
   examples:
-  - summary: Supprimer un enregistrement MX de son jeu d’enregistrements.
+  - summary: Supprimer un enregistrement NS de son jeu d’enregistrements.
     syntax: >-
-      az network dns record-set mx remove-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -e mail.mysite.com -p 10
+      az network dns record-set ns remove-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -d ns.mysite.com
+  - summary: Supprimer un enregistrement NS de son jeu d’enregistrements. généré automatiquement
+    syntax: az network dns record-set ns remove-record --keep-empty-record-set --nsdname ns.mysite.com --record-set-name MyRecordSet --resource-group MyResourceGroup --subscription MySubscription --zone-name www.mysite.com
   requiredParameters:
   - isRequired: true
-    name: --exchange -e
-    summary: Métrique Exchange.
-    description: ''
-  - isRequired: true
-    name: --preference -p
-    summary: Mesure de préférence.
+    name: --nsdname -d
+    summary: Nom de domaine du serveur de noms.
     description: ''
   - isRequired: true
     name: --record-set-name -n
@@ -219,19 +215,19 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_show
-  name: az network dns record-set mx show
-  summary: Obtient les détails d’un jeu d’enregistrements MX.
+- uid: az_network_dns_record_set_ns_show
+  name: az network dns record-set ns show
+  summary: Obtient les détails d’un jeu d’enregistrements NS.
   description: ''
   syntax: >-
-    az network dns record-set mx show --name
+    az network dns record-set ns show --name
                                       --resource-group
                                       --zone-name
                                       [--query-examples]
                                       [--subscription]
   examples:
-  - summary: Obtient les détails d’un jeu d’enregistrements MX.
-    syntax: az network dns record-set mx show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Obtient les détails d’un jeu d’enregistrements NS.
+    syntax: az network dns record-set ns show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -253,12 +249,12 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_dns_record_set_mx_update
-  name: az network dns record-set mx update
-  summary: Mettre à jour un jeu d’enregistrements MX.
+- uid: az_network_dns_record_set_ns_update
+  name: az network dns record-set ns update
+  summary: Mettre à jour un jeu d’enregistrements NS.
   description: ''
   syntax: >-
-    az network dns record-set mx update --name
+    az network dns record-set ns update --name
                                         --resource-group
                                         --zone-name
                                         [--add]
@@ -269,13 +265,14 @@ directCommands:
                                         [--remove]
                                         [--set]
                                         [--subscription]
+                                        [--target-resource]
   examples:
-  - summary: Mettre à jour un jeu d’enregistrements MX.
+  - summary: Mettre à jour un jeu d’enregistrements NS.
     syntax: >-
-      az network dns record-set mx update -g MyResourceGroup -z www.mysite.com \
+      az network dns record-set ns update -g MyResourceGroup -z www.mysite.com \
           -n MyRecordSet --metadata owner=WebTeam
-  - summary: Mettre à jour un jeu d’enregistrements MX. généré automatiquement
-    syntax: az network dns record-set mx update --name MyRecordSet --resource-group MyResourceGroup --set tags.CostCenter=MyBusinessGroup --zone-name www.mysite.com
+  - summary: Mettre à jour un jeu d’enregistrements NS. généré automatiquement
+    syntax: az network dns record-set ns update --name MyRecordSet --resource-group MyResourceGroup --set tags.CostCenter=MyBusinessGroup --zone-name www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -314,15 +311,18 @@ directCommands:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
+  - name: --target-resource
+    summary: ID d’une ressource Azure à partir de laquelle la valeur de ressource DNS est prise.
+    description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_dns_record_set_mx_add_record
-- az_network_dns_record_set_mx_create
-- az_network_dns_record_set_mx_delete
-- az_network_dns_record_set_mx_list
-- az_network_dns_record_set_mx_remove_record
-- az_network_dns_record_set_mx_show
-- az_network_dns_record_set_mx_update
+- az_network_dns_record_set_ns_add_record
+- az_network_dns_record_set_ns_create
+- az_network_dns_record_set_ns_delete
+- az_network_dns_record_set_ns_list
+- az_network_dns_record_set_ns_remove_record
+- az_network_dns_record_set_ns_show
+- az_network_dns_record_set_ns_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -341,10 +341,10 @@ globalParameters:
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/25/2021
-  description: Gérer les enregistrements DNS MX.
-  ms.openlocfilehash: cbbea9dfc060548a3c5ae98c150d2bf7aa7b9960
+  description: Gérer les enregistrements DNS NS.
+  ms.openlocfilehash: cf2bde7be493efb7853bf35e1c7782bf3b09ecce
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103510944"
+  ms.locfileid: "103518526"
