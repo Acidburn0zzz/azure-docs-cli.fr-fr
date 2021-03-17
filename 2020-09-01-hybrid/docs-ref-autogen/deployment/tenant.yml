@@ -1,0 +1,408 @@
+### YamlMime:AzureCLIGroup
+uid: az_deployment_tenant
+name: az deployment tenant
+summary: Gérez Azure Resource Manager déploiement de modèle dans l’étendue du locataire.
+description: ''
+directCommands:
+- uid: az_deployment_tenant_cancel
+  name: az deployment tenant cancel
+  summary: Annuler un déploiement au niveau de l’étendue du locataire.
+  description: ''
+  syntax: >-
+    az deployment tenant cancel --name
+                                [--subscription]
+  examples:
+  - summary: Annuler un déploiement au niveau de l’étendue du locataire.
+    syntax: az deployment tenant cancel -n deployment01
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du déploiement.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_deployment_tenant_create
+  name: az deployment tenant create
+  summary: Démarrez un déploiement au niveau de l’étendue du locataire.
+  description: ''
+  syntax: >-
+    az deployment tenant create --location
+                                [--confirm-with-what-if]
+                                [--handle-extended-json-format]
+                                [--name]
+                                [--no-prompt {false, true}]
+                                [--no-wait]
+                                [--parameters]
+                                [--query-string]
+                                [--subscription]
+                                [--template-file]
+                                [--template-spec]
+                                [--template-uri]
+                                [--what-if-exclude-change-types {Create, Delete, Deploy, Ignore, Modify, NoChange}]
+                                [--what-if-result-format {FullResourcePayloads, ResourceIdOnly}]
+  examples:
+  - summary: Créez un déploiement dans l’étendue du locataire à partir d’un fichier de modèle distant, en utilisant les paramètres d’un fichier JSON local.
+    syntax: >-
+      az deployment tenant create --name rollout01 --location WestUS \
+          --template-uri https://myresource/azuredeploy.json --parameters @myparameters.json
+  - summary: Créez un déploiement dans l’étendue du locataire à partir d’un fichier de modèle local, à l’aide des paramètres d’une chaîne JSON.
+    syntax: >-
+      az deployment tenant create --name rollout01 --location WestUS \
+          --template-file azuredeploy.json \
+          --parameters '{ \"policyName\": { \"value\": \"policy2\" } }'
+  - summary: Créez un déploiement dans l’étendue du locataire à partir d’un modèle local, à l’aide d’un fichier de paramètres, d’un fichier de paramètres distant et en remplaçant de manière sélective les paires clé/valeur.
+    syntax: >-
+      az deployment tenant create --name rollout01 --location WestUS \
+          --template-file azuredeploy.json  --parameters @params.json \
+          --parameters https://mysite/params.json --parameters MyValue=This MyArray=@array.json
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: Emplacement de stockage des métadonnées de déploiement.
+    description: ''
+  optionalParameters:
+  - name: --confirm-with-what-if -c
+    summary: Demandez à la commande d’exécuter le déploiement What-If avant d’exécuter le déploiement. Il vous invite ensuite à accuser réception des modifications apportées aux ressources avant de continuer.
+    description: ''
+  - name: --handle-extended-json-format -j
+    summary: Prise en charge pour gérer le contenu de modèle étendu, y compris multiligne et les commentaires dans le déploiement.
+    description: ''
+  - name: --name -n
+    summary: Nom du déploiement.
+    description: ''
+  - name: --no-prompt
+    parameterValueGroup: false, true
+    summary: Option permettant de désactiver l’invite de paramètres manquants pour le modèle ARM. Lorsque la valeur est true, l’invite demandant aux utilisateurs de fournir un paramètre manquant sera ignorée. La valeur par défaut est false.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --parameters -p
+    summary: Fournissez des valeurs de paramètre de déploiement.
+    description: Les paramètres peuvent être fournis à partir d’un fichier à l’aide de la `@{path}` syntaxe, d’une chaîne JSON ou de <clé = valeur> paires. Les paramètres sont évalués dans l’ordre. par conséquent, lorsqu’une valeur est assignée deux fois, la dernière valeur est utilisée. Nous vous recommandons de fournir d’abord votre fichier de paramètres, puis de remplacer de manière sélective à l’aide de la syntaxe KEY = VALUE.
+  - name: --query-string -q
+    summary: Chaîne de requête (jeton SAP) à utiliser avec l’URI de modèle dans le cas de modèles liés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --template-file -f
+    summary: Chemin d’accès au fichier de modèle.
+    description: ''
+  - name: --template-spec -s
+    summary: ID de ressource de spécification de modèle.
+    description: ''
+  - name: --template-uri -u
+    summary: URI vers le fichier de modèle.
+    description: ''
+  - name: --what-if-exclude-change-types -x
+    parameterValueGroup: Create, Delete, Deploy, Ignore, Modify, NoChange
+    summary: Liste des types de modifications de ressources séparés par des espaces à exclure des résultats de What-If. Applicable quand--Confirm-with-What-If est défini.
+    description: ''
+  - name: --what-if-result-format -r
+    defaultValue: FullResourcePayloads
+    parameterValueGroup: FullResourcePayloads, ResourceIdOnly
+    summary: Format des résultats de What-If. Applicable lorsque `--confirm-with-what-if` est défini.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_deployment_tenant_delete
+  name: az deployment tenant delete
+  summary: Supprimer un déploiement au niveau de l’étendue du locataire.
+  description: ''
+  syntax: >-
+    az deployment tenant delete --name
+                                [--no-wait]
+                                [--subscription]
+  examples:
+  - summary: Supprimer un déploiement au niveau de l’étendue du locataire.
+    syntax: az deployment tenant delete -n deployment01
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du déploiement.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_deployment_tenant_export
+  name: az deployment tenant export
+  summary: Exporte le modèle utilisé pour un déploiement.
+  description: ''
+  syntax: >-
+    az deployment tenant export --name
+                                [--subscription]
+  examples:
+  - summary: Exportez le modèle utilisé pour un déploiement dans l’étendue du locataire.
+    syntax: az deployment tenant export --name MyDeployment
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du déploiement.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_deployment_tenant_list
+  name: az deployment tenant list
+  summary: Répertorier les déploiements au niveau de l’étendue du locataire.
+  description: ''
+  syntax: >-
+    az deployment tenant list [--filter]
+                              [--query-examples]
+                              [--subscription]
+  examples:
+  - summary: Répertorier les déploiements au niveau de l’étendue du locataire.
+    syntax: az deployment tenant list
+  optionalParameters:
+  - name: --filter
+    summary: Expression de filtre à l’aide de la notation OData. Vous pouvez utiliser--Filter « provisioningState EQ » {State}» pour filtrer provisioningState. Pour obtenir plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/rest/api/resources/deployments/listatsubscriptionscope#uri-parameters">https://docs.microsoft.com/en-us/rest/api/resources/deployments/listatsubscriptionscope#uri-parameters</a> .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_deployment_tenant_show
+  name: az deployment tenant show
+  summary: Affichez un déploiement au niveau de l’étendue du locataire.
+  description: ''
+  syntax: >-
+    az deployment tenant show --name
+                              [--query-examples]
+                              [--subscription]
+  examples:
+  - summary: Affichez un déploiement au niveau de l’étendue du locataire.
+    syntax: az deployment tenant show -n deployment01
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du déploiement.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_deployment_tenant_validate
+  name: az deployment tenant validate
+  summary: Valide si un modèle est valide dans l’étendue du locataire.
+  description: ''
+  syntax: >-
+    az deployment tenant validate --location
+                                  [--handle-extended-json-format]
+                                  [--name]
+                                  [--no-prompt {false, true}]
+                                  [--parameters]
+                                  [--query-string]
+                                  [--subscription]
+                                  [--template-file]
+                                  [--template-spec]
+                                  [--template-uri]
+  examples:
+  - summary: Valide si un modèle est valide dans l’étendue du locataire.
+    syntax: az deployment tenant validate --location WestUS --template-file {template-file}
+  - summary: Valide si un modèle est valide dans l’étendue du locataire. généré automatiquement
+    syntax: az deployment tenant validate --location WestUS --name mydeployment --parameters @myparameters.json --template-file azuredeploy.json
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: Emplacement de stockage des métadonnées de déploiement.
+    description: ''
+  optionalParameters:
+  - name: --handle-extended-json-format -j
+    summary: Prise en charge pour gérer le contenu de modèle étendu, y compris multiligne et les commentaires dans le déploiement.
+    description: ''
+  - name: --name -n
+    summary: Nom du déploiement.
+    description: ''
+  - name: --no-prompt
+    parameterValueGroup: false, true
+    summary: Option permettant de désactiver l’invite de paramètres manquants pour le modèle ARM. Lorsque la valeur est true, l’invite demandant aux utilisateurs de fournir un paramètre manquant sera ignorée. La valeur par défaut est false.
+    description: ''
+  - name: --parameters -p
+    summary: Fournissez des valeurs de paramètre de déploiement.
+    description: Les paramètres peuvent être fournis à partir d’un fichier à l’aide de la `@{path}` syntaxe, d’une chaîne JSON ou de <clé = valeur> paires. Les paramètres sont évalués dans l’ordre. par conséquent, lorsqu’une valeur est assignée deux fois, la dernière valeur est utilisée. Nous vous recommandons de fournir d’abord votre fichier de paramètres, puis de remplacer de manière sélective à l’aide de la syntaxe KEY = VALUE.
+  - name: --query-string -q
+    summary: Chaîne de requête (jeton SAP) à utiliser avec l’URI de modèle dans le cas de modèles liés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --template-file -f
+    summary: Chemin d’accès au fichier de modèle.
+    description: ''
+  - name: --template-spec -s
+    summary: ID de ressource de spécification de modèle.
+    description: ''
+  - name: --template-uri -u
+    summary: URI vers le fichier de modèle.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_deployment_tenant_wait
+  name: az deployment tenant wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de déploiement soit remplie.
+  description: ''
+  syntax: >-
+    az deployment tenant wait --name
+                              [--created]
+                              [--custom]
+                              [--deleted]
+                              [--exists]
+                              [--interval]
+                              [--subscription]
+                              [--timeout]
+                              [--updated]
+  examples:
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de déploiement soit remplie. généré automatiquement
+    syntax: az deployment tenant wait --deleted --name MyDeployment
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du déploiement.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_deployment_tenant_what_if
+  name: az deployment tenant what-if
+  summary: Exécuter une opération de What-If de déploiement dans l’étendue du locataire.
+  description: ''
+  syntax: >-
+    az deployment tenant what-if --location
+                                 [--exclude-change-types {Create, Delete, Deploy, Ignore, Modify, NoChange}]
+                                 [--name]
+                                 [--no-pretty-print]
+                                 [--no-prompt {false, true}]
+                                 [--parameters]
+                                 [--query-string]
+                                 [--result-format {FullResourcePayloads, ResourceIdOnly}]
+                                 [--subscription]
+                                 [--template-file]
+                                 [--template-spec]
+                                 [--template-uri]
+  examples:
+  - summary: Exécuter une opération de What-If de déploiement dans l’étendue du locataire.
+    syntax: az deployment tenant what-if --location WestUS --template-uri https://myresource/azuredeploy.json --parameters @myparameters.json
+  - summary: Exécuter une opération de What-If de déploiement au niveau de l’étendue du locataire avec le format ResourceIdOnly.
+    syntax: az deployment tenant what-if --location WestUS --template-uri https://myresource/azuredeploy.json --parameters @myparameters.json --result-format ResourceIdOnly
+  - summary: Exécuter une opération de What-If de déploiement sur l’étendue du locataire sans vraiment imprimer le résultat.
+    syntax: az deployment tenant what-if --location WestUS --template-uri https://myresource/azuredeploy.json --parameters @myparameters.json --no-pretty-print
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: Emplacement dans lequel stocker les métadonnées de l’opération de What-If du déploiement.
+    description: ''
+  optionalParameters:
+  - name: --exclude-change-types -x
+    parameterValueGroup: Create, Delete, Deploy, Ignore, Modify, NoChange
+    summary: Liste des types de modifications de ressources séparés par des espaces à exclure des résultats de What-If.
+    description: ''
+  - name: --name -n
+    summary: Nom du déploiement.
+    description: ''
+  - name: --no-pretty-print
+    summary: Désactivez l’impression pour What-If résultats. Lorsque cette valeur est définie, le type de format de sortie est utilisé.
+    description: ''
+  - name: --no-prompt
+    parameterValueGroup: false, true
+    summary: Option permettant de désactiver l’invite de paramètres manquants pour le modèle ARM. Lorsque la valeur est true, l’invite demandant aux utilisateurs de fournir un paramètre manquant sera ignorée. La valeur par défaut est false.
+    description: ''
+  - name: --parameters -p
+    summary: Fournissez des valeurs de paramètre de déploiement.
+    description: Les paramètres peuvent être fournis à partir d’un fichier à l’aide de la `@{path}` syntaxe, d’une chaîne JSON ou de <clé = valeur> paires. Les paramètres sont évalués dans l’ordre. par conséquent, lorsqu’une valeur est assignée deux fois, la dernière valeur est utilisée. Nous vous recommandons de fournir d’abord votre fichier de paramètres, puis de remplacer de manière sélective à l’aide de la syntaxe KEY = VALUE.
+  - name: --query-string -q
+    summary: Chaîne de requête (jeton SAP) à utiliser avec l’URI de modèle dans le cas de modèles liés.
+    description: ''
+  - name: --result-format -r
+    defaultValue: FullResourcePayloads
+    parameterValueGroup: FullResourcePayloads, ResourceIdOnly
+    summary: Format des résultats de What-If.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --template-file -f
+    summary: Chemin d’accès au fichier de modèle.
+    description: ''
+  - name: --template-spec -s
+    summary: ID de ressource de spécification de modèle.
+    description: ''
+  - name: --template-uri -u
+    summary: URI vers le fichier de modèle.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+commands:
+- az_deployment_tenant_cancel
+- az_deployment_tenant_create
+- az_deployment_tenant_delete
+- az_deployment_tenant_export
+- az_deployment_tenant_list
+- az_deployment_tenant_show
+- az_deployment_tenant_validate
+- az_deployment_tenant_wait
+- az_deployment_tenant_what_if
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérez Azure Resource Manager déploiement de modèle dans l’étendue du locataire.
+  ms.openlocfilehash: 542536ac7bfbe83a781951cf6abcd25574fc946e
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102846631"

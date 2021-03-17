@@ -1,0 +1,753 @@
+### YamlMime:AzureCLIGroup
+uid: az_webapp
+name: az webapp
+summary: Gérer les applications Web.
+description: ''
+directCommands:
+- uid: az_webapp_browse
+  name: az webapp browse
+  summary: Ouvre une application web dans un navigateur.
+  description: ''
+  syntax: >-
+    az webapp browse [--ids]
+                     [--logs]
+                     [--name]
+                     [--resource-group]
+                     [--slot]
+                     [--subscription]
+  examples:
+  - summary: Ouvre une application web dans un navigateur. généré automatiquement
+    syntax: az webapp browse --name MyWebapp --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --logs -l
+    summary: Activez l’affichage du flux de journal immédiatement après avoir lancé l’application Web.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_create
+  name: az webapp create
+  summary: Créez une application web.
+  description: Le nom de l’application Web doit être en mesure de générer un nom de domaine complet unique en tant que AppName.azurewebsites.net.
+  syntax: >-
+    az webapp create --name
+                     --plan
+                     --resource-group
+                     [--assign-identity]
+                     [--deployment-container-image-name]
+                     [--deployment-local-git]
+                     [--deployment-source-branch]
+                     [--deployment-source-url]
+                     [--docker-registry-server-password]
+                     [--docker-registry-server-user]
+                     [--multicontainer-config-file]
+                     [--multicontainer-config-type {COMPOSE, KUBE}]
+                     [--role]
+                     [--runtime]
+                     [--scope]
+                     [--startup-file]
+                     [--subscription]
+                     [--tags]
+  examples:
+  - summary: Créez une application Web avec la configuration par défaut.
+    syntax: az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName
+  - summary: Créer une application Web avec Java | 11 | Java SE | 8 Runtime utilisant le délimiteur « | ».
+    syntax: az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName --runtime "java|11|Java SE|8"
+  - summary: Créer une application Web avec Java | 11 | Le runtime Java SE | 8 utilise le délimiteur «  : ».
+    syntax: az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName --runtime "java:11:Java SE:8"
+  - summary: Créer une application Web avec un Runtime NodeJS 10,14 et la déployer à partir d’un référentiel Git local.
+    syntax: az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName --runtime "node|10.14" --deployment-local-git
+  - summary: Créez une application Web avec une image à partir de DockerHub.
+    syntax: az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName -i nginx
+  - summary: Créer une application Web avec une image à partir d’un registre DockerHub privé.
+    syntax: az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName -i MyImageName -s username -w password
+  - summary: Créer une application Web avec une image à partir d’un Azure Container Registry privé.
+    syntax: az webapp create -g MyResourceGroup -p MyPlan -n MyUniqueAppName -i myregistry.azurecr.io/docker-image:tag
+  - summary: Créez un WebApp à l’aide d’un plan de App Service partagé qui se trouve dans un groupe de ressources différent.
+    syntax: AppServicePlanID=$(az appservice plan show -n SharedAppServicePlan -g MyResourceGroup --query "id" --out tsv) az webapp create -g MyResourceGroup -p "$AppServicePlanID" -n MyUniqueAppName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la nouvelle application Web.
+    description: ''
+  - isRequired: true
+    name: --plan -p
+    summary: Nom ou ID de ressource du plan App service. Utilisez « Appservice plan Create » pour en récupérer un.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --assign-identity
+    summary: Accepter les identités affectées par le système ou l’utilisateur, séparées par des espaces. Utilisez « [System] » pour faire référence à l’identité attribuée par le système ou un ID de ressource pour faire référence à l’identité attribuée par l’utilisateur. Pour plus d’exemples, consultez l’aide.
+    description: ''
+  - name: --deployment-container-image-name -i
+    summary: 'Linux uniquement. Nom de l’image de conteneur à partir du hub d’ancrage, par exemple, éditeur/image-nom : tag.'
+    description: ''
+  - name: --deployment-local-git -l
+    summary: Activez Git local.
+    description: ''
+  - name: --deployment-source-branch -b
+    defaultValue: master
+    summary: Branche à déployer.
+    description: ''
+  - name: --deployment-source-url -u
+    summary: URL du référentiel git à lier avec l’intégration manuelle.
+    description: ''
+  - name: --docker-registry-server-password -w
+    summary: Mot de passe du serveur de registre de conteneurs. Requis pour les registres privés.
+    description: ''
+  - name: --docker-registry-server-user -s
+    summary: Nom d’utilisateur du serveur de registre de conteneurs.
+    description: ''
+  - name: --multicontainer-config-file
+    summary: Linux uniquement. Fichier de configuration pour les applications multiconteneurs. (local ou distant).
+    description: ''
+  - name: --multicontainer-config-type
+    parameterValueGroup: COMPOSE, KUBE
+    summary: Linux uniquement.
+    description: ''
+  - name: --role
+    defaultValue: Contributor
+    summary: Nom de rôle ou ID dont l’identité a été affectée par le système.
+    description: ''
+  - name: --runtime -r
+    summary: 'Le runtime Web canonique dans le format de Framework | Version, par exemple « PHP | 7.2 ». Délimiteurs autorisés : « | » ou «  : ». Utilisez `az webapp list-runtimes` pour la liste disponible.'
+    description: ''
+  - name: --scope
+    summary: Étendue à laquelle le système affecté à l’identité peut accéder.
+    description: ''
+  - name: --startup-file
+    summary: Linux uniquement. Fichier de démarrage du site Web.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_webapp_create_remote_connection
+  name: az webapp create-remote-connection
+  summary: Crée une connexion à distance à l’aide d’un tunnel TCP vers votre application Web.
+  description: ''
+  syntax: >-
+    az webapp create-remote-connection [--ids]
+                                       [--instance]
+                                       [--name]
+                                       [--port]
+                                       [--resource-group]
+                                       [--slot]
+                                       [--subscription]
+                                       [--timeout]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --instance -i
+    summary: Instance webapp à laquelle se connecter. Par défaut, aucun.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --port -p
+    summary: 'Port pour la connexion à distance. Valeur par défaut : port disponible aléatoire.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout -t
+    summary: Délai d’expiration en secondes. Par défaut, aucun.
+    description: ''
+- uid: az_webapp_delete
+  name: az webapp delete
+  summary: Supprimer une application Web.
+  description: ''
+  syntax: >-
+    az webapp delete [--ids]
+                     [--keep-dns-registration]
+                     [--keep-empty-plan]
+                     [--keep-metrics]
+                     [--name]
+                     [--resource-group]
+                     [--slot]
+                     [--subscription]
+  examples:
+  - summary: Supprimer une application Web. généré automatiquement
+    syntax: az webapp delete --name MyWebapp --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --keep-dns-registration
+    summary: Conservez l’inscription DNS.
+    description: ''
+  - name: --keep-empty-plan
+    summary: Conserver un plan App service vide.
+    description: ''
+  - name: --keep-metrics
+    summary: Conserver les métriques de l’application.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_list
+  name: az webapp list
+  summary: Répertorier les applications Web.
+  description: ''
+  syntax: >-
+    az webapp list [--query-examples]
+                   [--resource-group]
+                   [--subscription]
+  examples:
+  - summary: Répertorier le nom d’hôte et l’État par défaut pour toutes les applications Web.
+    syntax: 'az webapp list --query "[].{hostName: defaultHostName, state: state}"'
+  - summary: Répertorie toutes les applications Web en cours d’exécution.
+    syntax: az webapp list --query "[?state=='Running']"
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_list_instances
+  name: az webapp list-instances
+  summary: Répertorie toutes les instances mises à l’échelle d’une application Web ou d’un emplacement d’application Web.
+  description: ''
+  syntax: >-
+    az webapp list-instances --name
+                             --resource-group
+                             [--slot]
+                             [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --slot -s
+    summary: Nom de l’emplacement de l’application Web. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_list_runtimes
+  name: az webapp list-runtimes
+  summary: Répertorier les piles intégrées disponibles qui peuvent être utilisées pour les applications Web.
+  description: ''
+  syntax: >-
+    az webapp list-runtimes [--linux]
+                            [--subscription]
+  optionalParameters:
+  - name: --linux
+    summary: Répertorier les piles d’exécution pour les applications Web basées sur Linux.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_restart
+  name: az webapp restart
+  summary: Redémarrez une application Web.
+  description: ''
+  syntax: >-
+    az webapp restart [--ids]
+                      [--name]
+                      [--resource-group]
+                      [--slot]
+                      [--subscription]
+  examples:
+  - summary: Redémarrez une application Web. généré automatiquement
+    syntax: az webapp restart --name MyWebapp --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_show
+  name: az webapp show
+  summary: Obtenir les détails d’une application Web.
+  description: ''
+  syntax: >-
+    az webapp show [--ids]
+                   [--name]
+                   [--query-examples]
+                   [--resource-group]
+                   [--slot]
+                   [--subscription]
+  examples:
+  - summary: Obtenir les détails d’une application Web. généré automatiquement
+    syntax: az webapp show --name MyWebapp --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_ssh
+  name: az webapp ssh
+  summary: La commande SSH établit une session SSH sur le conteneur Web et le développeur obtient un terminal Shell à distance.
+  description: ''
+  syntax: >-
+    az webapp ssh [--ids]
+                  [--instance]
+                  [--name]
+                  [--port]
+                  [--resource-group]
+                  [--slot]
+                  [--subscription]
+                  [--timeout]
+  examples:
+  - summary: SSH dans une application Web
+    syntax: az webapp ssh -n MyUniqueAppName -g MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --instance -i
+    summary: Instance webapp à laquelle se connecter. Par défaut, aucun.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --port -p
+    summary: 'Port pour la connexion à distance. Valeur par défaut : port disponible aléatoire.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout -t
+    summary: Délai d’expiration en secondes. Par défaut, aucun.
+    description: ''
+- uid: az_webapp_start
+  name: az webapp start
+  summary: Démarrez une application Web.
+  description: ''
+  syntax: >-
+    az webapp start [--ids]
+                    [--name]
+                    [--resource-group]
+                    [--slot]
+                    [--subscription]
+  examples:
+  - summary: Démarrez une application Web. généré automatiquement
+    syntax: az webapp start --name MyWebapp --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_stop
+  name: az webapp stop
+  summary: Arrêter une application Web.
+  description: ''
+  syntax: >-
+    az webapp stop [--ids]
+                   [--name]
+                   [--resource-group]
+                   [--slot]
+                   [--subscription]
+  examples:
+  - summary: Arrêter une application Web. généré automatiquement
+    syntax: az webapp stop --name MyWebapp --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_up
+  name: az webapp up
+  summary: Créez un webapp et déployez le code à partir d’un espace de travail local vers l’application. La commande doit être exécutée à partir du dossier dans lequel le code est présent. La prise en charge actuelle comprend node, Python, .NET Core et ASP.NET. Nœud, les applications python sont créées en tant qu’applications Linux. Les applications HTML .Net Core, ASP.NET et statiques sont créées en tant qu’applications Windows. Ajoutez l’indicateur HTML à déployer en tant qu’application HTML statique.
+  description: ''
+  syntax: >-
+    az webapp up [--dryrun]
+                 [--html]
+                 [--ids]
+                 [--launch-browser]
+                 [--location]
+                 [--logs]
+                 [--name]
+                 [--os-type {Linux, Windows}]
+                 [--plan]
+                 [--resource-group]
+                 [--runtime]
+                 [--sku {B1, B2, B3, D1, F1, FREE, I1, I1v2, I2, I2v2, I3, I3v2, P1V2, P1V3, P2V2, P2V3, P3V2, P3V3, PC2, PC3, PC4, S1, S2, S3, SHARED}]
+                 [--subscription]
+  examples:
+  - summary: Afficher les détails de l’application qui sera créée, sans exécuter réellement l’opération
+    syntax: az webapp up --dryrun
+  - summary: Créez une application Web avec la configuration par défaut, en exécutant la commande à partir du dossier où se trouve le code à déployer.
+    syntax: az webapp up
+  - summary: Créer une application Web avec un nom spécifié
+    syntax: az webapp up -n MyUniqueAppName
+  - summary: Créer une application Web avec un nom spécifié et un Java | 11 | Java SE | 8 Runtime utilisant le délimiteur « | »
+    syntax: az webapp up -n MyUniqueAppName --runtime "java|11|Java SE|8"
+  - summary: Créer une application Web avec un nom spécifié et un Java | 11 | Délimiteur «  : » de Java SE | 8
+    syntax: az webapp up -n MyUniqueAppName --runtime "java:11:Java SE:8"
+  - summary: Créez une application Web dans une région spécifique, en exécutant la commande à partir du dossier où se trouve le code à déployer.
+    syntax: az webapp up -l locationName
+  - summary: Déployer un nouveau code dans une application créée à l’origine à l’aide de la même commande
+    syntax: az webapp up -n MyUniqueAppName -l locationName
+  - summary: Créez une application Web et activez la diffusion en continu des journaux une fois l’opération de déploiement terminée. Cela permet d’activer la configuration par défaut requise pour activer la diffusion de journaux.
+    syntax: az webapp up --logs
+  - summary: Créez une application Web et déployez-la en tant qu’application HTML statique.
+    syntax: az webapp up --html
+  optionalParameters:
+  - name: --dryrun
+    summary: Affichez le résumé de l’opération de création et de déploiement au lieu de l’exécuter.
+    description: ''
+  - name: --html
+    summary: Ignorer la détection d’applications et déployer en tant qu’application html.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --launch-browser -b
+    summary: Lancez l’application créée à l’aide du navigateur par défaut.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --logs
+    summary: Configurez la journalisation par défaut requise pour activer l’affichage du flux de journal immédiatement après avoir lancé WebApp.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --os-type
+    parameterValueGroup: Linux, Windows
+    summary: Définissez le type de système d’exploitation pour l’application à créer.
+    description: ''
+  - name: --plan -p
+    summary: Nom du appserviceplan associé à WebApp.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --runtime -r
+    summary: 'Le runtime Web canonique dans le format de Framework | Version, par exemple « PHP | 7.2 ». Délimiteurs autorisés : « | » ou «  : ». Utilisez `az webapp list-runtimes` pour la liste disponible.'
+    description: ''
+  - name: --sku
+    parameterValueGroup: B1, B2, B3, D1, F1, FREE, I1, I1v2, I2, I2v2, I3, I3v2, P1V2, P1V3, P2V2, P2V3, P3V2, P3V3, PC2, PC3, PC4, S1, S2, S3, SHARED
+    summary: Les niveaux tarifaires, par exemple F1 (gratuit), D1 (partagé), B1 (petite de base), B2 (moyenne de base), B3 (de base grand), S1 (petite standard), P1V2 (Premium v2 petite), P1V3 (Premium v3 petite), P2V3 (édition Premium v3 moyenne), P3V3 (Premium v3 large), PC2 (petit conteneur Premium), PC3 (support de conteneur Premium), PC4 (conteneur Premium étendu), I1 (petit isolé), I2 (support isolé), i3 (isolée de grande taille), I1v2 (isolé v2 petite) , I2v2 (isolé v2 moyen), I3v2 (distinct v2 grande).
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_update
+  name: az webapp update
+  summary: Mettre à jour une application Web.
+  description: ''
+  syntax: >-
+    az webapp update [--add]
+                     [--client-affinity-enabled {false, true}]
+                     [--force-dns-registration {false, true}]
+                     [--force-string]
+                     [--https-only {false, true}]
+                     [--ids]
+                     [--name]
+                     [--remove]
+                     [--resource-group]
+                     [--set]
+                     [--skip-custom-domain-verification {false, true}]
+                     [--skip-dns-registration {false, true}]
+                     [--slot]
+                     [--subscription]
+                     [--ttl-in-seconds {false, true}]
+  examples:
+  - summary: Mettre à jour les balises d’une application Web.
+    syntax: az webapp update -g MyResourceGroup -n MyAppName --set tags.tagName=tagValue
+  - summary: Mettre à jour une application Web. généré automatiquement
+    syntax: az webapp update --https-only true --name MyAppName --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --client-affinity-enabled
+    parameterValueGroup: false, true
+    summary: Active l’envoi des cookies d’affinité de session.
+    description: ''
+  - name: --force-dns-registration
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, le nom d’hôte de l’application Web est forcé à être inscrit auprès du DNS.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --https-only
+    parameterValueGroup: false, true
+    summary: Rediriger tout le trafic vers une application à l’aide de HTTP vers HTTPs.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --skip-custom-domain-verification
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, \* les domaines personnalisés (non. azurewebsites.net) associés à l’application Web ne sont pas vérifiés.
+    description: ''
+  - name: --skip-dns-registration
+    parameterValueGroup: false, true
+    summary: Si le nom d’hôte de l’application Web n’est pas inscrit auprès du DNS à la création.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --ttl-in-seconds
+    parameterValueGroup: false, true
+    summary: Durée de vie en secondes du nom de domaine par défaut de l’application Web.
+    description: ''
+commands:
+- az_webapp_auth
+- az_webapp_auth_show
+- az_webapp_auth_update
+- az_webapp_browse
+- az_webapp_config
+- az_webapp_config_access_restriction
+- az_webapp_config_access_restriction_add
+- az_webapp_config_access_restriction_remove
+- az_webapp_config_access_restriction_set
+- az_webapp_config_access_restriction_show
+- az_webapp_config_appsettings
+- az_webapp_config_appsettings_delete
+- az_webapp_config_appsettings_list
+- az_webapp_config_appsettings_set
+- az_webapp_config_backup
+- az_webapp_config_backup_create
+- az_webapp_config_backup_list
+- az_webapp_config_backup_restore
+- az_webapp_config_backup_show
+- az_webapp_config_backup_update
+- az_webapp_config_connection_string
+- az_webapp_config_connection_string_delete
+- az_webapp_config_connection_string_list
+- az_webapp_config_connection_string_set
+- az_webapp_config_container
+- az_webapp_config_container_delete
+- az_webapp_config_container_set
+- az_webapp_config_container_show
+- az_webapp_config_hostname
+- az_webapp_config_hostname_add
+- az_webapp_config_hostname_delete
+- az_webapp_config_hostname_get_external_ip
+- az_webapp_config_hostname_list
+- az_webapp_config_set
+- az_webapp_config_show
+- az_webapp_config_snapshot
+- az_webapp_config_snapshot_list
+- az_webapp_config_snapshot_restore
+- az_webapp_config_ssl
+- az_webapp_config_ssl_bind
+- az_webapp_config_ssl_create
+- az_webapp_config_ssl_delete
+- az_webapp_config_ssl_import
+- az_webapp_config_ssl_list
+- az_webapp_config_ssl_show
+- az_webapp_config_ssl_unbind
+- az_webapp_config_ssl_upload
+- az_webapp_config_storage_account
+- az_webapp_config_storage_account_add
+- az_webapp_config_storage_account_delete
+- az_webapp_config_storage_account_list
+- az_webapp_config_storage_account_update
+- az_webapp_cors
+- az_webapp_cors_add
+- az_webapp_cors_remove
+- az_webapp_cors_show
+- az_webapp_create
+- az_webapp_create_remote_connection
+- az_webapp_delete
+- az_webapp_deleted
+- az_webapp_deleted_list
+- az_webapp_deleted_restore
+- az_webapp_deployment
+- az_webapp_deployment_container
+- az_webapp_deployment_container_config
+- az_webapp_deployment_container_show_cd_url
+- az_webapp_deployment_list_publishing_credentials
+- az_webapp_deployment_list_publishing_profiles
+- az_webapp_deployment_slot
+- az_webapp_deployment_slot_auto_swap
+- az_webapp_deployment_slot_create
+- az_webapp_deployment_slot_delete
+- az_webapp_deployment_slot_list
+- az_webapp_deployment_slot_swap
+- az_webapp_deployment_source
+- az_webapp_deployment_source_config
+- az_webapp_deployment_source_config_local_git
+- az_webapp_deployment_source_config_zip
+- az_webapp_deployment_source_delete
+- az_webapp_deployment_source_show
+- az_webapp_deployment_source_sync
+- az_webapp_deployment_source_update_token
+- az_webapp_deployment_user
+- az_webapp_deployment_user_set
+- az_webapp_deployment_user_show
+- az_webapp_hybrid_connection
+- az_webapp_hybrid_connection_add
+- az_webapp_hybrid_connection_list
+- az_webapp_hybrid_connection_remove
+- az_webapp_identity
+- az_webapp_identity_assign
+- az_webapp_identity_remove
+- az_webapp_identity_show
+- az_webapp_list
+- az_webapp_list_instances
+- az_webapp_list_runtimes
+- az_webapp_log
+- az_webapp_log_config
+- az_webapp_log_deployment
+- az_webapp_log_deployment_list
+- az_webapp_log_deployment_show
+- az_webapp_log_download
+- az_webapp_log_show
+- az_webapp_log_tail
+- az_webapp_restart
+- az_webapp_show
+- az_webapp_ssh
+- az_webapp_start
+- az_webapp_stop
+- az_webapp_traffic_routing
+- az_webapp_traffic_routing_clear
+- az_webapp_traffic_routing_set
+- az_webapp_traffic_routing_show
+- az_webapp_up
+- az_webapp_update
+- az_webapp_vnet_integration
+- az_webapp_vnet_integration_add
+- az_webapp_vnet_integration_list
+- az_webapp_vnet_integration_remove
+- az_webapp_webjob
+- az_webapp_webjob_continuous
+- az_webapp_webjob_continuous_list
+- az_webapp_webjob_continuous_remove
+- az_webapp_webjob_continuous_start
+- az_webapp_webjob_continuous_stop
+- az_webapp_webjob_triggered
+- az_webapp_webjob_triggered_list
+- az_webapp_webjob_triggered_log
+- az_webapp_webjob_triggered_remove
+- az_webapp_webjob_triggered_run
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les applications Web.
+  ms.openlocfilehash: 4b9f6201b8cd3813c5d597d8584b68ddfb7b4258
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102846667"
