@@ -1,0 +1,83 @@
+### YamlMime:AzureCLIGroup
+uid: az_batch_node_service_logs
+name: az batch node service-logs
+summary: Gérer les fichiers journaux du service d’un nœud de calcul batch.
+description: ''
+directCommands:
+- uid: az_batch_node_service_logs_upload
+  name: az batch node service-logs upload
+  summary: Chargez Azure Batch fichiers journaux du service à partir du nœud de calcul spécifié dans le stockage d’objets BLOB Azure.
+  description: Cela permet de collecter des fichiers journaux de service Azure Batch de manière automatisée à partir de nœuds de calcul si vous rencontrez une erreur et que vous souhaitez passer au support Azure. Les fichiers journaux du service Azure Batch doivent être partagés avec le support Azure pour faciliter le débogage des problèmes liés au service batch.
+  syntax: >-
+    az batch node service-logs upload --node-id
+                                      --pool-id
+                                      [--account-endpoint]
+                                      [--account-key]
+                                      [--account-name]
+                                      [--container-url]
+                                      [--end-time]
+                                      [--json-file]
+                                      [--start-time]
+                                      [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --node-id
+    summary: ID du nœud de calcul à partir duquel vous souhaitez télécharger les fichiers journaux du service Azure Batch.
+    description: ''
+  - isRequired: true
+    name: --pool-id
+    summary: ID du pool qui contient le nœud de calcul.
+    description: ''
+  optionalParameters:
+  - name: --account-endpoint
+    summary: 'Point de terminaison du service batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ENDPOINT.'
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCESS_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCOUNT.'
+    description: ''
+  - name: --container-url
+    summary: Obligatoire. URL du conteneur dans le stockage d’objets BLOB Azure vers lequel Télécharger le ou les fichiers journaux du service batch. L’URL doit inclure une signature d’accès partagé (SAP) accordant des autorisations d’écriture au conteneur. La durée SAS doit prévoir suffisamment de temps pour que le téléchargement se termine. L’heure de début de la signature d’accès partagé est facultative et recommandée pour ne pas être spécifiée.
+    description: ''
+  - name: --end-time
+    summary: Fin de l’intervalle de temps à partir duquel Télécharger le ou les fichiers journaux du service batch. Tout fichier journal contenant un message de journal dans l’intervalle de temps sera chargé. Cela signifie que l’opération peut récupérer plus de journaux que nécessaire depuis que le fichier journal entier est toujours téléchargé, mais l’opération ne doit pas récupérer moins de journaux que nécessaire. En cas d’omission, la valeur par défaut consiste à télécharger tous les journaux disponibles après l’heure de début. Le format attendu est un horodateur ISO-8601.
+    description: ''
+  - name: --json-file
+    summary: Un fichier contenant le service de chargement batch enregistre la spécification de configuration au format JSON (formaté pour correspondre au corps de l’API REST). Si ce paramètre est spécifié, tous les « arguments de configuration des journaux du service batch de chargement » sont ignorés.
+    description: ''
+  - name: --start-time
+    summary: Obligatoire. Début de l’intervalle de temps à partir duquel Télécharger le ou les fichiers journaux du service batch. Tout fichier journal contenant un message de journal dans l’intervalle de temps sera chargé. Cela signifie que l’opération peut récupérer plus de journaux que nécessaire depuis que le fichier journal entier est toujours téléchargé, mais l’opération ne doit pas récupérer moins de journaux que nécessaire. Le format attendu est un horodateur ISO-8601.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batch/_help.py
+commands:
+- az_batch_node_service_logs_upload
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/07/2020
+  description: Gérer les fichiers journaux du service d’un nœud de calcul batch.
+  ms.openlocfilehash: 9ba3284f5cf909681cc26fa4d7ae0366eb008493
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102842551"

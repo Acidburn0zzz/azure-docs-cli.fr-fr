@@ -1,0 +1,181 @@
+### YamlMime:AzureCLIGroup
+uid: az_vm_unmanaged_disk
+name: az vm unmanaged-disk
+summary: Gérer les disques de données non gérés attachés à une machine virtuelle.
+description: >-
+  Les machines virtuelles Azure utilisent des disques comme emplacement de stockage d’un système d’exploitation, d’applications et de données. Toutes les machines virtuelles Azure disposent d’au moins deux disques : un disque de système d’exploitation et un disque temporaire. Le disque de système d’exploitation est créé à partir d’une image. Le disque de système d’exploitation et l’image sont en fait des disques durs virtuels (VHD) stockés dans un compte de stockage Azure. Les machines virtuelles peuvent également disposer d’un ou plusieurs disques de données, également stockés sur les VHD.
+
+
+  Les disques de données gérés et non gérés Azure ont une taille maximale de 4095 Go (à l’exception des disques de plus grande taille en préversion). Les disques non managés Azure ont également une capacité maximale de 4095 Go.
+
+
+  Pour plus d'informations, consultez les pages suivantes :
+
+  - Disques Azure- <a href="https://docs.microsoft.com/azure/virtual-machines/linux/about-disks-and-vhds">https://docs.microsoft.com/azure/virtual-machines/linux/about-disks-and-vhds</a> et <a href="https://docs.microsoft.com/azure/virtual-machines/windows/about-disks-and-vhds">https://docs.microsoft.com/azure/virtual-machines/windows/about-disks-and-vhds</a> .
+
+  - Managed Disks plus grande en version préliminaire publique- <a href="https://azure.microsoft.com/blog/introducing-the-public-preview-of-larger-managed-disks-sizes/">https://azure.microsoft.com/blog/introducing-the-public-preview-of-larger-managed-disks-sizes/</a>
+
+  - SSD Ultra Managed Disks en version préliminaire publique- <a href="https://docs.microsoft.com/azure/virtual-machines/windows/disks-ultra-ssd">https://docs.microsoft.com/azure/virtual-machines/windows/disks-ultra-ssd</a> .
+directCommands:
+- uid: az_vm_unmanaged_disk_attach
+  name: az vm unmanaged-disk attach
+  summary: Attacher un disque persistant non géré à une machine virtuelle.
+  description: Cela permet la conservation des données, même si la machine virtuelle est réapprovisionnée en raison d’une maintenance ou d’un redimensionnement.
+  syntax: >-
+    az vm unmanaged-disk attach --resource-group
+                                --vm-name
+                                [--caching {None, ReadOnly, ReadWrite}]
+                                [--lun]
+                                [--name]
+                                [--new]
+                                [--size-gb]
+                                [--subscription]
+                                [--vhd-uri]
+  examples:
+  - summary: Attachez un nouveau disque de données non géré dimensionné par défaut (1023 Go) à une machine virtuelle.
+    syntax: az vm unmanaged-disk attach -g MyResourceGroup --vm-name MyVm --new
+  - summary: Attacher un disque de données existant à une machine virtuelle comme non géré.
+    syntax: >-
+      az vm unmanaged-disk attach -g MyResourceGroup --vm-name MyVm --name MyDataDisk \
+          --vhd-uri https://mystorage.blob.core.windows.net/vhds/d1.vhd
+  - summary: Attacher un disque persistant non géré à une machine virtuelle. généré automatiquement
+    syntax: az vm unmanaged-disk attach --name MyDataDisk --new --resource-group MyResourceGroup --size-gb 50 --vm-name MyVm
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --caching
+    parameterValueGroup: None, ReadOnly, ReadWrite
+    summary: Stratégie de mise en cache du disque.
+    description: ''
+  - name: --lun
+    summary: Numéro d’unité logique (LUN) de base 0. La valeur maximale dépend de la taille de la machine virtuelle.
+    description: ''
+  - name: --name -n
+    summary: Nom du disque de données.
+    description: ''
+  - name: --new
+    summary: Créez un nouveau disque.
+    description: ''
+  - name: --size-gb -z
+    defaultValue: "1023"
+    summary: 'Taille en Go. Taille maximale : 4095 Go (certains disques de la version préliminaire peuvent être plus volumineux).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vhd-uri
+    summary: 'URI du disque dur virtuel. Par exemple : <a href="https://mystorage.blob.core.windows.net/vhds/d1.vhd">https://mystorage.blob.core.windows.net/vhds/d1.vhd</a> .'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_unmanaged_disk_detach
+  name: az vm unmanaged-disk detach
+  summary: Détacher un disque non géré d’une machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm unmanaged-disk detach --name
+                                --resource-group
+                                --vm-name
+                                [--subscription]
+  examples:
+  - summary: Détacher un disque de données d’une machine virtuelle.
+    syntax: az vm unmanaged-disk detach -g MyResourceGroup --vm-name MyVm -n disk_name
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du disque de données.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_unmanaged_disk_list
+  name: az vm unmanaged-disk list
+  summary: Répertorier les disques non gérés d’une machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm unmanaged-disk list --name
+                              --resource-group
+                              [--query-examples]
+                              [--subscription]
+  examples:
+  - summary: Répertorier les disques non gérés attachés à une machine virtuelle.
+    syntax: az vm unmanaged-disk list -g MyResourceGroup --vm-name MyVm
+  - summary: Répertorie les disques non managés dont le nom contient la chaîne « data_disk ».
+    syntax: >-
+      az vm unmanaged-disk list -g MyResourceGroup --vm-name MyVm \
+          --query "[?contains(name, 'data_disk')]" --output table
+  requiredParameters:
+  - isRequired: true
+    name: --name --vm-name -n
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+commands:
+- az_vm_unmanaged_disk_attach
+- az_vm_unmanaged_disk_detach
+- az_vm_unmanaged_disk_list
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/05/2021
+  description: >-
+    Les machines virtuelles Azure utilisent des disques comme emplacement de stockage d’un système d’exploitation, d’applications et de données. Toutes les machines virtuelles Azure disposent d’au moins deux disques : un disque de système d’exploitation et un disque temporaire. Le disque de système d’exploitation est créé à partir d’une image. Le disque de système d’exploitation et l’image sont en fait des disques durs virtuels (VHD) stockés dans un compte de stockage Azure. Les machines virtuelles peuvent également disposer d’un ou plusieurs disques de données, également stockés sur les VHD.
+
+
+    Les disques de données gérés et non gérés Azure ont une taille maximale de 4095 Go (à l’exception des disques de plus grande taille en préversion). Les disques non managés Azure ont également une capacité maximale de 4095 Go.
+
+
+    Pour plus d'informations, consultez les pages suivantes :
+
+    - Disques Azure- <a href="https://docs.microsoft.com/azure/virtual-machines/linux/about-disks-and-vhds">https://docs.microsoft.com/azure/virtual-machines/linux/about-disks-and-vhds</a> et <a href="https://docs.microsoft.com/azure/virtual-machines/windows/about-disks-and-vhds">https://docs.microsoft.com/azure/virtual-machines/windows/about-disks-and-vhds</a> .
+
+    - Managed Disks plus grande en version préliminaire publique- <a href="https://azure.microsoft.com/blog/introducing-the-public-preview-of-larger-managed-disks-sizes/">https://azure.microsoft.com/blog/introducing-the-public-preview-of-larger-managed-disks-sizes/</a>
+
+    - SSD Ultra Managed Disks en version préliminaire publique- <a href="https://docs.microsoft.com/azure/virtual-machines/windows/disks-ultra-ssd">https://docs.microsoft.com/azure/virtual-machines/windows/disks-ultra-ssd</a> .
+  ms.openlocfilehash: 47e942868d30b430c69e15b77caf71faa93d49d6
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102966272"
