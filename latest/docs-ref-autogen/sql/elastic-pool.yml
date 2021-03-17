@@ -1,0 +1,376 @@
+### YamlMime:AzureCLIGroup
+uid: az_sql_elastic_pool
+name: az sql elastic-pool
+summary: Gérer les pools élastiques.
+description: ''
+directCommands:
+- uid: az_sql_elastic_pool_create
+  name: az sql elastic-pool create
+  summary: Créez un pool élastique.
+  description: ''
+  syntax: >-
+    az sql elastic-pool create --name
+                               --resource-group
+                               --server
+                               [--capacity]
+                               [--db-dtu-max]
+                               [--db-dtu-min]
+                               [--edition]
+                               [--family]
+                               [--license-type {BasePrice, LicenseIncluded}]
+                               [--maint-config-id]
+                               [--max-size]
+                               [--no-wait]
+                               [--subscription]
+                               [--tags]
+                               [--zone-redundant {false, true}]
+  examples:
+  - summary: Créer un pool élastique avec la redondance de zone activée
+    syntax: az sql elastic-pool create -g mygroup -s myserver -n mypool -z
+  - summary: Créer un pool élastique avec la redondance de zone explicitement désactivée
+    syntax: az sql elastic-pool create -g mygroup -s myserver -n mypool -z false
+  - summary: Créez un pool élastique standard 100 DTU.
+    syntax: az sql elastic-pool create -g mygroup -s myserver -n mydb -e Standard -c 100
+  - summary: Créez un pool élastique avec l’édition GeneralPurpose, le matériel Gen4 et le 1 vcore.
+    syntax: az sql elastic-pool create -g mygroup -s myserver -n mydb -e GeneralPurpose -f Gen4 -c 1
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du pool élastique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --capacity --dtu -c
+    summary: Composant de capacité de la référence (SKU) dans un nombre entier de DTU ou vcores.
+    description: ''
+  - name: --db-dtu-max --db-max-capacity --db-max-dtu
+    summary: Capacité maximale (dans DTU ou vcores) qu’une base de données peut consommer.
+    description: ''
+  - name: --db-dtu-min --db-min-capacity --db-min-dtu
+    summary: La capacité minimale (dans DTU ou vcores) est garantie pour chaque base de données.
+    description: ''
+  - name: --edition --tier -e
+    summary: 'Composant d’édition de la référence (SKU). Les valeurs autorisées sont les suivantes : basique, standard, Premium, GeneralPurpose, BusinessCritical.'
+    description: ''
+  - name: --family -f
+    summary: 'Composant de génération de calcul de la référence (SKU vcore uniquement). Les valeurs autorisées sont les suivantes : gen4, Gen5.'
+    description: ''
+  - name: --license-type
+    parameterValueGroup: BasePrice, LicenseIncluded
+    summary: Type de licence à appliquer pour ce pool élastique.
+    description: ''
+  - name: --maint-config-id -m
+    summary: ID ou nom de configuration de maintenance spécifié pour cette ressource.
+    description: ''
+  - name: --max-size --storage
+    summary: Taille de stockage maximale. Si aucune unité n’est spécifiée, la valeur par défaut est bytes (B).
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --zone-redundant -z
+    parameterValueGroup: false, true
+    summary: Spécifie s’il faut activer la redondance de zone.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_elastic_pool_delete
+  name: az sql elastic-pool delete
+  summary: Supprime un pool élastique.
+  description: ''
+  syntax: >-
+    az sql elastic-pool delete [--ids]
+                               [--name]
+                               [--no-wait]
+                               [--resource-group]
+                               [--server]
+                               [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du pool élastique.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_elastic_pool_list
+  name: az sql elastic-pool list
+  summary: Obtient tous les pools élastiques d’un serveur.
+  description: ''
+  syntax: >-
+    az sql elastic-pool list [--ids]
+                             [--query-examples]
+                             [--resource-group]
+                             [--server]
+                             [--skip]
+                             [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --skip
+    summary: Nombre d’éléments de la collection à ignorer.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_elastic_pool_list_dbs
+  name: az sql elastic-pool list-dbs
+  summary: Obtient une liste de bases de données dans un pool élastique.
+  description: ''
+  syntax: >-
+    az sql elastic-pool list-dbs [--ids]
+                                 [--name]
+                                 [--resource-group]
+                                 [--server]
+                                 [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du pool élastique.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_elastic_pool_list_editions
+  name: az sql elastic-pool list-editions
+  summary: Répertorier les éditions de pool élastique disponibles pour l’abonnement actif.
+  description: Inclut également les paramètres DTU de pool, les limites de stockage et les paramètres par base de données disponibles. Pour réduire les détails, les limites de stockage supplémentaires et les paramètres par base de données sont masqués par défaut.
+  syntax: >-
+    az sql elastic-pool list-editions --location
+                                      [--available]
+                                      [--dtu]
+                                      [--edition]
+                                      [--show-details {db-max-dtu, db-max-size, db-min-dtu, max-size}]
+                                      [--subscription]
+                                      [--vcores]
+  examples:
+  - summary: Affichez toutes les éditions de pool élastique et les limites de pool DTU dans la région ouest des États-Unis.
+    syntax: az sql elastic-pool list-editions -l westus -o table
+  - summary: Affichez toutes les limites de DTU de pool pour l’édition standard dans la région ouest des États-Unis.
+    syntax: az sql elastic-pool list-editions -l westus --edition Standard -o table
+  - summary: Affichez les tailles maximales disponibles pour les pools élastiques avec au moins 100 DTU dans la région ouest des États-Unis.
+    syntax: az sql elastic-pool list-editions -l westus --dtu 100 --show-details max-size -o table
+  - summary: Affichez les paramètres disponibles par base de données pour les pools élastiques standard 100 DTU dans la région ouest des États-Unis.
+    syntax: az sql elastic-pool list-editions -l westus --edition Standard --dtu 100 -o table --show-details db-min-dtu db-max-dtu db-max-size
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  optionalParameters:
+  - name: --available -a
+    summary: S’il est spécifié, affiche uniquement les résultats qui sont disponibles dans la région spécifiée.
+    description: ''
+  - name: --dtu
+    summary: Nombre de DTU à rechercher. S’il n’est pas spécifié, toutes les tailles DTU sont affichées.
+    description: ''
+  - name: --edition --tier -e
+    summary: Édition à rechercher. Si elle n’est pas spécifiée, toutes les éditions sont affichées.
+    description: ''
+  - name: --show-details -d
+    parameterValueGroup: db-max-dtu, db-max-size, db-min-dtu, max-size
+    summary: Liste des détails supplémentaires à inclure dans la sortie.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vcores
+    summary: Nombre de vcores à rechercher. Si aucune taille n’est spécifiée, toutes les tailles vcore sont affichées.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_elastic_pool_show
+  name: az sql elastic-pool show
+  summary: Obtenir un pool élastique.
+  description: ''
+  syntax: >-
+    az sql elastic-pool show [--ids]
+                             [--name]
+                             [--query-examples]
+                             [--resource-group]
+                             [--server]
+                             [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du pool élastique.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_elastic_pool_update
+  name: az sql elastic-pool update
+  summary: Mettez à jour un pool élastique.
+  description: ''
+  syntax: >-
+    az sql elastic-pool update [--add]
+                               [--capacity]
+                               [--db-dtu-max]
+                               [--db-dtu-min]
+                               [--edition]
+                               [--family]
+                               [--force-string]
+                               [--ids]
+                               [--maint-config-id]
+                               [--max-size]
+                               [--name]
+                               [--no-wait]
+                               [--remove]
+                               [--resource-group]
+                               [--server]
+                               [--set]
+                               [--subscription]
+                               [--zone-redundant {false, true}]
+  examples:
+  - summary: Mettre à jour le pool élastique avec la redondance de zone activée
+    syntax: az sql elastic-pool update -g mygroup -s myserver -n mypool -z
+  - summary: Mise à jour de pool élastique avec redondance de zone explicitement désactivée
+    syntax: az sql elastic-pool update -g mygroup -s myserver -n mypool -z false
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --capacity --dtu -c
+    summary: Composant de capacité de la référence (SKU) dans un nombre entier de DTU ou vcores.
+    description: ''
+  - name: --db-dtu-max --db-max-capacity --db-max-dtu
+    summary: Capacité maximale (dans DTU ou vcores) qu’une base de données peut consommer.
+    description: ''
+  - name: --db-dtu-min --db-min-capacity --db-min-dtu
+    summary: La capacité minimale (dans DTU ou vcores) est garantie pour chaque base de données.
+    description: ''
+  - name: --edition --tier -e
+    summary: 'Composant d’édition de la référence (SKU). Les valeurs autorisées sont les suivantes : basique, standard, Premium, GeneralPurpose, BusinessCritical.'
+    description: ''
+  - name: --family -f
+    summary: 'Composant de génération de calcul de la référence (SKU vcore uniquement). Les valeurs autorisées sont les suivantes : gen4, Gen5.'
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --maint-config-id -m
+    summary: ID ou nom de configuration de maintenance spécifié pour cette ressource.
+    description: ''
+  - name: --max-size --storage
+    summary: Taille de stockage maximale. Si aucune unité n’est spécifiée, la valeur par défaut est bytes (B).
+    description: ''
+  - name: --name -n
+    summary: Nom du pool élastique.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server -s
+    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --zone-redundant -z
+    parameterValueGroup: false, true
+    summary: Spécifie s’il faut activer la redondance de zone.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+commands:
+- az_sql_elastic_pool_create
+- az_sql_elastic_pool_delete
+- az_sql_elastic_pool_list
+- az_sql_elastic_pool_list_dbs
+- az_sql_elastic_pool_list_editions
+- az_sql_elastic_pool_op
+- az_sql_elastic_pool_op_cancel
+- az_sql_elastic_pool_op_list
+- az_sql_elastic_pool_show
+- az_sql_elastic_pool_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/18/2021
+  description: Gérer les pools élastiques.
+  ms.openlocfilehash: 674d5b2dbf500b75235a28aecc279e4b13d3b149
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103515925"
