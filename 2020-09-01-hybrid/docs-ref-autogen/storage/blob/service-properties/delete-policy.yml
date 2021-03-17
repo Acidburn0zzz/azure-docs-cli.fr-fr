@@ -1,22 +1,27 @@
 ### YamlMime:AzureCLIGroup
-uid: az_storage_blob_service_properties
-name: az storage blob service-properties
-summary: Gérer les propriétés du service blob de stockage.
+uid: az_storage_blob_service_properties_delete_policy
+name: az storage blob service-properties delete-policy
+summary: Gérer les propriétés du service de stratégie de suppression d’objet blob de stockage.
 description: ''
 directCommands:
-- uid: az_storage_blob_service_properties_show
-  name: az storage blob service-properties show
-  summary: Obtient les propriétés du service BLOB d’un compte de stockage, y compris Azure Storage Analytics.
+- uid: az_storage_blob_service_properties_delete_policy_show
+  name: az storage blob service-properties delete-policy show
+  summary: Affiche la stratégie de suppression d’objet blob de stockage.
   description: ''
   syntax: >-
-    az storage blob service-properties show [--account-key]
-                                            [--account-name]
-                                            [--auth-mode {key, login}]
-                                            [--connection-string]
-                                            [--query-examples]
-                                            [--sas-token]
-                                            [--subscription]
-                                            [--timeout]
+    az storage blob service-properties delete-policy show [--account-key]
+                                                          [--account-name]
+                                                          [--auth-mode {key, login}]
+                                                          [--connection-string]
+                                                          [--query-examples]
+                                                          [--sas-token]
+                                                          [--subscription]
+                                                          [--timeout]
+  examples:
+  - summary: Affiche la stratégie de suppression d’objet blob de stockage. généré automatiquement
+    syntax: az storage blob service-properties delete-policy show --account-name mystorageccount --account-key 00000000
+  - summary: Affiche la stratégie de suppression d’objet blob de stockage. généré automatiquement
+    syntax: az storage blob service-properties delete-policy show --account-name mystorageccount --auth-mode login
   optionalParameters:
   - name: --account-key
     summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
@@ -44,34 +49,28 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
-- uid: az_storage_blob_service_properties_update
-  name: az storage blob service-properties update
-  summary: Mettez à jour les propriétés du service blob de stockage.
+- uid: az_storage_blob_service_properties_delete_policy_update
+  name: az storage blob service-properties delete-policy update
+  summary: Mettez à jour la stratégie de suppression d’objet blob de stockage.
   description: ''
   syntax: >-
-    az storage blob service-properties update [--account-key]
-                                              [--account-name]
-                                              [--add]
-                                              [--auth-mode {key, login}]
-                                              [--connection-string]
-                                              [--force-string]
-                                              [--remove]
-                                              [--sas-token]
-                                              [--set]
-                                              [--subscription]
-                                              [--timeout]
+    az storage blob service-properties delete-policy update [--account-key]
+                                                            [--account-name]
+                                                            [--auth-mode {key, login}]
+                                                            [--connection-string]
+                                                            [--days-retained]
+                                                            [--enable {false, true}]
+                                                            [--sas-token]
+                                                            [--subscription]
   examples:
-  - summary: Mettez à jour les propriétés du service blob de stockage. généré automatiquement
-    syntax: az storage blob service-properties update --404-document error.html --account-name mystorageccount --account-key 00000000 --index-document index.html --static-website true
+  - summary: Mettez à jour la stratégie de suppression d’objet blob de stockage. généré automatiquement
+    syntax: az storage blob service-properties delete-policy update --account-name mystorageccount --account-key 00000000 --days-retained 7 --enable true
   optionalParameters:
   - name: --account-key
     summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
     description: ''
   - name: --account-name
     summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
-    description: ''
-  - name: --add
-    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
     description: ''
   - name: --auth-mode
     parameterValueGroup: key, login
@@ -80,31 +79,23 @@ directCommands:
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
     description: ''
-  - name: --force-string
-    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+  - name: --days-retained
+    summary: Nombre de jours pendant lesquels l’objet BLOB supprimé de manière réversible sera conservé. Doit se trouver dans la plage [1 365].
     description: ''
-  - name: --remove
-    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+  - name: --enable
+    parameterValueGroup: false, true
+    summary: Active/désactive la suppression réversible.
     description: ''
   - name: --sas-token
     summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
     description: ''
-  - name: --set
-    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
-    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
-  - name: --timeout
-    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
-    description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
 commands:
-- az_storage_blob_service_properties_delete_policy
 - az_storage_blob_service_properties_delete_policy_show
 - az_storage_blob_service_properties_delete_policy_update
-- az_storage_blob_service_properties_show
-- az_storage_blob_service_properties_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -122,11 +113,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/26/2021
-  description: Gérer les propriétés du service blob de stockage.
-  ms.openlocfilehash: 69175c06929b04becf22f4e25479e202c6cde45d
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.date: 02/02/2021
+  description: Gérer les propriétés du service de stratégie de suppression d’objet blob de stockage.
+  ms.openlocfilehash: cab9262b610db71aa0a655cceade4bf056362e49
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103538450"
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102966115"
