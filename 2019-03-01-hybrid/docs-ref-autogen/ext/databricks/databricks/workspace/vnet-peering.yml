@@ -1,0 +1,276 @@
+### YamlMime:AzureCLIGroup
+uid: ext_databricks_az_databricks_workspace_vnet_peering
+name: az databricks workspace vnet-peering
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **databricks** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ databricks Workspace vnet-peering** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer l’homologation de réseaux virtuels d’espace de travail databricks.
+description: ''
+directCommands:
+- uid: ext_databricks_az_databricks_workspace_vnet_peering_create
+  name: az databricks workspace vnet-peering create
+  summary: Créer une homologation de réseaux virtuels pour un espace de travail.
+  description: ''
+  syntax: >-
+    az databricks workspace vnet-peering create --name
+                                                --remote-vnet
+                                                --resource-group
+                                                --workspace-name
+                                                [--allow-forwarded-traffic {false, true}]
+                                                [--allow-gateway-transit {false, true}]
+                                                [--allow-virtual-network-access {false, true}]
+                                                [--no-wait]
+                                                [--use-remote-gateways {false, true}]
+  examples:
+  - summary: Créer une homologation de réseaux virtuels pour un espace de travail
+    syntax: >-
+      az databricks workspace vnet-peering create --resource-group MyResourceGroup --workspace-name MyWorkspace \
+
+      -n MyPeering --remote-vnet /subscriptions/000000-0000-0000/resourceGroups/MyRG/providers/Microsoft.Network/virtualNetworks/MyVNet
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’homologation de réseaux virtuels.
+    description: ''
+  - isRequired: true
+    name: --remote-vnet
+    summary: Nom ou ID de ressource du réseau virtuel distant.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --allow-forwarded-traffic
+    parameterValueGroup: false, true
+    summary: Indique si le trafic transféré depuis les machines virtuelles dans le réseau virtuel local est autorisé/interdit dans le réseau virtuel distant.
+    description: ''
+  - name: --allow-gateway-transit
+    parameterValueGroup: false, true
+    summary: Si des liens de passerelle peuvent être utilisés dans un réseau virtuel distant pour établir une liaison à ce réseau virtuel.
+    description: ''
+  - name: --allow-virtual-network-access
+    parameterValueGroup: false, true
+    summary: Si les machines virtuelles de l’espace réseau virtuel local peuvent accéder aux machines virtuelles dans l’espace réseau virtuel distant.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --use-remote-gateways
+    parameterValueGroup: false, true
+    summary: Si des passerelles distantes peuvent être utilisées sur ce réseau virtuel. Si l’indicateur a la valeur true et que allowGatewayTransit sur l’homologation à distance est également true, le réseau virtuel utilise des passerelles de réseau virtuel distant pour le transit. Une seule homologation peut avoir cet indicateur défini sur true. Cet indicateur ne peut pas être défini si le réseau virtuel possède déjà une passerelle.
+    description: ''
+- uid: ext_databricks_az_databricks_workspace_vnet_peering_delete
+  name: az databricks workspace vnet-peering delete
+  summary: Supprimer l’homologation de réseaux virtuels.
+  description: ''
+  syntax: >-
+    az databricks workspace vnet-peering delete --name
+                                                --resource-group
+                                                --workspace-name
+                                                [--no-wait]
+  examples:
+  - summary: Supprimer l’homologation de réseaux virtuels.
+    syntax: az databricks workspace vnet-peering delete --resource-group MyResourceGroup --workspace-name MyWorkspace -n MyPeering
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’homologation de réseaux virtuels.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: ext_databricks_az_databricks_workspace_vnet_peering_list
+  name: az databricks workspace vnet-peering list
+  summary: Répertorier les homologations de réseaux virtuels sous un espace de travail.
+  description: ''
+  syntax: >-
+    az databricks workspace vnet-peering list --resource-group
+                                              --workspace-name
+  examples:
+  - summary: Répertorier les homologations de réseaux virtuels sous un espace de travail.
+    syntax: az databricks workspace vnet-peering list --resource-group MyResourceGroup --workspace-name MyWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+- uid: ext_databricks_az_databricks_workspace_vnet_peering_show
+  name: az databricks workspace vnet-peering show
+  summary: Affichez l’homologation de réseaux virtuels.
+  description: ''
+  syntax: >-
+    az databricks workspace vnet-peering show --name
+                                              --resource-group
+                                              --workspace-name
+  examples:
+  - summary: Afficher l’homologation de réseaux virtuels
+    syntax: az databricks workspace vnet-peering show --resource-group MyResourceGroup --workspace-name MyWorkspace -n MyPeering
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’homologation de réseaux virtuels.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+- uid: ext_databricks_az_databricks_workspace_vnet_peering_update
+  name: az databricks workspace vnet-peering update
+  summary: Mettez à jour l’homologation de réseaux virtuels.
+  description: ''
+  syntax: >-
+    az databricks workspace vnet-peering update --name
+                                                --resource-group
+                                                --workspace-name
+                                                [--allow-forwarded-traffic {false, true}]
+                                                [--allow-gateway-transit {false, true}]
+                                                [--allow-virtual-network-access {false, true}]
+                                                [--no-wait]
+                                                [--use-remote-gateways {false, true}]
+  examples:
+  - summary: Mettez à jour l’homologation de réseaux virtuels (activez le transit de la passerelle et désactivez l’accès au réseau virtuel).
+    syntax: >-
+      az databricks workspace vnet-peering update --resource-group MyResourceGroup --workspace-name MyWorkspace \
+
+      -n MyPeering --allow-gateway-transit --allow-virtual-network-access false
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’homologation de réseaux virtuels.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --allow-forwarded-traffic
+    parameterValueGroup: false, true
+    summary: Indique si le trafic transféré depuis les machines virtuelles dans le réseau virtuel local est autorisé/interdit dans le réseau virtuel distant.
+    description: ''
+  - name: --allow-gateway-transit
+    parameterValueGroup: false, true
+    summary: Si des liens de passerelle peuvent être utilisés dans un réseau virtuel distant pour établir une liaison à ce réseau virtuel.
+    description: ''
+  - name: --allow-virtual-network-access
+    parameterValueGroup: false, true
+    summary: Si les machines virtuelles de l’espace réseau virtuel local peuvent accéder aux machines virtuelles dans l’espace réseau virtuel distant.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --use-remote-gateways
+    parameterValueGroup: false, true
+    summary: Si des passerelles distantes peuvent être utilisées sur ce réseau virtuel. Si l’indicateur a la valeur true et que allowGatewayTransit sur l’homologation à distance est également true, le réseau virtuel utilise des passerelles de réseau virtuel distant pour le transit. Une seule homologation peut avoir cet indicateur défini sur true. Cet indicateur ne peut pas être défini si le réseau virtuel possède déjà une passerelle.
+    description: ''
+- uid: ext_databricks_az_databricks_workspace_vnet_peering_wait
+  name: az databricks workspace vnet-peering wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de l’homologation de réseau virtuel de l’espace de travail Databricks soit remplie.
+  description: ''
+  syntax: >-
+    az databricks workspace vnet-peering wait --name
+                                              --resource-group
+                                              --workspace-name
+                                              [--created]
+                                              [--custom]
+                                              [--deleted]
+                                              [--exists]
+                                              [--interval]
+                                              [--timeout]
+                                              [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que l’homologation de réseau virtuel de l’espace de travail Databricks soit correctement approvisionnée.
+    syntax: az databricks workspace vnet-peering wait --resource-group MyResourceGroup --workspace-name MyWorkspace \ --name MyPeering --created
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’homologation de réseaux virtuels.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- ext_databricks_az_databricks_workspace_vnet_peering_create
+- ext_databricks_az_databricks_workspace_vnet_peering_delete
+- ext_databricks_az_databricks_workspace_vnet_peering_list
+- ext_databricks_az_databricks_workspace_vnet_peering_show
+- ext_databricks_az_databricks_workspace_vnet_peering_update
+- ext_databricks_az_databricks_workspace_vnet_peering_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer l’homologation de réseaux virtuels d’espace de travail databricks.
+  ms.openlocfilehash: f74b7ce62b02a4d625041882601649da468f4227
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102838939"
