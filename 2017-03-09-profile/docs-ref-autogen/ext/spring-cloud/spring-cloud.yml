@@ -1,0 +1,302 @@
+### YamlMime:AzureCLIGroup
+uid: ext_spring-cloud_az_spring_cloud
+name: az spring-cloud
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Cloud Spring** pour Azure CLI et requiert la version 2.0.67 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ Spring-Cloud** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer Azure Spring Cloud.
+description: ''
+directCommands:
+- uid: ext_spring-cloud_az_spring_cloud_create
+  name: az spring-cloud create
+  summary: Créez un Cloud Azure Spring.
+  description: ''
+  syntax: >-
+    az spring-cloud create --name
+                           --resource-group
+                           [--app-insights]
+                           [--app-insights-key]
+                           [--app-network-resource-group]
+                           [--app-subnet]
+                           [--disable-app-insights {false, true}]
+                           [--disable-distributed-tracing {false, true}]
+                           [--enable-java-agent {false, true}]
+                           [--location]
+                           [--no-wait]
+                           [--reserved-cidr-range]
+                           [--service-runtime-network-resource-group]
+                           [--service-runtime-subnet]
+                           [--sku]
+                           [--tags]
+                           [--vnet]
+  examples:
+  - summary: Créez un nouveau Cloud Azure Spring dans l’Ouest.
+    syntax: az spring-cloud create -n MyService -g MyResourceGroup -l westus
+  - summary: Créez un nouveau Cloud Azure Spring dans l’Ouest avec une Application Insights existante à l’aide de la clé d’instrumentation.
+    syntax: az spring-cloud create -n MyService -g MyResourceGroup -l westus --app-insights-key MyInstrumentationKey
+  - summary: Créez un Cloud Azure Spring dans l’Ouest avec un Application Insights existant et activez Java In-Process agent.
+    syntax: az spring-cloud create -n MyService -g MyResourceGroup -l westus --enable-java-agent true --app-insights MyInstrumentationName
+  - summary: Créez un Cloud Azure Spring avec le traçage distribué désactivé.
+    syntax: az spring-cloud create -n MyService -g MyResourceGroup --disable-app-insights
+  - summary: Créer un Cloud Azure Spring avec un réseau virtuel-injecté par le biais du nom de réseau virtuel dans le groupe de ressources actuel
+    syntax: az spring-cloud create -n MyService -g MyResourceGroup --vnet MyVNet --app-subnet MyAppSubnet --service-runtime-subnet MyServiceRuntimeSubnet
+  - summary: Créer un Cloud Azure Spring avec un réseau virtuel injecté par le biais de l’ID de ressource de sous-réseaux
+    syntax: az spring-cloud create -n MyService -g MyResourceGroup --app-subnet /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MyVnetRg/providers/Microsoft.Network/VirtualNetworks/test-vnet/subnets/app --service-runtime-subnet /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MyVnetRg/providers/Microsoft.Network/VirtualNetworks/test-vnet/subnets/svc --reserved-cidr-range 10.0.0.0/16,10.1.0.0/16,10.2.0.1/16
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Cloud Azure Spring.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --app-insights
+    summary: Nom du Application Insights existant dans le même groupe de ressources. Ou l’ID de ressource du Application Insights existant dans un autre groupe de ressources.
+    description: ''
+  - name: --app-insights-key
+    summary: Clé d’instrumentation de la Application Insights existante.
+    description: ''
+  - name: --app-network-resource-group --app-nrg
+    summary: Groupe de ressources où sont créées toutes les ressources réseau pour les applications.
+    description: ''
+  - name: --app-subnet
+    summary: 'Nom ou ID d’un sous-réseau existant dans « vnet » dans lequel déployer l’application Spring Cloud. Requis lors du déploiement dans un réseau virtuel. Des tailles de sous-réseaux plus petites sont prises en charge, veuillez consulter : <a href="https://aka.ms/azure-spring-cloud-smaller-subnet-vnet-docs">https://aka.ms/azure-spring-cloud-smaller-subnet-vnet-docs</a> .'
+    description: ''
+  - name: --disable-app-insights
+    parameterValueGroup: false, true
+    summary: Désactivez Application Insights, s’il n’est pas désactivé et qu’aucun Application Insights existant spécifié avec--App-Insights-Key ou--App-Insights, créera une nouvelle instance Application Insights dans le même groupe de ressources.
+    description: ''
+  - name: --disable-distributed-tracing
+    parameterValueGroup: false, true
+    summary: Désactivez le suivi distribué, s’il n’est pas désactivé et qu’aucun Application Insights existant spécifié avec--App-Insights-Key ou--App-Insights, crée une nouvelle instance de Application Insights dans le même groupe de ressources.
+    description: ''
+  - name: --enable-java-agent
+    parameterValueGroup: false, true
+    summary: Activez Java in-process agent.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --reserved-cidr-range
+    summary: Liste de plages d’adresses IP séparées par des virgules au format CIDR. Les plages d’adresses IP sont réservées à l’hébergement de l’infrastructure cloud Spring Azure sous-jacente, qui doit être de 3 au moins/16 plages d’adresses IP inutilisées, ne doit pas chevaucher les plages d’adresses IP de sous-réseau.
+    description: ''
+  - name: --service-runtime-network-resource-group --svc-nrg
+    summary: Groupe de ressources où sont créées toutes les ressources réseau pour le runtime du service Cloud Azure Spring.
+    description: ''
+  - name: --service-runtime-subnet --svc-subnet
+    summary: Nom ou ID d’un sous-réseau existant dans le « réseau virtuel » dans lequel déployer le runtime du service Spring Cloud. Requis lors du déploiement dans un réseau virtuel.
+    description: ''
+  - name: --sku
+    defaultValue: Standard
+    summary: Nom de la référence (SKU), la valeur est « de base » ou « standard ».
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --vnet
+    summary: Nom ou ID d’un réseau virtuel existant dans lequel déployer l’instance Spring Cloud.
+    description: ''
+- uid: ext_spring-cloud_az_spring_cloud_delete
+  name: az spring-cloud delete
+  summary: Supprimer un Cloud Azure Spring.
+  description: ''
+  syntax: >-
+    az spring-cloud delete --name
+                           --resource-group
+                           [--no-wait]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Cloud Azure Spring.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: ext_spring-cloud_az_spring_cloud_list
+  name: az spring-cloud list
+  summary: Répertorie tous les clouds Azure Spring dans le groupe de ressources donné, sinon répertorie les abonnements.
+  description: ''
+  syntax: az spring-cloud list [--resource-group]
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_spring-cloud_az_spring_cloud_show
+  name: az spring-cloud show
+  summary: Afficher les détails d’un Azure Spring Cloud.
+  description: ''
+  syntax: >-
+    az spring-cloud show --name
+                         --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Cloud Azure Spring.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_spring-cloud_az_spring_cloud_update
+  name: az spring-cloud update
+  summary: Mettez à jour un Cloud Azure Spring.
+  description: ''
+  syntax: >-
+    az spring-cloud update --name
+                           --resource-group
+                           [--app-insights]
+                           [--app-insights-key]
+                           [--disable-app-insights {false, true}]
+                           [--disable-distributed-tracing {false, true}]
+                           [--no-wait]
+                           [--sku]
+                           [--tags]
+  examples:
+  - summary: Mettez à jour le niveau tarifaire.
+    syntax: az spring-cloud update -n MyService --sku Standard -g MyResourceGroup
+  - summary: Activez le traçage distribué du Cloud Azure Spring existant.
+    syntax: az spring-cloud update -n MyService -g MyResourceGroup --disable-app-insights false
+  - summary: Mettez à jour les balises du Cloud Azure Spring existant.
+    syntax: az spring-cloud update -n MyService -g MyResourceGroup --tags key1=value1 key2=value2
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Cloud Azure Spring.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --app-insights
+    summary: Nom du Application Insights existant dans le même groupe de ressources. Ou l’ID de ressource du Application Insights existant dans un autre groupe de ressources.
+    description: ''
+  - name: --app-insights-key
+    summary: Clé d’instrumentation de la Application Insights existante.
+    description: ''
+  - name: --disable-app-insights
+    parameterValueGroup: false, true
+    summary: Désactivez Application Insights, s’il n’est pas désactivé et qu’aucun Application Insights existant spécifié avec--App-Insights-Key ou--App-Insights, créera une nouvelle instance Application Insights dans le même groupe de ressources.
+    description: ''
+  - name: --disable-distributed-tracing
+    parameterValueGroup: false, true
+    summary: Désactivez le suivi distribué, s’il n’est pas désactivé et qu’aucun Application Insights existant spécifié avec--App-Insights-Key ou--App-Insights, crée une nouvelle instance de Application Insights dans le même groupe de ressources.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --sku
+    summary: Nom de la référence (SKU), la valeur est « de base » ou « standard ».
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+commands:
+- ext_spring-cloud_az_spring_cloud_app
+- ext_spring-cloud_az_spring_cloud_app_binding
+- ext_spring-cloud_az_spring_cloud_app_binding_cosmos
+- ext_spring-cloud_az_spring_cloud_app_binding_cosmos_add
+- ext_spring-cloud_az_spring_cloud_app_binding_cosmos_update
+- ext_spring-cloud_az_spring_cloud_app_binding_list
+- ext_spring-cloud_az_spring_cloud_app_binding_mysql
+- ext_spring-cloud_az_spring_cloud_app_binding_mysql_add
+- ext_spring-cloud_az_spring_cloud_app_binding_mysql_update
+- ext_spring-cloud_az_spring_cloud_app_binding_redis
+- ext_spring-cloud_az_spring_cloud_app_binding_redis_add
+- ext_spring-cloud_az_spring_cloud_app_binding_redis_update
+- ext_spring-cloud_az_spring_cloud_app_binding_remove
+- ext_spring-cloud_az_spring_cloud_app_binding_show
+- ext_spring-cloud_az_spring_cloud_app_create
+- ext_spring-cloud_az_spring_cloud_app_custom_domain
+- ext_spring-cloud_az_spring_cloud_app_custom_domain_bind
+- ext_spring-cloud_az_spring_cloud_app_custom_domain_list
+- ext_spring-cloud_az_spring_cloud_app_custom_domain_show
+- ext_spring-cloud_az_spring_cloud_app_custom_domain_unbind
+- ext_spring-cloud_az_spring_cloud_app_custom_domain_update
+- ext_spring-cloud_az_spring_cloud_app_delete
+- ext_spring-cloud_az_spring_cloud_app_deploy
+- ext_spring-cloud_az_spring_cloud_app_deployment
+- ext_spring-cloud_az_spring_cloud_app_deployment_create
+- ext_spring-cloud_az_spring_cloud_app_deployment_delete
+- ext_spring-cloud_az_spring_cloud_app_deployment_list
+- ext_spring-cloud_az_spring_cloud_app_deployment_show
+- ext_spring-cloud_az_spring_cloud_app_identity
+- ext_spring-cloud_az_spring_cloud_app_identity_assign
+- ext_spring-cloud_az_spring_cloud_app_identity_remove
+- ext_spring-cloud_az_spring_cloud_app_identity_show
+- ext_spring-cloud_az_spring_cloud_app_list
+- ext_spring-cloud_az_spring_cloud_app_log
+- ext_spring-cloud_az_spring_cloud_app_log_tail
+- ext_spring-cloud_az_spring_cloud_app_logs
+- ext_spring-cloud_az_spring_cloud_app_restart
+- ext_spring-cloud_az_spring_cloud_app_scale
+- ext_spring-cloud_az_spring_cloud_app_set_deployment
+- ext_spring-cloud_az_spring_cloud_app_show
+- ext_spring-cloud_az_spring_cloud_app_show_deploy_log
+- ext_spring-cloud_az_spring_cloud_app_start
+- ext_spring-cloud_az_spring_cloud_app_stop
+- ext_spring-cloud_az_spring_cloud_app_unset_deployment
+- ext_spring-cloud_az_spring_cloud_app_update
+- ext_spring-cloud_az_spring_cloud_app_insights
+- ext_spring-cloud_az_spring_cloud_app_insights_show
+- ext_spring-cloud_az_spring_cloud_app_insights_update
+- ext_spring-cloud_az_spring_cloud_certificate
+- ext_spring-cloud_az_spring_cloud_certificate_add
+- ext_spring-cloud_az_spring_cloud_certificate_list
+- ext_spring-cloud_az_spring_cloud_certificate_remove
+- ext_spring-cloud_az_spring_cloud_certificate_show
+- ext_spring-cloud_az_spring_cloud_config_server
+- ext_spring-cloud_az_spring_cloud_config_server_clear
+- ext_spring-cloud_az_spring_cloud_config_server_git
+- ext_spring-cloud_az_spring_cloud_config_server_git_repo
+- ext_spring-cloud_az_spring_cloud_config_server_git_repo_add
+- ext_spring-cloud_az_spring_cloud_config_server_git_repo_list
+- ext_spring-cloud_az_spring_cloud_config_server_git_repo_remove
+- ext_spring-cloud_az_spring_cloud_config_server_git_repo_update
+- ext_spring-cloud_az_spring_cloud_config_server_git_set
+- ext_spring-cloud_az_spring_cloud_config_server_set
+- ext_spring-cloud_az_spring_cloud_config_server_show
+- ext_spring-cloud_az_spring_cloud_create
+- ext_spring-cloud_az_spring_cloud_delete
+- ext_spring-cloud_az_spring_cloud_list
+- ext_spring-cloud_az_spring_cloud_show
+- ext_spring-cloud_az_spring_cloud_test_endpoint
+- ext_spring-cloud_az_spring_cloud_test_endpoint_disable
+- ext_spring-cloud_az_spring_cloud_test_endpoint_enable
+- ext_spring-cloud_az_spring_cloud_test_endpoint_list
+- ext_spring-cloud_az_spring_cloud_test_endpoint_renew_key
+- ext_spring-cloud_az_spring_cloud_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer Azure Spring Cloud.
+  ms.openlocfilehash: 2605cd269a3be76eef63a37916e33fc637d73e89
+  ms.sourcegitcommit: ed6ef14710d45916ff170a6127c340351e762098
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 01/14/2021
+  ms.locfileid: "102843958"

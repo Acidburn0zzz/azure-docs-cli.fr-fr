@@ -1,0 +1,227 @@
+### YamlMime:AzureCLIGroup
+uid: az_iot_central_app
+name: az iot central app
+summary: Gérer les applications IoT Central.
+description: Créez, supprimez, affichez et mettez à jour vos applications IoT Central.
+directCommands:
+- uid: az_iot_central_app_create
+  name: az iot central app create
+  summary: Créez une application IoT Central.
+  description: >-
+    Une application IoT Central est une application basée sur le Cloud que vous pouvez utiliser pour gérer vos appareils IoT.
+
+    Pour plus d’informations sur le déploiement d’une application IoT Central à l’aide de l’interface CLI ou d’une liste d’arguments disponibles, visitez <a href="https://aka.ms/iotcentral-manage-cli">https://aka.ms/iotcentral-manage-cli</a> .
+  syntax: >-
+    az iot central app create --name
+                              --resource-group
+                              --subdomain
+                              [--display-name]
+                              [--location]
+                              [--no-wait]
+                              [--sku {F1, S1, ST0, ST1, ST2}]
+                              [--subscription]
+                              [--template]
+  examples:
+  - summary: Créez un IoT Central application dans la région du groupe de ressources à l’aide de la référence SKU de tarification par défaut.
+    syntax: az iot central app create -n my-first-iot-app -g MyResourceGroup -s my-iot-app -l unitedstates
+  - summary: Créez un IoT Central application dans la région « États-Unis » avec le plan de tarification « ST1 » et un modèle d’industrie.
+    syntax: az iot central app create -n my-first-iot-app -g MyResourceGroup -s my-iot-app -l unitedstates -p ST1 -t iotc-distribution
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Donnez un nom unique à votre application IoT Central pour pouvoir la retrouver ultérieurement. Celui-ci sera utilisé comme nom de ressource dans les Portail Azure et CLI. Évitez les caractères spéciaux à la `-` place, utilisez des lettres minuscules (a-z), des chiffres (0-9) et des tirets (-).
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --subdomain -s
+    summary: Entrez une URL unique. Votre application sera accessible via https:// <subdomain> . azureiotcentral.com/. Évitez les caractères spéciaux `-` à la place, utilisez des lettres minuscules (a-z), des chiffres (0-9) et des tirets (-).
+    description: ''
+  optionalParameters:
+  - name: --display-name -d
+    summary: Nom complet personnalisé de l’application IoT Central. Celui-ci sera utilisé dans le gestionnaire d’applications IoT Central pour vous aider à identifier votre application. La valeur par défaut est le nom de la ressource.
+    description: ''
+  - name: --location -l
+    summary: Où sont stockées les informations et les ressources de votre application. Par défaut, il s’agit de l’emplacement du groupe de ressources cible. Pour obtenir la liste complète des emplacements pris en charge, consultez la documentation.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --sku -p
+    defaultValue: ST2
+    parameterValueGroup: F1, S1, ST0, ST1, ST2
+    summary: Plan de tarification pour IoT Central application.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --template -t
+    summary: Nom du modèle d’application IoT Central. La valeur par défaut est « application personnalisée ». Consultez la documentation pour obtenir la liste des modèles disponibles.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_central_app_delete
+  name: az iot central app delete
+  summary: Supprimer une application IoT Central.
+  description: >-
+    Supprimez définitivement votre application IoT Central.
+
+    -Warning : cette opération est irréversible. Une fois que vous avez supprimé votre application, vous ne pouvez pas la restaurer.
+  syntax: >-
+    az iot central app delete --name
+                              --resource-group
+                              [--no-wait]
+                              [--subscription]
+                              [--yes]
+  examples:
+  - summary: Suppression d’une application IoT Central appelée « My-First-IOT-App ».
+    syntax: az iot central app delete -n my-first-iot-app -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application IoT Central.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_central_app_list
+  name: az iot central app list
+  summary: Répertorier les applications IoT Central.
+  description: Toutes les applications IoT Central qui font partie de votre abonnement.
+  syntax: >-
+    az iot central app list [--query-examples]
+                            [--resource-group]
+                            [--subscription]
+  examples:
+  - summary: Répertorie toutes les applications IoT Central dans mon abonnement.
+    syntax: az iot central app list
+  - summary: Répertorie toutes les applications IoT Central dans le groupe de ressources « MyResourceGroup » dans mon abonnement.
+    syntax: az iot central app list -g MyResourceGroup
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_central_app_show
+  name: az iot central app show
+  summary: Obtient les détails d’une application IoT Central.
+  description: Informations sur votre application, telles que le nom de l’application, le sous-domaine, le plan de tarification et l’emplacement.
+  syntax: >-
+    az iot central app show --name
+                            [--query-examples]
+                            [--resource-group]
+                            [--subscription]
+  examples:
+  - summary: Affichez les détails d’une application nommée « My-First-IOT-App ».
+    syntax: az iot central app show -n my-first-iot-app
+  - summary: Affichez les détails d’une application nommée « My-First-IOT-app » dans le groupe de ressources « MyResourceGroup ».
+    syntax: az iot central app show -n my-first-iot-app -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application IoT Central.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_central_app_update
+  name: az iot central app update
+  summary: Met à jour les métadonnées d’une application IoT Central.
+  description: Mettez à jour les métadonnées, telles que le nom de l’application, le sous-domaine, le plan de tarification et l’emplacement.
+  syntax: >-
+    az iot central app update --name
+                              --resource-group
+                              [--add]
+                              [--force-string]
+                              [--remove]
+                              [--set]
+                              [--subscription]
+  examples:
+  - summary: Mettre à jour la référence (SKU) pour « My-First-IOT-App »
+    syntax: az iot central app update -n my-first-iot-app -g MyResourceGroup --set sku.name=ST1
+  - summary: Modifier le sous-domaine pour « My-First-IOT-App »
+    syntax: az iot central app update -n my-first-iot-app -g MyResourceGroup --set subdomain.name=my-iot-app-new
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application IoT Central.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+commands:
+- az_iot_central_app_create
+- az_iot_central_app_delete
+- az_iot_central_app_list
+- az_iot_central_app_show
+- az_iot_central_app_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/14/2021
+  description: Créez, supprimez, affichez et mettez à jour vos applications IoT Central.
+  ms.openlocfilehash: 58329379d62094eda75df9c17091fc3c3737e39c
+  ms.sourcegitcommit: 59f08c5a7a967fa68adb9eefbf5beb92acda9e08
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 01/19/2021
+  ms.locfileid: "102844072"

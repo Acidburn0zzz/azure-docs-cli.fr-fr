@@ -1,0 +1,163 @@
+### YamlMime:AzureCLIGroup
+uid: az_image_builder_output
+name: az image builder output
+summary: Gérer les serveurs de sortie du modèle image Builder.
+description: Une image personnalisée peut être distribuée sous la forme d’une image managée, d’une image partagée dans une galerie d’images partagées (SIG) ou en tant qu’objet blob de disque dur virtuel.
+directCommands:
+- uid: az_image_builder_output_add
+  name: az image builder output add
+  summary: Ajoutez un serveur de distribution de sortie image Builder à un modèle d’image Builder.
+  description: Doit être utilisé avec--defer. Le serveur de distribution de sortie peut être une image managée, une image de la galerie ou un objet blob de disque dur virtuel.
+  syntax: >-
+    az image builder output add [--artifact-tags]
+                                [--defer]
+                                [--gallery-image-definition]
+                                [--gallery-name]
+                                [--gallery-replication-regions]
+                                [--ids]
+                                [--is-vhd]
+                                [--managed-image]
+                                [--managed-image-location]
+                                [--name]
+                                [--output-name]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: Ajoutez un serveur de distribution d’images gérées à un modèle d’image dans le cache d’objets CLI. Spécifiez un nom de sortie d’exécution.
+    syntax: >-
+      az image builder output add -n mytemplate -g my-group \
+          --managed-image my_desired_image_name --output-name managed_image_run_01 --defer
+  - summary: Ajoutez un serveur de distribution de la Galerie d’images partagées à un modèle d’image dans le cache d’objets CLI. Spécifiez ses régions de réplication.
+    syntax: >-
+      az image builder output add -n mytemplate -g my-group --gallery-name my_shared_gallery \
+          --gallery-replication-regions westus brazilsouth \
+          --gallery-image-definition linux_image_def --defer
+  - summary: Ajoutez un serveur de distribution de disque dur virtuel à un modèle d’image dans le cache d’objets CLI.
+    syntax: >-
+      az image builder output add -n mytemplate -g my-group \
+          --output-name my_vhd_image --is-vhd  --defer
+  optionalParameters:
+  - name: --artifact-tags
+    summary: 'Étiquettes qui seront appliquées à l’artefact de sortie une fois qu’il a été créé par le serveur de distribution. balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
+    description: ''
+  - name: --gallery-image-definition
+    summary: Nom ou ID de la définition d’image SIG existante avec laquelle créer la version d’image personnalisée.
+    description: ''
+  - name: --gallery-name
+    summary: Nom de la Galerie d’images partagées, si le nom de définition d’image et non l’ID a été fourni.
+    description: ''
+  - name: --gallery-replication-regions
+    summary: Liste séparée par des espaces des régions dans lesquelles répliquer la version de l’image. La valeur par défaut est l’emplacement du groupe de ressources.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --is-vhd
+    summary: La sortie est un serveur de distribution de disque dur virtuel.
+    description: ''
+  - name: --managed-image
+    summary: Nom ou ID de l’image managée personnalisée à créer.
+    description: ''
+  - name: --managed-image-location
+    summary: Emplacement où l’image personnalisée sera créée. La valeur par défaut est l’emplacement du groupe de ressources.
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --output-name
+    summary: Nom de la sortie de l’exécution du générateur d’images. La valeur par défaut est le nom de l’image managée ou de la définition d’image SIG.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_builder_output_clear
+  name: az image builder output clear
+  summary: Supprimer tous les serveurs de distribution de sortie d’image Builder d’un modèle d’image Builder.
+  description: Doit être utilisé avec--defer.
+  syntax: >-
+    az image builder output clear [--defer]
+                                  [--ids]
+                                  [--name]
+                                  [--resource-group]
+                                  [--subscription]
+  optionalParameters:
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_builder_output_remove
+  name: az image builder output remove
+  summary: Supprimer un serveur de distribution de sortie d’image Builder d’un modèle d’image Builder.
+  description: Doit être utilisé avec--defer.
+  syntax: >-
+    az image builder output remove --output-name
+                                   [--defer]
+                                   [--ids]
+                                   [--name]
+                                   [--resource-group]
+                                   [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --output-name
+    summary: Nom de la sortie de l’exécution du générateur d’images.
+    description: ''
+  optionalParameters:
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_image_builder_output_add
+- az_image_builder_output_clear
+- az_image_builder_output_remove
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Une image personnalisée peut être distribuée sous la forme d’une image managée, d’une image partagée dans une galerie d’images partagées (SIG) ou en tant qu’objet blob de disque dur virtuel.
+  ms.openlocfilehash: d049d8ce49db09175b0b5ac25841ffdd117d5a74
+  ms.sourcegitcommit: f2e32fa945b2c69d45d2d3a01827e28f0e82e556
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 07/28/2020
+  ms.locfileid: "102818120"

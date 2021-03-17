@@ -1,0 +1,456 @@
+### YamlMime:AzureCLIGroup
+uid: az_redis
+name: az redis
+summary: Gérez les caches ReDim dédiés pour vos applications Azure.
+description: ''
+directCommands:
+- uid: az_redis_create
+  name: az redis create
+  summary: Crée une nouvelle instance de Cache Redis.
+  description: ''
+  syntax: >-
+    az redis create --location
+                    --name
+                    --resource-group
+                    --sku {Basic, Premium, Standard}
+                    --vm-size {c0, c1, c2, c3, c4, c5, c6, p1, p2, p3, p4, p5}
+                    [--enable-non-ssl-port]
+                    [--minimum-tls-version {1.0, 1.1, 1.2}]
+                    [--redis-configuration]
+                    [--replicas-per-master]
+                    [--shard-count]
+                    [--static-ip]
+                    [--subnet-id]
+                    [--subscription]
+                    [--tags]
+                    [--tenant-settings]
+                    [--zones {1, 2, 3}]
+  examples:
+  - summary: Crée une nouvelle instance de Cache Redis. généré automatiquement
+    syntax: az redis create --location westus2 --name MyRedisCache --resource-group MyResourceGroup --sku Basic --vm-size c0
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cache Redims.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --sku
+    parameterValueGroup: Basic, Premium, Standard
+    summary: Type de cache Redims.
+    description: ''
+  - isRequired: true
+    name: --vm-size
+    parameterValueGroup: c0, c1, c2, c3, c4, c5, c6, p1, p2, p3, p4, p5
+    summary: Taille du cache ReDim à déployer. Les tailles de cache de base et standard commencent par C. les tailles de cache Premium commencent par P.
+    description: ''
+  optionalParameters:
+  - name: --enable-non-ssl-port
+    summary: S’il est spécifié, le port du serveur ReDim non-SSL (6379) sera activé.
+    description: ''
+  - name: --minimum-tls-version
+    parameterValueGroup: 1.0, 1.1, 1.2
+    summary: Spécifie la version TLS requise par les clients pour se connecter au cache.
+    description: ''
+  - name: --redis-configuration
+    summary: Paramètres de configuration encodés JSON. Utilisez @ {file} pour charger à partir d’un fichier.
+    description: ''
+  - name: --replicas-per-master
+    summary: Nombre de réplicas à créer par maître.
+    description: ''
+  - name: --shard-count
+    summary: Nombre de partitions à créer sur un cache de cluster Premium.
+    description: ''
+  - name: --static-ip
+    summary: Spécifiez une adresse IP statique si nécessaire pour le réseau virtuel. Si vous ne spécifiez pas d’adresse IP statique, une adresse IP est choisie automatiquement.
+    description: ''
+  - name: --subnet-id
+    summary: ID de ressource complet d’un sous-réseau dans un réseau virtuel dans lequel déployer le cache ReDim. Exemple de format/subscriptions/{subid}/resourceGroups/{resourceGroupName}/providers/Microsoft. {Réseau | ClassicNetwork}/virtualNetworks/vnet1/subnets/subnet1.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --tenant-settings
+    summary: Paramètres de locataire séparés par des espaces au format clé [= valeur].
+    description: ''
+  - name: --zones -z
+    parameterValueGroup: 1, 2, 3
+    summary: Liste séparée par des espaces des zones de disponibilité dans laquelle approvisionner la ressource.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/redis/_help.py
+- uid: az_redis_delete
+  name: az redis delete
+  summary: Supprime un cache Redims.
+  description: ''
+  syntax: >-
+    az redis delete [--ids]
+                    [--name]
+                    [--resource-group]
+                    [--subscription]
+                    [--yes]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cache Redims.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/redis/_help.py
+- uid: az_redis_export
+  name: az redis export
+  summary: Exportez les données stockées dans un cache Redims.
+  description: ''
+  syntax: >-
+    az redis export --container
+                    --prefix
+                    [--file-format]
+                    [--ids]
+                    [--name]
+                    [--resource-group]
+                    [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --container
+    summary: URL SAS du conteneur dans lequel les données doivent être exportées.
+    description: ''
+  - isRequired: true
+    name: --prefix
+    summary: Préfixe à utiliser pour les fichiers exportés.
+    description: ''
+  optionalParameters:
+  - name: --file-format
+    summary: Le format de l’objet BLOB (actuellement RDB est le seul format pris en charge, avec d’autres formats attendus dans le futur).
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cache Redims.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/redis/_help.py
+- uid: az_redis_force_reboot
+  name: az redis force-reboot
+  summary: Redémarrez le ou les nœuds ReDim spécifiés.
+  description: Cette opération requiert une autorisation d’écriture sur la ressource de cache. Il peut y avoir une perte potentielle de données.
+  syntax: >-
+    az redis force-reboot --reboot-type {AllNodes, PrimaryNode, SecondaryNode}
+                          [--ids]
+                          [--name]
+                          [--resource-group]
+                          [--shard-id]
+                          [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --reboot-type
+    parameterValueGroup: AllNodes, PrimaryNode, SecondaryNode
+    summary: Le ou les nœuds ReDim à redémarrer. En fonction de cette valeur, la perte de données est possible.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cache Redims.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --shard-id
+    summary: Si le clustering est activé, il s’agit de l’ID du partition à redémarrer.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/redis/_help.py
+- uid: az_redis_import
+  name: az redis import
+  summary: Importez des données dans un cache Redims.
+  description: ''
+  syntax: >-
+    az redis import --files
+                    [--file-format]
+                    [--ids]
+                    [--name]
+                    [--resource-group]
+                    [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --files
+    summary: URL SAS pour les objets BLOB qui doivent être importés.
+    description: ''
+  optionalParameters:
+  - name: --file-format
+    summary: Le format de l’objet BLOB (actuellement RDB est le seul format pris en charge, avec d’autres formats attendus dans le futur).
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cache Redims.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/redis/_help.py
+- uid: az_redis_import_method
+  name: az redis import-method
+  summary: Importez des données dans le cache Redims.
+  description: ''
+  syntax: >-
+    az redis import-method --files
+                           [--file-format]
+                           [--ids]
+                           [--name]
+                           [--resource-group]
+                           [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --files
+    summary: URL SAS pour les objets BLOB qui doivent être importés.
+    description: ''
+  optionalParameters:
+  - name: --file-format
+    summary: Le format de l’objet BLOB (actuellement RDB est le seul format pris en charge, avec d’autres formats attendus dans le futur).
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cache Redims.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/redis/_help.py
+- uid: az_redis_list
+  name: az redis list
+  summary: Répertorie les caches ReDim.
+  description: Répertorie des détails sur tous les caches au sein de l’abonnement actuel ou sur le groupe de ressources fourni.
+  syntax: >-
+    az redis list [--query-examples]
+                  [--resource-group]
+                  [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/redis/_help.py
+- uid: az_redis_list_keys
+  name: az redis list-keys
+  summary: Récupérez les clés d’accès du cache Redims.
+  description: Cette opération requiert une autorisation d’écriture sur la ressource de cache.
+  syntax: >-
+    az redis list-keys [--ids]
+                       [--name]
+                       [--resource-group]
+                       [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cache Redims.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/redis/_help.py
+- uid: az_redis_regenerate_keys
+  name: az redis regenerate-keys
+  summary: Régénère les clés d’accès du cache Redims.
+  description: Cette opération requiert une autorisation d’écriture sur la ressource de cache.
+  syntax: >-
+    az redis regenerate-keys --key-type {Primary, Secondary}
+                             [--ids]
+                             [--name]
+                             [--resource-group]
+                             [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --key-type
+    parameterValueGroup: Primary, Secondary
+    summary: La clé d’accès Redims à régénérer.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cache Redims.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/redis/_help.py
+- uid: az_redis_show
+  name: az redis show
+  summary: Obtient un cache Redims (description de la ressource).
+  description: ''
+  syntax: >-
+    az redis show [--ids]
+                  [--name]
+                  [--query-examples]
+                  [--resource-group]
+                  [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cache Redims.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/redis/_help.py
+- uid: az_redis_update
+  name: az redis update
+  summary: Mettre à jour un cache Redims.
+  description: Met à l’échelle ou met à jour les paramètres d’un cache ReDim.
+  syntax: >-
+    az redis update [--add]
+                    [--force-string]
+                    [--ids]
+                    [--name]
+                    [--remove]
+                    [--resource-group]
+                    [--set]
+                    [--sku {Basic, Premium, Standard}]
+                    [--subscription]
+                    [--vm-size {c0, c1, c2, c3, c4, c5, c6, p1, p2, p3, p4, p5}]
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du cache Redims.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --sku
+    parameterValueGroup: Basic, Premium, Standard
+    summary: Type de cache Redims.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vm-size
+    parameterValueGroup: c0, c1, c2, c3, c4, c5, c6, p1, p2, p3, p4, p5
+    summary: Taille du cache ReDim à déployer. Les tailles de cache de base et standard commencent par C. les tailles de cache Premium commencent par P.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/redis/_help.py
+commands:
+- az_redis_create
+- az_redis_delete
+- az_redis_export
+- az_redis_firewall_rules
+- az_redis_firewall_rules_create
+- az_redis_firewall_rules_delete
+- az_redis_firewall_rules_list
+- az_redis_firewall_rules_show
+- az_redis_firewall_rules_update
+- az_redis_force_reboot
+- az_redis_import
+- az_redis_import_method
+- az_redis_list
+- az_redis_list_keys
+- az_redis_patch_schedule
+- az_redis_patch_schedule_create
+- az_redis_patch_schedule_delete
+- az_redis_patch_schedule_show
+- az_redis_patch_schedule_update
+- az_redis_regenerate_keys
+- az_redis_server_link
+- az_redis_server_link_create
+- az_redis_server_link_delete
+- az_redis_server_link_list
+- az_redis_server_link_show
+- az_redis_show
+- az_redis_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/17/2019
+  description: Gérez les caches ReDim dédiés pour vos applications Azure.
+  ms.openlocfilehash: 05d35c1674d4836364782cbc9a5e6d9016edf79f
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820058"

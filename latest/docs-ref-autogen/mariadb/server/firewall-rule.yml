@@ -1,0 +1,223 @@
+### YamlMime:AzureCLIGroup
+uid: az_mariadb_server_firewall_rule
+name: az mariadb server firewall-rule
+summary: Gérer les règles de pare-feu pour un serveur.
+description: ''
+directCommands:
+- uid: az_mariadb_server_firewall_rule_create
+  name: az mariadb server firewall-rule create
+  summary: Créer une nouvelle règle de pare-feu pour un serveur.
+  description: ''
+  syntax: >-
+    az mariadb server firewall-rule create --end-ip-address
+                                           --name
+                                           --resource-group
+                                           --server-name
+                                           --start-ip-address
+                                           [--subscription]
+  examples:
+  - summary: Créer une règle de pare-feu autorisant les connexions à partir d’une adresse IP spécifique.
+    syntax: az mariadb server firewall-rule create -g testgroup -s testsvr -n allowip --start-ip-address 107.46.14.221 --end-ip-address 107.46.14.221
+  - summary: Créer une règle de pare-feu autorisant les connexions à partir d’une plage d’adresses IP.
+    syntax: az mariadb server firewall-rule create -g testgroup -s testsvr -n allowiprange --start-ip-address 107.46.14.0 --end-ip-address 107.46.14.221
+  requiredParameters:
+  - isRequired: true
+    name: --end-ip-address
+    summary: Adresse IP de fin de la règle de pare-feu. Doit être au format IPv4. Utilisez la valeur « 0.0.0.0 » pour représenter toutes les adresses IP Azure-Internal.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de pare-feu. Le nom de la règle de pare-feu ne peut pas être vide. Le nom de la règle de pare-feu ne peut contenir que 0-9, a-z, A-Z, '-'et' _ '. En outre, le nom de la règle de pare-feu ne peut pas dépasser 128 caractères.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --server-name -s
+    summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
+    description: ''
+  - isRequired: true
+    name: --start-ip-address
+    summary: Adresse IP de début de la règle de pare-feu. Doit être au format IPv4. Utilisez la valeur « 0.0.0.0 » pour représenter toutes les adresses IP Azure-Internal.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_mariadb_server_firewall_rule_delete
+  name: az mariadb server firewall-rule delete
+  summary: Supprimer une règle de pare-feu.
+  description: ''
+  syntax: >-
+    az mariadb server firewall-rule delete [--ids]
+                                           [--name]
+                                           [--resource-group]
+                                           [--server-name]
+                                           [--subscription]
+                                           [--yes]
+  examples:
+  - summary: Supprimer une règle de pare-feu. généré automatiquement
+    syntax: az mariadb server firewall-rule delete --name MyFirewallRule --resource-group MyResourceGroup --server-name MyServer --subscription MySubscription --yes
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la règle de pare-feu. Le nom de la règle de pare-feu ne peut pas être vide. Le nom de la règle de pare-feu ne peut contenir que 0-9, a-z, A-Z, '-'et' _ '. En outre, le nom de la règle de pare-feu ne peut pas dépasser 128 caractères.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server-name -s
+    summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_mariadb_server_firewall_rule_list
+  name: az mariadb server firewall-rule list
+  summary: Répertorie toutes les règles de pare-feu pour un serveur.
+  description: ''
+  syntax: >-
+    az mariadb server firewall-rule list [--ids]
+                                         [--query-examples]
+                                         [--resource-group]
+                                         [--server-name]
+                                         [--subscription]
+  examples:
+  - summary: Répertorier toutes les règles de pare-feu pour un serveur (générée automatiquement)
+    syntax: az mariadb server firewall-rule list --resource-group MyResourceGroup --server-name MyServer
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server-name -s
+    summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_mariadb_server_firewall_rule_show
+  name: az mariadb server firewall-rule show
+  summary: Obtenir les détails d’une règle de pare-feu.
+  description: ''
+  syntax: >-
+    az mariadb server firewall-rule show [--ids]
+                                         [--name]
+                                         [--query-examples]
+                                         [--resource-group]
+                                         [--server-name]
+                                         [--subscription]
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la règle de pare-feu. Le nom de la règle de pare-feu ne peut pas être vide. Le nom de la règle de pare-feu ne peut contenir que 0-9, a-z, A-Z, '-'et' _ '. En outre, le nom de la règle de pare-feu ne peut pas dépasser 128 caractères.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server-name -s
+    summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_mariadb_server_firewall_rule_update
+  name: az mariadb server firewall-rule update
+  summary: Mettez à jour une règle de pare-feu.
+  description: ''
+  syntax: >-
+    az mariadb server firewall-rule update [--add]
+                                           [--end-ip-address]
+                                           [--force-string]
+                                           [--ids]
+                                           [--name]
+                                           [--remove]
+                                           [--resource-group]
+                                           [--server-name]
+                                           [--set]
+                                           [--start-ip-address]
+                                           [--subscription]
+  examples:
+  - summary: Mettez à jour l’adresse IP de début d’une règle de pare-feu.
+    syntax: az mariadb server firewall-rule update -g testgroup -s testsvr -n allowiprange --start-ip-address 107.46.14.1
+  - summary: Mettez à jour l’adresse IP de début et de fin d’une règle de pare-feu.
+    syntax: az mariadb server firewall-rule update -g testgroup -s testsvr -n allowiprange --start-ip-address 107.46.14.2 --end-ip-address 107.46.14.218
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --end-ip-address
+    summary: Adresse IP de fin de la règle de pare-feu. Doit être au format IPv4. Utilisez la valeur « 0.0.0.0 » pour représenter toutes les adresses IP Azure-Internal.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la règle de pare-feu. Le nom de la règle de pare-feu ne peut pas être vide. Le nom de la règle de pare-feu ne peut contenir que 0-9, a-z, A-Z, '-'et' _ '. En outre, le nom de la règle de pare-feu ne peut pas dépasser 128 caractères.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server-name -s
+    summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --start-ip-address
+    summary: Adresse IP de début de la règle de pare-feu. Doit être au format IPv4. Utilisez la valeur « 0.0.0.0 » pour représenter toutes les adresses IP Azure-Internal.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_mariadb_server_firewall_rule_create
+- az_mariadb_server_firewall_rule_delete
+- az_mariadb_server_firewall_rule_list
+- az_mariadb_server_firewall_rule_show
+- az_mariadb_server_firewall_rule_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les règles de pare-feu pour un serveur.
+  ms.openlocfilehash: db9bf7c9192eb3314a084a6a702a9a81f4a7d569
+  ms.sourcegitcommit: a0cc51d7b2b39a52c402af1d98d3b48ff369bd16
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/22/2020
+  ms.locfileid: "102818333"

@@ -1,0 +1,162 @@
+### YamlMime:AzureCLIGroup
+uid: az_tag
+name: az tag
+summary: Gestion des balises sur une ressource.
+description: ''
+directCommands:
+- uid: az_tag_add_value
+  name: az tag add-value
+  summary: Créez une valeur de balise.
+  description: ''
+  syntax: >-
+    az tag add-value --name
+                     --value
+                     [--subscription]
+  examples:
+  - summary: Créez une valeur de balise.
+    syntax: az tag add-value --name MyTag --value MyValue
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la balise.
+    description: ''
+  - isRequired: true
+    name: --value
+    summary: Valeur de la balise.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_tag_create
+  name: az tag create
+  summary: Créer des balises sur une ressource spécifique.
+  description: La commande AZ tag Create avec un ID crée ou met à jour l’ensemble des balises sur une ressource, un groupe de ressources ou un abonnement. Cette opération permet d’ajouter ou de remplacer l’ensemble des balises sur la ressource, le groupe de ressources ou l’abonnement spécifié. L’entité spécifiée peut avoir un maximum de 50 balises.
+  syntax: >-
+    az tag create [--name]
+                  [--subscription]
+                  [--tags]
+  examples:
+  - summary: Créez une balise dans l’abonnement.
+    syntax: az tag create --name MyTag
+  - summary: Crée ou met à jour l’ensemble des balises d’un abonnement.
+    syntax: az tag create --resource-id /subscriptions/{subId} --tags Dept=Finance Status=Normal
+  - summary: Créez ou mettez à jour le jeu entier de balises sur un groupe de ressources.
+    syntax: az tag create --resource-id /subscriptions/{sub-id}/resourcegroups/{rg} --tags Dept=Finance Status=Normal
+  - summary: Créer ou mettre à jour l’ensemble des balises d’une ressource.
+    syntax: az tag create --resource-id /subscriptions/{sub-id}/resourcegroups/{rg}/providers/Microsoft.Compute/virtualMachines/{vmName} --tags Dept=Finance Status=Normal
+  optionalParameters:
+  - name: --name -n
+    summary: Nom de la balise à créer.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de la commande az account set-s NAME_OR_ID.
+    description: ''
+  - name: --tags
+    summary: Balises à appliquer à la ressource.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_tag_delete
+  name: az tag delete
+  summary: Supprimer des balises sur une ressource spécifique.
+  description: La commande AZ tag DELETE avec un ID supprime l’ensemble des balises d’une ressource, d’un groupe de ressources ou d’un abonnement.
+  syntax: >-
+    az tag delete [--name]
+                  [--subscription]
+                  [--yes]
+  examples:
+  - summary: Supprimer une balise de l’abonnement.
+    syntax: az tag delete --name MyTag
+  - summary: Supprimer l’ensemble des balises d’un abonnement.
+    syntax: az tag delete --resource-id /subscriptions/{sub-id}
+  - summary: Supprimer l’ensemble des balises d’un groupe de ressources.
+    syntax: az tag delete --resource-id /subscriptions/{sub-id}/resourcegroups/{rg}
+  - summary: Supprimer l’ensemble des balises d’une ressource.
+    syntax: az tag delete --resource-id /subscriptions/{sub-id}/resourcegroups/{rg}/providers/Microsoft.Compute/virtualMachines/{vmName}
+  optionalParameters:
+  - name: --name -n
+    summary: Nom de la balise à supprimer.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_tag_list
+  name: az tag list
+  summary: Répertorier l’ensemble des balises sur une ressource spécifique.
+  description: La commande AZ Tag List avec un ID répertorie l’ensemble des balises sur une ressource, un groupe de ressources ou un abonnement.
+  syntax: >-
+    az tag list [--query-examples]
+                [--subscription]
+  examples:
+  - summary: Répertorier l’ensemble des balises sur un abonnement.
+    syntax: az tag list --resource-id /subscriptions/{sub-id}
+  - summary: Répertorier l’ensemble des balises sur un groupe de ressources.
+    syntax: az tag list --resource-id /subscriptions/{sub-id}/resourcegroups/{rg}
+  - summary: Répertorier l’ensemble des balises sur une ressource.
+    syntax: az tag list --resource-id /subscriptions/{sub-id}/resourcegroups/{rg}/providers/Microsoft.Compute/virtualMachines/{vmName}
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_tag_remove_value
+  name: az tag remove-value
+  summary: Supprimer une valeur de balise de ressource d'abonnement.
+  description: ''
+  syntax: >-
+    az tag remove-value --name
+                        --value
+                        [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la balise.
+    description: ''
+  - isRequired: true
+    name: --value
+    summary: Valeur de la balise.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+commands:
+- az_tag_add_value
+- az_tag_create
+- az_tag_delete
+- az_tag_list
+- az_tag_remove_value
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gestion des balises sur une ressource.
+  ms.openlocfilehash: 5cba52be53c9dfbb5e2a4e119236c472cfa64d77
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102968296"
