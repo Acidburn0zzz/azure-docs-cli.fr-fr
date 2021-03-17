@@ -1,0 +1,335 @@
+### YamlMime:AzureCLIGroup
+uid: az_eventhubs_namespace
+name: az eventhubs namespace
+summary: Gérer l’espace de noms Azure EventHubs et règle AuthorizationRule.
+description: ''
+directCommands:
+- uid: az_eventhubs_namespace_create
+  name: az eventhubs namespace create
+  summary: Crée l’espace de noms EventHubs.
+  description: ''
+  syntax: >-
+    az eventhubs namespace create --name
+                                  --resource-group
+                                  [--assign-identity {false, true}]
+                                  [--capacity]
+                                  [--cluster-arm-id]
+                                  [--default-action {Allow, Deny}]
+                                  [--enable-auto-inflate {false, true}]
+                                  [--enable-kafka {false, true}]
+                                  [--enable-trusted-service-access {false, true}]
+                                  [--location]
+                                  [--maximum-throughput-units]
+                                  [--sku {Basic, Standard}]
+                                  [--subscription]
+                                  [--tags]
+                                  [--zone-redundant {false, true}]
+  examples:
+  - summary: Crée un espace de noms.
+    syntax: az eventhubs namespace create --resource-group myresourcegroup --name mynamespace --location westus --tags tag1=value1 tag2=value2 --sku Standard --enable-auto-inflate --maximum-throughput-units 20
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --assign-identity
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si l’identité managée est activée.
+    description: ''
+  - name: --capacity
+    summary: Capacité de la référence SKU.
+    description: ''
+  - name: --cluster-arm-id
+    summary: ID ARM cluster de l’espace de noms.
+    description: ''
+  - name: --default-action
+    parameterValueGroup: Allow, Deny
+    summary: Action par défaut pour l’ensemble de règles réseau.
+    description: ''
+  - name: --enable-auto-inflate
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si AutoInflate est activé pour l’espace de noms eventhub.
+    description: ''
+  - name: --enable-kafka
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si Kafka est activé pour l’espace de noms eventhub.
+    description: ''
+  - name: --enable-trusted-service-access -t
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si l’accès au service approuvé est activé pour l’ensemble de règles réseau.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --maximum-throughput-units
+    summary: Limite supérieure des unités de débit quand AutoInflate est activé, valeur doit être compris entre 0 et 20 unités de débit. (0 si AutoInflateEnabled = true).
+    description: ''
+  - name: --sku
+    defaultValue: Standard
+    parameterValueGroup: Basic, Standard
+    summary: Référence SKU d’espace de noms.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --zone-redundant
+    parameterValueGroup: false, true
+    summary: L’activation de cette propriété crée un espace de noms EventHubs standard dans les régions prises en charge par les zones de disponibilité.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventhubs/_help.py
+- uid: az_eventhubs_namespace_delete
+  name: az eventhubs namespace delete
+  summary: Supprime les espaces de noms.
+  description: ''
+  syntax: >-
+    az eventhubs namespace delete [--ids]
+                                  [--name]
+                                  [--resource-group]
+                                  [--subscription]
+  examples:
+  - summary: Supprime l’espace de noms
+    syntax: az eventhubs namespace delete --resource-group myresourcegroup --name mynamespace
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’espace de noms.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventhubs/_help.py
+- uid: az_eventhubs_namespace_exists
+  name: az eventhubs namespace exists
+  summary: Vérifiez la disponibilité du nom donné pour l’espace de noms.
+  description: ''
+  syntax: >-
+    az eventhubs namespace exists --name
+                                  [--subscription]
+  examples:
+  - summary: Créer une nouvelle rubrique.
+    syntax: az eventhubs namespace exists --name mynamespace
+  - summary: vérifier la disponibilité du nom donné pour l’espace de noms (généré automatiquement)
+    syntax: az eventhubs namespace exists --name mynamespace --subscription MySubscription
+  requiredParameters:
+  - isRequired: true
+    name: --name
+    summary: Nom pour vérifier la disponibilité du nom de l’espace de noms.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventhubs/_help.py
+- uid: az_eventhubs_namespace_list
+  name: az eventhubs namespace list
+  summary: Répertorie les espaces de noms EventHubs.
+  description: ''
+  syntax: >-
+    az eventhubs namespace list [--query-examples]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: Répertorie les espaces de noms Event Hubs par groupe de ressources.
+    syntax: az eventhubs namespace list --resource-group myresourcegroup
+  - summary: Obtient les espaces de noms par abonnement.
+    syntax: az eventhubs namespace list
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventhubs/_help.py
+- uid: az_eventhubs_namespace_show
+  name: az eventhubs namespace show
+  summary: Affiche les détails de l’espace de noms Event Hubs.
+  description: ''
+  syntax: >-
+    az eventhubs namespace show [--ids]
+                                [--name]
+                                [--query-examples]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: affiche les détails de l’espace de noms.
+    syntax: az eventhubs namespace show --resource-group myresourcegroup --name mynamespace
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’espace de noms.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventhubs/_help.py
+- uid: az_eventhubs_namespace_update
+  name: az eventhubs namespace update
+  summary: Met à jour l’espace de noms EventHubs.
+  description: ''
+  syntax: >-
+    az eventhubs namespace update [--add]
+                                  [--assign-identity {false, true}]
+                                  [--capacity]
+                                  [--default-action {Allow, Deny}]
+                                  [--enable-auto-inflate {false, true}]
+                                  [--enable-kafka {false, true}]
+                                  [--enable-trusted-service-access {false, true}]
+                                  [--force-string]
+                                  [--ids]
+                                  [--key-name]
+                                  [--key-source {Microsoft.KeyVault}]
+                                  [--key-vault-uri]
+                                  [--key-version]
+                                  [--maximum-throughput-units]
+                                  [--name]
+                                  [--remove]
+                                  [--resource-group]
+                                  [--set]
+                                  [--sku {Basic, Standard}]
+                                  [--subscription]
+                                  [--tags]
+  examples:
+  - summary: Mettre à jour un nouvel espace de noms.
+    syntax: az eventhubs namespace update --resource-group myresourcegroup --name mynamespace --tags tag=value --enable-auto-inflate True
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --assign-identity
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si l’identité managée est activée.
+    description: ''
+  - name: --capacity
+    summary: Capacité de la référence SKU.
+    description: ''
+  - name: --default-action
+    parameterValueGroup: Allow, Deny
+    summary: Action par défaut pour l’ensemble de règles réseau.
+    description: ''
+  - name: --enable-auto-inflate
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si AutoInflate est activé pour l’espace de noms eventhub.
+    description: ''
+  - name: --enable-kafka
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si Kafka est activé pour l’espace de noms eventhub.
+    description: ''
+  - name: --enable-trusted-service-access -t
+    parameterValueGroup: false, true
+    summary: Valeur booléenne qui indique si l’accès au service approuvé est activé pour l’ensemble de règles réseau.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --key-name
+    summary: Nom de la clé de coffre de clés.
+    description: ''
+  - name: --key-source
+    parameterValueGroup: Microsoft.KeyVault
+    summary: Source de la clé de chiffrement.
+    description: ''
+  - name: --key-vault-uri
+    summary: URI du coffre de stockage.
+    description: ''
+  - name: --key-version
+    summary: Version de la clé de coffre de clés à utiliser.
+    description: ''
+  - name: --maximum-throughput-units
+    summary: Limite supérieure des unités de débit quand AutoInflate est activé, valeur doit être compris entre 0 et 20 unités de débit. (0 si AutoInflateEnabled = true).
+    description: ''
+  - name: --name -n
+    summary: Nom de l’espace de noms.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --sku
+    parameterValueGroup: Basic, Standard
+    summary: Référence SKU d’espace de noms.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventhubs/_help.py
+commands:
+- az_eventhubs_namespace_authorization_rule
+- az_eventhubs_namespace_authorization_rule_create
+- az_eventhubs_namespace_authorization_rule_delete
+- az_eventhubs_namespace_authorization_rule_keys
+- az_eventhubs_namespace_authorization_rule_keys_list
+- az_eventhubs_namespace_authorization_rule_keys_renew
+- az_eventhubs_namespace_authorization_rule_list
+- az_eventhubs_namespace_authorization_rule_show
+- az_eventhubs_namespace_authorization_rule_update
+- az_eventhubs_namespace_create
+- az_eventhubs_namespace_delete
+- az_eventhubs_namespace_exists
+- az_eventhubs_namespace_list
+- az_eventhubs_namespace_network_rule
+- az_eventhubs_namespace_network_rule_add
+- az_eventhubs_namespace_network_rule_list
+- az_eventhubs_namespace_network_rule_remove
+- az_eventhubs_namespace_show
+- az_eventhubs_namespace_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 09/16/2020
+  description: Gérer l’espace de noms Azure EventHubs et règle AuthorizationRule.
+  ms.openlocfilehash: 11178090791985335d441c9e7c216eb62861662a
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820265"

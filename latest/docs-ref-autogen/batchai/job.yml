@@ -1,0 +1,345 @@
+### YamlMime:AzureCLIGroup
+uid: az_batchai_job
+name: az batchai job
+summary: Commandes pour gérer les travaux.
+description: ''
+directCommands:
+- uid: az_batchai_job_create
+  name: az batchai job create
+  summary: Créez un travail.
+  description: ''
+  syntax: >-
+    az batchai job create --cluster
+                          --config-file
+                          --experiment
+                          --name
+                          --resource-group
+                          --workspace
+                          [--afs-mount-path]
+                          [--afs-name]
+                          [--bfs-mount-path]
+                          [--bfs-name]
+                          [--nfs]
+                          [--nfs-mount-path]
+                          [--storage-account-key]
+                          [--storage-account-name]
+                          [--subscription]
+  examples:
+  - summary: Créez un travail à exécuter sur un cluster dans le même groupe de ressources.
+    syntax: >-
+      az batchai job create -g MyResourceGroup -w MyWorkspace -e MyExperiment -n MyJob \
+          -c MyCluster -f job.json
+  - summary: Créez un travail à exécuter sur un cluster dans un autre espace de travail.
+    syntax: >-
+      az batchai job create -g MyJobResourceGroup -w MyJobWorkspace -e MyExperiment -n MyJob \
+          -f job.json \
+          -c "/subscriptions/00000000-0000-0000-0000-000000000000/\
+          resourceGroups/MyClusterResourceGroup/\
+          providers/Microsoft.BatchAI/workspaces/MyClusterWorkspace/clusters/MyCluster"
+  - summary: Créez un travail. généré automatiquement
+    syntax: >-
+      az batchai job create --cluster "/subscriptions/00000000-0000-0000-0000-000000000000/\
+          resourceGroups/MyClusterResourceGroup/\
+          providers/Microsoft.BatchAI/workspaces/MyClusterWorkspace/clusters/MyCluster" --config-file job.json --experiment MyExperiment --name MyJob --resource-group MyJobResourceGroup --storage-account-name MyStorageAccount --workspace MyJobWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --cluster -c
+    summary: Nom ou ID ARM du cluster sur lequel exécuter le travail. Vous devez fournir un ID ARM si le cluster appartient à un autre espace de travail.
+    description: ''
+  - isRequired: true
+    name: --config-file -f
+    summary: Chemin d’accès à un fichier JSON contenant des paramètres de création de travaux (représentation JSON de azure.mgmt.batChai. Models. JobCreateParameters).
+    description: ''
+  - isRequired: true
+    name: --experiment -e
+    summary: Nom de l’expérience.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --afs-mount-path
+    defaultValue: afs
+    summary: Chemin de montage relatif pour le partage de fichiers Azure. Le partage de fichiers sera disponible dans $AZ dossier _BATCHAI_JOB_MOUNT_ROOT/<relative_mount_path>.
+    description: ''
+  - name: --afs-name
+    summary: Nom du partage de fichiers Azure à monter au cours de l’exécution du travail. Le partage de fichiers est monté uniquement sur les nœuds qui exécutent le travail. Doit être utilisé conjointement avec--Storage-Account-Name.  Plusieurs partages peuvent être montés à l’aide du fichier de configuration (Voir l’option--config-file).
+    description: ''
+  - name: --bfs-mount-path
+    defaultValue: bfs
+    summary: Chemin de montage relatif pour Azure Storage Blob conteneur. Le conteneur sera disponible dans $AZ _BATCHAI_JOB_MOUNT_ROOT/<relative_mount_path dossier>.
+    description: ''
+  - name: --bfs-name
+    summary: Nom de Azure Storage Blob conteneur à monter au cours de l’exécution du travail. Le conteneur est monté uniquement sur les nœuds qui exécutent le travail. Doit être utilisé conjointement avec--Storage-Account-Name. Plusieurs conteneurs peuvent être montés à l’aide d’un fichier de configuration (Voir l’option--config-file).
+    description: ''
+  - name: --nfs
+    summary: Nom ou ID ARM du serveur de fichiers à monter au cours de l’exécution du travail. Vous devez fournir un ID ARM si le serveur de fichiers appartient à un autre espace de travail. Vous pouvez configurer plusieurs serveurs de fichiers à l’aide du fichier de configuration du travail.
+    description: ''
+  - name: --nfs-mount-path
+    defaultValue: nfs
+    summary: Chemin de montage relatif pour NFS. Le NFS sera disponible dans $AZ dossier _BATCHAI_JOB_MOUNT_ROOT/<relative_mount_path>.
+    description: ''
+  - name: --storage-account-key
+    summary: Clé du compte de stockage. Obligatoire si le compte de stockage appartient à un autre abonnement. Peut être spécifié à l’aide de AZURE_BATCHAI_STORAGE_KEY variable d’environnement.
+    description: ''
+  - name: --storage-account-name
+    summary: Nom du compte de stockage pour les partages de fichiers Azure et/ou les conteneurs de stockage Azure à monter sur chaque nœud de cluster. Peut être spécifié à l’aide de AZURE_BATCHAI_STORAGE_ACCOUNT variable d’environnement.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_job_delete
+  name: az batchai job delete
+  summary: Supprimer un travail.
+  description: ''
+  syntax: >-
+    az batchai job delete [--experiment]
+                          [--ids]
+                          [--name]
+                          [--no-wait]
+                          [--resource-group]
+                          [--subscription]
+                          [--workspace]
+                          [--yes]
+  examples:
+  - summary: Supprimer un travail. Le travail sera arrêté s’il est en cours d’exécution.
+    syntax: az batchai job delete -g MyResourceGroup -w MyWorkspace -e MyExperiment -n MyJob
+  - summary: Supprimer un travail sans demander de confirmation (pour les scénarios non interactifs).
+    syntax: az batchai job delete -g MyResourceGroup -w MyWorkspace -e MyExperiment -n MyJob -y
+  - summary: Demande de suppression du travail sans attendre la suppression du travail.
+    syntax: az batchai job delete -g MyResourceGroup -w MyWorkspace -e MyExperiment -n MyJob --no-wait
+  optionalParameters:
+  - name: --experiment -e
+    summary: Nom de l’expérience.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du travail.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_job_list
+  name: az batchai job list
+  summary: Répertorier les travaux.
+  description: ''
+  syntax: >-
+    az batchai job list --experiment
+                        --resource-group
+                        --workspace
+                        [--query-examples]
+                        [--subscription]
+  examples:
+  - summary: Répertorier les travaux.
+    syntax: az batchai job list -g MyResourceGroup -w MyWorkspace -e MyExperiment -o table
+  requiredParameters:
+  - isRequired: true
+    name: --experiment -e
+    summary: Nom de l’expérience.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_job_show
+  name: az batchai job show
+  summary: Affichez les informations relatives à un travail.
+  description: ''
+  syntax: >-
+    az batchai job show [--experiment]
+                        [--ids]
+                        [--name]
+                        [--query-examples]
+                        [--resource-group]
+                        [--subscription]
+                        [--workspace]
+  examples:
+  - summary: Affichez des informations complètes sur un travail.
+    syntax: az batchai job show -g MyResourceGroup -w MyWorkspace -e MyExperiment -n MyJob
+  - summary: Afficher le résumé du travail.
+    syntax: az batchai job show -g MyResourceGroup -w MyWorkspace -e MyExperiment -n MyJob -o table
+  optionalParameters:
+  - name: --experiment -e
+    summary: Nom de l’expérience.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du travail.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_job_terminate
+  name: az batchai job terminate
+  summary: Terminer un travail.
+  description: ''
+  syntax: >-
+    az batchai job terminate [--experiment]
+                             [--ids]
+                             [--name]
+                             [--no-wait]
+                             [--resource-group]
+                             [--subscription]
+                             [--workspace]
+                             [--yes]
+  examples:
+  - summary: Arrêter un travail et attendre la fin du travail.
+    syntax: az batchai job terminate -g MyResourceGroup -w MyWorkspace -e MyExperiment -n MyJob
+  - summary: Mettre fin à un travail sans demander de confirmation (pour les scénarios non interactifs).
+    syntax: az batchai job terminate -g MyResourceGroup  -w MyWorkspace -e MyExperiment -n MyJob -y
+  - summary: Demande d’arrêt du travail sans attendre la fin du travail.
+    syntax: >-
+      az batchai job terminate -g MyResourceGroup -e MyExperiment -w MyWorkspace -n MyJob \
+          --no-wait
+  optionalParameters:
+  - name: --experiment -e
+    summary: Nom de l’expérience.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du travail.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_job_wait
+  name: az batchai job wait
+  summary: Attend la fin de l’exécution du travail spécifié et configure le code de sortie du code de sortie du travail.
+  description: ''
+  syntax: >-
+    az batchai job wait [--experiment]
+                        [--ids]
+                        [--interval]
+                        [--name]
+                        [--resource-group]
+                        [--subscription]
+                        [--workspace]
+  examples:
+  - summary: Attendez la fin du travail.
+    syntax: az batchai job wait -g MyResourceGroup -w MyWorkspace -n MyJob
+  optionalParameters:
+  - name: --experiment -e
+    summary: Nom de l’expérience.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --interval
+    defaultValue: "15"
+    summary: Fréquence d’interrogation en secondes.
+    description: ''
+  - name: --name -n
+    summary: Nom du travail.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+commands:
+- az_batchai_job_create
+- az_batchai_job_delete
+- az_batchai_job_file
+- az_batchai_job_file_list
+- az_batchai_job_file_stream
+- az_batchai_job_list
+- az_batchai_job_node
+- az_batchai_job_node_exec
+- az_batchai_job_node_list
+- az_batchai_job_show
+- az_batchai_job_terminate
+- az_batchai_job_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/19/2019
+  description: Commandes pour gérer les travaux.
+  ms.openlocfilehash: 3eaba516bdfc0abc7041f78f9c588c02089fc123
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820559"

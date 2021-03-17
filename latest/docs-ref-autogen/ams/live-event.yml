@@ -1,0 +1,465 @@
+### YamlMime:AzureCLIGroup
+uid: az_ams_live_event
+name: az ams live-event
+summary: Gérer les événements en direct pour un compte Azure Media Services.
+description: ''
+directCommands:
+- uid: az_ams_live_event_create
+  name: az ams live-event create
+  summary: Créez un événement en direct.
+  description: ''
+  syntax: >-
+    az ams live-event create --account-name
+                             --ips
+                             --name
+                             --resource-group
+                             --streaming-protocol {FragmentedMP4, RTMP}
+                             [--access-token]
+                             [--alternative-media-id]
+                             [--auto-start]
+                             [--client-access-policy]
+                             [--cross-domain-policy]
+                             [--description]
+                             [--encoding-type]
+                             [--key-frame-interval-duration]
+                             [--no-wait]
+                             [--preset-name]
+                             [--preview-ips]
+                             [--preview-locator]
+                             [--stream-options {Default, LowLatency}]
+                             [--streaming-policy-name]
+                             [--subscription]
+                             [--tags]
+                             [--vanity-url {false, true}]
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - isRequired: true
+    name: --ips
+    summary: Adresses IP séparées par des espaces pour le contrôle d’accès. Les adresses IP autorisées peuvent être spécifiées en tant qu’adresse IP unique (par exemple, « 10.0.0.1 ») ou en tant que plage d’adresses IP à l’aide d’une adresse IP et d’un masque de sous-réseau CIDR (par exemple, « 10.0.0.1/22 »). Utilisez «» pour effacer la liste existante. Utilisez « AutoriserTout » pour autoriser toutes les adresses IP. L’autorisation de toutes les adresses IP n’est pas recommandée pour les environnements de production.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’événement en direct.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --streaming-protocol
+    parameterValueGroup: FragmentedMP4, RTMP
+    summary: Protocole de diffusion en continu pour l’événement en direct. Cette valeur est spécifiée au moment de la création et ne peut pas être mise à jour.
+    description: ''
+  optionalParameters:
+  - name: --access-token
+    summary: Identificateur unique pour un flux. Cela peut être spécifié au moment de la création, mais ne peut pas être mis à jour. Si ce paramètre est omis, le service génère une valeur unique.
+    description: ''
+  - name: --alternative-media-id
+    summary: Autre identificateur de média associé au StreamingLocator créé pour la préversion. Cette valeur est spécifiée au moment de la création et ne peut pas être mise à jour. L’identificateur peut être utilisé dans CustomLicenseAcquisitionUrlTemplate ou CustomKeyAcquisitionUrlTemplate du StreamingPolicy spécifié dans le champ StreamingPolicyName.
+    description: ''
+  - name: --auto-start
+    summary: L’indicateur indique si la ressource doit être démarrée automatiquement lors de la création.
+    description: ''
+  - name: --client-access-policy
+    summary: FilePath to the clientaccesspolicy.xml utilisé par Microsoft Silverlight et Adobe Flash. Utilisez @ {file} pour charger à partir d’un fichier.
+    description: ''
+  - name: --cross-domain-policy
+    summary: FilePath to the crossdomain.xml utilisé par Microsoft Silverlight et Adobe Flash. Utilisez @ {file} pour charger à partir d’un fichier.
+    description: ''
+  - name: --description
+    summary: Description de l’événement en direct.
+    description: ''
+  - name: --encoding-type
+    summary: 'Type d’encodage pour l’événement en direct. Cette valeur est spécifiée au moment de la création et ne peut pas être mise à jour. Valeurs autorisées : de base, aucun, standard.'
+    description: ''
+  - name: --key-frame-interval-duration
+    summary: Durée d’intervalle ISO 8601 de la durée de l’intervalle d’image clé, en secondes. La valeur doit être un entier compris entre 1 (PT1S ou 00:00:01) et 30 (PT30S ou 00:00:30) secondes.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --preset-name
+    summary: Nom de l’encodage prédéfini. Cette valeur est spécifiée au moment de la création et ne peut pas être mise à jour.
+    description: ''
+  - name: --preview-ips
+    summary: Adresses IP séparées par des espaces pour le contrôle d’accès. Les adresses IP autorisées peuvent être spécifiées en tant qu’adresse IP unique (par exemple, « 10.0.0.1 ») ou en tant que plage d’adresses IP à l’aide d’une adresse IP et d’un masque de sous-réseau CIDR (par exemple, « 10.0.0.1/22 »). Utilisez «» pour effacer la liste existante. Utilisez « AutoriserTout » pour autoriser toutes les adresses IP. L’autorisation de toutes les adresses IP n’est pas recommandée pour les environnements de production.
+    description: ''
+  - name: --preview-locator
+    summary: Identificateur du localisateur d’aperçu au format GUID. La spécification de cette valeur au moment de la création permet à l’appelant de connaître l’URL du localisateur d’aperçu avant la création de l’événement. Si ce paramètre est omis, le service génère un identificateur aléatoire. Cette valeur ne peut pas être mise à jour une fois l’événement en direct créé.
+    description: ''
+  - name: --stream-options
+    parameterValueGroup: Default, LowLatency
+    summary: Options à utiliser pour LiveEvent. Cette valeur est spécifiée au moment de la création et ne peut pas être mise à jour.
+    description: ''
+  - name: --streaming-policy-name
+    summary: Nom de la stratégie de streaming utilisée pour l’aperçu des événements en direct. Cela peut être spécifié au moment de la création, mais ne peut pas être mis à jour.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --vanity-url
+    parameterValueGroup: false, true
+    summary: Spécifie s’il faut utiliser une URL personnel avec l’événement en direct. Cette valeur est spécifiée au moment de la création et ne peut pas être mise à jour.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_live_event_delete
+  name: az ams live-event delete
+  summary: Supprimer un événement en direct.
+  description: ''
+  syntax: >-
+    az ams live-event delete [--account-name]
+                             [--ids]
+                             [--name]
+                             [--resource-group]
+                             [--subscription]
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’événement en direct.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_live_event_list
+  name: az ams live-event list
+  summary: Répertorie tous les événements en direct d’un compte Azure Media Services.
+  description: ''
+  syntax: >-
+    az ams live-event list --account-name
+                           --resource-group
+                           [--query-examples]
+                           [--subscription]
+  examples:
+  - summary: Répertoriez tous les événements en direct par nom et resourceState rapidement.
+    syntax: az ams live-event list -a amsAccount -g resourceGroup --query [].{liveEventName:name,state:resourceState}
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_live_event_reset
+  name: az ams live-event reset
+  summary: Réinitialiser un événement en direct.
+  description: ''
+  syntax: >-
+    az ams live-event reset [--account-name]
+                            [--ids]
+                            [--name]
+                            [--no-wait]
+                            [--resource-group]
+                            [--subscription]
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’événement en direct.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_live_event_show
+  name: az ams live-event show
+  summary: Affichez les détails d’un événement en direct.
+  description: ''
+  syntax: >-
+    az ams live-event show [--account-name]
+                           [--ids]
+                           [--name]
+                           [--query-examples]
+                           [--resource-group]
+                           [--subscription]
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’événement en direct.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_live_event_start
+  name: az ams live-event start
+  summary: Démarrez un événement en direct.
+  description: ''
+  syntax: >-
+    az ams live-event start [--account-name]
+                            [--ids]
+                            [--name]
+                            [--no-wait]
+                            [--resource-group]
+                            [--subscription]
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’événement en direct.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_live_event_stop
+  name: az ams live-event stop
+  summary: Arrêter un événement en direct.
+  description: ''
+  syntax: >-
+    az ams live-event stop [--account-name]
+                           [--ids]
+                           [--name]
+                           [--no-wait]
+                           [--remove-outputs-on-stop]
+                           [--resource-group]
+                           [--subscription]
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’événement en direct.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --remove-outputs-on-stop
+    summary: Supprimer les sorties dynamiques à l’arrêt.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_live_event_update
+  name: az ams live-event update
+  summary: Met à jour les détails d’un événement en direct.
+  description: ''
+  syntax: >-
+    az ams live-event update [--account-name]
+                             [--add]
+                             [--client-access-policy]
+                             [--cross-domain-policy]
+                             [--description]
+                             [--force-string]
+                             [--ids]
+                             [--ips]
+                             [--key-frame-interval-duration]
+                             [--name]
+                             [--preview-ips]
+                             [--remove]
+                             [--resource-group]
+                             [--set]
+                             [--subscription]
+                             [--tags]
+  examples:
+  - summary: Définissez une nouvelle adresse IP autorisée et supprimez une adresse IP existante à l’index « 0 ».
+    syntax: az ams live-event update -a amsAccount -g resourceGroup -n liveEventName --remove input.accessControl.ip.allow 0 --add input.accessControl.ip.allow 1.2.3.4/22
+  - summary: Effacez les adresses IP existantes et définissez-en de nouvelles.
+    syntax: az ams live-event update -a amsAccount -g resourceGroup -n liveEventName --ips 1.2.3.4/22 5.6.7.8/30
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --client-access-policy
+    summary: FilePath to the clientaccesspolicy.xml utilisé par Microsoft Silverlight et Adobe Flash. Utilisez @ {file} pour charger à partir d’un fichier.
+    description: ''
+  - name: --cross-domain-policy
+    summary: FilePath to the crossdomain.xml utilisé par Microsoft Silverlight et Adobe Flash. Utilisez @ {file} pour charger à partir d’un fichier.
+    description: ''
+  - name: --description
+    summary: Description de l’événement en direct.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --ips
+    summary: Adresses IP séparées par des espaces pour le contrôle d’accès. Les adresses IP autorisées peuvent être spécifiées en tant qu’adresse IP unique (par exemple, « 10.0.0.1 ») ou en tant que plage d’adresses IP à l’aide d’une adresse IP et d’un masque de sous-réseau CIDR (par exemple, « 10.0.0.1/22 »). Utilisez «» pour effacer la liste existante. Utilisez « AutoriserTout » pour autoriser toutes les adresses IP. L’autorisation de toutes les adresses IP n’est pas recommandée pour les environnements de production.
+    description: ''
+  - name: --key-frame-interval-duration
+    summary: Durée d’intervalle ISO 8601 de la durée de l’intervalle d’image clé, en secondes. La valeur doit être un entier compris entre 1 (PT1S ou 00:00:01) et 30 (PT30S ou 00:00:30) secondes.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’événement en direct.
+    description: ''
+  - name: --preview-ips
+    summary: Adresses IP séparées par des espaces pour le contrôle d’accès. Les adresses IP autorisées peuvent être spécifiées en tant qu’adresse IP unique (par exemple, « 10.0.0.1 ») ou en tant que plage d’adresses IP à l’aide d’une adresse IP et d’un masque de sous-réseau CIDR (par exemple, « 10.0.0.1/22 »). Utilisez «» pour effacer la liste existante. Utilisez « AutoriserTout » pour autoriser toutes les adresses IP. L’autorisation de toutes les adresses IP n’est pas recommandée pour les environnements de production.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_live_event_wait
+  name: az ams live-event wait
+  summary: Placez l’interface de ligne de commande dans un état d’attente jusqu’à ce qu’une condition de l’événement en direct soit remplie.
+  description: ''
+  syntax: >-
+    az ams live-event wait [--account-name]
+                           [--created]
+                           [--custom]
+                           [--deleted]
+                           [--exists]
+                           [--ids]
+                           [--interval]
+                           [--name]
+                           [--resource-group]
+                           [--subscription]
+                           [--timeout]
+                           [--updated]
+  examples:
+  - summary: Placez l’interface de ligne de commande dans un état d’attente jusqu’à ce que l’événement en direct soit créé.
+    syntax: az ams live-event wait -g MyResourceGroup -a MyAmsAccount -n MyLiveEvent --created
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’événement en direct.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+commands:
+- az_ams_live_event_create
+- az_ams_live_event_delete
+- az_ams_live_event_list
+- az_ams_live_event_reset
+- az_ams_live_event_show
+- az_ams_live_event_start
+- az_ams_live_event_stop
+- az_ams_live_event_update
+- az_ams_live_event_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 07/28/2020
+  description: Gérer les événements en direct pour un compte Azure Media Services.
+  ms.openlocfilehash: a452a854e7a8bb9b2b0b56f04777c811f84d61a4
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820430"

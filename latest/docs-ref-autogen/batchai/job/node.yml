@@ -1,0 +1,138 @@
+### YamlMime:AzureCLIGroup
+uid: az_batchai_job_node
+name: az batchai job node
+summary: Commandes pour travailler avec des nœuds qui ont exécuté un travail.
+description: ''
+directCommands:
+- uid: az_batchai_job_node_exec
+  name: az batchai job node exec
+  summary: Exécute une ligne de commande sur le nœud d’un cluster utilisé pour exécuter le travail avec le transfert de ports facultatif.
+  description: ''
+  syntax: >-
+    az batchai job node exec --experiment
+                             --job
+                             --resource-group
+                             --workspace
+                             [--address]
+                             [--exec]
+                             [--node-id]
+                             [--password]
+                             [--ssh-private-key]
+                             [--subscription]
+  examples:
+  - summary: Signaler l’état du GPU pour le nœud d’un travail.
+    syntax: >-
+      az batchai job node exec -g MyResourceGroup -w MyWorkspace -e MyExperiment -j MyJob \
+          --exec "nvidia-smi"
+  - summary: Signalez un instantané des processus en cours.
+    syntax: >-
+      az batchai job node exec -g MyResourceGroup -w MyWorkspace -e MyExperiment -j MyJob \
+          --exec "ps aux"
+  - summary: Transférez les 9000 locaux vers le port 9001 sur le nœud donné.
+    syntax: >-
+      az batchai job node exec -g MyResourceGroup -w MyWorkspace -e MyExperiment -j MyJob \
+          -n tvm-xxx -L 9000:localhost:9001
+  requiredParameters:
+  - isRequired: true
+    name: --experiment -e
+    summary: Nom de l’expérience.
+    description: ''
+  - isRequired: true
+    name: --job -j
+    summary: Nom du travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --address -L
+    summary: 'Spécifie que les connexions au port TCP ou au socket Unix donné sur l’hôte local (client) doivent être transférées vers l’hôte et le port spécifiés, ou le socket Unix, du côté distant. par exemple,-L 8080 : localhost : 8080.'
+    description: ''
+  - name: --exec
+    summary: Ligne de commande facultative à exécuter sur le nœud. S’il n’est pas fourni, la commande exécute uniquement le transfert de ports.
+    description: ''
+  - name: --node-id -n
+    summary: ID du nœud auquel transférer les ports. S’il n’est pas fourni, la commande est exécutée sur le premier nœud disponible.
+    description: ''
+  - name: --password -p
+    summary: Mot de passe facultatif pour établir une connexion SSH.
+    description: ''
+  - name: --ssh-private-key -k
+    summary: Chemin de clé privée SSH facultatif pour établir une connexion SSH. En cas d’omission, la clé privée SSH par défaut est utilisée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+- uid: az_batchai_job_node_list
+  name: az batchai job node list
+  summary: Répertorier les informations de connexion à distance pour les nœuds qui ont exécuté le travail.
+  description: Répertorie les informations de connexion à distance pour les nœuds actuellement existants (non désalloués) sur lesquels le travail a été exécuté. Vous pouvez utiliser SSH pour un nœud particulier à l’aide de l’adresse IP publique et du numéro de port fournis. Par exemple, <admin user name> @ <public ip> numéro de port SSH du nœud <ssh-p>.
+  syntax: >-
+    az batchai job node list --experiment
+                             --job
+                             --resource-group
+                             --workspace
+                             [--query-examples]
+                             [--subscription]
+  examples:
+  - summary: Répertorier les informations de connexion à distance pour les nœuds de travail.
+    syntax: az batchai job node list -g MyResourceGroup -w MyWorkspace -e MyExperiment -j MyJob -o table
+  requiredParameters:
+  - isRequired: true
+    name: --experiment -e
+    summary: Nom de l’expérience.
+    description: ''
+  - isRequired: true
+    name: --job -j
+    summary: Nom du travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace -w
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batchai/_help.py
+commands:
+- az_batchai_job_node_exec
+- az_batchai_job_node_list
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/19/2019
+  description: Commandes pour travailler avec des nœuds qui ont exécuté un travail.
+  ms.openlocfilehash: 8304ea83642e2191f2a33cb8ace79ddaef9ec99f
+  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "102820547"
