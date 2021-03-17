@@ -1,0 +1,412 @@
+### YamlMime:AzureCLIGroup
+uid: az_acr_repository
+name: az acr repository
+summary: Gérer les référentiels (noms d’image) pour les registres de conteneurs Azure.
+description: ''
+directCommands:
+- uid: az_acr_repository_delete
+  name: az acr repository delete
+  summary: Supprimer un référentiel ou une image dans un Azure Container Registry.
+  description: Cette commande supprime toutes les données de couche associées qui ne sont pas référencées par un autre manifeste dans le registre de conteneurs.
+  syntax: >-
+    az acr repository delete --name
+                             [--image]
+                             [--password]
+                             [--repository]
+                             [--resource-group]
+                             [--subscription]
+                             [--suffix]
+                             [--username]
+                             [--yes]
+  examples:
+  - summary: 'Supprimer un manifeste d’image par étiquette. Cela supprime le manifeste référencé par « Hello-World : latest » et toutes les autres balises référençant le même manifeste.'
+    syntax: az acr repository delete -n MyRegistry --image hello-world:latest
+  - summary: Supprimer un manifeste d’image par un résumé de manifeste basé sur SHA256. Cela supprime le manifeste identifié par' hello-world@sha256:abc123 'et toutes les balises référençant le manifeste.
+    syntax: az acr repository delete -n MyRegistry --image hello-world@sha256:abc123
+  - summary: Supprimer un référentiel d’un Azure Container Registry. Cela supprime tous les manifestes et balises sous « Hello-World ».
+    syntax: az acr repository delete -n MyRegistry --repository hello-world
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --image -t
+    summary: "Nom de l'image. Peut inclure une balise au format’nom : balise’ou Digest au format' name@digest '."
+    description: ''
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --repository
+    summary: " Nom du dépôt."
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --suffix
+    summary: Suffixe de locataire dans le serveur de connexion au registre. Vous pouvez spécifier « --suffixe locataire » si votre serveur de connexion au registre est au format « registry-tenant.azurecr.io ». S’applique si vous accédez au registre à partir d’un autre abonnement ou si vous avez l’autorisation d’accéder aux images, mais pas l’autorisation de gérer la ressource du Registre.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_repository_list
+  name: az acr repository list
+  summary: Répertorier les dépôts dans une Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr repository list --name
+                           [--password]
+                           [--query-examples]
+                           [--resource-group]
+                           [--subscription]
+                           [--suffix]
+                           [--top]
+                           [--username]
+  examples:
+  - summary: Répertorier les dépôts dans un Azure Container Registry donné.
+    syntax: az acr repository list -n MyRegistry
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --suffix
+    summary: Suffixe de locataire dans le serveur de connexion au registre. Vous pouvez spécifier « --suffixe locataire » si votre serveur de connexion au registre est au format « registry-tenant.azurecr.io ». S’applique si vous accédez au registre à partir d’un autre abonnement ou si vous avez l’autorisation d’accéder aux images, mais pas l’autorisation de gérer la ressource du Registre.
+    description: ''
+  - name: --top
+    summary: Limitez le nombre d’éléments dans les résultats.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_repository_show
+  name: az acr repository show
+  summary: Obtient les attributs d’un référentiel ou d’une image dans un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr repository show --name
+                           [--image]
+                           [--password]
+                           [--query-examples]
+                           [--repository]
+                           [--resource-group]
+                           [--subscription]
+                           [--suffix]
+                           [--username]
+  examples:
+  - summary: Obtient les attributs du référentiel « Hello-World ».
+    syntax: az acr repository show -n MyRegistry --repository hello-world
+  - summary: 'Obtient les attributs de l’image référencée par la balise « Hello-World : latest ».'
+    syntax: az acr repository show -n MyRegistry --image hello-world:latest
+  - summary: Obtient les attributs de l’image référencée par le Digest « hello-world@sha256:abc123 ».
+    syntax: az acr repository show -n MyRegistry --image hello-world@sha256:abc123
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --image -t
+    summary: "Nom de l'image. Peut inclure une balise au format’nom : balise’ou Digest au format' name@digest '."
+    description: ''
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --repository
+    summary: " Nom du dépôt."
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --suffix
+    summary: Suffixe de locataire dans le serveur de connexion au registre. Vous pouvez spécifier « --suffixe locataire » si votre serveur de connexion au registre est au format « registry-tenant.azurecr.io ». S’applique si vous accédez au registre à partir d’un autre abonnement ou si vous avez l’autorisation d’accéder aux images, mais pas l’autorisation de gérer la ressource du Registre.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_repository_show_manifests
+  name: az acr repository show-manifests
+  summary: Affiche les manifestes d’un référentiel dans une Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr repository show-manifests --name
+                                     --repository
+                                     [--detail]
+                                     [--orderby {time_asc, time_desc}]
+                                     [--password]
+                                     [--resource-group]
+                                     [--subscription]
+                                     [--suffix]
+                                     [--top]
+                                     [--username]
+  examples:
+  - summary: Affiche les manifestes d’un référentiel dans une Azure Container Registry.
+    syntax: az acr repository show-manifests -n MyRegistry --repository MyRepository
+  - summary: Affichez les 10 derniers manifestes classés par horodatage d’un référentiel dans une Azure Container Registry.
+    syntax: az acr repository show-manifests -n MyRegistry --repository MyRepository --top 10 --orderby time_desc
+  - summary: Affichez les informations détaillées des 10 derniers manifestes classés par horodatage d’un référentiel dans une Azure Container Registry.
+    syntax: az acr repository show-manifests -n MyRegistry --repository MyRepository --top 10 --orderby time_desc --detail
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  - isRequired: true
+    name: --repository
+    summary: " Nom du dépôt."
+    description: ''
+  optionalParameters:
+  - name: --detail
+    summary: Afficher des informations détaillées.
+    description: ''
+  - name: --orderby
+    parameterValueGroup: time_asc, time_desc
+    summary: Ordonnez les éléments dans les résultats. La valeur par défaut est l’ordre alphabétique des noms.
+    description: ''
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --suffix
+    summary: Suffixe de locataire dans le serveur de connexion au registre. Vous pouvez spécifier « --suffixe locataire » si votre serveur de connexion au registre est au format « registry-tenant.azurecr.io ». S’applique si vous accédez au registre à partir d’un autre abonnement ou si vous avez l’autorisation d’accéder aux images, mais pas l’autorisation de gérer la ressource du Registre.
+    description: ''
+  - name: --top
+    summary: Limitez le nombre d’éléments dans les résultats.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_repository_show_tags
+  name: az acr repository show-tags
+  summary: Affichez les balises pour un référentiel dans une Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr repository show-tags --name
+                                --repository
+                                [--detail]
+                                [--orderby {time_asc, time_desc}]
+                                [--password]
+                                [--resource-group]
+                                [--subscription]
+                                [--suffix]
+                                [--top]
+                                [--username]
+  examples:
+  - summary: Affichez les balises d’un référentiel dans une Azure Container Registry.
+    syntax: az acr repository show-tags -n MyRegistry --repository MyRepository
+  - summary: Affichez les informations détaillées des balises d’un référentiel dans une Azure Container Registry.
+    syntax: az acr repository show-tags -n MyRegistry --repository MyRepository --detail
+  - summary: Affichez les informations détaillées des 10 dernières balises classées par horodatage d’un référentiel dans une Azure Container Registry.
+    syntax: az acr repository show-tags -n MyRegistry --repository MyRepository --top 10 --orderby time_desc --detail
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  - isRequired: true
+    name: --repository
+    summary: " Nom du dépôt."
+    description: ''
+  optionalParameters:
+  - name: --detail
+    summary: Afficher des informations détaillées.
+    description: ''
+  - name: --orderby
+    parameterValueGroup: time_asc, time_desc
+    summary: Ordonnez les éléments dans les résultats. La valeur par défaut est l’ordre alphabétique des noms.
+    description: ''
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --suffix
+    summary: Suffixe de locataire dans le serveur de connexion au registre. Vous pouvez spécifier « --suffixe locataire » si votre serveur de connexion au registre est au format « registry-tenant.azurecr.io ». S’applique si vous accédez au registre à partir d’un autre abonnement ou si vous avez l’autorisation d’accéder aux images, mais pas l’autorisation de gérer la ressource du Registre.
+    description: ''
+  - name: --top
+    summary: Limitez le nombre d’éléments dans les résultats.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_repository_untag
+  name: az acr repository untag
+  summary: Baliser une image dans un Azure Container Registry.
+  description: Cette commande ne supprime pas le manifeste référencé par la balise ou les données de couche associées.
+  syntax: >-
+    az acr repository untag --image
+                            --name
+                            [--password]
+                            [--resource-group]
+                            [--subscription]
+                            [--suffix]
+                            [--username]
+  examples:
+  - summary: Baliser une image à partir d’un référentiel.
+    syntax: az acr repository untag -n MyRegistry --image hello-world:latest
+  requiredParameters:
+  - isRequired: true
+    name: --image -t
+    summary: "Nom de l'image. Peut inclure une balise au format’nom : balise'."
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --suffix
+    summary: Suffixe de locataire dans le serveur de connexion au registre. Vous pouvez spécifier « --suffixe locataire » si votre serveur de connexion au registre est au format « registry-tenant.azurecr.io ». S’applique si vous accédez au registre à partir d’un autre abonnement ou si vous avez l’autorisation d’accéder aux images, mais pas l’autorisation de gérer la ressource du Registre.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_repository_update
+  name: az acr repository update
+  summary: Mettez à jour les attributs d’un référentiel ou d’une image dans un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr repository update --name
+                             [--delete-enabled {false, true}]
+                             [--image]
+                             [--list-enabled {false, true}]
+                             [--password]
+                             [--read-enabled {false, true}]
+                             [--repository]
+                             [--resource-group]
+                             [--subscription]
+                             [--suffix]
+                             [--username]
+                             [--write-enabled {false, true}]
+  examples:
+  - summary: Mettez à jour les attributs de l’espace de stockage « Hello-World » pour désactiver l’opération d’écriture.
+    syntax: az acr repository update -n MyRegistry --repository hello-world --write-enabled false
+  - summary: 'Mettez à jour les attributs de l’image référencée par la balise « Hello-World : latest » pour désactiver l’opération d’écriture.'
+    syntax: az acr repository update -n MyRegistry --image hello-world:latest --write-enabled false
+  - summary: Mettez à jour les attributs de l’image référencée par Digest « hello-world@sha256:abc123 » pour désactiver l’opération d’écriture.
+    syntax: az acr repository update -n MyRegistry --image hello-world@sha256:abc123 --write-enabled false
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --delete-enabled
+    parameterValueGroup: false, true
+    summary: Indique si l’opération de suppression est autorisée.
+    description: ''
+  - name: --image -t
+    summary: "Nom de l'image. Peut inclure une balise au format’nom : balise’ou Digest au format' name@digest '."
+    description: ''
+  - name: --list-enabled
+    parameterValueGroup: false, true
+    summary: Indique si cet élément s’affiche dans les résultats de l’opération de liste.
+    description: ''
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --read-enabled
+    parameterValueGroup: false, true
+    summary: Indique si l’opération de lecture est autorisée.
+    description: ''
+  - name: --repository
+    summary: " Nom du dépôt."
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --suffix
+    summary: Suffixe de locataire dans le serveur de connexion au registre. Vous pouvez spécifier « --suffixe locataire » si votre serveur de connexion au registre est au format « registry-tenant.azurecr.io ». S’applique si vous accédez au registre à partir d’un autre abonnement ou si vous avez l’autorisation d’accéder aux images, mais pas l’autorisation de gérer la ressource du Registre.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur utilisé pour se connecter à un registre de conteneurs.
+    description: ''
+  - name: --write-enabled
+    parameterValueGroup: false, true
+    summary: Indique si l’opération d’écriture ou de suppression est autorisée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+commands:
+- az_acr_repository_delete
+- az_acr_repository_list
+- az_acr_repository_show
+- az_acr_repository_show_manifests
+- az_acr_repository_show_tags
+- az_acr_repository_untag
+- az_acr_repository_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/26/2021
+  description: Gérer les référentiels (noms d’image) pour les registres de conteneurs Azure.
+  ms.openlocfilehash: 155fe67047d60e5b3fad3b423281c53834e5d85c
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102967600"

@@ -1,0 +1,412 @@
+### YamlMime:AzureCLIGroup
+uid: az_ad_app
+name: az ad app
+summary: Gérer les applications avec le graphique AAD.
+description: ''
+directCommands:
+- uid: az_ad_app_create
+  name: az ad app create
+  summary: Créer une application Web, une API Web ou une application native.
+  description: ''
+  syntax: >-
+    az ad app create --display-name
+                     [--app-roles]
+                     [--available-to-other-tenants {false, true}]
+                     [--credential-description]
+                     [--end-date]
+                     [--homepage]
+                     [--identifier-uris]
+                     [--key-type {AsymmetricX509Cert, Password, Symmetric}]
+                     [--key-usage {Sign, Verify}]
+                     [--key-value]
+                     [--native-app {false, true}]
+                     [--oauth2-allow-implicit-flow {false, true}]
+                     [--optional-claims]
+                     [--password]
+                     [--reply-urls]
+                     [--required-resource-accesses]
+                     [--start-date]
+  examples:
+  - summary: Créer une application native avec l’autorisation déléguée « accéder au répertoire AAD en tant qu’utilisateur connecté »
+    syntax: >-
+      az ad app create --display-name my-native --native-app --required-resource-accesses @manifest.json
+
+      ("manifest.json" contains the following content)
+
+      [{
+          "resourceAppId": "00000002-0000-0000-c000-000000000000",
+          "resourceAccess": [
+              {
+                  "id": "a42657d6-7f20-40e3-b6f0-cee03008a62a",
+                  "type": "Scope"
+              }
+         ]
+      }]
+  - summary: Créer une application avec un rôle
+    syntax: >-
+      az ad app create --display-name mytestapp --identifier-uris https://mytestapp.websites.net --app-roles @manifest.json
+
+      ("manifest.json" contains the following content)
+
+      [{
+          "allowedMemberTypes": [
+            "User"
+          ],
+          "description": "Approvers can mark documents as approved",
+          "displayName": "Approver",
+          "isEnabled": "true",
+          "value": "approver"
+      }]
+  - summary: Créer une application avec des revendications facultatives
+    syntax: >-
+      az ad app create --display-name mytestapp --optional-claims @manifest.json
+
+      ("manifest.json" contains the following content)
+
+      {
+          "idToken": [
+              {
+                  "name": "auth_time",
+                  "source": null,
+                  "essential": false
+              }
+          ],
+          "accessToken": [
+              {
+                  "name": "email",
+                  "source": null,
+                  "essential": false
+              }
+          ]
+      }
+  requiredParameters:
+  - isRequired: true
+    name: --display-name
+    summary: Nom d’affichage de l’application.
+    description: ''
+  optionalParameters:
+  - name: --app-roles
+    summary: Déclarez les rôles que vous souhaitez associer à votre application. Doit être au format JSON du manifeste. Pour plus d’informations, consultez les exemples ci-dessous.
+    description: ''
+  - name: --available-to-other-tenants
+    parameterValueGroup: false, true
+    summary: L’application peut être utilisée à partir de n’importe quel locataire Azure AD.
+    description: ''
+  - name: --credential-description
+    summary: Description du mot de passe.
+    description: ''
+  - name: --end-date
+    summary: Date ou DateTime après laquelle les informations d’identification expirent (par exemple, « 2017-12-31T11:59:59 + 00:00 » ou « 2017-12-31 »). La valeur par défaut est un an après l’heure actuelle.
+    description: ''
+  - name: --homepage
+    summary: URL à laquelle les utilisateurs peuvent se connecter et utiliser votre application.
+    description: ''
+  - name: --identifier-uris
+    summary: URI uniques séparés par des espaces qui peuvent être utilisés par Azure AD pour cette application.
+    description: ''
+  - name: --key-type
+    defaultValue: AsymmetricX509Cert
+    parameterValueGroup: AsymmetricX509Cert, Password, Symmetric
+    summary: Type des informations d’identification de clé associées à l’application.
+    description: ''
+  - name: --key-usage
+    defaultValue: Verify
+    parameterValueGroup: Sign, Verify
+    summary: Utilisation des informations d’identification de clé associées à l’application.
+    description: ''
+  - name: --key-value
+    summary: Valeur des informations d’identification de clé associées à l’application.
+    description: ''
+  - name: --native-app
+    parameterValueGroup: false, true
+    summary: Application qui peut être installée sur l’appareil ou l’ordinateur d’un utilisateur.
+    description: ''
+  - name: --oauth2-allow-implicit-flow
+    parameterValueGroup: false, true
+    summary: Indique s’il faut autoriser le workflow d’octroi implicite pour OAuth2.
+    description: ''
+  - name: --optional-claims
+    summary: Déclarez les revendications facultatives pour l’application. Doit être au format JSON du manifeste. Pour plus d’informations, consultez les exemples ci-dessous. Veuillez vous référer <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-optional-claims#optionalclaim-type">https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-optional-claims#optionalclaim-type</a> aux propriétés facultatives de la revendication.
+    description: ''
+  - name: --password
+    summary: Mot de passe, également appelé « secret client ».
+    description: ''
+  - name: --reply-urls
+    summary: URI séparés par des espaces auxquels Azure AD redirige en réponse à une demande OAuth 2,0. La valeur n’a pas besoin d’être un point de terminaison physique, mais doit être un URI valide.
+    description: ''
+  - name: --required-resource-accesses
+    summary: Étendues de ressources et rôles auxquels l’application doit accéder. Doit être au format JSON du manifeste. Pour plus d’informations, consultez les exemples ci-dessous.
+    description: ''
+  - name: --start-date
+    summary: Date ou DateTime à partir de laquelle les informations d’identification deviennent valides (par exemple, « 2017-01-01T01:00:00 + 00:00 » ou « 2017-01-01 »). La valeur par défaut est l’heure actuelle.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_app_delete
+  name: az ad app delete
+  summary: Supprimez une application.
+  description: ''
+  syntax: az ad app delete --id
+  examples:
+  - summary: Supprimez une application. généré automatiquement
+    syntax: az ad app delete --id 00000000-0000-0000-0000-000000000000
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: URI de l’identificateur, ID de l’application ou ID de l’objet.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_app_list
+  name: az ad app list
+  summary: Répertorier les applications.
+  description: Pour une faible latence, par défaut, seul le premier 100 est retourné, sauf si vous fournissez des arguments de filtre ou utilisez « --All ».
+  syntax: >-
+    az ad app list [--all]
+                   [--app-id]
+                   [--display-name]
+                   [--filter]
+                   [--identifier-uri]
+                   [--query-examples]
+                   [--show-mine]
+  optionalParameters:
+  - name: --all
+    summary: Répertorie toutes les entités, s’attend à un long délai si elle est sous une grande organisation.
+    description: ''
+  - name: --app-id
+    summary: ID de l’application.
+    description: ''
+  - name: --display-name
+    summary: Nom d’affichage de l’application.
+    description: ''
+  - name: --filter
+    summary: Filtre OData, par exemple--Filter « DisplayName EQ’test » et servicePrincipalType EQ’application'.
+    description: ''
+  - name: --identifier-uri
+    summary: L’identificateur de l’application Graph doit être au format URI.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --show-mine
+    summary: Répertorie les entités détenues par l’utilisateur actuel.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_app_show
+  name: az ad app show
+  summary: Obtient les détails d’une application.
+  description: ''
+  syntax: >-
+    az ad app show --id
+                   [--query-examples]
+  examples:
+  - summary: Obtient les détails d’une application. généré automatiquement
+    syntax: az ad app show --id 00000000-0000-0000-0000-000000000000
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: URI de l’identificateur, ID de l’application ou ID de l’objet.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_app_update
+  name: az ad app update
+  summary: Mettez à jour une application.
+  description: ''
+  syntax: >-
+    az ad app update --id
+                     [--add]
+                     [--app-roles]
+                     [--available-to-other-tenants {false, true}]
+                     [--credential-description]
+                     [--display-name]
+                     [--end-date]
+                     [--force-string]
+                     [--homepage]
+                     [--identifier-uris]
+                     [--key-type {AsymmetricX509Cert, Password, Symmetric}]
+                     [--key-usage {Sign, Verify}]
+                     [--key-value]
+                     [--oauth2-allow-implicit-flow {false, true}]
+                     [--optional-claims]
+                     [--password]
+                     [--remove]
+                     [--reply-urls]
+                     [--required-resource-accesses]
+                     [--set]
+                     [--start-date]
+  examples:
+  - summary: mettre à jour une application native avec l’autorisation déléguée « accéder au répertoire AAD en tant qu’utilisateur connecté »
+    syntax: >-
+      az ad app update --id e042ec79-34cd-498f-9d9f-123456781234 --required-resource-accesses @manifest.json
+
+      ("manifest.json" contains the following content)
+
+      [{
+          "resourceAppId": "00000002-0000-0000-c000-000000000000",
+          "resourceAccess": [
+              {
+                  "id": "a42657d6-7f20-40e3-b6f0-cee03008a62a",
+                  "type": "Scope"
+              }
+         ]
+      }]
+  - summary: déclarer un rôle d’application
+    syntax: >-
+      az ad app update --id e042ec79-34cd-498f-9d9f-123456781234 --app-roles @manifest.json
+
+      ("manifest.json" contains the following content)
+
+      [{
+          "allowedMemberTypes": [
+            "User"
+          ],
+          "description": "Approvers can mark documents as approved",
+          "displayName": "Approver",
+          "isEnabled": "true",
+          "value": "approver"
+      }]
+  - summary: mettre à jour des revendications facultatives
+    syntax: >-
+      az ad app update --id e042ec79-34cd-498f-9d9f-123456781234 --optional-claims @manifest.json
+
+      ("manifest.json" contains the following content)
+
+      {
+          "idToken": [
+              {
+                  "name": "auth_time",
+                  "source": null,
+                  "essential": false
+              }
+          ],
+          "accessToken": [
+              {
+                  "name": "email",
+                  "source": null,
+                  "essential": false
+              }
+          ]
+      }
+  - summary: mettre à jour les revendications d’appartenance de groupe d’une application vers « tous »
+    syntax: az ad app update --id e042ec79-34cd-498f-9d9f-123456781234 --set groupMembershipClaims=All
+  requiredParameters:
+  - isRequired: true
+    name: --id
+    summary: URI de l’identificateur, ID de l’application ou ID de l’objet.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --app-roles
+    summary: Déclarez les rôles que vous souhaitez associer à votre application. Doit être au format JSON du manifeste. Pour plus d’informations, consultez les exemples ci-dessous.
+    description: ''
+  - name: --available-to-other-tenants
+    parameterValueGroup: false, true
+    summary: L’application peut être utilisée à partir de n’importe quel locataire Azure AD.
+    description: ''
+  - name: --credential-description
+    summary: Description du mot de passe.
+    description: ''
+  - name: --display-name
+    summary: Nom d’affichage de l’application.
+    description: ''
+  - name: --end-date
+    summary: Date ou DateTime après laquelle les informations d’identification expirent (par exemple, « 2017-12-31T11:59:59 + 00:00 » ou « 2017-12-31 »). La valeur par défaut est un an après l’heure actuelle.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --homepage
+    summary: URL à laquelle les utilisateurs peuvent se connecter et utiliser votre application.
+    description: ''
+  - name: --identifier-uris
+    summary: URI uniques séparés par des espaces qui peuvent être utilisés par Azure AD pour cette application.
+    description: ''
+  - name: --key-type
+    defaultValue: AsymmetricX509Cert
+    parameterValueGroup: AsymmetricX509Cert, Password, Symmetric
+    summary: Type des informations d’identification de clé associées à l’application.
+    description: ''
+  - name: --key-usage
+    defaultValue: Verify
+    parameterValueGroup: Sign, Verify
+    summary: Utilisation des informations d’identification de clé associées à l’application.
+    description: ''
+  - name: --key-value
+    summary: Valeur des informations d’identification de clé associées à l’application.
+    description: ''
+  - name: --oauth2-allow-implicit-flow
+    parameterValueGroup: false, true
+    summary: Indique s’il faut autoriser le workflow d’octroi implicite pour OAuth2.
+    description: ''
+  - name: --optional-claims
+    summary: Déclarez les revendications facultatives pour l’application. Doit être au format JSON du manifeste. Pour plus d’informations, consultez les exemples ci-dessous. Veuillez vous référer <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-optional-claims#optionalclaim-type">https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-optional-claims#optionalclaim-type</a> aux propriétés facultatives de la revendication.
+    description: ''
+  - name: --password
+    summary: Mot de passe, également appelé « secret client ».
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --reply-urls
+    summary: URI séparés par des espaces auxquels Azure AD redirige en réponse à une demande OAuth 2,0. La valeur n’a pas besoin d’être un point de terminaison physique, mais doit être un URI valide.
+    description: ''
+  - name: --required-resource-accesses
+    summary: Étendues de ressources et rôles auxquels l’application doit accéder. Doit être au format JSON du manifeste. Pour plus d’informations, consultez les exemples ci-dessous.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --start-date
+    summary: Date ou DateTime à partir de laquelle les informations d’identification deviennent valides (par exemple, « 2017-01-01T01:00:00 + 00:00 » ou « 2017-01-01 »). La valeur par défaut est l’heure actuelle.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+commands:
+- az_ad_app_create
+- az_ad_app_credential
+- az_ad_app_credential_delete
+- az_ad_app_credential_list
+- az_ad_app_credential_reset
+- az_ad_app_delete
+- az_ad_app_list
+- az_ad_app_owner
+- az_ad_app_owner_add
+- az_ad_app_owner_list
+- az_ad_app_owner_remove
+- az_ad_app_permission
+- az_ad_app_permission_add
+- az_ad_app_permission_admin_consent
+- az_ad_app_permission_delete
+- az_ad_app_permission_grant
+- az_ad_app_permission_list
+- az_ad_app_permission_list_grants
+- az_ad_app_show
+- az_ad_app_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/20/2021
+  description: Gérer les applications avec le graphique AAD.
+  ms.openlocfilehash: 159f4571f619ad02c848dbcbe63d85e46004e000
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102967544"
