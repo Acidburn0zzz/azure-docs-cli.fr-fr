@@ -1,0 +1,1310 @@
+### YamlMime:AzureCLIGroup
+uid: az_aks
+name: az aks
+summary: Gérer les services Azure Kubernetes.
+description: ''
+directCommands:
+- uid: az_aks_browse
+  name: az aks browse
+  summary: Affichez le tableau de bord d’un cluster Kubernetes dans un navigateur Web.
+  description: ''
+  syntax: >-
+    az aks browse --name
+                  --resource-group
+                  [--disable-browser]
+                  [--listen-address]
+                  [--listen-port]
+                  [--subscription]
+  examples:
+  - summary: Affichez le tableau de bord d’un cluster Kubernetes dans un navigateur Web. généré automatiquement
+    syntax: az aks browse --name MyManagedCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --disable-browser
+    summary: Ne lancez pas de navigateur Web après avoir établi le transfert de port.
+    description: Ajoutez cet argument lors du lancement manuel d’un navigateur Web ou pour le test automatisé.
+  - name: --listen-address
+    defaultValue: 127.0.0.1
+    summary: Adresse d’écoute du tableau de bord.
+    description: Ajoutez cet argument pour écouter une adresse IP spécifique.
+  - name: --listen-port
+    defaultValue: "8001"
+    summary: Port d’écoute pour le tableau de bord.
+    description: Ajoutez cet argument lorsque le port d’écoute par défaut est utilisé par un autre processus ou qu’il n’est pas disponible.
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_check_acr
+  name: az aks check-acr
+  summary: La validation d’un ACR est accessible à partir d’un cluster AKS.
+  description: ''
+  syntax: >-
+    az aks check-acr --acr
+                     --name
+                     --resource-group
+                     [--subscription]
+  examples:
+  - summary: Vérifiez que le ACR est accessible à partir du cluster AKS.
+    syntax: az aks check-acr --name MyManagedCluster --resource-group MyResourceGroup --acr myacr.azurecr.io
+  requiredParameters:
+  - isRequired: true
+    name: --acr
+    summary: Nom de domaine complet du ACR.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_create
+  name: az aks create
+  summary: Créer un cluster Kubernetes managé.
+  description: ''
+  syntax: >-
+    az aks create --name
+                  --resource-group
+                  [--aad-admin-group-object-ids]
+                  [--aad-client-app-id]
+                  [--aad-server-app-id]
+                  [--aad-server-app-secret]
+                  [--aad-tenant-id]
+                  [--aci-subnet-name]
+                  [--admin-username]
+                  [--api-server-authorized-ip-ranges]
+                  [--appgw-id]
+                  [--appgw-name]
+                  [--appgw-subnet-cidr]
+                  [--appgw-subnet-id]
+                  [--appgw-watch-namespace]
+                  [--assign-identity]
+                  [--attach-acr]
+                  [--ca-profile]
+                  [--client-secret]
+                  [--disable-rbac]
+                  [--dns-name-prefix]
+                  [--dns-service-ip]
+                  [--docker-bridge-address]
+                  [--enable-aad]
+                  [--enable-addons]
+                  [--enable-ahub]
+                  [--enable-cluster-autoscaler]
+                  [--enable-managed-identity]
+                  [--enable-node-public-ip]
+                  [--enable-private-cluster]
+                  [--enable-rbac]
+                  [--generate-ssh-keys]
+                  [--kubernetes-version]
+                  [--load-balancer-idle-timeout]
+                  [--load-balancer-managed-outbound-ip-count]
+                  [--load-balancer-outbound-ip-prefixes]
+                  [--load-balancer-outbound-ips]
+                  [--load-balancer-outbound-ports]
+                  [--load-balancer-sku]
+                  [--location]
+                  [--max-count]
+                  [--max-pods]
+                  [--min-count]
+                  [--network-plugin {azure, kubenet}]
+                  [--network-policy]
+                  [--no-ssh-key]
+                  [--no-wait]
+                  [--node-count]
+                  [--node-osdisk-diskencryptionset-id]
+                  [--node-osdisk-size]
+                  [--node-osdisk-type]
+                  [--node-vm-size]
+                  [--nodepool-labels]
+                  [--nodepool-name]
+                  [--nodepool-tags]
+                  [--outbound-type {loadBalancer, userDefinedRouting}]
+                  [--pod-cidr]
+                  [--ppg]
+                  [--service-cidr]
+                  [--service-principal]
+                  [--skip-subnet-role-assignment]
+                  [--ssh-key-value]
+                  [--subscription]
+                  [--tags]
+                  [--uptime-sla]
+                  [--vm-set-type]
+                  [--vnet-subnet-id]
+                  [--windows-admin-password]
+                  [--windows-admin-username]
+                  [--workspace-resource-id]
+                  [--yes]
+                  [--zones {1, 2, 3}]
+  examples:
+  - summary: Créez un cluster Kubernetes avec une clé publique SSH existante.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --ssh-key-value /path/to/publickey
+  - summary: Créez un cluster Kubernetes avec une version spécifique.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --kubernetes-version 1.16.9
+  - summary: Créez un cluster Kubernetes avec un pool de nœuds plus grand.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --node-count 7
+  - summary: Créez un cluster kubernetes avec K8S 1.13.9, mais utilisez VMAs.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --kubernetes-version 1.16.9 --vm-set-type AvailabilitySet
+  - summary: Créez un cluster kubernetes avec la version kubernetes par défaut, l’équilibreur de charge SKU par défaut (standard) et le type d’ensemble de machines virtuelles par défaut (VirtualMachineScaleSets).
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster
+  - summary: Créez un cluster kubernetes avec l’équilibrage de charge SKU standard et deux adresses IP AKS créées pour l’utilisation de la connexion sortante de l’équilibreur de charge.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --load-balancer-managed-outbound-ip-count 2
+  - summary: Créer un cluster kubernetes avec un équilibreur de charge SKU standard, avec deux adresses IP gérées AKS sortantes un délai d’inactivité de 5 minutes et 8000 ports alloués par ordinateur
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --load-balancer-managed-outbound-ip-count 2 --load-balancer-idle-timeout 5 --load-balancer-outbound-ports 8000
+  - summary: Créez un cluster kubernetes avec l’équilibrage de charge SKU standard et utilisez les adresses IP publiques fournies pour l’utilisation de la connexion sortante de l’équilibrage de charge.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --load-balancer-outbound-ips <ip-resource-id-1,ip-resource-id-2>
+  - summary: Créez un cluster kubernetes avec l’équilibrage de charge SKU standard et utilisez les préfixes IP publics fournis pour l’utilisation de la connexion sortante de l’équilibreur de charge.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --load-balancer-outbound-ip-prefixes <ip-prefix-resource-id-1,ip-prefix-resource-id-2>
+  - summary: Créez un cluster kubernetes avec l’équilibrage de charge de référence SKU de base et le type d’ensemble de machines virtuelles lesquelles.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --load-balancer-sku basic --vm-set-type AvailabilitySet
+  - summary: Créez un cluster kubernetes avec des plages d’adresses IP apiserver autorisées.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --api-server-authorized-ip-ranges 193.168.1.0/24,194.168.1.0/24,195.168.1.0
+  - summary: Créez un cluster kubernetes qui active l’identité managée.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --enable-managed-identity
+  - summary: Créer un cluster kubernetes avec userDefinedRouting, une référence SKU standard load balancer et un sous-réseau personnalisé préconfiguré avec une table de routage
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --outbound-type userDefinedRouting --load-balancer-sku standard --vnet-subnet-id customUserSubnetVnetID
+  - summary: Créez un cluster kubernetes avec prise en charge des pools d’agents Windows.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --load-balancer-sku Standard --network-plugin azure --windows-admin-username azure --windows-admin-password 'replacePassword1234$'
+  - summary: Créez un cluster kubernetes avec prise en charge des pools d’agents Windows avec AHUB activé.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --load-balancer-sku Standard --network-plugin azure --windows-admin-username azure --windows-admin-password 'replacePassword1234$' --enable-ahub
+  - summary: Créez un cluster kubernetes avec l’option géré AAD activée.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --enable-aad --aad-admin-group-object-ids <id-1,id-2> --aad-tenant-id <id>
+  - summary: Créez un cluster kubernetes avec le chiffrement côté serveur à l’aide de votre clé propriétaire.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --node-osdisk-diskencryptionset-id <disk-encryption-set-resource-id>
+  - summary: Créez un cluster kubernetes avec le système d’exploitation éphémère activé.
+    syntax: az aks create -g MyResourceGroup -n MyManagedCluster --node-osdisk-type Ephemeral --node-osdisk-size 48
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --aad-admin-group-object-ids
+    summary: Liste séparée par des virgules des ID d’objet de groupe AAD qui seront définis en tant qu’administrateur de cluster.
+    description: ''
+  - name: --aad-client-app-id
+    summary: ID d’une application cliente Azure Active Directory de type « native ». Cette application est destinée à la connexion de l’utilisateur via kubectl.
+    description: ''
+  - name: --aad-server-app-id
+    summary: ID d’une application Azure Active Directory Server de type « Web App/API ». Cette application représente le apiserver du cluster géré (application serveur).
+    description: ''
+  - name: --aad-server-app-secret
+    summary: Secret d’une application Azure Active Directory Server.
+    description: ''
+  - name: --aad-tenant-id
+    summary: ID d’un locataire Azure Active Directory.
+    description: ''
+  - name: --aci-subnet-name
+    summary: Nom d’un sous-réseau dans un réseau virtuel existant dans lequel déployer les nœuds virtuels.
+    description: ''
+  - name: --admin-username -u
+    defaultValue: azureuser
+    summary: Compte d’utilisateur à créer sur les machines virtuelles de nœud pour l’accès SSH.
+    description: ''
+  - name: --api-server-authorized-ip-ranges
+    summary: Liste séparée par des virgules des plages d’adresses IP apiserver autorisées. Définissez sur 0.0.0.0/32 pour limiter le trafic apiserver aux pools de nœuds.
+    description: ''
+  - name: --appgw-id
+    summary: ID de ressource d’un Application Gateway existant à utiliser avec AGIC. À utiliser avec le module complémentaire d’entrée-Azure.
+    description: ''
+  - name: --appgw-name
+    summary: Nom de la passerelle d’application à créer/utiliser dans le groupe de ressources de nœud. À utiliser avec le module complémentaire d’entrée-Azure.
+    description: ''
+  - name: --appgw-subnet-cidr
+    summary: CIDR de sous-réseau à utiliser pour un nouveau sous-réseau créé pour déployer le Application Gateway. À utiliser avec le module complémentaire d’entrée-Azure.
+    description: ''
+  - name: --appgw-subnet-id
+    summary: ID de ressource d’un sous-réseau existant utilisé pour déployer le Application Gateway. À utiliser avec le module complémentaire d’entrée-Azure.
+    description: ''
+  - name: --appgw-watch-namespace
+    summary: Spécifiez l’espace de noms, que AGIC doit surveiller. Il peut être une valeur de chaîne unique ou une liste d’espaces de noms séparés par des virgules.
+    description: ''
+  - name: --assign-identity
+    summary: Spécifiez une identité affectée à l’utilisateur existant pour l’utilisation du plan de contrôle afin de gérer le groupe de ressources de cluster.
+    description: ''
+  - name: --attach-acr
+    summary: Accordez l’attribution de rôle « acrpull » au ACR spécifié par le nom ou l’ID de ressource.
+    description: ''
+  - name: --ca-profile --cluster-autoscaler-profile
+    summary: Liste de paires clé = valeur séparées par des espaces pour configurer la mise à l’échelle automatique du cluster. Transmettez une chaîne vide pour effacer le profil.
+    description: ''
+  - name: --client-secret
+    summary: Secret associé au principal du service. Cet argument est obligatoire si `--service-principal` est spécifié.
+    description: ''
+  - name: --disable-rbac
+    summary: Désactivez Kubernetes Role-Based Access Control.
+    description: ''
+  - name: --dns-name-prefix -p
+    summary: Préfixe pour les noms d’hôte qui sont créés. S’il n’est pas spécifié, générez un nom d’hôte à l’aide du cluster géré et des noms de groupes de ressources.
+    description: ''
+  - name: --dns-service-ip
+    summary: Adresse IP affectée au service DNS Kubernetes.
+    description: Cette adresse doit être comprise dans la plage d’adresses du service Kubernetes spécifiée par « --service-CIDR ». Par exemple, 10.0.0.10.
+  - name: --docker-bridge-address
+    summary: Une adresse IP et un masque réseau spécifiques pour le pont de l’Ancreur, à l’aide de la notation CIDR standard.
+    description: Cette adresse ne doit pas figurer dans des plages d’adresses IP de sous-réseau ou la plage d’adresses du service Kubernetes. Par exemple, 172.17.0.1/16.
+  - name: --enable-aad
+    summary: Activez la fonctionnalité AAD managée pour le cluster.
+    description: ''
+  - name: --enable-addons -a
+    summary: Active les composants Kubernetes figurant dans une liste séparée par des virgules.
+    description: >-
+      Ces modules complémentaires sont disponibles : http_application_routing-configurer l’entrée avec la création automatique de noms DNS publics.
+
+      surveillance : activez la surveillance des Log Analytics. Utilise l’espace de travail Log Analytics par défaut s’il existe, sinon en crée un.
+
+      Spécifiez « --Workspace-Resource-ID » pour utiliser un espace de travail existant.
+
+      Si le module de surveillance est activé, l’argument non-Wait n’a aucun effet sur la stratégie Azure Azure-Policy-Enable. Le module complémentaire Azure Policy pour AKS permet des mises en œuvre à l’échelle et des protections sur vos clusters de manière centralisée et cohérente.
+
+      En savoir plus sur aka.ms/aks/policy.
+
+      nœud virtuel-activer le nœud virtuel AKS.
+
+      Requiert--ACI-subnet-name pour fournir le nom d’un sous-réseau existant pour le nœud virtuel à utiliser.
+
+      ACI-subnet-name doit se trouver dans le même réseau virtuel que celui spécifié par--vnet-Subnet-ID (requis également).
+  - name: --enable-ahub
+    summary: Activez les avantages de l’utilisateur hybride Azure (AHUB) pour les machines virtuelles Windows.
+    description: ''
+  - name: --enable-cluster-autoscaler
+    summary: Activer la mise à l’échelle automatique de cluster, la valeur par défaut est false.
+    description: S’il est spécifié, assurez-vous que la version de kubernetes est supérieure à 1.10.6.
+  - name: --enable-managed-identity
+    defaultValue: "1"
+    summary: Utilisation d’une identité gérée par le système pour gérer le groupe de ressources de cluster.
+    description: ''
+  - name: --enable-node-public-ip
+    summary: Activez l’adresse IP publique du nœud VMSS.
+    description: ''
+  - name: --enable-private-cluster
+    summary: Activez le cluster privé.
+    description: ''
+  - name: --enable-rbac -r
+    summary: 'Active le contrôle d’accès en fonction du rôle Kubernetes. Valeur par défaut : activé.'
+    description: ''
+  - name: --generate-ssh-keys
+    summary: Génère les fichiers de clés SSH publiques et privées s’ils sont manquants. Les clés sont stockées dans le répertoire ~/.ssh
+    description: ''
+  - name: --kubernetes-version -k
+    summary: Version de Kubernetes à utiliser pour créer le cluster, par exemple « 1.16.9 ».
+    description: ''
+    valueFrom: '`az aks get-versions`'
+  - name: --load-balancer-idle-timeout
+    summary: Délai d’inactivité de l’équilibreur de charge en minutes.
+    description: Délai d’inactivité souhaité pour les flux sortants de l’équilibreur de charge, la valeur par défaut est 30 minutes. Spécifiez une valeur comprise dans la plage [4, 100].
+  - name: --load-balancer-managed-outbound-ip-count
+    summary: Nombre d’adresses IP sortantes gérées par l’équilibreur de charge.
+    description: Nombre souhaité de adresses IP sortantes gérées pour la connexion sortante de l’équilibreur de charge. Valide pour le cluster d’équilibrage de charge de référence SKU standard uniquement.
+  - name: --load-balancer-outbound-ip-prefixes
+    summary: ID de ressource du préfixe d’adresse IP sortante de l’équilibreur de charge.
+    description: ID de ressource de préfixe d’adresse IP publique séparés par des virgules pour la connexion sortante de l’équilibreur de charge. Valide pour le cluster d’équilibrage de charge de référence SKU standard uniquement.
+  - name: --load-balancer-outbound-ips
+    summary: ID de ressource IP sortante de l’équilibreur de charge.
+    description: ID des ressources IP publiques séparées par des virgules pour la connexion sortante de l’équilibreur de charge. Valide pour le cluster d’équilibrage de charge de référence SKU standard uniquement.
+  - name: --load-balancer-outbound-ports
+    summary: Ports alloués sortants de l’équilibreur de charge.
+    description: Nombre statique souhaité de ports de sortie par machine virtuelle dans le pool principal de l’équilibreur de charge. Par défaut, cette valeur est définie sur 0, ce qui utilise l’allocation par défaut en fonction du nombre de machines virtuelles.
+  - name: --load-balancer-sku
+    summary: Azure Load Balancer sélection de la référence SKU pour votre cluster. de base ou standard.
+    description: Sélectionnez une référence SKU de base ou standard Azure Load Balancer pour votre cluster AKS.
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --max-count
+    summary: Nombre maximal de nœuds utilisés pour la mise à l’échelle automatique, lorsque l’utilisation de la valeur « --enable-cluster-rescaler » est spécifiée. Spécifiez la valeur dans la plage [1, 100].
+    description: ''
+  - name: --max-pods -m
+    summary: Nombre maximal de pods pouvant être déployés sur un nœud.
+    description: S’il n’est pas spécifié, la valeur par défaut est 110, ou 30 pour les configurations de mise en réseau avancées.
+  - name: --min-count
+    summary: Nombre minimal de nœuds utilisé pour la mise à l’échelle automatique, lorsque l’utilisation de la valeur « --enable-cluster-rescaler » est spécifiée. Spécifiez la valeur dans la plage [1, 100].
+    description: ''
+  - name: --network-plugin
+    parameterValueGroup: azure, kubenet
+    summary: Plug-in réseau Kubernetes à utiliser.
+    description: Spécifiez « Azure » pour les configurations de mise en réseau avancées. La valeur par défaut est « kubenet ».
+  - name: --network-policy
+    summary: Stratégie réseau Kubernetes à utiliser.
+    description: >-
+      Utilisation conjointe avec le plug-in réseau « Azure ».
+
+      Spécifiez « Azure » pour le gestionnaire de stratégie réseau Azure et « Calico » pour le contrôleur de stratégie réseau Calico.
+
+      La valeur par défaut est «» (stratégie réseau désactivée).
+  - name: --no-ssh-key -x
+    summary: Ne créez pas et n’utilisez de clé SSH locale.
+    description: Pour accéder aux nœuds après la création d’un cluster avec cette option, utilisez le portail Azure.
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --node-count -c
+    defaultValue: "3"
+    summary: Nombre de nœuds dans le pool de nœuds Kubernetes. Après avoir créé un cluster, vous pouvez modifier la taille de son pool de nœuds avec `az aks scale` .
+    description: ''
+  - name: --node-osdisk-diskencryptionset-id -d
+    summary: ResourceId du chiffrement de disque défini à utiliser pour activer le chiffrement au repos sur le disque de système d’exploitation du nœud de l’agent.
+    description: ''
+  - name: --node-osdisk-size
+    summary: Taille en Go du disque du système d’exploitation pour chaque nœud dans le pool de nœuds. Minimum de 30 Go.
+    description: ''
+  - name: --node-osdisk-type
+    summary: 'Type de disque de système d’exploitation à utiliser pour les ordinateurs d’un pool d’agents donné : éphémère ou géré. La valeur par défaut est « éphémère » lorsque cela est possible avec la taille de machine virtuelle et la taille du disque du système d’exploitation. Ne peut pas être modifié pour ce pool après sa création.'
+    description: ''
+  - name: --node-vm-size -s
+    defaultValue: Standard_DS2_v2
+    summary: Taille des machines virtuelles à créer en tant que nœuds Kubernetes.
+    description: ''
+  - name: --nodepool-labels
+    summary: 'Étiquettes séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Vous ne pouvez pas modifier les étiquettes de nœud par le biais de l’interface CLI après la création. Consultez <a href="https://aka.ms/node-labels">https://aka.ms/node-labels</a> pour connaître la syntaxe des étiquettes.'
+    description: ''
+  - name: --nodepool-name
+    defaultValue: nodepool1
+    summary: Nom du pool de nœuds, jusqu’à 12 caractères alphanumériques.
+    description: ''
+  - name: --nodepool-tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --outbound-type
+    parameterValueGroup: loadBalancer, userDefinedRouting
+    summary: Comment le trafic sortant sera configuré pour un cluster.
+    description: Sélectionnez entre loadBalancer et userDefinedRouting. S’il n’est pas défini, le type par défaut est loadBalancer. Requiert--vnet-Subnet-ID à fournir avec une table d’itinéraires préconfigurée et--load-balancer-SKU comme standard.
+  - name: --pod-cidr
+    summary: Plage d’adresse IP de notation CIDR à partir de laquelle attribuer les adresses IP de pod lorsque Kubernetes est utilisé.
+    description: Cette plage ne doit pas chevaucher les plages d’adresses IP de sous-réseau. Par exemple, 172.244.0.0/16.
+  - name: --ppg
+    summary: ID d’un PPG.
+    description: ''
+  - name: --service-cidr
+    summary: Plage d’adresses IP de notation CIDR à partir de laquelle attribuer des adresses IP de cluster de service.
+    description: Cette plage ne doit pas chevaucher les plages d’adresses IP de sous-réseau. Par exemple, 10.0.0.0/16.
+  - name: --service-principal
+    summary: Principal de service utilisé pour l’authentification auprès des API Azure.
+    description: Si cette valeur n’est pas spécifiée, un nouveau principal de service est créé et mis en cache à $HOME/.Azure/aksServicePrincipal.jsutilisé par les `az aks` commandes suivantes.
+  - name: --skip-subnet-role-assignment
+    summary: Ignorer l’attribution de rôle pour le sous-réseau (mise en réseau avancée).
+    description: S’ils sont spécifiés, assurez-vous que le principal du service a accès à votre sous-réseau.
+  - name: --ssh-key-value
+    defaultValue: ~\.ssh\id_rsa.pub
+    summary: Chemin de clé publique ou contenu de clé à installer sur les machines virtuelles de nœud pour l’accès SSH. Par exemple, «SSH-RSA AAAAB... capture... UcyupgH azureuser@linuxvm ».
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --uptime-sla
+    summary: Activez un service de cluster géré payant avec un contrat SLA soutenu financièrement.
+    description: ''
+  - name: --vm-set-type
+    summary: Type d’ensemble de machines virtuelles du pool d’agents. VirtualMachineScaleSets ou lesquelles.
+    description: ''
+  - name: --vnet-subnet-id
+    summary: ID d’un sous-réseau d’un réseau virtuel existant dans lequel déployer le cluster.
+    description: ''
+  - name: --windows-admin-password
+    summary: Mot de passe à créer sur les machines virtuelles de nœud Windows.
+    description: ''
+  - name: --windows-admin-username
+    summary: Nom d’utilisateur à créer sur les machines virtuelles de nœud Windows.
+    description: ''
+  - name: --workspace-resource-id
+    summary: ID de ressource d’un espace de travail Log Analytics existant à utiliser pour stocker les données de supervision. S’il n’est pas spécifié, utilise l’espace de travail Log Analytics par défaut s’il existe ; sinon, en crée un.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  - name: --zones -z
+    parameterValueGroup: 1, 2, 3
+    summary: Zones de disponibilité où les nœuds de l’agent seront placés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_delete
+  name: az aks delete
+  summary: Supprimer un cluster Kubernetes managé.
+  description: ''
+  syntax: >-
+    az aks delete --name
+                  --resource-group
+                  [--no-wait]
+                  [--subscription]
+                  [--yes]
+  examples:
+  - summary: Supprimer un cluster Kubernetes managé. généré automatiquement
+    syntax: az aks delete --name MyManagedCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_disable_addons
+  name: az aks disable-addons
+  summary: Désactivez les modules complémentaires Kubernetes.
+  description: ''
+  syntax: >-
+    az aks disable-addons --addons
+                          --name
+                          --resource-group
+                          [--no-wait]
+                          [--subscription]
+  examples:
+  - summary: Désactivez les modules complémentaires Kubernetes. généré automatiquement
+    syntax: az aks disable-addons --addons virtual-node --name MyManagedCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --addons -a
+    summary: Désactivez les modules complémentaires Kubernetes dans une liste séparée par des virgules.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_enable_addons
+  name: az aks enable-addons
+  summary: Activez les addons Kubernetes.
+  description: >-
+    Ces modules complémentaires sont disponibles : http_application_routing-configurer l’entrée avec la création automatique de noms DNS publics.
+
+    surveillance : activez la surveillance des Log Analytics. Requiert « --Workspace-Resource-ID ».
+
+    Si le module complémentaire d’analyse est activé, l’argument non-Wait n’a aucun effet sur le nœud virtuel AKS de l’activation des nœuds virtuels. Requiert--subnet-name pour fournir le nom d’un sous-réseau existant pour le nœud virtuel à utiliser.
+
+    Azure-stratégie-activer Azure Policy. Le module complémentaire Azure Policy pour AKS permet des mises en œuvre à l’échelle et des protections sur vos clusters de manière centralisée et cohérente.
+
+    En savoir plus sur aka.ms/aks/policy.
+
+    entrée-appgw-Enable Application Gateway module complémentaire du contrôleur d’entrée.
+  syntax: >-
+    az aks enable-addons --addons
+                         --name
+                         --resource-group
+                         [--appgw-id]
+                         [--appgw-name]
+                         [--appgw-subnet-cidr]
+                         [--appgw-subnet-id]
+                         [--appgw-watch-namespace]
+                         [--no-wait]
+                         [--subnet-name]
+                         [--subscription]
+                         [--workspace-resource-id]
+  examples:
+  - summary: Activez les addons Kubernetes. généré automatiquement
+    syntax: az aks enable-addons --addons virtual-node --name MyManagedCluster --resource-group MyResourceGroup --subnet MySubnetName
+  - summary: Activez le module complémentaire d’entrée-appgw avec le préfixe de sous-réseau.
+    syntax: az aks enable-addons --name MyManagedCluster --resource-group MyResourceGroup --addons ingress-appgw --appgw-subnet-cidr 10.2.0.0/16 --appgw-name gateway
+  requiredParameters:
+  - isRequired: true
+    name: --addons -a
+    summary: Active les composants Kubernetes figurant dans une liste séparée par des virgules.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --appgw-id
+    summary: ID de ressource d’un Application Gateway existant à utiliser avec AGIC. À utiliser avec le module complémentaire d’entrée-Azure.
+    description: ''
+  - name: --appgw-name
+    summary: Nom de la passerelle d’application à créer/utiliser dans le groupe de ressources de nœud. À utiliser avec le module complémentaire d’entrée-Azure.
+    description: ''
+  - name: --appgw-subnet-cidr
+    summary: CIDR de sous-réseau à utiliser pour un nouveau sous-réseau créé pour déployer le Application Gateway. À utiliser avec le module complémentaire d’entrée-Azure.
+    description: ''
+  - name: --appgw-subnet-id
+    summary: ID de ressource d’un sous-réseau existant utilisé pour déployer le Application Gateway. À utiliser avec le module complémentaire d’entrée-Azure.
+    description: ''
+  - name: --appgw-watch-namespace
+    summary: Spécifiez l’espace de noms, que AGIC doit surveiller. Il peut être une valeur de chaîne unique ou une liste d’espaces de noms séparés par des virgules.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subnet-name -s
+    summary: Nom d’un sous-réseau existant à utiliser avec le module complémentaire de nœud virtuel.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --workspace-resource-id
+    summary: ID de ressource d’un espace de travail Log Analytics existant à utiliser pour stocker les données de supervision.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_get_credentials
+  name: az aks get-credentials
+  summary: Obtenir les informations d’identification d’accès pour un cluster Kubernetes géré.
+  description: Par défaut, les informations d’identification sont fusionnées dans le fichier. Kube/config afin que kubectl puisse les utiliser.  Pour plus d’informations, consultez le paramètre-f.
+  syntax: >-
+    az aks get-credentials --name
+                           --resource-group
+                           [--admin]
+                           [--context]
+                           [--file]
+                           [--overwrite-existing]
+                           [--subscription]
+  examples:
+  - summary: Obtenir les informations d’identification d’accès pour un cluster Kubernetes géré. généré automatiquement
+    syntax: az aks get-credentials --name MyManagedCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --admin -a
+    summary: 'Obtient les informations d’identification de l’administrateur de cluster.  Valeur par défaut : informations d’identification de l’utilisateur du cluster.'
+    description: Sur les clusters avec intégration de Azure Active Directory, cela contourne l’authentification Azure AD normale et peut être utilisé si vous n’avez pas accès à un groupe de Azure AD valide avec accès à votre cluster. Nécessite le rôle d’admin du cluster Azure Kubernetes service.
+  - name: --context
+    summary: S’il est spécifié, remplace le nom de contexte par défaut.
+    description: ''
+  - name: --file -f
+    defaultValue: ~/.kube/config
+    summary: Fichier de configuration Kubernetes à mettre à jour. Utilisez « - » pour imprimer YAML sur stdout à la place.
+    description: ''
+  - name: --overwrite-existing
+    summary: Remplacez toute entrée de cluster existante portant le même nom.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_get_upgrades
+  name: az aks get-upgrades
+  summary: Obtenir les versions de mise à niveau disponibles pour un cluster Kubernetes géré.
+  description: ''
+  syntax: >-
+    az aks get-upgrades --name
+                        --resource-group
+                        [--subscription]
+  examples:
+  - summary: Obtenir les versions de mise à niveau disponibles pour un cluster Kubernetes géré
+    syntax: az aks get-upgrades --name MyManagedCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_get_versions
+  name: az aks get-versions
+  summary: Obtenir les versions disponibles pour la création d’un cluster Kubernetes géré.
+  description: ''
+  syntax: >-
+    az aks get-versions --location
+                        [--subscription]
+  examples:
+  - summary: Obtenir les versions disponibles pour la création d’un cluster Kubernetes géré
+    syntax: az aks get-versions --location westus2
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_install_cli
+  name: az aks install-cli
+  summary: Télécharger et installer kubectl, l’outil en ligne de commande de Kubernetes. Téléchargez et installez kubelogin, un plug-in d’informations d’identification client-Go qui implémente l’authentification Azure.
+  description: ''
+  syntax: >-
+    az aks install-cli [--base-src-url]
+                       [--client-version]
+                       [--install-location]
+                       [--kubelogin-base-src-url]
+                       [--kubelogin-install-location]
+                       [--kubelogin-version]
+                       [--subscription]
+  optionalParameters:
+  - name: --base-src-url
+    summary: URL source de téléchargement de base pour les versions de kubectl.
+    description: ''
+  - name: --client-version
+    defaultValue: latest
+    summary: Version de kubectl à installer.
+    description: ''
+  - name: --install-location
+    defaultValue: ~/.azure-kubectl/kubectl.exe
+    summary: Chemin d’installation de kubectl.
+    description: ''
+  - name: --kubelogin-base-src-url -l
+    summary: URL source de téléchargement de base pour les versions de kubelogin.
+    description: ''
+  - name: --kubelogin-install-location
+    defaultValue: ~/.azure-kubelogin/kubelogin.exe
+    summary: Chemin d’installation de kubelogin.
+    description: ''
+  - name: --kubelogin-version
+    defaultValue: latest
+    summary: Version de kubelogin à installer.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_list
+  name: az aks list
+  summary: Répertorier les clusters Kubernetes gérés.
+  description: ''
+  syntax: >-
+    az aks list [--query-examples]
+                [--resource-group]
+                [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_remove_dev_spaces
+  name: az aks remove-dev-spaces
+  summary: Supprimez Azure Dev Spaces d’un cluster Kubernetes géré.
+  description: ''
+  syntax: >-
+    az aks remove-dev-spaces --name
+                             --resource-group
+                             [--subscription]
+                             [--yes]
+  examples:
+  - summary: Supprimez Azure Dev Spaces d’un cluster Kubernetes géré.
+    syntax: az aks remove-dev-spaces -g my-aks-group -n my-aks
+  - summary: Supprimez Azure Dev Spaces d’un cluster Kubernetes géré sans demander confirmation.
+    syntax: az aks remove-dev-spaces -g my-aks-group -n my-aks --yes
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_rotate_certs
+  name: az aks rotate-certs
+  summary: Faites pivoter les certificats et les clés sur un cluster Kubernetes géré.
+  description: Kubernetes ne sera pas disponible pendant la rotation du certificat de cluster.
+  syntax: >-
+    az aks rotate-certs --name
+                        --resource-group
+                        [--no-wait]
+                        [--subscription]
+                        [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_scale
+  name: az aks scale
+  summary: Mettez à l’échelle le pool de nœuds dans un cluster Kubernetes géré.
+  description: ''
+  syntax: >-
+    az aks scale --name
+                 --node-count
+                 --resource-group
+                 [--no-wait]
+                 [--nodepool-name]
+                 [--subscription]
+  examples:
+  - summary: Mettez à l’échelle le pool de nœuds dans un cluster Kubernetes géré. généré automatiquement
+    syntax: az aks scale --name MyManagedCluster --node-count 3 --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --node-count -c
+    summary: Nombre de nœuds dans le pool de nœuds Kubernetes.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --nodepool-name
+    summary: Nom du pool de nœuds, jusqu’à 12 caractères alphanumériques.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_show
+  name: az aks show
+  summary: Affichez les détails d’un cluster Kubernetes géré.
+  description: ''
+  syntax: >-
+    az aks show --name
+                --resource-group
+                [--query-examples]
+                [--subscription]
+  examples:
+  - summary: Afficher les détails d’un cluster Kubernetes géré
+    syntax: az aks show --name MyManagedCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_start
+  name: az aks start
+  summary: Démarrez le cluster géré.
+  description: Démarre un cluster géré arrêté.
+  syntax: >-
+    az aks start --name
+                 --resource-group
+                 [--no-wait]
+                 [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_stop
+  name: az aks stop
+  summary: Arrêtez le cluster géré.
+  description: Arrête un cluster géré en cours d’exécution.
+  syntax: >-
+    az aks stop --name
+                --resource-group
+                [--no-wait]
+                [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_update
+  name: az aks update
+  summary: Mettez à jour un cluster Kubernetes géré.
+  description: ''
+  syntax: >-
+    az aks update --name
+                  --resource-group
+                  [--aad-admin-group-object-ids]
+                  [--aad-tenant-id]
+                  [--api-server-authorized-ip-ranges]
+                  [--attach-acr]
+                  [--ca-profile]
+                  [--detach-acr]
+                  [--disable-ahub]
+                  [--disable-cluster-autoscaler]
+                  [--enable-aad]
+                  [--enable-ahub]
+                  [--enable-cluster-autoscaler]
+                  [--load-balancer-idle-timeout]
+                  [--load-balancer-managed-outbound-ip-count]
+                  [--load-balancer-outbound-ip-prefixes]
+                  [--load-balancer-outbound-ips]
+                  [--load-balancer-outbound-ports]
+                  [--max-count]
+                  [--min-count]
+                  [--no-wait]
+                  [--subscription]
+                  [--update-cluster-autoscaler]
+                  [--uptime-sla]
+  examples:
+  - summary: Mettez à jour un cluster kubernetes avec l’équilibrage de charge SKU standard pour utiliser deux adresses IP AKS créées pour l’utilisation de la connexion sortante de l’équilibreur de charge.
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --load-balancer-managed-outbound-ip-count 2
+  - summary: Mettez à jour un cluster kubernetes avec l’équilibreur de charge SKU standard pour utiliser les adresses IP publiques fournies pour l’utilisation de la connexion sortante de l’équilibreur de charge.
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --load-balancer-outbound-ips <ip-resource-id-1,ip-resource-id-2>
+  - summary: Créer un cluster kubernetes avec un équilibreur de charge SKU standard, avec deux adresses IP gérées AKS sortantes un délai d’inactivité de 5 minutes et 8000 ports alloués par ordinateur
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --load-balancer-managed-outbound-ip-count 2 --load-balancer-idle-timeout 5 --load-balancer-outbound-ports 8000
+  - summary: Mettez à jour un cluster kubernetes avec l’équilibreur de charge SKU standard pour utiliser les préfixes IP publics fournis pour l’utilisation de la connexion sortante d’équilibrage de charge.
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --load-balancer-outbound-ip-prefixes <ip-prefix-resource-id-1,ip-prefix-resource-id-2>
+  - summary: Attacher le cluster AKS à ACR par le nom « acrName »
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --attach-acr acrName
+  - summary: Mettre à jour un cluster kubernetes avec des plages d’adresses IP apiserver autorisées.
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --api-server-authorized-ip-ranges 193.168.1.0/24,194.168.1.0/24
+  - summary: Désactivez la fonctionnalité de plages IP apiserver autorisées pour un cluster kubernetes.
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --api-server-authorized-ip-ranges ""
+  - summary: Limitez le trafic apiserver dans un cluster kubernetes à des nœuds d’agentpool.
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --api-server-authorized-ip-ranges 0.0.0.0/32
+  - summary: Mettre à jour un cluster AAD géré par AKS avec un ID d’objet de client ou de groupe d’administration.
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --aad-admin-group-object-ids <id-1,id-2> --aad-tenant-id <id>
+  - summary: Migrez un cluster AKS AAD-Integrated ou un cluster non AAD vers un cluster AAD géré par AKS.
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --enable-aad --aad-admin-group-object-ids <id-1,id-2> --aad-tenant-id <id>
+  - summary: Activez les avantages d’Azure Hybrid User featture pour un cluster kubernetes.
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --enable-ahub
+  - summary: Désactivez les avantages d’Azure Hybrid User featture pour un cluster kubernetes.
+    syntax: az aks update -g MyResourceGroup -n MyManagedCluster --disable-ahub
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --aad-admin-group-object-ids
+    summary: Liste séparée par des virgules des ID d’objet de groupe AAD qui seront définis en tant qu’administrateur de cluster.
+    description: ''
+  - name: --aad-tenant-id
+    summary: ID d’un locataire Azure Active Directory.
+    description: ''
+  - name: --api-server-authorized-ip-ranges
+    summary: Liste séparée par des virgules des plages d’adresses IP apiserver autorisées. Affectez la valeur «» pour autoriser tout le trafic sur un cluster précédemment restreint. Définissez sur 0.0.0.0/32 pour limiter le trafic apiserver aux pools de nœuds.
+    description: ''
+  - name: --attach-acr
+    summary: Accordez l’attribution de rôle « acrpull » au ACR spécifié par le nom ou l’ID de ressource.
+    description: ''
+  - name: --ca-profile --cluster-autoscaler-profile
+    summary: Liste de paires clé = valeur séparées par des espaces pour configurer la mise à l’échelle automatique du cluster. Transmettez une chaîne vide pour effacer le profil.
+    description: ''
+  - name: --detach-acr
+    summary: Désactivez l’attribution de rôle « acrpull » au ACR spécifié par le nom ou l’ID de ressource.
+    description: ''
+  - name: --disable-ahub
+    summary: Désactivez la fonctionnalité Azure Hybrid User Benefits (AHUB) pour le cluster.
+    description: ''
+  - name: --disable-cluster-autoscaler -d
+    summary: Désactivez la mise à l’échelle automatique du cluster.
+    description: ''
+  - name: --enable-aad
+    summary: Activez la fonctionnalité AAD managée pour le cluster.
+    description: ''
+  - name: --enable-ahub
+    summary: Activez la fonctionnalité Azure Hybrid User Benefits (AHUB) pour le cluster.
+    description: ''
+  - name: --enable-cluster-autoscaler -e
+    summary: Activez la mise à l’échelle automatique du cluster.
+    description: ''
+  - name: --load-balancer-idle-timeout
+    summary: Délai d’inactivité de l’équilibreur de charge en minutes.
+    description: Délai d’inactivité souhaité pour les flux sortants de l’équilibreur de charge, la valeur par défaut est 30 minutes. Spécifiez une valeur comprise dans la plage [4, 100].
+  - name: --load-balancer-managed-outbound-ip-count
+    summary: Nombre d’adresses IP sortantes gérées par l’équilibreur de charge.
+    description: Nombre souhaité de adresses IP sortantes gérées pour la connexion sortante de l’équilibreur de charge. Valide pour le cluster d’équilibrage de charge de référence SKU standard uniquement. S’il est mis à jour, il est réinitialisé sur le paramètre existant sur le nombre d’adresses IP sortantes gérées par l’équilibrage de charge ; ID de ressource des adresses IP sortantes de l’équilibreur de charge et préfixe d’adresse IP sortante de l’équilibrage de charge.
+  - name: --load-balancer-outbound-ip-prefixes
+    summary: ID de ressource du préfixe d’adresse IP sortante de l’équilibreur de charge.
+    description: ID de ressource de préfixe d’adresse IP publique séparés par des virgules pour la connexion sortante de l’équilibreur de charge. Valide pour le cluster d’équilibrage de charge de référence SKU standard uniquement. S’il est mis à jour, il est réinitialisé sur le paramètre existant sur le nombre d’adresses IP sortantes gérées par l’équilibrage de charge ; ID de ressource des adresses IP sortantes de l’équilibreur de charge et préfixe d’adresse IP sortante de l’équilibrage de charge.
+  - name: --load-balancer-outbound-ips
+    summary: ID de ressource IP sortante de l’équilibreur de charge.
+    description: ID des ressources IP publiques séparées par des virgules pour la connexion sortante de l’équilibreur de charge. Valide pour le cluster d’équilibrage de charge de référence SKU standard uniquement. S’il est mis à jour, il est réinitialisé sur le paramètre existant sur le nombre d’adresses IP sortantes gérées par l’équilibrage de charge ; ID de ressource des adresses IP sortantes de l’équilibreur de charge et préfixe d’adresse IP sortante de l’équilibrage de charge.
+  - name: --load-balancer-outbound-ports
+    summary: Ports alloués sortants de l’équilibreur de charge.
+    description: Nombre statique souhaité de ports de sortie par machine virtuelle dans le pool principal de l’équilibreur de charge. Par défaut, cette valeur est définie sur 0, ce qui utilise l’allocation par défaut en fonction du nombre de machines virtuelles.
+  - name: --max-count
+    summary: Nombre maximal de nœuds utilisés pour la mise à l’échelle automatique, lorsque l’utilisation de la valeur « --enable-cluster-rescaler » est spécifiée. Spécifiez la valeur dans la plage [1, 100].
+    description: ''
+  - name: --min-count
+    summary: Nombre minimal de nœuds utilisé pour la mise à l’échelle automatique, lorsque l’utilisation de la valeur « --enable-cluster-rescaler » est spécifiée. Spécifiez la valeur dans la plage [1, 100].
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --update-cluster-autoscaler -u
+    summary: Update min-Count ou Max-Count pour la mise à l’échelle automatique du cluster.
+    description: ''
+  - name: --uptime-sla
+    summary: Activez un service de cluster géré payant avec un contrat SLA soutenu financièrement.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_update_credentials
+  name: az aks update-credentials
+  summary: Mettez à jour les informations d’identification d’un cluster Kubernetes géré, comme principal du service.
+  description: ''
+  syntax: >-
+    az aks update-credentials --name
+                              --resource-group
+                              [--aad-client-app-id]
+                              [--aad-server-app-id]
+                              [--aad-server-app-secret]
+                              [--aad-tenant-id]
+                              [--client-secret]
+                              [--no-wait]
+                              [--reset-aad]
+                              [--reset-service-principal]
+                              [--service-principal]
+                              [--subscription]
+  examples:
+  - summary: Mettez à jour un cluster Kubernetes existant avec le nouveau principal du service.
+    syntax: az aks update-credentials -g MyResourceGroup -n MyManagedCluster --reset-service-principal --service-principal MyNewServicePrincipalID --client-secret MyNewServicePrincipalSecret
+  - summary: Mettez à jour un cluster Azure Active Directory Kubernetes existant avec une nouvelle clé secrète d’application serveur.
+    syntax: az aks update-credentials -g MyResourceGroup -n MyManagedCluster --reset-aad --aad-server-app-id MyExistingAADServerAppID --aad-server-app-secret MyNewAADServerAppSecret --aad-client-app-id MyExistingAADClientAppID --aad-tenant-id MyAADTenantID
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --aad-client-app-id
+    summary: ID d’une application cliente Azure Active Directory. Cet argument est obligatoire si `--reset-aad` est spécifié.
+    description: ''
+  - name: --aad-server-app-id
+    summary: ID d’une application Azure Active Directory Server. Cet argument est obligatoire si `--reset-aad` est spécifié.
+    description: ''
+  - name: --aad-server-app-secret
+    summary: Secret d’une application Azure Active Directory Server. Cet argument est obligatoire si `--reset-aad` est spécifié.
+    description: ''
+  - name: --aad-tenant-id
+    summary: ID de locataire associé à Azure Active Directory.
+    description: ''
+  - name: --client-secret
+    summary: Secret associé au principal du service. Cet argument est obligatoire si `--service-principal` est spécifié.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --reset-aad
+    summary: Réinitialiser Azure Active Directory Configuration d’un cluster géré.
+    description: ''
+  - name: --reset-service-principal
+    summary: Réinitialisez le principal du service pour un cluster géré.
+    description: ''
+  - name: --service-principal
+    summary: Principal de service utilisé pour l’authentification auprès des API Azure. Cet argument est obligatoire si `--reset-service-principal` est spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_upgrade
+  name: az aks upgrade
+  summary: Mettez à niveau un cluster Kubernetes géré vers une version plus récente.
+  description: Kubernetes ne sera pas disponible pendant les mises à niveau du cluster.
+  syntax: >-
+    az aks upgrade --name
+                   --resource-group
+                   [--control-plane-only]
+                   [--kubernetes-version]
+                   [--no-wait]
+                   [--node-image-only]
+                   [--subscription]
+                   [--yes]
+  examples:
+  - summary: Mettez à niveau un cluster Kubernetes géré vers une version plus récente. généré automatiquement
+    syntax: az aks upgrade --kubernetes-version 1.12.6 --name MyManagedCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --control-plane-only
+    summary: Mettez à niveau le plan de contrôle de cluster uniquement. S’il n’est pas spécifié, le plan de contrôle et tous les pools de nœuds sont mis à niveau.
+    description: ''
+  - name: --kubernetes-version -k
+    summary: Version de Kubernetes pour la mise à niveau du cluster, par exemple « 1.16.9 ».
+    description: ''
+    valueFrom: '`az aks get-upgrades`'
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --node-image-only
+    summary: Mettre à niveau uniquement l’image de nœud pour les pools d’agents.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_use_dev_spaces
+  name: az aks use-dev-spaces
+  summary: Utilisez Azure Dev Spaces avec un cluster Kubernetes géré.
+  description: ''
+  syntax: >-
+    az aks use-dev-spaces --name
+                          --resource-group
+                          [--endpoint {None, Private, Public}]
+                          [--space]
+                          [--subscription]
+                          [--update]
+                          [--yes]
+  examples:
+  - summary: Utilisez Azure Dev Spaces avec un cluster Kubernetes géré, en sélectionnant de manière interactive un espace de développement.
+    syntax: az aks use-dev-spaces -g my-aks-group -n my-aks
+  - summary: Utilisez Azure Dev Spaces avec un cluster Kubernetes géré, en mettant à jour les derniers composants du client Azure Dev Spaces et en sélectionnant un espace de développement nouveau ou existant « My-Space ».
+    syntax: az aks use-dev-spaces -g my-aks-group -n my-aks --update --space my-space
+  - summary: Utilisez Azure Dev Spaces avec un cluster Kubernetes géré, en sélectionnant un espace de développement nouveau ou existant « développer/mon espace » sans demander confirmation.
+    syntax: az aks use-dev-spaces -g my-aks-group -n my-aks -s develop/my-space -y
+  - summary: Utilisez Azure Dev Spaces avec un cluster Kubernetes géré avec un point de terminaison privé.
+    syntax: az aks use-dev-spaces -g my-aks-group -n my-aks -e private
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --endpoint -e
+    defaultValue: Public
+    parameterValueGroup: None, Private, Public
+    summary: Type de point de terminaison à utiliser pour un contrôleur de Azure Dev Spaces. <a href="https://aka.ms/azds-networking">https://aka.ms/azds-networking</a>Pour plus d’informations, consultez.
+    description: ''
+  - name: --space -s
+    summary: Nom de l’espace de développement nouveau ou existant à sélectionner. La valeur par défaut est une expérience de sélection interactive.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --update
+    summary: Mettez à jour vers les derniers composants du client Azure Dev Spaces.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation. Nécessite--espace.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+- uid: az_aks_wait
+  name: az aks wait
+  summary: Attendez qu’un cluster Kubernetes géré atteigne un état souhaité.
+  description: Si une opération sur un cluster a été interrompue ou a été démarrée avec `--no-wait` , utilisez cette commande pour attendre qu’elle se termine.
+  syntax: >-
+    az aks wait --name
+                --resource-group
+                [--created]
+                [--custom]
+                [--deleted]
+                [--exists]
+                [--interval]
+                [--subscription]
+                [--timeout]
+                [--updated]
+  examples:
+  - summary: Attendre la mise à niveau d’un cluster, en interrogeant toutes les minutes pendant 30 minutes maximum.
+    syntax: az aks wait -g MyResourceGroup -n MyManagedCluster --updated --interval 60 --timeout 1800
+  - summary: Attendre qu’un cluster Kubernetes géré atteigne un état souhaité (généré automatiquement)
+    syntax: az aks wait --created --interval 60 --name MyManagedCluster --resource-group MyResourceGroup --timeout 1800
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acs/_help.py
+commands:
+- az_aks_browse
+- az_aks_check_acr
+- az_aks_create
+- az_aks_delete
+- az_aks_disable_addons
+- az_aks_enable_addons
+- az_aks_get_credentials
+- az_aks_get_upgrades
+- az_aks_get_versions
+- az_aks_install_cli
+- az_aks_list
+- az_aks_nodepool
+- az_aks_nodepool_add
+- az_aks_nodepool_delete
+- az_aks_nodepool_get_upgrades
+- az_aks_nodepool_list
+- az_aks_nodepool_scale
+- az_aks_nodepool_show
+- az_aks_nodepool_update
+- az_aks_nodepool_upgrade
+- az_aks_remove_dev_spaces
+- az_aks_rotate_certs
+- az_aks_scale
+- az_aks_show
+- az_aks_start
+- az_aks_stop
+- az_aks_update
+- az_aks_update_credentials
+- az_aks_upgrade
+- az_aks_use_dev_spaces
+- az_aks_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/04/2021
+  description: Gérer les services Azure Kubernetes.
+  ms.openlocfilehash: 3bc32bea2b36da586e6377f1409b885d35387438
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102967480"
