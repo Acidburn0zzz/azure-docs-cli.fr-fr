@@ -16,12 +16,12 @@ directCommands:
     az spring-cloud app create --name
                                --resource-group
                                --service
+                               [--assign-endpoint {false, true}]
                                [--assign-identity {false, true}]
                                [--cpu]
                                [--enable-persistent-storage {false, true}]
                                [--env]
                                [--instance-count]
-                               [--is-public {false, true}]
                                [--jvm-options]
                                [--memory]
                                [--runtime-version {Java_11, Java_8, NetCore_31}]
@@ -29,7 +29,7 @@ directCommands:
   - summary: Créer une application avec la configuration par défaut.
     syntax: az spring-cloud app create -n MyApp -s MyCluster -g MyResourceGroup
   - summary: Créez une application publique accessible avec 3 instances et 2 cœurs d’UC et 3 Go de mémoire par instance.
-    syntax: az spring-cloud app create -n MyApp -s MyCluster -g MyResourceGroup --is-public true --cpu 2 --memory 3 --instance-count 3
+    syntax: az spring-cloud app create -n MyApp -s MyCluster -g MyResourceGroup --assign-endpoint true --cpu 2 --memory 3 --instance-count 3
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -44,6 +44,10 @@ directCommands:
     summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
     description: ''
   optionalParameters:
+  - name: --assign-endpoint
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, assignez l’URL du point de terminaison pour l’accès direct.
+    description: ''
   - name: --assign-identity
     parameterValueGroup: false, true
     summary: Si la valeur est true, assignez l’identité de service managée.
@@ -62,10 +66,6 @@ directCommands:
   - name: --instance-count
     defaultValue: "1"
     summary: Nombre d’instances.
-    description: ''
-  - name: --is-public
-    parameterValueGroup: false, true
-    summary: Si la valeur est true, assignez le domaine public.
     description: ''
   - name: --jvm-options
     summary: Chaîne contenant les options JVM, utilisez' = 'à la place de' 'pour cet argument afin d’éviter l’erreur d’analyse bash, par exemple :--JVM-options = '-Xms1024m-Xmx2048m'.
@@ -192,6 +192,7 @@ directCommands:
     az spring-cloud app logs --name
                              --resource-group
                              --service
+                             [--deployment]
                              [--follow]
                              [--instance]
                              [--limit]
@@ -211,6 +212,9 @@ directCommands:
     summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
     description: ''
   optionalParameters:
+  - name: --deployment -d
+    summary: Nom d’un déploiement existant de l’application. Par défaut, le déploiement de production n’est pas spécifié.
+    description: ''
   - name: --follow  -f
     summary: Spécifiez si les journaux doivent être diffusés en continu.
     description: ''
@@ -483,11 +487,12 @@ directCommands:
     az spring-cloud app update --name
                                --resource-group
                                --service
+                               [--assign-endpoint {false, true}]
                                [--deployment]
+                               [--enable-end-to-end-tls {false, true}]
                                [--enable-persistent-storage {false, true}]
                                [--env]
                                [--https-only {false, true}]
-                               [--is-public {false, true}]
                                [--jvm-options]
                                [--main-entry]
                                [--runtime-version {Java_11, Java_8, NetCore_31}]
@@ -508,8 +513,16 @@ directCommands:
     summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
     description: ''
   optionalParameters:
+  - name: --assign-endpoint
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, assignez l’URL du point de terminaison pour l’accès direct.
+    description: ''
   - name: --deployment -d
     summary: Nom d’un déploiement existant de l’application. Par défaut, le déploiement de production n’est pas spécifié.
+    description: ''
+  - name: --enable-end-to-end-tls
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, active le TLS de bout en bout.
     description: ''
   - name: --enable-persistent-storage
     parameterValueGroup: false, true
@@ -521,10 +534,6 @@ directCommands:
   - name: --https-only
     parameterValueGroup: false, true
     summary: Si la valeur est true, l’application accède via HTTPS.
-    description: ''
-  - name: --is-public
-    parameterValueGroup: false, true
-    summary: Si la valeur est true, assignez le point de terminaison.
     description: ''
   - name: --jvm-options
     summary: Chaîne contenant les options JVM, utilisez' = 'à la place de' 'pour cet argument afin d’éviter l’erreur d’analyse bash, par exemple :--JVM-options = '-Xms1024m-Xmx2048m'.
@@ -598,9 +607,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Commandes pour gérer les applications dans Azure Spring Cloud.
-  ms.openlocfilehash: 34c0197a6019e32fcd708c2752c305a28b91b25d
-  ms.sourcegitcommit: ed6ef14710d45916ff170a6127c340351e762098
+  ms.openlocfilehash: 60f4e627a778892bb02fa8afb7ebfa46edd5ca09
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 01/14/2021
-  ms.locfileid: "102843961"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103499826"

@@ -1,0 +1,241 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_watcher_connection_monitor_test_configuration
+name: az network watcher connection-monitor test-configuration
+summary: Gérer la configuration de test d’un moniteur de connexion.
+description: ''
+directCommands:
+- uid: az_network_watcher_connection_monitor_test_configuration_add
+  name: az network watcher connection-monitor test-configuration add
+  summary: Ajoutez une configuration de test à un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor test-configuration add --connection-monitor
+                                                                 --location
+                                                                 --name
+                                                                 --protocol {Http, Icmp, Tcp}
+                                                                 --test-groups
+                                                                 [--frequency]
+                                                                 [--http-method {Get, Post}]
+                                                                 [--http-path]
+                                                                 [--http-port]
+                                                                 [--http-prefer-https {false, true}]
+                                                                 [--http-request-header]
+                                                                 [--http-valid-status-codes]
+                                                                 [--icmp-disable-trace-route {false, true}]
+                                                                 [--preferred-ip-version {IPv4, IPv6}]
+                                                                 [--subscription]
+                                                                 [--tcp-disable-trace-route {false, true}]
+                                                                 [--tcp-port]
+                                                                 [--tcp-port-behavior {ListenIfAvailable, None}]
+                                                                 [--threshold-failed-percent]
+                                                                 [--threshold-round-trip-time]
+  examples:
+  - summary: Ajouter une configuration de test avec HTTP pris en charge
+    syntax: az network watcher connection-monitor test-configuration add --connection-monitor MyConnectionMonitor --location westus --name MyHTTPTestConfiguration --test-groups DefaultTestGroup --protocol Http --http-request-header name=Host value=bing.com --http-request-header name=UserAgent value=Edge
+  - summary: Ajouter une configuration de test avec TCP pris en charge
+    syntax: az network watcher connection-monitor test-configuration add --connection-monitor MyConnectionMonitor --location westus --name MyHTTPTestConfiguration --test-groups TCPTestGroup DefaultTestGroup --protocol Tcp --tcp-port 4096
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de test du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --protocol
+    parameterValueGroup: Http, Icmp, Tcp
+    summary: Protocole à utiliser dans l’évaluation du test.
+    description: ''
+  - isRequired: true
+    name: --test-groups
+    summary: Liste, séparée par des espaces, des noms de groupes de test qui doivent être affectés uniquement s’ils sont spécifiés.
+    description: ''
+  optionalParameters:
+  - name: --frequency
+    defaultValue: "60"
+    summary: Fréquence d’évaluation du test, en secondes.
+    description: ''
+  - name: --http-method
+    parameterValueGroup: Get, Post
+    summary: Méthode HTTP à utiliser.
+    description: ''
+  - name: --http-path
+    summary: Composant de chemin d’accès de l’URI. Par exemple, « /dir1/dir2 ».
+    description: ''
+  - name: --http-port
+    summary: Port auquel se connecter.
+    description: ''
+  - name: --http-prefer-https
+    parameterValueGroup: false, true
+    summary: Valeur indiquant si le protocole HTTPs est préféré via HTTP dans les cas où le choix n’est pas explicite.
+    description: ''
+  - name: --http-request-header
+    summary: En-têtes HTTP à transmettre avec la requête. Liste de paires propriété = valeur pour définir des en-têtes HTTP.
+    description: ''
+  - name: --http-valid-status-codes
+    summary: Liste séparée par des espaces de codes d’état HTTP à prendre en compte. Par exemple, « 2xx 301-304 418 ».
+    description: ''
+  - name: --icmp-disable-trace-route
+    parameterValueGroup: false, true
+    summary: Valeur indiquant si l’évaluation du chemin d’accès avec l’itinéraire de suivi doit être désactivée. la valeur par défaut est false.
+    description: ''
+  - name: --preferred-ip-version
+    parameterValueGroup: IPv4, IPv6
+    summary: Version IP préférée à utiliser dans l’évaluation du test. Le moniteur de connexion peut choisir d’utiliser une version différente en fonction d’autres paramètres.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tcp-disable-trace-route
+    parameterValueGroup: false, true
+    summary: Valeur indiquant si l’évaluation du chemin d’accès avec l’itinéraire de suivi doit être désactivée. la valeur par défaut est false.
+    description: ''
+  - name: --tcp-port
+    summary: Port auquel se connecter.
+    description: ''
+  - name: --tcp-port-behavior
+    parameterValueGroup: ListenIfAvailable, None
+    summary: Comportement du port de destination.
+    description: ''
+  - name: --threshold-failed-percent
+    summary: Pourcentage maximal de vérifications ayant échoué autorisées pour qu’un test soit évalué comme ayant réussi.
+    description: ''
+  - name: --threshold-round-trip-time
+    summary: Durée maximale d’aller-retour en millisecondes autorisée pour qu’un test soit évalué comme réussi.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_connection_monitor_test_configuration_list
+  name: az network watcher connection-monitor test-configuration list
+  summary: Répertorie toutes les configurations de test d’un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor test-configuration list --connection-monitor
+                                                                  --location
+                                                                  [--query-examples]
+                                                                  [--subscription]
+  examples:
+  - summary: Répertorie toutes les configurations de test d’un moniteur de connexion. généré automatiquement
+    syntax: az network watcher connection-monitor test-configuration list --connection-monitor MyConnectionMonitor --location westus2
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_connection_monitor_test_configuration_remove
+  name: az network watcher connection-monitor test-configuration remove
+  summary: Supprimer une configuration de test d’un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor test-configuration remove --connection-monitor
+                                                                    --location
+                                                                    --name
+                                                                    [--subscription]
+                                                                    [--test-groups]
+  examples:
+  - summary: Supprimer une configuration de test de tous les groupes de test d’un moniteur de connexion
+    syntax: az network watcher connection-monitor test-configuration remove --connection-monitor MyConnectionMonitor --location westus --name MyTCPTestConfiguration
+  - summary: Supprimer une configuration de test de deux groupes de test d’un moniteur de connexion
+    syntax: az network watcher connection-monitor test-configuration remove --connection-monitor MyConnectionMonitor --location westus --name MyHTTPTestConfiguration --test-groups HTTPTestGroup DefaultTestGroup
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de test du moniteur de connexion.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --test-groups
+    summary: Liste, séparée par des espaces, des noms de groupes de test qui doivent être affectés uniquement s’ils sont spécifiés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_connection_monitor_test_configuration_show
+  name: az network watcher connection-monitor test-configuration show
+  summary: Affichez une configuration de test à partir d’un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor test-configuration show --connection-monitor
+                                                                  --location
+                                                                  --name
+                                                                  [--query-examples]
+                                                                  [--subscription]
+  examples:
+  - summary: Affichez une configuration de test à partir d’un moniteur de connexion. généré automatiquement
+    syntax: az network watcher connection-monitor test-configuration show --connection-monitor MyConnectionMonitor --location westus2 --name MyConnectionMonitorTestConfiguration
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de test du moniteur de connexion.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_watcher_connection_monitor_test_configuration_add
+- az_network_watcher_connection_monitor_test_configuration_list
+- az_network_watcher_connection_monitor_test_configuration_remove
+- az_network_watcher_connection_monitor_test_configuration_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer la configuration de test d’un moniteur de connexion.
+  ms.openlocfilehash: bdc71275e31d6893aa8544bb4986a1e2908ccf24
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965616"

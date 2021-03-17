@@ -1,0 +1,418 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_watcher
+name: az network watcher
+summary: Gérer Azure Network Watcher.
+description: Network Watcher aide à la surveillance et au diagnostic des conditions au niveau d’un scénario réseau. Pour en savoir plus <a href="https://docs.microsoft.com/azure/network-watcher/">https://docs.microsoft.com/azure/network-watcher/</a> , consultez.
+directCommands:
+- uid: az_network_watcher_configure
+  name: az network watcher configure
+  summary: Configurez le service de Network Watcher pour différentes régions.
+  description: ''
+  syntax: >-
+    az network watcher configure --locations
+                                 [--enabled {false, true}]
+                                 [--resource-group]
+                                 [--subscription]
+                                 [--tags]
+  examples:
+  - summary: Configurez Network Watcher pour la région États-Unis de l’Ouest.
+    syntax: az network watcher configure -g NetworkWatcherRG  -l westus --enabled true
+  requiredParameters:
+  - isRequired: true
+    name: --locations -l
+    summary: Liste d’emplacements séparés par des espaces à configurer.
+    description: ''
+  optionalParameters:
+  - name: --enabled
+    parameterValueGroup: false, true
+    summary: État activé des Network Watcher dans les régions spécifiées.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Obligatoire lors de l’activation de nouvelles régions.
+    description: Quand une région précédemment désactivée est activée pour utiliser Network Watcher, une ressource Network Watcher est créée dans ce groupe de ressources.
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_list
+  name: az network watcher list
+  summary: Répertorier les observateurs de réseau.
+  description: ''
+  syntax: >-
+    az network watcher list [--query-examples]
+                            [--subscription]
+  examples:
+  - summary: Répertorie tous les observateurs réseau d’un abonnement.
+    syntax: az network watcher list
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_run_configuration_diagnostic
+  name: az network watcher run-configuration-diagnostic
+  summary: Exécutez un diagnostic de configuration sur une ressource cible.
+  description: Requiert l’activation de Network Watcher pour la région où se trouve la cible.
+  syntax: >-
+    az network watcher run-configuration-diagnostic --resource
+                                                    [--destination]
+                                                    [--direction {Inbound, Outbound}]
+                                                    [--parent]
+                                                    [--port]
+                                                    [--protocol {Http, Https, Icmp, Tcp}]
+                                                    [--queries]
+                                                    [--resource-group]
+                                                    [--resource-type {applicationGateways, networkInterfaces, virtualMachines}]
+                                                    [--source]
+                                                    [--subscription]
+  examples:
+  - summary: Exécutez le diagnostic de configuration sur une machine virtuelle avec une seule requête.
+    syntax: >-
+      az network watcher run-configuration-diagnostic --resource {VM_ID}
+         --direction Inbound --protocol TCP --source 12.11.12.14 --destination 10.1.1.4 --port 12100
+  - summary: Exécutez le diagnostic de configuration sur une machine virtuelle avec plusieurs requêtes.
+    syntax: >-
+      az network watcher run-configuration-diagnostic --resource {VM_ID}
+          --queries '[
+          {
+              "direction": "Inbound", "protocol": "TCP", "source": "12.11.12.14",
+              "destination": "10.1.1.4", "destinationPort": "12100"
+          },
+          {
+              "direction": "Inbound", "protocol": "TCP", "source": "12.11.12.0/32",
+              "destination": "10.1.1.4", "destinationPort": "12100"
+          },
+          {
+              "direction": "Outbound", "protocol": "TCP", "source": "12.11.12.14",
+              "destination": "10.1.1.4", "destinationPort": "12100"
+          }]'
+  requiredParameters:
+  - isRequired: true
+    name: --resource
+    summary: Nom ou ID de la ressource cible à diagnostiquer. Si un ID est donné, les autres arguments de ressource ne doivent pas être donnés.
+    description: ''
+  optionalParameters:
+  - name: --destination
+    summary: Destination du trafic. Les valeurs acceptées sont' \* ', adresse IP/CIDR ou balise de service.
+    description: ''
+  - name: --direction
+    parameterValueGroup: Inbound, Outbound
+    summary: Direction du trafic.
+    description: ''
+  - name: --parent
+    summary: 'Chemin parent. (ex : virtualMachineScaleSets/vmss1).'
+    description: ''
+  - name: --port
+    summary: Port de destination du trafic. Les valeurs acceptées sont' \* ', le numéro de port (3389) ou la plage de ports (80-100).
+    description: ''
+  - name: --protocol
+    parameterValueGroup: Http, Https, Icmp, Tcp
+    summary: Protocole sur lequel effectuer la vérification.
+    description: ''
+  - name: --queries
+    summary: Liste JSON de requêtes à utiliser. Utilisez `@{path}` pour charger à partir d’un fichier.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type -t
+    parameterValueGroup: applicationGateways, networkInterfaces, virtualMachines
+    summary: Type de ressource.
+    description: ''
+  - name: --source
+    summary: Source du trafic. Les valeurs acceptées sont' \* ', adresse IP/CIDR ou balise de service.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_show_next_hop
+  name: az network watcher show-next-hop
+  summary: Obtenir des informations sur le tronçon suivant d’une machine virtuelle.
+  description: Requiert l’activation de Network Watcher pour la région où se trouve la machine virtuelle. Pour plus d’informations sur Show-Next-hop, visitez le site <a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-check-next-hop-cli">https://docs.microsoft.com/azure/network-watcher/network-watcher-check-next-hop-cli</a> .
+  syntax: >-
+    az network watcher show-next-hop --dest-ip
+                                     --resource-group
+                                     --source-ip
+                                     --vm
+                                     [--nic]
+                                     [--subscription]
+  examples:
+  - summary: Obtenir le tronçon suivant d’une adresse IP affectée à une machine virtuelle à une destination sur 10.1.0.4.
+    syntax: az network watcher show-next-hop -g MyResourceGroup --vm MyVm --source-ip 10.0.0.4 --dest-ip 10.1.0.4
+  requiredParameters:
+  - isRequired: true
+    name: --dest-ip
+    summary: Adresse IPv4 de destination.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources dans lequel se trouve la machine virtuelle cible.
+    description: ''
+  - isRequired: true
+    name: --source-ip
+    summary: Adresse IPv4 source.
+    description: ''
+  - isRequired: true
+    name: --vm
+    summary: Nom ou ID de la machine virtuelle à cibler. Si le nom de la machine virtuelle est fourni, le--Resource-Group est requis.
+    description: ''
+  optionalParameters:
+  - name: --nic
+    summary: Nom ou ID de la ressource de carte réseau à tester. Si la machine virtuelle possède plusieurs cartes réseau et que le transfert IP est activé sur l’une d’entre elles, ce paramètre est obligatoire.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_show_security_group_view
+  name: az network watcher show-security-group-view
+  summary: Obtenir des informations de sécurité détaillées sur une machine virtuelle pour le groupe de sécurité réseau actuellement configuré.
+  description: Pour plus d’informations sur l’utilisation de la vue de groupe de sécurité <a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-security-group-view-cli">https://docs.microsoft.com/azure/network-watcher/network-watcher-security-group-view-cli</a> , consultez.
+  syntax: >-
+    az network watcher show-security-group-view --resource-group
+                                                --vm
+                                                [--subscription]
+  examples:
+  - summary: Obtient les informations de groupe de sécurité réseau pour la machine virtuelle spécifiée.
+    syntax: az network watcher show-security-group-view -g MyResourceGroup --vm MyVm
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources dans lequel se trouve la machine virtuelle cible.
+    description: ''
+  - isRequired: true
+    name: --vm
+    summary: Nom ou ID de la machine virtuelle à cibler. Si le nom de la machine virtuelle est fourni, le--Resource-Group est requis.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_show_topology
+  name: az network watcher show-topology
+  summary: Obtenir la topologie réseau d’un groupe de ressources, d’un réseau virtuel ou d’un sous-réseau.
+  description: Pour plus d’informations sur l’utilisation de la topologie réseau <a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-cli">https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-cli</a> , consultez.
+  syntax: >-
+    az network watcher show-topology [--location]
+                                     [--resource-group]
+                                     [--subnet]
+                                     [--subscription]
+                                     [--vnet]
+  examples:
+  - summary: Utilisez Show-Topology pour obtenir la topologie des ressources au sein d’un groupe de ressources.
+    syntax: az network watcher show-topology -g MyResourceGroup
+  optionalParameters:
+  - name: --location -l
+    summary: Lieu. La valeur par défaut est l’emplacement du groupe de ressources cible.
+    description: Les informations de topologie sont affichées uniquement pour les ressources au sein du groupe de ressources cible qui se trouvent dans la région spécifiée.
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources cible sur lequel effectuer la topologie.
+    description: ''
+  - name: --subnet
+    summary: Nom ou ID du sous-réseau à cibler. Si le nom est utilisé,--le nom du réseau virtuel doit également être fourni.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet
+    summary: Nom ou ID du réseau virtuel à cibler.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_test_connectivity
+  name: az network watcher test-connectivity
+  summary: Teste si une connexion peut être établie entre un ordinateur virtuel et un point de terminaison donné.
+  description: Pour vérifier la connectivité entre deux machines virtuelles dans différentes régions, utilisez les ID de machine virtuelle à la place des noms de machine virtuelle pour les arguments de ressource source et de destination. Pour vous inscrire à cette fonctionnalité ou voir des exemples supplémentaires <a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-connectivity-cli">https://docs.microsoft.com/azure/network-watcher/network-watcher-connectivity-cli</a> , consultez.
+  syntax: >-
+    az network watcher test-connectivity --source-resource
+                                         [--dest-address]
+                                         [--dest-port]
+                                         [--dest-resource]
+                                         [--headers]
+                                         [--method {Get}]
+                                         [--protocol {Http, Https, Icmp, Tcp}]
+                                         [--resource-group]
+                                         [--source-port]
+                                         [--subscription]
+                                         [--valid-status-codes]
+  examples:
+  - summary: Vérifiez la connectivité entre deux machines virtuelles dans le même groupe de ressources sur le port 80.
+    syntax: az network watcher test-connectivity -g MyResourceGroup --source-resource MyVmName1 --dest-resource MyVmName2 --dest-port 80
+  - summary: Vérifiez la connectivité entre deux machines virtuelles dans le même abonnement dans deux groupes de ressources différents sur le port 80.
+    syntax: az network watcher test-connectivity --source-resource MyVmId1 --dest-resource MyVmId2 --dest-port 80
+  requiredParameters:
+  - isRequired: true
+    name: --source-resource
+    summary: Nom ou ID de la ressource à partir de laquelle le trafic est à l’origine.
+    description: Actuellement, seules les machines virtuelles sont prises en charge.
+  optionalParameters:
+  - name: --dest-address
+    summary: L’adresse IP ou l’URI à partir duquel recevoir le trafic.
+    description: ''
+  - name: --dest-port
+    summary: Numéro de port sur lequel recevoir le trafic.
+    description: ''
+  - name: --dest-resource
+    summary: Nom ou ID de la ressource devant recevoir le trafic.
+    description: Actuellement, seules les machines virtuelles sont prises en charge.
+  - name: --headers
+    summary: Liste d’en-têtes dans le format séparés par des espaces `KEY=VALUE` .
+    description: ''
+  - name: --method
+    parameterValueGroup: Get
+    summary: Méthode HTTP à utiliser.
+    description: ''
+  - name: --protocol
+    parameterValueGroup: Http, Https, Icmp, Tcp
+    summary: Protocole sur lequel effectuer le test.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --source-port
+    summary: Numéro de port à partir duquel le trafic est à l’origine.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --valid-status-codes
+    summary: Liste séparée par des espaces de codes d’état HTTP considérée comme valide.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_test_ip_flow
+  name: az network watcher test-ip-flow
+  summary: Testez le workflow IP vers/à partir d’une machine virtuelle en fonction des règles de groupe de sécurité réseau actuellement configurées.
+  description: Requiert l’activation de Network Watcher pour la région où se trouve la machine virtuelle. Pour plus d’informations <a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-check-ip-flow-verify-cli">https://docs.microsoft.com/azure/network-watcher/network-watcher-check-ip-flow-verify-cli</a> , consultez.
+  syntax: >-
+    az network watcher test-ip-flow --direction {Inbound, Outbound}
+                                    --local
+                                    --protocol {Http, Https, Icmp, Tcp}
+                                    --remote
+                                    --vm
+                                    [--nic]
+                                    [--resource-group]
+                                    [--subscription]
+  examples:
+  - summary: Exécutez test-IP-Flow Verify pour tester la connectivité logique d’une machine virtuelle à l’adresse IPv4 et au port de destination spécifiés.
+    syntax: >-
+      az network watcher test-ip-flow -g MyResourceGroup --direction Outbound \
+          --protocol TCP --local 10.0.0.4:* --remote 10.1.0.4:80 --vm MyVm
+  requiredParameters:
+  - isRequired: true
+    name: --direction
+    parameterValueGroup: Inbound, Outbound
+    summary: Direction du paquet par rapport à la machine virtuelle.
+    description: ''
+  - isRequired: true
+    name: --local
+    summary: L’adresse IPv4 privée pour la carte réseau des machines virtuelles et le port du paquet au format X.X.X. X :PORT. `\*` peut être utilisé pour le port lorsque la direction est sortante.
+    description: ''
+  - isRequired: true
+    name: --protocol
+    parameterValueGroup: Http, Https, Icmp, Tcp
+    summary: Protocole à tester.
+    description: ''
+  - isRequired: true
+    name: --remote
+    summary: Adresse IPv4 et port pour le côté distant du format X.X.X. X :PORT de paquets. `\*` peut être utilisé pour le port lorsque la direction est entrante.
+    description: ''
+  - isRequired: true
+    name: --vm
+    summary: Nom ou ID de la machine virtuelle à cibler. Si le nom de la machine virtuelle est fourni, le--Resource-Group est requis.
+    description: ''
+  optionalParameters:
+  - name: --nic
+    summary: Nom ou ID de la ressource de carte réseau à tester. Si la machine virtuelle possède plusieurs cartes réseau et que le transfert IP est activé sur l’une d’entre elles, ce paramètre est obligatoire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources dans lequel se trouve la machine virtuelle cible.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_watcher_configure
+- az_network_watcher_connection_monitor
+- az_network_watcher_connection_monitor_create
+- az_network_watcher_connection_monitor_delete
+- az_network_watcher_connection_monitor_endpoint
+- az_network_watcher_connection_monitor_endpoint_add
+- az_network_watcher_connection_monitor_endpoint_list
+- az_network_watcher_connection_monitor_endpoint_remove
+- az_network_watcher_connection_monitor_endpoint_show
+- az_network_watcher_connection_monitor_list
+- az_network_watcher_connection_monitor_output
+- az_network_watcher_connection_monitor_output_add
+- az_network_watcher_connection_monitor_output_list
+- az_network_watcher_connection_monitor_output_remove
+- az_network_watcher_connection_monitor_query
+- az_network_watcher_connection_monitor_show
+- az_network_watcher_connection_monitor_start
+- az_network_watcher_connection_monitor_stop
+- az_network_watcher_connection_monitor_test_configuration
+- az_network_watcher_connection_monitor_test_configuration_add
+- az_network_watcher_connection_monitor_test_configuration_list
+- az_network_watcher_connection_monitor_test_configuration_remove
+- az_network_watcher_connection_monitor_test_configuration_show
+- az_network_watcher_connection_monitor_test_group
+- az_network_watcher_connection_monitor_test_group_add
+- az_network_watcher_connection_monitor_test_group_list
+- az_network_watcher_connection_monitor_test_group_remove
+- az_network_watcher_connection_monitor_test_group_show
+- az_network_watcher_flow_log
+- az_network_watcher_flow_log_configure
+- az_network_watcher_flow_log_create
+- az_network_watcher_flow_log_delete
+- az_network_watcher_flow_log_list
+- az_network_watcher_flow_log_show
+- az_network_watcher_flow_log_update
+- az_network_watcher_list
+- az_network_watcher_packet_capture
+- az_network_watcher_packet_capture_create
+- az_network_watcher_packet_capture_delete
+- az_network_watcher_packet_capture_list
+- az_network_watcher_packet_capture_show
+- az_network_watcher_packet_capture_show_status
+- az_network_watcher_packet_capture_stop
+- az_network_watcher_run_configuration_diagnostic
+- az_network_watcher_show_next_hop
+- az_network_watcher_show_security_group_view
+- az_network_watcher_show_topology
+- az_network_watcher_test_connectivity
+- az_network_watcher_test_ip_flow
+- az_network_watcher_troubleshooting
+- az_network_watcher_troubleshooting_show
+- az_network_watcher_troubleshooting_start
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Network Watcher aide à la surveillance et au diagnostic des conditions au niveau d’un scénario réseau. Pour en savoir plus <a href="https://docs.microsoft.com/azure/network-watcher/">https://docs.microsoft.com/azure/network-watcher/</a> , consultez.
+  ms.openlocfilehash: a12587951f00861bb9dfc6e8990a2443995599fa
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965634"
