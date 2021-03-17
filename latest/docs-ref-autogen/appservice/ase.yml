@@ -1,0 +1,391 @@
+### YamlMime:AzureCLIGroup
+uid: az_appservice_ase
+name: az appservice ase
+summary: Gérer les environnements App Service v2.
+description: ''
+directCommands:
+- uid: az_appservice_ase_create
+  name: az appservice ase create
+  summary: Créez un environnement App service.
+  description: ''
+  syntax: >-
+    az appservice ase create --name
+                             --resource-group
+                             --subnet
+                             [--force-network-security-group {false, true}]
+                             [--force-route-table {false, true}]
+                             [--front-end-scale-factor]
+                             [--front-end-sku {I1, I2, I3}]
+                             [--ignore-network-security-group {false, true}]
+                             [--ignore-route-table {false, true}]
+                             [--ignore-subnet-size-validation {false, true}]
+                             [--kind {ASEv2, ASEv3}]
+                             [--location]
+                             [--no-wait]
+                             [--os-preference {Linux, Windows}]
+                             [--subscription]
+                             [--virtual-ip-type {External, Internal}]
+                             [--vnet-name]
+  examples:
+  - summary: Créez un groupe de ressources, un réseau virtuel et un environnement App service Environment v2 avec des valeurs par défaut.
+    syntax: >-
+      az group create -g MyResourceGroup --location westeurope
+
+
+      az network vnet create -g MyResourceGroup -n MyVirtualNetwork \
+        --address-prefixes 10.0.0.0/16 --subnet-name MyAseSubnet --subnet-prefixes 10.0.0.0/24
+
+      az appservice ase create -n MyAseName -g MyResourceGroup --vnet-name MyVirtualNetwork \
+        --subnet MyAseSubnet
+  - summary: Créez des environnements App service externes v2 avec de grands serveurs frontaux et un facteur d’échelle de 10 dans le groupe de ressources et le réseau virtuel existants.
+    syntax: >-
+      az appservice ase create -n MyAseName -g MyResourceGroup --vnet-name MyVirtualNetwork \
+        --subnet MyAseSubnet --front-end-sku I3 --front-end-scale-factor 10 \
+        --virtual-ip-type External
+  - summary: Créez un réseau virtuel et un environnement App service Environment v2, mais ne créez pas de groupe de sécurité réseau et de table de routage dans un groupe de ressources existant.
+    syntax: >-
+      az network vnet create -g MyResourceGroup -n MyVirtualNetwork \
+        --address-prefixes 10.0.0.0/16 --subnet-name MyAseSubnet --subnet-prefixes 10.0.0.0/24
+
+      az appservice ase create -n MyAseName -g MyResourceGroup --vnet-name MyVirtualNetwork \
+        --subnet MyAseSubnet --ignore-network-security-group --ignore-route-table
+  - summary: Créez un réseau virtuel et un environnement App service Environment v2 dans un sous-réseau plus petit que recommandé dans le groupe de ressources existant.
+    syntax: >-
+      az network vnet create -g MyResourceGroup -n MyVirtualNetwork \
+        --address-prefixes 10.0.0.0/16 --subnet-name MyAseSubnet --subnet-prefixes 10.0.0.0/26
+
+      az appservice ase create -n MyAseName -g MyResourceGroup --vnet-name MyVirtualNetwork \
+        --subnet MyAseSubnet --ignore-subnet-size-validation
+  - summary: Créez un groupe de ressources, un réseau virtuel et un environnement App service Environment v3 avec les valeurs par défaut.
+    syntax: >-
+      az group create -g ASEv3ResourceGroup --location westeurope
+
+
+      az network vnet create -g ASEv3ResourceGroup -n MyASEv3VirtualNetwork \
+        --address-prefixes 10.0.0.0/16 --subnet-name Inbound --subnet-prefixes 10.0.0.0/24
+
+      az network vnet subnet create -g ASEv3ResourceGroup --vnet-name MyASEv3VirtualNetwork \
+        --name Outbound --address-prefixes 10.0.1.0/24
+
+      az appservice ase create -n MyASEv3Name -g ASEv3ResourceGroup \
+        --vnet-name MyASEv3VirtualNetwork --subnet Outbound --kind asev3
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’environnement App service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --subnet
+    summary: Nom ou ID du sous-réseau existant. Pour créer un réseau virtuel et/ou une utilisation de sous-réseau `az network vnet [subnet] create` .
+    description: ''
+  optionalParameters:
+  - name: --force-network-security-group
+    parameterValueGroup: false, true
+    summary: Remplacez le groupe de sécurité réseau pour le sous-réseau.
+    description: ''
+  - name: --force-route-table
+    parameterValueGroup: false, true
+    summary: Remplacer la table d’itinéraires pour le sous-réseau.
+    description: ''
+  - name: --front-end-scale-factor
+    defaultValue: "15"
+    summary: Échelle des serveurs frontaux vers le ratio d’instance du plan App service.
+    description: ''
+  - name: --front-end-sku
+    defaultValue: I1
+    parameterValueGroup: I1, I2, I3
+    summary: Taille des serveurs frontaux.
+    description: ''
+  - name: --ignore-network-security-group
+    parameterValueGroup: false, true
+    summary: Configurez manuellement le groupe de sécurité réseau.
+    description: ''
+  - name: --ignore-route-table
+    parameterValueGroup: false, true
+    summary: Configurez la table d’itinéraires manuellement.
+    description: ''
+  - name: --ignore-subnet-size-validation
+    parameterValueGroup: false, true
+    summary: Ne vérifiez pas si le sous-réseau est dimensionné conformément aux recommandations.
+    description: ''
+  - name: --kind -k
+    defaultValue: ASEv2
+    parameterValueGroup: ASEv2, ASEv3
+    summary: Spécifiez App Service Environment version.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --os-preference
+    parameterValueGroup: Linux, Windows
+    summary: Déterminez si l’environnement App service doit démarrer avec les Workers Linux. S’applique à ASEv2 uniquement.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --virtual-ip-type
+    defaultValue: Internal
+    parameterValueGroup: External, Internal
+    summary: Spécifiez si l’environnement App service doit être accessible à partir d’Internet.
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel. Obligatoire si seul le nom du sous-réseau est spécifié.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_appservice_ase_create_inbound_services
+  name: az appservice ase create-inbound-services
+  summary: Créez les services entrants nécessaires en préversion pour ASEv3 (point de terminaison privé et DNS) ou DNS privé zone pour ASEv2 interne.
+  description: ''
+  syntax: >-
+    az appservice ase create-inbound-services --name
+                                              --resource-group
+                                              --subnet
+                                              [--skip-dns {false, true}]
+                                              [--subscription]
+                                              [--vnet-name]
+  examples:
+  - summary: Créez un point de terminaison privé, DNS privé zone, des enregistrements A et assurez-vous que la stratégie réseau du sous-réseau.
+    syntax: >-
+      az appservice ase create-inbound-services -n MyASEName -g ASEResourceGroup \
+        --vnet-name MyASEVirtualNetwork --subnet MyAseSubnet
+  - summary: Créez un point de terminaison privé et assurez-vous que la stratégie de réseau de sous-réseau (ASEv3), mais ne créez pas de zone et d’enregistrements DNS.
+    syntax: >-
+      az appservice ase create-inbound-services -n MyASEv3Name -g ASEv3ResourceGroup \
+        --vnet-name MyASEv3VirtualNetwork --subnet Inbound --skip-dns
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’environnement App service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --subnet
+    summary: Nom ou ID du sous-réseau existant pour le trafic entrant vers ASEv3.                    Pour créer un réseau virtuel et/ou une utilisation de sous-réseau `az network vnet [subnet] create` .
+    description: ''
+  optionalParameters:
+  - name: --skip-dns
+    parameterValueGroup: false, true
+    summary: Ne créez pas DNS privé zone et les enregistrements DNS.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel. Obligatoire si seul le nom du sous-réseau est spécifié.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_appservice_ase_delete
+  name: az appservice ase delete
+  summary: Supprimer l’environnement App service.
+  description: ''
+  syntax: >-
+    az appservice ase delete --name
+                             [--no-wait]
+                             [--resource-group]
+                             [--subscription]
+                             [--yes]
+  examples:
+  - summary: Supprimer l’environnement App service.
+    syntax: az appservice ase delete -n MyAseName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’environnement App service.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_appservice_ase_list
+  name: az appservice ase list
+  summary: Répertorie les environnements App service.
+  description: ''
+  syntax: >-
+    az appservice ase list [--query-examples]
+                           [--resource-group]
+                           [--subscription]
+  examples:
+  - summary: Répertorie tous les environnements App service dans l’abonnement.
+    syntax: az appservice ase list
+  - summary: Répertorie tous les environnements App service dans le groupe de ressources.
+    syntax: az appservice ase list --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_appservice_ase_list_addresses
+  name: az appservice ase list-addresses
+  summary: Répertoriez les adresses IP virtuelles associées à un environnement App service.
+  description: ''
+  syntax: >-
+    az appservice ase list-addresses --name
+                                     [--resource-group]
+                                     [--subscription]
+  examples:
+  - summary: Répertorier les adresses IP virtuelles pour un environnement App service.
+    syntax: az appservice ase list-addresses --name MyAseName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’environnement App service.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_appservice_ase_list_plans
+  name: az appservice ase list-plans
+  summary: Répertorier les plans App service associés à un environnement App service.
+  description: ''
+  syntax: >-
+    az appservice ase list-plans --name
+                                 [--resource-group]
+                                 [--subscription]
+  examples:
+  - summary: Répertorier les plans App service pour un environnement App service.
+    syntax: az appservice ase list-plans --name MyAseName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’environnement App service.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_appservice_ase_show
+  name: az appservice ase show
+  summary: Affichez les détails d’un environnement App service.
+  description: ''
+  syntax: >-
+    az appservice ase show --name
+                           [--query-examples]
+                           [--resource-group]
+                           [--subscription]
+  examples:
+  - summary: Affichez App service Environment.
+    syntax: az appservice ase show --name MyAseName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’environnement App service.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_appservice_ase_update
+  name: az appservice ase update
+  summary: Mettez à jour l’environnement App service.
+  description: ''
+  syntax: >-
+    az appservice ase update --name
+                             [--front-end-scale-factor]
+                             [--front-end-sku {I1, I2, I3}]
+                             [--no-wait]
+                             [--resource-group]
+                             [--subscription]
+  examples:
+  - summary: Mettez à jour l’environnement App service avec des serveurs frontaux et un facteur d’échelle de 10.
+    syntax: >-
+      az appservice ase update -n MyAseName -g MyResourceGroup --front-end-sku I2 \
+        --front-end-scale-factor 10
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’environnement App service.
+    description: ''
+  optionalParameters:
+  - name: --front-end-scale-factor
+    summary: Échelle des serveurs frontaux au ratio d’instance de plan App service entre 5 et 15.
+    description: ''
+  - name: --front-end-sku
+    parameterValueGroup: I1, I2, I3
+    summary: Taille des serveurs frontaux.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+commands:
+- az_appservice_ase_create
+- az_appservice_ase_create_inbound_services
+- az_appservice_ase_delete
+- az_appservice_ase_list
+- az_appservice_ase_list_addresses
+- az_appservice_ase_list_plans
+- az_appservice_ase_show
+- az_appservice_ase_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/26/2021
+  description: Gérer les environnements App Service v2.
+  ms.openlocfilehash: 2d3416c76ead0147b50752014f330ed4851c91eb
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103523116"

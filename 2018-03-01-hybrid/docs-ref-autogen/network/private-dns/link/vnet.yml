@@ -1,0 +1,325 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_private_dns_link_vnet
+name: az network private-dns link vnet
+summary: Gérer les liens de réseau virtuel vers la zone de DNS privé spécifiée.
+description: ''
+directCommands:
+- uid: az_network_private_dns_link_vnet_create
+  name: az network private-dns link vnet create
+  summary: Créer un lien de réseau virtuel vers la zone de DNS privé spécifiée.
+  description: ''
+  syntax: >-
+    az network private-dns link vnet create --name
+                                            --registration-enabled {false, true}
+                                            --resource-group
+                                            --virtual-network
+                                            --zone-name
+                                            [--no-wait]
+                                            [--subscription]
+                                            [--tags]
+  examples:
+  - summary: Créer un lien de réseau virtuel vers la zone de DNS privé spécifiée.
+    syntax: >-
+      az network private-dns link vnet create -g MyResourceGroup -n MyLinkName -z www.mysite.com \
+          -v MyVirtualNetworkId -e False
+  - summary: Créer un lien de réseau virtuel vers la zone de DNS privé spécifiée. généré automatiquement
+    syntax: az network private-dns link vnet create --name MyLinkName --registration-enabled true --resource-group MyResourceGroup --subscription MySubscription --tags CostCenter=Marketing --virtual-network MyVirtualNetworkId --zone-name www.mysite.com
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du lien de réseau virtuel vers la zone de DNS privé spécifiée.
+    description: ''
+  - isRequired: true
+    name: --registration-enabled -e
+    parameterValueGroup: false, true
+    summary: Spécifiez si le lien est activé pour l’inscription.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --virtual-network -v
+    summary: Nom ou ID du réseau virtuel.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone de DNS privé.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: Balises de ressource pour le lien de réseau virtuel.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_private_dns_link_vnet_delete
+  name: az network private-dns link vnet delete
+  summary: Supprimer un lien de réseau virtuel vers la zone de DNS privé spécifiée.
+  description: Dans le cas d’un réseau virtuel d’inscription, tous les enregistrements DNS inscrits automatiquement dans la zone pour le réseau virtuel sont également supprimés. Cette opération ne peut pas être annulée.
+  syntax: >-
+    az network private-dns link vnet delete --name
+                                            --resource-group
+                                            --zone-name
+                                            [--if-match]
+                                            [--no-wait]
+                                            [--subscription]
+                                            [--yes]
+  examples:
+  - summary: Supprimer un lien de réseau virtuel vers la zone de DNS privé spécifiée.
+    syntax: az network private-dns link vnet delete -g MyResourceGroup -z www.mysite.com -n MyLinkName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du lien de réseau virtuel vers la zone de DNS privé spécifiée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone de DNS privé.
+    description: ''
+  optionalParameters:
+  - name: --if-match
+    summary: L’ETag du lien de réseau virtuel vers la zone de DNS privé. Omettez cette valeur pour toujours supprimer la zone actuelle. Spécifiez la dernière valeur ETag visible pour empêcher la suppression accidentelle des modifications simultanées.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_private_dns_link_vnet_list
+  name: az network private-dns link vnet list
+  summary: Répertorie les liaisons de réseau virtuel vers la zone de DNS privé spécifiée.
+  description: ''
+  syntax: >-
+    az network private-dns link vnet list --resource-group
+                                          --zone-name
+                                          [--query-examples]
+                                          [--subscription]
+                                          [--top]
+  examples:
+  - summary: Répertorie les liens de réseau virtuel vers la zone de DNS privé spécifiée dans un groupe de ressources.
+    syntax: az network private-dns link vnet list -g MyResourceGroup -z www.mysite.com
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone de DNS privé.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --top
+    summary: Nombre maximal de liaisons de réseau virtuel à retourner. S’il n’est pas spécifié, retourne jusqu’à 100 liaisons de réseau virtuel.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_private_dns_link_vnet_show
+  name: az network private-dns link vnet show
+  summary: Obtient un lien de réseau virtuel vers la zone de DNS privé spécifiée.
+  description: ''
+  syntax: >-
+    az network private-dns link vnet show --name
+                                          --resource-group
+                                          --zone-name
+                                          [--query-examples]
+                                          [--subscription]
+  examples:
+  - summary: Obtient un lien de réseau virtuel vers la zone de DNS privé spécifiée..
+    syntax: az network private-dns link vnet show -g MyResourceGroup -n MyLinkName -z www.mysite.com
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du lien de réseau virtuel vers la zone de DNS privé spécifiée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone de DNS privé.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_private_dns_link_vnet_update
+  name: az network private-dns link vnet update
+  summary: Mettez à jour les propriétés d’un lien de réseau virtuel. Ne modifie pas le réseau virtuel dans le lien.
+  description: ''
+  syntax: >-
+    az network private-dns link vnet update --name
+                                            --resource-group
+                                            --zone-name
+                                            [--add]
+                                            [--force-string]
+                                            [--if-match]
+                                            [--no-wait]
+                                            [--registration-enabled {false, true}]
+                                            [--remove]
+                                            [--set]
+                                            [--subscription]
+                                            [--tags]
+  examples:
+  - summary: Mettez à jour les propriétés d’une liaison de réseau virtuel pour activer l’inscription.
+    syntax: az network private-dns link vnet update -g MyResourceGroup -n MyLinkName -z www.mysite.com -e True
+  - summary: Mettre à jour les propriétés d’un lien de réseau virtuel (générée automatiquement)
+    syntax: az network private-dns link vnet update --name MyLinkName --registration-enabled true --resource-group MyResourceGroup --tags CostCenter=Marketing --zone-name www.mysite.com
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du lien de réseau virtuel vers la zone de DNS privé spécifiée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone de DNS privé.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --if-match
+    summary: L’ETag du lien de réseau virtuel vers la zone de DNS privé.
+    description: Omettez cette valeur pour toujours remplacer le lien de réseau virtuel actuel. Spécifiez la valeur d’ETag la plus récente pour éviter que accidentellement overwritting les modifications simultanées.
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --registration-enabled -e
+    parameterValueGroup: false, true
+    summary: Spécifiez si le lien est activé pour l’inscription.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: Balises de ressource pour le lien de réseau virtuel.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_private_dns_link_vnet_wait
+  name: az network private-dns link vnet wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du lien de réseau virtuel vers la zone de DNS privé spécifiée soit remplie.
+  description: ''
+  syntax: >-
+    az network private-dns link vnet wait --name
+                                          --resource-group
+                                          --zone-name
+                                          [--created]
+                                          [--custom]
+                                          [--deleted]
+                                          [--exists]
+                                          [--interval]
+                                          [--subscription]
+                                          [--timeout]
+                                          [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que le lien de réseau virtuel vers la zone de DNS privé spécifiée soit correctement approvisionné.
+    syntax: az network private-dns link vnet wait -g MyResourceGroup -n MyLinkName -z www.mysite.com --created
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du lien de réseau virtuel vers la zone de DNS privé spécifiée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone de DNS privé.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_private_dns_link_vnet_create
+- az_network_private_dns_link_vnet_delete
+- az_network_private_dns_link_vnet_list
+- az_network_private_dns_link_vnet_show
+- az_network_private_dns_link_vnet_update
+- az_network_private_dns_link_vnet_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer les liens de réseau virtuel vers la zone de DNS privé spécifiée.
+  ms.openlocfilehash: 815dda54a39b7d17a87c3d67aece585ce7cea021
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102847606"
