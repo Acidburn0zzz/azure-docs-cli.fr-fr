@@ -1,0 +1,178 @@
+### YamlMime:AzureCLIGroup
+uid: az_vm_encryption
+name: az vm encryption
+summary: Gérer le chiffrement des disques de machine virtuelle.
+description: 'Pour plus d’informations, consultez : <a href="https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview">https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview</a> ».'
+directCommands:
+- uid: az_vm_encryption_disable
+  name: az vm encryption disable
+  summary: Désactivez le chiffrement de disque sur le disque du système d’exploitation et/ou les disques de données. Déchiffrer les disques montés.
+  description: >-
+    Pour les machines virtuelles Linux, la désactivation du chiffrement est autorisée uniquement sur les volumes de données.
+
+    Pour les machines virtuelles Windows, la désactivation du chiffrement est autorisée sur le système d’exploitation et les volumes de données.
+  syntax: >-
+    az vm encryption disable [--force]
+                             [--ids]
+                             [--name]
+                             [--resource-group]
+                             [--subscription]
+                             [--volume-type {ALL, DATA, OS}]
+  examples:
+  - summary: Désactivez le chiffrement de disque sur le disque du système d’exploitation et/ou les disques de données. généré automatiquement
+    syntax: az vm encryption disable --name MyVirtualMachine --resource-group MyResourceGroup --volume-type DATA
+  optionalParameters:
+  - name: --force
+    summary: Continuez en ignorant les erreurs de validation côté client.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --volume-type
+    parameterValueGroup: ALL, DATA, OS
+    summary: Type de volume sur lequel l’opération de chiffrement est effectuée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_encryption_enable
+  name: az vm encryption enable
+  summary: Activez le chiffrement de disque sur le disque du système d’exploitation et/ou les disques de données. Chiffrez les disques montés.
+  description: >-
+    Notez que les arguments Azure Active Directory/principal du service ne sont pas nécessaires pour le chiffrement de la machine virtuelle. La version antérieure de Azure Disk Encryption les arguments AAD requis.
+
+    Pour plus d’informations, consultez : <a href="https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview">https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview</a> .
+  syntax: >-
+    az vm encryption enable --disk-encryption-keyvault
+                            [--aad-client-cert-thumbprint]
+                            [--aad-client-id]
+                            [--aad-client-secret]
+                            [--encrypt-format-all]
+                            [--force]
+                            [--ids]
+                            [--key-encryption-algorithm]
+                            [--key-encryption-key]
+                            [--key-encryption-keyvault]
+                            [--name]
+                            [--resource-group]
+                            [--subscription]
+                            [--volume-type {ALL, DATA, OS}]
+  examples:
+  - summary: chiffrer une machine virtuelle à l’aide d’un coffre de clés dans le même groupe de ressources
+    syntax: az vm encryption enable -g MyResourceGroup -n MyVm --disk-encryption-keyvault MyVault
+  - summary: Activez le chiffrement de disque sur le disque du système d’exploitation et/ou les disques de données. Chiffrez les disques montés. généré automatiquement
+    syntax: az vm encryption enable --disk-encryption-keyvault MyVault --name MyVm --resource-group MyResourceGroup --volume-type DATA
+  requiredParameters:
+  - isRequired: true
+    name: --disk-encryption-keyvault
+    summary: Nom ou ID du coffre de clés dans lequel la clé de chiffrement générée sera placée.
+    description: ''
+  optionalParameters:
+  - name: --aad-client-cert-thumbprint
+    summary: Empreinte numérique du certificat d’application AAD avec les autorisations pour écrire des secrets dans le coffre de clés.
+    description: ''
+  - name: --aad-client-id
+    summary: ID client d’une application AAD avec des autorisations pour écrire des secrets dans le coffre de clés.
+    description: ''
+  - name: --aad-client-secret
+    summary: Clé secrète client de l’application AAD avec les autorisations pour écrire des secrets dans le coffre de clés.
+    description: ''
+  - name: --encrypt-format-all
+    summary: Chiffre-met en forme les disques de données au lieu de les chiffrer. La mise en forme du chiffrement est beaucoup plus rapide que le chiffrement sur place, mais efface la partition qui obtient le format de chiffrement.
+    description: ''
+  - name: --force
+    summary: Continuez en ignorant les erreurs de validation côté client.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --key-encryption-algorithm
+    defaultValue: RSA-OAEP
+    summary: ''
+    description: ''
+  - name: --key-encryption-key
+    summary: Nom ou URL de clé du coffre de clés utilisé pour chiffrer la clé de chiffrement de disque.
+    description: ''
+  - name: --key-encryption-keyvault
+    summary: Nom ou ID du coffre de clés contenant la clé de chiffrement à clé utilisée pour chiffrer la clé de chiffrement de disque. S’il est manquant, l’interface CLI utilise `--disk-encryption-keyvault` .
+    description: ''
+  - name: --name -n
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --volume-type
+    parameterValueGroup: ALL, DATA, OS
+    summary: Type de volume sur lequel l’opération de chiffrement est effectuée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_encryption_show
+  name: az vm encryption show
+  summary: Afficher l’état du chiffrement.
+  description: ''
+  syntax: >-
+    az vm encryption show [--ids]
+                          [--name]
+                          [--query-examples]
+                          [--resource-group]
+                          [--subscription]
+  examples:
+  - summary: Afficher l’état du chiffrement. généré automatiquement
+    syntax: az vm encryption show --name MyVirtualMachine --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+commands:
+- az_vm_encryption_disable
+- az_vm_encryption_enable
+- az_vm_encryption_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/05/2021
+  description: 'Pour plus d’informations, consultez : <a href="https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview">https://docs.microsoft.com/azure/security/azure-security-disk-encryption-overview</a> ».'
+  ms.openlocfilehash: 3b7adff7a3819c74be4f9b3504e79ef8b118b69f
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102849850"

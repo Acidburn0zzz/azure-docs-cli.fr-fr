@@ -1,0 +1,212 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_watcher_connection_monitor_endpoint
+name: az network watcher connection-monitor endpoint
+summary: Gérez le point de terminaison d’une analyse de connexion.
+description: ''
+directCommands:
+- uid: az_network_watcher_connection_monitor_endpoint_add
+  name: az network watcher connection-monitor endpoint add
+  summary: Ajoutez un point de terminaison à un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor endpoint add --connection-monitor
+                                                       --location
+                                                       --name
+                                                       [--address]
+                                                       [--address-exclude]
+                                                       [--address-include]
+                                                       [--coverage-level {AboveAverage, Average, BelowAverage, Default, Full, Low}]
+                                                       [--dest-test-groups]
+                                                       [--filter-item]
+                                                       [--filter-type {Include}]
+                                                       [--resource-id]
+                                                       [--source-test-groups]
+                                                       [--subscription]
+                                                       [--type {AzureSubnet, AzureVM, AzureVNet, ExternalAddress, MMAWorkspaceMachine, MMAWorkspaceNetwork}]
+  examples:
+  - summary: Ajouter une adresse externe comme point de terminaison de destination
+    syntax: az network watcher connection-monitor endpoint add --connection-monitor MyConnectionMonitor --location westus --name MyExternalEndpoint --address "bing.com" --dest-test-groups DefaultTestGroup --type ExternalAddress
+  - summary: Ajouter une machine virtuelle Azure en tant que point de terminaison source
+    syntax: az network watcher connection-monitor endpoint add --connection-monitor MyConnectionMonitor --location westus --name MyVMEndpoint --resource-id MyVMResourceID --source-test-groups DefaultTestGroup --type AzureVM
+  - summary: Ajouter un sous-réseau en tant que point de terminaison source avec des adresses exclues
+    syntax: az network watcher connection-monitor endpoint add --connection-monitor MyConnectionMonitor --location westus --name MySubnetEndpoint --resource-id MySubnetID --source-test-groups DefaultTestGroup --type AzureSubnet --address-exclude 10.0.0.25 10.0.0.30 --coverage-level BelowAverage
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du point de terminaison du moniteur de connexion.
+    description: ''
+  optionalParameters:
+  - name: --address
+    summary: Adresse du point de terminaison du moniteur de connexion (nom de domaine ou IP).
+    description: ''
+  - name: --address-exclude
+    summary: Liste d’adresses de l’élément de point de terminaison qui doit être inclus dans l’étendue du point de terminaison.
+    description: ''
+  - name: --address-include
+    summary: Liste d’adresses de l’élément de point de terminaison qui doit être inclus dans l’étendue du point de terminaison.
+    description: ''
+  - name: --coverage-level
+    parameterValueGroup: AboveAverage, Average, BelowAverage, Default, Full, Low
+    summary: Couverture de test pour le point de terminaison.
+    description: ''
+  - name: --dest-test-groups
+    summary: Liste de noms séparés par des espaces pour le groupe de test à référencer en tant que destination.
+    description: ''
+  - name: --filter-item
+    summary: 'Liste de paires propriété = valeur pour définir des éléments de filtre. La propriété inclut actuellement : type, Address. La valeur de propriété de type prend en charge’AgentAddress’maintenant uniquement.'
+    description: ''
+  - name: --filter-type
+    parameterValueGroup: Include
+    summary: Comportement du filtre de point de terminaison. Actuellement, seul’include’est pris en charge.
+    description: ''
+  - name: --resource-id
+    summary: ID de ressource du point de terminaison de surveillance de la connexion.
+    description: ''
+  - name: --source-test-groups
+    summary: Liste de noms séparés par des espaces pour le groupe de test à référencer en tant que source.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --type
+    parameterValueGroup: AzureSubnet, AzureVM, AzureVNet, ExternalAddress, MMAWorkspaceMachine, MMAWorkspaceNetwork
+    summary: Type de point de terminaison.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_connection_monitor_endpoint_list
+  name: az network watcher connection-monitor endpoint list
+  summary: La liste de tous les points de terminaison constitue un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor endpoint list --connection-monitor
+                                                        --location
+                                                        [--query-examples]
+                                                        [--subscription]
+  examples:
+  - summary: La liste de tous les points de terminaison constitue un moniteur de connexion. généré automatiquement
+    syntax: az network watcher connection-monitor endpoint list --connection-monitor MyConnectionMonitor --location westus2
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_connection_monitor_endpoint_remove
+  name: az network watcher connection-monitor endpoint remove
+  summary: Suppression d’un point de terminaison d’un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor endpoint remove --connection-monitor
+                                                          --location
+                                                          --name
+                                                          [--subscription]
+                                                          [--test-groups]
+  examples:
+  - summary: Supprimer un point de terminaison de tous les groupes de test d’un moniteur de connexion
+    syntax: az network watcher connection-monitor endpoint remove --connection-monitor MyConnectionMonitor --location westus --name MyEndpoint
+  - summary: Supprimer un point de terminaison de deux groupes de test d’un moniteur de connexion
+    syntax: az network watcher connection-monitor endpoint remove --connection-monitor MyConnectionMonitor --location westus --name MyEndpoint --test-groups DefaultTestGroup HealthCheckTestGroup
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du point de terminaison du moniteur de connexion.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --test-groups
+    summary: Liste, séparée par des espaces, des noms de groupes de test qui doivent être affectés uniquement s’ils sont spécifiés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_connection_monitor_endpoint_show
+  name: az network watcher connection-monitor endpoint show
+  summary: Afficher un point de terminaison à partir d’un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor endpoint show --connection-monitor
+                                                        --location
+                                                        --name
+                                                        [--query-examples]
+                                                        [--subscription]
+  examples:
+  - summary: Afficher un point de terminaison à partir d’un moniteur de connexion. généré automatiquement
+    syntax: az network watcher connection-monitor endpoint show --connection-monitor MyConnectionMonitor --location westus2 --name myconnectionmonitorendpoint --subscription MySubscription
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du point de terminaison du moniteur de connexion.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_watcher_connection_monitor_endpoint_add
+- az_network_watcher_connection_monitor_endpoint_list
+- az_network_watcher_connection_monitor_endpoint_remove
+- az_network_watcher_connection_monitor_endpoint_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérez le point de terminaison d’une analyse de connexion.
+  ms.openlocfilehash: a770d84ff56e84895796d3875e2ac045979c2507
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965625"

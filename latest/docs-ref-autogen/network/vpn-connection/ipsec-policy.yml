@@ -1,0 +1,171 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_vpn_connection_ipsec_policy
+name: az network vpn-connection ipsec-policy
+summary: Gérer les stratégies IPSec des connexions VPN.
+description: ''
+directCommands:
+- uid: az_network_vpn_connection_ipsec_policy_add
+  name: az network vpn-connection ipsec-policy add
+  summary: Ajoutez une stratégie IPSec de connexion VPN.
+  description: Définir toutes les stratégies IPsec d’une connexion VPN. Si vous souhaitez définir une stratégie IPsec, vous devez toutes les définir.
+  syntax: >-
+    az network vpn-connection ipsec-policy add --connection-name
+                                               --dh-group {DHGroup1, DHGroup14, DHGroup2, DHGroup2048, DHGroup24, ECP256, ECP384, None}
+                                               --ike-encryption {AES128, AES192, AES256, DES, DES3, GCMAES128, GCMAES256}
+                                               --ike-integrity {GCMAES128, GCMAES256, MD5, SHA1, SHA256, SHA384}
+                                               --ipsec-encryption {AES128, AES192, AES256, DES, DES3, GCMAES128, GCMAES192, GCMAES256, None}
+                                               --ipsec-integrity {GCMAES128, GCMAES192, GCMAES256, MD5, SHA1, SHA256}
+                                               --pfs-group {ECP256, ECP384, None, PFS1, PFS14, PFS2, PFS2048, PFS24, PFSMM}
+                                               --resource-group
+                                               --sa-lifetime
+                                               --sa-max-size
+                                               [--no-wait]
+                                               [--subscription]
+  examples:
+  - summary: Ajoutez les stratégies IPsec spécifiées à une connexion au lieu de vous appuyer sur les valeurs par défaut.
+    syntax: >-
+      az network vpn-connection ipsec-policy add -g MyResourceGroup --connection-name MyConnection \
+          --dh-group DHGroup14 --ike-encryption AES256 --ike-integrity SHA384 --ipsec-encryption DES3 \
+          --ipsec-integrity GCMAES256 --pfs-group PFS2048 --sa-lifetime 27000 --sa-max-size 102400000
+  requiredParameters:
+  - isRequired: true
+    name: --connection-name
+    summary: Nom de la connexion.
+    description: ''
+  - isRequired: true
+    name: --dh-group
+    parameterValueGroup: DHGroup1, DHGroup14, DHGroup2, DHGroup2048, DHGroup24, ECP256, ECP384, None
+    summary: Obligatoire. Groupe DH utilisé dans la phase 1 IKE pour la SA initiale.
+    description: ''
+  - isRequired: true
+    name: --ike-encryption
+    parameterValueGroup: AES128, AES192, AES256, DES, DES3, GCMAES128, GCMAES256
+    summary: Obligatoire. Algorithme de chiffrement IKE (phase 2 IKE).
+    description: ''
+  - isRequired: true
+    name: --ike-integrity
+    parameterValueGroup: GCMAES128, GCMAES256, MD5, SHA1, SHA256, SHA384
+    summary: Obligatoire. L’algorithme d’intégrité IKE (IKE phase 2).
+    description: ''
+  - isRequired: true
+    name: --ipsec-encryption
+    parameterValueGroup: AES128, AES192, AES256, DES, DES3, GCMAES128, GCMAES192, GCMAES256, None
+    summary: Obligatoire. L’algorithme de chiffrement IPSec (IKE phase 1).
+    description: ''
+  - isRequired: true
+    name: --ipsec-integrity
+    parameterValueGroup: GCMAES128, GCMAES192, GCMAES256, MD5, SHA1, SHA256
+    summary: Obligatoire. L’algorithme d’intégrité IPSec (IKE phase 1).
+    description: ''
+  - isRequired: true
+    name: --pfs-group
+    parameterValueGroup: ECP256, ECP384, None, PFS1, PFS14, PFS2, PFS2048, PFS24, PFSMM
+    summary: Obligatoire. Le groupe PFS utilisé dans IKE phase 2 pour la nouvelle SA de l’enfant.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --sa-lifetime
+    summary: Obligatoire. L’Association de sécurité IPSec (également appelée mode rapide ou SA phase 2) a une durée de vie en secondes pour un tunnel VPN de site à site.
+    description: ''
+  - isRequired: true
+    name: --sa-max-size
+    summary: Obligatoire. L’Association de sécurité IPSec (également appelée mode rapide ou la taille de la phase 2 SA) en Ko pour un tunnel VPN de site à site.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_vpn_connection_ipsec_policy_clear
+  name: az network vpn-connection ipsec-policy clear
+  summary: Supprimer toutes les stratégies IPsec sur une connexion VPN.
+  description: ''
+  syntax: >-
+    az network vpn-connection ipsec-policy clear --connection-name
+                                                 --resource-group
+                                                 [--no-wait]
+                                                 [--subscription]
+  examples:
+  - summary: Supprimer toutes les stratégies IPsec précédemment spécifiées dans une connexion.
+    syntax: az network vpn-connection ipsec-policy clear -g MyResourceGroup --connection-name MyConnection
+  requiredParameters:
+  - isRequired: true
+    name: --connection-name
+    summary: Nom de la connexion.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_vpn_connection_ipsec_policy_list
+  name: az network vpn-connection ipsec-policy list
+  summary: Répertorier les stratégies IPSec associées à une connexion VPN.
+  description: ''
+  syntax: >-
+    az network vpn-connection ipsec-policy list --connection-name
+                                                --resource-group
+                                                [--query-examples]
+                                                [--subscription]
+  examples:
+  - summary: Répertorier les stratégies IPsec définies sur une connexion.
+    syntax: az network vpn-connection ipsec-policy list -g MyResourceGroup --connection-name MyConnection
+  requiredParameters:
+  - isRequired: true
+    name: --connection-name
+    summary: Nom de la connexion.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_vpn_connection_ipsec_policy_add
+- az_network_vpn_connection_ipsec_policy_clear
+- az_network_vpn_connection_ipsec_policy_list
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer les stratégies IPSec des connexions VPN.
+  ms.openlocfilehash: 269dc3e47b265e929540e78ad51a94c5b0d736f1
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965652"

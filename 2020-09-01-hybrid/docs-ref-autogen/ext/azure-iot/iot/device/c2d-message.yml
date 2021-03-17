@@ -1,0 +1,292 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_iot_device_c2d_message
+name: az iot device c2d-message
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez la commande **AZ IOT Device C2D-message** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes de messagerie Cloud-à-appareil.
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_iot_device_c2d_message_abandon
+  name: az iot device c2d-message abandon
+  summary: Abandonner un message Cloud-à-appareil.
+  description: ''
+  syntax: >-
+    az iot device c2d-message abandon --device-id
+                                      --etag
+                                      [--hub-name]
+                                      [--login]
+                                      [--resource-group]
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  - isRequired: true
+    name: --etag -e
+    summary: L’ETag ou la balise d’entité correspondant au dernier état de la ressource. Si aucun ETag n’est fourni, la valeur' \* 'est utilisée.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_device_c2d_message_complete
+  name: az iot device c2d-message complete
+  summary: Complétez un message Cloud-à-appareil.
+  description: ''
+  syntax: >-
+    az iot device c2d-message complete --device-id
+                                       --etag
+                                       [--hub-name]
+                                       [--login]
+                                       [--resource-group]
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  - isRequired: true
+    name: --etag -e
+    summary: L’ETag ou la balise d’entité correspondant au dernier état de la ressource. Si aucun ETag n’est fourni, la valeur' \* 'est utilisée.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_device_c2d_message_purge
+  name: az iot device c2d-message purge
+  summary: Purger la file d’attente de messages Cloud-à-appareil pour un appareil cible.
+  description: ''
+  syntax: >-
+    az iot device c2d-message purge --device-id
+                                    [--hub-name]
+                                    [--login]
+                                    [--resource-group]
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_device_c2d_message_receive
+  name: az iot device c2d-message receive
+  summary: Recevoir un message Cloud-à-appareil.
+  description: 'Remarque : un seul argument de message ACK [--Complete,--Reject,--abandon] sera accepté.'
+  syntax: >-
+    az iot device c2d-message receive --device-id
+                                      [--abandon {false, true}]
+                                      [--complete {false, true}]
+                                      [--hub-name]
+                                      [--lock-timeout]
+                                      [--login]
+                                      [--reject {false, true}]
+                                      [--resource-group]
+  examples:
+  - summary: Utilisation de base
+    syntax: az iot device c2d-message receive -d {device_id} -n {hub_name} -g {resource_group}
+  - summary: Recevoir un message et définir un délai d’expiration de verrouillage de 30 secondes pour ce message
+    syntax: az iot device c2d-message receive -d {device_id} -n {hub_name} -g {resource_group} --lt {30}
+  - summary: Recevoir un message et l’envoyer comme « terminé » une fois qu’il a été reçu
+    syntax: az iot device c2d-message receive -d {device_id} -n {hub_name} -g {resource_group} --complete
+  - summary: Recevoir un message et le rejeter une fois qu’il a été reçu
+    syntax: az iot device c2d-message receive -d {device_id} -n {hub_name} -g {resource_group} --reject
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  optionalParameters:
+  - name: --abandon
+    parameterValueGroup: false, true
+    summary: Abandonner le message Cloud-à-appareil après réception.
+    description: ''
+  - name: --complete
+    parameterValueGroup: false, true
+    summary: Complétez le message Cloud-à-appareil après réception.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --lock-timeout --lt
+    defaultValue: "60"
+    summary: Spécifie la durée pendant laquelle un message est invisible pour d’autres appels de réception.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --reject
+    parameterValueGroup: false, true
+    summary: Rejeter le message Cloud-à-appareil après réception.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_device_c2d_message_reject
+  name: az iot device c2d-message reject
+  summary: Rejeter ou lettres mortes un message Cloud-à-appareil.
+  description: ''
+  syntax: >-
+    az iot device c2d-message reject --device-id
+                                     --etag
+                                     [--hub-name]
+                                     [--login]
+                                     [--resource-group]
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  - isRequired: true
+    name: --etag -e
+    summary: L’ETag ou la balise d’entité correspondant au dernier état de la ressource. Si aucun ETag n’est fourni, la valeur' \* 'est utilisée.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_device_c2d_message_send
+  name: az iot device c2d-message send
+  summary: Envoyer un message Cloud-à-appareil.
+  description: >-
+    EXPÉRIMENTal requiert python 3.4 + cette commande s’appuie sur et peut installer le package Cython dépendant (uamqp) lors de la première exécution.
+
+    <a href="https://github.com/Azure/azure-uamqp-python">https://github.com/Azure/azure-uamqp-python</a>.
+  syntax: >-
+    az iot device c2d-message send --device-id
+                                   [--ack {full, negative, positive}]
+                                   [--ce]
+                                   [--cid]
+                                   [--content-type]
+                                   [--da]
+                                   [--expiry]
+                                   [--hub-name]
+                                   [--login]
+                                   [--message-id]
+                                   [--properties]
+                                   [--repair {false, true}]
+                                   [--resource-group]
+                                   [--uid]
+                                   [--wait {false, true}]
+                                   [--yes {false, true}]
+  examples:
+  - summary: Utilisation de base avec le corps du message par défaut
+    syntax: az iot device c2d-message send -d {device_id} -n {iothub_name}
+  - summary: Envoyer un message Cloud-à-appareil avec des données et des propriétés personnalisées.
+    syntax: az iot device c2d-message send -d {device_id} -n {iothub_name} --data 'Hello World' --props 'key0=value0;key1=value1'
+  - summary: Envoyer un message C2D et attendre un accusé de réception de l’appareil
+    syntax: az iot device c2d-message send -d {device_id} -n {iothub_name} --ack full --wait
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  optionalParameters:
+  - name: --ack
+    parameterValueGroup: full, negative, positive
+    summary: 'Demandez la remise de commentaires par message concernant l’état final de ce message. La description des valeurs ACK est la suivante. Positif : si le message C2D atteint l’état terminé, IoT Hub génère un message de commentaire. Négatif : si le message C2D atteint l’état de lettres mortes, IoT Hub génère un message de commentaire. Full : IoT Hub génère un message de commentaire dans les deux cas. Par défaut, aucun accusé de réception n’est demandé.'
+    description: ''
+  - name: --ce --content-encoding
+    defaultValue: utf-8
+    summary: Encodage du contenu associé au message C2D.
+    description: ''
+  - name: --cid --correlation-id
+    summary: ID de corrélation associé au message C2D.
+    description: ''
+  - name: --content-type --ct
+    summary: Type de contenu associé au message C2D.
+    description: ''
+  - name: --da --data
+    defaultValue: Ping from Az CLI IoT Extension
+    summary: Corps du message.
+    description: ''
+  - name: --expiry --expiry-time-utc
+    summary: Les unités sont exprimées en millisecondes depuis l’époque UNIX. Si aucune heure n’est indiquée, la valeur par défaut IoT Hub TTL du message C2D est utilisée.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --message-id --mid
+    summary: ID de message C2D. Si aucun ID de message n’est fourni, un UUID est généré.
+    description: ''
+  - name: --properties --props -p
+    summary: 'Conteneur des propriétés de message dans les paires clé-valeur au format suivant : a = b ; c = d.'
+    description: ''
+  - name: --repair -r
+    parameterValueGroup: false, true
+    summary: 'Réinstallez la dépendance uamqp compatible avec la version de l’extension. Valeur par défaut : false.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --uid --user-id
+    summary: La propriété de l’ID d’utilisateur du message C2D.
+    description: ''
+  - name: --wait -w
+    parameterValueGroup: false, true
+    summary: Si la valeur est définie, l’opération d’envoi C2D est bloquée jusqu’à la réception des commentaires de l’appareil.
+    description: ''
+  - name: --yes -y
+    parameterValueGroup: false, true
+    summary: 'Ignorer les invites utilisateur. Indique l’acceptation de l’installation de la dépendance (si nécessaire). Utilisé principalement pour les scénarios d’automatisation. Valeur par défaut : false.'
+    description: ''
+commands:
+- ext_azure-iot_az_iot_device_c2d_message_abandon
+- ext_azure-iot_az_iot_device_c2d_message_complete
+- ext_azure-iot_az_iot_device_c2d_message_purge
+- ext_azure-iot_az_iot_device_c2d_message_receive
+- ext_azure-iot_az_iot_device_c2d_message_reject
+- ext_azure-iot_az_iot_device_c2d_message_send
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes de messagerie Cloud-à-appareil.
+  ms.openlocfilehash: 62b65ea2a0d577f69a3086525e9ed0b0afb7b235
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102841675"

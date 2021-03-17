@@ -1,0 +1,258 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_watcher_connection_monitor_test_group
+name: az network watcher connection-monitor test-group
+summary: Gérer un groupe de test d’un moniteur de connexion.
+description: ''
+directCommands:
+- uid: az_network_watcher_connection_monitor_test_group_add
+  name: az network watcher connection-monitor test-group add
+  summary: Ajoutez un groupe de test avec le nouveau point de terminaison ajouté/existant et la configuration de test à un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor test-group add --connection-monitor
+                                                         --endpoint-dest-name
+                                                         --endpoint-source-name
+                                                         --location
+                                                         --name
+                                                         --test-config-name
+                                                         [--disable {false, true}]
+                                                         [--endpoint-dest-address]
+                                                         [--endpoint-dest-resource-id]
+                                                         [--endpoint-source-address]
+                                                         [--endpoint-source-resource-id]
+                                                         [--frequency]
+                                                         [--http-method {Get, Post}]
+                                                         [--http-path]
+                                                         [--http-port]
+                                                         [--http-valid-status-codes]
+                                                         [--https-prefer {false, true}]
+                                                         [--icmp-disable-trace-route {false, true}]
+                                                         [--preferred-ip-version {IPv4, IPv6}]
+                                                         [--protocol {Http, Icmp, Tcp}]
+                                                         [--subscription]
+                                                         [--tcp-disable-trace-route {false, true}]
+                                                         [--tcp-port]
+                                                         [--threshold-failed-percent]
+                                                         [--threshold-round-trip-time]
+  examples:
+  - summary: Ajouter un groupe de test avec le point de terminaison existant et la configuration de test par le biais de leurs noms
+    syntax: az network watcher connection-monitor test-group add --connection-monitor MyConnectionMonitor --location westus --name MyHTTPTestGroup --endpoint-source-name MySourceEndpoint --endpoint-dest-name MyDestinationEndpoint --test-config-name MyTestConfiguration
+  - summary: Ajouter un groupe de test avec un point de terminaison source et une configuration de test existants à l’aide de son nom
+    syntax: az network watcher connection-monitor test-group add --connection-monitor MyConnectionMonitor --location westus --name MyAccessibilityTestGroup --endpoint-source-name MySourceEndpoint --endpoint-source-resource-id MyLogAnalysisWorkspaceID --endpoint-dest-name MyExistingDestinationEndpoint --test-config-name MyExistingTestConfiguration
+  - summary: Ajouter un groupe de test avec les nouveaux points de terminaison ajoutés et la configuration de test
+    syntax: az network watcher connection-monitor test-group add --connection-monitor MyConnectionMonitor --location westus --name MyAccessibilityTestGroup --endpoint-source-name MySourceEndpoint --endpoint-source-resource-id MyVMResourceID --endpoint-dest-name bing --endpoint-dest-address bing.com --test-config-name MyNewTestConfiguration --protocol Tcp --tcp-port 4096
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --endpoint-dest-name
+    summary: Nom de la destination du point de terminaison du moniteur de connexion. Si vous créez un moniteur de connexion v2, vous devez le faire.
+    description: ''
+  - isRequired: true
+    name: --endpoint-source-name
+    summary: Nom de la source du point de terminaison du moniteur de connexion. Si vous créez un moniteur de connexion v2, vous devez le faire.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de test de l’analyse de connexion.
+    description: ''
+  - isRequired: true
+    name: --test-config-name
+    summary: Nom de la configuration de test du moniteur de connexion. Si vous créez un moniteur de connexion v2, vous devez le faire.
+    description: ''
+  optionalParameters:
+  - name: --disable
+    parameterValueGroup: false, true
+    summary: Valeur indiquant si le groupe de test est désactivé. la valeur par défaut est false.
+    description: ''
+  - name: --endpoint-dest-address
+    summary: Adresse de la destination du point de terminaison du moniteur de connexion (nom d’adresse IP ou de domaine).
+    description: ''
+  - name: --endpoint-dest-resource-id
+    summary: ID de ressource de la destination du point de terminaison du moniteur de connexion.
+    description: ''
+  - name: --endpoint-source-address
+    summary: Adresse de la source du point de terminaison du moniteur de connexion (nom de domaine ou IP).
+    description: ''
+  - name: --endpoint-source-resource-id
+    summary: ID de ressource de la source du point de terminaison du moniteur de connexion. Si le point de terminaison est destiné à être utilisé en tant que source, cette option est obligatoire.
+    description: ''
+  - name: --frequency
+    defaultValue: "60"
+    summary: Fréquence d’évaluation du test, en secondes.
+    description: ''
+  - name: --http-method
+    parameterValueGroup: Get, Post
+    summary: Méthode HTTP à utiliser.
+    description: ''
+  - name: --http-path
+    summary: Composant de chemin d’accès de l’URI. Par exemple, « /dir1/dir2 ».
+    description: ''
+  - name: --http-port
+    summary: Port auquel se connecter.
+    description: ''
+  - name: --http-valid-status-codes
+    summary: Liste séparée par des espaces de codes d’état HTTP à prendre en compte. Par exemple, « 2xx 301-304 418 ».
+    description: ''
+  - name: --https-prefer
+    parameterValueGroup: false, true
+    summary: Valeur indiquant si le protocole HTTPs est préféré via HTTP dans les cas où le choix n’est pas explicite.
+    description: ''
+  - name: --icmp-disable-trace-route
+    parameterValueGroup: false, true
+    summary: Valeur indiquant si l’évaluation du chemin d’accès avec l’itinéraire de suivi doit être désactivée. la valeur par défaut est false.
+    description: ''
+  - name: --preferred-ip-version
+    parameterValueGroup: IPv4, IPv6
+    summary: Version IP préférée à utiliser dans l’évaluation du test. Le moniteur de connexion peut choisir d’utiliser une version différente en fonction d’autres paramètres.
+    description: ''
+  - name: --protocol
+    parameterValueGroup: Http, Icmp, Tcp
+    summary: Protocole à utiliser dans l’évaluation du test.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tcp-disable-trace-route
+    parameterValueGroup: false, true
+    summary: Valeur indiquant si l’évaluation du chemin d’accès avec l’itinéraire de suivi doit être désactivée. la valeur par défaut est false.
+    description: ''
+  - name: --tcp-port
+    summary: Port auquel se connecter.
+    description: ''
+  - name: --threshold-failed-percent
+    summary: Pourcentage maximal de vérifications ayant échoué autorisées pour qu’un test soit évalué comme ayant réussi.
+    description: ''
+  - name: --threshold-round-trip-time
+    summary: Durée maximale d’aller-retour en millisecondes autorisée pour qu’un test soit évalué comme réussi.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_connection_monitor_test_group_list
+  name: az network watcher connection-monitor test-group list
+  summary: Répertorie tous les groupes de test d’un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor test-group list --connection-monitor
+                                                          --location
+                                                          [--query-examples]
+                                                          [--subscription]
+  examples:
+  - summary: Répertorie tous les groupes de test d’un moniteur de connexion. généré automatiquement
+    syntax: az network watcher connection-monitor test-group list --connection-monitor MyConnectionMonitor --location westus2
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_connection_monitor_test_group_remove
+  name: az network watcher connection-monitor test-group remove
+  summary: Supprimer le groupe de test d’un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor test-group remove --connection-monitor
+                                                            --location
+                                                            --name
+                                                            [--subscription]
+  examples:
+  - summary: Supprimer le groupe de test d’un moniteur de connexion. généré automatiquement
+    syntax: az network watcher connection-monitor test-group remove --connection-monitor MyConnectionMonitor --location westus2 --name MyConnectionMonitorTestGroup
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de test de l’analyse de connexion.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_connection_monitor_test_group_show
+  name: az network watcher connection-monitor test-group show
+  summary: Affichez un groupe de test d’un moniteur de connexion.
+  description: ''
+  syntax: >-
+    az network watcher connection-monitor test-group show --connection-monitor
+                                                          --location
+                                                          --name
+                                                          [--query-examples]
+                                                          [--subscription]
+  examples:
+  - summary: Affichez un groupe de test d’un moniteur de connexion. généré automatiquement
+    syntax: az network watcher connection-monitor test-group show --connection-monitor MyConnectionMonitor --location westus2 --name MyConnectionMonitorTestGroup --subscription MySubscription
+  requiredParameters:
+  - isRequired: true
+    name: --connection-monitor
+    summary: Nom du moniteur de connexion.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du groupe de test de l’analyse de connexion.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_watcher_connection_monitor_test_group_add
+- az_network_watcher_connection_monitor_test_group_list
+- az_network_watcher_connection_monitor_test_group_remove
+- az_network_watcher_connection_monitor_test_group_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer un groupe de test d’un moniteur de connexion.
+  ms.openlocfilehash: 092a8205bd6ab28fa4fbe67e65b26fba338c88e0
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965610"
