@@ -1,0 +1,891 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_file
+name: az storage file
+summary: Gérer les partages de fichiers qui utilisent le protocole SMB 3,0.
+description: ''
+directCommands:
+- uid: az_storage_file_delete
+  name: az storage file delete
+  summary: Marque le fichier spécifié pour la suppression.
+  description: Le fichier est supprimé par la suite lors de la garbage collection.
+  syntax: >-
+    az storage file delete --path
+                           --share-name
+                           [--account-key]
+                           [--account-name]
+                           [--connection-string]
+                           [--sas-token]
+                           [--subscription]
+                           [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --path -p
+    summary: Chemin d’accès au fichier dans le partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_delete_batch
+  name: az storage file delete-batch
+  summary: Supprimer des fichiers d’un partage de fichiers Azure Storage.
+  description: ''
+  syntax: >-
+    az storage file delete-batch --source
+                                 [--account-key]
+                                 [--account-name]
+                                 [--connection-string]
+                                 [--dryrun]
+                                 [--pattern]
+                                 [--sas-token]
+                                 [--subscription]
+                                 [--timeout]
+  examples:
+  - summary: Supprimer des fichiers d’un partage de fichiers Azure Storage. généré automatiquement
+    syntax: az storage file delete-batch --account-key 00000000 --account-name MyAccount --source /path/to/file
+  - summary: Supprimer des fichiers d’un partage de fichiers Azure Storage. généré automatiquement
+    syntax: az storage file delete-batch --account-key 00000000 --account-name MyAccount --pattern *.py --source /path/to/file
+  requiredParameters:
+  - isRequired: true
+    name: --source -s
+    summary: Source de l’opération de suppression de fichier. La source peut être l’URL de partage de fichiers ou le nom de partage.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --dryrun
+    summary: Répertorie les fichiers et objets BLOB à supprimer. Aucune suppression réelle des données ne se produit.
+    description: ''
+  - name: --pattern
+    summary: Modèle utilisé pour le fichier globbing. Les modèles pris en charge sont « \* », «  ? », « [seq] » et « [ ! seq] ». Pour plus d’informations, consultez <a href="https://docs.python.org/3.7/library/fnmatch.html">https://docs.python.org/3.7/library/fnmatch.html</a> .
+    description: Quand vous utilisez « * » dans le modèle, il correspond à n’importe quel caractère, y compris le séparateur de répertoire « / ».
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_download
+  name: az storage file download
+  summary: Télécharge un fichier vers un chemin d’accès de fichier, avec des notifications de segmentation automatique et de progression.
+  description: Retourne une instance du fichier avec des propriétés et des métadonnées.
+  syntax: >-
+    az storage file download --path
+                             --share-name
+                             [--account-key]
+                             [--account-name]
+                             [--connection-string]
+                             [--dest]
+                             [--end-range]
+                             [--max-connections]
+                             [--max-retries]
+                             [--no-progress]
+                             [--open-mode]
+                             [--range-get-content-md5]
+                             [--retry-interval]
+                             [--sas-token]
+                             [--start-range]
+                             [--subscription]
+                             [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --path -p
+    summary: Chemin d’accès au fichier dans le partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --dest
+    summary: Chemin d’accès du fichier dans lequel écrire. Le nom de fichier source est utilisé s’il n’est pas spécifié.
+    description: ''
+  - name: --end-range
+    summary: 'Plage de fin d’octet à utiliser pour le téléchargement d’une section du fichier. Si end_range est donné, start_range doit être fourni. Les paramètres start_range et end_range sont inclus. Par exemple : start_range = 0, end_range = 511 téléchargera les 512 premiers octets du fichier.'
+    description: ''
+  - name: --max-connections
+    defaultValue: "1"
+    summary: Définissez la valeur 1 pour télécharger le fichier séquentiellement. Définissez la valeur sur 2 ou plus si vous souhaitez télécharger un fichier de plus de 64 Mo en bloc. Si la taille du fichier ne dépasse pas 64 Mo, elle est téléchargée dans un segment.
+    description: ''
+  - name: --max-retries
+    defaultValue: "5"
+    summary: Nombre de nouvelles tentatives de téléchargement du bloc de fichier si une erreur se produit.
+    description: ''
+  - name: --no-progress
+    summary: Incluez cet indicateur pour désactiver la création de rapports de progression pour la commande.
+    description: ''
+  - name: --open-mode
+    defaultValue: wb
+    summary: Mode à utiliser lors de l’ouverture du fichier.
+    description: ''
+  - name: --range-get-content-md5
+    summary: Lorsque cet en-tête a la valeur true et qu’il est spécifié avec l’en-tête Range, le service retourne le hachage MD5 pour la plage, tant que la taille de la plage est inférieure ou égale à 4 Mo.
+    description: ''
+  - name: --retry-interval
+    defaultValue: "1.0"
+    summary: Temps de veille en secondes entre les tentatives.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --start-range
+    summary: 'Début de la plage d’octets à utiliser pour le téléchargement d’une section du fichier. Si aucun end_range n’est spécifié, tous les octets après le start_range seront téléchargés. Les paramètres start_range et end_range sont inclus. Par exemple : start_range = 0, end_range = 511 téléchargera les 512 premiers octets du fichier.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_download_batch
+  name: az storage file download-batch
+  summary: Télécharger des fichiers à partir d’un partage de fichiers Azure Storage vers un répertoire local dans une opération de traitement par lots.
+  description: ''
+  syntax: >-
+    az storage file download-batch --destination
+                                   --source
+                                   [--account-key]
+                                   [--account-name]
+                                   [--connection-string]
+                                   [--dryrun]
+                                   [--max-connections]
+                                   [--no-progress]
+                                   [--pattern]
+                                   [--sas-token]
+                                   [--snapshot]
+                                   [--subscription]
+  examples:
+  - summary: Télécharger des fichiers à partir d’un partage de fichiers Azure Storage vers un répertoire local dans une opération de traitement par lots. généré automatiquement
+    syntax: az storage file download-batch --account-key 00000000 --account-name MyAccount --destination . --no-progress --source /path/to/file
+  requiredParameters:
+  - isRequired: true
+    name: --destination -d
+    summary: Répertoire local dans lequel les fichiers sont téléchargés. Ce répertoire doit déjà exister.
+    description: ''
+  - isRequired: true
+    name: --source -s
+    summary: Source de l’opération de téléchargement de fichier. La source peut être l’URL de partage de fichiers ou le nom de partage.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --dryrun
+    summary: Répertorie les fichiers et objets BLOB à télécharger. Aucun transfert de données réel n’aura lieu.
+    description: ''
+  - name: --max-connections
+    defaultValue: "1"
+    summary: Nombre maximal de connexions parallèles à utiliser. La valeur par défaut est 1.
+    description: ''
+  - name: --no-progress
+    summary: Incluez cet indicateur pour désactiver la création de rapports de progression pour la commande.
+    description: ''
+  - name: --pattern
+    summary: Modèle utilisé pour le fichier globbing. Les modèles pris en charge sont « \* », «  ? », « [seq] » et « [ ! seq] ». Pour plus d’informations, consultez <a href="https://docs.python.org/3.7/library/fnmatch.html">https://docs.python.org/3.7/library/fnmatch.html</a> .
+    description: Quand vous utilisez « * » dans le modèle, il correspond à n’importe quel caractère, y compris le séparateur de répertoire « / ».
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --snapshot
+    summary: Chaîne qui représente la version de l’instantané, le cas échéant.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_exists
+  name: az storage file exists
+  summary: Vérifiez l’existence d’un fichier.
+  description: ''
+  syntax: >-
+    az storage file exists --path
+                           --share-name
+                           [--account-key]
+                           [--account-name]
+                           [--connection-string]
+                           [--sas-token]
+                           [--subscription]
+                           [--timeout]
+  examples:
+  - summary: Vérifiez l’existence d’un fichier. généré automatiquement
+    syntax: az storage file exists --account-key 00000000 --account-name MyAccount --path path/file.txt --share-name MyShare
+  - summary: Vérifiez l’existence d’un fichier. généré automatiquement
+    syntax: az storage file exists --connection-string $connectionString --path path/file.txt --share-name MyShare
+  requiredParameters:
+  - isRequired: true
+    name: --path -p
+    summary: Chemin d’accès au fichier dans le partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_generate_sas
+  name: az storage file generate-sas
+  summary: Génère une signature d’accès partagé pour le fichier.
+  description: ''
+  syntax: >-
+    az storage file generate-sas --path
+                                 --share-name
+                                 [--account-key]
+                                 [--account-name]
+                                 [--cache-control]
+                                 [--connection-string]
+                                 [--content-disposition]
+                                 [--content-encoding]
+                                 [--content-language]
+                                 [--content-type]
+                                 [--expiry]
+                                 [--https-only]
+                                 [--ip]
+                                 [--permissions]
+                                 [--policy-name]
+                                 [--sas-token]
+                                 [--start]
+                                 [--subscription]
+  examples:
+  - summary: Générez un jeton SAP pour un fichier.
+    syntax: >-
+      end=`date -u -d "30 minutes" '+%Y-%m-%dT%H:%MZ'`
+
+      az storage file generate-sas -p path/file.txt -s MyShare --account-name MyStorageAccount --permissions rcdw --https-only --expiry $end
+  - summary: Générez une signature d’accès partagé pour le fichier. généré automatiquement
+    syntax: az storage file generate-sas --account-name MyStorageAccount --expiry 2037-12-31T23:59:00Z --path path/file.txt --permissions rcdw --share-name MyShare --start 2019-01-01T12:20Z
+  - summary: Générez une signature d’accès partagé pour le fichier. généré automatiquement
+    syntax: az storage file generate-sas --account-key 00000000 --account-name mystorageaccount --expiry 2037-12-31T23:59:00Z --https-only --path path/file.txt --permissions rcdw --share-name myshare
+  requiredParameters:
+  - isRequired: true
+    name: --path -p
+    summary: Chemin d’accès au fichier dans le partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --cache-control
+    summary: Valeur d’en-tête de réponse pour Cache-Control lorsque l’accès à la ressource s’effectue à l’aide de cette signature d’accès partagé.
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --content-disposition
+    summary: Valeur d’en-tête de réponse pour Content-disposition lorsque l’accès à la ressource est effectué à l’aide de cette signature d’accès partagé.
+    description: ''
+  - name: --content-encoding
+    summary: Valeur d’en-tête de réponse pour Content-Encoding lors de l’accès à la ressource à l’aide de cette signature d’accès partagé.
+    description: ''
+  - name: --content-language
+    summary: Valeur d’en-tête de réponse pour Content-Language lorsque l’accès à la ressource est effectué à l’aide de cette signature d’accès partagé.
+    description: ''
+  - name: --content-type
+    summary: Valeur d’en-tête de réponse pour Content-type lorsque l’accès à la ressource s’effectue à l’aide de cette signature d’accès partagé.
+    description: ''
+  - name: --expiry
+    summary: Spécifie la date/heure UTC (Y-m-d’T’H :M’Z') à laquelle la signature d’accès partagé n’est plus valide. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur.
+    description: ''
+  - name: --https-only
+    summary: Autorise uniquement les demandes effectuées avec le protocole HTTPs. En cas d’omission, les demandes du protocole HTTP et HTTPs sont autorisées.
+    description: ''
+  - name: --ip
+    summary: Spécifie l’adresse IP ou la plage d’adresses IP à partir de laquelle accepter les demandes. Prend uniquement en charge les adresses de style IPv4.
+    description: ''
+  - name: --permissions
+    summary: 'Autorisations accordées par la signature d’accès partagé. Valeurs autorisées : (c) RÉER (d) supprim (r) IRE (w). N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur. Peut être combiné.'
+    description: ''
+  - name: --policy-name
+    summary: Nom d’une stratégie d’accès stockée au sein de la liste de contrôle d’accès du conteneur.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --start
+    summary: Spécifie la date/heure UTC (Y-m-d’T’H :M’Z') à laquelle la signature d’accès partagé devient valide. N’utilisez pas si une stratégie d’accès stockée est référencée par--ID qui spécifie cette valeur. La valeur par défaut est l’heure de la demande.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_list
+  name: az storage file list
+  summary: Répertorier les fichiers et les répertoires dans un partage.
+  description: ''
+  syntax: >-
+    az storage file list --share-name
+                         [--account-key]
+                         [--account-name]
+                         [--connection-string]
+                         [--exclude-dir]
+                         [--marker]
+                         [--num-results]
+                         [--path]
+                         [--query-examples]
+                         [--sas-token]
+                         [--snapshot]
+                         [--subscription]
+                         [--timeout]
+  examples:
+  - summary: Répertorier les fichiers et les répertoires dans un partage. généré automatiquement
+    syntax: az storage file list --share-name MyShare
+  requiredParameters:
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --exclude-dir
+    summary: Répertorie uniquement les fichiers du partage donné.
+    description: ''
+  - name: --marker
+    summary: Jeton de continuation opaque. Cette valeur peut être récupérée à partir du champ next_marker d’un objet générateur précédent si num_results a été spécifié et que le générateur a terminé l’énumération des résultats. S’il est spécifié, ce générateur commencera à retourner des résultats à partir du point où le générateur précédent s’est arrêté.
+    description: ''
+  - name: --num-results
+    defaultValue: "5000"
+    summary: Spécifie le nombre maximal de résultats à retourner. Fournissez « \* » pour retourner tous les.
+    description: ''
+  - name: --path -p
+    summary: Chemin d’accès au répertoire dans le partage de fichiers.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --snapshot
+    summary: ''
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_resize
+  name: az storage file resize
+  summary: Redimensionne un fichier à la taille spécifiée.
+  description: Si la valeur d'octet spécifiée est inférieure à la taille actuelle du fichier, toutes les plages au-dessus de la valeur d'octet spécifiée sont effacées.
+  syntax: >-
+    az storage file resize --path
+                           --share-name
+                           --size
+                           [--account-key]
+                           [--account-name]
+                           [--connection-string]
+                           [--sas-token]
+                           [--subscription]
+                           [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --path -p
+    summary: Chemin d’accès au fichier dans le partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --size
+    summary: Longueur à laquelle le fichier doit être redimensionné.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_show
+  name: az storage file show
+  summary: Retourne toutes les métadonnées définies par l’utilisateur, les propriétés HTTP standard et les propriétés système du fichier.
+  description: Retourne une instance de file avec FichierPropriétés et un dictionnaire de métadonnées.
+  syntax: >-
+    az storage file show --path
+                         --share-name
+                         [--account-key]
+                         [--account-name]
+                         [--connection-string]
+                         [--query-examples]
+                         [--sas-token]
+                         [--subscription]
+                         [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --path -p
+    summary: Chemin d’accès au fichier dans le partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_update
+  name: az storage file update
+  summary: Définit les propriétés système du fichier.
+  description: Si une propriété est définie pour l’content_settings, toutes les propriétés sont remplacées.
+  syntax: >-
+    az storage file update --path
+                           --share-name
+                           [--account-key]
+                           [--account-name]
+                           [--clear-content-settings {false, true}]
+                           [--connection-string]
+                           [--content-cache-control]
+                           [--content-disposition]
+                           [--content-encoding]
+                           [--content-language]
+                           [--content-md5]
+                           [--content-type]
+                           [--sas-token]
+                           [--subscription]
+                           [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --path -p
+    summary: Chemin d’accès au fichier dans le partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --clear-content-settings
+    parameterValueGroup: false, true
+    summary: Si cet indicateur est défini, si une ou plusieurs des propriétés suivantes (--Content-Cache-Control,--Content-disposition,--Content-Encoding,--Content-Language,--Content-MD5,--Content-type) sont définies, toutes ces propriétés sont définies ensemble. Si aucune valeur n’est fournie pour une propriété donnée lorsqu’au moins une des propriétés listées ci-dessous est définie, cette propriété est effacée.
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --content-cache-control
+    summary: Chaîne de contrôle du cache.
+    description: ''
+  - name: --content-disposition
+    summary: Transmet des informations supplémentaires sur le traitement de la charge utile de la réponse et peut également être utilisé pour attacher des métadonnées supplémentaires.
+    description: ''
+  - name: --content-encoding
+    summary: Type d’encodage du contenu.
+    description: ''
+  - name: --content-language
+    summary: Langue du contenu.
+    description: ''
+  - name: --content-md5
+    summary: Hachage MD5 du contenu.
+    description: ''
+  - name: --content-type
+    summary: Type MIME du contenu.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_upload
+  name: az storage file upload
+  summary: Chargez un fichier sur un partage qui utilise le protocole SMB 3,0.
+  description: Crée ou met à jour un fichier Azure à partir d’un chemin d’accès source avec des notifications de segmentation automatique et de progression.
+  syntax: >-
+    az storage file upload --share-name
+                           --source
+                           [--account-key]
+                           [--account-name]
+                           [--connection-string]
+                           [--content-cache-control]
+                           [--content-disposition]
+                           [--content-encoding]
+                           [--content-language]
+                           [--content-md5]
+                           [--content-type]
+                           [--max-connections]
+                           [--max-retries]
+                           [--metadata]
+                           [--no-progress]
+                           [--path]
+                           [--retry-interval]
+                           [--sas-token]
+                           [--subscription]
+                           [--timeout]
+  examples:
+  - summary: Télécharger dans un fichier local vers un partage.
+    syntax: az storage file upload -s MyShare --source /path/to/file
+  - summary: Chargez un fichier sur un partage qui utilise le protocole SMB 3,0. généré automatiquement
+    syntax: az storage file upload --account-key 00000000 --account-name MyStorageAccount --path path/file.txt --share-name MyShare --source /path/to/file
+  requiredParameters:
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --source
+    summary: Chemin d’accès du fichier local à charger en tant que contenu du fichier.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --content-cache-control
+    summary: Chaîne de contrôle du cache.
+    description: ''
+  - name: --content-disposition
+    summary: Transmet des informations supplémentaires sur le traitement de la charge utile de la réponse et peut également être utilisé pour attacher des métadonnées supplémentaires.
+    description: ''
+  - name: --content-encoding
+    summary: Type d’encodage du contenu.
+    description: ''
+  - name: --content-language
+    summary: Langue du contenu.
+    description: ''
+  - name: --content-md5
+    summary: Hachage MD5 du contenu.
+    description: ''
+  - name: --content-type
+    summary: Type MIME du contenu.
+    description: ''
+  - name: --max-connections
+    defaultValue: "1"
+    summary: Nombre maximal de connexions parallèles à utiliser lorsque la taille du fichier dépasse 64 Mo. Affectez la valeur 1 pour charger les blocs de fichiers de manière séquentielle. Définissez la valeur sur 2 ou plus pour charger les blocs de fichiers en parallèle. Cela utilise davantage de ressources système, mais le téléchargement est plus rapide.
+    description: ''
+  - name: --max-retries
+    defaultValue: "5"
+    summary: Nombre de nouvelles tentatives de chargement du bloc de fichier si une erreur se produit.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --no-progress
+    summary: Incluez cet indicateur pour désactiver la création de rapports de progression pour la commande.
+    description: ''
+  - name: --path -p
+    summary: Chemin d’accès au fichier dans le partage de fichiers. Si le nom du fichier est omis, le nom du fichier source est utilisé.
+    description: ''
+  - name: --retry-interval
+    defaultValue: "1.0"
+    summary: Temps de veille en secondes entre les tentatives.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_upload_batch
+  name: az storage file upload-batch
+  summary: Charger des fichiers à partir d’un répertoire local vers un partage de fichiers de stockage Azure dans une opération de traitement par lots.
+  description: ''
+  syntax: >-
+    az storage file upload-batch --destination
+                                 --source
+                                 [--account-key]
+                                 [--account-name]
+                                 [--connection-string]
+                                 [--content-cache-control]
+                                 [--content-disposition]
+                                 [--content-encoding]
+                                 [--content-language]
+                                 [--content-md5]
+                                 [--content-type]
+                                 [--destination-path]
+                                 [--dryrun]
+                                 [--max-connections]
+                                 [--metadata]
+                                 [--no-progress]
+                                 [--pattern]
+                                 [--sas-token]
+                                 [--subscription]
+  examples:
+  - summary: Charger des fichiers à partir d’un répertoire local vers un partage de fichiers de stockage Azure dans une opération de traitement par lots. généré automatiquement
+    syntax: az storage file upload-batch --account-key 00000000 --account-name MyAccount --destination . --source /path/to/file
+  requiredParameters:
+  - isRequired: true
+    name: --destination -d
+    summary: Destination de l’opération de chargement.
+    description: La destination peut être l’URL de partage de fichiers ou le nom de partage. Lorsque la destination est l’URL de partage, le nom du compte de stockage est analysé à partir de l’URL.
+  - isRequired: true
+    name: --source -s
+    summary: Répertoire à partir duquel charger les fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --content-cache-control
+    summary: Chaîne de contrôle du cache.
+    description: ''
+  - name: --content-disposition
+    summary: Transmet des informations supplémentaires sur le traitement de la charge utile de la réponse et peut également être utilisé pour attacher des métadonnées supplémentaires.
+    description: ''
+  - name: --content-encoding
+    summary: Type d’encodage du contenu.
+    description: ''
+  - name: --content-language
+    summary: Langue du contenu.
+    description: ''
+  - name: --content-md5
+    summary: Hachage MD5 du contenu.
+    description: ''
+  - name: --content-type
+    summary: Type MIME du contenu.
+    description: ''
+  - name: --destination-path
+    summary: Répertoire dans lequel les données sources sont copiées. En cas d’omission, les données sont copiées dans le répertoire racine.
+    description: ''
+  - name: --dryrun
+    summary: Répertorie les fichiers et objets BLOB à télécharger. Aucun transfert de données réel n’aura lieu.
+    description: ''
+  - name: --max-connections
+    defaultValue: "1"
+    summary: Nombre maximal de connexions parallèles à utiliser. La valeur par défaut est 1.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --no-progress
+    summary: Incluez cet indicateur pour désactiver la création de rapports de progression pour la commande.
+    description: ''
+  - name: --pattern
+    summary: Modèle utilisé pour le fichier globbing. Les modèles pris en charge sont « \* », «  ? », « [seq] » et « [ ! seq] ». Pour plus d’informations, consultez <a href="https://docs.python.org/3.7/library/fnmatch.html">https://docs.python.org/3.7/library/fnmatch.html</a> .
+    description: Quand vous utilisez « * » dans le modèle, il correspond à n’importe quel caractère, y compris le séparateur de répertoire « / ».
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_file_url
+  name: az storage file url
+  summary: Créez l’URL pour accéder à un fichier.
+  description: ''
+  syntax: >-
+    az storage file url --path
+                        --share-name
+                        [--account-key]
+                        [--account-name]
+                        [--connection-string]
+                        [--protocol {http, https}]
+                        [--sas-token]
+                        [--subscription]
+  examples:
+  - summary: Créez l’URL pour accéder à un fichier. généré automatiquement
+    syntax: az storage file url --account-key 00000000 --account-name mystorageaccount --path path/file.txt --share-name myshare
+  requiredParameters:
+  - isRequired: true
+    name: --path -p
+    summary: Chemin d’accès au fichier dans le partage de fichiers.
+    description: ''
+  - isRequired: true
+    name: --share-name -s
+    summary: Nom du partage de fichiers.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --protocol
+    defaultValue: https
+    parameterValueGroup: http, https
+    summary: Protocole à utiliser.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_file_copy
+- az_storage_file_copy_cancel
+- az_storage_file_copy_start
+- az_storage_file_copy_start_batch
+- az_storage_file_delete
+- az_storage_file_delete_batch
+- az_storage_file_download
+- az_storage_file_download_batch
+- az_storage_file_exists
+- az_storage_file_generate_sas
+- az_storage_file_list
+- az_storage_file_metadata
+- az_storage_file_metadata_show
+- az_storage_file_metadata_update
+- az_storage_file_resize
+- az_storage_file_show
+- az_storage_file_update
+- az_storage_file_upload
+- az_storage_file_upload_batch
+- az_storage_file_url
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les partages de fichiers qui utilisent le protocole SMB 3,0.
+  ms.openlocfilehash: af13878b53d459d3c78c2dabea699ce9161ed3e8
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102966456"

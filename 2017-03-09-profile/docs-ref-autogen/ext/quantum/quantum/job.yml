@@ -1,0 +1,203 @@
+### YamlMime:AzureCLIGroup
+uid: ext_quantum_az_quantum_job
+name: az quantum job
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Quantum** pour Azure CLI et requiert la version 2.5.1 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez la commande **AZ Quantum Job** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les travaux pour Azure Quantum.
+description: ''
+directCommands:
+- uid: ext_quantum_az_quantum_job_list
+  name: az quantum job list
+  summary: Obtient la liste des tâches dans un espace de travail Quantum.
+  description: ''
+  syntax: >-
+    az quantum job list [--location]
+                        [--resource-group]
+                        [--workspace-name]
+  examples:
+  - summary: Récupération de la liste des tâches à partir d’un espace de travail Quantum Azure.
+    syntax: az quantum job list -g MyResourceGroup -w MyWorkspace -l MyLocation
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --workspace-name -w
+    summary: Nom de l’espace de travail Quantum. Vous pouvez configurer l’espace de travail par défaut à l’aide de `az quantum workspace set` .
+    description: ''
+- uid: ext_quantum_az_quantum_job_output
+  name: az quantum job output
+  summary: 'Obtient les résultats de l’exécution d’un travail Q #.'
+  description: ''
+  syntax: >-
+    az quantum job output --job-id
+                          [--location]
+                          [--resource-group]
+                          [--workspace-name]
+  examples:
+  - summary: Imprimez les résultats d’une tâche Azure Quantum réussie.
+    syntax: >-
+      az quantum job output -g MyResourceGroup -w MyWorkspace -l MyLocation \
+          -j yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy -o table
+  requiredParameters:
+  - isRequired: true
+    name: --job-id -j
+    summary: Identificateur unique du travail au format GUID.
+    description: ''
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --workspace-name -w
+    summary: Nom de l’espace de travail Quantum. Vous pouvez configurer l’espace de travail par défaut à l’aide de `az quantum workspace set` .
+    description: ''
+- uid: ext_quantum_az_quantum_job_show
+  name: az quantum job show
+  summary: Obtient l’État et les détails du travail.
+  description: ''
+  syntax: >-
+    az quantum job show --job-id
+                        [--location]
+                        [--resource-group]
+                        [--workspace-name]
+  examples:
+  - summary: Obtient l’état d’une tâche Quantum Azure.
+    syntax: >-
+      az quantum job show -g MyResourceGroup -w MyWorkspace -l MyLocation \
+          -j yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy --query status
+  requiredParameters:
+  - isRequired: true
+    name: --job-id -j
+    summary: Identificateur unique du travail au format GUID.
+    description: ''
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --workspace-name -w
+    summary: Nom de l’espace de travail Quantum. Vous pouvez configurer l’espace de travail par défaut à l’aide de `az quantum workspace set` .
+    description: ''
+- uid: ext_quantum_az_quantum_job_submit
+  name: az quantum job submit
+  summary: 'Soumettez un projet Q # à exécuter sur Azure Quantum.'
+  description: ''
+  syntax: >-
+    az quantum job submit [--job-name]
+                          [--location]
+                          [--no-build]
+                          [--project]
+                          [--resource-group]
+                          [--shots]
+                          [--storage]
+                          [--target-id]
+                          [--workspace-name]
+                          [<PROGRAM_ARGS>]
+  examples:
+  - summary: 'Envoyez le programme Q # à partir du dossier actuel.'
+    syntax: >-
+      az quantum job submit -g MyResourceGroup -w MyWorkspace -l MyLocation \
+         -l MyLocation --job-name MyJob
+  optionalParameters:
+  - name: --job-name
+    summary: Nom convivial à attribuer à cette exécution du programme.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-build
+    summary: 'S’il est spécifié, le programme Q # n’est pas généré avant l’envoi.'
+    description: ''
+  - name: --project
+    summary: 'Emplacement du projet Q # à envoyer. La valeur par défaut est le dossier actif.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --shots
+    summary: 'Nombre d’exécutions du programme Q # sur la cible donnée.'
+    description: ''
+  - name: --storage
+    summary: S’il est spécifié, la chaîne de requête d’un stockage Azure est utilisée pour stocker les données et les résultats du travail.
+    description: ''
+  - name: --target-id -t
+    summary: Moteur d’exécution pour les travaux de calcul Quantum. Lorsqu’un espace de travail est configuré avec un ensemble de fournisseurs, chacun d’entre eux active une ou plusieurs cibles.
+    description: ''
+  - name: --workspace-name -w
+    summary: Nom de l’espace de travail Quantum. Vous pouvez configurer l’espace de travail par défaut à l’aide de `az quantum workspace set` .
+    description: ''
+  - name: <PROGRAM_ARGS>
+    summary: 'Liste d’arguments attendus par l’opération Q # spécifiée comme--name = value after `--` .'
+    description: ''
+- uid: ext_quantum_az_quantum_job_wait
+  name: az quantum job wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à la fin de l’exécution du travail.
+  description: ''
+  syntax: >-
+    az quantum job wait --job-id
+                        [--location]
+                        [--max-poll-wait-secs]
+                        [--resource-group]
+                        [--workspace-name]
+  examples:
+  - summary: Attendre la fin d’un travail pendant 60 secondes.
+    syntax: >-
+      az quantum job wait -g MyResourceGroup -w MyWorkspace -l MyLocation \
+          -j yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy --max-poll-wait-secs 60 -o table
+  requiredParameters:
+  - isRequired: true
+    name: --job-id -j
+    summary: Identificateur unique du travail au format GUID.
+    description: ''
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --max-poll-wait-secs
+    defaultValue: "5"
+    summary: Durée d’interrogation en secondes pour interroger Azure Quantum pour obtenir les résultats de la tâche correspondante.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --workspace-name -w
+    summary: Nom de l’espace de travail Quantum. Vous pouvez configurer l’espace de travail par défaut à l’aide de `az quantum workspace set` .
+    description: ''
+commands:
+- ext_quantum_az_quantum_job_list
+- ext_quantum_az_quantum_job_output
+- ext_quantum_az_quantum_job_show
+- ext_quantum_az_quantum_job_submit
+- ext_quantum_az_quantum_job_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les travaux pour Azure Quantum.
+  ms.openlocfilehash: 01d8c07e362dfd11ae56dfb7e7471d0e28984bff
+  ms.sourcegitcommit: 3e79897e0aeca4d74bc8ff0410121b011b5884ec
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/03/2021
+  ms.locfileid: "102845530"
