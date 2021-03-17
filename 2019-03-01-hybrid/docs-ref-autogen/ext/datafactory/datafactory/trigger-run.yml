@@ -1,0 +1,157 @@
+### YamlMime:AzureCLIGroup
+uid: ext_datafactory_az_datafactory_trigger_run
+name: az datafactory trigger-run
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **DataFactory** pour Azure CLI et requiert la version 2.11.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez la commande **AZ DataFactory Trigger-Run** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Déclencheur DataFactory-exécution.
+description: ''
+directCommands:
+- uid: ext_datafactory_az_datafactory_trigger_run_cancel
+  name: az datafactory trigger-run cancel
+  summary: Annulez une seule instance de déclencheur par runId.
+  description: ''
+  syntax: >-
+    az datafactory trigger-run cancel --factory-name
+                                      --resource-group
+                                      --run-id
+                                      --trigger-name
+  examples:
+  - summary: Triggers_Cancel
+    syntax: az datafactory trigger-run cancel --factory-name "exampleFactoryName" --resource-group "exampleResourceGroup" --run-id "2f7fdb90-5df1-4b8e-ac2f-064cfa58202b" --trigger-name "exampleTrigger"
+  requiredParameters:
+  - isRequired: true
+    name: --factory-name
+    summary: Nom de la fabrique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --run-id
+    summary: Identificateur d’exécution du pipeline.
+    description: ''
+  - isRequired: true
+    name: --trigger-name
+    summary: Nom du déclencheur.
+    description: ''
+- uid: ext_datafactory_az_datafactory_trigger_run_query_by_factory
+  name: az datafactory trigger-run query-by-factory
+  summary: Exécution du déclencheur de requête.
+  description: ''
+  syntax: >-
+    az datafactory trigger-run query-by-factory --factory-name
+                                                --last-updated-after
+                                                --last-updated-before
+                                                --resource-group
+                                                [--continuation-token]
+                                                [--filters]
+                                                [--order-by]
+  examples:
+  - summary: TriggerRuns_QueryByFactory
+    syntax: az datafactory trigger-run query-by-factory --factory-name "exampleFactoryName" --filters operand="TriggerName" operator="Equals" values="exampleTrigger" --last-updated-after "2018-06-16T00:36:44.3345758Z" --last-updated-before "2018-06-16T00:49:48.3686473Z" --resource-group "exampleResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --factory-name
+    summary: Nom de la fabrique.
+    description: ''
+  - isRequired: true
+    name: --last-updated-after
+    summary: Heure à laquelle l’événement d’exécution a été mis à jour au format « ISO 8601 » ou après.
+    description: ''
+  - isRequired: true
+    name: --last-updated-before
+    summary: Heure à laquelle l’événement d’exécution a été mis à jour au format « ISO 8601 » ou avant.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --continuation-token
+    summary: Jeton de continuation pour l’obtention de la page de résultats suivante. NULL pour la première page.
+    description: ''
+  - name: --filters
+    summary: Liste de filtres.
+    description: >-
+      Utilisation :--Filters Operand = XX, opérateur = XX values = XX
+
+
+      opérande : obligatoire. Nom du paramètre à utiliser pour le filtre. Les opérandes autorisés pour interroger les exécutions de pipeline sont PipelineName, RunStart, RunEnd et Status. pour interroger les exécutions d’activité sont ActivityName, ActivityRunStart, ActivityRunEnd, ActivityType et Status, et pour interroger les exécutions de déclencheur sont TriggerName, TriggerRunTimestamp et Status.
+
+      opérateur : obligatoire. Opérateur à utiliser pour le filtre.
+
+      valeurs : obligatoire. Liste des valeurs de filtre.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Filters.
+  - name: --order-by
+    summary: Liste d’options OrderBy.
+    description: >-
+      Utilisation :--commande-par commande-par = XX Order = XX
+
+
+      ordre-par : obligatoire. Nom du paramètre à utiliser pour order by. Les paramètres autorisés pour l’ordonnancement pour les exécutions de pipeline sont PipelineName, RunStart, RunEnd et Status. pour les exécutions d’activité sont ActivityName, ActivityRunStart, ActivityRunEnd et Status. les exécutions de déclencheur sont TriggerName, TriggerRunTimestamp et Status.
+
+      Order : obligatoire. Ordre de tri du paramètre.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--order-by.
+- uid: ext_datafactory_az_datafactory_trigger_run_rerun
+  name: az datafactory trigger-run rerun
+  summary: Réexécutez l’instance de déclencheur unique par runId.
+  description: ''
+  syntax: >-
+    az datafactory trigger-run rerun --factory-name
+                                     --resource-group
+                                     --run-id
+                                     --trigger-name
+  examples:
+  - summary: Triggers_Rerun
+    syntax: az datafactory trigger-run rerun --factory-name "exampleFactoryName" --resource-group "exampleResourceGroup" --run-id "2f7fdb90-5df1-4b8e-ac2f-064cfa58202b" --trigger-name "exampleTrigger"
+  requiredParameters:
+  - isRequired: true
+    name: --factory-name
+    summary: Nom de la fabrique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --run-id
+    summary: Identificateur d’exécution du pipeline.
+    description: ''
+  - isRequired: true
+    name: --trigger-name
+    summary: Nom du déclencheur.
+    description: ''
+commands:
+- ext_datafactory_az_datafactory_trigger_run_cancel
+- ext_datafactory_az_datafactory_trigger_run_query_by_factory
+- ext_datafactory_az_datafactory_trigger_run_rerun
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Déclencheur DataFactory-exécution.
+  ms.openlocfilehash: 832fb226db1f175c7251722a180c229500172f73
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102840172"
