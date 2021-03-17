@@ -16,11 +16,19 @@ directCommands:
     az cosmosdb sql role assignment create --account-name
                                            --principal-id
                                            --resource-group
-                                           --role-definition-id
                                            --scope
                                            [--role-assignment-id]
+                                           [--role-definition-id]
+                                           [--role-definition-name]
   examples:
-  - summary: Créez une attribution de rôle SQL sous un compte Azure Cosmos DB.
+  - summary: Créez une attribution de rôle SQL sous un compte Azure Cosmos DB à l’aide d’un nom de définition de rôle.
+    syntax: >-
+      az cosmosdb sql role assignment create --account-name MyAccount --resource-group MyResourceGroup \
+        --role-assignment-id cb8ed2d7-2371-4e3c-bd31-6cc1560e84f8 \
+        --role-definition-name "My Read Only Role" \
+        --scope "/dbs/mydb/colls/mycontainer" \
+        --principal-id 6328f5f7-dbf7-4244-bba8-fbb9d8066506
+  - summary: Créez une attribution de rôle SQL sous un compte Azure Cosmos DB à l’aide de l’ID de définition de rôle.
     syntax: >-
       az cosmosdb sql role assignment create --account-name MyAccount --resource-group MyResourceGroup \
         --role-assignment-id cb8ed2d7-2371-4e3c-bd31-6cc1560e84f8 \
@@ -41,16 +49,18 @@ directCommands:
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   - isRequired: true
-    name: --role-definition-id -d
-    summary: ID unique de la définition de rôle à laquelle cette attribution de rôle fait référence.
-    description: ''
-  - isRequired: true
     name: --scope -s
     summary: Chemin d’accès à la ressource du plan de données auquel cette attribution de rôle est accordée.
     description: ''
   optionalParameters:
   - name: --role-assignment-id -i
     summary: Facultatif pour Create. ID unique de l’attribution de rôle. S’il n’est pas fourni, un nouveau GUID sera utilisé.
+    description: ''
+  - name: --role-definition-id -d
+    summary: ID unique de la définition de rôle à laquelle cette attribution de rôle fait référence.
+    description: ''
+  - name: --role-definition-name -n
+    summary: Nom unique de la définition de rôle à laquelle cette attribution de rôle fait référence. par exemple « Rôle de lecteur contoso ».
     description: ''
 - uid: ext_cosmosdb-preview_az_cosmosdb_sql_role_assignment_delete
   name: az cosmosdb sql role assignment delete
@@ -156,7 +166,8 @@ directCommands:
     az cosmosdb sql role assignment update --account-name
                                            --resource-group
                                            --role-assignment-id
-                                           --role-definition-id
+                                           [--role-definition-id]
+                                           [--role-definition-name]
   examples:
   - summary: Mettez à jour une attribution de rôle SQL sous un compte Azure Cosmos DB.
     syntax: >-
@@ -176,9 +187,12 @@ directCommands:
     name: --role-assignment-id -i
     summary: Facultatif pour Create. ID unique de l’attribution de rôle. S’il n’est pas fourni, un nouveau GUID sera utilisé.
     description: ''
-  - isRequired: true
-    name: --role-definition-id -d
+  optionalParameters:
+  - name: --role-definition-id -d
     summary: ID unique de la définition de rôle à laquelle cette attribution de rôle fait référence.
+    description: ''
+  - name: --role-definition-name -n
+    summary: Nom unique de la définition de rôle à laquelle cette attribution de rôle fait référence. par exemple « Rôle de lecteur contoso ».
     description: ''
 commands:
 - ext_cosmosdb-preview_az_cosmosdb_sql_role_assignment_create
@@ -204,9 +218,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérer les attributions de rôles Azure Cosmos DB SQL.
-  ms.openlocfilehash: 4da6bd8b0e5826ca93166d7be2e1340738cc5995
-  ms.sourcegitcommit: 3e79897e0aeca4d74bc8ff0410121b011b5884ec
+  ms.openlocfilehash: cefe5d339794a008504acc275de071e9c0a4262e
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/03/2021
-  ms.locfileid: "102845167"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103518407"
