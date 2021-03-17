@@ -1,0 +1,195 @@
+### YamlMime:AzureCLIGroup
+uid: ext_monitor-control-service_az_monitor_data_collection_rule_performance_counter
+name: az monitor data-collection rule performance-counter
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Monitor-Control-Service** pour Azure CLI et requiert la version 2.15.0 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ Monitor Data-Recollection Rules-Counter** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer la source de données du compteur de performance du journal.
+description: ''
+directCommands:
+- uid: ext_monitor-control-service_az_monitor_data_collection_rule_performance_counter_add
+  name: az monitor data-collection rule performance-counter add
+  summary: Ajoutez une source de données de compteur de performances de journal.
+  description: ''
+  syntax: >-
+    az monitor data-collection rule performance-counter add --counter-specifiers
+                                                            --name
+                                                            --resource-group
+                                                            --rule-name
+                                                            --sampling-frequency
+                                                            --streams {Microsoft-InsightsMetrics, Microsoft-Perf}
+                                                            --transfer-period {PT15M, PT1M, PT30M, PT5M, PT60M}
+  examples:
+  - summary: Ajouter une source de données de compteur de performance du journal
+    syntax: az monitor data-collection rule performance-counter add --rule-name "myCollectionRule" --resource-group "myResourceGroup" --name "team2ExtraCounters" --streams "Microsoft-Perf" --counter-specifiers "\\Process(_Total)\\Thread Count" "\\LogicalDisk(_Total)\\Free Megabytes" --sampling-frequency 30 --transfer-period PT15M
+  requiredParameters:
+  - isRequired: true
+    name: --counter-specifiers
+    summary: Liste des noms de spécificateurs des compteurs de performance que vous souhaitez collecter. Utilisez un caractère générique ( \* ) pour collecter un compteur pour toutes les instances. Pour obtenir la liste des compteurs de performances sur Windows, exécutez la commande « typeperf ».
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial de la source de données. Ce nom doit être unique pour toutes les sources de données (quel que soit le type) de la règle de collecte des données.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle de collecte des données. Le nom ne respecte pas la casse.
+    description: ''
+  - isRequired: true
+    name: --sampling-frequency
+    summary: Nombre de secondes entre les mesures de compteur consécutives (exemples).
+    description: ''
+  - isRequired: true
+    name: --streams
+    parameterValueGroup: Microsoft-InsightsMetrics, Microsoft-Perf
+    summary: Liste des flux auxquels cette source de données sera envoyée. Un flux indique le schéma qui sera utilisé pour ces données et, en général, la table de Log Analytics dans laquelle les données seront envoyées.
+    description: ''
+  - isRequired: true
+    name: --transfer-period
+    parameterValueGroup: PT15M, PT1M, PT30M, PT5M, PT60M
+    summary: Intervalle entre les chargements de données (transferts planifiés), arrondi à la minute la plus proche.
+    description: ''
+- uid: ext_monitor-control-service_az_monitor_data_collection_rule_performance_counter_delete
+  name: az monitor data-collection rule performance-counter delete
+  summary: Supprimer une source de données de compteur de performance du journal.
+  description: ''
+  syntax: >-
+    az monitor data-collection rule performance-counter delete --name
+                                                               --resource-group
+                                                               --rule-name
+  examples:
+  - summary: Supprimer une source de données de compteur de performance du journal
+    syntax: az monitor data-collection rule performance-counter delete --rule-name "myCollectionRule" --resource-group "myResourceGroup" --name "team2ExtraCounters"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial de la source de données. Ce nom doit être unique pour toutes les sources de données (quel que soit le type) de la règle de collecte des données.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle de collecte des données. Le nom ne respecte pas la casse.
+    description: ''
+- uid: ext_monitor-control-service_az_monitor_data_collection_rule_performance_counter_list
+  name: az monitor data-collection rule performance-counter list
+  summary: Répertorie les sources de données des compteurs de performance des journaux.
+  description: ''
+  syntax: >-
+    az monitor data-collection rule performance-counter list --resource-group
+                                                             --rule-name
+  examples:
+  - summary: Répertorier les sources de données des compteurs de performance des journaux
+    syntax: az monitor data-collection rule performance-counter list --rule-name "myCollectionRule" --resource-group "myResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle de collecte des données. Le nom ne respecte pas la casse.
+    description: ''
+- uid: ext_monitor-control-service_az_monitor_data_collection_rule_performance_counter_show
+  name: az monitor data-collection rule performance-counter show
+  summary: Affiche une source de données du compteur de performance du journal.
+  description: ''
+  syntax: >-
+    az monitor data-collection rule performance-counter show --name
+                                                             --resource-group
+                                                             --rule-name
+  examples:
+  - summary: Afficher une source de données de compteur de performance du journal
+    syntax: az monitor data-collection rule performance-counter show --rule-name "myCollectionRule" --resource-group "myResourceGroup" --name "appTeamExtraCounters"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial de la source de données. Ce nom doit être unique pour toutes les sources de données (quel que soit le type) de la règle de collecte des données.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle de collecte des données. Le nom ne respecte pas la casse.
+    description: ''
+- uid: ext_monitor-control-service_az_monitor_data_collection_rule_performance_counter_update
+  name: az monitor data-collection rule performance-counter update
+  summary: Mettre à jour une source de données de compteur de performance de journal.
+  description: ''
+  syntax: >-
+    az monitor data-collection rule performance-counter update --name
+                                                               --resource-group
+                                                               --rule-name
+                                                               [--counter-specifiers]
+                                                               [--sampling-frequency]
+                                                               [--streams {Microsoft-InsightsMetrics, Microsoft-Perf}]
+                                                               [--transfer-period {PT15M, PT1M, PT30M, PT5M, PT60M}]
+  examples:
+  - summary: Mettre à jour une source de données de compteur de performance du journal
+    syntax: az monitor data-collection rule performance-counter update --rule-name "myCollectionRule" --resource-group "myResourceGroup" --name "team2ExtraCounters" --transfer-period PT1M
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial de la source de données. Ce nom doit être unique pour toutes les sources de données (quel que soit le type) de la règle de collecte des données.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle de collecte des données. Le nom ne respecte pas la casse.
+    description: ''
+  optionalParameters:
+  - name: --counter-specifiers
+    summary: Liste des noms de spécificateurs des compteurs de performance que vous souhaitez collecter. Utilisez un caractère générique ( \* ) pour collecter un compteur pour toutes les instances. Pour obtenir la liste des compteurs de performances sur Windows, exécutez la commande « typeperf ».
+    description: ''
+  - name: --sampling-frequency
+    summary: Nombre de secondes entre les mesures de compteur consécutives (exemples).
+    description: ''
+  - name: --streams
+    parameterValueGroup: Microsoft-InsightsMetrics, Microsoft-Perf
+    summary: Liste des flux auxquels cette source de données sera envoyée. Un flux indique le schéma qui sera utilisé pour ces données et, en général, la table de Log Analytics dans laquelle les données seront envoyées.
+    description: ''
+  - name: --transfer-period
+    parameterValueGroup: PT15M, PT1M, PT30M, PT5M, PT60M
+    summary: Intervalle entre les chargements de données (transferts planifiés), arrondi à la minute la plus proche.
+    description: ''
+commands:
+- ext_monitor-control-service_az_monitor_data_collection_rule_performance_counter_add
+- ext_monitor-control-service_az_monitor_data_collection_rule_performance_counter_delete
+- ext_monitor-control-service_az_monitor_data_collection_rule_performance_counter_list
+- ext_monitor-control-service_az_monitor_data_collection_rule_performance_counter_show
+- ext_monitor-control-service_az_monitor_data_collection_rule_performance_counter_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer la source de données du compteur de performance du journal.
+  ms.openlocfilehash: 54b3edc4c1fcdb6990bbd4961e1ebfd87e1cb2f3
+  ms.sourcegitcommit: 547d3db8a1469f11d33e738a82d96cb51de61bd6
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 01/12/2021
+  ms.locfileid: "102843772"

@@ -1,0 +1,609 @@
+### YamlMime:AzureCLIGroup
+uid: az_keyvault
+name: az keyvault
+summary: Gérer les clés de coffre, les secrets et les certificats.
+description: ''
+directCommands:
+- uid: az_keyvault_create
+  name: az keyvault create
+  summary: Créez un coffre ou un HSM.
+  description: Si `--enable-rbac-authorization` n’est pas spécifié, les autorisations par défaut sont créées pour l’utilisateur actuel ou le principal du service, sauf si l' `--no-self-perms` indicateur est spécifié.
+  syntax: >-
+    az keyvault create --resource-group
+                       [--administrators]
+                       [--enable-purge-protection {false, true}]
+                       [--enable-rbac-authorization {false, true}]
+                       [--enable-soft-delete {false, true}]
+                       [--enabled-for-deployment {false, true}]
+                       [--enabled-for-disk-encryption {false, true}]
+                       [--enabled-for-template-deployment {false, true}]
+                       [--hsm-name]
+                       [--location]
+                       [--name]
+                       [--network-acls]
+                       [--network-acls-ips]
+                       [--network-acls-vnets]
+                       [--no-self-perms {false, true}]
+                       [--no-wait]
+                       [--retention-days]
+                       [--sku]
+                       [--subscription]
+                       [--tags]
+  examples:
+  - summary: Créez un coffre de clés avec des listes de contrôle d’accès réseau spécifiées (utilisez--Network-ACLs pour spécifier des règles IP et de réseau virtuel à l’aide d’une chaîne JSON).
+    syntax: 'az keyvault create --location westus2 --name MyKeyVault --resource-group MyResourceGroup --network-acls "{\"ip\": [\"1.2.3.4\", \"2.3.4.0/24\"], \"vnet\": [\"vnet_name_1/subnet_name1\", \"vnet_name_2/subnet_name2\", \"/subscriptions/000000-0000-0000/resourceGroups/MyResourceGroup/providers/Microsoft.Network/virtualNetworks/MyVNet/subnets/MySubnet\"]}"'
+  - summary: Créez un coffre de clés avec des listes de contrôle d’accès réseau spécifiées (utilisez--Network-ACLs pour spécifier des règles IP et de réseau virtuel à l’aide d’un fichier JSON).
+    syntax: az keyvault create --location westus2 --name MyKeyVault --resource-group MyResourceGroup --network-acls network-acls-example.json
+  - summary: Créez un coffre de clés avec les listes de contrôle d’accès réseau spécifiées (utilisez--Network-ACLs-IPS pour spécifier les règles IP).
+    syntax: az keyvault create --location westus2 --name MyKeyVault --resource-group MyResourceGroup --network-acls-ips 3.4.5.0/24 4.5.6.0/24
+  - summary: Créez un coffre de clés avec les listes de contrôle d’accès réseau spécifiées (utilisez--Network-ACLs-réseaux virtuels pour spécifier les règles de réseau virtuel).
+    syntax: az keyvault create --location westus2 --name MyKeyVault --resource-group MyResourceGroup --network-acls-vnets vnet_name_2/subnet_name_2 vnet_name_3/subnet_name_3 /subscriptions/000000-0000-0000/resourceGroups/MyResourceGroup/providers/Microsoft.Network/virtualNetworks/vnet_name_4/subnets/subnet_name_4
+  - summary: Créer un coffre de clés avec les listes de contrôle d’accès réseau spécifiées (utilisez--Network-aclss,--Network-ACLs-IPS et--Network-aclss-réseaux virtuels ensemble, les règles redondantes seront supprimées. Enfin, il y aura 4 règles IP et 3 règles de réseau virtuel).
+    syntax: 'az keyvault create --location westus2 --name MyKeyVault --resource-group MyResourceGroup --network-acls "{\"ip\": [\"1.2.3.4\", \"2.3.4.0/24\"], \"vnet\": [\"vnet_name_1/subnet_name1\", \"vnet_name_2/subnet_name2\"]}" --network-acls-ips 3.4.5.0/24 4.5.6.0/24 --network-acls-vnets vnet_name_2/subnet_name_2 vnet_name_3/subnet_name_3 /subscriptions/000000-0000-0000/resourceGroups/MyResourceGroup/providers/Microsoft.Network/virtualNetworks/vnet_name_4/subnets/subnet_name_4'
+  - summary: Création d’un coffre de clés généré automatiquement
+    syntax: az keyvault create --location westus2 --name MyKeyVault --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --administrators
+    summary: '[HSM uniquement] Rôle d’administrateur pour les opérations de plan de données pour le HSM géré. Il accepte une liste séparée par des espaces des OID qui seront affectés.'
+    description: ''
+  - name: --enable-purge-protection
+    parameterValueGroup: false, true
+    summary: 'Propriété spécifiant si la protection contre la purge est activée pour ce coffre. L’affectation de la valeur true à cette propriété active la protection contre la purge pour ce coffre et son contenu : seul le service Key Vault peut lancer une suppression irrémédiable et irréversible. Le paramètre est effectif uniquement si la suppression réversible est également activée. L’activation de cette fonctionnalité est irréversible-autrement dit, la propriété n’accepte pas false comme sa valeur.'
+    description: ''
+  - name: --enable-rbac-authorization
+    parameterValueGroup: false, true
+    summary: ''
+    description: ''
+  - name: --enable-soft-delete
+    parameterValueGroup: false, true
+    summary: '[Coffre uniquement] Propriété permettant de spécifier si la fonctionnalité de suppression réversible est activée pour ce coffre de clés. S’il n’est défini sur aucune valeur (true ou false) lors de la création d’un coffre de clés, il est défini sur true par défaut. Une fois défini sur true, il ne peut pas être rétabli sur false.'
+    description: ''
+  - name: --enabled-for-deployment
+    parameterValueGroup: false, true
+    summary: '[Coffre uniquement] Propriété permettant de spécifier si les machines virtuelles Azure sont autorisées à récupérer des certificats stockés en tant que secrets à partir du coffre de clés.'
+    description: ''
+  - name: --enabled-for-disk-encryption
+    parameterValueGroup: false, true
+    summary: '[Coffre uniquement] Propriété qui spécifie si Azure Disk Encryption est autorisé à récupérer des secrets à partir du coffre et à désencapsuler les clés.'
+    description: ''
+  - name: --enabled-for-template-deployment
+    parameterValueGroup: false, true
+    summary: '[Coffre uniquement] Propriété qui spécifie si Azure Resource Manager est autorisé à récupérer des secrets à partir du coffre de clés.'
+    description: ''
+  - name: --hsm-name
+    summary: Nom du HSM. (--HSM-Name et--Name/-n s’excluent mutuellement, spécifiez-en un seul).
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --name -n
+    summary: Nom du coffre.
+    description: ''
+  - name: --network-acls
+    summary: 'ACL réseau. Il accepte un nom de fichier JSON ou une chaîne JSON. Format JSON : `{"ip":[<ip1>, <ip2>...],"vnet":[<vnet_name_1>/<subnet_name_1>,<subnet_id2>...]}` .'
+    description: ''
+  - name: --network-acls-ips
+    summary: Règles IP des listes de contrôle d’accès réseau. Liste d’adresses IP séparées par des espaces.
+    description: ''
+  - name: --network-acls-vnets
+    summary: Règles de réseau virtuel des listes de contrôle d’accès réseau. Liste séparée par des espaces des paires réseau virtuel/sous-réseau ou ID de ressource de sous-réseau.
+    description: ''
+  - name: --no-self-perms
+    parameterValueGroup: false, true
+    summary: '[Coffre uniquement] N’ajoutez pas d’autorisations pour l’utilisateur actuel/principal du service dans le nouveau coffre.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --retention-days
+    defaultValue: "90"
+    summary: Jours de conservation des données de suppression réversible. Il accepte >= 7 et <= 90.
+    description: ''
+  - name: --sku
+    summary: 'Obligatoire. Détails de la référence SKU. Valeurs autorisées pour le coffre : Premium, standard. Valeur par défaut : standard. Valeurs autorisées pour HSM : Standard_B1, Custom_B32. Valeur par défaut : Standard_B1.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_delete
+  name: az keyvault delete
+  summary: Supprimer un coffre ou un HSM.
+  description: ''
+  syntax: >-
+    az keyvault delete [--hsm-name]
+                       [--name]
+                       [--no-wait]
+                       [--resource-group]
+                       [--subscription]
+  examples:
+  - summary: Supprimer un coffre de clés. généré automatiquement
+    syntax: az keyvault delete --name MyKeyVault --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --hsm-name
+    summary: Nom du HSM. (--HSM-Name et--Name/-n s’excluent mutuellement, spécifiez-en un seul).
+    description: ''
+  - name: --name -n
+    summary: Nom du coffre.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Procédez uniquement si Key Vault appartient au groupe de ressources spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_delete_policy
+  name: az keyvault delete-policy
+  summary: Supprimer les paramètres de stratégie de sécurité pour un Key Vault.
+  description: ''
+  syntax: >-
+    az keyvault delete-policy --name
+                              [--no-wait]
+                              [--object-id]
+                              [--resource-group]
+                              [--spn]
+                              [--subscription]
+                              [--upn]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --object-id
+    summary: GUID qui identifie le principal qui recevra les autorisations.
+    description: ''
+  - name: --resource-group -g
+    summary: Procédez uniquement si Key Vault appartient au groupe de ressources spécifié.
+    description: ''
+  - name: --spn
+    summary: Nom d’un principal de service qui reçoit des autorisations.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --upn
+    summary: Nom d’un principal d’utilisateur qui doit recevoir des autorisations.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_list
+  name: az keyvault list
+  summary: Répertoriez les coffres et/ou les modules HSM.
+  description: ''
+  syntax: >-
+    az keyvault list [--query-examples]
+                     [--resource-group]
+                     [--resource-type]
+                     [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --resource-type
+    summary: Quand--Resource-type n’est pas présent, la commande répertorie tous les coffres et modules HSM. Les valeurs possibles pour--Resource-type sont Vault et HSM.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_list_deleted
+  name: az keyvault list-deleted
+  summary: Obtenir des informations sur les coffres ou modules HSM supprimés dans un abonnement.
+  description: ''
+  syntax: >-
+    az keyvault list-deleted [--resource-type]
+                             [--subscription]
+  optionalParameters:
+  - name: --resource-type
+    summary: Quand--Resource-type n’est pas présent, la commande répertorie tous les coffres et modules HSM supprimés. Les valeurs possibles pour--Resource-type sont Vault et HSM.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_purge
+  name: az keyvault purge
+  summary: Supprimer définitivement le coffre ou le HSM spécifié. Alias vide le coffre ou le HSM supprimé.
+  description: ''
+  syntax: >-
+    az keyvault purge [--hsm-name]
+                      [--location]
+                      [--name]
+                      [--no-wait]
+                      [--subscription]
+  optionalParameters:
+  - name: --hsm-name
+    summary: Nom du HSM supprimé. (--HSM-Name et--Name/-n s’excluent mutuellement, spécifiez-en un seul).
+    description: ''
+  - name: --location -l
+    summary: Emplacement du coffre ou HSM supprimé.
+    description: ''
+  - name: --name -n
+    summary: Nom du coffre supprimé.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_recover
+  name: az keyvault recover
+  summary: Récupérez un coffre ou un HSM.
+  description: Récupérez un coffre ou un HSM précédemment supprimé pour lequel la suppression réversible a été activée.
+  syntax: >-
+    az keyvault recover [--hsm-name]
+                        [--location]
+                        [--name]
+                        [--no-wait]
+                        [--resource-group]
+                        [--subscription]
+  examples:
+  - summary: Récupérez un coffre de clés. généré automatiquement
+    syntax: az keyvault recover --location westus2 --name MyKeyVault --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --hsm-name
+    summary: Nom du HSM supprimé. (--HSM-Name et--Name/-n s’excluent mutuellement, spécifiez-en un seul).
+    description: ''
+  - name: --location -l
+    summary: Emplacement du coffre ou HSM supprimé.
+    description: ''
+  - name: --name -n
+    summary: Nom du coffre supprimé.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources du coffre ou HSM supprimé.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_set_policy
+  name: az keyvault set-policy
+  summary: Met à jour les paramètres de stratégie de sécurité pour un Key Vault.
+  description: ''
+  syntax: >-
+    az keyvault set-policy --name
+                           [--certificate-permissions {create, delete, deleteissuers, get, getissuers, import, list, listissuers, managecontacts, manageissuers, purge, recover, setissuers, update}]
+                           [--key-permissions {backup, create, decrypt, delete, encrypt, get, import, list, purge, recover, restore, sign, unwrapKey, update, verify, wrapKey}]
+                           [--no-wait]
+                           [--object-id]
+                           [--resource-group]
+                           [--secret-permissions {backup, delete, get, list, purge, recover, restore, set}]
+                           [--spn]
+                           [--storage-permissions {backup, delete, deletesas, get, getsas, list, listsas, purge, recover, regeneratekey, restore, set, setsas, update}]
+                           [--subscription]
+                           [--upn]
+  examples:
+  - summary: Affectez des `get` autorisations `list` de clé, et des `import` autorisations secrètes `backup` `restore` à un ID d’objet.
+    syntax: az keyvault set-policy -n MyVault --key-permissions get list import --secret-permissions backup restore --object-id {GUID}
+  - summary: Affectez `get` des autorisations `list` de clé à un UPN (nom d’utilisateur principal).
+    syntax: az keyvault set-policy -n MyVault --key-permissions get list --upn {UPN}
+  - summary: Affecter des autorisations `get` `list` de clé à un SPN (nom de principal du service).
+    syntax: az keyvault set-policy -n MyVault --key-permissions get list --spn {SPN}
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --certificate-permissions
+    parameterValueGroup: create, delete, deleteissuers, get, getissuers, import, list, listissuers, managecontacts, manageissuers, purge, recover, setissuers, update
+    summary: Liste séparée par des espaces des autorisations de certificat à attribuer.
+    description: ''
+  - name: --key-permissions
+    parameterValueGroup: backup, create, decrypt, delete, encrypt, get, import, list, purge, recover, restore, sign, unwrapKey, update, verify, wrapKey
+    summary: Liste d’autorisations de clé à assigner séparées par des espaces.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --object-id
+    summary: GUID qui identifie le principal qui recevra les autorisations.
+    description: ''
+  - name: --resource-group -g
+    summary: Procédez uniquement si Key Vault appartient au groupe de ressources spécifié.
+    description: ''
+  - name: --secret-permissions
+    parameterValueGroup: backup, delete, get, list, purge, recover, restore, set
+    summary: Liste d’autorisations de secret à assigner séparées par des espaces.
+    description: ''
+  - name: --spn
+    summary: Nom d’un principal de service qui reçoit des autorisations.
+    description: ''
+  - name: --storage-permissions
+    parameterValueGroup: backup, delete, deletesas, get, getsas, list, listsas, purge, recover, regeneratekey, restore, set, setsas, update
+    summary: Liste séparée par des espaces des autorisations de stockage à affecter.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --upn
+    summary: Nom d’un principal d’utilisateur qui doit recevoir des autorisations.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_show
+  name: az keyvault show
+  summary: Affichez les détails d’un coffre ou d’un HSM.
+  description: ''
+  syntax: >-
+    az keyvault show [--hsm-name]
+                     [--name]
+                     [--query-examples]
+                     [--resource-group]
+                     [--subscription]
+  examples:
+  - summary: Affichez les détails d’un coffre de clés. généré automatiquement
+    syntax: az keyvault show --name MyKeyVault
+  optionalParameters:
+  - name: --hsm-name
+    summary: Nom du HSM. (--HSM-Name et--Name/-n s’excluent mutuellement, spécifiez-en un seul).
+    description: ''
+  - name: --name -n
+    summary: Nom du coffre.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Procédez uniquement si Key Vault appartient au groupe de ressources spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_update
+  name: az keyvault update
+  summary: Mettez à jour les propriétés d’un coffre.
+  description: ''
+  syntax: >-
+    az keyvault update --name
+                       [--add]
+                       [--enable-purge-protection {false, true}]
+                       [--enable-rbac-authorization {false, true}]
+                       [--enable-soft-delete {false, true}]
+                       [--enabled-for-deployment {false, true}]
+                       [--enabled-for-disk-encryption {false, true}]
+                       [--enabled-for-template-deployment {false, true}]
+                       [--force-string]
+                       [--no-wait]
+                       [--remove]
+                       [--resource-group]
+                       [--retention-days]
+                       [--set]
+                       [--subscription]
+  examples:
+  - summary: Mettez à jour les propriétés d’un coffre. généré automatiquement
+    syntax: az keyvault update --enabled-for-disk-encryption true --name MyKeyVault --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --enable-purge-protection
+    parameterValueGroup: false, true
+    summary: 'Propriété spécifiant si la protection contre la purge est activée pour ce coffre. L’affectation de la valeur true à cette propriété active la protection contre la purge pour ce coffre et son contenu : seul le service Key Vault peut lancer une suppression irrémédiable et irréversible. Le paramètre est effectif uniquement si la suppression réversible est également activée. L’activation de cette fonctionnalité est irréversible-autrement dit, la propriété n’accepte pas false comme sa valeur.'
+    description: ''
+  - name: --enable-rbac-authorization
+    parameterValueGroup: false, true
+    summary: ''
+    description: ''
+  - name: --enable-soft-delete
+    parameterValueGroup: false, true
+    summary: '[Coffre uniquement] Propriété permettant de spécifier si la fonctionnalité de suppression réversible est activée pour ce coffre de clés. S’il n’est défini sur aucune valeur (true ou false) lors de la création d’un coffre de clés, il est défini sur true par défaut. Une fois défini sur true, il ne peut pas être rétabli sur false.'
+    description: ''
+  - name: --enabled-for-deployment
+    parameterValueGroup: false, true
+    summary: '[Coffre uniquement] Propriété permettant de spécifier si les machines virtuelles Azure sont autorisées à récupérer des certificats stockés en tant que secrets à partir du coffre de clés.'
+    description: ''
+  - name: --enabled-for-disk-encryption
+    parameterValueGroup: false, true
+    summary: '[Coffre uniquement] Propriété qui spécifie si Azure Disk Encryption est autorisé à récupérer des secrets à partir du coffre et à désencapsuler les clés.'
+    description: ''
+  - name: --enabled-for-template-deployment
+    parameterValueGroup: false, true
+    summary: '[Coffre uniquement] Propriété qui spécifie si Azure Resource Manager est autorisé à récupérer des secrets à partir du coffre de clés.'
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Procédez uniquement si Key Vault appartient au groupe de ressources spécifié.
+    description: ''
+  - name: --retention-days
+    summary: Jours de conservation des données de suppression réversible. Il accepte >= 7 et <= 90.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_wait
+  name: az keyvault wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du coffre soit remplie.
+  description: ''
+  syntax: >-
+    az keyvault wait --name
+                     [--created]
+                     [--custom]
+                     [--deleted]
+                     [--exists]
+                     [--interval]
+                     [--resource-group]
+                     [--subscription]
+                     [--timeout]
+                     [--updated]
+  examples:
+  - summary: Interrompez l’interface CLI jusqu’à ce que le coffre soit créé.
+    syntax: az keyvault wait --name MyVault --created
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du coffre.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --resource-group -g
+    summary: Procédez uniquement si Key Vault appartient au groupe de ressources spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+commands:
+- az_keyvault_certificate
+- az_keyvault_certificate_contact
+- az_keyvault_certificate_contact_add
+- az_keyvault_certificate_contact_delete
+- az_keyvault_certificate_contact_list
+- az_keyvault_certificate_create
+- az_keyvault_certificate_delete
+- az_keyvault_certificate_download
+- az_keyvault_certificate_get_default_policy
+- az_keyvault_certificate_import
+- az_keyvault_certificate_issuer
+- az_keyvault_certificate_issuer_admin
+- az_keyvault_certificate_issuer_admin_add
+- az_keyvault_certificate_issuer_admin_delete
+- az_keyvault_certificate_issuer_admin_list
+- az_keyvault_certificate_issuer_create
+- az_keyvault_certificate_issuer_delete
+- az_keyvault_certificate_issuer_list
+- az_keyvault_certificate_issuer_show
+- az_keyvault_certificate_issuer_update
+- az_keyvault_certificate_list
+- az_keyvault_certificate_list_deleted
+- az_keyvault_certificate_list_versions
+- az_keyvault_certificate_pending
+- az_keyvault_certificate_pending_delete
+- az_keyvault_certificate_pending_merge
+- az_keyvault_certificate_pending_show
+- az_keyvault_certificate_purge
+- az_keyvault_certificate_recover
+- az_keyvault_certificate_set_attributes
+- az_keyvault_certificate_show
+- az_keyvault_certificate_show_deleted
+- az_keyvault_create
+- az_keyvault_delete
+- az_keyvault_delete_policy
+- az_keyvault_key
+- az_keyvault_key_backup
+- az_keyvault_key_create
+- az_keyvault_key_decrypt
+- az_keyvault_key_delete
+- az_keyvault_key_download
+- az_keyvault_key_encrypt
+- az_keyvault_key_get_policy_template
+- az_keyvault_key_import
+- az_keyvault_key_list
+- az_keyvault_key_list_deleted
+- az_keyvault_key_list_versions
+- az_keyvault_key_purge
+- az_keyvault_key_recover
+- az_keyvault_key_restore
+- az_keyvault_key_set_attributes
+- az_keyvault_key_show
+- az_keyvault_key_show_deleted
+- az_keyvault_list
+- az_keyvault_list_deleted
+- az_keyvault_purge
+- az_keyvault_recover
+- az_keyvault_secret
+- az_keyvault_secret_backup
+- az_keyvault_secret_delete
+- az_keyvault_secret_download
+- az_keyvault_secret_list
+- az_keyvault_secret_list_deleted
+- az_keyvault_secret_list_versions
+- az_keyvault_secret_purge
+- az_keyvault_secret_recover
+- az_keyvault_secret_restore
+- az_keyvault_secret_set
+- az_keyvault_secret_set_attributes
+- az_keyvault_secret_show
+- az_keyvault_secret_show_deleted
+- az_keyvault_set_policy
+- az_keyvault_show
+- az_keyvault_update
+- az_keyvault_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/14/2020
+  description: Gérer les clés de coffre, les secrets et les certificats.
+  ms.openlocfilehash: e6616da657ac9b5b435c513267188bf1d0c592d5
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102842710"
