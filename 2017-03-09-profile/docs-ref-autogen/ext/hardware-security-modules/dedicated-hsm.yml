@@ -1,0 +1,235 @@
+### YamlMime:AzureCLIGroup
+uid: ext_hardware-security-modules_az_dedicated_hsm
+name: az dedicated-hsm
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Hardware-Security-Modules** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Dedicated-HSM** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Dedicated-HSM pour créer, mettre à jour, répertorier, afficher et supprimer des modules HSM.
+description: ''
+directCommands:
+- uid: ext_hardware-security-modules_az_dedicated_hsm_create
+  name: az dedicated-hsm create
+  summary: Créez un HSM dédié dans l’abonnement spécifié.
+  description: ''
+  syntax: >-
+    az dedicated-hsm create --location
+                            --name
+                            --resource-group
+                            [--network-profile-network-interfaces]
+                            [--no-wait]
+                            [--sku]
+                            [--stamp-id]
+                            [--subnet]
+                            [--tags]
+                            [--zones]
+  examples:
+  - summary: Créer un HSM dédié
+    syntax: az dedicated-hsm create -n "hsm1" -l "japanwest" -i private-ip-address="1.0.0.1" -s id="/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/hsm-group/providers/Microsoft.Network/virtualNetworks/hsm/subnets/hsm" --stamp-id "stamp1" --sku name="SafeNet Luna Network HSM A790" --tags Dept="hsm" Environment="dogfood" -g "hsm-group"
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du HSM dédié.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --network-profile-network-interfaces -i
+    summary: Spécifie une liste d’adresses IP à partir du sous-réseau spécifié pour les interfaces réseau associées au HSM dédié. Valeur attendue :-i Private-IP-address = XX.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --sku
+    summary: 'Référence SKU de l’appareil HSM Si un module HSM non standard est souhaité (par défaut : SafeNet Luna Network HSM A790).'
+    description: ''
+  - name: --stamp-id
+    summary: Ce champ sera utilisé lorsque le RP ne prend pas en charge les zones de disponibilité.
+    description: ''
+  - name: --subnet -s
+    summary: 'Spécifie l’identificateur du sous-réseau. Valeur attendue : ID = XX.'
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --zones
+    summary: Zones HSM dédiées.
+    description: ''
+- uid: ext_hardware-security-modules_az_dedicated_hsm_delete
+  name: az dedicated-hsm delete
+  summary: Supprime le HSM dédié Azure spécifié.
+  description: ''
+  syntax: >-
+    az dedicated-hsm delete --name
+                            --resource-group
+                            [--no-wait]
+                            [--yes]
+  examples:
+  - summary: Supprimer un HSM dédié
+    syntax: az dedicated-hsm delete -n "hsm1" -g "hsm-group"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du HSM dédié à supprimer.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_hardware-security-modules_az_dedicated_hsm_list
+  name: az dedicated-hsm list
+  summary: L’opération de liste obtient des informations sur les modules de sécurité matériels dédiés associés à l’abonnement.
+  description: ''
+  syntax: >-
+    az dedicated-hsm list [--resource-group]
+                          [--top]
+  examples:
+  - summary: Liste des périphériques HSM dédiés dans un abonnement
+    syntax: az dedicated-hsm list
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --top
+    summary: Nombre maximal de résultats à renvoyer.
+    description: ''
+- uid: ext_hardware-security-modules_az_dedicated_hsm_show
+  name: az dedicated-hsm show
+  summary: Obtient le HSM dédié Azure spécifié.
+  description: ''
+  syntax: >-
+    az dedicated-hsm show --name
+                          --resource-group
+  examples:
+  - summary: Obtenir un HSM dédié
+    syntax: az dedicated-hsm show -n "hsm1" -g "hsm-group"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du HSM dédié.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_hardware-security-modules_az_dedicated_hsm_update
+  name: az dedicated-hsm update
+  summary: Met à jour un HSM dédié dans l’abonnement spécifié.
+  description: ''
+  syntax: >-
+    az dedicated-hsm update --name
+                            --resource-group
+                            [--no-wait]
+                            [--tags]
+  examples:
+  - summary: Mettre à jour un HSM dédié existant
+    syntax: az dedicated-hsm update -n "hsm1" --tags Dept="hsm" Environment="dogfood" Slice="A" -g "hsm-group"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du HSM dédié.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_hardware-security-modules_az_dedicated_hsm_wait
+  name: az dedicated-hsm wait
+  summary: Attend la fin de l’opération.
+  description: ''
+  syntax: >-
+    az dedicated-hsm wait --name
+                          --resource-group
+                          [--created]
+                          [--custom]
+                          [--deleted]
+                          [--exists]
+                          [--interval]
+                          [--timeout]
+                          [--updated]
+  examples:
+  - summary: Supprimer un HSM dédié
+    syntax: az dedicated-hsm wait --created -g "hsm-group" --name "hsm1"
+  requiredParameters:
+  - isRequired: true
+    name: --name
+    summary: Nom du HSM dédié.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- ext_hardware-security-modules_az_dedicated_hsm_create
+- ext_hardware-security-modules_az_dedicated_hsm_delete
+- ext_hardware-security-modules_az_dedicated_hsm_list
+- ext_hardware-security-modules_az_dedicated_hsm_show
+- ext_hardware-security-modules_az_dedicated_hsm_update
+- ext_hardware-security-modules_az_dedicated_hsm_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Dedicated-HSM pour créer, mettre à jour, répertorier, afficher et supprimer des modules HSM.
+  ms.openlocfilehash: d6ba99e64954a7c68a68ccc65760467e789bf292
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102825230"
