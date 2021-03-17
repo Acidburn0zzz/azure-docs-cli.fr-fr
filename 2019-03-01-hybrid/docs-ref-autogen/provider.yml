@@ -1,0 +1,146 @@
+### YamlMime:AzureCLIGroup
+uid: az_provider
+name: az provider
+summary: Gérer les fournisseurs de ressources.
+description: ''
+directCommands:
+- uid: az_provider_list
+  name: az provider list
+  summary: Obtient tous les fournisseurs de ressources pour un abonnement.
+  description: ''
+  syntax: >-
+    az provider list [--expand]
+                     [--query-examples]
+                     [--subscription]
+  examples:
+  - summary: Affichez tous les types de ressources pour le fournisseur de ressources réseau.
+    syntax: az provider list --query [?namespace=='Microsoft.Network'].resourceTypes[].resourceType
+  optionalParameters:
+  - name: --expand
+    summary: Propriétés à inclure dans les résultats. Par exemple, utilisez &$expand = Metadata dans la chaîne de requête pour récupérer les métadonnées du fournisseur de ressources. Pour inclure des alias de propriété dans Response, utilisez $expand = resourceTypes/aliases.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_provider_register
+  name: az provider register
+  summary: Inscrire un fournisseur.
+  description: ''
+  syntax: >-
+    az provider register --namespace
+                         [--accept-terms]
+                         [--management-group-id]
+                         [--subscription]
+                         [--wait]
+  examples:
+  - summary: Inscrire un fournisseur. généré automatiquement
+    syntax: az provider register --namespace 'Microsoft.PolicyInsights'
+  - summary: Inscrire un fournisseur à partir de RPaaS.
+    syntax: az provider register -n 'Microsoft.Confluent' --accept-terms
+  - summary: Inscrire un groupe d’administration.
+    syntax: az provider register --namespace Microsoft.Automation -m mgID
+  requiredParameters:
+  - isRequired: true
+    name: --namespace -n
+    summary: L’espace de noms de la ressource, également appelé « Provider ».
+    description: ''
+  optionalParameters:
+  - name: --accept-terms
+    summary: Accepter les termes du marché et les conditions du RP pour RPaaS. Obligatoire lors de l’inscription de RPs à partir de RPaaS, par exemple « Microsoft. confluent » et « Microsoft. Datadog ».
+    description: ''
+  - name: --management-group-id -m
+    summary: ID du groupe d’administration à inscrire.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --wait
+    summary: Attendez la fin de l’inscription.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_provider_show
+  name: az provider show
+  summary: Obtient le fournisseur de ressources spécifié.
+  description: ''
+  syntax: >-
+    az provider show --namespace
+                     [--expand]
+                     [--query-examples]
+                     [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --namespace -n
+    summary: L’espace de noms de la ressource, également appelé « Provider ».
+    description: ''
+  optionalParameters:
+  - name: --expand
+    summary: Paramètre de requête $expand. Par exemple, pour inclure des alias de propriété dans Response, utilisez $expand = resourceTypes/aliases.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_provider_unregister
+  name: az provider unregister
+  summary: Annule l’inscription d’un fournisseur.
+  description: ''
+  syntax: >-
+    az provider unregister --namespace
+                           [--subscription]
+                           [--wait]
+  examples:
+  - summary: Annule l’inscription d’un fournisseur. généré automatiquement
+    syntax: az provider unregister --namespace Microsoft.Automation
+  requiredParameters:
+  - isRequired: true
+    name: --namespace -n
+    summary: L’espace de noms de la ressource, également appelé « Provider ».
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --wait
+    summary: Attendez la fin de l’annulation de l’inscription.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+commands:
+- az_provider_list
+- az_provider_operation
+- az_provider_operation_list
+- az_provider_operation_show
+- az_provider_register
+- az_provider_show
+- az_provider_unregister
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les fournisseurs de ressources.
+  ms.openlocfilehash: 2ba9a1a512288ab36ac39c5e926c8e3b085b1b7e
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102969404"
