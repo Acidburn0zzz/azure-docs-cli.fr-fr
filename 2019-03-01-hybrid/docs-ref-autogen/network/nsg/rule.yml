@@ -1,0 +1,330 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_nsg_rule
+name: az network nsg rule
+summary: Gérer les règles de groupe de sécurité réseau.
+description: ''
+directCommands:
+- uid: az_network_nsg_rule_create
+  name: az network nsg rule create
+  summary: Créez une règle de groupe de sécurité réseau.
+  description: ''
+  syntax: >-
+    az network nsg rule create --name
+                               --nsg-name
+                               --priority
+                               --resource-group
+                               [--access {Allow, Deny}]
+                               [--description]
+                               [--destination-address-prefixes]
+                               [--destination-asgs]
+                               [--destination-port-ranges]
+                               [--direction {Inbound, Outbound}]
+                               [--protocol {*, Tcp, Udp}]
+                               [--source-address-prefixes]
+                               [--source-asgs]
+                               [--source-port-ranges]
+                               [--subscription]
+  examples:
+  - summary: Créez une règle de groupe de sécurité réseau « allow » de base avec la priorité la plus élevée.
+    syntax: az network nsg rule create -g MyResourceGroup --nsg-name MyNsg -n MyNsgRule --priority 100
+  - summary: Créer une règle de « refus » sur TCP pour une plage d’adresses IP spécifique avec la priorité la plus basse.
+    syntax: >-
+      az network nsg rule create -g MyResourceGroup --nsg-name MyNsg -n MyNsgRule --priority 4096 \
+          --source-address-prefixes 208.130.28/24 --source-port-ranges 80 \
+          --destination-address-prefixes '*' --destination-port-ranges 80 8080 --access Deny \
+          --protocol Tcp --description "Deny from specific IP address ranges on 80 and 8080."
+  - summary: Créez une règle de sécurité à l’aide de balises de service. Pour plus d’informations, visitez https://aka.ms/servicetags
+    syntax: >-
+      az network nsg rule create -g MyResourceGroup --nsg-name MyNsg -n MyNsgRuleWithTags \
+          --priority 400 --source-address-prefixes VirtualNetwork --destination-address-prefixes Storage \
+          --destination-port-ranges '*' --direction Outbound --access Allow --protocol Tcp --description "Allow VirtualNetwork to Storage."
+  - summary: Créez une règle de sécurité à l’aide de groupes de sécurité d’application. https://aka.ms/applicationsecuritygroups
+    syntax: >-
+      az network nsg rule create -g MyResourceGroup --nsg-name MyNsg -n MyNsgRuleWithAsg \
+          --priority 500 --source-address-prefixes Internet --destination-port-ranges 80 8080 \
+          --destination-asgs Web --access Allow --protocol Tcp --description "Allow Internet to Web ASG on ports 80,8080."
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de groupe de sécurité réseau.
+    description: ''
+  - isRequired: true
+    name: --nsg-name
+    summary: Nom du groupe de sécurité réseau.
+    description: ''
+  - isRequired: true
+    name: --priority
+    summary: Priorité de la règle, comprise entre 100 (priorité la plus élevée) et 4096 (priorité la plus basse). Doit être unique pour chaque règle de la collection.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --access
+    defaultValue: Allow
+    parameterValueGroup: Allow, Deny
+    summary: ''
+    description: ''
+  - name: --description
+    summary: Description de la règle.
+    description: ''
+  - name: --destination-address-prefixes
+    defaultValue: ''
+    summary: Liste séparée par des espaces des préfixes CIDR ou des plages d’adresses IP. Vous pouvez également spécifier « VirtualNetwork », « AzureLoadBalancer », « Internet » ou « \* » pour qu’ils correspondent à toutes les adresses IP. En outre, il prend également en charge toutes les balises de service disponibles, telles que « ApiManagement », « objet SqlManagement », « AzureMonitor », etc.
+    description: ''
+  - name: --destination-asgs
+    summary: Liste séparée par des espaces de noms ou d’ID de groupes de sécurité d’application. Limité par le serveur principal, cet argument ne prend en charge qu’un seul nom ou ID de groupe de sécurité d’application.
+    description: ''
+  - name: --destination-port-ranges
+    defaultValue: "80"
+    summary: Liste séparée par des espaces de ports ou de plages de ports comprise entre 0-65535. Utilisez « \* » pour faire correspondre tous les ports.
+    description: ''
+  - name: --direction
+    defaultValue: Inbound
+    parameterValueGroup: Inbound, Outbound
+    summary: ''
+    description: ''
+  - name: --protocol
+    defaultValue: ''
+    parameterValueGroup: '*, Tcp, Udp'
+    summary: Protocole réseau auquel la règle s'applique.
+    description: ''
+  - name: --source-address-prefixes
+    defaultValue: ''
+    summary: Liste séparée par des espaces des préfixes CIDR ou des plages d’adresses IP. Vous pouvez également spécifier « VirtualNetwork », « AzureLoadBalancer », « Internet » ou « \* » pour qu’ils correspondent à toutes les adresses IP. En outre, il prend également en charge toutes les balises de service disponibles, telles que « ApiManagement », « objet SqlManagement », « AzureMonitor », etc.
+    description: ''
+  - name: --source-asgs
+    summary: Liste séparée par des espaces de noms ou d’ID de groupes de sécurité d’application. Limité par le serveur principal, cet argument ne prend en charge qu’un seul nom ou ID de groupe de sécurité d’application.
+    description: ''
+  - name: --source-port-ranges
+    defaultValue: ''
+    summary: Liste séparée par des espaces de ports ou de plages de ports comprise entre 0-65535. Utilisez « \* » pour faire correspondre tous les ports.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_nsg_rule_delete
+  name: az network nsg rule delete
+  summary: Supprimer une règle de groupe de sécurité réseau.
+  description: ''
+  syntax: >-
+    az network nsg rule delete [--ids]
+                               [--name]
+                               [--nsg-name]
+                               [--resource-group]
+                               [--subscription]
+  examples:
+  - summary: Supprimer une règle de groupe de sécurité réseau.
+    syntax: az network nsg rule delete -g MyResourceGroup --nsg-name MyNsg -n MyNsgRule
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la règle de groupe de sécurité réseau.
+    description: ''
+  - name: --nsg-name
+    summary: Nom du groupe de sécurité réseau.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_nsg_rule_list
+  name: az network nsg rule list
+  summary: Répertorie toutes les règles d’un groupe de sécurité réseau.
+  description: ''
+  syntax: >-
+    az network nsg rule list --nsg-name
+                             --resource-group
+                             [--include-default]
+                             [--query-examples]
+                             [--subscription]
+  examples:
+  - summary: Répertorie toutes les règles d’un groupe de sécurité réseau.
+    syntax: az network nsg rule list -g MyResourceGroup --nsg-name MyNsg
+  requiredParameters:
+  - isRequired: true
+    name: --nsg-name
+    summary: Nom du groupe de sécurité réseau.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --include-default
+    summary: Incluez les règles de sécurité par défaut dans la sortie.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_nsg_rule_show
+  name: az network nsg rule show
+  summary: Obtenir les détails d’une règle de groupe de sécurité réseau.
+  description: ''
+  syntax: >-
+    az network nsg rule show [--ids]
+                             [--name]
+                             [--nsg-name]
+                             [--query-examples]
+                             [--resource-group]
+                             [--subscription]
+  examples:
+  - summary: Obtenir les détails d’une règle de groupe de sécurité réseau.
+    syntax: az network nsg rule show -g MyResourceGroup --nsg-name MyNsg -n MyNsgRule
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la règle de groupe de sécurité réseau.
+    description: ''
+  - name: --nsg-name
+    summary: Nom du groupe de sécurité réseau.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_nsg_rule_update
+  name: az network nsg rule update
+  summary: Mettez à jour une règle de groupe de sécurité réseau.
+  description: ''
+  syntax: >-
+    az network nsg rule update [--access {Allow, Deny}]
+                               [--add]
+                               [--description]
+                               [--destination-address-prefixes]
+                               [--destination-asgs]
+                               [--destination-port-ranges]
+                               [--direction {Inbound, Outbound}]
+                               [--force-string]
+                               [--ids]
+                               [--name]
+                               [--nsg-name]
+                               [--priority]
+                               [--protocol {*, Tcp, Udp}]
+                               [--remove]
+                               [--resource-group]
+                               [--set]
+                               [--source-address-prefixes]
+                               [--source-asgs]
+                               [--source-port-ranges]
+                               [--subscription]
+  examples:
+  - summary: Mettez à jour une règle NSG avec un nouveau préfixe d’adresse de destination générique.
+    syntax: az network nsg rule update -g MyResourceGroup --nsg-name MyNsg -n MyNsgRule --destination-address-prefix '*'
+  - summary: Mettez à jour une règle de groupe de sécurité réseau. généré automatiquement
+    syntax: az network nsg rule update --name MyNsgRule --nsg-name MyNsg --resource-group MyResourceGroup --source-address-prefixes 208.130.28/24
+  optionalParameters:
+  - name: --access
+    parameterValueGroup: Allow, Deny
+    summary: ''
+    description: ''
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --description
+    summary: Description de la règle.
+    description: ''
+  - name: --destination-address-prefixes
+    summary: Liste séparée par des espaces des préfixes CIDR ou des plages d’adresses IP. Vous pouvez également spécifier « VirtualNetwork », « AzureLoadBalancer », « Internet » ou « \* » pour qu’ils correspondent à toutes les adresses IP. En outre, il prend également en charge toutes les balises de service disponibles, telles que « ApiManagement », « objet SqlManagement », « AzureMonitor », etc.
+    description: ''
+  - name: --destination-asgs
+    summary: Liste séparée par des espaces de noms ou d’ID de groupes de sécurité d’application. Limité par le serveur principal, cet argument ne prend en charge qu’un seul nom ou ID de groupe de sécurité d’application.
+    description: ''
+  - name: --destination-port-ranges
+    summary: Liste séparée par des espaces de ports ou de plages de ports comprise entre 0-65535. Utilisez « \* » pour faire correspondre tous les ports.
+    description: ''
+  - name: --direction
+    parameterValueGroup: Inbound, Outbound
+    summary: ''
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la règle de groupe de sécurité réseau.
+    description: ''
+  - name: --nsg-name
+    summary: Nom du groupe de sécurité réseau.
+    description: ''
+  - name: --priority
+    summary: Priorité de la règle, comprise entre 100 (priorité la plus élevée) et 4096 (priorité la plus basse). Doit être unique pour chaque règle de la collection.
+    description: ''
+  - name: --protocol
+    parameterValueGroup: '*, Tcp, Udp'
+    summary: Protocole réseau auquel la règle s'applique.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --source-address-prefixes
+    summary: Liste séparée par des espaces des préfixes CIDR ou des plages d’adresses IP. Vous pouvez également spécifier « VirtualNetwork », « AzureLoadBalancer », « Internet » ou « \* » pour qu’ils correspondent à toutes les adresses IP. En outre, il prend également en charge toutes les balises de service disponibles, telles que « ApiManagement », « objet SqlManagement », « AzureMonitor », etc.
+    description: ''
+  - name: --source-asgs
+    summary: Liste séparée par des espaces de noms ou d’ID de groupes de sécurité d’application. Limité par le serveur principal, cet argument ne prend en charge qu’un seul nom ou ID de groupe de sécurité d’application.
+    description: ''
+  - name: --source-port-ranges
+    summary: Liste séparée par des espaces de ports ou de plages de ports comprise entre 0-65535. Utilisez « \* » pour faire correspondre tous les ports.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_nsg_rule_create
+- az_network_nsg_rule_delete
+- az_network_nsg_rule_list
+- az_network_nsg_rule_show
+- az_network_nsg_rule_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/25/2021
+  description: Gérer les règles de groupe de sécurité réseau.
+  ms.openlocfilehash: 9c5c783d8c3853f38da2e7e4479008622a2e73bc
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103534693"
