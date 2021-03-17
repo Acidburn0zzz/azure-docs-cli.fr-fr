@@ -1,0 +1,235 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_application_gateway_auth_cert
+name: az network application-gateway auth-cert
+summary: Gérer les certificats d’autorisation d’une passerelle d’application.
+description: ''
+directCommands:
+- uid: az_network_application_gateway_auth_cert_create
+  name: az network application-gateway auth-cert create
+  summary: Créez un certificat d’autorisation.
+  description: ''
+  syntax: >-
+    az network application-gateway auth-cert create --cert-file
+                                                    --gateway-name
+                                                    --name
+                                                    --resource-group
+                                                    [--no-wait]
+                                                    [--subscription]
+  examples:
+  - summary: Créez un certificat d’autorisation.
+    syntax: >-
+      az network application-gateway auth-cert create -g MyResourceGroup --gateway-name MyAppGateway \
+          -n MyAuthCert --cert-file /path/to/cert/file
+  requiredParameters:
+  - isRequired: true
+    name: --cert-file
+    summary: Chemin du fichier de certificat.
+    description: ''
+  - isRequired: true
+    name: --gateway-name
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du certificat d’authentification.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_auth_cert_delete
+  name: az network application-gateway auth-cert delete
+  summary: Supprimer un certificat d’autorisation.
+  description: ''
+  syntax: >-
+    az network application-gateway auth-cert delete [--gateway-name]
+                                                    [--ids]
+                                                    [--name]
+                                                    [--no-wait]
+                                                    [--resource-group]
+                                                    [--subscription]
+  examples:
+  - summary: Supprimer un certificat d’autorisation.
+    syntax: az network application-gateway auth-cert delete -g MyResourceGroup --gateway-name MyAppGateway -n MyAuthCert
+  optionalParameters:
+  - name: --gateway-name
+    summary: Nom de la passerelle Application Gateway.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du certificat d’authentification.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_auth_cert_list
+  name: az network application-gateway auth-cert list
+  summary: Répertorier les certificats d’autorisation.
+  description: ''
+  syntax: >-
+    az network application-gateway auth-cert list --gateway-name
+                                                  --resource-group
+                                                  [--query-examples]
+                                                  [--subscription]
+  examples:
+  - summary: Répertorier les certificats d’autorisation.
+    syntax: az network application-gateway auth-cert list -g MyResourceGroup --gateway-name MyAppGateway
+  requiredParameters:
+  - isRequired: true
+    name: --gateway-name
+    summary: Nom de la passerelle Application Gateway.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_auth_cert_show
+  name: az network application-gateway auth-cert show
+  summary: Affichez un certificat d’autorisation.
+  description: ''
+  syntax: >-
+    az network application-gateway auth-cert show [--gateway-name]
+                                                  [--ids]
+                                                  [--name]
+                                                  [--query-examples]
+                                                  [--resource-group]
+                                                  [--subscription]
+  examples:
+  - summary: Affichez un certificat d’autorisation.
+    syntax: az network application-gateway auth-cert show -g MyResourceGroup --gateway-name MyAppGateway -n MyAuthCert
+  - summary: Affiche la date d’expiration d’un certificat d’autorisation. Il se trouve dans le code X. 509 encodé en base 64 (. CER).
+    syntax: >-
+      az network application-gateway auth-cert show -g MyResourceGroup --gateway-name MyAppGateway \
+          -n MyAuthCert --query data -o tsv | base64 -d | openssl x509 -enddate -noout
+  optionalParameters:
+  - name: --gateway-name
+    summary: Nom de la passerelle Application Gateway.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du certificat d’authentification.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_auth_cert_update
+  name: az network application-gateway auth-cert update
+  summary: Mettre à jour un certificat d’autorisation.
+  description: ''
+  syntax: >-
+    az network application-gateway auth-cert update --cert-file
+                                                    [--add]
+                                                    [--force-string]
+                                                    [--gateway-name]
+                                                    [--ids]
+                                                    [--name]
+                                                    [--no-wait]
+                                                    [--remove]
+                                                    [--resource-group]
+                                                    [--set]
+                                                    [--subscription]
+  examples:
+  - summary: Mettez à jour les certificats d’autorisation pour utiliser un nouveau fichier de certificat.
+    syntax: az network application-gateway auth-cert update -g MyResourceGroup --gateway-name MyAppGateway \ -n MyAuthCert --cert-file /path/to/new/cert/file
+  requiredParameters:
+  - isRequired: true
+    name: --cert-file
+    summary: Chemin du fichier de certificat.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --gateway-name
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du certificat d’authentification.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_application_gateway_auth_cert_create
+- az_network_application_gateway_auth_cert_delete
+- az_network_application_gateway_auth_cert_list
+- az_network_application_gateway_auth_cert_show
+- az_network_application_gateway_auth_cert_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/25/2021
+  description: Gérer les certificats d’autorisation d’une passerelle d’application.
+  ms.openlocfilehash: 6bae816ee09359a46370a9510054208f5da2ae4d
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103526788"

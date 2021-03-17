@@ -1,0 +1,155 @@
+### YamlMime:AzureCLIGroup
+uid: ext_acrtransfer_az_acr_pipeline_run
+name: az acr pipeline-run
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **acrtransfer** pour Azure CLI et requiert la version 2.0.67 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ ACR pipeline-Run** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les exécutions du pipeline d’importation et d’exportation ACR.
+description: ''
+directCommands:
+- uid: ext_acrtransfer_az_acr_pipeline_run_create
+  name: az acr pipeline-run create
+  summary: Créez une exécution de pipeline.
+  description: ''
+  syntax: >-
+    az acr pipeline-run create --name
+                               --pipeline
+                               --pipeline-type
+                               --registry
+                               --resource-group
+                               --storage-blob
+                               [--artifacts]
+                               [--force-redeploy]
+  examples:
+  - summary: Créer une exécution du pipeline d’importation.
+    syntax: az acr pipeline-run create --resource-group $MyRG --registry $MyReg --pipeline $MyPipeline --name $MyPipelineRunName --pipeline-type import --storage-blob $MyBlob
+  - summary: Créer une exécution du pipeline d’exportation et forcer le redéploiement.
+    syntax: az acr pipeline-run create --resource-group $MyRG --registry $MyReg --pipeline $MyPipeline --name $MyPipelineRunName --pipeline-type export --storage-blob $MyBlob --artifacts hello-world:latest hello-world@sha256:90659bf80b44ce6be8234e6ff90a1ac34acbeb826903b02cfa0da11c82cbc042 --force-redeploy
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’exécution du pipeline.
+    description: ''
+  - isRequired: true
+    name: --pipeline -p
+    summary: Nom du pipeline à exécuter.
+    description: ''
+  - isRequired: true
+    name: --pipeline-type -t
+    summary: Type de pipeline. Il doit s’agir d’une importation ou d’une exportation.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du Registre.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --storage-blob -b
+    summary: Nom de l’objet blob de stockage à importer ou à exporter.
+    description: ''
+  optionalParameters:
+  - name: --artifacts -a
+    summary: 'Liste séparée par des espaces des artefacts de conteneur. Les artefacts doivent être de la forme ou de l’un des `repository:tag` `repository@digest` éléments suivants : Hello-World : latest ou hello-world@sha256:90659bf80b44ce6be8234e6ff90a1ac34acbeb826903b02cfa0da11c82cbc042 .'
+    description: ''
+  - name: --force-redeploy -f
+    summary: Indicateur qui force ARM à redéployer la ressource même si aucun paramètre n’a changé.
+    description: ''
+- uid: ext_acrtransfer_az_acr_pipeline_run_delete
+  name: az acr pipeline-run delete
+  summary: Supprimer un pipeline d’exportation.
+  description: ''
+  syntax: >-
+    az acr pipeline-run delete --name
+                               --registry
+                               --resource-group
+  examples:
+  - summary: Supprimer un pipeline d’exportation.
+    syntax: az acr pipeline-run delete --resource-group $MyRG --registry $MyReg --name $MyPipelineRun
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’exécution du pipeline.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du Registre.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_acrtransfer_az_acr_pipeline_run_list
+  name: az acr pipeline-run list
+  summary: Répertorier les pipelineruns de tous les pipelines sur un registre de conteneurs.
+  description: ''
+  syntax: >-
+    az acr pipeline-run list --registry
+                             --resource-group
+  examples:
+  - summary: Répertorier tous les pipelines d’exportation sur un registre de conteneurs
+    syntax: az acr pipeline-run list --resource-group $MyRG --registry $MyReg
+  requiredParameters:
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du Registre.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_acrtransfer_az_acr_pipeline_run_show
+  name: az acr pipeline-run show
+  summary: Affichez un pipeline d’exportation en détail.
+  description: ''
+  syntax: >-
+    az acr pipeline-run show --name
+                             --registry
+                             --resource-group
+  examples:
+  - summary: Affichez un pipeline d’exportation spécifique en détail.
+    syntax: az acr pipeline-run show --resource-group $MyRG --registry $MyReg --name $MyPipelineRun
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’exécution du pipeline.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du Registre.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_acrtransfer_az_acr_pipeline_run_create
+- ext_acrtransfer_az_acr_pipeline_run_delete
+- ext_acrtransfer_az_acr_pipeline_run_list
+- ext_acrtransfer_az_acr_pipeline_run_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les exécutions du pipeline d’importation et d’exportation ACR.
+  ms.openlocfilehash: 0c6bf9160b71cbd628a869a13394d69958ae700d
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103551010"
