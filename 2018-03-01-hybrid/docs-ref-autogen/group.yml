@@ -1,0 +1,311 @@
+### YamlMime:AzureCLIGroup
+uid: az_group
+name: az group
+summary: Gérer les groupes de ressources et les déploiements de modèles.
+description: ''
+directCommands:
+- uid: az_group_create
+  name: az group create
+  summary: Créez un groupe de ressources.
+  description: ''
+  syntax: >-
+    az group create --location
+                    --name
+                    [--managed-by]
+                    [--subscription]
+                    [--tags]
+  examples:
+  - summary: Créez un nouveau groupe de ressources dans la région États-Unis de l’Ouest.
+    syntax: az group create -l westus -n MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name --resource-group -g -n
+    summary: Nom du nouveau groupe de ressources.
+    description: ''
+  optionalParameters:
+  - name: --managed-by
+    summary: ID de la ressource qui gère ce groupe de ressources.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_group_delete
+  name: az group delete
+  summary: Supprime un groupe de ressources.
+  description: ''
+  syntax: >-
+    az group delete --name
+                    [--no-wait]
+                    [--subscription]
+                    [--yes]
+  examples:
+  - summary: Supprime un groupe de ressources.
+    syntax: az group delete -n MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name --resource-group -g -n
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_group_exists
+  name: az group exists
+  summary: Vérifiez s’il existe un groupe de ressources.
+  description: ''
+  syntax: >-
+    az group exists --name
+                    [--subscription]
+  examples:
+  - summary: Vérifiez si « MyResourceGroup » existe.
+    syntax: az group exists -n MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name --resource-group -g -n
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_group_export
+  name: az group export
+  summary: Capture un groupe de ressources en tant que modèle.
+  description: ''
+  syntax: >-
+    az group export --name
+                    [--include-comments]
+                    [--include-parameter-default-value]
+                    [--resource-ids]
+                    [--skip-all-params]
+                    [--skip-resource-name-params]
+                    [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name --resource-group -g -n
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --include-comments
+    summary: Exportez le modèle avec des commentaires.
+    description: ''
+  - name: --include-parameter-default-value
+    summary: Exportez le paramètre de modèle avec la valeur par défaut.
+    description: ''
+  - name: --resource-ids
+    summary: ID de ressource séparés par des espaces pour filtrer l’exportation. Pour exporter toutes les ressources, ne spécifiez pas cet argument ou fournissez « \* ».
+    description: ''
+  - name: --skip-all-params
+    summary: Exportez le paramètre de modèle et ignorez tous les paramétrages.
+    description: ''
+  - name: --skip-resource-name-params
+    summary: Exportez le modèle et ignorez le paramétrage du nom de ressource.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_group_list
+  name: az group list
+  summary: Répertorier les groupes de ressources.
+  description: ''
+  syntax: >-
+    az group list [--query-examples]
+                  [--subscription]
+                  [--tag]
+  examples:
+  - summary: Répertorie tous les groupes de ressources situés dans la région États-Unis de l’Ouest.
+    syntax: az group list --query "[?location=='westus']"
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tag
+    summary: Une balise unique au format « Key [= value] ». Utilisez «» pour effacer les balises existantes.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_group_show
+  name: az group show
+  summary: Obtient un groupe de ressources.
+  description: ''
+  syntax: >-
+    az group show --name
+                  [--query-examples]
+                  [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name --resource-group -g -n
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_group_update
+  name: az group update
+  summary: Mettre à jour un groupe de ressources.
+  description: ''
+  syntax: >-
+    az group update --name
+                    [--add]
+                    [--force-string]
+                    [--remove]
+                    [--set]
+                    [--subscription]
+                    [--tags]
+  examples:
+  - summary: Mettre à jour un groupe de ressources. généré automatiquement
+    syntax: az group update --resource-group MyResourceGroup --set tags.CostCenter='{"Dept":"IT","Environment":"Test"}'
+  requiredParameters:
+  - isRequired: true
+    name: --name --resource-group -g -n
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_group_wait
+  name: az group wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du groupe de ressources soit remplie.
+  description: ''
+  syntax: >-
+    az group wait --name
+                  [--created]
+                  [--custom]
+                  [--deleted]
+                  [--exists]
+                  [--interval]
+                  [--subscription]
+                  [--timeout]
+                  [--updated]
+  examples:
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du groupe de ressources soit remplie. généré automatiquement
+    syntax: az group wait --created  --resource-group MyResourceGroup
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du groupe de ressources soit remplie. généré automatiquement
+    syntax: az group wait --deleted --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name --resource-group -g -n
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+commands:
+- az_group_create
+- az_group_delete
+- az_group_deployment
+- az_group_deployment_cancel
+- az_group_deployment_create
+- az_group_deployment_delete
+- az_group_deployment_export
+- az_group_deployment_list
+- az_group_deployment_operation
+- az_group_deployment_operation_list
+- az_group_deployment_operation_show
+- az_group_deployment_show
+- az_group_deployment_validate
+- az_group_deployment_wait
+- az_group_exists
+- az_group_export
+- az_group_list
+- az_group_lock
+- az_group_lock_create
+- az_group_lock_delete
+- az_group_lock_list
+- az_group_lock_show
+- az_group_lock_update
+- az_group_show
+- az_group_update
+- az_group_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/25/2021
+  description: Gérer les groupes de ressources et les déploiements de modèles.
+  ms.openlocfilehash: f4e25c0a8ab538241fc15da00b01471929db09f2
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103511488"
