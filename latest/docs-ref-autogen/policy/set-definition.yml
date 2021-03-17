@@ -1,0 +1,246 @@
+### YamlMime:AzureCLIGroup
+uid: az_policy_set_definition
+name: az policy set-definition
+summary: Gérer les définitions de l’ensemble de stratégies de ressources.
+description: ''
+directCommands:
+- uid: az_policy_set_definition_create
+  name: az policy set-definition create
+  summary: Créer une définition d’ensemble de stratégies.
+  description: ''
+  syntax: >-
+    az policy set-definition create --definitions
+                                    --name
+                                    [--definition-groups]
+                                    [--description]
+                                    [--display-name]
+                                    [--management-group]
+                                    [--metadata]
+                                    [--params]
+                                    [--subscription]
+  examples:
+  - summary: Créer une définition d’ensemble de stratégies.
+    syntax: >-
+      az policy set-definition create -n readOnlyStorage \
+          --definitions "[ { \"policyDefinitionId\": \"/subscriptions/mySubId/providers/ \
+              Microsoft.Authorization/policyDefinitions/storagePolicy\", \"parameters\": \
+                  { \"storageSku\": { \"value\": \"[parameters(\\"requiredSku\\")]\" } } }]" \
+          --params "{ \"requiredSku\": { \"type\": \"String\" } }"
+  - summary: Créer une définition d’ensemble de stratégies avec des paramètres.
+    syntax: >-
+      az policy set-definition create -n readOnlyStorage \
+          --definitions '[ { \"policyDefinitionId\": \"/subscriptions/mySubId/providers/ \
+              Microsoft.Authorization/policyDefinitions/storagePolicy\" } ]'
+  - summary: Créer une définition d’ensemble de stratégies dans un abonnement.
+    syntax: >-
+      az policy set-definition create -n readOnlyStorage \
+          --subscription '0b1f6471-1bf0-4dda-aec3-111122223333' \
+          --definitions '[ { \"policyDefinitionId\": \"/subscriptions/ \
+              0b1f6471-1bf0-4dda-aec3-111122223333/providers/Microsoft.Authorization/ \
+                  policyDefinitions/storagePolicy\" } ]'
+  - summary: Créer une définition d’ensemble de stratégies avec des groupes de définitions de stratégie.
+    syntax: >-
+      az policy set-definition create -n computeRequirements \
+          --definitions "[ { \"policyDefinitionId \": \"/subscriptions/mySubId/providers/ \
+              Microsoft.Authorization/policyDefinitions/storagePolicy\", \"groupNames\": \
+                  [ \"CostSaving\", \"Organizational\" ] }, { \"policyDefinitionId\": \
+                      \"/subscriptions/mySubId/providers/Microsoft.Authorization/ \
+                          policyDefinitions/tagPolicy\", \"groupNames\": [ \
+                              \"Organizational\" ] } ]" \
+          --definition-groups "[{ \"name\": \"CostSaving\" }, { \"name\": \"Organizational\" } ]"
+  requiredParameters:
+  - isRequired: true
+    name: --definitions
+    summary: Définitions de stratégie au format JSON, ou chemin d’accès à un fichier ou à un URI contenant des règles JSON.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la nouvelle définition de l’ensemble de stratégies.
+    description: ''
+  optionalParameters:
+  - name: --definition-groups
+    summary: Chaîne au format JSON ou chemin d’accès à un fichier ou à un URI contenant des groupes de définitions de stratégie. Les groupes sont utilisés pour organiser les définitions de stratégie au sein d’un ensemble de stratégies.
+    description: ''
+  - name: --description
+    summary: Description de la définition de l’ensemble de stratégies.
+    description: ''
+  - name: --display-name
+    summary: Nom complet de la définition de l’ensemble de stratégies.
+    description: ''
+  - name: --management-group
+    summary: Nom du groupe d’administration dans lequel la nouvelle définition de l’ensemble de stratégies peut être affectée.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces.
+    description: ''
+  - name: --params
+    summary: Chaîne au format JSON ou chemin d’accès à un fichier ou à un URI avec des définitions de paramètres.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement dans lequel la nouvelle définition de l’ensemble de stratégies peut être affectée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_set_definition_delete
+  name: az policy set-definition delete
+  summary: Supprime une définition d’ensemble de stratégies
+  description: ''
+  syntax: >-
+    az policy set-definition delete --name
+                                    [--management-group]
+                                    [--subscription]
+  examples:
+  - summary: Supprime une définition d’ensemble de stratégies généré automatiquement
+    syntax: az policy set-definition delete --management-group myMg --name MyPolicySetDefinition
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la définition de l’ensemble de stratégies.
+    description: ''
+  optionalParameters:
+  - name: --management-group
+    summary: Nom du groupe d’administration de la définition de la stratégie [Set].
+    description: ''
+  - name: --subscription
+    summary: ID d’abonnement de la définition de stratégie [Set].
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_set_definition_list
+  name: az policy set-definition list
+  summary: Répertorier les définitions de jeu de stratégies.
+  description: ''
+  syntax: >-
+    az policy set-definition list [--management-group]
+                                  [--query-examples]
+                                  [--subscription]
+  optionalParameters:
+  - name: --management-group
+    summary: Nom du groupe d’administration de la définition de la stratégie [Set].
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: ID d’abonnement de la définition de stratégie [Set].
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_set_definition_show
+  name: az policy set-definition show
+  summary: Affichez une définition d’ensemble de stratégies.
+  description: ''
+  syntax: >-
+    az policy set-definition show --name
+                                  [--management-group]
+                                  [--query-examples]
+                                  [--subscription]
+  examples:
+  - summary: Affichez une définition d’ensemble de stratégies. généré automatiquement
+    syntax: az policy set-definition show --name MyPolicySetDefinition
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la définition de l’ensemble de stratégies.
+    description: ''
+  optionalParameters:
+  - name: --management-group
+    summary: Nom du groupe d’administration de la définition de la stratégie [Set].
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: ID d’abonnement de la définition de stratégie [Set].
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_set_definition_update
+  name: az policy set-definition update
+  summary: Mettre à jour une définition d’ensemble de stratégies.
+  description: ''
+  syntax: >-
+    az policy set-definition update --name
+                                    [--definition-groups]
+                                    [--definitions]
+                                    [--description]
+                                    [--display-name]
+                                    [--management-group]
+                                    [--metadata]
+                                    [--params]
+                                    [--subscription]
+  examples:
+  - summary: Mettre à jour une définition d’ensemble de stratégies.
+    syntax: >-
+      az policy set-definition update \
+          --definitions '[ { \"policyDefinitionId\": \"/subscriptions/mySubId/providers/ \
+              Microsoft.Authorization/policyDefinitions/storagePolicy\" } ]' \
+          --name MyPolicySetDefinition
+  - summary: Mettez à jour les groupes et les définitions dans une définition d’ensemble de stratégies.
+    syntax: >-
+      az policy set-definition update -n computeRequirements \
+          --definitions "[ { \"policyDefinitionId\": \"/subscriptions/mySubId/providers/ \
+              Microsoft.Authorization/policyDefinitions/storagePolicy\", \"groupNames\": [ \
+                  \"CostSaving\", \"Organizational\" ] }, { \"policyDefinitionId\": \
+                      \"/subscriptions/mySubId/providers/Microsoft.Authorization/ \
+                          policyDefinitions/tagPolicy\", \
+                              \"groupNames\": [ \"Organizational\" ] } ]" \
+          --definition-groups "[{ \"name\": \"CostSaving\" }, { \"name\": \"Organizational\" } ]"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la définition de l’ensemble de stratégies.
+    description: ''
+  optionalParameters:
+  - name: --definition-groups
+    summary: Chaîne au format JSON ou chemin d’accès à un fichier ou à un URI contenant des groupes de définitions de stratégie. Les groupes sont utilisés pour organiser les définitions de stratégie au sein d’un ensemble de stratégies.
+    description: ''
+  - name: --definitions
+    summary: Chaîne au format JSON ou chemin d’accès à un fichier ou à un URI contenant des définitions.
+    description: ''
+  - name: --description
+    summary: Description de la définition de l’ensemble de stratégies.
+    description: ''
+  - name: --display-name
+    summary: Nom complet de la définition de l’ensemble de stratégies.
+    description: ''
+  - name: --management-group
+    summary: Nom du groupe d’administration de la définition de la stratégie [Set].
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces.
+    description: ''
+  - name: --params
+    summary: Chaîne au format JSON ou chemin d’accès à un fichier ou à un URI avec des définitions de paramètres.
+    description: ''
+  - name: --subscription
+    summary: ID d’abonnement de la définition de stratégie [Set].
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+commands:
+- az_policy_set_definition_create
+- az_policy_set_definition_delete
+- az_policy_set_definition_list
+- az_policy_set_definition_show
+- az_policy_set_definition_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les définitions de l’ensemble de stratégies de ressources.
+  ms.openlocfilehash: 592ef5c5cf199cd021229fb3c489d4f721cc8c21
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102969168"
