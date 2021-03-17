@@ -1,0 +1,165 @@
+### YamlMime:AzureCLIGroup
+uid: ext_eventgrid_az_eventgrid_partner_registration
+name: az eventgrid partner registration
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **eventgrid** pour Azure CLI et requiert la version 2.0.49 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ eventgrid Partner Registration** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les inscriptions de partenaires.
+description: ''
+directCommands:
+- uid: ext_eventgrid_az_eventgrid_partner_registration_create
+  name: az eventgrid partner registration create
+  summary: Créez une nouvelle inscription de partenaire.
+  description: ''
+  syntax: >-
+    az eventgrid partner registration create --name
+                                             --partner-name
+                                             --resource-group
+                                             --resource-type-name
+                                             [--authorized-subscription-ids]
+                                             [--customer-service-extension]
+                                             [--customer-service-number]
+                                             [--customer-service-uri]
+                                             [--description]
+                                             [--display-name]
+                                             [--logo-uri]
+                                             [--long-description]
+                                             [--setup-uri]
+                                             [--tags]
+  examples:
+  - summary: Créez une nouvelle inscription de partenaire avec les informations de base.
+    syntax: az eventgrid partner registration create -g rg1 --name partnerRegistrationName1 --partner-name Contoso --resource-type-name Accounts --authorized-subscription-ids 533ad9de-25db-46e2-b94a-d00c37cf022b 05aa2228-7d34-4635-922d-2b582c422445
+  - summary: Créez une nouvelle inscription de partenaire avec les informations du partenaire.
+    syntax: az eventgrid partner registration create -g rg1 --name partnerRegistrationName1 --partner-name Contoso --resource-type-name Accounts --authorized-subscription-ids 533ad9de-25db-46e2-b94a-d00c37cf022b 05aa2228-7d34-4635-922d-2b582c422445 --description ExampleDescription --display-name ExampleDisplayName1 --logo-uri 'https://www.example.com/logo.png' --setup-uri 'https://www.example.com' --long-description 'This is sample description}' --customer-service-number '+1 800 123 4567' --customer-service-extension '125' --customer-service-uri 'https://www.example.com/customerservice'
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’inscription du partenaire.
+    description: ''
+  - isRequired: true
+    name: --partner-name
+    summary: Nom officiel du partenaire.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-type-name
+    summary: Nom du type de ressource de la rubrique du partenaire. Ce nom doit être unique parmi tous les noms de types de rubriques du partenaire.
+    description: ''
+  optionalParameters:
+  - name: --authorized-subscription-ids
+    summary: Liste séparée par des espaces des ID d’abonnement Azure autorisés à créer un espace de noms partenaire associé à l’inscription de ce partenaire. Propriété facultative. La création d’espaces de noms de partenaires est toujours autorisée sous le même abonnement Azure que celui utilisé pour créer l’inscription du partenaire.
+    description: ''
+  - name: --customer-service-extension
+    summary: Extension du numéro de service client du serveur de publication. Seuls les chiffres sont autorisés et le nombre de chiffres ne doit pas dépasser 10.
+    description: ''
+  - name: --customer-service-number
+    summary: 'Numéro de service client du serveur de publication. Le format de téléphone attendu doit commencer par un signe « + » suivi de l’indicatif du pays. Les chiffres restants sont ensuite suivis. Seuls les chiffres et les espaces sont autorisés et sa longueur ne peut pas dépasser 16 chiffres, y compris le code du pays. Voici quelques exemples de numéros de téléphone valides : + 1 515 123 4567 et + 966 7 5115 2471. Exemples de numéros de téléphone non valides : + 1 (515) 123-4567, 1 515 123 4567 et + 966 121 5115 24 7 551 1234 43.'
+    description: ''
+  - name: --customer-service-uri
+    summary: URI du service client du serveur de publication.
+    description: ''
+  - name: --description
+    summary: Description du type de rubrique du partenaire.
+    description: ''
+  - name: --display-name
+    summary: Nom complet du type de rubrique du partenaire.
+    description: ''
+  - name: --logo-uri
+    summary: URI du logo du partenaire.
+    description: ''
+  - name: --long-description
+    summary: Description des scénarios personnalisés et de l’intégration. La longueur de cette description ne doit pas dépasser 2048 caractères.
+    description: ''
+  - name: --setup-uri
+    summary: URI du site Web partenaire qui peut être utilisé par les clients Azure pour configurer Event Grid l’intégration sur une source d’événement.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_eventgrid_az_eventgrid_partner_registration_delete
+  name: az eventgrid partner registration delete
+  summary: Supprimer une inscription de partenaire.
+  description: Supprime une inscription de partenaire avec les paramètres spécifiés.
+  syntax: >-
+    az eventgrid partner registration delete --name
+                                             --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’inscription du partenaire.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_eventgrid_az_eventgrid_partner_registration_list
+  name: az eventgrid partner registration list
+  summary: Répertorie toutes les inscriptions de partenaires dans un groupe de ressources spécifique ou dans le cadre de l’abonnement Azure spécifié.
+  description: ''
+  syntax: >-
+    az eventgrid partner registration list [--odata-query]
+                                           [--resource-group]
+  examples:
+  - summary: Répertorie toutes les inscriptions de partenaires dans l’abonnement Azure actuel.
+    syntax: az eventgrid partner registration list
+  - summary: Répertorie toutes les inscriptions de partenaires dans un groupe de ressources.
+    syntax: az eventgrid partner registration list -g rg1
+  - summary: Répertorier toutes les inscriptions de partenaires dans un groupe de ressources dont le nom contient le modèle « XYZ »
+    syntax: az eventgrid partner registration list -g rg1 --odata-query "Contains(name, 'XYZ')"
+  - summary: Répertorier toutes les inscriptions de partenaires dans un groupe de ressources, à l’exception de l’enregistrement partenaire nommé « nom1 »
+    syntax: az eventgrid partner registration list -g rg1 --odata-query "NOT (name eq 'name1')"
+  optionalParameters:
+  - name: --odata-query
+    summary: Requête utilisée pour filtrer les résultats à l’aide de la syntaxe OData.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_eventgrid_az_eventgrid_partner_registration_show
+  name: az eventgrid partner registration show
+  summary: Obtenir une inscription de partenaire.
+  description: Obtient un enregistrement de partenaire avec les paramètres spécifiés.
+  syntax: >-
+    az eventgrid partner registration show --name
+                                           --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’inscription du partenaire.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_eventgrid_az_eventgrid_partner_registration_create
+- ext_eventgrid_az_eventgrid_partner_registration_delete
+- ext_eventgrid_az_eventgrid_partner_registration_list
+- ext_eventgrid_az_eventgrid_partner_registration_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les inscriptions de partenaires.
+  ms.openlocfilehash: bfb13f859573322eed4cadd22ea7f6ba9c7012b0
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102836580"
