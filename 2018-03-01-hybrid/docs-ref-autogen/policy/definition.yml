@@ -1,0 +1,223 @@
+### YamlMime:AzureCLIGroup
+uid: az_policy_definition
+name: az policy definition
+summary: Gérer les définitions de stratégie de ressource.
+description: ''
+directCommands:
+- uid: az_policy_definition_create
+  name: az policy definition create
+  summary: Créez une définition de stratégie.
+  description: ''
+  syntax: >-
+    az policy definition create --name
+                                [--description]
+                                [--display-name]
+                                [--management-group]
+                                [--mode]
+                                [--params]
+                                [--rules]
+                                [--subscription]
+  examples:
+  - summary: Créez une stratégie en lecture seule.
+    syntax: >-
+      az policy definition create --name readOnlyStorage --rules "{ \"if\": \
+          { \"field\": \"type\", \"equals\": \"Microsoft.Storage/storageAccounts/write\" }, \
+              \"then\": { \"effect\": \"deny\" } }"
+  - summary: Créez une définition de paramètre de stratégie.
+    syntax: >-
+      az policy definition create --name allowedLocations \
+          --rules "{ \"if\": { \"allOf\": [ \
+              { \"field\": \"location\",\"notIn\": \"[parameters('listOfAllowedLocations')]\" }, \
+                  { \"field\": \"location\", \"notEquals\": \"global\" }, \
+                      { \"field\": \"type\", \"notEquals\": \
+                          \"Microsoft.AzureActiveDirectory/b2cDirectories\"} \
+                              ] }, \"then\": { \"effect\": \"deny\" } }" \
+          --params "{ \"allowedLocations\": { \
+              \"type\": \"array\", \"metadata\": { \"description\": \
+                  \"The list of locations that can be specified when deploying resources\", \
+                      \"strongType\": \"location\", \"displayName\": \"Allowed locations\" } } }"
+  - summary: Créer une stratégie en lecture seule qui peut être appliquée au sein d’un groupe d’administration.
+    syntax: >-
+      az policy definition create -n readOnlyStorage --management-group "MyManagementGroup" \
+          --rules "{ \"if\": { \"field\": \"type\", \
+              \"equals\": \"Microsoft.Storage/storageAccounts/write\" }, \
+                  \"then\": { \"effect\": \"deny\" } }"
+  - summary: Créer une définition de stratégie avec le mode. Le mode « indexé » indique que la stratégie doit être évaluée uniquement pour les types de ressources qui prennent en charge les balises et l’emplacement.
+    syntax: >-
+      az policy definition create --name TagsPolicyDefinition --subscription "MySubscription" \
+          --mode Indexed --rules "{ \"if\": { \"field\": \"tags\", \"exists\": \"false\" }, \
+              \"then\": { \"effect\": \"deny\" } }"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la nouvelle définition de stratégie.
+    description: ''
+  optionalParameters:
+  - name: --description
+    summary: Description de la définition de stratégie.
+    description: ''
+  - name: --display-name
+    summary: Nom complet de la définition de stratégie.
+    description: ''
+  - name: --management-group
+    summary: Nom du groupe d’administration dans lequel la nouvelle définition de stratégie peut être affectée.
+    description: ''
+  - name: --mode -m
+    summary: Mode de la définition de stratégie, par exemple All, indexée. <a href="https://aka.ms/azure-policy-mode">https://aka.ms/azure-policy-mode</a>Pour plus d’informations, consultez.
+    description: ''
+  - name: --params
+    summary: Chaîne au format JSON ou chemin d’accès à un fichier ou à un URI avec des définitions de paramètres.
+    description: ''
+  - name: --rules
+    summary: Règles de stratégie au format JSON ou chemin d’accès à un fichier contenant des règles JSON.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement dans lequel la nouvelle définition de stratégie peut être affectée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_definition_delete
+  name: az policy definition delete
+  summary: Supprimez une définition de stratégie.
+  description: ''
+  syntax: >-
+    az policy definition delete --name
+                                [--management-group]
+                                [--subscription]
+  examples:
+  - summary: Supprimez une définition de stratégie. généré automatiquement
+    syntax: az policy definition delete --name MyPolicyDefinition
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la définition de stratégie.
+    description: ''
+  optionalParameters:
+  - name: --management-group
+    summary: Nom du groupe d’administration de la définition de la stratégie [Set].
+    description: ''
+  - name: --subscription
+    summary: ID d’abonnement de la définition de stratégie [Set].
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_definition_list
+  name: az policy definition list
+  summary: Répertorier les définitions de stratégie.
+  description: ''
+  syntax: >-
+    az policy definition list [--management-group]
+                              [--query-examples]
+                              [--subscription]
+  optionalParameters:
+  - name: --management-group
+    summary: Nom du groupe d’administration de la définition de la stratégie [Set].
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: ID d’abonnement de la définition de stratégie [Set].
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_definition_show
+  name: az policy definition show
+  summary: Affichez une définition de stratégie.
+  description: ''
+  syntax: >-
+    az policy definition show --name
+                              [--management-group]
+                              [--query-examples]
+                              [--subscription]
+  examples:
+  - summary: Affichez une définition de stratégie. généré automatiquement
+    syntax: az policy definition show --name MyPolicyDefinition
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la définition de stratégie.
+    description: ''
+  optionalParameters:
+  - name: --management-group
+    summary: Nom du groupe d’administration de la définition de la stratégie [Set].
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: ID d’abonnement de la définition de stratégie [Set].
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_definition_update
+  name: az policy definition update
+  summary: Mettre à jour une définition de stratégie.
+  description: ''
+  syntax: >-
+    az policy definition update --name
+                                [--description]
+                                [--display-name]
+                                [--management-group]
+                                [--mode]
+                                [--params]
+                                [--rules]
+                                [--subscription]
+  examples:
+  - summary: Mettre à jour une définition de stratégie. généré automatiquement
+    syntax: az policy definition update --name MyPolicyDefinition
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la définition de stratégie.
+    description: ''
+  optionalParameters:
+  - name: --description
+    summary: Description de la définition de stratégie.
+    description: ''
+  - name: --display-name
+    summary: Nom complet de la définition de stratégie.
+    description: ''
+  - name: --management-group
+    summary: Nom du groupe d’administration de la définition de la stratégie [Set].
+    description: ''
+  - name: --mode -m
+    summary: Mode de la définition de stratégie, par exemple All, indexée. <a href="https://aka.ms/azure-policy-mode">https://aka.ms/azure-policy-mode</a>Pour plus d’informations, consultez.
+    description: ''
+  - name: --params
+    summary: Chaîne au format JSON ou chemin d’accès à un fichier ou à un URI avec des définitions de paramètres.
+    description: ''
+  - name: --rules
+    summary: Chaîne au format JSON ou chemin d’accès à un fichier avec ce contenu.
+    description: ''
+  - name: --subscription
+    summary: ID d’abonnement de la définition de stratégie [Set].
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+commands:
+- az_policy_definition_create
+- az_policy_definition_delete
+- az_policy_definition_list
+- az_policy_definition_show
+- az_policy_definition_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les définitions de stratégie de ressource.
+  ms.openlocfilehash: 1a1dce63a523f6ba21cc33743c924661abd6efa9
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102847492"

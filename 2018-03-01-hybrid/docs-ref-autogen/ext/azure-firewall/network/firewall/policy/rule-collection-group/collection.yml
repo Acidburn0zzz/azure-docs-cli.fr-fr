@@ -1,0 +1,281 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection
+name: az network firewall policy rule-collection-group collection
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-Firewall** pour Azure CLI et requiert la version 2.15.0 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ Network Firewall Policy-collection-Group collection** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérez et configurez les collections de règles de stratégie de pare-feu Azure dans le groupe regroupement de règles.
+description: >-
+  Actuellement, la stratégie de pare-feu Azure prend en charge deux types de collections de règles, à savoir la collecte de filtres et la collecte NAT. Il existe trois types de règles, à savoir la règle d’application, la règle de réseau et la règle NAT.
+
+  La collecte NAT prend en charge une liste de règles NAT. Prise en charge des collections de filtres, y compris une liste de règles (règle réseau ou règle d’application). Mais toutes les règles doivent être du même type.
+directCommands:
+- uid: ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_add_filter_collection
+  name: az network firewall policy rule-collection-group collection add-filter-collection
+  summary: Ajoutez une collection de filtres à un groupe de collections de règles de stratégie de pare-feu Azure.
+  description: Les arguments de règle courants sont utilisés pour la règle de réseau et la règle d’application. Si vous souhaitez ajouter d’autres règles dans la collection de filtres, utilisez « AZ Network Policy Rule-collection-Group regroupement Rule Add/Remove ».
+  syntax: >-
+    az network firewall policy rule-collection-group collection add-filter-collection --collection-priority
+                                                                                      --name
+                                                                                      --policy-name
+                                                                                      --rcg-name
+                                                                                      --resource-group
+                                                                                      [--action {Allow, Deny}]
+                                                                                      [--description]
+                                                                                      [--dest-addr]
+                                                                                      [--dest-ipg]
+                                                                                      [--destination-ports]
+                                                                                      [--enable-tls-insp {false, true}]
+                                                                                      [--fqdn-tags]
+                                                                                      [--ip-protocols {Any, ICMP, TCP, UDP}]
+                                                                                      [--protocols]
+                                                                                      [--rule-name]
+                                                                                      [--rule-type {ApplicationRule, NatRule, NetworkRule}]
+                                                                                      [--source-addresses]
+                                                                                      [--source-ip-groups]
+                                                                                      [--target-fqdns]
+                                                                                      [--target-urls]
+                                                                                      [--web-categories]
+  examples:
+  - summary: Ajouter une collection de filtres avec la règle réseau dans le groupe de regroupement de règles
+    syntax: az network firewall policy rule-collection-group collection add-filter-collection -g {rg} --policy-name {policy} --rule-collection-group-name {collectiongroup} --name filter_collection --action Allow --rule-name network_rule --rule-type NetworkRule --description "test" --destination-addresses "202.120.36.15" --source-addresses "202.120.36.13" "202.120.36.14" --destination-ports 12003 12004 --ip-protocols TCP UDP --collection-priority 11002
+  - summary: Ajouter une collection de filtres avec la règle d’application dans le groupe de regroupement de règles
+    syntax: az network firewall policy rule-collection-group collection add-filter-collection -g {rg} --policy-name {policy} --rule-collection-group-name {collectiongroup} --name filter_collection --action Allow --rule-name application_rule --rule-type ApplicationRule --description "test" --destination-addresses "202.120.36.15" "202.120.36.16" --source-addresses "202.120.36.13" "202.120.36.14" --protocols Http=12800 Https=12801 --fqdn-tags AzureBackup HDInsight --collection-priority 11100
+  requiredParameters:
+  - isRequired: true
+    name: --collection-priority
+    summary: Priorité de la règle dans le groupe de collecte des règles de stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la collection dans le groupe de collection de règles de stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --policy-name
+    summary: Nom de la stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --rcg-name --rule-collection-group-name
+    summary: Nom du groupe de collection de règles de stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --action
+    parameterValueGroup: Allow, Deny
+    summary: Type d’action d’un regroupement de règles.
+    description: ''
+  - name: --description
+    summary: Description de la règle.
+    description: ''
+  - name: --dest-addr --destination-addresses
+    summary: Liste d’adresses IP de destination séparées par des espaces.
+    description: ''
+  - name: --dest-ipg --destination-ip-groups
+    summary: Liste séparée par des espaces du nom ou de l’ID de ressource du IpGroups de destination.
+    description: ''
+  - name: --destination-ports
+    summary: Liste de ports de destination séparés par des espaces. Cet argument est pris en charge pour la règle NAT et le réseau.
+    description: ''
+  - name: --enable-tls-insp --enable-tls-inspection
+    parameterValueGroup: false, true
+    summary: Activez l’indicateur pour mettre fin à la connexion TLS pour cette règle.
+    description: ''
+  - name: --fqdn-tags
+    summary: Liste séparée par des espaces de balises de nom de domaine complet pour cette règle.
+    description: ''
+  - name: --ip-protocols
+    parameterValueGroup: Any, ICMP, TCP, UDP
+    summary: Liste des protocoles IP séparés par des espaces. Cet argument est pris en charge pour la règle NAT et le réseau.
+    description: ''
+  - name: --protocols
+    summary: Liste séparée par des espaces des protocoles et numéros de port à utiliser, au format protocole = PORT. Les protocoles valides sont http, HTTPS.
+    description: ''
+  - name: --rule-name
+    summary: Nom de la règle.
+    description: ''
+  - name: --rule-type
+    parameterValueGroup: ApplicationRule, NatRule, NetworkRule
+    summary: Type de règle.
+    description: ''
+  - name: --source-addresses
+    summary: Liste d’adresses IP source séparées par des espaces.
+    description: ''
+  - name: --source-ip-groups
+    summary: Liste séparée par des espaces du nom ou de l’ID de ressource de la source IpGroups.
+    description: ''
+  - name: --target-fqdns
+    summary: Liste de noms de domaine complets séparés par des espaces pour cette règle.
+    description: ''
+  - name: --target-urls
+    summary: Liste d’URL cibles séparées par des espaces pour cette règle.
+    description: ''
+  - name: --web-categories
+    summary: Liste de catégories Web séparées par des espaces pour cette règle.
+    description: ''
+- uid: ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_add_nat_collection
+  name: az network firewall policy rule-collection-group collection add-nat-collection
+  summary: Ajoutez une collection NAT dans un groupe de collection de règles de stratégie de pare-feu Azure.
+  description: ''
+  syntax: >-
+    az network firewall policy rule-collection-group collection add-nat-collection --collection-priority
+                                                                                   --name
+                                                                                   --policy-name
+                                                                                   --rcg-name
+                                                                                   --resource-group
+                                                                                   [--action {DNAT, SNAT}]
+                                                                                   [--description]
+                                                                                   [--dest-addr]
+                                                                                   [--destination-ports]
+                                                                                   [--ip-protocols {Any, ICMP, TCP, UDP}]
+                                                                                   [--rule-name]
+                                                                                   [--source-addresses]
+                                                                                   [--source-ip-groups]
+                                                                                   [--translated-address]
+                                                                                   [--translated-fqdn]
+                                                                                   [--translated-port]
+  examples:
+  - summary: Ajouter une collection NAT dans le groupe de regroupement de règles
+    syntax: az network firewall policy rule-collection-group collection add-nat-collection -n nat_collection --collection-priority 10003 --policy-name {policy} -g {rg} --rule-collection-group-name {collectiongroup} --action DNAT --rule-name network_rule --description "test" --destination-addresses "202.120.36.15" --source-addresses "202.120.36.13" "202.120.36.14" --translated-address 128.1.1.1 --translated-port 1234 --destination-ports 12000 12001 --ip-protocols TCP UDP
+  requiredParameters:
+  - isRequired: true
+    name: --collection-priority
+    summary: Priorité de la règle dans le groupe de collecte des règles de stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la collection dans le groupe de collection de règles de stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --policy-name
+    summary: Nom de la stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --rcg-name --rule-collection-group-name
+    summary: Nom du groupe de collection de règles de stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --action
+    parameterValueGroup: DNAT, SNAT
+    summary: Type d’action d’un regroupement de règles.
+    description: ''
+  - name: --description
+    summary: Description de la règle.
+    description: ''
+  - name: --dest-addr --destination-addresses
+    summary: Liste d’adresses IP de destination séparées par des espaces.
+    description: ''
+  - name: --destination-ports
+    summary: Liste de ports de destination séparés par des espaces. Cet argument est pris en charge pour la règle NAT et le réseau.
+    description: ''
+  - name: --ip-protocols
+    parameterValueGroup: Any, ICMP, TCP, UDP
+    summary: Liste des protocoles IP séparés par des espaces. Cet argument est pris en charge pour la règle NAT et le réseau.
+    description: ''
+  - name: --rule-name
+    summary: Nom de la règle.
+    description: ''
+  - name: --source-addresses
+    summary: Liste d’adresses IP source séparées par des espaces.
+    description: ''
+  - name: --source-ip-groups
+    summary: Liste séparée par des espaces du nom ou de l’ID de ressource de la source IpGroups.
+    description: ''
+  - name: --translated-address
+    summary: Adresse traduite pour ce regroupement de règles NAT.
+    description: ''
+  - name: --translated-fqdn
+    summary: Nom de domaine complet (FQDN) traduit pour ce regroupement de règles NAT.
+    description: ''
+  - name: --translated-port
+    summary: Port traduit pour ce regroupement de règles NAT.
+    description: ''
+- uid: ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_list
+  name: az network firewall policy rule-collection-group collection list
+  summary: Répertorie toutes les collections de règles d’un groupe de collections de règles de stratégie de pare-feu Azure.
+  description: ''
+  syntax: >-
+    az network firewall policy rule-collection-group collection list --policy-name
+                                                                     --rcg-name
+                                                                     --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --policy-name
+    summary: Nom de la stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --rcg-name --rule-collection-group-name
+    summary: Nom du groupe de collection de règles de stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_remove
+  name: az network firewall policy rule-collection-group collection remove
+  summary: Supprimer un regroupement de règles d’un groupe de collections de règles de stratégie de pare-feu Azure.
+  description: ''
+  syntax: >-
+    az network firewall policy rule-collection-group collection remove --name
+                                                                       --policy-name
+                                                                       --rcg-name
+                                                                       --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la collection dans le groupe de collection de règles de stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --policy-name
+    summary: Nom de la stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --rcg-name --rule-collection-group-name
+    summary: Nom du groupe de collection de règles de stratégie de pare-feu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_add_filter_collection
+- ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_add_nat_collection
+- ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_list
+- ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_remove
+- ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_rule
+- ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_rule_add
+- ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_rule_remove
+- ext_azure-firewall_az_network_firewall_policy_rule_collection_group_collection_rule_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: >-
+    Actuellement, la stratégie de pare-feu Azure prend en charge deux types de collections de règles, à savoir la collecte de filtres et la collecte NAT. Il existe trois types de règles, à savoir la règle d’application, la règle de réseau et la règle NAT.
+
+    La collecte NAT prend en charge une liste de règles NAT. Prise en charge des collections de filtres, y compris une liste de règles (règle réseau ou règle d’application). Mais toutes les règles doivent être du même type.
+  ms.openlocfilehash: fde1a160ea4a7d82f621dbc07f17aeee8bde0d67
+  ms.sourcegitcommit: 3e79897e0aeca4d74bc8ff0410121b011b5884ec
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/03/2021
+  ms.locfileid: "102845743"

@@ -1,0 +1,321 @@
+### YamlMime:AzureCLIGroup
+uid: ext_blockchain_az_blockchain_member
+name: az blockchain member
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **blockchain** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez la commande **AZ blockchain Member** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Membre Blockchain.
+description: ''
+directCommands:
+- uid: ext_blockchain_az_blockchain_member_create
+  name: az blockchain member create
+  summary: Créez un membre blockchain.
+  description: ''
+  syntax: >-
+    az blockchain member create --name
+                                --resource-group
+                                [--consortium]
+                                [--consortium-management-account-password]
+                                [--firewall-rules]
+                                [--location]
+                                [--no-wait]
+                                [--password]
+                                [--protocol {Corda, NotSpecified, Parity, Quorum}]
+                                [--sku {Basic, Standard}]
+                                [--tags]
+                                [--validator-nodes-sku]
+  examples:
+  - summary: Créez un membre blockchain.
+    syntax: az blockchain member create --location "southeastasia" --consortium "ContoseConsortium" --consortium-management-account-password "1234abcdEFG1" --password "1234abcdEFG1" --validator-nodes-sku capacity=2 --protocol "Quorum" --name "contosemember1" --resource-group "mygroup"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du membre Blockchain.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --consortium
+    summary: Obtient ou définit le Consortium pour le membre blockchain.
+    description: ''
+  - name: --consortium-management-account-password
+    summary: Définit le mot de passe du compte de gestion Managed Consortium.
+    description: ''
+  - name: --firewall-rules
+    summary: Règles de pare-feu du membre blockchian.
+    description: >-
+      Valeur attendue : KEY1 = VALUE1 KEY2 = VALUE2..., les clés disponibles sont : nom-règle, début-adresse IP, adresse IP de fin.
+
+
+      Plusieurs règles de pare-feu peuvent être spécifiées à l’aide de plusieurs `--firewall-rules` arguments.
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --password
+    summary: Définit le mot de passe d’authentification de base du membre blockchain.
+    description: ''
+  - name: --protocol
+    parameterValueGroup: Corda, NotSpecified, Parity, Quorum
+    summary: Obtient ou définit le protocole blockchain.
+    description: ''
+  - name: --sku
+    parameterValueGroup: Basic, Standard
+    summary: Référence (SKU) du membre blockchain.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --validator-nodes-sku
+    summary: 'Obtient ou définit la référence (SKU) des nœuds du validateur blockchain. Valeur attendue : Capacity = XX.'
+    description: ''
+- uid: ext_blockchain_az_blockchain_member_delete
+  name: az blockchain member delete
+  summary: Supprimer un membre blockchain.
+  description: ''
+  syntax: >-
+    az blockchain member delete --name
+                                --resource-group
+                                [--no-wait]
+                                [--yes]
+  examples:
+  - summary: Supprimer un membre blockchain.
+    syntax: az blockchain member delete --name "contosemember1" --resource-group "mygroup"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du membre Blockchain.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_blockchain_az_blockchain_member_list
+  name: az blockchain member list
+  summary: Répertorie les membres blockchain.
+  description: ''
+  syntax: az blockchain member list [--resource-group]
+  examples:
+  - summary: Répertorier les membres blockchain dans un groupe de ressources.
+    syntax: az blockchain member list --resource-group "mygroup"
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_blockchain_az_blockchain_member_list_api_key
+  name: az blockchain member list-api-key
+  summary: Répertoriez les clés API pour un membre blockchain.
+  description: ''
+  syntax: >-
+    az blockchain member list-api-key --name
+                                      --resource-group
+  examples:
+  - summary: Répertoriez les clés API pour un membre blockchain.
+    syntax: az blockchain member list-api-key --name "contosemember1" --resource-group "mygroup"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du membre Blockchain.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_blockchain_az_blockchain_member_list_consortium_member
+  name: az blockchain member list-consortium-member
+  summary: Répertorie les membres de consortium pour un membre blockchain.
+  description: ''
+  syntax: >-
+    az blockchain member list-consortium-member --name
+                                                --resource-group
+  examples:
+  - summary: Répertorie les membres de consortium pour un membre blockchain.
+    syntax: az blockchain member list-consortium-member --name "contosemember1" --resource-group "mygroup"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du membre Blockchain.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_blockchain_az_blockchain_member_regenerate_api_key
+  name: az blockchain member regenerate-api-key
+  summary: Régénérez les clés API pour un membre blockchain.
+  description: ''
+  syntax: >-
+    az blockchain member regenerate-api-key --name
+                                            --resource-group
+                                            [--key-name {key1, key2}]
+  examples:
+  - summary: Régénérez les clés API pour un membre blockchain.
+    syntax: az blockchain member regenerate-api-key --key-name "key1" --name "contosemember1" --resource-group "mygroup"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du membre Blockchain.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --key-name
+    parameterValueGroup: key1, key2
+    summary: Obtient ou définit le nom de la clé API.
+    description: ''
+- uid: ext_blockchain_az_blockchain_member_show
+  name: az blockchain member show
+  summary: Affichez les détails relatifs à un membre blockchain.
+  description: ''
+  syntax: >-
+    az blockchain member show --name
+                              --resource-group
+  examples:
+  - summary: Affichez les détails relatifs à un membre blockchain.
+    syntax: az blockchain member show --name "contosemember1" --resource-group "mygroup"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du membre Blockchain.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_blockchain_az_blockchain_member_update
+  name: az blockchain member update
+  summary: Mettez à jour un membre blockchain.
+  description: ''
+  syntax: >-
+    az blockchain member update --name
+                                --resource-group
+                                [--consortium-management-account-password]
+                                [--firewall-rules]
+                                [--password]
+                                [--tags]
+  examples:
+  - summary: Mettez à jour un membre blockchain.
+    syntax: az blockchain member update --consortium-management-account-password "1234abcdEFG1" --password "1234abcdEFG1" --name "ContoseMember1" --resource-group "mygroup"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du membre Blockchain.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --consortium-management-account-password
+    summary: Définit le mot de passe du compte de gestion Managed Consortium.
+    description: ''
+  - name: --firewall-rules
+    summary: Règles de pare-feu du membre blockchian.
+    description: >-
+      Valeur attendue : KEY1 = VALUE1 KEY2 = VALUE2..., les clés disponibles sont : nom-règle, début-adresse IP, adresse IP de fin.
+
+
+      Plusieurs règles de pare-feu peuvent être spécifiées à l’aide de plusieurs `--firewall-rules` arguments.
+  - name: --password
+    summary: Définit le mot de passe d’authentification de base du point de terminaison DNS du nœud de transaction.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_blockchain_az_blockchain_member_wait
+  name: az blockchain member wait
+  summary: Patientez jusqu’à la création ou la suppression d’un membre blockchain.
+  description: ''
+  syntax: >-
+    az blockchain member wait --name
+                              --resource-group
+                              [--created]
+                              [--custom]
+                              [--deleted]
+                              [--exists]
+                              [--interval]
+                              [--timeout]
+                              [--updated]
+  examples:
+  - summary: Patientez jusqu’à la création d’un membre blockchain.
+    syntax: az blockchain member wait --name "contosemember1" --resource-group "mygroup" --created
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du membre Blockchain.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- ext_blockchain_az_blockchain_member_create
+- ext_blockchain_az_blockchain_member_delete
+- ext_blockchain_az_blockchain_member_list
+- ext_blockchain_az_blockchain_member_list_api_key
+- ext_blockchain_az_blockchain_member_list_consortium_member
+- ext_blockchain_az_blockchain_member_regenerate_api_key
+- ext_blockchain_az_blockchain_member_show
+- ext_blockchain_az_blockchain_member_update
+- ext_blockchain_az_blockchain_member_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Membre Blockchain.
+  ms.openlocfilehash: 494115805281fca8e5a0f93c0d66c60d2bbf0ba6
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102832225"
