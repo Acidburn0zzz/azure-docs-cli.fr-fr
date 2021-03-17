@@ -1,0 +1,106 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_account_keys
+name: az storage account keys
+summary: Gérer les clés de compte de stockage.
+description: ''
+directCommands:
+- uid: az_storage_account_keys_list
+  name: az storage account keys list
+  summary: Répertorier les clés d’accès ou les clés Kerberos (si Active Directory est activé) pour un compte de stockage.
+  description: ''
+  syntax: >-
+    az storage account keys list --account-name
+                                 [--expand-key-type]
+                                 [--query-examples]
+                                 [--resource-group]
+                                 [--subscription]
+  examples:
+  - summary: Répertorie les clés d’accès pour un compte de stockage.
+    syntax: az storage account keys list -g MyResourceGroup -n MyStorageAccount
+  - summary: Répertorier les clés d’accès et les clés Kerberos (si Active Directory est activé) pour un compte de stockage.
+    syntax: az storage account keys list -g MyResourceGroup -n MyStorageAccount --expand-key-type kerb
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -n
+    summary: nom du compte de stockage.
+    description: ''
+  optionalParameters:
+  - name: --expand-key-type
+    defaultValue: kerb
+    summary: Spécifiez les types de clé développés à répertorier.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_account_keys_renew
+  name: az storage account keys renew
+  summary: Régénère l’une des clés d’accès ou des clés Kerberos (si Active Directory est activé) pour un compte de stockage.
+  description: La clé Kerberos est générée par compte de stockage pour Azure Files l’authentification basée sur l’identité avec Azure Active Directory Service de domaine (Azure AD DS) ou domaine Active Directory Service (AD DS). Il est utilisé comme mot de passe de l’identité inscrite dans le service de domaine qui représente le compte de stockage. La clé Kerberos ne fournit pas d’autorisation d’accès pour effectuer des opérations de lecture ou d’écriture de plan de données ou de contrôle sur le compte de stockage.
+  syntax: >-
+    az storage account keys renew --account-name
+                                  --key {primary, secondary}
+                                  [--key-type {kerb}]
+                                  [--resource-group]
+                                  [--subscription]
+  examples:
+  - summary: Régénère l’une des clés d’accès pour un compte de stockage.
+    syntax: az storage account keys renew -g MyResourceGroup -n MyStorageAccount --key primary
+  - summary: Régénère l’une des clés Kerberos pour un compte de stockage.
+    syntax: az storage account keys renew -g MyResourceGroup -n MyStorageAccount --key secondary --key-type kerb
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -n
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --key
+    parameterValueGroup: primary, secondary
+    summary: Options de clé à régénérer.
+    description: ''
+  optionalParameters:
+  - name: --key-type
+    parameterValueGroup: kerb
+    summary: Type de clé à régénérer. Si--key-type n’est pas spécifié, l’une des clés d’accès sera régénérée par défaut.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_account_keys_list
+- az_storage_account_keys_renew
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les clés de compte de stockage.
+  ms.openlocfilehash: 96ba709788149152a5ebac95931e79fec8d967d1
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102967691"
