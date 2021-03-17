@@ -1,0 +1,284 @@
+### YamlMime:AzureCLIGroup
+uid: ext_databricks_az_databricks_workspace
+name: az databricks workspace
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **databricks** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ databricks Workspace** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer l’espace de travail databricks.
+description: ''
+directCommands:
+- uid: ext_databricks_az_databricks_workspace_create
+  name: az databricks workspace create
+  summary: Créer un espace de travail.
+  description: ''
+  syntax: >-
+    az databricks workspace create --location
+                                   --name
+                                   --resource-group
+                                   --sku {premium, standard, trial}
+                                   [--enable-no-public-ip]
+                                   [--managed-resource-group]
+                                   [--no-wait]
+                                   [--prepare-encryption]
+                                   [--private-subnet]
+                                   [--public-subnet]
+                                   [--require-infrastructure-encryption]
+                                   [--tags]
+                                   [--vnet]
+  examples:
+  - summary: Créer un espace de travail
+    syntax: az databricks workspace create --resource-group MyResourceGroup --name MyWorkspace --location westus --sku standard
+  - summary: Créer un espace de travail avec une identité gérée pour le compte de stockage
+    syntax: az databricks workspace create --resource-group MyResourceGroup --name MyWorkspace --location eastus2euap --sku premium --prepare-encryption
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’espace de travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --sku
+    parameterValueGroup: premium, standard, trial
+    summary: Nom du niveau de référence (SKU).
+    description: ''
+  optionalParameters:
+  - name: --enable-no-public-ip
+    summary: Indicateur qui permet d’activer la fonctionnalité aucune adresse IP publique.
+    description: ''
+  - name: --managed-resource-group
+    summary: Groupe de ressources managé à créer. Il peut s’agir d’un nom ou d’un ID de ressource.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --prepare-encryption
+    summary: Indicateur pour activer l’identité managée pour le compte de stockage managé afin de préparer le chiffrement CMK.
+    description: ''
+  - name: --private-subnet
+    summary: Nom d’un sous-réseau privé au sein du réseau virtuel.
+    description: ''
+  - name: --public-subnet
+    summary: Nom d’un sous-réseau public au sein du réseau virtuel.
+    description: ''
+  - name: --require-infrastructure-encryption
+    summary: Indicateur pour activer le système de fichiers racine DBFS avec la couche secondaire de chiffrement avec des clés gérées par la plateforme pour les données au repos.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --vnet
+    summary: Nom du réseau virtuel ou ID de ressource.
+    description: ''
+- uid: ext_databricks_az_databricks_workspace_delete
+  name: az databricks workspace delete
+  summary: supprimer l’espace de travail.
+  description: ''
+  syntax: >-
+    az databricks workspace delete --name
+                                   --resource-group
+                                   [--no-wait]
+                                   [--yes]
+  examples:
+  - summary: supprimer l’espace de travail
+    syntax: az databricks workspace delete --resource-group MyResourceGroup --name MyWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’espace de travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_databricks_az_databricks_workspace_list
+  name: az databricks workspace list
+  summary: Récupération de tous les espaces de travail.
+  description: ''
+  syntax: az databricks workspace list [--resource-group]
+  examples:
+  - summary: Répertorier les espaces de travail au sein d’un groupe de ressources
+    syntax: az databricks workspace list --resource-group MyResourceGroup
+  - summary: Répertorier les espaces de travail dans l’abonnement par défaut
+    syntax: az databricks workspace list
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_databricks_az_databricks_workspace_show
+  name: az databricks workspace show
+  summary: Affichez l’espace de travail.
+  description: ''
+  syntax: >-
+    az databricks workspace show --name
+                                 --resource-group
+  examples:
+  - summary: Afficher l’espace de travail
+    syntax: az databricks workspace show --resource-group MyResourceGroup --name MyWorkspace
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’espace de travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_databricks_az_databricks_workspace_update
+  name: az databricks workspace update
+  summary: Mettez à jour l’espace de travail.
+  description: ''
+  syntax: >-
+    az databricks workspace update --name
+                                   --resource-group
+                                   [--key-name]
+                                   [--key-source {Default, Microsoft.Keyvault}]
+                                   [--key-vault]
+                                   [--key-version]
+                                   [--no-wait]
+                                   [--prepare-encryption]
+                                   [--tags]
+  examples:
+  - summary: Mettez à jour les balises de l’espace de travail.
+    syntax: az databricks workspace update --resource-group MyResourceGroup --name MyWorkspace --tags key1=value1 key2=value2
+  - summary: Nettoyez les balises de l’espace de travail.
+    syntax: az databricks workspace update --resource-group MyResourceGroup --name MyWorkspace --tags ""
+  - summary: Préparez le chiffrement CMK en affectant l’identité du compte de stockage.
+    syntax: az databricks workspace update --resource-group MyResourceGroup --name MyWorkspace --prepare-encryption
+  - summary: Configurer le chiffrement CMK
+    syntax: az databricks workspace update --resource-group MyResourceGroup --name MyWorkspace --key-source Microsoft.KeyVault --key-name MyKey --key-vault https://myKeyVault.vault.azure.net/ --key-version 00000000000000000000000000000000
+  - summary: Rétablir le chiffrement des clés gérées par Microsoft
+    syntax: az databricks workspace update --resource-group MyResourceGroup --name MyWorkspace --key-source Default
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’espace de travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --key-name
+    summary: Nom de la clé de coffre de clés.
+    description: ''
+  - name: --key-source
+    parameterValueGroup: Default, Microsoft.Keyvault
+    summary: Source de la clé de chiffrement (fournisseur).
+    description: ''
+  - name: --key-vault
+    summary: URI du coffre de stockage.
+    description: ''
+  - name: --key-version
+    summary: Version de la clé du coffre de clés. Elle est facultative lors de la mise à jour de CMK.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --prepare-encryption
+    summary: Indicateur pour activer l’identité managée pour le compte de stockage managé afin de préparer le chiffrement CMK.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_databricks_az_databricks_workspace_wait
+  name: az databricks workspace wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de l’espace de travail Databricks soit remplie.
+  description: ''
+  syntax: >-
+    az databricks workspace wait --name
+                                 --resource-group
+                                 [--created]
+                                 [--custom]
+                                 [--deleted]
+                                 [--exists]
+                                 [--interval]
+                                 [--timeout]
+                                 [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que l’espace de travail Databricks soit correctement approvisionné.
+    syntax: az databricks workspace wait --resource-group MyResourceGroup --name MyWorkspace \ --created
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’espace de travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- ext_databricks_az_databricks_workspace_create
+- ext_databricks_az_databricks_workspace_delete
+- ext_databricks_az_databricks_workspace_list
+- ext_databricks_az_databricks_workspace_show
+- ext_databricks_az_databricks_workspace_update
+- ext_databricks_az_databricks_workspace_vnet_peering
+- ext_databricks_az_databricks_workspace_vnet_peering_create
+- ext_databricks_az_databricks_workspace_vnet_peering_delete
+- ext_databricks_az_databricks_workspace_vnet_peering_list
+- ext_databricks_az_databricks_workspace_vnet_peering_show
+- ext_databricks_az_databricks_workspace_vnet_peering_update
+- ext_databricks_az_databricks_workspace_vnet_peering_wait
+- ext_databricks_az_databricks_workspace_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer l’espace de travail databricks.
+  ms.openlocfilehash: c892e1768324dd4a48498249508dd31a9ecf18d0
+  ms.sourcegitcommit: 87ef3e6b317b97a14b23339075c226dd7eef8c1c
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/10/2021
+  ms.locfileid: "102971204"

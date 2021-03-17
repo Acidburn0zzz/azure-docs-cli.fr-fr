@@ -1,0 +1,256 @@
+### YamlMime:AzureCLIGroup
+uid: az_afd_endpoint
+name: az afd endpoint
+summary: Gérer les points de terminaison AFD dans le profil spécifié.
+description: Un point de terminaison est un regroupement logique de domaines et de leurs configurations associées.
+directCommands:
+- uid: az_afd_endpoint_create
+  name: az afd endpoint create
+  summary: Crée un point de terminaison dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd endpoint create --enabled-state {Disabled, Enabled}
+                           --endpoint-name
+                           --origin-response-timeout-seconds
+                           --profile-name
+                           --resource-group
+                           [--subscription]
+                           [--tags]
+  examples:
+  - summary: Crée un point de terminaison activé avec le délai d’attente de réponse d’origine défini sur 60 secondes.
+    syntax: az afd endpoint create -g group --endpoint-name endpoint1 --profile-name profile --origin-response-timeout-seconds 60 --enabled-state Enabled
+  requiredParameters:
+  - isRequired: true
+    name: --enabled-state
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique s’il faut activer ce point de terminaison.
+    description: ''
+  - isRequired: true
+    name: --endpoint-name
+    summary: Nom du point de terminaison sous le profil qui est unique globalement.
+    description: ''
+  - isRequired: true
+    name: --origin-response-timeout-seconds
+    summary: Délai d’attente d’envoi et de réception lors du transfert de la demande à l’origine. Lorsque le délai d’attente est atteint, la requête échoue et retourne.
+    description: ''
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_afd_endpoint_delete
+  name: az afd endpoint delete
+  summary: Supprimer un point de terminaison dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd endpoint delete [--endpoint-name]
+                           [--ids]
+                           [--profile-name]
+                           [--resource-group]
+                           [--subscription]
+                           [--yes]
+  examples:
+  - summary: Supprimez un point de terminaison nommé endpoint1.
+    syntax: az afd endpoint delete -g group --profile-name profile --endpoint-name endpoint1
+  optionalParameters:
+  - name: --endpoint-name
+    summary: Nom du point de terminaison sous le profil qui est unique globalement.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_afd_endpoint_list
+  name: az afd endpoint list
+  summary: Répertorie tous les points de terminaison dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd endpoint list --profile-name
+                         --resource-group
+                         [--query-examples]
+                         [--subscription]
+  examples:
+  - summary: Répertorie tous les points de terminaison dans le profil spécifié.
+    syntax: az afd endpoint list -g group --profile-name profile
+  requiredParameters:
+  - isRequired: true
+    name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_endpoint_purge
+  name: az afd endpoint purge
+  summary: Supprime un contenu de AzureFrontDoor.
+  description: ''
+  syntax: >-
+    az afd endpoint purge --content-paths
+                          [--domains]
+                          [--endpoint-name]
+                          [--ids]
+                          [--no-wait]
+                          [--profile-name]
+                          [--resource-group]
+                          [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --content-paths
+    summary: Chemin d’accès au contenu à purger. Peut décrire un chemin d’accès de fichier ou un répertoire de caractères génériques.
+    description: ''
+  optionalParameters:
+  - name: --domains
+    summary: Liste des domaines.
+    description: ''
+  - name: --endpoint-name
+    summary: Nom du point de terminaison sous le profil qui est unique globalement.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_endpoint_show
+  name: az afd endpoint show
+  summary: Affichez les détails d’un point de terminaison dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd endpoint show [--endpoint-name]
+                         [--ids]
+                         [--profile-name]
+                         [--query-examples]
+                         [--resource-group]
+                         [--subscription]
+  examples:
+  - summary: Affichez les détails du point de terminaison nommé endpoint1.
+    syntax: az afd endpoint show -g group --profile-name profile  --endpoint-name endpoint1
+  optionalParameters:
+  - name: --endpoint-name
+    summary: Nom du point de terminaison sous le profil qui est unique globalement.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_afd_endpoint_update
+  name: az afd endpoint update
+  summary: Met à jour un point de terminaison dans le profil spécifié.
+  description: ''
+  syntax: >-
+    az afd endpoint update [--enabled-state {Disabled, Enabled}]
+                           [--endpoint-name]
+                           [--ids]
+                           [--origin-response-timeout-seconds]
+                           [--profile-name]
+                           [--resource-group]
+                           [--subscription]
+                           [--tags]
+  examples:
+  - summary: Mettez à jour le délai de réponse d’origine d’un point de terminaison à 30 secondes.
+    syntax: az afd endpoint update -g group --endpoint-name endpoint1 --profile-name profile --origin-response-timeout-seconds 30
+  optionalParameters:
+  - name: --enabled-state
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique s’il faut activer ce point de terminaison.
+    description: ''
+  - name: --endpoint-name
+    summary: Nom du point de terminaison sous le profil qui est unique globalement.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --origin-response-timeout-seconds
+    summary: Délai d’attente d’envoi et de réception lors du transfert de la demande à l’origine. Lorsque le délai d’attente est atteint, la requête échoue et retourne.
+    description: ''
+  - name: --profile-name
+    summary: Nom du profil CDN qui est unique au sein du groupe de ressources.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+commands:
+- az_afd_endpoint_create
+- az_afd_endpoint_delete
+- az_afd_endpoint_list
+- az_afd_endpoint_purge
+- az_afd_endpoint_show
+- az_afd_endpoint_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Un point de terminaison est un regroupement logique de domaines et de leurs configurations associées.
+  ms.openlocfilehash: 59ee0c99645f8f26f7c2d5d2114995737a4a16d9
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103551230"

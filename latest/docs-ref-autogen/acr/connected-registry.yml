@@ -1,0 +1,365 @@
+### YamlMime:AzureCLIGroup
+uid: az_acr_connected_registry
+name: az acr connected-registry
+summary: Gérer les ressources du Registre connecté avec les registres de conteneurs Azure.
+description: ''
+directCommands:
+- uid: az_acr_connected_registry_create
+  name: az acr connected-registry create
+  summary: Créer un registre connecté pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr connected-registry create --name
+                                     --registry
+                                     [--audit-logs-enabled {false, true}]
+                                     [--client-tokens]
+                                     [--log-level]
+                                     [--mode]
+                                     [--parent]
+                                     [--repository]
+                                     [--resource-group]
+                                     [--subscription]
+                                     [--sync-message-ttl]
+                                     [--sync-schedule]
+                                     [--sync-token]
+                                     [--sync-window]
+  examples:
+  - summary: Créez un registre connecté en mode Registre avec un accès à l’app/Hello-World et au service/MyComponent. Il crée un jeton de synchronisation et un mappage d’étendue avec les autorisations référentiel appropriées.
+    syntax: >-
+      az acr connected-registry create --registry mycloudregistry --name myconnectedregistry \
+          --repository "app/hello-world" "service/mycomponent"
+  - summary: Créer un registre connecté en miroir avec uniquement des autorisations de lecture et passer le jeton de synchronisation
+    syntax: >-
+      az acr connected-registry create --registry mycloudregistry  --name mymirroracr \
+          --mode mirror --parent myconnectedregistry --sync-token mySyncTokenName
+  - summary: Créez un registre connecté en miroir avec des jetons clients, qui se synchronise chaque jour à midninght et la fenêtre de synchronisation de 4 heures.
+    syntax: >-
+      az acr connected-registry create -r mycloudregistry -n mymirroracr -p myconnectedregistry \
+          --repository "app/mycomponent" -m mirror -s "0 12 * * *" -w PT4H \
+          --client-tokens myTokenName1 myTokenName2
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Registre connecté. Le nom doit comprendre entre 5 et 40 caractères, commencer par une lettre et contenir uniquement des caractères alphanumériques (y compris « _ » ou « - »). Le nom doit être unique dans la hiérarchie Cloud ACR.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Le serveur de connexion du Registre ACR du Cloud. Doit être le nom de domaine complet pour prendre en charge également Azure Stack.
+    description: ''
+  optionalParameters:
+  - name: --audit-logs-enabled
+    parameterValueGroup: false, true
+    summary: Indique si la synchronisation du journal d’audit est activée. Il est activé par défaut.
+    description: ''
+  - name: --client-tokens
+    summary: Spécifie l’accès client aux dépôts dans le registre connecté. Il peut être au format [TOKEN_NAME01] [TOKEN_NAME02]...
+    description: ''
+  - name: --log-level
+    defaultValue: Information
+    summary: Définit le niveau de journalisation pour la journalisation sur l’instance. Les niveaux de journalisation acceptés sont Debug, information, Warning, Error et None.
+    description: ''
+  - name: --mode -m
+    defaultValue: registry
+    summary: 'Il peut s’agir de l’un des deux modes de fonctionnement : le registre ou le miroir (mode d’extraction uniquement).'
+    description: ''
+  - name: --parent -p
+    summary: Nom du Registre parent connecté.
+    description: ''
+  - name: --repository
+    summary: Spécifie les référentiels qui doivent être synchronisés avec le registre connecté. Il peut être au format [REPO01] [REPO02]...
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --sync-message-ttl
+    defaultValue: P2D
+    summary: Détermine la durée pendant laquelle les messages de synchronisation sont conservés dans le Cloud. Utilise le format de durée ISO 8601.
+    description: ''
+  - name: --sync-schedule -s
+    defaultValue: ''
+    summary: Paramètre facultatif permettant de définir la planification de la synchronisation. Utilise l’expression cron pour déterminer la planification. S’il n’est pas spécifié, l’instance est considérée comme toujours en ligne et tente une synchronisation toutes les minutes.
+    description: ''
+  - name: --sync-token
+    summary: Spécifie le jeton de synchronisation utilisé pour synchroniser le registre connecté avec son parent. Il n’a que des autorisations référentiel et au moins les actions requises pour son mode. Il peut inclure l’accès à plusieurs dépôts.
+    description: ''
+  - name: --sync-window -w
+    summary: Paramètre obligatoire si--Sync-Schedule est présent. Utilisé pour déterminer la durée de la planification. Utilise le format de durée ISO 8601.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_connected_registry_deactivate
+  name: az acr connected-registry deactivate
+  summary: Désactivez un registre connecté à partir de Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr connected-registry deactivate --name
+                                         --registry
+                                         [--resource-group]
+                                         [--subscription]
+                                         [--yes]
+  examples:
+  - summary: Désactivez un registre connecté « myconnectedregistry ».
+    syntax: az acr connected-registry deactivate -r mycloudregistry -n myconnectedregistry
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Registre connecté. Le nom doit comprendre entre 5 et 40 caractères, commencer par une lettre et contenir uniquement des caractères alphanumériques (y compris « _ » ou « - »). Le nom doit être unique dans la hiérarchie Cloud ACR.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Le serveur de connexion du Registre ACR du Cloud. Doit être le nom de domaine complet pour prendre en charge également Azure Stack.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_connected_registry_delete
+  name: az acr connected-registry delete
+  summary: Supprimez un registre connecté de Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr connected-registry delete --name
+                                     --registry
+                                     [--cleanup]
+                                     [--resource-group]
+                                     [--subscription]
+                                     [--yes]
+  examples:
+  - summary: Suppression d’un registre connecté en miroir « myconnectedregistry » à partir du Registre parent « mycloudregistry ».
+    syntax: az acr connected-registry delete --registry mycloudregistry --name myconnectedregistry
+  - summary: Supprimer un registre connecté en miroir « myconnectedregistry » et son jeton de synchronisation et le mappage d’étendue du Registre parent « mycloudregistry ».
+    syntax: az acr connected-registry delete -r mycloudregistry -n myconnectedregistry --cleanup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Registre connecté. Le nom doit comprendre entre 5 et 40 caractères, commencer par une lettre et contenir uniquement des caractères alphanumériques (y compris « _ » ou « - »). Le nom doit être unique dans la hiérarchie Cloud ACR.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Le serveur de connexion du Registre ACR du Cloud. Doit être le nom de domaine complet pour prendre en charge également Azure Stack.
+    description: ''
+  optionalParameters:
+  - name: --cleanup
+    summary: Il également supprimer le jeton de synchronisation et les ressources de mappage de l’étendue.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_connected_registry_list
+  name: az acr connected-registry list
+  summary: Répertorie tous les registres connectés dans le registre parent actuel.
+  description: ''
+  syntax: >-
+    az acr connected-registry list --registry
+                                   [--no-children]
+                                   [--parent]
+                                   [--query-examples]
+                                   [--resource-group]
+                                   [--subscription]
+  examples:
+  - summary: Répertorie tous les registres connectés de « mycloudregistry » dans le format de table.
+    syntax: az acr connected-registry list --registry mycloudregistry --output table
+  - summary: Répertorie uniquement les enfants d’inversion de « mycloudregistry » sous une forme développée dans une table.
+    syntax: az acr connected-registry list --registry mycloudregistry --no-children --output table
+  - summary: Répertorie toutes les descendances de « myconnectedregistry » sous une forme développée à l’intérieur d’une table.
+    syntax: az acr connected-registry list -r mycloudregistry -p myconnectedregistry --output table
+  requiredParameters:
+  - isRequired: true
+    name: --registry -r
+    summary: Le serveur de connexion du Registre ACR du Cloud. Doit être le nom de domaine complet pour prendre en charge également Azure Stack.
+    description: ''
+  optionalParameters:
+  - name: --no-children
+    summary: Utilisé pour supprimer tous les enfants de la liste.
+    description: ''
+  - name: --parent -p
+    summary: Nom du Registre parent connecté.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_connected_registry_list_client_tokens
+  name: az acr connected-registry list-client-tokens
+  summary: Répertorie tous les jetons client associés à des registres spécifiques connectés.
+  description: ''
+  syntax: >-
+    az acr connected-registry list-client-tokens --name
+                                                 --registry
+                                                 [--resource-group]
+                                                 [--subscription]
+  examples:
+  - summary: Répertorie tous les jetons clients de « mymirroracr ».
+    syntax: az acr connected-registry list-client-tokens -r mycloudregistry -n mymirroracr -o table
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Registre connecté. Le nom doit comprendre entre 5 et 40 caractères, commencer par une lettre et contenir uniquement des caractères alphanumériques (y compris « _ » ou « - »). Le nom doit être unique dans la hiérarchie Cloud ACR.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Le serveur de connexion du Registre ACR du Cloud. Doit être le nom de domaine complet pour prendre en charge également Azure Stack.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_connected_registry_show
+  name: az acr connected-registry show
+  summary: Affichez les détails du Registre connecté.
+  description: ''
+  syntax: >-
+    az acr connected-registry show --name
+                                   --registry
+                                   [--query-examples]
+                                   [--resource-group]
+                                   [--subscription]
+  examples:
+  - summary: Affichez tous les détails du Registre « mymirroracr » sous forme de table.
+    syntax: az acr connected-registry show --registry mycloudregistry --name mymirroracr --output table
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Registre connecté. Le nom doit comprendre entre 5 et 40 caractères, commencer par une lettre et contenir uniquement des caractères alphanumériques (y compris « _ » ou « - »). Le nom doit être unique dans la hiérarchie Cloud ACR.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Le serveur de connexion du Registre ACR du Cloud. Doit être le nom de domaine complet pour prendre en charge également Azure Stack.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_connected_registry_update
+  name: az acr connected-registry update
+  summary: Mettez à jour un registre connecté pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr connected-registry update --name
+                                     --registry
+                                     [--add-client-tokens]
+                                     [--audit-logs-enabled {false, true}]
+                                     [--log-level]
+                                     [--remove-client-tokens]
+                                     [--resource-group]
+                                     [--subscription]
+                                     [--sync-message-ttl]
+                                     [--sync-schedule]
+                                     [--sync-window]
+  examples:
+  - summary: Mettez à jour les jetons du client du Registre connecté.
+    syntax: >-
+      az acr connected-registry update --registry mycloudregistry --name myconnectedregistry \
+          --remove-client-tokens myTokenName1 --add-client-tokens myTokenName2 myTokenName3
+  - summary: Met à jour la synchronisation et l’heure de la fenêtre d’un registre connecté.
+    syntax: >-
+      az acr connected-registry update --registry mycloudregistry --name mymirroracr \
+          --sync-schedule "0 12 * * *" --sync-window PT4H
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du Registre connecté. Le nom doit comprendre entre 5 et 40 caractères, commencer par une lettre et contenir uniquement des caractères alphanumériques (y compris « _ » ou « - »). Le nom doit être unique dans la hiérarchie Cloud ACR.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Le serveur de connexion du Registre ACR du Cloud. Doit être le nom de domaine complet pour prendre en charge également Azure Stack.
+    description: ''
+  optionalParameters:
+  - name: --add-client-tokens
+    summary: Jetons clients à ajouter. Utilisez le format « --Add-client-Tokens [TOKEN_ID1 TOKEN_ID2...] » par ID de jeton.
+    description: ''
+  - name: --audit-logs-enabled
+    parameterValueGroup: false, true
+    summary: Indique si la synchronisation du journal d’audit est activée. Il est activé par défaut.
+    description: ''
+  - name: --log-level
+    summary: Définit le niveau de journalisation pour la journalisation sur l’instance. Les niveaux de journalisation acceptés sont Debug, information, Warning, Error et None.
+    description: ''
+  - name: --remove-client-tokens
+    summary: Jetons clients à supprimer. Utilisez le format « --Remove-client-Tokens [TOKEN_ID1 TOKEN_ID2...] » par ID de jeton.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --sync-message-ttl
+    summary: Détermine la durée pendant laquelle les messages de synchronisation sont conservés dans le Cloud. Utilise le format de durée ISO 8601.
+    description: ''
+  - name: --sync-schedule -s
+    summary: Paramètre facultatif permettant de définir la planification de la synchronisation. Utilise l’expression cron pour déterminer la planification. S’il n’est pas spécifié, l’instance est considérée comme toujours en ligne et tente une synchronisation toutes les minutes.
+    description: ''
+  - name: --sync-window -w
+    summary: Utilisé pour déterminer la durée de la planification. Utilise le format de durée ISO 8601.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+commands:
+- az_acr_connected_registry_create
+- az_acr_connected_registry_deactivate
+- az_acr_connected_registry_delete
+- az_acr_connected_registry_install
+- az_acr_connected_registry_install_info
+- az_acr_connected_registry_install_renew_credentials
+- az_acr_connected_registry_list
+- az_acr_connected_registry_list_client_tokens
+- az_acr_connected_registry_show
+- az_acr_connected_registry_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/26/2021
+  description: Gérer les ressources du Registre connecté avec les registres de conteneurs Azure.
+  ms.openlocfilehash: 53d378a60d92e722ddadd232c0cb824d346f9270
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102971033"

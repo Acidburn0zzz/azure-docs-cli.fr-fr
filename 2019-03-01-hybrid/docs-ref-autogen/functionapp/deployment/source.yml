@@ -1,0 +1,333 @@
+### YamlMime:AzureCLIGroup
+uid: az_functionapp_deployment_source
+name: az functionapp deployment source
+summary: Gérez le déploiement de Function App via le contrôle de code source.
+description: ''
+directCommands:
+- uid: az_functionapp_deployment_source_config
+  name: az functionapp deployment source config
+  summary: Gérer le déploiement à partir de référentiels git ou mercurial.
+  description: ''
+  syntax: >-
+    az functionapp deployment source config --repo-url
+                                            [--app-working-dir]
+                                            [--branch]
+                                            [--cd-account-create]
+                                            [--cd-app-type {AspNet, AspNetCore, NodeJS, PHP, Python}]
+                                            [--cd-project-url]
+                                            [--git-token]
+                                            [--ids]
+                                            [--manual-integration]
+                                            [--name]
+                                            [--nodejs-task-runner {Grunt, Gulp, None}]
+                                            [--private-repo-password]
+                                            [--private-repo-username]
+                                            [--python-framework {Bottle, Django, Flask}]
+                                            [--python-version {Python 2.7.12 x64, Python 2.7.12 x86, Python 2.7.13 x64, Python 2.7.13 x86, Python 3.5.3 x64, Python 3.5.3 x86, Python 3.6.0 x64, Python 3.6.0 x86, Python 3.6.1 x86, Python 3.6.2 x64}]
+                                            [--repository-type {externalgit, git, github, localgit, mercurial, vsts}]
+                                            [--resource-group]
+                                            [--slot]
+                                            [--slot-swap]
+                                            [--subscription]
+                                            [--test]
+  examples:
+  - summary: Gérer le déploiement à partir de référentiels git ou mercurial. généré automatiquement
+    syntax: az functionapp deployment source config --branch master --manual-integration --name MyFunctionApp --repo-url https://github.com/Azure-Samples/function-image-upload-resize --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --repo-url -u
+    summary: URL du référentiel à partir de laquelle extraire la source la plus récente, par exemple <a href="https://github.com/foo/foo-web">https://github.com/foo/foo-web</a> .
+    description: ''
+  optionalParameters:
+  - name: --app-working-dir
+    summary: Répertoire de travail de l’application. La valeur par défaut est la racine du référentiel.
+    description: ''
+  - name: --branch
+    summary: Nom de la branche du dépôt.
+    description: ''
+  - name: --cd-account-create
+    summary: Pour créer un compte de Visual Studio Team Services (VSTS) s’il n’existe pas déjà.
+    description: ''
+  - name: --cd-app-type
+    parameterValueGroup: AspNet, AspNetCore, NodeJS, PHP, Python
+    summary: Infrastructure d’application Web que vous avez utilisée pour développer votre application. La valeur par défaut est AspNet.
+    description: ''
+  - name: --cd-project-url
+    summary: URL du projet Visual Studio Team Services (VSTS) à utiliser pour la livraison continue. L’URL doit être au format `https://<accountname>.visualstudio.com/<projectname>` .
+    description: ''
+  - name: --git-token
+    summary: Jeton d’accès git requis pour la synchronisation automatique.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --manual-integration
+    summary: Désactivez la synchronisation automatique entre le contrôle de code source et le Web.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application de fonction.
+    description: ''
+  - name: --nodejs-task-runner
+    parameterValueGroup: Grunt, Gulp, None
+    summary: Testeur de tâches pour NodeJS. La valeur par défaut est None.
+    description: ''
+  - name: --private-repo-password
+    summary: Mot de passe du dépôt privé.
+    description: ''
+  - name: --private-repo-username
+    summary: Nom d’utilisateur du dépôt privé.
+    description: ''
+  - name: --python-framework
+    parameterValueGroup: Bottle, Django, Flask
+    summary: Framework utilisé pour l’application Python. La valeur par défaut est Django.
+    description: ''
+  - name: --python-version
+    parameterValueGroup: Python 2.7.12 x64, Python 2.7.12 x86, Python 2.7.13 x64, Python 2.7.13 x86, Python 3.5.3 x64, Python 3.5.3 x86, Python 3.6.0 x64, Python 3.6.0 x86, Python 3.6.1 x86, Python 3.6.2 x64
+    summary: Version de Python utilisée pour l’application. La valeur par défaut est python 3.5.3 x86.
+    description: ''
+  - name: --repository-type
+    defaultValue: git
+    parameterValueGroup: externalgit, git, github, localgit, mercurial, vsts
+    summary: Type de référentiel.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --slot-swap
+    summary: 'Nom de l’emplacement à utiliser pour le déploiement et promouvoir ultérieurement en production. Si l’emplacement n’est pas disponible, il est créé. Valeur par défaut : non configuré.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --test
+    summary: 'Nom de l’application Web à utiliser pour le test de charge. Si l’application Web n’est pas disponible, elle est créée. Valeur par défaut : désactiver.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_functionapp_deployment_source_config_local_git
+  name: az functionapp deployment source config-local-git
+  summary: Obtient une URL pour un point de terminaison de dépôt Git à cloner et à pousser pour le déploiement d’une application de fonction.
+  description: ''
+  syntax: >-
+    az functionapp deployment source config-local-git [--ids]
+                                                      [--name]
+                                                      [--resource-group]
+                                                      [--slot]
+                                                      [--subscription]
+  examples:
+  - summary: Obtenir un point de terminaison et l’ajouter en tant que git distant.
+    syntax: >-
+      az functionapp deployment source config-local-git \
+          -g MyResourceGroup -n MyUniqueApp
+
+      git remote add azure \
+          https://{deploy_user_name}@MyUniqueApp.scm.azurewebsites.net/MyUniqueApp.git
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application de fonction.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_functionapp_deployment_source_config_zip
+  name: az functionapp deployment source config-zip
+  summary: Effectuez le déploiement à l’aide du déploiement Push Kudu zip pour une application de fonction.
+  description: Par défaut, Kudu suppose que les déploiements zip ne nécessitent pas d’actions liées à la génération comme l’installation ou la dotnet publish de NPM. Cela peut être substitué en incluant un fichier. Deployment dans votre fichier zip avec le contenu suivant « [config] SCM_DO_BUILD_DURING_DEPLOYMENT = true » pour activer la logique de détection Kudu et générer le processus de génération de script. Voir <a href="https://github.com/projectkudu/kudu/wiki/Configurable-settings#enabledisable-build-actions-preview">https://github.com/projectkudu/kudu/wiki/Configurable-settings#enabledisable-build-actions-preview</a>. Le paramètre peut également être activé à l’aide de la commande AZ functionapp config appSettings Set.
+  syntax: >-
+    az functionapp deployment source config-zip --src
+                                                [--build-remote {false, true}]
+                                                [--ids]
+                                                [--name]
+                                                [--resource-group]
+                                                [--slot]
+                                                [--subscription]
+                                                [--timeout]
+  examples:
+  - summary: Effectuer un déploiement à l’aide d’un contenu de fichier zip.
+    syntax: >-
+      az functionapp deployment source config-zip \
+          -g {myRG} -n {myAppName} \
+          --src {zipFilePathLocation}
+  requiredParameters:
+  - isRequired: true
+    name: --src
+    summary: Chemin d’accès au fichier zip pour le déploiement.
+    description: ''
+  optionalParameters:
+  - name: --build-remote
+    parameterValueGroup: false, true
+    summary: Activez la build distante pendant le déploiement.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application de fonction.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout -t
+    summary: Délai d’attente configurable, en secondes, pour vérifier l’état du déploiement.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_functionapp_deployment_source_delete
+  name: az functionapp deployment source delete
+  summary: Supprimer une configuration de déploiement de contrôle de code source.
+  description: ''
+  syntax: >-
+    az functionapp deployment source delete [--ids]
+                                            [--name]
+                                            [--resource-group]
+                                            [--slot]
+                                            [--subscription]
+  examples:
+  - summary: Supprimer une configuration de déploiement de contrôle de code source. généré automatiquement
+    syntax: az functionapp deployment source delete --name MyFunctionApp --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application de fonction.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_functionapp_deployment_source_show
+  name: az functionapp deployment source show
+  summary: Obtenir les détails d’une configuration de déploiement de contrôle de code source.
+  description: ''
+  syntax: >-
+    az functionapp deployment source show [--ids]
+                                          [--name]
+                                          [--query-examples]
+                                          [--resource-group]
+                                          [--slot]
+                                          [--subscription]
+  examples:
+  - summary: Obtenir les détails d’une configuration de déploiement de contrôle de code source. généré automatiquement
+    syntax: az functionapp deployment source show --name MyFunctionApp --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application de fonction.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_functionapp_deployment_source_sync
+  name: az functionapp deployment source sync
+  summary: Synchronisez à partir du référentiel. Nécessaire uniquement en mode d’intégration manuelle.
+  description: ''
+  syntax: >-
+    az functionapp deployment source sync [--ids]
+                                          [--name]
+                                          [--resource-group]
+                                          [--slot]
+                                          [--subscription]
+  examples:
+  - summary: Synchronisez à partir du référentiel. Nécessaire uniquement en mode d’intégration manuelle. généré automatiquement
+    syntax: az functionapp deployment source sync --name MyFunctionApp --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application de fonction.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_functionapp_deployment_source_update_token
+  name: az functionapp deployment source update-token
+  summary: Mettre à jour le jeton de contrôle de code source mis en cache dans Azure App service.
+  description: Si aucun jeton n’est fourni, la commande nettoie le jeton existant.
+  syntax: >-
+    az functionapp deployment source update-token [--git-token]
+                                                  [--subscription]
+  optionalParameters:
+  - name: --git-token
+    summary: Jeton d’accès git requis pour la synchronisation automatique.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+commands:
+- az_functionapp_deployment_source_config
+- az_functionapp_deployment_source_config_local_git
+- az_functionapp_deployment_source_config_zip
+- az_functionapp_deployment_source_delete
+- az_functionapp_deployment_source_show
+- az_functionapp_deployment_source_sync
+- az_functionapp_deployment_source_update_token
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/19/2021
+  description: Gérez le déploiement de Function App via le contrôle de code source.
+  ms.openlocfilehash: 41c888131abafb290656e80ec2212b31b3111e24
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102971102"
