@@ -1,0 +1,260 @@
+### YamlMime:AzureCLIGroup
+uid: az_sql_midb_log_replay
+name: az sql midb log-replay
+summary: Commandes du service de relecture des journaux de base de données SQL Managed Instance.
+description: ''
+directCommands:
+- uid: az_sql_midb_log_replay_complete
+  name: az sql midb log-replay complete
+  summary: Exécutez le service de relecture des journaux sur la base de données spécifiée.
+  description: ''
+  syntax: >-
+    az sql midb log-replay complete [--ids]
+                                    [--last-backup-name]
+                                    [--managed-instance]
+                                    [--name]
+                                    [--resource-group]
+                                    [--subscription]
+  examples:
+  - summary: Service de relecture du journal complet.
+    syntax: az sql midb log-replay complete -g mygroup --mi myinstance -n mymanageddb --last-backup-name "backup.bak"
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --last-backup-name --last-bn
+    summary: Nom de la dernière sauvegarde à restaurer.
+    description: ''
+  - name: --managed-instance --mi
+    summary: Nom de l’instance Azure SQL Managed instance.
+    description: ''
+  - name: --name -n
+    summary: Nom de la base de données managée SQL Azure.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_midb_log_replay_show
+  name: az sql midb log-replay show
+  summary: Obtient l’état du service de relecture du journal.
+  description: ''
+  syntax: >-
+    az sql midb log-replay show [--ids]
+                                [--managed-instance]
+                                [--name]
+                                [--query-examples]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: Obtient l’état du service de relecture des journaux en cours.
+    syntax: az sql midb log-replay show -g mygroup --mi myinstance -n mymanageddb
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --managed-instance --mi
+    summary: Nom de l’instance Azure SQL Managed instance.
+    description: ''
+  - name: --name -n
+    summary: Nom de la base de données managée SQL Azure.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_midb_log_replay_start
+  name: az sql midb log-replay start
+  summary: Démarrez le service de relecture du journal sur la base de données spécifiée.
+  description: ''
+  syntax: >-
+    az sql midb log-replay start --ss
+                                 --storage-uri
+                                 [--auto-complete]
+                                 [--ids]
+                                 [--last-backup-name]
+                                 [--managed-instance]
+                                 [--name]
+                                 [--no-wait]
+                                 [--resource-group]
+                                 [--subscription]
+  examples:
+  - summary: Démarrer le service de relecture du journal avec l’option de saisie semi-automatique.
+    syntax: az sql midb log-replay start -g mygroup --mi myinstance -n mymanageddb -a --last-bn "backup.bak" --storage-uri "https://test.blob.core.windows.net/testing" --storage-sas "sv=2019-02-02&ss=b&srt=sco&sp=rl&se=2023-12-02T00:09:14Z&st=2019-11-25T16:09:14Z&spr=https&sig=92kAe4QYmXaht%2Fgjocqwerqwer41s%3D"
+  - summary: Démarrer le service de relecture du journal sans option de saisie semi-automatique.
+    syntax: az sql midb log-replay start -g mygroup --mi myinstance -n mymanageddb --storage-uri "https://test.blob.core.windows.net/testing" --storage-sas "sv=2019-02-02&ss=b&srt=sco&sp=rl&se=2023-12-02T00:09:14Z&st=2019-11-25T16:09:14Z&spr=https&sig=92kAe4QYmXaht%2Fgjocqwerqwer41s%3D"
+  requiredParameters:
+  - isRequired: true
+    name: --ss --storage-sas
+    summary: Jeton SAS d’autorisation pour accéder au conteneur de stockage où les sauvegardes sont.
+    description: ''
+  - isRequired: true
+    name: --storage-uri --su
+    summary: URI du conteneur de stockage dans lequel les sauvegardes sont.
+    description: ''
+  optionalParameters:
+  - name: --auto-complete -a
+    summary: L’indicateur utilisé dans l’utilisation de last_backup_name termine automatiquement la relecture du journal servise.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --last-backup-name --last-bn
+    summary: Nom de la dernière sauvegarde à restaurer.
+    description: ''
+  - name: --managed-instance --mi
+    summary: Nom de l’instance Azure SQL Managed instance.
+    description: ''
+  - name: --name -n
+    summary: Nom de la base de données managée SQL Azure.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_midb_log_replay_stop
+  name: az sql midb log-replay stop
+  summary: Arrêtez le service de relecture des journaux.
+  description: ''
+  syntax: >-
+    az sql midb log-replay stop [--ids]
+                                [--managed-instance]
+                                [--name]
+                                [--no-wait]
+                                [--resource-group]
+                                [--subscription]
+                                [--yes]
+  examples:
+  - summary: Arrêtez le service de relecture des journaux en cours en supprimant la base de données.
+    syntax: az sql midb log-replay stop -g mygroup --mi myinstance -n mymanageddb
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --managed-instance --mi
+    summary: Nom de l’instance Azure SQL Managed instance.
+    description: ''
+  - name: --name -n
+    summary: Nom de la base de données managée SQL Azure.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_midb_log_replay_wait
+  name: az sql midb log-replay wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de la base de données managée soit remplie.
+  description: ''
+  syntax: >-
+    az sql midb log-replay wait [--created]
+                                [--custom]
+                                [--deleted]
+                                [--exists]
+                                [--ids]
+                                [--interval]
+                                [--managed-instance]
+                                [--name]
+                                [--resource-group]
+                                [--subscription]
+                                [--timeout]
+                                [--updated]
+  examples:
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de la base de données managée soit remplie après le démarrage du service de relecture du journal.
+    syntax: az sql midb log-replay wait --exists --resource-group mygroup --managed-instance myinstance --name mymanageddb
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de la base de données managée soit remplie après l’arrêt du service de relecture du journal.
+    syntax: az sql midb log-replay wait --deleted --resource-group mygroup --managed-instance myinstance --name mymanageddb
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --managed-instance --mi
+    summary: Nom de l’instance Azure SQL Managed instance.
+    description: ''
+  - name: --name -n
+    summary: Nom de la base de données managée SQL Azure.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+commands:
+- az_sql_midb_log_replay_complete
+- az_sql_midb_log_replay_show
+- az_sql_midb_log_replay_start
+- az_sql_midb_log_replay_stop
+- az_sql_midb_log_replay_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/18/2021
+  description: Commandes du service de relecture des journaux de base de données SQL Managed Instance.
+  ms.openlocfilehash: 4e3172fab34bd4aee4dc55ad183aad2e76a4c609
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103497371"
