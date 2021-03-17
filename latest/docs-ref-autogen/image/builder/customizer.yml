@@ -1,0 +1,197 @@
+### YamlMime:AzureCLIGroup
+uid: az_image_builder_customizer
+name: az image builder customizer
+summary: Gérer les personnalisateurs de modèles image Builder.
+description: ''
+directCommands:
+- uid: az_image_builder_customizer_add
+  name: az image builder customizer add
+  summary: Ajoutez un Personnalisateur d’image Builder à un modèle d’image Builder.
+  description: Doit être utilisé avec--defer.
+  syntax: >-
+    az image builder customizer add --customizer-name
+                                    --type {file, powershell, shell, windows-restart, windows-update}
+                                    [--defer]
+                                    [--dest-path]
+                                    [--exit-codes]
+                                    [--file-source]
+                                    [--filters]
+                                    [--ids]
+                                    [--inline-script]
+                                    [--name]
+                                    [--resource-group]
+                                    [--restart-check-command]
+                                    [--restart-command]
+                                    [--restart-timeout]
+                                    [--script-url]
+                                    [--search-criteria]
+                                    [--subscription]
+                                    [--update-limit]
+  examples:
+  - summary: Ajouter un Personnalisateur de l’interpréteur de commandes à un modèle d’image dans le cache d’objets de l’interface de ligne de commande
+    syntax: >-
+      az image builder customizer add -n mytemplate -g my-group \
+          --inline-script "sudo mkdir /buildArtifacts" \
+                          "sudo cp /tmp/index.html /buildArtifacts/index.html" \
+          --customizer-name shell-script-inline --type shell --defer
+  - summary: Ajouter un Personnalisateur de fichier à un modèle d’image dans le cache d’objets CLI
+    syntax: >-
+      az image builder customizer add -n mytemplate -g my-group \
+          --customizer-name my-file --type file \
+          --file-source "https://my-remote-file.html" --dest-path "/tmp/index.html" --defer
+  - summary: Ajouter un Personnalisateur de redémarrage Windows à un modèle d’image dans le cache d’objets CLI
+    syntax: >-
+      az image builder customizer add -n mytemplate -g my-group \
+
+      --customizer-name shell-script-url \
+
+      --restart-check-command "echo Azure-Image-Builder-Restarted-the-VM  > \
+                              c:\buildArtifacts\restart.txt" \
+          --type windows-restart --restart-timeout 10m --defer
+  - summary: Ajoutez un Personnalisateur Windows Update à un modèle d’image dans le cache d’objets CLI.
+    syntax: az image builder customizer add -n mytemplate -g my-group --customizer-name win_update --type windows-update --search-criteria IsInstalled=0 --filters "exclude:\$_.Title -like \'*Preview*\'" "include:\$true" --update-limit 20 --defer
+  requiredParameters:
+  - isRequired: true
+    name: --customizer-name
+    summary: Nom de l’Personnalisateur.
+    description: ''
+  - isRequired: true
+    name: --type -t
+    parameterValueGroup: file, powershell, shell, windows-restart, windows-update
+    summary: Type d’Personnalisateur à ajouter au modèle d’image.
+    description: ''
+  optionalParameters:
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
+    description: ''
+  - name: --dest-path
+    summary: Chemin de destination absolu où le fichier spécifié dans--file-source sera téléchargé dans l’image.
+    description: ''
+  - name: --exit-codes -e
+    summary: Liste séparée par des espaces de codes de sortie valides, en tant qu’entiers.
+    description: ''
+  - name: --file-source
+    summary: URI du fichier à télécharger dans l’image. Il peut s’agir d’un lien GitHub, d’un URI SAS pour le stockage Azure, etc.
+    description: ''
+  - name: --filters
+    summary: Filtres délimités par des espaces pour sélectionner les mises à jour à appliquer. Omettez ou spécifiez un tableau vide pour utiliser la valeur par défaut (aucun filtre).
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --inline-script
+    summary: Liste séparée par des espaces de lignes de script inline pour personnaliser l’image.
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --restart-check-command
+    summary: Pour vérifier que le redémarrage a réussi.
+    description: ''
+  - name: --restart-command
+    summary: Commande permettant d’exécuter l’opération de redémarrage.
+    description: ''
+  - name: --restart-timeout
+    defaultValue: 5m
+    summary: Délai d’attente de redémarrage spécifié sous forme de chaîne comprenant une magnitude et une unité, par exemple « 5m » (5 minutes) ou « 2H » (2 heures).
+    description: ''
+  - name: --script-url
+    summary: URL du script avec lequel personnaliser l’image. L’URL doit être accessible publiquement.
+    description: ''
+  - name: --search-criteria
+    summary: Critères de recherche des mises à jour. Omettez ou spécifiez une chaîne vide pour utiliser la valeur par défaut (Rechercher tout). Pour obtenir des exemples et une description détaillée de ce champ, reportez-vous au lien ci-dessus.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --update-limit
+    summary: Nombre maximal de mises à jour à appliquer à la fois. Omettez ou spécifiez 0 pour utiliser la valeur par défaut (1000).
+    description: ''
+- uid: az_image_builder_customizer_clear
+  name: az image builder customizer clear
+  summary: Supprimez tous les personnalisateurs d’image Builder d’un modèle image Builder.
+  description: Doit être utilisé avec--defer.
+  syntax: >-
+    az image builder customizer clear [--defer]
+                                      [--ids]
+                                      [--name]
+                                      [--resource-group]
+                                      [--subscription]
+  optionalParameters:
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_image_builder_customizer_remove
+  name: az image builder customizer remove
+  summary: Supprimer un Personnalisateur d’image Builder d’un modèle d’image Builder.
+  description: Doit être utilisé avec--defer.
+  syntax: >-
+    az image builder customizer remove --customizer-name
+                                       [--defer]
+                                       [--ids]
+                                       [--name]
+                                       [--resource-group]
+                                       [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --customizer-name
+    summary: Nom de l’Personnalisateur.
+    description: ''
+  optionalParameters:
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du modèle d’image.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_image_builder_customizer_add
+- az_image_builder_customizer_clear
+- az_image_builder_customizer_remove
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les personnalisateurs de modèles image Builder.
+  ms.openlocfilehash: c39d2e8eb943c5dcd03359e18520d4de11ebb970
+  ms.sourcegitcommit: f2e32fa945b2c69d45d2d3a01827e28f0e82e556
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 07/28/2020
+  ms.locfileid: "102818123"

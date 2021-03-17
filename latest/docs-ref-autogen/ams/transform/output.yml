@@ -1,0 +1,131 @@
+### YamlMime:AzureCLIGroup
+uid: az_ams_transform_output
+name: az ams transform output
+summary: Gérer les sorties de transformation pour un compte de Azure Media Services.
+description: ''
+directCommands:
+- uid: az_ams_transform_output_add
+  name: az ams transform output add
+  summary: Ajoute une sortie à une transformation existante.
+  description: ''
+  syntax: >-
+    az ams transform output add --preset
+                                [--account-name]
+                                [--audio-language]
+                                [--ids]
+                                [--insights-to-extract {AllInsights, AudioInsightsOnly, VideoInsightsOnly}]
+                                [--name]
+                                [--on-error {ContinueJob, StopProcessingJob}]
+                                [--relative-priority {High, Low, Normal}]
+                                [--resolution]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: Ajoutez une sortie avec un encodeur standard personnalisé prédéfini à partir d’un fichier JSON.
+    syntax: az ams transform output add -a myAmsAccount -n transformName -g myResourceGroup --preset "C:\MyPresets\CustomPreset.json"
+  - summary: Ajoutez une sortie avec une présélection VideoAnalyzer avec es-ES en tant que langue audio et uniquement avec Insights audio.
+    syntax: az ams transform output add -a myAmsAccount -n transformName -g myResourceGroup --preset VideoAnalyzer --audio-language es-ES --insights-to-extract AudioInsightsOnly
+  requiredParameters:
+  - isRequired: true
+    name: --preset
+    summary: 'Présélection qui décrit les opérations qui seront utilisées pour modifier, Transcoder ou extraire des informations à partir du fichier source afin de générer la sortie de transformation. Valeurs autorisées : H264SingleBitrateSD, H264SingleBitrate720p, H264SingleBitrate1080p, AdaptiveStreaming, AACGoodQualityAudio, ContentAwareEncodingExperimental, ContentAwareEncoding, H264MultipleBitrate1080p, H264MultipleBitrate720p, H264MultipleBitrateSD, AudioAnalyzer, VideoAnalyzer, FaceDetector. Outre les valeurs autorisées, vous pouvez également transmettre un chemin d’accès à un fichier JSON prédéfini standard d’encodeur personnalisé. <a href="https://docs.microsoft.com/rest/api/media/transforms/createorupdate#standardencoderpreset">https://docs.microsoft.com/rest/api/media/transforms/createorupdate#standardencoderpreset</a>Pour plus d’informations sur les paramètres à utiliser pour créer une présélection personnalisée, consultez.'
+    description: ''
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --audio-language
+    summary: 'Langue de la charge utile audio dans l’entrée à l’aide du format BCP-47 « Language tag-Region » (par exemple : en-US). S’il n’est pas spécifié, la détection automatique de la langue est utilisée. Cette fonctionnalité prend actuellement en charge l’anglais, le chinois, le français, l’allemand, l’italien, le japonais, l’espagnol, le russe et le portugais. La détection automatique fonctionne mieux avec les enregistrements audio avec une reconnaissance vocale claire. Si la détection automatique ne parvient pas à trouver la langue, la transcription pourrait revenir à l’anglais. Valeurs autorisées : en-US, en-GB, es-ES, es-MX, fr-FR, IT-IT, ja-JP, PT-BR, zh-CN, de-fr, AR-EG, ru-RU, hi-IN.'
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --insights-to-extract
+    parameterValueGroup: AllInsights, AudioInsightsOnly, VideoInsightsOnly
+    summary: Type d’Insights à extraire. Si la valeur n’est pas définie, le type est sélectionné en fonction du type de contenu. Si le contenu est uniquement audio, seuls les Insights audio sont extraits et, s’il s’agit d’une vidéo, les Insights vidéo sont extraits.
+    description: ''
+  - name: --name -n
+    summary: Nom de la transformation.
+    description: ''
+  - name: --on-error
+    parameterValueGroup: ContinueJob, StopProcessingJob
+    summary: Une transformation peut définir plusieurs sorties. Cette propriété définit ce que le service doit faire lorsqu’une sortie échoue, soit continuer à produire d’autres sorties, soit arrêter les autres sorties. L’état général de la tâche ne reflète pas les échecs des sorties spécifiées avec « ContinueJob ». La valeur par défaut est « StopProcessingJob ».
+    description: ''
+  - name: --relative-priority
+    parameterValueGroup: High, Low, Normal
+    summary: Définit la priorité relative des sorties de transformation dans une transformation. Cela définit la priorité que le service utilise pour le traitement des TransformOutputs. La priorité par défaut est normal.
+    description: ''
+  - name: --resolution
+    summary: 'Spécifie la résolution maximale à laquelle votre vidéo est analysée. Le comportement par défaut est « SourceResolution », ce qui permet de conserver la vidéo d’entrée à sa résolution d’origine lorsqu’elle est analysée. L’utilisation de StandardDefinition redimensionne les vidéos d’entrée en définition standard tout en conservant les proportions appropriées. Elle est redimensionnée uniquement si la vidéo est d’une résolution plus élevée. Par exemple, une entrée 1920 x 1080 est mise à l’échelle vers 640 x 360 avant le traitement. Le passage à « StandardDefinition » permet de réduire le temps nécessaire pour traiter la vidéo haute résolution. Cela peut également réduire le coût d’utilisation de ce composant ( <a href="https://azure.microsoft.com/en-us/pricing/details/media-services/#analytics">https://azure.microsoft.com/en-us/pricing/details/media-services/#analytics</a> pour plus d’informations, consultez). Toutefois, les visages qui finissent par être trop petits dans la vidéo redimensionnée peuvent ne pas être détectés. Valeurs autorisées : StandardDefinition, SourceResolution.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_transform_output_remove
+  name: az ams transform output remove
+  summary: Supprime une sortie d’une transformation existante.
+  description: ''
+  syntax: >-
+    az ams transform output remove --output-index
+                                   [--account-name]
+                                   [--ids]
+                                   [--name]
+                                   [--resource-group]
+                                   [--subscription]
+  examples:
+  - summary: Supprime l’élément de sortie au niveau de l’index spécifié avec l’argument--output-index.
+    syntax: az ams transform output remove -a myAmsAccount -n transformName -g myResourceGroup --output-index 1
+  requiredParameters:
+  - isRequired: true
+    name: --output-index
+    summary: Index d’élément de la sortie à supprimer.
+    description: ''
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de la transformation.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+commands:
+- az_ams_transform_output_add
+- az_ams_transform_output_remove
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 07/28/2020
+  description: Gérer les sorties de transformation pour un compte de Azure Media Services.
+  ms.openlocfilehash: e066c20e96ced5185036cf9a1632e7288784e390
+  ms.sourcegitcommit: b664951686e518ebcaec4b4c1ae59a69ef70302a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/15/2020
+  ms.locfileid: "102818240"

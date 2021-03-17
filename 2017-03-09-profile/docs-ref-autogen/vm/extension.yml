@@ -1,0 +1,302 @@
+### YamlMime:AzureCLIGroup
+uid: az_vm_extension
+name: az vm extension
+summary: Gérer les extensions sur les machines virtuelles.
+description: Les extensions sont de petites applications qui fournissent des tâches d’automatisation et de configuration après le déploiement sur les machines virtuelles Azure. Par exemple, si une machine virtuelle requiert l’installation d’un logiciel, une protection antivirus ou une configuration de Docker, il est possible d’effectuer ces tâches à l’aide d’une extension de machine virtuelle. Les extensions peuvent être associées à un nouveau déploiement de machine virtuelle ou s’exécuter sur tout système existant.
+directCommands:
+- uid: az_vm_extension_delete
+  name: az vm extension delete
+  summary: Supprimer une extension attachée à une machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm extension delete [--ids]
+                           [--name]
+                           [--no-wait]
+                           [--resource-group]
+                           [--subscription]
+                           [--vm-name]
+  examples:
+  - summary: Utilisez un nom et une extension de machine virtuelle pour supprimer une extension d’une machine virtuelle.
+    syntax: az vm extension delete -g MyResourceGroup --vm-name MyVm -n extension_name
+  - summary: Supprimez les extensions avec des ID contenant la chaîne « MyExtension » à partir d’une machine virtuelle.
+    syntax: >-
+      az vm extension delete --ids \
+          $(az resource list --query "[?contains(name, 'MyExtension')].id" -o tsv)
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’extension.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_extension_list
+  name: az vm extension list
+  summary: Répertorier les extensions attachées à une machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm extension list --resource-group
+                         --vm-name
+                         [--query-examples]
+                         [--subscription]
+  examples:
+  - summary: Répertorier les extensions attachées à une machine virtuelle nommée.
+    syntax: az vm extension list -g MyResourceGroup --vm-name MyVm
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_extension_set
+  name: az vm extension set
+  summary: Définir des extensions pour une machine virtuelle.
+  description: Obtient les détails de l’extension à partir de `az vm extension image list` .
+  syntax: >-
+    az vm extension set --name
+                        --publisher
+                        [--enable-auto-upgrade {false, true}]
+                        [--extension-instance-name]
+                        [--force-update]
+                        [--ids]
+                        [--no-auto-upgrade {false, true}]
+                        [--no-auto-upgrade-minor-version {false, true}]
+                        [--no-wait]
+                        [--protected-settings]
+                        [--resource-group]
+                        [--settings]
+                        [--subscription]
+                        [--version]
+                        [--vm-name]
+  examples:
+  - summary: Ajoutez un compte d’utilisateur à une machine virtuelle Linux.
+    syntax: >-
+      az vm extension set -n VMAccessForLinux --publisher Microsoft.OSTCExtensions --version 1.4 \
+          --vm-name MyVm --resource-group MyResourceGroup \
+          --protected-settings '{"username":"user1", "ssh_key":"ssh_rsa ..."}'
+  - summary: Ajoutez une extension customScript à la ou les machines virtuelles spécifiées par--IDS.
+    syntax: az vm extension set -n customScript --publisher Microsoft.Azure.Extensions --ids {vm_id}
+  - summary: Ajoutez une extension et activez la mise à niveau automatique par la plateforme si une version plus récente de l’extension est disponible.
+    syntax: >-
+      az vm extension set -n extName --publisher publisher --vm-name MyVM -g MyResourceGroup \
+
+      --enable-auto-upgrade true
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’extension.
+    description: ''
+    valueFrom: az vm extension image list
+  - isRequired: true
+    name: --publisher
+    summary: Nom du serveur de publication d’extension.
+    description: ''
+  optionalParameters:
+  - name: --enable-auto-upgrade
+    parameterValueGroup: false, true
+    summary: Indique que l’extension doit être automatiquement mise à niveau par la plateforme si une version plus récente de l’extension est disponible.
+    description: ''
+  - name: --extension-instance-name
+    summary: 'Nom de l’instance d’extension, qui peut être personnalisée. Valeur par défaut : nom de l’extension.'
+    description: ''
+  - name: --force-update
+    summary: Forcer la mise à jour même si la configuration de l’extension n’a pas changé.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --no-auto-upgrade
+    parameterValueGroup: false, true
+    summary: Si cette valeur est définie, le service d’extension ne choisit pas automatiquement la dernière version mineure ou ne la met pas à niveau, même si l’extension est redéployée.
+    description: ''
+  - name: --no-auto-upgrade-minor-version
+    parameterValueGroup: false, true
+    summary: Si cette valeur est définie, le service d’extension ne choisit pas automatiquement la dernière version mineure ou ne la met pas à niveau, même si l’extension est redéployée.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --protected-settings
+    summary: Paramètres protégés au format JSON pour les informations sensibles telles que les informations d’identification. Un chemin d’accès au fichier JSON est également accepté.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --settings
+    summary: Paramètres d’extension au format JSON. Un chemin d’accès au fichier JSON est également accepté.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --version
+    summary: Version de l'extension. Pour épingler la version de l’extension à cette valeur, spécifiez--no-auto-Upgrade-minor-version.
+    description: ''
+  - name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_extension_show
+  name: az vm extension show
+  summary: Affiche des informations sur les extensions attachées à une machine virtuelle.
+  description: ''
+  syntax: >-
+    az vm extension show [--expand]
+                         [--ids]
+                         [--name]
+                         [--query-examples]
+                         [--resource-group]
+                         [--subscription]
+                         [--vm-name]
+  examples:
+  - summary: Utilisez le nom de l’ordinateur virtuel et le nom de l’extension pour afficher les extensions attachées à une machine virtuelle.
+    syntax: az vm extension show -g MyResourceGroup --vm-name MyVm -n extension_name
+  optionalParameters:
+  - name: --expand
+    summary: Expression Expand à appliquer à l’opération.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’extension.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vm_extension_wait
+  name: az vm extension wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’extension de machine virtuelle soit remplie.
+  description: ''
+  syntax: >-
+    az vm extension wait [--created]
+                         [--custom]
+                         [--deleted]
+                         [--exists]
+                         [--expand]
+                         [--ids]
+                         [--interval]
+                         [--name]
+                         [--resource-group]
+                         [--subscription]
+                         [--timeout]
+                         [--updated]
+                         [--vm-name]
+  examples:
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’extension de machine virtuelle soit remplie. généré automatiquement
+    syntax: az vm extension wait --created --name MyExtension --resource-group MyResourceGroup --vm-name MyVm
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’extension de machine virtuelle soit remplie. généré automatiquement
+    syntax: az vm extension wait --exists --name MyExtension --resource-group MyResourceGroup --vm-name MyVm
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’extension de machine virtuelle soit remplie. généré automatiquement
+    syntax: az vm extension wait --ids @- --name MyExtension --subscription MySubscription --updated --vm-name MyVm
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --expand
+    summary: Expression Expand à appliquer à l’opération.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’extension.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  - name: --vm-name
+    summary: Nom de la machine virtuelle. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vm=<name>` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+commands:
+- az_vm_extension_delete
+- az_vm_extension_image
+- az_vm_extension_image_list
+- az_vm_extension_image_list_names
+- az_vm_extension_image_list_versions
+- az_vm_extension_image_show
+- az_vm_extension_list
+- az_vm_extension_set
+- az_vm_extension_show
+- az_vm_extension_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/05/2021
+  description: Les extensions sont de petites applications qui fournissent des tâches d’automatisation et de configuration après le déploiement sur les machines virtuelles Azure. Par exemple, si une machine virtuelle requiert l’installation d’un logiciel, une protection antivirus ou une configuration de Docker, il est possible d’effectuer ces tâches à l’aide d’une extension de machine virtuelle. Les extensions peuvent être associées à un nouveau déploiement de machine virtuelle ou s’exécuter sur tout système existant.
+  ms.openlocfilehash: 008beb0205f76f40f785c6ca109fe6e30a6623ef
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102968288"

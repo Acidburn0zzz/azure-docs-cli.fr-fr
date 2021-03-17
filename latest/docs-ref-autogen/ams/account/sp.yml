@@ -1,0 +1,130 @@
+### YamlMime:AzureCLIGroup
+uid: az_ams_account_sp
+name: az ams account sp
+summary: Gérer le principal du service et l’accès basé sur les rôles pour un compte Azure Media Services.
+description: ''
+directCommands:
+- uid: az_ams_account_sp_create
+  name: az ams account sp create
+  summary: Créez ou mettez à jour un principal de service et configurez son accès à un compte Azure Media Services.
+  description: La propagation du principal du service tout au long de Azure Active Directory peut prendre quelques secondes supplémentaires.
+  syntax: >-
+    az ams account sp create --account-name
+                             --resource-group
+                             [--name]
+                             [--new-sp-name]
+                             [--password]
+                             [--role]
+                             [--subscription]
+                             [--xml]
+                             [--years]
+  examples:
+  - summary: Créez un principal de service avec un mot de passe et configurez son accès à un compte Azure Media Services. La sortie sera au format XML.
+    syntax: az ams account sp create -a myAmsAccount -g myRG -n mySpName --password mySecret --role Owner --xml
+  - summary: Mettez à jour un principal de service avec un nouveau rôle et un nouveau nom.
+    syntax: az ams account sp create -a myAmsAccount -g myRG -n mySpName --new-sp-name myNewSpName --role newRole
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --name -n
+    summary: Nom de l’application ou l’URI de l’application auquel associer le RBAC. S’il n’est pas présent, un nom par défaut comme « {amsaccountname}-Access-SP » est généré.
+    description: ''
+  - name: --new-sp-name
+    summary: Nom de l’application ou de l’URI de l’application pour mettre à jour le RBAC avec.
+    description: ''
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter. Également appelée « clé secrète client ». S’il n’est pas présent, un secret aléatoire est généré.
+    description: ''
+  - name: --role
+    defaultValue: Contributor
+    summary: Rôle du principal de service.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --xml
+    summary: Active le format de sortie XML.
+    description: ''
+  - name: --years
+    summary: 'Nombre d’années pendant lesquelles le secret sera valide. Valeur par défaut : 1 an.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_account_sp_reset_credentials
+  name: az ams account sp reset-credentials
+  summary: Générez un nouveau secret client pour un principal de service configuré pour un compte Azure Media Services.
+  description: ''
+  syntax: >-
+    az ams account sp reset-credentials [--account-name]
+                                        [--ids]
+                                        [--name]
+                                        [--password]
+                                        [--resource-group]
+                                        [--role]
+                                        [--subscription]
+                                        [--xml]
+                                        [--years]
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application ou l’URI de l’application auquel associer le RBAC. S’il n’est pas présent, un nom par défaut comme « {amsaccountname}-Access-SP » est généré.
+    description: ''
+  - name: --password -p
+    summary: Mot de passe utilisé pour se connecter. Également appelée « clé secrète client ». S’il n’est pas présent, un secret aléatoire est généré.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --role
+    defaultValue: Contributor
+    summary: Rôle du principal de service.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --xml
+    summary: Active le format de sortie XML.
+    description: ''
+  - name: --years
+    summary: 'Nombre d’années pendant lesquelles le secret sera valide. Valeur par défaut : 1 an.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+commands:
+- az_ams_account_sp_create
+- az_ams_account_sp_reset_credentials
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 07/28/2020
+  description: Gérer le principal du service et l’accès basé sur les rôles pour un compte Azure Media Services.
+  ms.openlocfilehash: 78a9ce9aae7abea22792c7dfbad56c6e6d8eee44
+  ms.sourcegitcommit: b664951686e518ebcaec4b4c1ae59a69ef70302a
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 09/15/2020
+  ms.locfileid: "102818264"

@@ -1,0 +1,358 @@
+### YamlMime:AzureCLIGroup
+uid: az_dms
+name: az dms
+summary: Gérer les instances Azure Data Migration Service (DMS).
+description: ''
+directCommands:
+- uid: az_dms_check_name
+  name: az dms check-name
+  summary: Vérifiez si un nom d’instance DMS donné est disponible dans une région donnée, ainsi que la validité du nom.
+  description: ''
+  syntax: >-
+    az dms check-name --location
+                      --name
+                      [--subscription]
+  examples:
+  - summary: Vérifiez si un nom d’instance DMS donné est disponible dans une région donnée, ainsi que la validité du nom. généré automatiquement
+    syntax: az dms check-name --location westus2 --name MyService
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service à vérifier.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dms/_help.py
+- uid: az_dms_check_status
+  name: az dms check-status
+  summary: Effectuer un contrôle d’intégrité et retourner l’état de la taille du service et de la machine virtuelle.
+  description: ''
+  syntax: >-
+    az dms check-status --name
+                        --resource-group
+                        [--subscription]
+  examples:
+  - summary: Effectuer un contrôle d’intégrité et retourner l’état de la taille du service et de la machine virtuelle. généré automatiquement
+    syntax: az dms check-status --name MyService --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dms/_help.py
+- uid: az_dms_create
+  name: az dms create
+  summary: Créez une instance du service de migration de données.
+  description: ''
+  syntax: >-
+    az dms create --location
+                  --name
+                  --resource-group
+                  --sku-name
+                  --subnet
+                  [--no-wait]
+                  [--subscription]
+                  [--tags]
+  examples:
+  - summary: Créer une instance de DMS.
+    syntax: az dms create -l westus -n mydms -g myresourcegroup --sku-name Basic_2vCores --subnet /subscriptions/{vnetSubscriptionId}/resourceGroups/{vnetResourceGroup}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName} --tags tagName1=tagValue1 tagWithNoValue
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --sku-name
+    summary: Nom de la référence de l’UC sur laquelle l’ordinateur virtuel du service s’exécutera. Vérifiez le nom et la disponibilité des références (SKU) dans votre région avec « AZ DMS List-SKU ».
+    description: ''
+  - isRequired: true
+    name: --subnet
+    summary: L’ID de ressource du sous-réseau du réseau virtuel que vous allez utiliser pour connecter les bases de ressources source et cible. Utilisez « AZ Network vnet Subnet Show-h » pour obtenir de l’aide afin d’obtenir l’ID de votre sous-réseau.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Liste de balises séparées par des espaces dans le format «  : étiquette1 [= valeur1] ».'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dms/_help.py
+- uid: az_dms_delete
+  name: az dms delete
+  summary: Supprimer une instance du service de migration de données.
+  description: ''
+  syntax: >-
+    az dms delete --name
+                  --resource-group
+                  [--delete-running-tasks]
+                  [--no-wait]
+                  [--subscription]
+                  [--yes]
+  examples:
+  - summary: Supprimer une instance du service de migration de données. généré automatiquement
+    syntax: az dms delete --name MyService --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --delete-running-tasks
+    summary: Annulez toutes les tâches en cours d’exécution avant de supprimer le service.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dms/_help.py
+- uid: az_dms_list
+  name: az dms list
+  summary: Répertoriez les instances DMS au sein de votre abonnement actuellement configuré (pour définir cette utilisation, utilisez « AZ Account Set »). S’il est fourni, affiche uniquement les instances d’un groupe de ressources donné.
+  description: ''
+  syntax: >-
+    az dms list [--query-examples]
+                [--resource-group]
+                [--subscription]
+  examples:
+  - summary: Répertorie toutes les instances de votre abonnement.
+    syntax: az dms list
+  - summary: Répertorie toutes les instances d’un groupe de ressources donné.
+    syntax: az dms list -g myresourcegroup
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dms/_help.py
+- uid: az_dms_list_skus
+  name: az dms list-skus
+  summary: Répertorie les références (SKU) prises en charge par le service de migration de données.
+  description: ''
+  syntax: az dms list-skus [--subscription]
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dms/_help.py
+- uid: az_dms_show
+  name: az dms show
+  summary: Affichez les détails d’une instance du service de migration des données.
+  description: ''
+  syntax: >-
+    az dms show --name
+                --resource-group
+                [--query-examples]
+                [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dms/_help.py
+- uid: az_dms_start
+  name: az dms start
+  summary: Démarrez une instance du service de migration des données. Il peut ensuite être utilisé pour exécuter des migrations de données.
+  description: ''
+  syntax: >-
+    az dms start --name
+                 --resource-group
+                 [--no-wait]
+                 [--subscription]
+  examples:
+  - summary: Démarrez une instance du service de migration des données. Il peut ensuite être utilisé pour exécuter des migrations de données. généré automatiquement
+    syntax: az dms start --name MyService --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dms/_help.py
+- uid: az_dms_stop
+  name: az dms stop
+  summary: Arrêtez une instance du service de migration des données. Alors qu’il est arrêté, il ne peut pas être utilisé pour exécuter des migrations de données et le propriétaire ne sera pas facturé.
+  description: ''
+  syntax: >-
+    az dms stop --name
+                --resource-group
+                [--no-wait]
+                [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dms/_help.py
+- uid: az_dms_wait
+  name: az dms wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de l’instance DMS soit remplie.
+  description: ''
+  syntax: >-
+    az dms wait --name
+                --resource-group
+                [--created]
+                [--custom]
+                [--deleted]
+                [--exists]
+                [--interval]
+                [--subscription]
+                [--timeout]
+                [--updated]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/dms/_help.py
+commands:
+- az_dms_check_name
+- az_dms_check_status
+- az_dms_create
+- az_dms_delete
+- az_dms_list
+- az_dms_list_skus
+- az_dms_project
+- az_dms_project_check_name
+- az_dms_project_create
+- az_dms_project_delete
+- az_dms_project_list
+- az_dms_project_show
+- az_dms_project_task
+- az_dms_project_task_cancel
+- az_dms_project_task_check_name
+- az_dms_project_task_create
+- az_dms_project_task_cutover
+- az_dms_project_task_delete
+- az_dms_project_task_list
+- az_dms_project_task_show
+- az_dms_show
+- az_dms_start
+- az_dms_stop
+- az_dms_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/15/2021
+  description: Gérer les instances Azure Data Migration Service (DMS).
+  ms.openlocfilehash: 5147340e840462eae1a545d65899f3a3bac0e571
+  ms.sourcegitcommit: 59f08c5a7a967fa68adb9eefbf5beb92acda9e08
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 01/19/2021
+  ms.locfileid: "102844039"
