@@ -1,0 +1,370 @@
+### YamlMime:AzureCLIGroup
+uid: ext_codespaces_az_codespace
+name: az codespace
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **codespaces** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ codeSpace** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer Visual Studio Codespaces.
+description: ''
+directCommands:
+- uid: ext_codespaces_az_codespace_create
+  name: az codespace create
+  summary: Créez un codeSpace.
+  description: ''
+  syntax: >-
+    az codespace create --name
+                        --plan
+                        [--dotfiles-command]
+                        [--dotfiles-path]
+                        [--dotfiles-repo]
+                        [--git-repo]
+                        [--git-user-email]
+                        [--git-user-name]
+                        [--instance-type]
+                        [--resource-group]
+                        [--suspend-after {120, 30, 5, 60}]
+  examples:
+  - summary: Créer un codeSpace avec les paramètres de plan par défaut
+    syntax: az codespace create -g my-rg --plan my-plan --name my-codespace
+  - summary: Créer un codeSpace avec un type d’instance différent avec l’heure de suspension personnalisée
+    syntax: az codespace create -g my-rg --plan my-plan --name my-codespace --instance-type premiumLinux --suspend-after 5
+  - summary: Créer un codeSpace avec un référentiel git
+    syntax: az codespace create -g my-rg --plan my-plan --name my-codespace --git-repo https://github.com/github/repo --git-user-name "User Name" --git-user-email user@example.com
+  - summary: Créer un codeSpace avec un dotfiles référentiel
+    syntax: az codespace create -g my-rg --plan my-plan --name my-codespace --dotfiles-repo https://github.com/github/dotfiles --dotfiles-path ~/dotfiles --dotfiles-command bootstrap.sh
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du codeSpace.
+    description: ''
+  - isRequired: true
+    name: --plan -p
+    summary: Nom ou ID du plan codeSpace.
+    description: ''
+  optionalParameters:
+  - name: --dotfiles-command
+    summary: La commande que nous allons exécuter après le clonage de votre référentiel dotfiles.
+    description: ''
+  - name: --dotfiles-path
+    summary: Chemin d’accès où vous pensez que votre dépôt dotfiles est cloné dans le codeSpace.
+    description: ''
+  - name: --dotfiles-repo
+    summary: 'URL du référentiel git dotfiles. Plus d’informations : <a href="https://aka.ms/vso-docs/reference/personalizing">https://aka.ms/vso-docs/reference/personalizing</a> .'
+    description: ''
+  - name: --git-repo
+    summary: URL du référentiel git que nous allons cloner dans le codeSpace.
+    description: ''
+  - name: --git-user-email
+    summary: Adresse de messagerie de l’utilisateur git. Par exemple, la sortie de `git config user.email` .
+    description: ''
+  - name: --git-user-name
+    summary: Nom d’utilisateur git. Par exemple, la sortie de `git config user.name` .
+    description: ''
+  - name: --instance-type
+    summary: Type d’instance.
+    description: ''
+    valueFrom: az codespace location show
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --suspend-after
+    parameterValueGroup: 120, 30, 5, 60
+    summary: Interrompez automatiquement les codeSpace inactifs après ce nombre de minutes.
+    description: ''
+- uid: ext_codespaces_az_codespace_delete
+  name: az codespace delete
+  summary: Supprimer un codeSpace.
+  description: ''
+  syntax: >-
+    az codespace delete --plan
+                        [--id]
+                        [--name]
+                        [--resource-group]
+                        [--yes]
+  examples:
+  - summary: Supprimer un codeSpace donné
+    syntax: az codespace delete -g my-rg --plan my-plan --name my-codespace
+  - summary: Supprimer un ID codeSpace donné
+    syntax: az codespace delete -g my-rg --plan my-plan --id 00000000-0000-0000-0000-000000000000
+  - summary: Supprimer un ID de plan donné codeSpace et un nom de codeSpace
+    syntax: az codespace delete --plan /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.Codespaces/plans/my-plan --name my-codespace
+  requiredParameters:
+  - isRequired: true
+    name: --plan -p
+    summary: Nom ou ID du plan codeSpace.
+    description: ''
+  optionalParameters:
+  - name: --id
+    summary: ID du codeSpace.
+    description: ''
+  - name: --name -n
+    summary: Nom du codeSpace.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_codespaces_az_codespace_list
+  name: az codespace list
+  summary: Liste Codespaces.
+  description: ''
+  syntax: >-
+    az codespace list --plan
+                      [--all]
+                      [--resource-group]
+  examples:
+  - summary: Liste Codespaces
+    syntax: az codespace list -g my-rg --plan my-plan
+  - summary: Répertorier l’ID de plan donné Codespaces
+    syntax: az codespace list --plan /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.Codespaces/plans/my-plan
+  requiredParameters:
+  - isRequired: true
+    name: --plan -p
+    summary: Nom ou ID du plan codeSpace.
+    description: ''
+  optionalParameters:
+  - name: --all
+    summary: Incluez le Codespaces d’autres utilisateurs. Vous n’êtes peut-être pas autorisé à vous connecter ou à modifier ces autres Codespaces.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_codespaces_az_codespace_open
+  name: az codespace open
+  summary: Ouvrez un codeSpace dans le navigateur Web.
+  description: Une confirmation est requise si le codeSpace n’est pas dans l’état « disponible », car l’ouverture d’un codeSpace le reprend automatiquement.
+  syntax: >-
+    az codespace open --plan
+                      [--id]
+                      [--name]
+                      [--resource-group]
+                      [--yes]
+  examples:
+  - summary: Ouvrir un codeSpace donné
+    syntax: az codespace open -g my-rg --plan my-plan --name my-codespace
+  - summary: Ouvrir un ID codeSpace donné
+    syntax: az codespace open -g my-rg --plan my-plan --id 00000000-0000-0000-0000-000000000000
+  - summary: Ouvrir un ID de plan donné codeSpace et un nom de codeSpace
+    syntax: az codespace open --plan /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.Codespaces/plans/my-plan --name my-codespace
+  requiredParameters:
+  - isRequired: true
+    name: --plan -p
+    summary: Nom ou ID du plan codeSpace.
+    description: ''
+  optionalParameters:
+  - name: --id
+    summary: ID du codeSpace.
+    description: ''
+  - name: --name -n
+    summary: Nom du codeSpace.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_codespaces_az_codespace_resume
+  name: az codespace resume
+  summary: Reprend un codeSpace.
+  description: ''
+  syntax: >-
+    az codespace resume --plan
+                        [--id]
+                        [--name]
+                        [--resource-group]
+  examples:
+  - summary: Reprendre un codeSpace donné
+    syntax: az codespace resume -g my-rg --plan my-plan --name my-codespace
+  - summary: Reprendre un ID codeSpace donné
+    syntax: az codespace resume -g my-rg --plan my-plan --id 00000000-0000-0000-0000-000000000000
+  - summary: Reprendre un ID de plan donné codeSpace et un nom de codeSpace
+    syntax: az codespace resume --plan /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.Codespaces/plans/my-plan --name my-codespace
+  requiredParameters:
+  - isRequired: true
+    name: --plan -p
+    summary: Nom ou ID du plan codeSpace.
+    description: ''
+  optionalParameters:
+  - name: --id
+    summary: ID du codeSpace.
+    description: ''
+  - name: --name -n
+    summary: Nom du codeSpace.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_codespaces_az_codespace_set_config
+  name: az codespace set-config
+  summary: Définissez la configuration pour les commandes codeSpace.
+  description: ''
+  syntax: >-
+    az codespace set-config [--clear]
+                            [--domain]
+                            [--rp]
+  optionalParameters:
+  - name: --clear
+    summary: Désactivez la configuration actuelle pour revenir aux valeurs par défaut.
+    description: ''
+  - name: --domain
+    summary: Domaine de service à utiliser.
+    description: ''
+  - name: --rp
+    summary: Version de l’API du fournisseur de ressources à utiliser.
+    description: ''
+- uid: ext_codespaces_az_codespace_show
+  name: az codespace show
+  summary: Affichez les détails d’un codeSpace.
+  description: ''
+  syntax: >-
+    az codespace show --plan
+                      [--id]
+                      [--name]
+                      [--resource-group]
+  examples:
+  - summary: Afficher les détails d’un nom de codeSpace donné
+    syntax: az codespace show -g my-rg --plan my-plan --name my-codespace
+  - summary: Afficher les détails d’un ID codeSpace donné
+    syntax: az codespace show -g my-rg --plan my-plan --id 00000000-0000-0000-0000-000000000000
+  - summary: Afficher les détails d’un ID de plan donné codeSpace et d’un nom de codeSpace
+    syntax: az codespace show --plan /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.Codespaces/plans/my-plan --name my-codespace
+  requiredParameters:
+  - isRequired: true
+    name: --plan -p
+    summary: Nom ou ID du plan codeSpace.
+    description: ''
+  optionalParameters:
+  - name: --id
+    summary: ID du codeSpace.
+    description: ''
+  - name: --name -n
+    summary: Nom du codeSpace.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_codespaces_az_codespace_show_config
+  name: az codespace show-config
+  summary: Affichez la configuration actuelle pour les commandes codeSpace.
+  description: ''
+  syntax: az codespace show-config
+- uid: ext_codespaces_az_codespace_suspend
+  name: az codespace suspend
+  summary: Suspendez un codeSpace.
+  description: ''
+  syntax: >-
+    az codespace suspend --plan
+                         [--id]
+                         [--name]
+                         [--resource-group]
+  examples:
+  - summary: Suspendre un codeSpace donné
+    syntax: az codespace suspend -g my-rg --plan my-plan --name my-codespace
+  - summary: Suspendre un ID codeSpace donné
+    syntax: az codespace suspend -g my-rg --plan my-plan --id 00000000-0000-0000-0000-000000000000
+  - summary: Suspendre un ID de plan donné codeSpace et un nom de codeSpace
+    syntax: az codespace suspend --plan /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.Codespaces/plans/my-plan --name my-codespace
+  requiredParameters:
+  - isRequired: true
+    name: --plan -p
+    summary: Nom ou ID du plan codeSpace.
+    description: ''
+  optionalParameters:
+  - name: --id
+    summary: ID du codeSpace.
+    description: ''
+  - name: --name -n
+    summary: Nom du codeSpace.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_codespaces_az_codespace_update
+  name: az codespace update
+  summary: Mettre à jour un codeSpace.
+  description: ''
+  syntax: >-
+    az codespace update --plan
+                        [--id]
+                        [--instance-type]
+                        [--name]
+                        [--resource-group]
+                        [--suspend-after {120, 30, 5, 60}]
+  examples:
+  - summary: Mettre à jour un codeSpace avec un type d’instance différent
+    syntax: az codespace update -g my-rg --plan my-plan --name my-codespace --instance-type premiumLinux
+  - summary: Mettre à jour un codeSpace avec une interruption différente après
+    syntax: az codespace update -g my-rg --plan my-plan --name my-codespace --suspend-after 30
+  requiredParameters:
+  - isRequired: true
+    name: --plan -p
+    summary: Nom ou ID du plan codeSpace.
+    description: ''
+  optionalParameters:
+  - name: --id
+    summary: ID du codeSpace.
+    description: ''
+  - name: --instance-type
+    summary: Type d’instance.
+    description: ''
+  - name: --name -n
+    summary: Nom du codeSpace.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --suspend-after
+    parameterValueGroup: 120, 30, 5, 60
+    summary: Interrompez automatiquement les codeSpace inactifs après ce nombre de minutes.
+    description: ''
+commands:
+- ext_codespaces_az_codespace_create
+- ext_codespaces_az_codespace_delete
+- ext_codespaces_az_codespace_list
+- ext_codespaces_az_codespace_location
+- ext_codespaces_az_codespace_location_list
+- ext_codespaces_az_codespace_location_show
+- ext_codespaces_az_codespace_open
+- ext_codespaces_az_codespace_plan
+- ext_codespaces_az_codespace_plan_create
+- ext_codespaces_az_codespace_plan_delete
+- ext_codespaces_az_codespace_plan_list
+- ext_codespaces_az_codespace_plan_show
+- ext_codespaces_az_codespace_resume
+- ext_codespaces_az_codespace_secret
+- ext_codespaces_az_codespace_secret_create
+- ext_codespaces_az_codespace_secret_delete
+- ext_codespaces_az_codespace_secret_list
+- ext_codespaces_az_codespace_secret_update
+- ext_codespaces_az_codespace_set_config
+- ext_codespaces_az_codespace_show
+- ext_codespaces_az_codespace_show_config
+- ext_codespaces_az_codespace_suspend
+- ext_codespaces_az_codespace_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer Visual Studio Codespaces.
+  ms.openlocfilehash: 3e82503ad176dc14fe8244f5f260ec33cb858e60
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102839590"
