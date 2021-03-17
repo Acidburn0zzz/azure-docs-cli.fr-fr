@@ -1,0 +1,267 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_vnet_subnet
+name: az network vnet subnet
+summary: Gérer les sous-réseaux dans un réseau virtuel Azure.
+description: Pour en savoir plus sur les sous-réseaux <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-subnet">https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-subnet</a> , consultez.
+directCommands:
+- uid: az_network_vnet_subnet_create
+  name: az network vnet subnet create
+  summary: Créez un sous-réseau et associez une table de routage et de groupe de sécurité réseau existante.
+  description: ''
+  syntax: >-
+    az network vnet subnet create --address-prefix
+                                  --name
+                                  --resource-group
+                                  --vnet-name
+                                  [--defer]
+                                  [--delegations]
+                                  [--network-security-group]
+                                  [--route-table]
+                                  [--service-endpoints]
+                                  [--subscription]
+  examples:
+  - summary: Créer un nouveau sous-réseau attaché à un groupe de sécurité réseau avec une table de routage personnalisée.
+    syntax: >-
+      az network vnet subnet create -g MyResourceGroup --vnet-name MyVnet -n MySubnet \
+          --address-prefixes 10.0.0.0/24 --network-security-group MyNsg --route-table MyRouteTable
+  - summary: Créer un nouveau sous-réseau attaché à une passerelle NAT.
+    syntax: az network vnet subnet create -n MySubnet --vnet-name MyVnet -g MyResourceGroup --nat-gateway MyNatGateway --address-prefixes "10.0.0.0/21"
+  requiredParameters:
+  - isRequired: true
+    name: --address-prefix
+    summary: Préfixe d’adresse au format CIDR.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: nom du sous-réseau.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vnet-name
+    summary: Nom du réseau virtuel (VNet).
+    description: ''
+  optionalParameters:
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
+    description: ''
+  - name: --delegations
+    summary: Liste séparée par des espaces des services auxquels le sous-réseau doit être délégué. (par exemple, Microsoft. SQL/Servers).
+    description: ''
+  - name: --network-security-group --nsg
+    summary: Nom ou ID d’un groupe de sécurité réseau (NSG).
+    description: ''
+  - name: --route-table
+    summary: Nom ou ID d’une table de routage à associer au sous-réseau.
+    description: ''
+  - name: --service-endpoints
+    summary: Une liste séparée par des espaces de services permettait un accès privé à ce sous-réseau.
+    description: ''
+    valueFrom: az network vnet list-endpoint-services
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_vnet_subnet_delete
+  name: az network vnet subnet delete
+  summary: Supprimer un sous-réseau.
+  description: ''
+  syntax: >-
+    az network vnet subnet delete [--ids]
+                                  [--name]
+                                  [--resource-group]
+                                  [--subscription]
+                                  [--vnet-name]
+  examples:
+  - summary: Supprimer un sous-réseau.
+    syntax: az network vnet subnet delete -g MyResourceGroup -n MySubnet
+  - summary: Supprimer un sous-réseau. généré automatiquement
+    syntax: az network vnet subnet delete --name MySubnet --resource-group MyResourceGroup --vnet-name MyVnet
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: nom du sous-réseau.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel (VNet).
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_vnet_subnet_list
+  name: az network vnet subnet list
+  summary: Répertorier les sous-réseaux dans un réseau virtuel.
+  description: ''
+  syntax: >-
+    az network vnet subnet list --resource-group
+                                --vnet-name
+                                [--query-examples]
+                                [--subscription]
+  examples:
+  - summary: Répertorier les sous-réseaux dans un réseau virtuel.
+    syntax: az network vnet subnet list -g MyResourceGroup --vnet-name MyVNet
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vnet-name
+    summary: Nom du réseau virtuel (VNet).
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_vnet_subnet_show
+  name: az network vnet subnet show
+  summary: Affichez les détails d’un sous-réseau.
+  description: ''
+  syntax: >-
+    az network vnet subnet show [--expand]
+                                [--ids]
+                                [--name]
+                                [--query-examples]
+                                [--resource-group]
+                                [--subscription]
+                                [--vnet-name]
+  examples:
+  - summary: Affichez les détails d’un sous-réseau associé à un réseau virtuel.
+    syntax: az network vnet subnet show -g MyResourceGroup -n MySubnet --vnet-name MyVNet
+  optionalParameters:
+  - name: --expand
+    summary: Développe des ressources référencées.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: nom du sous-réseau.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel (VNet).
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_vnet_subnet_update
+  name: az network vnet subnet update
+  summary: Mettre à jour un sous-réseau.
+  description: ''
+  syntax: >-
+    az network vnet subnet update [--add]
+                                  [--address-prefix]
+                                  [--delegations]
+                                  [--force-string]
+                                  [--ids]
+                                  [--name]
+                                  [--network-security-group]
+                                  [--remove]
+                                  [--resource-group]
+                                  [--route-table]
+                                  [--service-endpoints]
+                                  [--set]
+                                  [--subscription]
+                                  [--vnet-name]
+  examples:
+  - summary: Associer un groupe de sécurité réseau à un sous-réseau.
+    syntax: az network vnet subnet update -g MyResourceGroup -n MySubnet --vnet-name MyVNet --network-security-group MyNsg
+  - summary: Mettez à jour le sous-réseau avec la passerelle NAT.
+    syntax: az network vnet subnet update -n MySubnet --vnet-name MyVnet -g MyResourceGroup --nat-gateway MyNatGateway --address-prefixes "10.0.0.0/21"
+  - summary: Désactiver les stratégies réseau des points de terminaison privés
+    syntax: az network vnet subnet update -n MySubnet --vnet-name MyVnet -g MyResourceGroup --disable-private-endpoint-network-policies
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --address-prefix
+    summary: Préfixe d’adresse au format CIDR.
+    description: ''
+  - name: --delegations
+    summary: Liste séparée par des espaces des services auxquels le sous-réseau doit être délégué. (par exemple, Microsoft. SQL/Servers).
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: nom du sous-réseau.
+    description: ''
+  - name: --network-security-group --nsg
+    summary: Nom ou ID d’un groupe de sécurité réseau (NSG). Utilisez une chaîne vide "" (' "" 'dans PowerShell) pour la détacher.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --route-table
+    summary: Nom ou ID d’une table de routage à associer au sous-réseau. Utilisez une chaîne vide "" (' "" 'dans PowerShell) pour la détacher. Vous pouvez également ajouter « --Remove routeTable » dans « AZ Network vnet Subnet Update » pour le détacher.
+    description: ''
+  - name: --service-endpoints
+    summary: Une liste séparée par des espaces de services permettait un accès privé à ce sous-réseau.
+    description: ''
+    valueFrom: az network vnet list-endpoint-services
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel (VNet).
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_vnet_subnet_create
+- az_network_vnet_subnet_delete
+- az_network_vnet_subnet_list
+- az_network_vnet_subnet_show
+- az_network_vnet_subnet_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Pour en savoir plus sur les sous-réseaux <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-subnet">https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-subnet</a> , consultez.
+  ms.openlocfilehash: 51064e170cf7c50dab46d45bc3c33507d735b4ae
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102970019"

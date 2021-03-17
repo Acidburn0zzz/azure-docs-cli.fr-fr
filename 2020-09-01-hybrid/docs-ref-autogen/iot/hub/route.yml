@@ -1,0 +1,300 @@
+### YamlMime:AzureCLIGroup
+uid: az_iot_hub_route
+name: az iot hub route
+summary: Gérer les itinéraires d’un IoT Hub.
+description: ''
+directCommands:
+- uid: az_iot_hub_route_create
+  name: az iot hub route create
+  summary: Créez un itinéraire dans IoT Hub.
+  description: Créez un itinéraire pour envoyer une source de données spécifique et une condition à un point de terminaison souhaité.
+  syntax: >-
+    az iot hub route create --en
+                            --hub-name
+                            --name
+                            --source {devicejoblifecycleevents, devicelifecycleevents, devicemessages, digitaltwinchangeevents, invalid, twinchangeevents}
+                            [--condition]
+                            [--enabled {false, true}]
+                            [--resource-group]
+                            [--subscription]
+  examples:
+  - summary: Créez un itinéraire « R1 ».
+    syntax: az iot hub route create -g MyResourceGroup --hub-name MyIotHub --endpoint-name E2 --source-type DeviceMessages --route-name R1
+  - summary: Créez un itinéraire « R1 » avec tous les paramètres.
+    syntax: az iot hub route create -g MyResourceGroup --hub-name MyIotHub --endpoint-name E2 --source-type DeviceMessages --route-name R1 --condition true --enabled true
+  requiredParameters:
+  - isRequired: true
+    name: --en --endpoint --endpoint-name
+    summary: Nom du point de terminaison de routage.
+    description: ''
+  - isRequired: true
+    name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - isRequired: true
+    name: --name --route-name -n
+    summary: Nom de l’itinéraire.
+    description: ''
+  - isRequired: true
+    name: --source --source-type --type -s
+    parameterValueGroup: devicejoblifecycleevents, devicelifecycleevents, devicemessages, digitaltwinchangeevents, invalid, twinchangeevents
+    summary: Source de l’itinéraire.
+    description: ''
+  optionalParameters:
+  - name: --condition -c
+    summary: Condition évaluée pour appliquer la règle de routage.
+    description: ''
+  - name: --enabled -e
+    parameterValueGroup: false, true
+    summary: Valeur booléenne indiquant s’il faut activer l’itinéraire vers IOT Hub.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_hub_route_delete
+  name: az iot hub route delete
+  summary: Supprimer tous les itinéraires ou les itinéraires mentionnés pour votre IoT Hub.
+  description: Supprimer un itinéraire ou tous les itinéraires de votre IoT Hub.
+  syntax: >-
+    az iot hub route delete [--hub-name]
+                            [--ids]
+                            [--name]
+                            [--resource-group]
+                            [--source {devicejoblifecycleevents, devicelifecycleevents, devicemessages, digitaltwinchangeevents, invalid, twinchangeevents}]
+                            [--subscription]
+  examples:
+  - summary: Supprimez l’itinéraire « R1 » de « MyIotHub » IoT Hub.
+    syntax: az iot hub route delete -g MyResourceGroup --hub-name MyIotHub --route-name R1
+  - summary: Supprimez tous les itinéraires de type source « DeviceMessages » de « MyIotHub » IoT Hub.
+    syntax: az iot hub route delete -g MyResourceGroup --hub-name MyIotHub --source-type DeviceMessages
+  - summary: Supprimez tous les itinéraires de la IoT Hub « MyIotHub ».
+    syntax: az iot hub route delete -g MyResourceGroup --hub-name MyIotHub
+  optionalParameters:
+  - name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name --route-name -n
+    summary: Nom de l’itinéraire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --source --source-type --type -s
+    parameterValueGroup: devicejoblifecycleevents, devicelifecycleevents, devicemessages, digitaltwinchangeevents, invalid, twinchangeevents
+    summary: Source de l’itinéraire.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_hub_route_list
+  name: az iot hub route list
+  summary: Obtient tous les itinéraires dans IoT Hub.
+  description: Obtient des informations sur tous les itinéraires à partir d’un IoT Hub.
+  syntax: >-
+    az iot hub route list [--hub-name]
+                          [--ids]
+                          [--query-examples]
+                          [--resource-group]
+                          [--source {devicejoblifecycleevents, devicelifecycleevents, devicemessages, digitaltwinchangeevents, invalid, twinchangeevents}]
+                          [--subscription]
+  examples:
+  - summary: Obtient tous les itinéraires à partir de « MyIotHub » IoT Hub.
+    syntax: az iot hub route list -g MyResourceGroup --hub-name MyIotHub
+  - summary: Obtient tous les itinéraires du type source « DeviceMessages » à partir de « MyIotHub » IoT Hub.
+    syntax: az iot hub route list -g MyResourceGroup --hub-name MyIotHub --source-type DeviceMessages
+  optionalParameters:
+  - name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --source --source-type --type -s
+    parameterValueGroup: devicejoblifecycleevents, devicelifecycleevents, devicemessages, digitaltwinchangeevents, invalid, twinchangeevents
+    summary: Source de l’itinéraire.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_hub_route_show
+  name: az iot hub route show
+  summary: Obtenir des informations sur l’itinéraire dans IoT Hub.
+  description: Obtenir des informations sur un itinéraire spécifique dans votre IoT Hub.
+  syntax: >-
+    az iot hub route show --name
+                          [--hub-name]
+                          [--ids]
+                          [--query-examples]
+                          [--resource-group]
+                          [--subscription]
+  examples:
+  - summary: Obtient des informations d’itinéraire à partir de la IoT Hub « MyIotHub ».
+    syntax: az iot hub route show -g MyResourceGroup --hub-name MyIotHub --route-name {routeName}
+  requiredParameters:
+  - isRequired: true
+    name: --name --route-name -n
+    summary: Nom de l’itinéraire.
+    description: ''
+  optionalParameters:
+  - name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_hub_route_test
+  name: az iot hub route test
+  summary: Testez tous les itinéraires ou l’itinéraire mentionné dans IoT Hub.
+  description: Testez tous les itinéraires existants ou les itinéraires mentionnés dans votre IoT Hub. Vous pouvez fournir un exemple de message pour tester vos itinéraires.
+  syntax: >-
+    az iot hub route test [--ap]
+                          [--body]
+                          [--hub-name]
+                          [--ids]
+                          [--name]
+                          [--resource-group]
+                          [--source {devicejoblifecycleevents, devicelifecycleevents, devicemessages, digitaltwinchangeevents, invalid, twinchangeevents}]
+                          [--sp]
+                          [--subscription]
+  examples:
+  - summary: Testez l’itinéraire « R1 » à partir de « MyIotHub » IoT Hub.
+    syntax: az iot hub route test -g MyResourceGroup --hub-name MyIotHub --route-name R1
+  - summary: Testez tout l’itinéraire du type source « DeviceMessages » à partir de « MyIotHub » IoT Hub.
+    syntax: az iot hub route test -g MyResourceGroup --hub-name MyIotHub --source-type DeviceMessages
+  optionalParameters:
+  - name: --ap --app-properties
+    summary: Propriétés de l’application du message d’itinéraire.
+    description: ''
+  - name: --body -b
+    summary: Corps du message d’itinéraire.
+    description: ''
+  - name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name --route-name -n
+    summary: Nom de l’itinéraire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --source --source-type --type -s
+    parameterValueGroup: devicejoblifecycleevents, devicelifecycleevents, devicemessages, digitaltwinchangeevents, invalid, twinchangeevents
+    summary: Source de l’itinéraire.
+    description: ''
+  - name: --sp --system-properties
+    summary: Propriétés système du message d’itinéraire.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_hub_route_update
+  name: az iot hub route update
+  summary: Mettre à jour un itinéraire dans IoT Hub.
+  description: Met à jour un itinéraire dans IoT Hub. Vous pouvez modifier la source, le point d’interrogation ou la requête sur l’itinéraire.
+  syntax: >-
+    az iot hub route update --name
+                            [--condition]
+                            [--en]
+                            [--enabled {false, true}]
+                            [--hub-name]
+                            [--ids]
+                            [--resource-group]
+                            [--source {devicejoblifecycleevents, devicelifecycleevents, devicemessages, digitaltwinchangeevents, invalid, twinchangeevents}]
+                            [--subscription]
+  examples:
+  - summary: Mettez à jour le type de source de l’itinéraire « R1 » à partir de « MyIotHub » IoT Hub.
+    syntax: az iot hub route update -g MyResourceGroup --hub-name MyIotHub --source-type DeviceMessages --route-name R1
+  requiredParameters:
+  - isRequired: true
+    name: --name --route-name -n
+    summary: Nom de l’itinéraire.
+    description: ''
+  optionalParameters:
+  - name: --condition -c
+    summary: Condition évaluée pour appliquer la règle de routage.
+    description: ''
+  - name: --en --endpoint --endpoint-name
+    summary: Nom du point de terminaison de routage.
+    description: ''
+  - name: --enabled -e
+    parameterValueGroup: false, true
+    summary: Valeur booléenne indiquant s’il faut activer l’itinéraire vers IOT Hub.
+    description: ''
+  - name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --source --source-type --type -s
+    parameterValueGroup: devicejoblifecycleevents, devicelifecycleevents, devicemessages, digitaltwinchangeevents, invalid, twinchangeevents
+    summary: Source de l’itinéraire.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+commands:
+- az_iot_hub_route_create
+- az_iot_hub_route_delete
+- az_iot_hub_route_list
+- az_iot_hub_route_show
+- az_iot_hub_route_test
+- az_iot_hub_route_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/14/2021
+  description: Gérer les itinéraires d’un IoT Hub.
+  ms.openlocfilehash: c11754b532ecf00590df08bffac77bb5aba4668b
+  ms.sourcegitcommit: 59f08c5a7a967fa68adb9eefbf5beb92acda9e08
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 01/19/2021
+  ms.locfileid: "102844168"
