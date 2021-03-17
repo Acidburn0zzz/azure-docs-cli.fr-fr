@@ -1,39 +1,36 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_bastion
-name: az network bastion
-summary: Gérer l’hôte bastion Azure.
+uid: az_network_public_ip_prefix
+name: az network public-ip prefix
+summary: Gérer les ressources de préfixe d’adresse IP publique.
 description: ''
 directCommands:
-- uid: az_network_bastion_create
-  name: az network bastion create
-  summary: Créez un ordinateur hôte bastion Azure.
+- uid: az_network_public_ip_prefix_create
+  name: az network public-ip prefix create
+  summary: Créez une ressource de préfixe d’adresse IP publique.
   description: ''
   syntax: >-
-    az network bastion create --name
-                              --public-ip-address
-                              --resource-group
-                              --vnet-name
-                              [--location]
-                              [--subscription]
+    az network public-ip prefix create --length
+                                       --name
+                                       --resource-group
+                                       [--location]
+                                       [--subscription]
+                                       [--tags]
+                                       [--zone {1, 2, 3}]
   examples:
-  - summary: Créez un ordinateur hôte bastion Azure. généré automatiquement
-    syntax: az network bastion create --location westus2 --name MyBastionHost --public-ip-address MyPublicIpAddress --resource-group MyResourceGroup --vnet-name MyVnet
+  - summary: Créez une ressource de préfixe d’adresse IP publique. généré automatiquement
+    syntax: az network public-ip prefix create --length 28 --location westus2 --name MyPublicIPPrefix --resource-group MyResourceGroup
   requiredParameters:
   - isRequired: true
-    name: --name -n
-    summary: Nom de l’hôte bastion.
+    name: --length
+    summary: Longueur du préfixe (c’est-à-dire `XX.XX.XX.XX/<Length>` ).
     description: ''
   - isRequired: true
-    name: --public-ip-address
-    summary: Nom ou ID de l’adresse IP publique Azure. La référence (SKU) de l’adresse IP publique doit être standard.
+    name: --name -n
+    summary: Nom du préfixe d’adresse IP publique.
     description: ''
   - isRequired: true
     name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
-    description: ''
-  - isRequired: true
-    name: --vnet-name
-    summary: Nom du réseau virtuel. Il doit avoir un sous-réseau appelé AzureBastionSubnet.
     description: ''
   optionalParameters:
   - name: --location -l
@@ -42,15 +39,22 @@ directCommands:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --zone -z
+    parameterValueGroup: 1, 2, 3
+    summary: Zone de disponibilité dans laquelle approvisionner la ressource.
+    description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_bastion_list
-  name: az network bastion list
-  summary: Répertorie tous les ordinateurs hôtes bastions Azure.
+- uid: az_network_public_ip_prefix_list
+  name: az network public-ip prefix list
+  summary: Répertorier les ressources de préfixe IP publiques.
   description: ''
   syntax: >-
-    az network bastion list [--query-examples]
-                            [--resource-group]
-                            [--subscription]
+    az network public-ip prefix list [--query-examples]
+                                     [--resource-group]
+                                     [--subscription]
   optionalParameters:
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
@@ -63,8 +67,8 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_bastion_create
-- az_network_bastion_list
+- az_network_public_ip_prefix_create
+- az_network_public_ip_prefix_list
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -82,11 +86,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/25/2021
-  description: Gérer l’hôte bastion Azure.
-  ms.openlocfilehash: 832ce2920000c3aa22890521631057397184bb46
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.date: 02/03/2021
+  description: Gérer les ressources de préfixe d’adresse IP publique.
+  ms.openlocfilehash: f9cc583ec6cd17e85f5bcc5048222c6cf1d507d8
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103545845"
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102966931"
