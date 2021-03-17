@@ -1,0 +1,107 @@
+### YamlMime:AzureCLIGroup
+uid: az_mariadb_server_logs
+name: az mariadb server-logs
+summary: Gérer les journaux du serveur.
+description: ''
+directCommands:
+- uid: az_mariadb_server_logs_download
+  name: az mariadb server-logs download
+  summary: Téléchargez les fichiers journaux.
+  description: ''
+  syntax: >-
+    az mariadb server-logs download --name
+                                    [--ids]
+                                    [--resource-group]
+                                    [--server-name]
+                                    [--subscription]
+  examples:
+  - summary: Téléchargez les fichiers journaux F1 et F2 dans le répertoire actif à partir du serveur « testsvr ».
+    syntax: az mariadb server-logs download -g testgroup -s testsvr -n f1.log f2.log
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Liste séparée par des espaces des noms de fichiers journaux sur le serveur à télécharger.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server-name -s
+    summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_mariadb_server_logs_list
+  name: az mariadb server-logs list
+  summary: Répertoriez les fichiers journaux pour un serveur.
+  description: ''
+  syntax: >-
+    az mariadb server-logs list --resource-group
+                                --server-name
+                                [--file-last-written]
+                                [--filename-contains]
+                                [--max-file-size]
+                                [--query-examples]
+                                [--subscription]
+  examples:
+  - summary: Liste des fichiers journaux pour « testsvr » modifiés au cours des dernières 72 heures (valeur par défaut).
+    syntax: az mariadb server-logs list -g testgroup -s testsvr
+  - summary: Liste des fichiers journaux pour « testsvr » modifiés au cours des 10 dernières heures.
+    syntax: az mariadb server-logs list -g testgroup -s testsvr --file-last-written 10
+  - summary: Liste des fichiers journaux pour « testsvr » d’une taille inférieure à 30 Ko.
+    syntax: az mariadb server-logs list -g testgroup -s testsvr --max-file-size 30
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --server-name -s
+    summary: Nom du serveur.
+    description: ''
+  optionalParameters:
+  - name: --file-last-written
+    summary: Entier en heures pour indiquer l’heure de la dernière modification du fichier, la valeur par défaut est 72.
+    description: ''
+  - name: --filename-contains
+    summary: Modèle que le nom de fichier doit correspondre.
+    description: ''
+  - name: --max-file-size
+    summary: Limite de taille de fichier pour filtrer les fichiers.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_mariadb_server_logs_download
+- az_mariadb_server_logs_list
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les journaux du serveur.
+  ms.openlocfilehash: 8fe4bbeaee5fc6ecbc5f77331742eeec43a836ab
+  ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 10/27/2020
+  ms.locfileid: "102820946"
