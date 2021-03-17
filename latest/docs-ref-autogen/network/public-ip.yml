@@ -1,0 +1,292 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_public_ip
+name: az network public-ip
+summary: Gérer les adresses IP publiques.
+description: Pour en savoir plus sur les adresses IP publiques <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-public-ip-address">https://docs.microsoft.com/azure/virtual-network/virtual-network-public-ip-address</a> , visitez.
+directCommands:
+- uid: az_network_public_ip_create
+  name: az network public-ip create
+  summary: Créez une adresse IP publique.
+  description: '[Modification avec rupture] Dans la version à venir, le comportement par défaut sera modifié comme suit quand SKU est standard et que zone n’est pas fourni : zones = [], ce qui signifie que l’adresse IP publique standard n’a aucune zone. Si vous souhaitez créer une adresse IP publique redondante dans une zone, spécifiez toutes les zones de la région. Par exemple,--zone 1 2 3.'
+  syntax: >-
+    az network public-ip create --name
+                                --resource-group
+                                [--allocation-method {Dynamic, Static}]
+                                [--dns-name]
+                                [--idle-timeout]
+                                [--ip-tags]
+                                [--location]
+                                [--public-ip-prefix]
+                                [--reverse-fqdn]
+                                [--sku {Basic, Standard}]
+                                [--subscription]
+                                [--tags]
+                                [--version {IPv4, IPv6}]
+                                [--zone {1, 2, 3}]
+  examples:
+  - summary: Créez une ressource IP publique de base.
+    syntax: az network public-ip create -g MyResourceGroup -n MyIp
+  - summary: Créez une ressource IP publique statique pour une étiquette de nom DNS.
+    syntax: az network public-ip create -g MyResourceGroup -n MyIp --dns-name MyLabel --allocation-method Static
+  - summary: Créez une ressource IP publique dans une zone de disponibilité de la région du groupe de ressources actuel.
+    syntax: az network public-ip create -g MyResourceGroup -n MyIp --zone 2
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’IP publique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --allocation-method
+    parameterValueGroup: Dynamic, Static
+    summary: Méthode d’allocation d’adresses IP.
+    description: ''
+  - name: --dns-name
+    summary: Entrée DNS globale unique.
+    description: ''
+  - name: --idle-timeout
+    defaultValue: "4"
+    summary: Délai d’inactivité en minutes.
+    description: ''
+  - name: --ip-tags
+    summary: Liste de balises IP séparées par des espaces dans le format’TYPE = VAL'.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --public-ip-prefix
+    summary: Nom ou ID d’un préfixe d’adresse IP publique.
+    description: ''
+  - name: --reverse-fqdn
+    summary: Nom de domaine complet inversé (nom de domaine complet).
+    description: ''
+  - name: --sku
+    parameterValueGroup: Basic, Standard
+    summary: Référence SKU d’adresse IP publique.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --version
+    defaultValue: IPv4
+    parameterValueGroup: IPv4, IPv6
+    summary: Type d’adresse IP.
+    description: ''
+  - name: --zone -z
+    parameterValueGroup: 1, 2, 3
+    summary: Zone de disponibilité dans laquelle approvisionner la ressource.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_public_ip_delete
+  name: az network public-ip delete
+  summary: Supprimer une adresse IP publique.
+  description: ''
+  syntax: >-
+    az network public-ip delete [--ids]
+                                [--name]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: Supprimer une adresse IP publique.
+    syntax: az network public-ip delete -g MyResourceGroup -n MyIp
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’IP publique.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_public_ip_list
+  name: az network public-ip list
+  summary: Répertorier les adresses IP publiques.
+  description: ''
+  syntax: >-
+    az network public-ip list [--query-examples]
+                              [--resource-group]
+                              [--subscription]
+  examples:
+  - summary: Répertorie toutes les adresses IP publiques dans un abonnement.
+    syntax: az network public-ip list
+  - summary: Répertorie toutes les adresses IP publiques dans un groupe de ressources.
+    syntax: az network public-ip list -g MyResourceGroup
+  - summary: Répertorie toutes les adresses IP publiques d’une étiquette de nom de domaine.
+    syntax: az network public-ip list -g MyResourceGroup --query "[?dnsSettings.domainNameLabel=='MyLabel']"
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_public_ip_show
+  name: az network public-ip show
+  summary: Obtenir les détails d’une adresse IP publique.
+  description: ''
+  syntax: >-
+    az network public-ip show [--expand]
+                              [--ids]
+                              [--name]
+                              [--query-examples]
+                              [--resource-group]
+                              [--subscription]
+  examples:
+  - summary: Obtenir des informations sur une ressource IP publique.
+    syntax: az network public-ip show -g MyResourceGroup -n MyIp
+  - summary: Obtenir le nom de domaine complet et l’adresse IP d’une ressource IP publique.
+    syntax: 'az network public-ip show -g MyResourceGroup -n MyIp --query "{fqdn: dnsSettings.fqdn, address: ipAddress}"'
+  optionalParameters:
+  - name: --expand
+    summary: Développe des ressources référencées.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’IP publique.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_public_ip_update
+  name: az network public-ip update
+  summary: Mise à jour d’une adresse IP publique.
+  description: ''
+  syntax: >-
+    az network public-ip update [--add]
+                                [--allocation-method {Dynamic, Static}]
+                                [--dns-name]
+                                [--force-string]
+                                [--idle-timeout]
+                                [--ids]
+                                [--ip-tags]
+                                [--name]
+                                [--public-ip-prefix]
+                                [--remove]
+                                [--resource-group]
+                                [--reverse-fqdn]
+                                [--set]
+                                [--sku {Basic, Standard}]
+                                [--subscription]
+                                [--tags]
+                                [--version {IPv4, IPv6}]
+  examples:
+  - summary: Mettez à jour une ressource IP publique avec une étiquette de nom DNS et une allocation statique.
+    syntax: az network public-ip update -g MyResourceGroup -n MyIp --dns-name MyLabel --allocation-method Static
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --allocation-method
+    parameterValueGroup: Dynamic, Static
+    summary: Méthode d’allocation d’adresses IP.
+    description: ''
+  - name: --dns-name
+    summary: Entrée DNS globale unique.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --idle-timeout
+    summary: Délai d’inactivité en minutes.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --ip-tags
+    summary: Liste de balises IP séparées par des espaces dans le format’TYPE = VAL'.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’IP publique.
+    description: ''
+  - name: --public-ip-prefix
+    summary: Nom ou ID d’un préfixe d’adresse IP publique.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --reverse-fqdn
+    summary: Nom de domaine complet inversé (nom de domaine complet).
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --sku
+    parameterValueGroup: Basic, Standard
+    summary: Référence SKU d’adresse IP publique.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --version
+    defaultValue: IPv4
+    parameterValueGroup: IPv4, IPv6
+    summary: Type d’adresse IP.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_public_ip_create
+- az_network_public_ip_delete
+- az_network_public_ip_list
+- az_network_public_ip_prefix
+- az_network_public_ip_prefix_create
+- az_network_public_ip_prefix_delete
+- az_network_public_ip_prefix_list
+- az_network_public_ip_prefix_show
+- az_network_public_ip_prefix_update
+- az_network_public_ip_show
+- az_network_public_ip_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Pour en savoir plus sur les adresses IP publiques <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-public-ip-address">https://docs.microsoft.com/azure/virtual-network/virtual-network-public-ip-address</a> , visitez.
+  ms.openlocfilehash: a33f8b23ad79f0b2421c98c1eea88b062da47a6d
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102968664"
