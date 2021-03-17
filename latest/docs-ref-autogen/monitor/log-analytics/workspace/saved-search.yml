@@ -1,0 +1,252 @@
+### YamlMime:AzureCLIGroup
+uid: az_monitor_log_analytics_workspace_saved_search
+name: az monitor log-analytics workspace saved-search
+summary: Gérer la recherche enregistrée pour l’espace de travail log Analytics.
+description: ''
+directCommands:
+- uid: az_monitor_log_analytics_workspace_saved_search_create
+  name: az monitor log-analytics workspace saved-search create
+  summary: Créer une recherche enregistrée pour un espace de travail donné.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace saved-search create --category
+                                                           --display-name
+                                                           --name
+                                                           --resource-group
+                                                           --saved-query
+                                                           --workspace-name
+                                                           [--fa]
+                                                           [--fp]
+                                                           [--subscription]
+                                                           [--tags]
+  examples:
+  - summary: Créer une recherche enregistrée pour un espace de travail donné.
+    syntax: az monitor log-analytics workspace saved-search create -g MyRG --workspace-name MyWS -n MySavedSearch --category Test1 --display-name TestSavedSearch -q "AzureActivity | summarize count() by bin(timestamp, 1h)" --fa myfun --fp "a:string = value"
+  requiredParameters:
+  - isRequired: true
+    name: --category
+    summary: Catégorie de la recherche enregistrée. Cela permet à l’utilisateur de trouver plus rapidement une recherche enregistrée.
+    description: ''
+  - isRequired: true
+    name: --display-name
+    summary: Nom complet de la recherche enregistrée.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la recherche enregistrée et unique dans un espace de travail donné.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --saved-query -q
+    summary: Expression de requête pour la recherche enregistrée.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --fa --func-alias
+    summary: Les alias de fonction sont des noms courts donnés aux recherches enregistrées, afin qu’ils puissent être facilement référencés dans une requête. Ils sont requis pour les groupes d’ordinateurs.
+    description: ''
+  - name: --fp --func-param
+    summary: "Paramètres de fonction facultatifs si la requête sert de fonction. La valeur doit être au format suivant : 'param-nom1 : type1 = default_value1, param-name2 : type2 = default_value2 '. Pour obtenir plus d’exemples et une syntaxe appropriée, reportez-vous à https://docs.microsoft.com/en-us/azure/kusto/query/functions/user-defined-functions ."
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_saved_search_delete
+  name: az monitor log-analytics workspace saved-search delete
+  summary: Supprimer une recherche enregistrée pour un espace de travail donné.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace saved-search delete --name
+                                                           --resource-group
+                                                           --workspace-name
+                                                           [--subscription]
+                                                           [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la recherche enregistrée et unique dans un espace de travail donné.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_saved_search_list
+  name: az monitor log-analytics workspace saved-search list
+  summary: Répertorie toutes les recherches enregistrées pour un espace de travail donné.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace saved-search list --resource-group
+                                                         --workspace-name
+                                                         [--query-examples]
+                                                         [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_saved_search_show
+  name: az monitor log-analytics workspace saved-search show
+  summary: Affiche une recherche enregistrée pour un espace de travail donné.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace saved-search show --name
+                                                         --resource-group
+                                                         --workspace-name
+                                                         [--query-examples]
+                                                         [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la recherche enregistrée et unique dans un espace de travail donné.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_log_analytics_workspace_saved_search_update
+  name: az monitor log-analytics workspace saved-search update
+  summary: Met à jour une recherche enregistrée pour un espace de travail donné.
+  description: ''
+  syntax: >-
+    az monitor log-analytics workspace saved-search update --name
+                                                           --resource-group
+                                                           --workspace-name
+                                                           [--add]
+                                                           [--category]
+                                                           [--display-name]
+                                                           [--fa]
+                                                           [--force-string]
+                                                           [--fp]
+                                                           [--remove]
+                                                           [--saved-query]
+                                                           [--set]
+                                                           [--subscription]
+                                                           [--tags]
+  examples:
+  - summary: Met à jour une recherche enregistrée pour un espace de travail donné.
+    syntax: az monitor log-analytics workspace saved-search update -g MyRG --workspace-name MyWS -n MySavedSearch --category Test1 --display-name TestSavedSearch -q "AzureActivity | summarize count() by bin(timestamp, 1h)" --fa myfun --fp "a:string = value"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la recherche enregistrée et unique dans un espace de travail donné.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --category
+    summary: Catégorie de la recherche enregistrée. Cela permet à l’utilisateur de trouver plus rapidement une recherche enregistrée.
+    description: ''
+  - name: --display-name
+    summary: Nom complet de la recherche enregistrée.
+    description: ''
+  - name: --fa --func-alias
+    summary: Les alias de fonction sont des noms courts donnés aux recherches enregistrées, afin qu’ils puissent être facilement référencés dans une requête. Ils sont requis pour les groupes d’ordinateurs.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --fp --func-param
+    summary: "Paramètres de fonction facultatifs si la requête sert de fonction. La valeur doit être au format suivant : 'param-nom1 : type1 = default_value1, param-name2 : type2 = default_value2 '. Pour obtenir plus d’exemples et une syntaxe appropriée, reportez-vous à https://docs.microsoft.com/en-us/azure/kusto/query/functions/user-defined-functions ."
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --saved-query -q
+    summary: Expression de requête pour la recherche enregistrée.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+commands:
+- az_monitor_log_analytics_workspace_saved_search_create
+- az_monitor_log_analytics_workspace_saved_search_delete
+- az_monitor_log_analytics_workspace_saved_search_list
+- az_monitor_log_analytics_workspace_saved_search_show
+- az_monitor_log_analytics_workspace_saved_search_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer la recherche enregistrée pour l’espace de travail log Analytics.
+  ms.openlocfilehash: 49b47a47497f4bf380075790707f2a363d594bfc
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102970238"

@@ -1,0 +1,229 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_iot_hub_job
+name: az iot hub job
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ IOT Hub Job** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les travaux de IoT Hub (v2).
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_iot_hub_job_cancel
+  name: az iot hub job cancel
+  summary: Annuler un travail de IoT Hub.
+  description: ''
+  syntax: >-
+    az iot hub job cancel --job-id
+                          [--hub-name]
+                          [--login]
+                          [--resource-group]
+  examples:
+  - summary: Annuler un travail de IoT Hub.
+    syntax: az iot hub job cancel --hub-name {iothub_name} --job-id {job_id}
+  requiredParameters:
+  - isRequired: true
+    name: --job-id
+    summary: ID de la tâche de IoT Hub.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_job_create
+  name: az iot hub job create
+  summary: Créez et planifiez un travail de IoT Hub pour l’exécution.
+  description: >-
+    Lors de la planification d’une tâche de mise à jour de représentation, le correctif est un argument obligatoire.
+
+    Lors de la planification d’un travail de méthode d’appareil, le nom de la méthode et la charge utile sont des arguments requis.
+  syntax: >-
+    az iot hub job create --job-id
+                          --job-type {scheduleDeviceMethod, scheduleUpdateTwin}
+                          [--duration]
+                          [--hub-name]
+                          [--interval]
+                          [--login]
+                          [--mct]
+                          [--method-name]
+                          [--method-payload]
+                          [--method-response-timeout]
+                          [--patch]
+                          [--query-condition]
+                          [--resource-group]
+                          [--start]
+                          [--ttl]
+                          [--wait {false, true}]
+  examples:
+  - summary: Créez et planifiez un travail pour mettre à jour les balises de représentation de tous les appareils.
+    syntax: "az iot hub job create --job-id {job_id} --job-type scheduleUpdateTwin -n {iothub_name} -q \"*\" --twin-patch '{\"tags\": {\"deviceType\": \"Type1, Type2, Type3\"}}'"
+  - summary: Planifier le travail et le bloc pour le résultat « terminé », « échec » ou « annulé ». Spécifiez l’intervalle d’interrogation en secondes.
+    syntax: "az iot hub job create --job-id {job_id} --job-type scheduleUpdateTwin -n {iothub_name} -q \"*\" --twin-patch '{\"tags\": {\"deviceType\": \"Type1, Type2, Type3\"}}' --wait --poll-interval 30"
+  - summary: Créez un travail pour mettre à jour une propriété de représentation souhaitée sur un sous-ensemble d’appareils, planifiée pour s’exécuter à une heure future arbitraire.
+    syntax: "az iot hub job create --job-id {job_name} --job-type scheduleUpdateTwin -n {iothub_name} --twin-patch '{\"properties\":{\"desired\": {\"temperatureF\": 65}}}' --start-time \"2020-01-08T12:19:56.868Z\" --query-condition \"deviceId IN ['MyDevice1', 'MyDevice2', 'MyDevice3']\""
+  - summary: Créez et planifiez un travail pour appeler une méthode d’appareil pour un ensemble d’appareils répondant à une condition de requête.
+    syntax: az iot hub job create --job-id {job_name} --job-type scheduleDeviceMethod -n {iothub_name} --method-name setSyncIntervalSec --method-payload 30 --query-condition "properties.reported.settings.syncIntervalSec != 30"
+  - summary: Créez et planifiez un travail pour appeler une méthode d’appareil pour tous les appareils.
+    syntax: az iot hub job create --job-id {job_name} --job-type scheduleDeviceMethod -q "*" -n {iothub_name} --method-name setSyncIntervalSec --method-payload '{"version":"1.0"}'
+  requiredParameters:
+  - isRequired: true
+    name: --job-id
+    summary: ID de la tâche de IoT Hub.
+    description: ''
+  - isRequired: true
+    name: --job-type --jt
+    parameterValueGroup: scheduleDeviceMethod, scheduleUpdateTwin
+    summary: Type de tâche planifiée.
+    description: ''
+  optionalParameters:
+  - name: --duration --poll-duration
+    defaultValue: "600"
+    summary: Durée totale, en secondes, à laquelle l’état de la tâche est vérifié si l’indicateur d’attente est passé.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --interval --poll-interval
+    defaultValue: "10"
+    summary: Intervalle, en secondes, pendant lequel l’état de la tâche est vérifié si l’indicateur d’attente est passé.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --mct --method-connect-timeout
+    defaultValue: "30"
+    summary: Nombre maximal de secondes d’attente sur la connexion de l’appareil.
+    description: ''
+  - name: --method-name --mn
+    summary: Méthode cible pour l’appel.
+    description: ''
+  - name: --method-payload --mp
+    summary: Charge utile JSON à passer à la méthode. Doit être un chemin d’accès de fichier ou un JSON brut.
+    description: ''
+  - name: --method-response-timeout --mrt
+    defaultValue: "30"
+    summary: Nombre maximal de secondes d’attente du résultat de la méthode de l’appareil.
+    description: ''
+  - name: --patch --twin-patch
+    summary: Le correctif de représentation souhaité. Fournissez un chemin de fichier ou un JSON brut.
+    description: ''
+  - name: --query-condition -q
+    summary: 'Condition pour la requête d’appareil d’obtenir des appareils sur lesquels exécuter la tâche. Obligatoire si le type de tâche est scheduleDeviceMethod ou scheduleUpdateTwin. Remarque : le service préfixera « sélectionner \* des appareils où » à l’entrée.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --start --start-time
+    summary: Début planifié du travail au format de date et d’heure ISO 8601. Si aucune heure de début n’est fournie, la tâche est mise en file d’attente pour une exécution ASAP.
+    description: ''
+  - name: --ttl
+    defaultValue: "3600"
+    summary: Durée d’exécution maximale, en secondes, avant la fin de la tâche.
+    description: ''
+  - name: --wait -w
+    parameterValueGroup: false, true
+    summary: Bloquer jusqu’à ce que le travail créé se trouve dans un état terminé, en échec ou annulé. Interroge régulièrement l’intervalle spécifié par--intervalle d’interrogation.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_job_list
+  name: az iot hub job list
+  summary: Répertorie les tâches historiques d’un IoT Hub.
+  description: ''
+  syntax: >-
+    az iot hub job list [--hub-name]
+                        [--job-status {cancelled, completed, enqueued, failed, queued, running, scheduled, unknown}]
+                        [--job-type {export, import, scheduleDeviceMethod, scheduleUpdateTwin}]
+                        [--login]
+                        [--resource-group]
+                        [--top]
+  examples:
+  - summary: Répertorie tous les travaux archivés au cours de la période de rétention (30 jours maximum).
+    syntax: az iot hub job list --hub-name {iothub_name}
+  - summary: Répertorier toutes les tâches archivées projetant des propriétés spécifiques
+    syntax: az iot hub job list --hub-name {iothub_name} --query "[*].[jobId,type,status,startTime,endTime]"
+  - summary: Liste uniquement mettre à jour les travaux de type de représentation
+    syntax: az iot hub job list --hub-name {iothub_name} --job-type scheduleDeviceMethod
+  - summary: Répertorier les tâches de méthode d’appareil dont l’État est « planifié »
+    syntax: az iot hub job list --hub-name {iothub_name} --job-type scheduleDeviceMethod --job-status scheduled
+  - summary: Répertorier les tâches d’exportation d’appareil dont l’État est « terminé »
+    syntax: az iot hub job list --hub-name {iothub_name} --job-type export --job-status completed
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --job-status --js
+    parameterValueGroup: cancelled, completed, enqueued, failed, queued, running, scheduled, unknown
+    summary: État d’une tâche planifiée.
+    description: ''
+  - name: --job-type --jt
+    parameterValueGroup: export, import, scheduleDeviceMethod, scheduleUpdateTwin
+    summary: Type de tâche planifiée.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --top
+    summary: Nombre maximal d’éléments à retourner. Utilisez-1 pour un nombre illimité.
+    description: ''
+- uid: ext_azure-iot_az_iot_hub_job_show
+  name: az iot hub job show
+  summary: Affichez les détails d’une tâche de IoT Hub existante.
+  description: ''
+  syntax: >-
+    az iot hub job show --job-id
+                        [--hub-name]
+                        [--login]
+                        [--resource-group]
+  examples:
+  - summary: Affichez les détails d’un travail créé.
+    syntax: az iot hub job show --hub-name {iothub_name} --job-id {job_id}
+  requiredParameters:
+  - isRequired: true
+    name: --job-id
+    summary: ID de la tâche de IoT Hub.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_azure-iot_az_iot_hub_job_cancel
+- ext_azure-iot_az_iot_hub_job_create
+- ext_azure-iot_az_iot_hub_job_list
+- ext_azure-iot_az_iot_hub_job_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les travaux de IoT Hub (v2).
+  ms.openlocfilehash: 92645096bade20d662ffc043377a0a31cf910995
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102835753"
