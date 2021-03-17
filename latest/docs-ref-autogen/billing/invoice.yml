@@ -1,0 +1,152 @@
+### YamlMime:AzureCLIGroup
+uid: az_billing_invoice
+name: az billing invoice
+summary: Obtenir des factures de facturation pour un abonnement.
+description: ''
+directCommands:
+- uid: az_billing_invoice_download
+  name: az billing invoice download
+  summary: Accédez à l’URL pour télécharger la facture.
+  description: ''
+  syntax: >-
+    az billing invoice download [--account-name]
+                                [--download-token]
+                                [--download-urls]
+                                [--invoice-name]
+                                [--subscription]
+  examples:
+  - summary: Obtenir une URL pour télécharger une facture. L’opération est prise en charge pour les comptes de facturation ayant le type contrat Microsoft ou contrat de partenariat Microsoft.
+    syntax: az billing invoice download --account-name "{billingAccountName}" --invoice-name "{invoiceName}" --download-token "{downloadToken}"
+  - summary: Obtenir une URL pour télécharger plusieurs documents de factures (PDF de facture, reçus de taxes, notes de crédit) sous la forme d’un fichier zip. L’opération est prise en charge pour les comptes de facturation ayant le type contrat Microsoft ou contrat de partenariat Microsoft.
+    syntax: az billing invoice download --account-name "{billingAccountName}" --download-urls "{ListOfDownloadURLs}"
+  - summary: Obtenir une URL pour télécharger plusieurs documents de factures (PDF de facture, reçus de taxes, notes de crédit) sous la forme d’un fichier zip.
+    syntax: az billing invoice download --download-urls "{ListOfDownloadURLs}"
+  - summary: Obtenir une URL pour télécharger une facture.
+    syntax: az billing invoice download --invoice-name "{invoiceName}" --download-token "{downloadToken}"
+  optionalParameters:
+  - name: --account-name
+    summary: ID qui identifie de façon unique un compte de facturation.
+    description: ''
+  - name: --download-token
+    summary: Jeton de téléchargement avec la source de document et l’ID de document.
+    description: ''
+  - name: --download-urls
+    summary: Liste séparée par des espaces des URL de téléchargement pour individual.
+    description: ''
+  - name: --invoice-name
+    summary: ID qui identifie de façon unique une facture.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/billing/_help.py
+- uid: az_billing_invoice_list
+  name: az billing invoice list
+  summary: Répertorier les factures d’un abonnement.
+  description: ''
+  syntax: >-
+    az billing invoice list --period-end-date
+                            --period-start-date
+                            [--account-name]
+                            [--profile-name]
+                            [--query-examples]
+                            [--subscription]
+  examples:
+  - summary: Répertorier les factures par compte de facturation et nom de profil avec les propriétés par défaut
+    syntax: az billing invoice list --account-name "{billingAccountName}" --profile-name "{billingProfileName}" --period-end-date "2018-06-30" --period-start-date "2018-01-01"
+  - summary: Répertorier les factures par compte de facturation et nom de profil avec les propriétés développées
+    syntax: az billing invoice list --account-name "{billingAccountName}" --profile-name "{billingProfileName}" --period-end-date "2018-06-30" --period-start-date "2018-01-01"
+  requiredParameters:
+  - isRequired: true
+    name: --period-end-date
+    summary: Date de fin pour la récupération des factures. La date doit être spécifiée au format MM-jj-aaaa.
+    description: ''
+  - isRequired: true
+    name: --period-start-date
+    summary: Date de début pour la récupération des factures. La date doit être spécifiée au format MM-jj-aaaa.
+    description: ''
+  optionalParameters:
+  - name: --account-name
+    summary: ID qui identifie de façon unique un compte de facturation.
+    description: ''
+  - name: --profile-name
+    summary: ID qui identifie de façon unique un profil de facturation.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/billing/_help.py
+- uid: az_billing_invoice_show
+  name: az billing invoice show
+  summary: Recevez une facture. L’opération est prise en charge pour les comptes de facturation ayant le type contrat Microsoft ou contrat de partenariat Microsoft.
+  description: ''
+  syntax: >-
+    az billing invoice show --name
+                            [--account-name]
+                            [--by-subscription]
+                            [--query-examples]
+                            [--subscription]
+  examples:
+  - summary: Afficher une facture par nom de compte de facturation et ID
+    syntax: az billing invoice show --account-name "{billingAccountName}" --name "{invoiceName}"
+  - summary: Afficher une facture par ID
+    syntax: az billing invoice show --name "{invoiceName}"
+  - summary: Afficher une facture par ID d’abonnement et ID de facture
+    syntax: az billing invoice show --name "{invoiceName}" --by-subscription
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: ID qui identifie de façon unique une facture.
+    description: ''
+  optionalParameters:
+  - name: --account-name
+    summary: ID qui identifie de façon unique un compte de facturation.
+    description: ''
+  - name: --by-subscription
+    summary: Lorsqu’il est fourni, il doit fonctionner avec--Invoice-Name pour recevoir une facture par ID d’abonnement et ID de facture.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/billing/_help.py
+commands:
+- az_billing_invoice_download
+- az_billing_invoice_list
+- az_billing_invoice_section
+- az_billing_invoice_section_create
+- az_billing_invoice_section_list
+- az_billing_invoice_section_show
+- az_billing_invoice_section_update
+- az_billing_invoice_section_wait
+- az_billing_invoice_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/26/2020
+  description: Obtenir des factures de facturation pour un abonnement.
+  ms.openlocfilehash: e7a93cae31e7ee96425d769fadfc6fdb8b740f6c
+  ms.sourcegitcommit: 753de7d5c45062d5138be86ced7eacddd5696ca3
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 11/20/2020
+  ms.locfileid: "102821255"

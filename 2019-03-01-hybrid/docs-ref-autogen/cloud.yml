@@ -1,0 +1,304 @@
+### YamlMime:AzureCLIGroup
+uid: az_cloud
+name: az cloud
+summary: Gérer les clouds Azure inscrits.
+description: ''
+directCommands:
+- uid: az_cloud_list
+  name: az cloud list
+  summary: Répertorie les clouds enregistrés.
+  description: ''
+  syntax: az cloud list [--query-examples]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cloud/_help.py
+- uid: az_cloud_list_profiles
+  name: az cloud list-profiles
+  summary: Répertorie les profils pris en charge pour un Cloud.
+  description: ''
+  syntax: >-
+    az cloud list-profiles [--name]
+                           [--show-all]
+  optionalParameters:
+  - name: --name -n
+    defaultValue: AzureCloud
+    summary: Nom d’un Cloud inscrit.
+    description: ''
+  - name: --show-all
+    summary: Affiche tous les profils disponibles pris en charge dans l’interface CLI.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cloud/_help.py
+- uid: az_cloud_register
+  name: az cloud register
+  summary: Inscrire un Cloud.
+  description: Lors de l’inscription d’un Cloud, spécifiez uniquement le point de terminaison Resource Manager pour la détection automatique d’autres points de terminaison.
+  syntax: >-
+    az cloud register --name
+                      [--cloud-config]
+                      [--endpoint-active-directory]
+                      [--endpoint-active-directory-data-lake-resource-id]
+                      [--endpoint-active-directory-graph-resource-id]
+                      [--endpoint-active-directory-resource-id]
+                      [--endpoint-gallery]
+                      [--endpoint-management]
+                      [--endpoint-resource-manager]
+                      [--endpoint-sql-management]
+                      [--endpoint-vm-image-alias-doc]
+                      [--profile {2017-03-09-profile, 2018-03-01-hybrid, 2019-03-01-hybrid, 2020-09-01-hybrid, latest}]
+                      [--suffix-acr-login-server-endpoint]
+                      [--suffix-azure-datalake-analytics-catalog-and-job-endpoint]
+                      [--suffix-azure-datalake-store-file-system-endpoint]
+                      [--suffix-keyvault-dns]
+                      [--suffix-sql-server-hostname]
+                      [--suffix-storage-endpoint]
+  examples:
+  - summary: Inscrire un Cloud avec un fichier de configuration
+    syntax: >-
+      az cloud register -n MyCloud --cloud-config @"cloud.json"
+
+      ("cloud.json" supports all the endpoint and suffix options in camel case or the JSON output format from az cloud show. See the example content below.)
+
+      {
+        "endpointActiveDirectory": "https://login.microsoftonline.us",
+        "suffixAcrLoginServerEndpoint": ".azurecr.us"
+      }
+
+      or
+
+      {
+        "endpoints":{
+          "activeDirectory": "https://login.microsoftonline.us"
+        },
+        "suffixes":{
+          "acrLoginServerEndpoint": ".azurecr.us"
+        }
+      }
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom d’un Cloud inscrit.
+    description: ''
+  optionalParameters:
+  - name: --cloud-config
+    summary: Configuration Cloud encodée au format JSON. Utilisez @ {file} pour charger à partir d’un fichier.
+    description: ''
+  - name: --endpoint-active-directory
+    summary: Point de terminaison de connexion Active Directory.
+    description: ''
+  - name: --endpoint-active-directory-data-lake-resource-id
+    summary: ID de ressource Active Directory pour les services Data Lake.
+    description: ''
+  - name: --endpoint-active-directory-graph-resource-id
+    summary: L’ID de ressource Active Directory.
+    description: ''
+  - name: --endpoint-active-directory-resource-id
+    summary: ID de ressource pour lequel obtenir des jetons AD.
+    description: ''
+  - name: --endpoint-gallery
+    summary: Point de terminaison de la Galerie de modèles.
+    description: ''
+  - name: --endpoint-management
+    summary: Point de terminaison du service de gestion.
+    description: ''
+  - name: --endpoint-resource-manager
+    summary: Point de terminaison de gestion des ressources.
+    description: ''
+  - name: --endpoint-sql-management
+    summary: Point de terminaison de gestion SQL Server.
+    description: ''
+  - name: --endpoint-vm-image-alias-doc
+    summary: URI du document qui met en cache les images de machine virtuelle couramment utilisées.
+    description: ''
+  - name: --profile
+    parameterValueGroup: 2017-03-09-profile, 2018-03-01-hybrid, 2019-03-01-hybrid, 2020-09-01-hybrid, latest
+    summary: Profil à utiliser pour ce cloud.
+    description: ''
+  - name: --suffix-acr-login-server-endpoint
+    summary: Suffixe du serveur de connexion Azure Container Registry.
+    description: ''
+  - name: --suffix-azure-datalake-analytics-catalog-and-job-endpoint
+    summary: Le travail Data Lake Analytics et le suffixe DNS du service de catalogue.
+    description: ''
+  - name: --suffix-azure-datalake-store-file-system-endpoint
+    summary: Suffixe DNS du service de système de fichiers Data Lake Store.
+    description: ''
+  - name: --suffix-keyvault-dns
+    summary: Suffixe DNS du service Key Vault.
+    description: ''
+  - name: --suffix-sql-server-hostname
+    summary: Suffixe DNS pour les serveurs SQL Server.
+    description: ''
+  - name: --suffix-storage-endpoint
+    summary: Suffixe de point de terminaison pour les comptes de stockage.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cloud/_help.py
+- uid: az_cloud_set
+  name: az cloud set
+  summary: Définir le Cloud actif.
+  description: ''
+  syntax: >-
+    az cloud set --name
+                 [--profile {2017-03-09-profile, 2018-03-01-hybrid, 2019-03-01-hybrid, 2020-09-01-hybrid, latest}]
+  examples:
+  - summary: Définir le Cloud actif. généré automatiquement
+    syntax: az cloud set --name MyRegisteredCloud
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom d’un Cloud inscrit.
+    description: ''
+  optionalParameters:
+  - name: --profile
+    parameterValueGroup: 2017-03-09-profile, 2018-03-01-hybrid, 2019-03-01-hybrid, 2020-09-01-hybrid, latest
+    summary: Profil à utiliser pour ce cloud.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cloud/_help.py
+- uid: az_cloud_show
+  name: az cloud show
+  summary: Obtenir les détails d’un Cloud inscrit.
+  description: ''
+  syntax: >-
+    az cloud show [--name]
+                  [--query-examples]
+  optionalParameters:
+  - name: --name -n
+    defaultValue: AzureCloud
+    summary: Nom d’un Cloud inscrit.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cloud/_help.py
+- uid: az_cloud_unregister
+  name: az cloud unregister
+  summary: Annulez l’inscription d’un Cloud.
+  description: ''
+  syntax: az cloud unregister --name
+  examples:
+  - summary: Annulez l’inscription d’un Cloud. généré automatiquement
+    syntax: az cloud unregister --name MyRegisteredCloud
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom d’un Cloud inscrit.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cloud/_help.py
+- uid: az_cloud_update
+  name: az cloud update
+  summary: Mettez à jour la configuration d’un Cloud.
+  description: ''
+  syntax: >-
+    az cloud update [--cloud-config]
+                    [--endpoint-active-directory]
+                    [--endpoint-active-directory-data-lake-resource-id]
+                    [--endpoint-active-directory-graph-resource-id]
+                    [--endpoint-active-directory-resource-id]
+                    [--endpoint-gallery]
+                    [--endpoint-management]
+                    [--endpoint-resource-manager]
+                    [--endpoint-sql-management]
+                    [--endpoint-vm-image-alias-doc]
+                    [--name]
+                    [--profile {2017-03-09-profile, 2018-03-01-hybrid, 2019-03-01-hybrid, 2020-09-01-hybrid, latest}]
+                    [--suffix-acr-login-server-endpoint]
+                    [--suffix-azure-datalake-analytics-catalog-and-job-endpoint]
+                    [--suffix-azure-datalake-store-file-system-endpoint]
+                    [--suffix-keyvault-dns]
+                    [--suffix-sql-server-hostname]
+                    [--suffix-storage-endpoint]
+  examples:
+  - summary: Mettez à jour la configuration d’un Cloud. généré automatiquement
+    syntax: az cloud update --profile latest
+  optionalParameters:
+  - name: --cloud-config
+    summary: Configuration Cloud encodée au format JSON. Utilisez @ {file} pour charger à partir d’un fichier.
+    description: ''
+  - name: --endpoint-active-directory
+    summary: Point de terminaison de connexion Active Directory.
+    description: ''
+  - name: --endpoint-active-directory-data-lake-resource-id
+    summary: ID de ressource Active Directory pour les services Data Lake.
+    description: ''
+  - name: --endpoint-active-directory-graph-resource-id
+    summary: L’ID de ressource Active Directory.
+    description: ''
+  - name: --endpoint-active-directory-resource-id
+    summary: ID de ressource pour lequel obtenir des jetons AD.
+    description: ''
+  - name: --endpoint-gallery
+    summary: Point de terminaison de la Galerie de modèles.
+    description: ''
+  - name: --endpoint-management
+    summary: Point de terminaison du service de gestion.
+    description: ''
+  - name: --endpoint-resource-manager
+    summary: Point de terminaison de gestion des ressources.
+    description: ''
+  - name: --endpoint-sql-management
+    summary: Point de terminaison de gestion SQL Server.
+    description: ''
+  - name: --endpoint-vm-image-alias-doc
+    summary: URI du document qui met en cache les images de machine virtuelle couramment utilisées.
+    description: ''
+  - name: --name -n
+    defaultValue: AzureCloud
+    summary: Nom d’un Cloud inscrit.
+    description: ''
+  - name: --profile
+    parameterValueGroup: 2017-03-09-profile, 2018-03-01-hybrid, 2019-03-01-hybrid, 2020-09-01-hybrid, latest
+    summary: Profil à utiliser pour ce cloud.
+    description: ''
+  - name: --suffix-acr-login-server-endpoint
+    summary: Suffixe du serveur de connexion Azure Container Registry.
+    description: ''
+  - name: --suffix-azure-datalake-analytics-catalog-and-job-endpoint
+    summary: Le travail Data Lake Analytics et le suffixe DNS du service de catalogue.
+    description: ''
+  - name: --suffix-azure-datalake-store-file-system-endpoint
+    summary: Suffixe DNS du service de système de fichiers Data Lake Store.
+    description: ''
+  - name: --suffix-keyvault-dns
+    summary: Suffixe DNS du service Key Vault.
+    description: ''
+  - name: --suffix-sql-server-hostname
+    summary: Suffixe DNS pour les serveurs SQL Server.
+    description: ''
+  - name: --suffix-storage-endpoint
+    summary: Suffixe de point de terminaison pour les comptes de stockage.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cloud/_help.py
+commands:
+- az_cloud_list
+- az_cloud_list_profiles
+- az_cloud_register
+- az_cloud_set
+- az_cloud_show
+- az_cloud_unregister
+- az_cloud_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/30/2020
+  description: Gérer les clouds Azure inscrits.
+  ms.openlocfilehash: c2d9ea324f19757c6b54e1f527de893e068c5922
+  ms.sourcegitcommit: f379fad9c4e873cd2ca68b5494b6c240a5016b5b
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/09/2020
+  ms.locfileid: "102821312"

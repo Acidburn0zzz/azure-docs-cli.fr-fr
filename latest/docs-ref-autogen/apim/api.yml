@@ -1,0 +1,523 @@
+### YamlMime:AzureCLIGroup
+uid: az_apim_api
+name: az apim api
+summary: Gérer les API gestion des API Azure.
+description: ''
+directCommands:
+- uid: az_apim_api_create
+  name: az apim api create
+  summary: Créer une API gestion des API.
+  description: ''
+  syntax: >-
+    az apim api create --api-id
+                       --display-name
+                       --path
+                       --resource-group
+                       --service-name
+                       [--api-type {http, soap}]
+                       [--authorization-scope]
+                       [--authorization-server-id]
+                       [--bearer-token-sending-methods]
+                       [--description]
+                       [--no-wait]
+                       [--open-id-provider-id]
+                       [--protocols {http, https}]
+                       [--service-url]
+                       [--subscription]
+                       [--subscription-key-header-name]
+                       [--subscription-key-query-param-name]
+                       [--subscription-key-required]
+                       [--subscription-required {false, true}]
+  examples:
+  - summary: Créez une API de base.
+    syntax: az apim api create --service-name MyApim -g MyResourceGroup --api-id MyApi --path '/myapi' --display-name 'My API'
+  requiredParameters:
+  - isRequired: true
+    name: --api-id
+    summary: Nom unique de l’API à créer.
+    description: Identificateur de révision de l’API. Doit être unique dans l’instance actuelle du service gestion des API. La révision non active a ; Rev = n comme suffixe, où n est le numéro de révision.
+  - isRequired: true
+    name: --display-name
+    summary: Nom complet de l’API à créer.
+    description: ''
+  - isRequired: true
+    name: --path
+    summary: Chemin d’accès à l’API.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --api-type
+    parameterValueGroup: http, soap
+    summary: Type de l’API.
+    description: ''
+  - name: --authorization-scope
+    summary: Spécifie l’étendue des opérations OAuth.
+    description: ''
+  - name: --authorization-server-id
+    summary: Spécifie l’ID du serveur d’autorisation OAuth.
+    description: ''
+  - name: --bearer-token-sending-methods
+    summary: Spécifie les méthodes d’envoi pour le jeton du porteur.
+    description: ''
+  - name: --description
+    summary: Description de l’API. Peut comporter des balises de mise en forme.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --open-id-provider-id
+    summary: Spécifie le OpenID dans le paramètre d’authentification.
+    description: ''
+  - name: --protocols
+    parameterValueGroup: http, https
+    summary: Indique sur quels protocoles les opérations dans cette API peuvent être appelées.
+    description: ''
+  - name: --service-url
+    summary: URL absolue du service principal qui implémente cette API. Ne peut pas comporter plus de 2000 caractères.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --subscription-key-header-name
+    summary: Spécifie le nom d’en-tête de clé d’abonnement.
+    description: ''
+  - name: --subscription-key-query-param-name
+    summary: Spécifie le nom du paramètre de chaîne de requête de clé d’abonnement.
+    description: ''
+  - name: --subscription-key-required
+    summary: 'Spécifie si la clé d’abonnement est requise lors de l’appel à cette API. true-l’API est incluse uniquement dans les produits fermés, false-l’API est incluse uniquement dans les produits ouverts, NULL : il existe une combinaison de produits.'
+    description: ''
+  - name: --subscription-required
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, l’API requiert une clé d’abonnement sur les demandes.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+- uid: az_apim_api_delete
+  name: az apim api delete
+  summary: Supprimer une API gestion des API.
+  description: ''
+  syntax: >-
+    az apim api delete --api-id
+                       --resource-group
+                       --service-name
+                       [--delete-revisions]
+                       [--if-match]
+                       [--no-wait]
+                       [--subscription]
+                       [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --api-id
+    summary: Identificateur de révision de l’API. Doit être unique dans l’instance actuelle du service gestion des API. La révision non active a ; Rev = n comme suffixe, où n est le numéro de révision.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --delete-revisions
+    summary: Supprimer toutes les révisions de l’API.
+    description: ''
+  - name: --if-match
+    summary: ETag de l’entité.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+- uid: az_apim_api_import
+  name: az apim api import
+  summary: Importez une API gestion des API.
+  description: ''
+  syntax: >-
+    az apim api import --path
+                       --resource-group
+                       --service-name
+                       [--api-id]
+                       [--api-revision]
+                       [--api-type {http, soap}]
+                       [--description]
+                       [--display-name]
+                       [--no-wait]
+                       [--protocols {http, https}]
+                       [--service-url]
+                       [--soap-api-type]
+                       [--specification-format {OpenApi, OpenApiJson, Swagger, Wadl, Wsdl}]
+                       [--specification-path]
+                       [--specification-url]
+                       [--subscription]
+                       [--subscription-key-header-name]
+                       [--subscription-key-query-param-name]
+                       [--subscription-required {false, true}]
+                       [--wsdl-endpoint-name]
+                       [--wsdl-service-name]
+  requiredParameters:
+  - isRequired: true
+    name: --path
+    summary: Obligatoire. URL relative identifiant exclusivement cette API et tous les chemins d’accès à ses ressources au sein de l’instance de service Gestion des API.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --api-id
+    summary: Identificateur de révision de l’API. Doit être unique dans l’instance actuelle du service gestion des API. La révision non active a ; Rev = n comme suffixe, où n est le numéro de révision.
+    description: ''
+  - name: --api-revision
+    summary: Décrit la révision de l’API. Si aucune valeur n’est fournie, la révision 1 est créée par défaut.
+    description: ''
+  - name: --api-type
+    parameterValueGroup: http, soap
+    summary: Type de l’API.
+    description: ''
+  - name: --description
+    summary: Description de l’API. Peut comporter des balises de mise en forme.
+    description: ''
+  - name: --display-name
+    summary: Nom complet de cette API.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --protocols
+    parameterValueGroup: http, https
+    summary: Indique sur quels protocoles les opérations dans cette API peuvent être appelées.
+    description: ''
+  - name: --service-url
+    summary: URL absolue du service principal qui implémente cette API. Ne peut pas comporter plus de 2000 caractères.
+    description: ''
+  - name: --soap-api-type
+    summary: Type d’API lorsque le format de fichier est WSDL.
+    description: ''
+  - name: --specification-format
+    parameterValueGroup: OpenApi, OpenApiJson, Swagger, Wadl, Wsdl
+    summary: Spécifiez le format de l’API importée.
+    description: ''
+  - name: --specification-path
+    summary: Chemin d’accès au fichier spécifié pour importer l’API.
+    description: ''
+  - name: --specification-url
+    summary: URL spécifiée pour importer l’API.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --subscription-key-header-name
+    summary: Spécifie le nom d’en-tête de clé d’abonnement.
+    description: ''
+  - name: --subscription-key-query-param-name
+    summary: Spécifie le nom du paramètre de chaîne de requête de clé d’abonnement.
+    description: ''
+  - name: --subscription-required
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, l’API requiert une clé d’abonnement sur les demandes.
+    description: ''
+  - name: --wsdl-endpoint-name
+    summary: Nom local du point de terminaison WSDL (port) à importer.
+    description: ''
+  - name: --wsdl-service-name
+    summary: Nom local du service WSDL à importer.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+- uid: az_apim_api_list
+  name: az apim api list
+  summary: Répertoriez les API gestion des API.
+  description: ''
+  syntax: >-
+    az apim api list --resource-group
+                     --service-name
+                     [--filter-display-name]
+                     [--query-examples]
+                     [--skip]
+                     [--subscription]
+                     [--top]
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --filter-display-name
+    summary: Filtre des API par displayName.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --skip
+    summary: Nombre d'enregistrements à ignorer.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --top
+    summary: Nombre d’enregistrements à renvoyer.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+- uid: az_apim_api_show
+  name: az apim api show
+  summary: Affichez les détails d’une API gestion des API.
+  description: ''
+  syntax: >-
+    az apim api show --api-id
+                     --resource-group
+                     --service-name
+                     [--query-examples]
+                     [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --api-id
+    summary: Identificateur de révision de l’API. Doit être unique dans l’instance actuelle du service gestion des API. La révision non active a ; Rev = n comme suffixe, où n est le numéro de révision.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+- uid: az_apim_api_update
+  name: az apim api update
+  summary: Mettre à jour une API gestion des API.
+  description: ''
+  syntax: >-
+    az apim api update --api-id
+                       --resource-group
+                       --service-name
+                       [--add]
+                       [--api-type {http, soap}]
+                       [--description]
+                       [--display-name]
+                       [--force-string]
+                       [--if-match]
+                       [--no-wait]
+                       [--path]
+                       [--protocols {http, https}]
+                       [--remove]
+                       [--service-url]
+                       [--set]
+                       [--subscription]
+                       [--subscription-key-header-name]
+                       [--subscription-key-query-param-name]
+                       [--subscription-required {false, true}]
+                       [--tags]
+  examples:
+  - summary: Créez une API de base.
+    syntax: az apim api update --service-name MyApim -g MyResourceGroup --api-id MyApi --description foo
+  requiredParameters:
+  - isRequired: true
+    name: --api-id
+    summary: Nom unique de l’API à créer.
+    description: Identificateur de révision de l’API. Doit être unique dans l’instance actuelle du service gestion des API. La révision non active a ; Rev = n comme suffixe, où n est le numéro de révision.
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --api-type
+    parameterValueGroup: http, soap
+    summary: Type de l’API.
+    description: ''
+  - name: --description
+    summary: Description de l’API. Peut comporter des balises de mise en forme.
+    description: ''
+  - name: --display-name
+    summary: Nom de l’API. Doit comprendre entre 1 et 300 caractères.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --if-match
+    summary: ETag de l’entité. Non requis lors de la création d’une entité, mais obligatoire lors de la mise à jour d’une entité.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --path
+    summary: Obligatoire. URL relative identifiant exclusivement cette API et tous les chemins d’accès à ses ressources au sein de l’instance de service Gestion des API.
+    description: ''
+  - name: --protocols
+    parameterValueGroup: http, https
+    summary: Indique sur quels protocoles les opérations dans cette API peuvent être appelées.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --service-url
+    summary: URL absolue du service principal qui implémente cette API. Ne peut pas comporter plus de 2000 caractères.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --subscription-key-header-name
+    summary: Spécifie le nom d’en-tête de clé d’abonnement.
+    description: ''
+  - name: --subscription-key-query-param-name
+    summary: Spécifie le nom du paramètre de chaîne de requête de clé d’abonnement.
+    description: ''
+  - name: --subscription-required
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, l’API requiert une clé d’abonnement sur les demandes.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+- uid: az_apim_api_wait
+  name: az apim api wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’API APIM soit remplie.
+  description: ''
+  syntax: >-
+    az apim api wait --api-id
+                     --name
+                     --resource-group
+                     [--created]
+                     [--custom]
+                     [--deleted]
+                     [--exists]
+                     [--interval]
+                     [--subscription]
+                     [--timeout]
+                     [--updated]
+  examples:
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’API APIM soit remplie. généré automatiquement
+    syntax: az apim api wait --created --api-id MyApi --name MyApim --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --api-id
+    summary: Identificateur de révision de l’API. Doit être unique dans l’instance actuelle du service gestion des API. La révision non active a ; Rev = n comme suffixe, où n est le numéro de révision.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’instance du service gestion des API.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/apim/_help.py
+commands:
+- az_apim_api_create
+- az_apim_api_delete
+- az_apim_api_import
+- az_apim_api_list
+- az_apim_api_operation
+- az_apim_api_operation_create
+- az_apim_api_operation_delete
+- az_apim_api_operation_list
+- az_apim_api_operation_show
+- az_apim_api_operation_update
+- az_apim_api_release
+- az_apim_api_release_create
+- az_apim_api_release_delete
+- az_apim_api_release_list
+- az_apim_api_release_show
+- az_apim_api_release_update
+- az_apim_api_revision
+- az_apim_api_revision_create
+- az_apim_api_revision_list
+- az_apim_api_show
+- az_apim_api_update
+- az_apim_api_versionset
+- az_apim_api_versionset_create
+- az_apim_api_versionset_delete
+- az_apim_api_versionset_list
+- az_apim_api_versionset_show
+- az_apim_api_versionset_update
+- az_apim_api_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/01/2020
+  description: Gérer les API gestion des API Azure.
+  ms.openlocfilehash: cccd69ee4a319420559798d8d627ce4c5bb33409
+  ms.sourcegitcommit: f379fad9c4e873cd2ca68b5494b6c240a5016b5b
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/09/2020
+  ms.locfileid: "102821351"

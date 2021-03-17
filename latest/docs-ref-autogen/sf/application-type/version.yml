@@ -1,0 +1,180 @@
+### YamlMime:AzureCLIGroup
+uid: az_sf_application_type_version
+name: az sf application-type version
+summary: Gérer les versions des types d’applications sur un cluster Azure Service Fabric. Ne prennent en charge que les versions de type d’application ARM déployées.
+description: ''
+directCommands:
+- uid: az_sf_application_type_version_create
+  name: az sf application-type version create
+  summary: Créez un nouveau type d’application sur un cluster Azure Service Fabric.
+  description: ''
+  syntax: >-
+    az sf application-type version create --application-type-name
+                                          --application-type-version
+                                          --cluster-name
+                                          --package-url
+                                          --resource-group
+                                          [--subscription]
+  examples:
+  - summary: Créer une version de type d’application à l’aide de l’URL de package fournie. La version du manifeste de l’application contenue dans le package doit avoir la même version que celle spécifiée dans--version.
+    syntax: >-
+      az sf application-type version create -g testRG -c testCluster --application-type-name testAppType \
+        --version 1.0 --package-url "https://sftestapp.blob.core.windows.net/sftestapp/testApp_1.0.sfpkg"
+  requiredParameters:
+  - isRequired: true
+    name: --application-type-name --name
+    summary: Spécifiez le nom du type d’application.
+    description: ''
+  - isRequired: true
+    name: --application-type-version --version
+    summary: Spécifiez la version du type d’application.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --package-url
+    summary: Spécifiez l’URL du fichier sfpkg du package d’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_application_type_version_delete
+  name: az sf application-type version delete
+  summary: Supprimer une version de type d’application.
+  description: ''
+  syntax: >-
+    az sf application-type version delete --application-type-name
+                                          --application-type-version
+                                          --cluster-name
+                                          --resource-group
+                                          [--subscription]
+  examples:
+  - summary: Supprimer la version du type d’application.
+    syntax: az sf application-type version delete -g testRG -c testCluster --application-type-name CalcServiceApp --version 1.0
+  requiredParameters:
+  - isRequired: true
+    name: --application-type-name --name
+    summary: Spécifiez le nom du type d’application.
+    description: ''
+  - isRequired: true
+    name: --application-type-version --version
+    summary: Spécifiez la version du type d’application.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_application_type_version_list
+  name: az sf application-type version list
+  summary: Répertorie la version d’un type d’application donné.
+  description: ''
+  syntax: >-
+    az sf application-type version list --application-type-name
+                                        --cluster-name
+                                        --resource-group
+                                        [--query-examples]
+                                        [--subscription]
+  examples:
+  - summary: Répertorie les versions d’un type d’application particulier.
+    syntax: az sf application-type version list -g testRG -c testCluster --application-type-name CalcServiceApp
+  requiredParameters:
+  - isRequired: true
+    name: --application-type-name --name
+    summary: Spécifiez le nom du type d’application.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_application_type_version_show
+  name: az sf application-type version show
+  summary: Affichez les propriétés d’une version de type d’application sur un cluster Azure Service Fabric.
+  description: ''
+  syntax: >-
+    az sf application-type version show --application-type-name
+                                        --application-type-version
+                                        --cluster-name
+                                        --resource-group
+                                        [--query-examples]
+                                        [--subscription]
+  examples:
+  - summary: Affichez les propriétés d’une version de type d’application sur un cluster Azure Service Fabric.
+    syntax: az sf application-type version show -g testRG -c testCluster --application-type-name CalcServiceApp --version 1.0
+  requiredParameters:
+  - isRequired: true
+    name: --application-type-name --name
+    summary: Spécifiez le nom du type d’application.
+    description: ''
+  - isRequired: true
+    name: --application-type-version --version
+    summary: Spécifiez la version du type d’application.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_sf_application_type_version_create
+- az_sf_application_type_version_delete
+- az_sf_application_type_version_list
+- az_sf_application_type_version_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les versions des types d’applications sur un cluster Azure Service Fabric. Ne prennent en charge que les versions de type d’application ARM déployées.
+  ms.openlocfilehash: af96e65788f93ee57207529ccaefdd2ae9bac9dd
+  ms.sourcegitcommit: f379fad9c4e873cd2ca68b5494b6c240a5016b5b
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/09/2020
+  ms.locfileid: "102821396"

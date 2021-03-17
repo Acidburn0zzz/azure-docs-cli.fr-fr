@@ -1,0 +1,298 @@
+### YamlMime:AzureCLIGroup
+uid: az_sf_application
+name: az sf application
+summary: Gérer les applications qui s’exécutent sur un cluster Azure Service Fabric. Ne prennent en charge que les applications ARM déployées.
+description: ''
+directCommands:
+- uid: az_sf_application_create
+  name: az sf application create
+  summary: Créez une nouvelle application sur un cluster Azure Service Fabric.
+  description: ''
+  syntax: >-
+    az sf application create --application-name
+                             --application-type-name
+                             --application-type-version
+                             --cluster-name
+                             --resource-group
+                             [--application-parameters]
+                             [--max-nodes]
+                             [--min-nodes]
+                             [--package-url]
+                             [--subscription]
+  examples:
+  - summary: Créez l’application « testApp » avec des paramètres. Le type d’application « TestAppType » version « V1 » doit déjà exister dans le cluster, et les paramètres de l’application doivent être définis dans le manifeste de l’application.
+    syntax: >-
+      az sf application create -g testRG -c testCluster --application-name testApp --application-type-name TestAppType \
+        --application-type-version v1 --application-parameters key0=value0
+  - summary: Créez l’application « testApp » et la version du type d’application à l’aide de l’URL de package fournie.
+    syntax: >-
+      az sf application create -g testRG -c testCluster --application-name testApp --application-type-name TestAppType \
+        --application-type-version v1 --package-url "https://sftestapp.blob.core.windows.net/sftestapp/testApp_1.0.sfpkg" \
+          --application-parameters key0=value0
+  requiredParameters:
+  - isRequired: true
+    name: --application-name --name
+    summary: Spécifiez le nom de l'application.
+    description: ''
+  - isRequired: true
+    name: --application-type-name --type-name
+    summary: Spécifiez le nom du type d’application.
+    description: ''
+  - isRequired: true
+    name: --application-type-version --version
+    summary: Spécifiez la version du type d’application.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --application-parameters --parameters
+    summary: Spécifiez les paramètres de l’application en tant que paires clé/valeur. Ces paramètres doivent exister dans le manifeste de l’application. par exemple :--application-Parameters param1 = value1 param2 = value2.
+    description: ''
+  - name: --max-nodes --maximum-nodes
+    summary: Spécifiez le nombre maximal de nœuds sur lesquels placer une application. La valeur de ce paramètre doit être un entier non négatif. La valeur par défaut est 0, ce qui indique que l’application peut être placée sur un nombre quelconque de nœuds dans le cluster.
+    description: ''
+  - name: --min-nodes --minimum-nodes
+    summary: Spécifiez le nombre minimal de nœuds où Service Fabric réservera de la capacité pour cette application. cela ne signifie pas que l’application doit avoir des réplicas sur tous ces nœuds. La valeur de ce paramètre doit être un entier non négatif. La valeur par défaut est zéro, ce qui signifie qu’aucune capacité n’est réservée pour l’application.
+    description: ''
+  - name: --package-url
+    summary: Spécifiez l’URL du fichier sfpkg du package d’application.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_application_delete
+  name: az sf application delete
+  summary: Supprimez une application.
+  description: ''
+  syntax: >-
+    az sf application delete --application-name
+                             --cluster-name
+                             --resource-group
+                             [--subscription]
+  examples:
+  - summary: Supprimez une application.
+    syntax: az sf application delete -g testRG -c testCluster --application-name testApp
+  requiredParameters:
+  - isRequired: true
+    name: --application-name --name
+    summary: Spécifiez le nom de l'application.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_application_list
+  name: az sf application list
+  summary: Répertorier les applications d’un cluster donné.
+  description: ''
+  syntax: >-
+    az sf application list --cluster-name
+                           --resource-group
+                           [--query-examples]
+                           [--subscription]
+  examples:
+  - summary: Répertorier les applications pour un cluster donné.
+    syntax: az sf application list -g testRG -c testCluster
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_application_show
+  name: az sf application show
+  summary: Affichez les propriétés d’une application sur un cluster Azure Service Fabric.
+  description: ''
+  syntax: >-
+    az sf application show --application-name
+                           --cluster-name
+                           --resource-group
+                           [--query-examples]
+                           [--subscription]
+  examples:
+  - summary: Obtient l’application.
+    syntax: az sf application show -g testRG -c testCluster --application-name testApp
+  requiredParameters:
+  - isRequired: true
+    name: --application-name --name
+    summary: Spécifiez le nom de l'application.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_application_update
+  name: az sf application update
+  summary: Mettez à jour une application Azure Service Fabric. Cela permet de mettre à jour les paramètres de l’application et/ou de mettre à niveau la version du type d’application, ce qui déclenche une mise à niveau de l’application.
+  description: ''
+  syntax: >-
+    az sf application update --application-name
+                             --cluster-name
+                             --resource-group
+                             [--application-parameters]
+                             [--application-type-version]
+                             [--consider-warning-as-error {false, true}]
+                             [--failure-action {Manual, Rollback}]
+                             [--force-restart {false, true}]
+                             [--hc-retry-timeout]
+                             [--hc-stable-duration]
+                             [--hc-wait-duration]
+                             [--max-nodes]
+                             [--max-porcent-unhealthy-apps]
+                             [--max-porcent-unhealthy-partitions]
+                             [--max-porcent-unhealthy-replicas]
+                             [--max-porcent-unhealthy-services]
+                             [--min-nodes]
+                             [--rep-check-timeout]
+                             [--service-type-health-policy-map]
+                             [--subscription]
+                             [--ud-timeout]
+                             [--upgrade-timeout]
+  examples:
+  - summary: Mettez à jour les paramètres d’application et les valeurs de stratégie upgreade et la version du type d’application sur v2.
+    syntax: >-
+      az sf application update -g testRG -c testCluster --application-name testApp --application-type-version v2 \
+        --application-parameters key0=value0 --health-check-stable-duration 0 --health-check-wait-duration 0 --health-check-retry-timeout 0 \
+          --upgrade-domain-timeout 5000 --upgrade-timeout 7000 --failure-action Rollback --upgrade-replica-set-check-timeout 300 --force-restart
+  - summary: Mettez à jour les nœuds minimum et maximum de l’application.
+    syntax: az sf application update -g testRG -c testCluster --application-name testApp --minimum-nodes 1 --maximum-nodes 3
+  requiredParameters:
+  - isRequired: true
+    name: --application-name --name
+    summary: Spécifiez le nom de l'application.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --application-parameters --parameters
+    summary: Spécifiez les paramètres de l’application en tant que paires clé/valeur. Ces paramètres doivent exister dans le manifeste de l’application. par exemple :--application-Parameters param1 = value1 param2 = value2.
+    description: ''
+  - name: --application-type-version --version
+    summary: Spécifiez la version du type d’application.
+    description: ''
+  - name: --consider-warning-as-error --warning-as-error
+    parameterValueGroup: false, true
+    summary: Indique s’il faut traiter un événement d’intégrité d’avertissement comme un événement d’erreur lors de l’évaluation de l’intégrité.
+    description: ''
+  - name: --failure-action
+    parameterValueGroup: Manual, Rollback
+    summary: Spécifiez l’action à entreprendre en cas d’échec de la mise à niveau surveillée. Les valeurs acceptables pour ce paramètre sont Rollback ou Manual.
+    description: ''
+  - name: --force-restart
+    parameterValueGroup: false, true
+    summary: Indique que l’hôte de service redémarre même si la mise à niveau est une modification de configuration uniquement.
+    description: ''
+  - name: --hc-retry-timeout --health-check-retry-timeout
+    summary: Spécifiez la durée, en secondes, au terme de laquelle Service Fabric réessaie le contrôle d’intégrité en cas d’échec du contrôle d’intégrité précédent.
+    description: ''
+  - name: --hc-stable-duration --health-check-stable-duration
+    summary: Spécifiez la durée, en secondes, pendant laquelle Service Fabric attend pour vérifier que l’application est stable avant de passer au domaine de mise à niveau suivant ou d’effectuer la mise à niveau. Cette durée d’attente empêche toute modification non détectée de l’intégrité juste après l’exécution du contrôle d’intégrité.
+    description: ''
+  - name: --hc-wait-duration --health-check-wait-duration
+    summary: Spécifiez la durée, en secondes, pendant laquelle Service Fabric attend avant d’effectuer le contrôle d’intégrité initial une fois la mise à niveau terminée sur le domaine de mise à niveau.
+    description: ''
+  - name: --max-nodes --maximum-nodes
+    summary: Spécifiez le nombre maximal de nœuds sur lesquels placer une application. La valeur de ce paramètre doit être un entier non négatif. La valeur par défaut est 0, ce qui indique que l’application peut être placée sur un nombre quelconque de nœuds dans le cluster.
+    description: ''
+  - name: --max-porcent-unhealthy-apps --max-unhealthy-apps
+    summary: Spécifiez le pourcentage maximal d’instances d’application déployées sur les nœuds du cluster dont l’état d’intégrité est erreur avant que l’état d’intégrité de l’application pour le cluster ne soit erreur. Les valeurs autorisées sont comprises entre 0 et 100.
+    description: ''
+  - name: --max-porcent-unhealthy-partitions --max-unhealthy-parts
+    summary: Spécifiez le pourcentage maximal de partitions unhelthy par service autorisé par la stratégie de contrôle d’intégrité pour le type de service par défaut à utiliser pour la mise à niveau surveillée. Les valeurs autorisées sont comprises entre 0 et 100.
+    description: ''
+  - name: --max-porcent-unhealthy-replicas --max-unhealthy-reps
+    summary: Spécifiez le pourcentage maximal de réplicas unhelthy par service autorisé par la stratégie de contrôle d’intégrité pour le type de service par défaut à utiliser pour la mise à niveau surveillée. Les valeurs autorisées sont comprises entre 0 et 100.
+    description: ''
+  - name: --max-porcent-unhealthy-services --max-unhealthy-servs
+    summary: Spécifiez le pourcentage maximal de services unhelthy autorisés par la stratégie de contrôle d’intégrité pour le type de service par défaut à utiliser pour la mise à niveau surveillée. Les valeurs autorisées sont comprises entre 0 et 100.
+    description: ''
+  - name: --min-nodes --minimum-nodes
+    summary: Spécifiez le nombre minimal de nœuds où Service Fabric réservera de la capacité pour cette application. cela ne signifie pas que l’application doit avoir des réplicas sur tous ces nœuds. La valeur de ce paramètre doit être un entier non négatif. La valeur par défaut est zéro, ce qui signifie qu’aucune capacité n’est réservée pour l’application.
+    description: ''
+  - name: --rep-check-timeout --replica-check-timeout --upgrade-replica-set-check-timeout
+    summary: Spécifiez la durée maximale, en secondes, pendant laquelle Service Fabric attend qu’un service reconfigure dans un État sûr, s’il n’est pas déjà dans un État sûr, avant que Service Fabric poursuive la mise à niveau.
+    description: ''
+  - name: --service-type-health-policy-map --service-type-policy
+    summary: 'Spécifiez le mappage de la stratégie de contrôle d’intégrité à utiliser pour différents types de service en tant que table de hachage au format suivant : {"ServiceTypeName" : "MaxPercentUnhealthyPartitionsPerService, MaxPercentUnhealthyReplicasPerPartition, MaxPercentUnhealthyServices"}. Par exemple : @ {"ServiceTypeName01" = "5, 10, 5"; « ServiceTypeName02 » = « 5, 5, 5 »}.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --ud-timeout --upgrade-domain-timeout
+    summary: Spécifiez la durée maximale, en secondes, que Service Fabric prend pour mettre à niveau un seul domaine de mise à niveau. Après cette période, la mise à niveau échoue.
+    description: ''
+  - name: --upgrade-timeout
+    summary: Spécifiez le délai maximal, en secondes, que Service Fabric effectue pour la mise à niveau complète. Après cette période, la mise à niveau échoue.
+    description: ''
+commands:
+- az_sf_application_certificate
+- az_sf_application_certificate_add
+- az_sf_application_create
+- az_sf_application_delete
+- az_sf_application_list
+- az_sf_application_show
+- az_sf_application_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les applications qui s’exécutent sur un cluster Azure Service Fabric. Ne prennent en charge que les applications ARM déployées.
+  ms.openlocfilehash: d4cc0e46c2471bc23578fdbbfc3103d37625def2
+  ms.sourcegitcommit: f379fad9c4e873cd2ca68b5494b6c240a5016b5b
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/09/2020
+  ms.locfileid: "102821588"
