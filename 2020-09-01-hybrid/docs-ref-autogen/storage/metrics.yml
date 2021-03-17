@@ -1,29 +1,26 @@
 ### YamlMime:AzureCLIGroup
-uid: az_storage_container_metadata
-name: az storage container metadata
-summary: Gérer les métadonnées de conteneur.
+uid: az_storage_metrics
+name: az storage metrics
+summary: Gérer les mesures de service de stockage.
 description: ''
 directCommands:
-- uid: az_storage_container_metadata_show
-  name: az storage container metadata show
-  summary: Retourne toutes les métadonnées définies par l’utilisateur pour le conteneur spécifié.
+- uid: az_storage_metrics_show
+  name: az storage metrics show
+  summary: Affichez les paramètres de métriques pour un compte de stockage.
   description: ''
   syntax: >-
-    az storage container metadata show --name
-                                       [--account-key]
-                                       [--account-name]
-                                       [--auth-mode {key, login}]
-                                       [--connection-string]
-                                       [--lease-id]
-                                       [--query-examples]
-                                       [--sas-token]
-                                       [--subscription]
-                                       [--timeout]
-  requiredParameters:
-  - isRequired: true
-    name: --name -n
-    summary: Nom du conteneur.
-    description: ''
+    az storage metrics show [--account-key]
+                            [--account-name]
+                            [--connection-string]
+                            [--interval {both, hour, minute}]
+                            [--query-examples]
+                            [--sas-token]
+                            [--services]
+                            [--subscription]
+                            [--timeout]
+  examples:
+  - summary: Affichez les paramètres de métriques pour un compte de stockage. généré automatiquement
+    syntax: az storage metrics show --account-key 00000000 --account-name MyAccount
   optionalParameters:
   - name: --account-key
     summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
@@ -31,21 +28,23 @@ directCommands:
   - name: --account-name
     summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
     description: ''
-  - name: --auth-mode
-    parameterValueGroup: key, login
-    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
-    description: ''
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
     description: ''
-  - name: --lease-id
-    summary: S’il est spécifié, get_container_metadata se déroule uniquement si le bail du conteneur est actif et correspond à cet ID.
+  - name: --interval
+    defaultValue: both
+    parameterValueGroup: both, hour, minute
+    summary: Filtrez l’ensemble de mesures à récupérer par intervalle de temps.
     description: ''
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
     description: ''
   - name: --sas-token
     summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --services
+    defaultValue: bfqt
+    summary: 'Services de stockage à partir desquels récupérer des informations de métriques : (b) LOB (q) UEUE (t). Peut être combiné.'
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -54,26 +53,35 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
-- uid: az_storage_container_metadata_update
-  name: az storage container metadata update
-  summary: Définit une ou plusieurs paires nom-valeur définies par l’utilisateur pour le conteneur spécifié.
-  description: Chaque appel à cette opération remplace toutes les métadonnées existantes attachées au conteneur. Pour supprimer toutes les métadonnées du conteneur, appelez cette opération sans dict de métadonnées.
+- uid: az_storage_metrics_update
+  name: az storage metrics update
+  summary: Met à jour les paramètres de métriques pour un compte de stockage.
+  description: ''
   syntax: >-
-    az storage container metadata update --name
-                                         [--account-key]
-                                         [--account-name]
-                                         [--auth-mode {key, login}]
-                                         [--connection-string]
-                                         [--if-modified-since]
-                                         [--lease-id]
-                                         [--metadata]
-                                         [--sas-token]
-                                         [--subscription]
-                                         [--timeout]
+    az storage metrics update --retention
+                              --services
+                              [--account-key]
+                              [--account-name]
+                              [--api {false, true}]
+                              [--connection-string]
+                              [--hour {false, true}]
+                              [--minute {false, true}]
+                              [--sas-token]
+                              [--subscription]
+                              [--timeout]
+  examples:
+  - summary: Met à jour les paramètres de métriques pour un compte de stockage. généré automatiquement
+    syntax: az storage metrics update --account-name MyAccount --api true --hour true --minute true --retention 10 --services bfqt
+  - summary: Met à jour les paramètres de métriques pour un compte de stockage par chaîne de connexion. généré automatiquement
+    syntax: az storage metrics update --api true --connection-string $connectionString --hour true --minute true --retention 10 --services bfqt
   requiredParameters:
   - isRequired: true
-    name: --name -n
-    summary: Nom du conteneur.
+    name: --retention
+    summary: Nombre de jours pendant lesquels les métriques doivent être conservées. 0 pour désactiver. S’applique aux métriques heure et minute si les deux sont spécifiées.
+    description: ''
+  - isRequired: true
+    name: --services
+    summary: 'Services de stockage à partir desquels récupérer des informations de métriques : (b) LOB (q) UEUE (t). Peut être combiné.'
     description: ''
   optionalParameters:
   - name: --account-key
@@ -82,21 +90,20 @@ directCommands:
   - name: --account-name
     summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
     description: ''
-  - name: --auth-mode
-    parameterValueGroup: key, login
-    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+  - name: --api
+    parameterValueGroup: false, true
+    summary: Spécifiez s’il faut inclure l’API dans les métriques. S’applique aux métriques heure et minute si les deux sont spécifiées. Doit être spécifié si les métriques heure ou minute sont activées et en cours de mise à jour.
     description: ''
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
     description: ''
-  - name: --if-modified-since
-    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+  - name: --hour
+    parameterValueGroup: false, true
+    summary: Mettez à jour les métriques horaires.
     description: ''
-  - name: --lease-id
-    summary: S’il est spécifié, set_container_metadata se déroule uniquement si le bail du conteneur est actif et correspond à cet ID.
-    description: ''
-  - name: --metadata
-    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+  - name: --minute
+    parameterValueGroup: false, true
+    summary: Mettez à jour les métriques par minute.
     description: ''
   - name: --sas-token
     summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
@@ -109,8 +116,8 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
 commands:
-- az_storage_container_metadata_show
-- az_storage_container_metadata_update
+- az_storage_metrics_show
+- az_storage_metrics_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -129,10 +136,10 @@ globalParameters:
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/26/2021
-  description: Gérer les métadonnées de conteneur.
-  ms.openlocfilehash: ed50ace4a6de86b05ef09653997dd027c6d8dffb
+  description: Gérer les mesures de service de stockage.
+  ms.openlocfilehash: 39126ccad8d5021717a78d44ea95c6b776df95b8
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103510808"
+  ms.locfileid: "103533639"
