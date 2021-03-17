@@ -1,0 +1,78 @@
+### YamlMime:AzureCLIGroup
+uid: ext_application-insights_az_monitor_app_insights_events
+name: az monitor app-insights events
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **application-Insights** pour Azure CLI et requiert la version 2.0.79 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez la commande **AZ Monitor App-Insights Events** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Récupérer des événements d’une application.
+description: ''
+directCommands:
+- uid: ext_application-insights_az_monitor_app_insights_events_show
+  name: az monitor app-insights events show
+  summary: Répertorier les événements par type ou afficher un événement unique à partir d’une application, spécifié par le type et l’ID.
+  description: ''
+  syntax: >-
+    az monitor app-insights events show --app
+                                        --type
+                                        [--end-time]
+                                        [--event]
+                                        [--offset]
+                                        [--resource-group]
+                                        [--start-time]
+  examples:
+  - summary: Obtenir un résultat de disponibilité par ID.
+    syntax: az monitor app-insights events show --app 578f0e27-12e9-4631-bc02-50b965da2633 --type availabilityResults --event b2cf08df-bf42-4278-8d2c-5b55f85901fe
+  - summary: Répertorier les résultats de disponibilité des dernières 24 heures.
+    syntax: az monitor app-insights events show --app 578f0e27-12e9-4631-bc02-50b965da2633 --type availabilityResults --offset 24h
+  requiredParameters:
+  - isRequired: true
+    name: --app -a
+    summary: GUID, nom de l’application ou nom de ressource Azure complet du composant Application Insights. Le GUID de l’application peut être acquis à partir de l’élément de menu accès à l’API sur n’importe quelle ressource Application Insights dans le Portail Azure. Si vous utilisez un nom d’application, spécifiez le groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --type
+    summary: Type d’événements à récupérer.
+    description: ''
+  optionalParameters:
+  - name: --end-time
+    summary: 'Fin de l’intervalle de temps pour l’opération en cours. La valeur par défaut est l’heure actuelle. Format : Date (aaaa-mm-jj) heure (hh : mm : SS. xxxxx) TimeZone (+/-hh : mm).'
+    description: ''
+  - name: --event
+    summary: GUID de l’événement à récupérer. Cela peut être obtenu par la première liste et le filtrage des événements, puis par la sélection d’un événement qui vous intéresse.
+    description: ''
+  - name: --offset
+    defaultValue: 1h
+    summary: 'Décalage de l’heure de la plage de requêtes, au format # #d # #h.'
+    description: Peut être utilisé avec l’heure de début ou l’heure de fin. Si elle est utilisée avec--Start-Time, l’heure de fin est calculée en ajoutant le décalage. S’il est utilisé avec l’heure de fin (par défaut), l’heure de début est calculée en soustrayant l’offset. Si--Start-Time et--Time sont fournis,--offset est ignoré.
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --start-time
+    summary: 'Heure de début de l’intervalle de temps pendant lequel les données doivent être récupérées. Format : Date (aaaa-mm-jj) heure (hh : mm : SS. xxxxx) TimeZone (+/-hh : mm).'
+    description: ''
+commands:
+- ext_application-insights_az_monitor_app_insights_events_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Récupérer des événements d’une application.
+  ms.openlocfilehash: aff5652925d1b10e78d649c24c1212746389cfd1
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102839812"
