@@ -18,6 +18,7 @@ directCommands:
                                             --vlan-id
                                             [--advertised-public-prefixes]
                                             [--customer-asn]
+                                            [--ip-version {IPv4, IPv6}]
                                             [--legacy-mode]
                                             [--route-filter]
                                             [--routing-registry-name {AFRINIC, ALTDB, APNIC, ARIN, LACNIC, LEVEL3, RADB, RIPENCC}]
@@ -30,6 +31,11 @@ directCommands:
           --peering-type MicrosoftPeering --peer-asn 10002 --vlan-id 103 \
           --primary-peer-subnet 101.0.0.0/30 --secondary-peer-subnet 102.0.0.0/30 \
           --advertised-public-prefixes 101.0.0.0/30
+  - summary: Créez des paramètres d’homologation Microsoft avec la configuration IPv6.
+    syntax: >-
+      az network express-route peering create -g MyResourceGroup --circuit-name MyCircuit \
+          --peering-type AzurePrivatePeering --peer-asn 10002 --vlan-id 103 --ip-version ipv6\
+          --primary-peer-subnet 2002:db00::/126 --secondary-peer-subnet 2003:db00::/126
   - summary: Créer des paramètres d’homologation pour un circuit ExpressRoute. généré automatiquement
     syntax: az network express-route peering create --circuit-name MyCircuit --peer-asn 10002 --peering-type AzurePublicPeering --primary-peer-subnet 101.0.0.0/30 --resource-group MyResourceGroup --secondary-peer-subnet 102.0.0.0/30 --shared-key Abc123 --vlan-id 103
   requiredParameters:
@@ -48,7 +54,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --primary-peer-subnet
-    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface principale.
+    summary: /30 (IPv4) ou/126 (IPv6) sous-réseau utilisé pour configurer des adresses IP pour l’interface principale.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -56,7 +62,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --secondary-peer-subnet
-    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface secondaire.
+    summary: /30 (IPv4) ou/126 (IPv6) sous-réseau utilisé pour configurer des adresses IP pour l’interface secondaire.
     description: ''
   - isRequired: true
     name: --vlan-id
@@ -68,6 +74,11 @@ directCommands:
     description: ''
   - name: --customer-asn
     summary: Numéro de système autonome du client.
+    description: ''
+  - name: --ip-version
+    defaultValue: IPv4
+    parameterValueGroup: IPv4, IPv6
+    summary: Version IP pour laquelle mettre à jour les paramètres d’homologation Microsoft.
     description: ''
   - name: --legacy-mode
     summary: Entier représentant le mode hérité de l’homologation.
@@ -246,7 +257,7 @@ directCommands:
     summary: Numéro de système autonome du fournisseur de connectivité/client.
     description: ''
   - name: --primary-peer-subnet
-    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface principale.
+    summary: /30 (IPv4) ou/126 (IPv6) sous-réseau utilisé pour configurer des adresses IP pour l’interface principale.
     description: ''
   - name: --remove
     summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
@@ -262,7 +273,7 @@ directCommands:
     summary: Registre de routage Internet/registre Internet régional.
     description: ''
   - name: --secondary-peer-subnet
-    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface secondaire.
+    summary: /30 (IPv4) ou/126 (IPv6) sous-réseau utilisé pour configurer des adresses IP pour l’interface secondaire.
     description: ''
   - name: --set
     summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
@@ -307,11 +318,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/03/2021
+  ms.date: 02/25/2021
   description: Gérer l’homologation ExpressRoute d’un circuit ExpressRoute.
-  ms.openlocfilehash: b263ac53eccd6bcf5541dcd39ca956e965f4f35e
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: 9107e2f55394bb06327eae1b64b15ec5a6530fc8
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102963756"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103497786"

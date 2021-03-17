@@ -1,0 +1,186 @@
+### YamlMime:AzureCLIGroup
+uid: ext_monitor-control-service_az_monitor_data_collection_rule_windows_event_log
+name: az monitor data-collection rule windows-event-log
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Monitor-Control-Service** pour Azure CLI et requiert la version 2.15.0 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ Monitor Data-collection Rule Windows-Event-Log** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer la source de données du journal des événements Windows.
+description: ''
+directCommands:
+- uid: ext_monitor-control-service_az_monitor_data_collection_rule_windows_event_log_add
+  name: az monitor data-collection rule windows-event-log add
+  summary: Ajoutez une source de données du journal des événements Windows.
+  description: ''
+  syntax: >-
+    az monitor data-collection rule windows-event-log add --name
+                                                          --resource-group
+                                                          --rule-name
+                                                          --streams {Microsoft-Event, Microsoft-WindowsEvent}
+                                                          --transfer-period {PT15M, PT1M, PT30M, PT5M, PT60M}
+                                                          --x-path-queries
+  examples:
+  - summary: Ajouter une source de données du journal des événements Windows
+    syntax: az monitor data-collection rule windows-event-log add --rule-name "myCollectionRule" --resource-group "myResourceGroup" --name "appTeam1AppEvents" --transfer-period "PT1M" --streams "Microsoft-WindowsEvent" --x-path-queries "Application!*[System[(Level = 1 or Level = 2 or Level = 3)]]" "System![System[(Level = 1 or Level = 2 or Level = 3)]]"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial de la source de données. Ce nom doit être unique pour toutes les sources de données (quel que soit le type) de la règle de collecte des données.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle de collecte des données. Le nom ne respecte pas la casse.
+    description: ''
+  - isRequired: true
+    name: --streams
+    parameterValueGroup: Microsoft-Event, Microsoft-WindowsEvent
+    summary: Liste des flux auxquels cette source de données sera envoyée. Un flux indique le schéma qui sera utilisé pour ces données et, en général, la table de Log Analytics dans laquelle les données seront envoyées.
+    description: ''
+  - isRequired: true
+    name: --transfer-period
+    parameterValueGroup: PT15M, PT1M, PT30M, PT5M, PT60M
+    summary: Intervalle entre les chargements de données (transferts planifiés), arrondi à la minute la plus proche.
+    description: ''
+  - isRequired: true
+    name: --x-path-queries
+    summary: Liste des requêtes du journal des événements Windows au format XPATH.
+    description: ''
+- uid: ext_monitor-control-service_az_monitor_data_collection_rule_windows_event_log_delete
+  name: az monitor data-collection rule windows-event-log delete
+  summary: Supprimer une source de données du journal des événements Windows.
+  description: ''
+  syntax: >-
+    az monitor data-collection rule windows-event-log delete --name
+                                                             --resource-group
+                                                             --rule-name
+  examples:
+  - summary: Supprimer une source de données du journal des événements Windows
+    syntax: az monitor data-collection rule windows-event-log delete --rule-name "myCollectionRule" --resource-group "myResourceGroup" --name "appTeam1AppEvents"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial de la source de données. Ce nom doit être unique pour toutes les sources de données (quel que soit le type) de la règle de collecte des données.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle de collecte des données. Le nom ne respecte pas la casse.
+    description: ''
+- uid: ext_monitor-control-service_az_monitor_data_collection_rule_windows_event_log_list
+  name: az monitor data-collection rule windows-event-log list
+  summary: Liste des sources de données du journal des événements Windows.
+  description: ''
+  syntax: >-
+    az monitor data-collection rule windows-event-log list --resource-group
+                                                           --rule-name
+  examples:
+  - summary: Répertorier les sources de données du journal des événements Windows
+    syntax: az monitor data-collection rule windows-event-log list --rule-name "myCollectionRule" --resource-group "myResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle de collecte des données. Le nom ne respecte pas la casse.
+    description: ''
+- uid: ext_monitor-control-service_az_monitor_data_collection_rule_windows_event_log_show
+  name: az monitor data-collection rule windows-event-log show
+  summary: Affiche une source de données du journal des événements Windows.
+  description: ''
+  syntax: >-
+    az monitor data-collection rule windows-event-log show --name
+                                                           --resource-group
+                                                           --rule-name
+  examples:
+  - summary: Afficher une source de données du journal des événements Windows
+    syntax: az monitor data-collection rule windows-event-log show --rule-name "myCollectionRule" --resource-group "myResourceGroup" --name "appTeam1AppEvents"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial de la source de données. Ce nom doit être unique pour toutes les sources de données (quel que soit le type) de la règle de collecte des données.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle de collecte des données. Le nom ne respecte pas la casse.
+    description: ''
+- uid: ext_monitor-control-service_az_monitor_data_collection_rule_windows_event_log_update
+  name: az monitor data-collection rule windows-event-log update
+  summary: Mettre à jour une source de données du journal des événements Windows.
+  description: ''
+  syntax: >-
+    az monitor data-collection rule windows-event-log update --name
+                                                             --resource-group
+                                                             --rule-name
+                                                             [--streams {Microsoft-Event, Microsoft-WindowsEvent}]
+                                                             [--transfer-period {PT15M, PT1M, PT30M, PT5M, PT60M}]
+                                                             [--x-path-queries]
+  examples:
+  - summary: Mettre à jour une source de données du journal des événements Windows
+    syntax: az monitor data-collection rule windows-event-log update --rule-name "myCollectionRule" --resource-group "myResourceGroup" --name "appTeam1AppEvents" --x-path-queries "Application!*[System[(Level = 1 or Level = 2 or Level = 3)]]"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial de la source de données. Ce nom doit être unique pour toutes les sources de données (quel que soit le type) de la règle de collecte des données.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --rule-name
+    summary: Nom de la règle de collecte des données. Le nom ne respecte pas la casse.
+    description: ''
+  optionalParameters:
+  - name: --streams
+    parameterValueGroup: Microsoft-Event, Microsoft-WindowsEvent
+    summary: Liste des flux auxquels cette source de données sera envoyée. Un flux indique le schéma qui sera utilisé pour ces données et, en général, la table de Log Analytics dans laquelle les données seront envoyées.
+    description: ''
+  - name: --transfer-period
+    parameterValueGroup: PT15M, PT1M, PT30M, PT5M, PT60M
+    summary: Intervalle entre les chargements de données (transferts planifiés), arrondi à la minute la plus proche.
+    description: ''
+  - name: --x-path-queries
+    summary: Liste des requêtes du journal des événements Windows au format XPATH.
+    description: ''
+commands:
+- ext_monitor-control-service_az_monitor_data_collection_rule_windows_event_log_add
+- ext_monitor-control-service_az_monitor_data_collection_rule_windows_event_log_delete
+- ext_monitor-control-service_az_monitor_data_collection_rule_windows_event_log_list
+- ext_monitor-control-service_az_monitor_data_collection_rule_windows_event_log_show
+- ext_monitor-control-service_az_monitor_data_collection_rule_windows_event_log_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer la source de données du journal des événements Windows.
+  ms.openlocfilehash: a3753c58795a500c0f4bb69a007f3f2dc9083553
+  ms.sourcegitcommit: 547d3db8a1469f11d33e738a82d96cb51de61bd6
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 01/12/2021
+  ms.locfileid: "102843871"
