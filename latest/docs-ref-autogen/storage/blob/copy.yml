@@ -1,0 +1,303 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_blob_copy
+name: az storage blob copy
+summary: Gérer les opérations de copie d’objets BLOB. Utilisez `az storage blob show` pour vérifier l’état des objets BLOB.
+description: ''
+directCommands:
+- uid: az_storage_blob_copy_cancel
+  name: az storage blob copy cancel
+  summary: Abandonne une opération de copy_blob en attente et laisse un objet blob de destination avec une longueur nulle et des métadonnées complètes.
+  description: ''
+  syntax: >-
+    az storage blob copy cancel --copy-id
+                                --destination-blob
+                                --destination-container
+                                [--account-key]
+                                [--account-name]
+                                [--auth-mode {key, login}]
+                                [--connection-string]
+                                [--lease-id]
+                                [--sas-token]
+                                [--subscription]
+                                [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --copy-id
+    summary: Identificateur de copie fourni dans le copy.id de l’opération d’copy_blob d’origine.
+    description: ''
+  - isRequired: true
+    name: --destination-blob -b
+    summary: Nom de l’objet blob de destination. Si existe, il est remplacé.
+    description: ''
+  - isRequired: true
+    name: --destination-container -c
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si l'objet blob de destination a un bail infini actif.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_copy_start
+  name: az storage blob copy start
+  summary: Copie un objet blob de manière asynchrone. Utilisez `az storage blob show` pour vérifier l’état des objets BLOB.
+  description: ''
+  syntax: >-
+    az storage blob copy start --destination-blob
+                               --destination-container
+                               [--account-key]
+                               [--account-name]
+                               [--auth-mode {key, login}]
+                               [--connection-string]
+                               [--destination-if-match]
+                               [--destination-if-modified-since]
+                               [--destination-if-none-match]
+                               [--destination-if-unmodified-since]
+                               [--destination-lease-id]
+                               [--metadata]
+                               [--requires-sync {false, true}]
+                               [--sas-token]
+                               [--source-account-key]
+                               [--source-account-name]
+                               [--source-blob]
+                               [--source-container]
+                               [--source-if-match]
+                               [--source-if-modified-since]
+                               [--source-if-none-match]
+                               [--source-if-unmodified-since]
+                               [--source-lease-id]
+                               [--source-path]
+                               [--source-sas]
+                               [--source-share]
+                               [--source-snapshot]
+                               [--source-uri]
+                               [--subscription]
+                               [--timeout]
+  examples:
+  - summary: Copie un objet blob de manière asynchrone. Utilisez `az storage blob show` pour vérifier l’état des objets BLOB. généré automatiquement
+    syntax: az storage blob copy start --account-key 00000000 --account-name MyAccount --destination-blob MyDestinationBlob --destination-container MyDestinationContainer --source-uri https://storage.blob.core.windows.net/photos
+  - summary: Copie un objet blob de manière asynchrone. Utilisation `az storage blob show` pour vérifier l’état des objets BLOB (générés automatiquement)
+    syntax: az storage blob copy start --account-name MyAccount --destination-blob MyDestinationBlob --destination-container MyDestinationContainer --sas-token $sas --source-uri https://storage.blob.core.windows.net/photos
+  requiredParameters:
+  - isRequired: true
+    name: --destination-blob -b
+    summary: Nom de l’objet blob de destination. Si existe, il est remplacé.
+    description: ''
+  - isRequired: true
+    name: --destination-container -c
+    summary: Nom du conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --destination-if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez une valeur ETag pour cet en-tête conditionnel pour copier l’objet BLOB uniquement si la valeur ETag spécifiée correspond à la valeur ETag d’un objet blob de destination existant. Si l’ETag de l’objet blob de destination ne correspond pas à l’ETag spécifié pour If-Match, le service BLOB retourne le code d’État 412 (échec de la précondition).
+    description: ''
+  - name: --destination-if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --destination-if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez une valeur d'ETag pour cet en-tête conditionnel pour copier l'objet blob uniquement si la valeur d'ETag spécifiée ne correspond pas à la valeur d'ETag pour l'objet blob de destination. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si l’objet blob de destination n’existe pas. Si la condition spécifiée n'est pas remplie, le service BLOB retourne le code d'état 412 (Échec de la précondition).
+    description: ''
+  - name: --destination-if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --destination-lease-id
+    summary: L'ID de bail spécifié pour cet en-tête doit correspondre à l'ID de bail de l'objet blob de destination. Si la demande n'inclut pas l'ID de bail ou si elle n'est pas valide, l'opération échoue avec un code d'état 412 (Échec de la précondition).
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --requires-sync
+    parameterValueGroup: false, true
+    summary: Imposer que le service ne retourne pas de réponse tant que la copie n’est pas terminée. Non pris en charge pour l’objet blob de pages standard.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --source-account-key
+    summary: Clé de compte de stockage de l’objet BLOB source.
+    description: ''
+  - name: --source-account-name
+    summary: Nom du compte de stockage de l’objet BLOB source.
+    description: ''
+  - name: --source-blob
+    summary: Nom de l’objet BLOB pour le compte de stockage source.
+    description: ''
+  - name: --source-container
+    summary: Nom du conteneur pour le compte de stockage source.
+    description: ''
+  - name: --source-if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête conditionnel pour copier l'objet blob source uniquement si son ETag correspond à la valeur spécifiée. Si les valeurs d'ETag ne correspondent pas, le service BLOB retourne le code d'état 412 (Échec de la précondition). Cet en-tête ne peut pas être spécifié si la source est un fichier Azure.
+    description: ''
+  - name: --source-if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --source-if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête conditionnel pour copier l'objet blob source uniquement si son ETag ne correspond pas à la valeur spécifiée. Si les valeurs sont identiques, le service BLOB renvoie le code d'état 412 (Échec de la précondition). Cet en-tête ne peut pas être spécifié si la source est un fichier Azure.
+    description: ''
+  - name: --source-if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --source-lease-id
+    summary: Spécifiez cette valeur pour effectuer l’opération de copie d’objet BLOB uniquement si l’ID de bail donné correspond à l’ID de bail actif de l’objet BLOB source.
+    description: ''
+  - name: --source-path
+    summary: Chemin d’accès du fichier pour le compte de stockage source.
+    description: ''
+  - name: --source-sas
+    summary: Signature d’accès partagé pour le compte de stockage source.
+    description: ''
+  - name: --source-share
+    summary: Nom de partage du compte de stockage source.
+    description: ''
+  - name: --source-snapshot
+    summary: Instantané d’objet BLOB pour le compte de stockage source.
+    description: ''
+  - name: --source-uri -u
+    summary: "URL d’une longueur maximale de 2 Ko qui spécifie un fichier ou un objet BLOB Azure. La valeur doit être encodée sous forme d'URL, comme dans une URI de demande. Si la source se trouve dans un autre compte, la source doit être publique ou authentifiée via une signature d’accès partagé. Si la source est publique, aucune authentification n’est requise. Exemples : `https://myaccount.blob.core.windows.net/mycontainer/myblob` , `https://myaccount.blob.core.windows.net/mycontainer/myblob?snapshot=<DateTime>` , `https://otheraccount.blob.core.windows.net/mycontainer/myblob?sastoken` ."
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_copy_start_batch
+  name: az storage blob copy start-batch
+  summary: Copiez plusieurs objets BLOB dans un conteneur d’objets BLOB. Utilisez `az storage blob show` pour vérifier l’état des objets BLOB.
+  description: ''
+  syntax: >-
+    az storage blob copy start-batch [--account-key]
+                                     [--account-name]
+                                     [--auth-mode {key, login}]
+                                     [--connection-string]
+                                     [--destination-container]
+                                     [--destination-path]
+                                     [--dryrun]
+                                     [--pattern]
+                                     [--sas-token]
+                                     [--source-account-key]
+                                     [--source-account-name]
+                                     [--source-container]
+                                     [--source-sas]
+                                     [--source-share]
+                                     [--source-uri]
+                                     [--subscription]
+  examples:
+  - summary: Copiez plusieurs objets BLOB dans un conteneur d’objets BLOB. Utilisez `az storage blob show` pour vérifier l’état des objets BLOB. généré automatiquement
+    syntax: az storage blob copy start-batch --account-key 00000000 --account-name MyAccount --destination-container MyDestinationContainer --source-account-key MySourceKey --source-account-name MySourceAccount --source-container MySourceContainer
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --destination-container -c
+    summary: Conteneur d’objets BLOB dans lequel les fichiers sources ou les objets BLOB sélectionnés seront copiés.
+    description: ''
+  - name: --destination-path
+    summary: Chemin d’accès de destination qui sera ajouté au nom de l’objet BLOB.
+    description: ''
+  - name: --dryrun
+    summary: Répertorie les fichiers ou objets BLOB à télécharger. Aucun transfert de données réel n’aura lieu.
+    description: ''
+  - name: --pattern
+    summary: Modèle utilisé pour les fichiers globbing ou les objets BLOB dans la source. Les modèles pris en charge sont « \* », «  ? », « [seq] » et « [ ! seq] ». Pour plus d’informations, consultez <a href="https://docs.python.org/3.7/library/fnmatch.html">https://docs.python.org/3.7/library/fnmatch.html</a> .
+    description: Quand vous utilisez « * » dans le modèle, il correspond à n’importe quel caractère, y compris le séparateur de répertoire « / ».
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --source-account-key
+    summary: Clé de compte pour le compte de stockage source.
+    description: ''
+  - name: --source-account-name
+    summary: Compte de stockage source à partir duquel les fichiers ou les objets BLOB sont copiés vers la destination. En cas d’omission, le compte source est utilisé.
+    description: ''
+  - name: --source-container
+    summary: Conteneur source à partir duquel les objets BLOB sont copiés.
+    description: ''
+  - name: --source-sas
+    summary: Signature d’accès partagé pour le compte de stockage source.
+    description: ''
+  - name: --source-share
+    summary: Partage source à partir duquel les fichiers sont copiés.
+    description: ''
+  - name: --source-uri
+    summary: URI spécifiant un partage de fichiers ou un conteneur d’objets BLOB à partir duquel les fichiers ou les objets BLOB sont copiés.
+    description: Si la source se trouve dans un autre compte, la source doit être publique ou authentifiée à l’aide d’une signature d’accès partagé.
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_blob_copy_cancel
+- az_storage_blob_copy_start
+- az_storage_blob_copy_start_batch
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les opérations de copie d’objets BLOB. Utilisez `az storage blob show` pour vérifier l’état des objets BLOB.
+  ms.openlocfilehash: 61288d8611573d6ab64f882b92c1ff3a77690db2
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963369"

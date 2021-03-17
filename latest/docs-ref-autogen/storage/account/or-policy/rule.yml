@@ -1,0 +1,239 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_account_or_policy_rule
+name: az storage account or-policy rule
+summary: Gérer les règles de stratégie du service de réplication d’objets.
+description: ''
+directCommands:
+- uid: az_storage_account_or_policy_rule_add
+  name: az storage account or-policy rule add
+  summary: Ajoutez une règle à la stratégie de service de réplication d’objets spécifiée.
+  description: ''
+  syntax: >-
+    az storage account or-policy rule add --account-name
+                                          --destination-container
+                                          --policy-id
+                                          --source-container
+                                          [--min-creation-time]
+                                          [--prefix]
+                                          [--resource-group]
+                                          [--subscription]
+  examples:
+  - summary: Ajoutez une règle à la stratégie de service de réplication d’objets spécifiée.
+    syntax: az storage account or-policy rule add -g ResourceGroupName -n StorageAccountName --policy-id "04344ea7-aa3c-4846-bfb9-e908e32d3bf8" -d destContainer -s srcContainer
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -n
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --destination-container -d
+    summary: Nom du conteneur de stockage de destination.
+    description: ''
+  - isRequired: true
+    name: --policy-id
+    summary: ID de la stratégie de réplication d’objet ou « default » si l’ID de stratégie est inconnu. L’ID de stratégie sera généré automatiquement lors de la définition sur le compte de destination. Obligatoire lors de la définition du compte source.
+    description: ''
+  - isRequired: true
+    name: --source-container -s
+    summary: Nom du conteneur de stockage source.
+    description: ''
+  optionalParameters:
+  - name: --min-creation-time -t
+    summary: 'Les objets BLOB créés après l’heure seront répliqués vers la destination. Elle doit être au format DateTime « yyyy-MM-ddTHH : mm : ssZ ». Exemple : 2020-02-19T16:05:00Z.'
+    description: ''
+  - name: --prefix --prefix-match
+    summary: Facultatif. Filtrez les résultats pour répliquer uniquement les objets BLOB dont le nom commence par le préfixe spécifié.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_account_or_policy_rule_list
+  name: az storage account or-policy rule list
+  summary: Répertorie toutes les règles dans la stratégie de service de réplication d’objets spécifiée.
+  description: ''
+  syntax: >-
+    az storage account or-policy rule list --account-name
+                                           --policy-id
+                                           [--query-examples]
+                                           [--resource-group]
+                                           [--subscription]
+  examples:
+  - summary: Répertorie toutes les règles dans la stratégie de service de réplication d’objets spécifiée.
+    syntax: az storage account or-policy rule list -g ResourceGroupName -n StorageAccountName --policy-id "04344ea7-aa3c-4846-bfb9-e908e32d3bf8"
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -n
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --policy-id
+    summary: ID de la stratégie de réplication d’objet ou « default » si l’ID de stratégie est inconnu. L’ID de stratégie sera généré automatiquement lors de la définition sur le compte de destination. Obligatoire lors de la définition du compte source.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_account_or_policy_rule_remove
+  name: az storage account or-policy rule remove
+  summary: Supprimer la règle spécifiée de la stratégie du service de réplication d’objets spécifiée.
+  description: ''
+  syntax: >-
+    az storage account or-policy rule remove --account-name
+                                             --policy-id
+                                             --rule-id
+                                             [--resource-group]
+                                             [--subscription]
+  examples:
+  - summary: Supprimer la règle spécifiée de la stratégie du service de réplication d’objets spécifiée.
+    syntax: az storage account or-policy rule remove -g ResourceGroupName -n StorageAccountName --policy-id "04344ea7-aa3c-4846-bfb9-e908e32d3bf8" --rule-id "78746d86-d3b7-4397-a99c-0837e6741332"
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -n
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --policy-id
+    summary: ID de la stratégie de réplication d’objet ou « default » si l’ID de stratégie est inconnu. L’ID de stratégie sera généré automatiquement lors de la définition sur le compte de destination. Obligatoire lors de la définition du compte source.
+    description: ''
+  - isRequired: true
+    name: --rule-id -r
+    summary: L’ID de règle est généré automatiquement pour chaque nouvelle règle sur le compte de destination. Il est requis pour la stratégie put sur le compte source.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_account_or_policy_rule_show
+  name: az storage account or-policy rule show
+  summary: Afficher les propriétés de la règle spécifiée dans la stratégie du service de réplication d’objets.
+  description: ''
+  syntax: >-
+    az storage account or-policy rule show --account-name
+                                           --policy-id
+                                           --rule-id
+                                           [--query-examples]
+                                           [--resource-group]
+                                           [--subscription]
+  examples:
+  - summary: Afficher les propriétés de la règle spécifiée dans la stratégie du service de réplication d’objets.
+    syntax: az storage account or-policy rule show -g ResourceGroupName -n StorageAccountName --policy-id "04344ea7-aa3c-4846-bfb9-e908e32d3bf8" --rule-id "78746d86-d3b7-4397-a99c-0837e6741332"
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -n
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --policy-id
+    summary: ID de la stratégie de réplication d’objet ou « default » si l’ID de stratégie est inconnu. L’ID de stratégie sera généré automatiquement lors de la définition sur le compte de destination. Obligatoire lors de la définition du compte source.
+    description: ''
+  - isRequired: true
+    name: --rule-id -r
+    summary: L’ID de règle est généré automatiquement pour chaque nouvelle règle sur le compte de destination. Il est requis pour la stratégie put sur le compte source.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_account_or_policy_rule_update
+  name: az storage account or-policy rule update
+  summary: Mettez à jour les propriétés de règle vers la stratégie de service de réplication d’objets.
+  description: ''
+  syntax: >-
+    az storage account or-policy rule update --account-name
+                                             --policy-id
+                                             --rule-id
+                                             [--destination-container]
+                                             [--min-creation-time]
+                                             [--prefix]
+                                             [--resource-group]
+                                             [--source-container]
+                                             [--subscription]
+  examples:
+  - summary: Mettez à jour les propriétés de règle vers la stratégie de service de réplication d’objets.
+    syntax: az storage account or-policy rule update -g ResourceGroupName -n StorageAccountName --policy-id "04344ea7-aa3c-4846-bfb9-e908e32d3bf8" --rule-id "78746d86-d3b7-4397-a99c-0837e6741332" --prefix-match blobA blobB
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -n
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --policy-id
+    summary: ID de la stratégie de réplication d’objet ou « default » si l’ID de stratégie est inconnu. L’ID de stratégie sera généré automatiquement lors de la définition sur le compte de destination. Obligatoire lors de la définition du compte source.
+    description: ''
+  - isRequired: true
+    name: --rule-id -r
+    summary: L’ID de règle est généré automatiquement pour chaque nouvelle règle sur le compte de destination. Il est requis pour la stratégie put sur le compte source.
+    description: ''
+  optionalParameters:
+  - name: --destination-container -d
+    summary: Nom du conteneur de stockage de destination.
+    description: ''
+  - name: --min-creation-time -t
+    summary: 'Les objets BLOB créés après l’heure seront répliqués vers la destination. Elle doit être au format DateTime « yyyy-MM-ddTHH : mm : ssZ ». Exemple : 2020-02-19T16:05:00Z.'
+    description: ''
+  - name: --prefix --prefix-match
+    summary: Facultatif. Filtrez les résultats pour répliquer uniquement les objets BLOB dont le nom commence par le préfixe spécifié.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --source-container -s
+    summary: Nom du conteneur de stockage source.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_account_or_policy_rule_add
+- az_storage_account_or_policy_rule_list
+- az_storage_account_or_policy_rule_remove
+- az_storage_account_or_policy_rule_show
+- az_storage_account_or_policy_rule_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les règles de stratégie du service de réplication d’objets.
+  ms.openlocfilehash: cf01bbc5a5b41d47fbef9d68ed529f4414107b4c
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963390"
