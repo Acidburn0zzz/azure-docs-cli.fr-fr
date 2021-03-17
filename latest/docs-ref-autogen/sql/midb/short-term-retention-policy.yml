@@ -1,0 +1,120 @@
+### YamlMime:AzureCLIGroup
+uid: az_sql_midb_short_term_retention_policy
+name: az sql midb short-term-retention-policy
+summary: Gérer la stratégie de rétention des sauvegardes de base de données SQL Managed Instance.
+description: ''
+directCommands:
+- uid: az_sql_midb_short_term_retention_policy_set
+  name: az sql midb short-term-retention-policy set
+  summary: Mettez à jour la rétention à faible terme pour les sauvegardes automatisées sur une seule base de données.
+  description: ''
+  syntax: >-
+    az sql midb short-term-retention-policy set --retention-days
+                                                [--deleted-time]
+                                                [--ids]
+                                                [--managed-instance]
+                                                [--name]
+                                                [--no-wait]
+                                                [--resource-group]
+                                                [--subscription]
+  examples:
+  - summary: Définissez la rétention à brève durée de sauvegarde pour la base de données gérée en direct.
+    syntax: az sql midb short-term-retention-policy set -g mygroup --mi myinstance -n mymanageddb --retention-days retentionindays
+  - summary: Définissez la rétention à brève durée de sauvegarde pour la base de données gérée abandonnée.
+    syntax: az sql midb short-term-retention-policy set -g mygroup --mi myinstance -n mymanageddb --deleted-time "2018-05-20T05:34:22" --retention-days retentionindays
+  requiredParameters:
+  - isRequired: true
+    name: --retention-days
+    summary: Nouvelle stratégie de rétention à brève durée de sauvegarde en jours. La stratégie valide pour la base de données active est de 7-35 jours. la stratégie valide pour les bases de données supprimées est de 0-35 jours.
+    description: ''
+  optionalParameters:
+  - name: --deleted-time
+    summary: S’il est spécifié, met à jour les jours de rétention d’une base de données supprimée, au lieu d’une base de données existante. Doit correspondre à l’heure de suppression d’une base de données supprimée sur le Managed Instance source.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --managed-instance --mi
+    summary: Nom de l’instance Azure SQL Managed instance.
+    description: ''
+  - name: --name -n
+    summary: Nom de la base de données managée SQL Azure.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_midb_short_term_retention_policy_show
+  name: az sql midb short-term-retention-policy show
+  summary: Affiche la rétention à faible terme pour les sauvegardes automatisées sur une base de données unique.
+  description: ''
+  syntax: >-
+    az sql midb short-term-retention-policy show [--deleted-time]
+                                                 [--ids]
+                                                 [--managed-instance]
+                                                 [--name]
+                                                 [--query-examples]
+                                                 [--resource-group]
+                                                 [--subscription]
+  examples:
+  - summary: Affiche la rétention à faible terme de sauvegarde pour la base de données gérée en direct.
+    syntax: az sql midb short-term-retention-policy show -g mygroup --mi myinstance -n mymanageddb
+  - summary: Affiche la rétention à faible terme de sauvegarde pour la base de données gérée supprimée.
+    syntax: az sql midb short-term-retention-policy show -g mygroup --mi myinstance -n mymanageddb --deleted-time "2018-05-20T05:34:22"
+  optionalParameters:
+  - name: --deleted-time
+    summary: S’il est spécifié, affiche les jours de rétention d’une base de données supprimée, au lieu d’une base de données existante. Doit correspondre à l’heure de suppression d’une base de données supprimée sur le Managed Instance source.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --managed-instance --mi
+    summary: Nom de l’instance Azure SQL Managed instance.
+    description: ''
+  - name: --name -n
+    summary: Nom de la base de données managée SQL Azure.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+commands:
+- az_sql_midb_short_term_retention_policy_set
+- az_sql_midb_short_term_retention_policy_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/28/2021
+  description: Gérer la stratégie de rétention des sauvegardes de base de données SQL Managed Instance.
+  ms.openlocfilehash: 7a8d22f440e1380cf2dbbf75e5e9ca5c7d2b6806
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965082"

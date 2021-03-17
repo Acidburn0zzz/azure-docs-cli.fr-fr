@@ -1,0 +1,293 @@
+### YamlMime:AzureCLIGroup
+uid: az_openshift
+name: az openshift
+summary: Gérer les clusters Azure Red Hat OpenShift 3,11.
+description: La prise en charge des clusters ARO 3,11 existants prend fin le 2022 juin. Pour plus d’informations sur le passage à ARO 4, consultez aka.ms/aro/4.
+directCommands:
+- uid: az_openshift_create
+  name: az openshift create
+  summary: Créez un nouveau cluster Azure Red Hat OpenShift 3,11.
+  description: La prise en charge de la création de clusters ARO 3,11 prend fin le 30 novembre 2020. Pour plus d’informations sur le passage à ARO 4, consultez aka.ms/aro/4.
+  syntax: >-
+    az openshift create --name
+                        --resource-group
+                        [--aad-client-app-id]
+                        [--aad-client-app-secret]
+                        [--aad-tenant-id]
+                        [--compute-count]
+                        [--compute-vm-size]
+                        [--customer-admin-group-id]
+                        [--location]
+                        [--no-wait]
+                        [--subnet-prefix]
+                        [--subscription]
+                        [--tags]
+                        [--vnet-peer]
+                        [--vnet-prefix]
+                        [--workspace-id]
+  examples:
+  - summary: Créer un cluster OpenShift et créer automatiquement un client AAD
+    syntax: az openshift create -g MyResourceGroup -n MyManagedCluster
+  - summary: Créer un cluster OpenShift et créer automatiquement un client AAD et configurer un groupe d’administration de cluster
+    syntax: az openshift create -g MyResourceGroup -n MyManagedCluster --customer-admin-group-id {GROUP_ID}
+  - summary: Créez un cluster OpenShift avec 5 nœuds de calcul et un client AAD personnalisé.
+    syntax: az openshift create -g MyResourceGroup -n MyManagedCluster --aad-client-app-id {APP_ID} --aad-client-app-secret {APP_SECRET} --aad-tenant-id {TENANT_ID} --compute-count 5
+  - summary: Créer un cluster Openshift à l’aide d’un réseau virtuel personnalisé
+    syntax: az openshift create -g MyResourceGroup -n MyManagedCluster --vnet-peer "/subscriptions/0000000-0000-0000-0000-000000000000/resourceGroups/openshift-vnet/providers/Microsoft.Network/virtualNetworks/test"
+  - summary: Créer un cluster Openshift avec Log Analytics Monitoring activé
+    syntax: az openshift create -g MyResourceGroup -n MyManagedCluster --workspace-id "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MyResourceGroup/providers/Microsoft.OperationalInsights/workspaces/{workspace-id}"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster OpenShift géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --aad-client-app-id
+    summary: ID d’une application cliente Azure Active Directory. S’il n’est pas spécifié, un nouveau client de Azure Active Directory est créé.
+    description: ''
+  - name: --aad-client-app-secret
+    summary: Secret d’une application cliente Azure Active Directory.
+    description: ''
+  - name: --aad-tenant-id
+    summary: ID d’un locataire Azure Active Directory.
+    description: ''
+  - name: --compute-count -c
+    defaultValue: "4"
+    summary: Nombre de nœuds dans le pool de nœuds OpenShift.
+    description: ''
+  - name: --compute-vm-size -s
+    defaultValue: Standard_D4s_v3
+    summary: Taille des machines virtuelles à créer en tant que nœuds OpenShift.
+    description: ''
+  - name: --customer-admin-group-id
+    summary: L’ID d’objet d’un groupe de Azure Active Directory que les appartenances seront synchronisées dans le groupe OpenShift « OSA-Customer-admins ». S’il n’est pas spécifié, aucun accès administrateur du cluster ne sera accordé.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subnet-prefix
+    defaultValue: 10.0.0.0/24
+    summary: CIDR utilisé sur le sous-réseau dans lequel déployer le cluster.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --vnet-peer
+    summary: ID ou nom d’un sous-réseau dans un réseau virtuel existant dans lequel homologuer le cluster.
+    description: ''
+  - name: --vnet-prefix
+    defaultValue: 10.0.0.0/8
+    summary: Le CIDR utilisé sur le réseau virtuel dans lequel déployer le cluster.
+    description: ''
+  - name: --workspace-id
+    summary: ID de ressource d’un espace de travail Log Analytics existant à utiliser pour le stockage des données d’analyse.
+    description: ''
+- uid: az_openshift_delete
+  name: az openshift delete
+  summary: Supprimer un cluster Azure Red Hat OpenShift 3,11.
+  description: La prise en charge des clusters ARO 3,11 existants prend fin le 2022 juin. Pour plus d’informations sur le passage à ARO 4, consultez aka.ms/aro/4.
+  syntax: >-
+    az openshift delete --name
+                        --resource-group
+                        [--no-wait]
+                        [--subscription]
+                        [--yes]
+  examples:
+  - summary: Supprimer un cluster Azure Red Hat OpenShift 3,11.
+    syntax: az openshift delete --name MyManagedOpenShiftCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster OpenShift géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_openshift_list
+  name: az openshift list
+  summary: Répertoriez les clusters Azure Red Hat OpenShift 3,11.
+  description: La prise en charge des clusters ARO 3,11 existants prend fin le 2022 juin. Pour plus d’informations sur le passage à ARO 4, consultez aka.ms/aro/4.
+  syntax: >-
+    az openshift list [--query-examples]
+                      [--resource-group]
+                      [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_openshift_scale
+  name: az openshift scale
+  summary: Mettez à l’échelle le pool de calcul dans un cluster Azure Red Hat OpenShift 3,11.
+  description: La prise en charge des clusters ARO 3,11 existants prend fin le 2022 juin. Pour plus d’informations sur le passage à ARO 4, consultez aka.ms/aro/4.
+  syntax: >-
+    az openshift scale --compute-count
+                       --name
+                       --resource-group
+                       [--no-wait]
+                       [--subscription]
+  examples:
+  - summary: Mettez à l’échelle le pool de calcul dans un cluster Azure Red Hat OpenShift 3,11.
+    syntax: az openshift scale --compute-count 5 --name MyManagedOpenShiftCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --compute-count -c
+    defaultValue: "4"
+    summary: Nombre de nœuds dans le pool de calcul OpenShift.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster OpenShift géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_openshift_show
+  name: az openshift show
+  summary: Affichez les détails d’un cluster Azure Red Hat OpenShift 3,11.
+  description: La prise en charge des clusters ARO 3,11 existants prend fin le 2022 juin. Pour plus d’informations sur le passage à ARO 4, consultez aka.ms/aro/4.
+  syntax: >-
+    az openshift show --name
+                      --resource-group
+                      [--query-examples]
+                      [--subscription]
+  examples:
+  - summary: Affichez les détails d’un cluster Azure Red Hat OpenShift 3,11.
+    syntax: az openshift show --name MyManagedOpenShiftCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster OpenShift géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_openshift_wait
+  name: az openshift wait
+  summary: Attendez qu’un cluster Azure Red Hat OpenShift 3,11 atteigne un état souhaité.
+  description: Si une opération sur un cluster a été interrompue ou a été démarrée avec `--no-wait` , utilisez cette commande pour attendre qu’elle se termine. La prise en charge des clusters ARO 3,11 existants prend fin le 2022 juin. Pour plus d’informations sur le passage à ARO 4, consultez aka.ms/aro/4.
+  syntax: >-
+    az openshift wait --name
+                      --resource-group
+                      [--created]
+                      [--custom]
+                      [--deleted]
+                      [--exists]
+                      [--interval]
+                      [--subscription]
+                      [--timeout]
+                      [--updated]
+  examples:
+  - summary: Attendre la mise à niveau d’un cluster, en interrogeant toutes les minutes pendant 30 minutes maximum.
+    syntax: az openshift wait -g MyResourceGroup -n MyManagedCluster --updated --interval 60 --timeout 1800
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster OpenShift géré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_openshift_create
+- az_openshift_delete
+- az_openshift_list
+- az_openshift_monitor
+- az_openshift_monitor_disable
+- az_openshift_monitor_enable
+- az_openshift_scale
+- az_openshift_show
+- az_openshift_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: La prise en charge des clusters ARO 3,11 existants prend fin le 2022 juin. Pour plus d’informations sur le passage à ARO 4, consultez aka.ms/aro/4.
+  ms.openlocfilehash: 11a6b270711185313581038a2bed0dd21e2b47ec
+  ms.sourcegitcommit: 753de7d5c45062d5138be86ced7eacddd5696ca3
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 11/20/2020
+  ms.locfileid: "102821153"

@@ -1,0 +1,249 @@
+### YamlMime:AzureCLIGroup
+uid: ext_costmanagement_az_costmanagement_export
+name: az costmanagement export
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **costmanagement** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ costmanagement Export** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Exportation Costmanagement.
+description: ''
+directCommands:
+- uid: ext_costmanagement_az_costmanagement_export_create
+  name: az costmanagement export create
+  summary: Opération de création d’une exportation.
+  description: ''
+  syntax: >-
+    az costmanagement export create --name
+                                    --scope
+                                    --storage-account-id
+                                    --storage-container
+                                    --timeframe {BillingMonthToDate, Custom, MonthToDate, TheLastBillingMonth, TheLastMonth, WeekToDate}
+                                    [--dataset-configuration]
+                                    [--dataset-grouping]
+                                    [--recurrence {Annually, Daily, Monthly, Weekly}]
+                                    [--recurrence-period]
+                                    [--schedule-status {Active, Inactive}]
+                                    [--storage-directory]
+                                    [--time-period]
+                                    [--type {ActualCost, AmortizedCost, Usage}]
+  examples:
+  - summary: Créer une exportation pour l’étendue de l’As
+    syntax: az costmanagement export create --name "TestExport" --type "Usage" --dataset-configuration columns="Date" columns="MeterId" columns="InstanceId" columns="ResourceLocation" columns="PreTaxCost" --dataset-grouping name="SubscriptionName" type="Dimension" --dataset-grouping name="Environment" type="Tag" --timeframe "MonthToDate" --storage-container="exports" --storage-account-id="/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Storage/storageAccounts/ccmeastusdiag182" --storage-directory="ad-hoc" --recurrence "Weekly" --recurrence-period from="2018-06-01T00:00:00Z" to="2018-10-31T00:00:00Z" --schedule-status "Active" --scope "providers/Microsoft.Management/managementGroups/TestMG"
+  - summary: Créer une exportation pour l’étendue du groupe de ressources
+    syntax: az costmanagement export create --name "TestExport" --type "Usage" --dataset-configuration columns="Date" columns="MeterId" columns="InstanceId" columns="ResourceLocation" columns="PreTaxCost" --dataset-grouping name="SubscriptionName" type="Dimension" --dataset-grouping name="Environment" type="Tag" --timeframe "MonthToDate" --storage-container="exports" --storage-account-id="/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Storage/storageAccounts/ccmeastusdiag182" --storage-directory="ad-hoc" --recurrence "Weekly" --recurrence-period from="2018-06-01T00:00:00Z" to="2018-10-31T00:00:00Z" --schedule-status "Active" --scope "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG"
+  - summary: Créer une exportation pour l’étendue de l’abonnement
+    syntax: az costmanagement export create --name "TestExport" --type "Usage" --dataset-configuration columns="Date" columns="MeterId" columns="InstanceId" columns="ResourceLocation" columns="PreTaxCost" --dataset-grouping name="SubscriptionName" type="Dimension" --dataset-grouping name="Environment" type="Tag" --timeframe "MonthToDate" --storage-container="exports" --storage-account-id="/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Storage/storageAccounts/ccmeastusdiag182" --storage-directory="ad-hoc" --recurrence "Weekly" --recurrence-period from="2018-06-01T00:00:00Z" to="2018-10-31T00:00:00Z" --schedule-status "Active" --scope "subscriptions/00000000-0000-0000-0000-000000000000"
+  requiredParameters:
+  - isRequired: true
+    name: --name
+    summary: Nom de l’exportation.
+    description: ''
+  - isRequired: true
+    name: --scope
+    summary: Étendue associée aux opérations de requête et d’exportation. Cela comprend « /subscriptions/{subscriptionId}/ » pour l’étendue de l’abonnement, « /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName} » pour l’étendue du groupe de ressources, «/providers/Microsoft.Management/managementGroups/{managementGroupId} pour l’étendue du groupe d’administration.
+    description: ''
+  - isRequired: true
+    name: --storage-account-id
+    summary: ID du compte de stockage dans lequel stocker les exportations.
+    description: ''
+  - isRequired: true
+    name: --storage-container
+    summary: Le conteneur de stockage pour remettre les exportations.
+    description: ''
+  - isRequired: true
+    name: --timeframe
+    parameterValueGroup: BillingMonthToDate, Custom, MonthToDate, TheLastBillingMonth, TheLastMonth, WeekToDate
+    summary: Intervalle de temps pour l’extraction des données de la requête. Si la personnalisation est personnalisée, une période de temps spécifique doit être fournie.
+    description: ''
+  optionalParameters:
+  - name: --dataset-configuration
+    summary: 'Contient des informations de configuration pour les données de l’exportation. La configuration sera ignorée si l’agrégation et le regroupement sont fournis. Valeur attendue : Columns = XX.'
+    description: ''
+  - name: --dataset-grouping
+    summary: 'Tableau de l’expression Group by à utiliser dans la requête. La requête peut contenir jusqu’à 2 clauses Group by. Valeur attendue : KEY1 = VALUE1 KEY2 = VALUE2..., les clés disponibles sont : type, Name.'
+    description: ''
+  - name: --recurrence
+    parameterValueGroup: Annually, Daily, Monthly, Weekly
+    summary: Récurrence de la planification.
+    description: ''
+  - name: --recurrence-period
+    summary: 'A une date de début et de fin de la périodicité. La date de début doit être ultérieure. Si elle est présente, la date de fin doit être postérieure à la date de début. Valeur attendue : KEY1 = VALUE1 KEY2 = VALUE2..., les clés disponibles sont : de, à. Le format d’heure est semblable à 2020-05-01T00:00:00.'
+    description: ''
+  - name: --schedule-status
+    parameterValueGroup: Active, Inactive
+    summary: État de la planification. Qu’il soit actif ou non. S’il est inactif, l’exécution planifiée de l’exportation est suspendue.
+    description: ''
+  - name: --storage-directory
+    summary: Répertoire racine dans le conteneur de stockage dans lequel stocker les exportations.
+    description: ''
+  - name: --time-period
+    summary: 'Contient le délai d’extraction des données de la requête. Valeur attendue : de = TIMESTAMP1 à = TIMESTAMP2. Le format d’horodatage est semblable à 2020-05-01T00:00:00. le TIMESTAMP1 doit se trouver à l’avenir et TIMESTAMP2 doit être supérieur à TIMESTAMP1.'
+    description: ''
+  - name: --type
+    parameterValueGroup: ActualCost, AmortizedCost, Usage
+    summary: Type de la requête.
+    description: ''
+- uid: ext_costmanagement_az_costmanagement_export_delete
+  name: az costmanagement export delete
+  summary: Opération de suppression d’une exportation.
+  description: ''
+  syntax: >-
+    az costmanagement export delete --name
+                                    --scope
+                                    [--yes]
+  examples:
+  - summary: supprimer une exportation pour une étendue de l’As
+    syntax: az costmanagement export delete --name "TestExport" --scope "providers/Microsoft.Management/managementGroups/TestMG"
+  - summary: supprimer une exportation pour une étendue de groupe de ressources
+    syntax: az costmanagement export delete --name "TestExport" --scope "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG"
+  - summary: supprimer une exportation pour l’étendue de l’abonnement
+    syntax: az costmanagement export delete --name "TestExport" --scope "subscriptions/00000000-0000-0000-0000-000000000000"
+  requiredParameters:
+  - isRequired: true
+    name: --name
+    summary: Nom de l’exportation.
+    description: ''
+  - isRequired: true
+    name: --scope
+    summary: Étendue associée aux opérations de requête et d’exportation. Cela comprend « /subscriptions/{subscriptionId}/ » pour l’étendue de l’abonnement, « /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName} » pour l’étendue du groupe de ressources, «/providers/Microsoft.Management/managementGroups/{managementGroupId} pour l’étendue du groupe d’administration.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_costmanagement_az_costmanagement_export_list
+  name: az costmanagement export list
+  summary: Opération permettant de répertorier toutes les exportations au niveau de l’étendue donnée.
+  description: ''
+  syntax: az costmanagement export list --scope
+  examples:
+  - summary: répertorier les exportations dans une étendue de l’As
+    syntax: az costmanagement export list --scope "providers/Microsoft.Management/managementGroups/TestMG"
+  - summary: répertorier les exportations dans une étendue de groupe de ressources
+    syntax: az costmanagement export list --scope "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG"
+  - summary: répertorier les exportations dans une étendue d’abonnement
+    syntax: az costmanagement export list --scope "subscriptions/00000000-0000-0000-0000-000000000000"
+  requiredParameters:
+  - isRequired: true
+    name: --scope
+    summary: Étendue associée aux opérations de requête et d’exportation. Cela comprend « /subscriptions/{subscriptionId}/ » pour l’étendue de l’abonnement, « /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName} » pour l’étendue du groupe de ressources, «/providers/Microsoft.Management/managementGroups/{managementGroupId} pour l’étendue du groupe d’administration.
+    description: ''
+- uid: ext_costmanagement_az_costmanagement_export_show
+  name: az costmanagement export show
+  summary: Opération permettant d’obtenir l’historique d’exécution d’une exportation pour l’étendue définie par nom d’exportation.
+  description: ''
+  syntax: >-
+    az costmanagement export show --name
+                                  --scope
+  examples:
+  - summary: Afficher une exportation dans une étendue de l’As
+    syntax: az costmanagement export show --name "TestExport" --scope "providers/Microsoft.Management/managementGroups/TestMG"
+  - summary: Afficher une exportation dans une étendue de groupe de ressources
+    syntax: az costmanagement export show --name "TestExport" --scope "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG"
+  - summary: Afficher une exportation dans une étendue d’abonnement
+    syntax: az costmanagement export show --name "TestExport" --scope "subscriptions/00000000-0000-0000-0000-000000000000"
+  requiredParameters:
+  - isRequired: true
+    name: --name
+    summary: Nom de l’exportation.
+    description: ''
+  - isRequired: true
+    name: --scope
+    summary: Étendue associée aux opérations de requête et d’exportation. Cela comprend « /subscriptions/{subscriptionId}/ » pour l’étendue de l’abonnement, « /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName} » pour l’étendue du groupe de ressources, «/providers/Microsoft.Management/managementGroups/{managementGroupId} pour l’étendue du groupe d’administration.
+    description: ''
+- uid: ext_costmanagement_az_costmanagement_export_update
+  name: az costmanagement export update
+  summary: Opération de mise à jour d’une exportation.
+  description: ''
+  syntax: >-
+    az costmanagement export update --name
+                                    --scope
+                                    [--dataset-configuration]
+                                    [--dataset-grouping]
+                                    [--recurrence {Annually, Daily, Monthly, Weekly}]
+                                    [--recurrence-period]
+                                    [--schedule-status {Active, Inactive}]
+                                    [--storage-account-id]
+                                    [--storage-container]
+                                    [--storage-directory]
+                                    [--time-period]
+                                    [--timeframe {BillingMonthToDate, Custom, MonthToDate, TheLastBillingMonth, TheLastMonth, WeekToDate}]
+  examples:
+  - summary: Mettre à jour une exportation dans une étendue d’une application
+    syntax: az costmanagement export update --name "TestExport" --dataset-configuration columns="Date" columns="MeterId" columns="InstanceId" columns="ResourceLocation" columns="PreTaxCost" --dataset-grouping name="SubscriptionName" type="Dimension" --dataset-grouping name="Environment" type="Tag" --timeframe "MonthToDate" --storage-container="exports" --storage-account-id="/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Storage/storageAccounts/ccmeastusdiag182" --storage-directory="ad-hoc" --recurrence "Weekly" --recurrence-period from="2018-06-01T00:00:00Z" to="2018-10-31T00:00:00Z" --schedule-status "Active" --scope "providers/Microsoft.Management/managementGroups/TestMG"
+  - summary: Mettre à jour une exportation dans une étendue de groupe de ressources
+    syntax: az costmanagement export update --name "TestExport" --dataset-configuration columns="Date" columns="MeterId" columns="InstanceId" columns="ResourceLocation" columns="PreTaxCost" --dataset-grouping name="SubscriptionName" type="Dimension" --dataset-grouping name="Environment" type="Tag" --timeframe "MonthToDate" --storage-container="exports" --storage-account-id="/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Storage/storageAccounts/ccmeastusdiag182" --storage-directory="ad-hoc" --recurrence "Weekly" --recurrence-period from="2018-06-01T00:00:00Z" to="2018-10-31T00:00:00Z" --schedule-status "Active" --scope "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG"
+  - summary: Mettre à jour une exportation dans une étendue d’abonnement
+    syntax: az costmanagement export update --name "TestExport" --dataset-configuration columns="Date" columns="MeterId" columns="InstanceId" columns="ResourceLocation" columns="PreTaxCost" --dataset-grouping name="SubscriptionName" type="Dimension" --dataset-grouping name="Environment" type="Tag" --timeframe "MonthToDate" --storage-container="exports" --storage-account-id="/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Storage/storageAccounts/ccmeastusdiag182" --storage-directory="ad-hoc" --recurrence "Weekly" --recurrence-period from="2018-06-01T00:00:00Z" to="2018-10-31T00:00:00Z" --schedule-status "Active" --scope "subscriptions/00000000-0000-0000-0000-000000000000"
+  requiredParameters:
+  - isRequired: true
+    name: --name
+    summary: Nom de l’exportation.
+    description: ''
+  - isRequired: true
+    name: --scope
+    summary: Étendue associée aux opérations de requête et d’exportation. Cela comprend « /subscriptions/{subscriptionId}/ » pour l’étendue de l’abonnement, « /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName} » pour l’étendue du groupe de ressources, «/providers/Microsoft.Management/managementGroups/{managementGroupId} pour l’étendue du groupe d’administration.
+    description: ''
+  optionalParameters:
+  - name: --dataset-configuration
+    summary: 'Contient des informations de configuration pour les données de l’exportation. La configuration sera ignorée si l’agrégation et le regroupement sont fournis. Valeur attendue : Columns = XX.'
+    description: ''
+  - name: --dataset-grouping
+    summary: 'Tableau de l’expression Group by à utiliser dans la requête. La requête peut contenir jusqu’à 2 clauses Group by. Valeur attendue : KEY1 = VALUE1 KEY2 = VALUE2..., les clés disponibles sont : type, Name.'
+    description: ''
+  - name: --recurrence
+    parameterValueGroup: Annually, Daily, Monthly, Weekly
+    summary: Récurrence de la planification.
+    description: ''
+  - name: --recurrence-period
+    summary: 'A une date de début et de fin de la périodicité. La date de début doit être ultérieure. Si elle est présente, la date de fin doit être postérieure à la date de début. Valeur attendue : KEY1 = VALUE1 KEY2 = VALUE2..., les clés disponibles sont : de, à. Le format d’heure est semblable à 2020-05-01T00:00:00.'
+    description: ''
+  - name: --schedule-status
+    parameterValueGroup: Active, Inactive
+    summary: État de la planification. Qu’il soit actif ou non. S’il est inactif, l’exécution planifiée de l’exportation est suspendue.
+    description: ''
+  - name: --storage-account-id
+    summary: ID du compte de stockage dans lequel stocker les exportations.
+    description: ''
+  - name: --storage-container
+    summary: Le conteneur de stockage pour remettre les exportations.
+    description: ''
+  - name: --storage-directory
+    summary: Répertoire racine dans le conteneur de stockage dans lequel stocker les exportations.
+    description: ''
+  - name: --time-period
+    summary: 'Contient le délai d’extraction des données de la requête. Valeur attendue : de = TIMESTAMP1 à = TIMESTAMP2. Le format d’horodatage est semblable à 2020-05-01T00:00:00. le TIMESTAMP1 doit se trouver à l’avenir et TIMESTAMP2 doit être supérieur à TIMESTAMP1.'
+    description: ''
+  - name: --timeframe
+    parameterValueGroup: BillingMonthToDate, Custom, MonthToDate, TheLastBillingMonth, TheLastMonth, WeekToDate
+    summary: Intervalle de temps pour l’extraction des données de la requête. Si la personnalisation est personnalisée, une période de temps spécifique doit être fournie.
+    description: ''
+commands:
+- ext_costmanagement_az_costmanagement_export_create
+- ext_costmanagement_az_costmanagement_export_delete
+- ext_costmanagement_az_costmanagement_export_list
+- ext_costmanagement_az_costmanagement_export_show
+- ext_costmanagement_az_costmanagement_export_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Exportation Costmanagement.
+  ms.openlocfilehash: 5e8be39785f0efbf71e0ba90575c492f71153c7f
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102829708"

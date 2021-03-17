@@ -1,0 +1,124 @@
+### YamlMime:AzureCLIGroup
+uid: az_vmss_disk
+name: az vmss disk
+summary: Gérer les disques de données d’un VMSS.
+description: ''
+directCommands:
+- uid: az_vmss_disk_attach
+  name: az vmss disk attach
+  summary: Attacher des disques de données gérés à un groupe identique ou à ses instances.
+  description: ''
+  syntax: >-
+    az vmss disk attach [--caching {None, ReadOnly, ReadWrite}]
+                        [--disk]
+                        [--ids]
+                        [--instance-id]
+                        [--lun]
+                        [--resource-group]
+                        [--size-gb]
+                        [--sku {Premium_LRS, StandardSSD_LRS, Standard_LRS, UltraSSD_LRS}]
+                        [--subscription]
+                        [--vmss-name]
+  examples:
+  - summary: Attacher des disques de données gérés à un groupe identique ou à ses instances. généré automatiquement
+    syntax: az vmss disk attach --disk {disk} --instance-id 0 --resource-group MyResourceGroup
+  - summary: Attacher des disques de données managés d’une taille donnée à un groupe identique ou à ses instances. généré automatiquement
+    syntax: az vmss disk attach --vmss-name MyVmss --resource-group MyResourceGroup --size-gb 50
+  optionalParameters:
+  - name: --caching
+    parameterValueGroup: None, ReadOnly, ReadWrite
+    summary: Stratégie de mise en cache du disque.
+    description: ''
+  - name: --disk
+    summary: Nom ou ID de disque existant à attacher ou à détacher des instances de machine virtuelle.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --instance-id
+    summary: ID d’instance de machine virtuelle du groupe identique.
+    description: ''
+  - name: --lun
+    summary: Numéro d’unité logique (LUN) de base 0. La valeur maximale dépend de la taille de l’instance de machine virtuelle.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --size-gb -z
+    summary: 'Taille en Go. Taille maximale : 4095 Go (certains disques de la version préliminaire peuvent être plus volumineux).'
+    description: ''
+  - name: --sku
+    parameterValueGroup: Premium_LRS, StandardSSD_LRS, Standard_LRS, UltraSSD_LRS
+    summary: Référence SKU de stockage sous-jacent.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vmss-name
+    summary: Nom du groupe identique. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vmss=<name>` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+- uid: az_vmss_disk_detach
+  name: az vmss disk detach
+  summary: Détacher des disques de données managés d’un groupe identique ou de ses instances.
+  description: ''
+  syntax: >-
+    az vmss disk detach --lun
+                        [--ids]
+                        [--instance-id]
+                        [--resource-group]
+                        [--subscription]
+                        [--vmss-name]
+  examples:
+  - summary: Détacher des disques de données managés d’un groupe identique ou de ses instances. généré automatiquement
+    syntax: az vmss disk detach --instance-id 0 --lun {lun} --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --lun
+    summary: Numéro d’unité logique (LUN) de base 0. La valeur maximale dépend de la taille de l’instance de machine virtuelle.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --instance-id
+    summary: ID d’instance de machine virtuelle du groupe identique.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vmss-name
+    summary: Nom du groupe identique. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults vmss=<name>` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/vm/_help.py
+commands:
+- az_vmss_disk_attach
+- az_vmss_disk_detach
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/05/2021
+  description: Gérer les disques de données d’un VMSS.
+  ms.openlocfilehash: 9803be9b9bc7734f56da36d57d09c4cf6c1a2349
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102965133"

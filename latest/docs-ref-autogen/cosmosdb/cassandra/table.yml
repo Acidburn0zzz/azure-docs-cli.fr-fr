@@ -1,0 +1,283 @@
+### YamlMime:AzureCLIGroup
+uid: az_cosmosdb_cassandra_table
+name: az cosmosdb cassandra table
+summary: Gérer les tables Azure Cosmos DB Cassandra.
+description: ''
+directCommands:
+- uid: az_cosmosdb_cassandra_table_create
+  name: az cosmosdb cassandra table create
+  summary: Créez une table Cassandra sous un espace de Azure Cosmos DB Cassandra.
+  description: ''
+  syntax: >-
+    az cosmosdb cassandra table create --account-name
+                                       --keyspace-name
+                                       --name
+                                       --resource-group
+                                       --schema
+                                       [--analytical-storage-ttl]
+                                       [--max-throughput]
+                                       [--subscription]
+                                       [--throughput]
+                                       [--ttl]
+  examples:
+  - summary: Créez un Azure Cosmos DB table Cassandra.
+    syntax: az cosmosdb cassandra table create -g MyResourceGroup -a MyAccount -k MyKeyspace -n MyTable --schema @indexes-file.json --throughput "500" --ttl 1000
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --keyspace-name -k
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la table.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --schema
+    summary: 'Schéma, vous pouvez l’entrer sous la forme d’une chaîne ou d’un fichier. par exemple,--Schema @schema-file.json ou--Schema "{" Columns " : [{" Name " :" Columna "," type " :" UUID "}, {" Name " :" ColumnB "," type " :" ASCII "}]," partitionKeys " : [{" Name " :" ColonneA "}]}".'
+    description: ''
+  optionalParameters:
+  - name: --analytical-storage-ttl
+    summary: Durée de vie analytique, lorsque le stockage analytique est activé.
+    description: ''
+  - name: --max-throughput
+    summary: La ressource de débit maximale peut être mise à l’échelle (RU/s). Fourni lorsque la mise à l’échelle automatique est activée pour la ressource. La valeur minimale peut être 4000 (RU/s).
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --throughput
+    summary: Débit de la table Cassandra (RU/s). La valeur par défaut est 400. Omettez ce paramètre si l’espace de mémoire a un débit partagé, sauf si la table doit avoir un débit dédié.
+    description: ''
+  - name: --ttl
+    summary: Durée de vie par défaut. Si la valeur est absente ou définie sur « -1 », les éléments n’expirent pas. Si la valeur est définie sur « n », les éléments expirent « n » secondes après la dernière modification.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_cassandra_table_delete
+  name: az cosmosdb cassandra table delete
+  summary: Supprimez la table Cassandra sous un espace de Azure Cosmos DB Cassandra.
+  description: ''
+  syntax: >-
+    az cosmosdb cassandra table delete --account-name
+                                       --keyspace-name
+                                       --name
+                                       --resource-group
+                                       [--subscription]
+                                       [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --keyspace-name -k
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la table.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_cassandra_table_exists
+  name: az cosmosdb cassandra table exists
+  summary: Vérifie s’il existe une Azure Cosmos DB table Cassandra.
+  description: ''
+  syntax: >-
+    az cosmosdb cassandra table exists --account-name
+                                       --keyspace-name
+                                       --name
+                                       --resource-group
+                                       [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --keyspace-name -k
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la table.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_cassandra_table_list
+  name: az cosmosdb cassandra table list
+  summary: Répertorie les tables Cassandra sous un espace de Azure Cosmos DB Cassandra.
+  description: ''
+  syntax: >-
+    az cosmosdb cassandra table list --account-name
+                                     --keyspace-name
+                                     --resource-group
+                                     [--query-examples]
+                                     [--subscription]
+  examples:
+  - summary: Répertorie les tables Cassandra sous un espace de Azure Cosmos DB Cassandra. généré automatiquement
+    syntax: az cosmosdb cassandra table list --account-name MyAccount --keyspace-name MyKeyspace --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --keyspace-name -k
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_cassandra_table_show
+  name: az cosmosdb cassandra table show
+  summary: Affichez les détails d’une table Cassandra sous un espace de Azure Cosmos DB Cassandra.
+  description: ''
+  syntax: >-
+    az cosmosdb cassandra table show --account-name
+                                     --keyspace-name
+                                     --name
+                                     --resource-group
+                                     [--query-examples]
+                                     [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --keyspace-name -k
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la table.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_cassandra_table_update
+  name: az cosmosdb cassandra table update
+  summary: Mettez à jour une table Cassandra sous un espace de Azure Cosmos DB Cassandra.
+  description: ''
+  syntax: >-
+    az cosmosdb cassandra table update --account-name
+                                       --keyspace-name
+                                       --name
+                                       --resource-group
+                                       [--analytical-storage-ttl]
+                                       [--schema]
+                                       [--subscription]
+                                       [--ttl]
+  examples:
+  - summary: Mettez à jour une table Cassandra sous un espace de Azure Cosmos DB Cassandra. généré automatiquement
+    syntax: az cosmosdb cassandra table update --account-name MyAccount --keyspace-name MyKeyspace --name MyTable --resource-group MyResourceGroup --schema @indexes-file.json
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte Cosmosdb.
+    description: ''
+  - isRequired: true
+    name: --keyspace-name -k
+    summary: Nom de l’espace de noms.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la table.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --analytical-storage-ttl
+    summary: Durée de vie analytique, lorsque le stockage analytique est activé.
+    description: ''
+  - name: --schema
+    summary: 'Schéma, vous pouvez l’entrer sous la forme d’une chaîne ou d’un fichier. par exemple,--Schema @schema-file.json ou--Schema "{" Columns " : [{" Name " :" Columna "," type " :" UUID "}, {" Name " :" ColumnB "," type " :" ASCII "}]," partitionKeys " : [{" Name " :" ColonneA "}]}".'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --ttl
+    summary: Durée de vie par défaut. Si la valeur est absente ou définie sur « -1 », les éléments n’expirent pas. Si la valeur est définie sur « n », les éléments expirent « n » secondes après la dernière modification.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+commands:
+- az_cosmosdb_cassandra_table_create
+- az_cosmosdb_cassandra_table_delete
+- az_cosmosdb_cassandra_table_exists
+- az_cosmosdb_cassandra_table_list
+- az_cosmosdb_cassandra_table_show
+- az_cosmosdb_cassandra_table_throughput
+- az_cosmosdb_cassandra_table_throughput_migrate
+- az_cosmosdb_cassandra_table_throughput_show
+- az_cosmosdb_cassandra_table_throughput_update
+- az_cosmosdb_cassandra_table_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/23/2020
+  description: Gérer les tables Azure Cosmos DB Cassandra.
+  ms.openlocfilehash: 7dbff2f8bc28e1561451f97298aeafa9c2c50202
+  ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 10/27/2020
+  ms.locfileid: "102821141"

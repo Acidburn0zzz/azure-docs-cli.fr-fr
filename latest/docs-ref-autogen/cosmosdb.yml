@@ -1,0 +1,643 @@
+### YamlMime:AzureCLIGroup
+uid: az_cosmosdb
+name: az cosmosdb
+summary: Gérer les comptes de base de données Azure Cosmos DB.
+description: ''
+directCommands:
+- uid: az_cosmosdb_check_name_exists
+  name: az cosmosdb check-name-exists
+  summary: Vérifie s’il existe un nom de compte Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb check-name-exists [--ids]
+                                  [--name]
+                                  [--subscription]
+  examples:
+  - summary: Vérifie s’il existe un nom de compte Azure Cosmos DB. généré automatiquement
+    syntax: az cosmosdb check-name-exists --name MyCosmosDBDatabaseAccount
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du compte de base de données Cosmos DB.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_create
+  name: az cosmosdb create
+  summary: Crée un nouveau compte de base de données Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb create --name
+                       --resource-group
+                       [--capabilities]
+                       [--default-consistency-level {BoundedStaleness, ConsistentPrefix, Eventual, Session, Strong}]
+                       [--disable-key-based-metadata-write-access {false, true}]
+                       [--enable-analytical-storage {false, true}]
+                       [--enable-automatic-failover {false, true}]
+                       [--enable-free-tier {false, true}]
+                       [--enable-multiple-write-locations {false, true}]
+                       [--enable-public-network {false, true}]
+                       [--enable-virtual-network {false, true}]
+                       [--ip-range-filter]
+                       [--key-uri]
+                       [--kind {GlobalDocumentDB, MongoDB, Parse}]
+                       [--locations]
+                       [--max-interval]
+                       [--max-staleness-prefix]
+                       [--server-version {3.2, 3.6}]
+                       [--subscription]
+                       [--tags]
+                       [--virtual-network-rules]
+  examples:
+  - summary: Crée un nouveau compte de base de données Azure Cosmos DB. généré automatiquement
+    syntax: az cosmosdb create --name MyCosmosDBDatabaseAccount --resource-group MyResourceGroup --subscription MySubscription
+  - summary: Crée un nouveau compte de base de données Azure Cosmos DB avec deux régions. Royaume-Uni Sud est redondant dans une zone.
+    syntax: az cosmosdb create -n myaccount -g mygroup --locations regionName=eastus failoverPriority=0 isZoneRedundant=False --locations regionName=uksouth failoverPriority=1 isZoneRedundant=True --enable-multiple-write-locations
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du compte de base de données Cosmos DB.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --capabilities
+    summary: Définissez des fonctionnalités personnalisées sur le compte de base de données Cosmos DB.
+    description: ''
+  - name: --default-consistency-level
+    parameterValueGroup: BoundedStaleness, ConsistentPrefix, Eventual, Session, Strong
+    summary: Niveau de cohérence par défaut du compte de base de données Cosmos DB.
+    description: ''
+  - name: --disable-key-based-metadata-write-access
+    parameterValueGroup: false, true
+    summary: Désactivez les opérations d’écriture sur les ressources de métadonnées (bases de données, conteneurs, débit) via les clés de compte.
+    description: ''
+  - name: --enable-analytical-storage
+    parameterValueGroup: false, true
+    summary: Indicateur pour activer le stockage de journaux sur le compte.
+    description: ''
+  - name: --enable-automatic-failover
+    parameterValueGroup: false, true
+    summary: Active le basculement automatique de la région d’écriture dans les rares cas où la région n’est pas disponible en raison d’une panne. Le basculement automatique entraîne la création d’une nouvelle région d’écriture pour le compte et est choisi en fonction des priorités de basculement configurées pour le compte.
+    description: ''
+  - name: --enable-free-tier
+    parameterValueGroup: false, true
+    summary: S’il est activé, le compte est de niveau gratuit.
+    description: ''
+  - name: --enable-multiple-write-locations
+    parameterValueGroup: false, true
+    summary: Activer plusieurs emplacements d’écriture.
+    description: ''
+  - name: --enable-public-network -e
+    parameterValueGroup: false, true
+    summary: Activez ou désactivez l’accès réseau public au serveur.
+    description: ''
+  - name: --enable-virtual-network
+    parameterValueGroup: false, true
+    summary: Active le réseau virtuel sur le compte de base de données Cosmos DB.
+    description: ''
+  - name: --ip-range-filter
+    summary: Prise en charge du pare-feu.  Spécifie le jeu d’adresses IP ou des plages d’adresses IP au format CIDR pour les ajouter à la liste d’adresses IP clientes autorisées pour un compte de base de données particulier. Les plages/adresses IP doivent être séparées par des virgules et ne doivent pas contenir d’espaces.
+    description: ''
+  - name: --key-uri
+    summary: URI du coffre de clés.
+    description: ''
+  - name: --kind
+    defaultValue: GlobalDocumentDB
+    parameterValueGroup: GlobalDocumentDB, MongoDB, Parse
+    summary: Type de Cosmos DB compte de base de données à créer.
+    description: ''
+  - name: --locations
+    summary: Ajoutez un emplacement au compte de base de données Cosmos DB.
+    description: >-
+      Utilisation :--locations clé = valeur [clé = valeur...] Clés requises : regionName, failoverPriority clé facultative : isZoneRedundant par défaut : compte à région unique dans l’emplacement du groupe de ressources spécifié.
+
+      Les valeurs de priorité de basculement sont 0 pour les régions d’écriture et supérieures à 0 pour les régions de lecture. Une valeur de priorité de basculement doit être unique et inférieure au nombre total de régions.
+
+      Plusieurs emplacements peuvent être spécifiés à l’aide de plusieurs `--locations` arguments.
+  - name: --max-interval
+    defaultValue: "5"
+    summary: " Utilisée avec la cohérence en fonction de l’obsolescence, cette valeur représente la durée (en secondes) d’obsolescence tolérée. Les valeurs acceptables sont comprises entre 1 et 100."
+    description: ''
+  - name: --max-staleness-prefix
+    defaultValue: "100"
+    summary: " Utilisée avec la cohérence en fonction de l’obsolescence, cette valeur représente le nombre de requêtes d’obsolescence tolérées. La plage acceptée pour cette valeur est 1-2 147 483 647."
+    description: ''
+  - name: --server-version
+    parameterValueGroup: 3.2, 3.6
+    summary: Valide uniquement pour les comptes MongoDB.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --virtual-network-rules
+    summary: Des listes de contrôle d’accès pour le réseau virtuel.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_delete
+  name: az cosmosdb delete
+  summary: Supprime un compte de base de données Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb delete [--ids]
+                       [--name]
+                       [--resource-group]
+                       [--subscription]
+                       [--yes]
+  examples:
+  - summary: Supprime un compte de base de données Azure Cosmos DB. généré automatiquement
+    syntax: az cosmosdb delete --name MyCosmosDBDatabaseAccount --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du compte de base de données Cosmos DB.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_failover_priority_change
+  name: az cosmosdb failover-priority-change
+  summary: Modifie la priorité de basculement pour le compte de base de données Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb failover-priority-change --failover-policies
+                                         [--ids]
+                                         [--name]
+                                         [--resource-group]
+                                         [--subscription]
+  examples:
+  - summary: Modifie la priorité de basculement pour le compte de base de données Azure Cosmos DB. généré automatiquement
+    syntax: az cosmosdb failover-priority-change --failover-policies regionName=failoverPriority --name MyCosmosDBDatabaseAccount --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --failover-policies
+    summary: Stratégies de basculement séparées par des espaces au format « regionName = failoverPriority ». Par exemple, est de l’Asie-Ouest = 1.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du compte de base de données Cosmos DB.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_list
+  name: az cosmosdb list
+  summary: Répertorie Azure Cosmos DB comptes de base de données.
+  description: ''
+  syntax: >-
+    az cosmosdb list [--query-examples]
+                     [--resource-group]
+                     [--subscription]
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_list_connection_strings
+  name: az cosmosdb list-connection-strings
+  summary: Répertorie les chaînes de connexion pour un compte de base de données Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb list-connection-strings [--ids]
+                                        [--name]
+                                        [--resource-group]
+                                        [--subscription]
+  examples:
+  - summary: Répertorie les chaînes de connexion pour un compte de base de données Azure Cosmos DB. généré automatiquement
+    syntax: az cosmosdb list-connection-strings --name MyCosmosDBDatabaseAccount --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du compte de base de données Cosmos DB.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_list_keys
+  name: az cosmosdb list-keys
+  summary: Répertorie les clés d’accès pour un compte de base de données Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb list-keys [--ids]
+                          [--name]
+                          [--resource-group]
+                          [--subscription]
+  examples:
+  - summary: Répertorie les clés d’accès pour un compte de base de données Azure Cosmos DB. généré automatiquement
+    syntax: az cosmosdb list-keys --name MyCosmosDBDatabaseAccount --resource-group MyResourceGroup --subscription MySubscription
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du compte de base de données Cosmos DB.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_list_read_only_keys
+  name: az cosmosdb list-read-only-keys
+  summary: Répertorier les clés d’accès en lecture seule pour un compte de base de données Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb list-read-only-keys [--ids]
+                                    [--name]
+                                    [--resource-group]
+                                    [--subscription]
+  examples:
+  - summary: Répertorier les clés d’accès en lecture seule pour un compte de base de données Azure Cosmos DB. généré automatiquement
+    syntax: az cosmosdb list-read-only-keys --name MyCosmosDBDatabaseAccount --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du compte de base de données Cosmos DB.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_regenerate_key
+  name: az cosmosdb regenerate-key
+  summary: Régénérez une clé d’accès pour un compte de base de données Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb regenerate-key --key-kind {primary, primaryReadonly, secondary, secondaryReadonly}
+                               [--ids]
+                               [--name]
+                               [--resource-group]
+                               [--subscription]
+  examples:
+  - summary: Régénérez une clé d’accès pour un compte de base de données Azure Cosmos DB. généré automatiquement
+    syntax: az cosmosdb regenerate-key --key-kind primary --name MyCosmosDBDatabaseAccount --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --key-kind
+    parameterValueGroup: primary, primaryReadonly, secondary, secondaryReadonly
+    summary: Clé d’accès à régénérer.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du compte de base de données Cosmos DB.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_show
+  name: az cosmosdb show
+  summary: Obtient les détails d’un compte de base de données Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb show [--ids]
+                     [--name]
+                     [--query-examples]
+                     [--resource-group]
+                     [--subscription]
+  examples:
+  - summary: Obtient les détails d’un compte de base de données Azure Cosmos DB. généré automatiquement
+    syntax: az cosmosdb show --name MyCosmosDBDatabaseAccount --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom du compte de base de données Cosmos DB.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_update
+  name: az cosmosdb update
+  summary: Mettez à jour un compte de base de données Azure Cosmos DB.
+  description: ''
+  syntax: >-
+    az cosmosdb update [--capabilities]
+                       [--default-consistency-level {BoundedStaleness, ConsistentPrefix, Eventual, Session, Strong}]
+                       [--disable-key-based-metadata-write-access {false, true}]
+                       [--enable-analytical-storage {false, true}]
+                       [--enable-automatic-failover {false, true}]
+                       [--enable-multiple-write-locations {false, true}]
+                       [--enable-public-network {false, true}]
+                       [--enable-virtual-network {false, true}]
+                       [--ids]
+                       [--ip-range-filter]
+                       [--locations]
+                       [--max-interval]
+                       [--max-staleness-prefix]
+                       [--name]
+                       [--resource-group]
+                       [--subscription]
+                       [--tags]
+                       [--virtual-network-rules]
+  examples:
+  - summary: Mettez à jour un compte de base de données Azure Cosmos DB. généré automatiquement
+    syntax: az cosmosdb update --capabilities EnableGremlin --name MyCosmosDBDatabaseAccount --resource-group MyResourceGroup
+  - summary: Crée un nouveau compte de base de données Azure Cosmos DB avec deux régions. Royaume-Uni Sud est redondant dans une zone.
+    syntax: az cosmosdb update -n myaccount -g mygroup --locations regionName=eastus failoverPriority=0 isZoneRedundant=False --locations regionName=uksouth failoverPriority=1 isZoneRedundant=True --enable-multiple-write-locations
+  optionalParameters:
+  - name: --capabilities
+    summary: Définissez des fonctionnalités personnalisées sur le compte de base de données Cosmos DB.
+    description: ''
+  - name: --default-consistency-level
+    parameterValueGroup: BoundedStaleness, ConsistentPrefix, Eventual, Session, Strong
+    summary: Niveau de cohérence par défaut du compte de base de données Cosmos DB.
+    description: ''
+  - name: --disable-key-based-metadata-write-access
+    parameterValueGroup: false, true
+    summary: Désactivez les opérations d’écriture sur les ressources de métadonnées (bases de données, conteneurs, débit) via les clés de compte.
+    description: ''
+  - name: --enable-analytical-storage
+    parameterValueGroup: false, true
+    summary: Indicateur pour activer le stockage de journaux sur le compte.
+    description: ''
+  - name: --enable-automatic-failover
+    parameterValueGroup: false, true
+    summary: Active le basculement automatique de la région d’écriture dans les rares cas où la région n’est pas disponible en raison d’une panne. Le basculement automatique entraîne la création d’une nouvelle région d’écriture pour le compte et est choisi en fonction des priorités de basculement configurées pour le compte.
+    description: ''
+  - name: --enable-multiple-write-locations
+    parameterValueGroup: false, true
+    summary: Activer plusieurs emplacements d’écriture.
+    description: ''
+  - name: --enable-public-network -e
+    parameterValueGroup: false, true
+    summary: Activez ou désactivez l’accès réseau public au serveur.
+    description: ''
+  - name: --enable-virtual-network
+    parameterValueGroup: false, true
+    summary: Active le réseau virtuel sur le compte de base de données Cosmos DB.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --ip-range-filter
+    summary: Prise en charge du pare-feu.  Spécifie le jeu d’adresses IP ou des plages d’adresses IP au format CIDR pour les ajouter à la liste d’adresses IP clientes autorisées pour un compte de base de données particulier. Les plages/adresses IP doivent être séparées par des virgules et ne doivent pas contenir d’espaces.
+    description: ''
+  - name: --locations
+    summary: Ajoutez un emplacement au compte de base de données Cosmos DB.
+    description: >-
+      Utilisation :--locations clé = valeur [clé = valeur...] Clés requises : regionName, failoverPriority clé facultative : isZoneRedundant par défaut : compte à région unique dans l’emplacement du groupe de ressources spécifié.
+
+      Les valeurs de priorité de basculement sont 0 pour les régions d’écriture et supérieures à 0 pour les régions de lecture. Une valeur de priorité de basculement doit être unique et inférieure au nombre total de régions.
+
+      Plusieurs emplacements peuvent être spécifiés à l’aide de plusieurs `--locations` arguments.
+  - name: --max-interval
+    summary: " Utilisée avec la cohérence en fonction de l’obsolescence, cette valeur représente la durée (en secondes) d’obsolescence tolérée. Les valeurs acceptables sont comprises entre 1 et 100."
+    description: ''
+  - name: --max-staleness-prefix
+    summary: " Utilisée avec la cohérence en fonction de l’obsolescence, cette valeur représente le nombre de requêtes d’obsolescence tolérées. La plage acceptée pour cette valeur est 1-2 147 483 647."
+    description: ''
+  - name: --name -n
+    summary: Nom du compte de base de données Cosmos DB.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --virtual-network-rules
+    summary: Des listes de contrôle d’accès pour le réseau virtuel.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+commands:
+- az_cosmosdb_cassandra
+- az_cosmosdb_cassandra_keyspace
+- az_cosmosdb_cassandra_keyspace_create
+- az_cosmosdb_cassandra_keyspace_delete
+- az_cosmosdb_cassandra_keyspace_exists
+- az_cosmosdb_cassandra_keyspace_list
+- az_cosmosdb_cassandra_keyspace_show
+- az_cosmosdb_cassandra_keyspace_throughput
+- az_cosmosdb_cassandra_keyspace_throughput_migrate
+- az_cosmosdb_cassandra_keyspace_throughput_show
+- az_cosmosdb_cassandra_keyspace_throughput_update
+- az_cosmosdb_cassandra_table
+- az_cosmosdb_cassandra_table_create
+- az_cosmosdb_cassandra_table_delete
+- az_cosmosdb_cassandra_table_exists
+- az_cosmosdb_cassandra_table_list
+- az_cosmosdb_cassandra_table_show
+- az_cosmosdb_cassandra_table_throughput
+- az_cosmosdb_cassandra_table_throughput_migrate
+- az_cosmosdb_cassandra_table_throughput_show
+- az_cosmosdb_cassandra_table_throughput_update
+- az_cosmosdb_cassandra_table_update
+- az_cosmosdb_check_name_exists
+- az_cosmosdb_collection
+- az_cosmosdb_collection_create
+- az_cosmosdb_collection_delete
+- az_cosmosdb_collection_exists
+- az_cosmosdb_collection_list
+- az_cosmosdb_collection_show
+- az_cosmosdb_collection_update
+- az_cosmosdb_create
+- az_cosmosdb_database
+- az_cosmosdb_database_create
+- az_cosmosdb_database_delete
+- az_cosmosdb_database_exists
+- az_cosmosdb_database_list
+- az_cosmosdb_database_show
+- az_cosmosdb_delete
+- az_cosmosdb_failover_priority_change
+- az_cosmosdb_gremlin
+- az_cosmosdb_gremlin_database
+- az_cosmosdb_gremlin_database_create
+- az_cosmosdb_gremlin_database_delete
+- az_cosmosdb_gremlin_database_exists
+- az_cosmosdb_gremlin_database_list
+- az_cosmosdb_gremlin_database_show
+- az_cosmosdb_gremlin_database_throughput
+- az_cosmosdb_gremlin_database_throughput_migrate
+- az_cosmosdb_gremlin_database_throughput_show
+- az_cosmosdb_gremlin_database_throughput_update
+- az_cosmosdb_gremlin_graph
+- az_cosmosdb_gremlin_graph_create
+- az_cosmosdb_gremlin_graph_delete
+- az_cosmosdb_gremlin_graph_exists
+- az_cosmosdb_gremlin_graph_list
+- az_cosmosdb_gremlin_graph_show
+- az_cosmosdb_gremlin_graph_throughput
+- az_cosmosdb_gremlin_graph_throughput_migrate
+- az_cosmosdb_gremlin_graph_throughput_show
+- az_cosmosdb_gremlin_graph_throughput_update
+- az_cosmosdb_gremlin_graph_update
+- az_cosmosdb_keys
+- az_cosmosdb_keys_list
+- az_cosmosdb_keys_regenerate
+- az_cosmosdb_list
+- az_cosmosdb_list_connection_strings
+- az_cosmosdb_list_keys
+- az_cosmosdb_list_read_only_keys
+- az_cosmosdb_mongodb
+- az_cosmosdb_mongodb_collection
+- az_cosmosdb_mongodb_collection_create
+- az_cosmosdb_mongodb_collection_delete
+- az_cosmosdb_mongodb_collection_exists
+- az_cosmosdb_mongodb_collection_list
+- az_cosmosdb_mongodb_collection_show
+- az_cosmosdb_mongodb_collection_throughput
+- az_cosmosdb_mongodb_collection_throughput_migrate
+- az_cosmosdb_mongodb_collection_throughput_show
+- az_cosmosdb_mongodb_collection_throughput_update
+- az_cosmosdb_mongodb_collection_update
+- az_cosmosdb_mongodb_database
+- az_cosmosdb_mongodb_database_create
+- az_cosmosdb_mongodb_database_delete
+- az_cosmosdb_mongodb_database_exists
+- az_cosmosdb_mongodb_database_list
+- az_cosmosdb_mongodb_database_show
+- az_cosmosdb_mongodb_database_throughput
+- az_cosmosdb_mongodb_database_throughput_migrate
+- az_cosmosdb_mongodb_database_throughput_show
+- az_cosmosdb_mongodb_database_throughput_update
+- az_cosmosdb_network_rule
+- az_cosmosdb_network_rule_add
+- az_cosmosdb_network_rule_list
+- az_cosmosdb_network_rule_remove
+- az_cosmosdb_private_endpoint_connection
+- az_cosmosdb_private_endpoint_connection_approve
+- az_cosmosdb_private_endpoint_connection_delete
+- az_cosmosdb_private_endpoint_connection_reject
+- az_cosmosdb_private_endpoint_connection_show
+- az_cosmosdb_private_link_resource
+- az_cosmosdb_private_link_resource_list
+- az_cosmosdb_regenerate_key
+- az_cosmosdb_show
+- az_cosmosdb_sql
+- az_cosmosdb_sql_container
+- az_cosmosdb_sql_container_create
+- az_cosmosdb_sql_container_delete
+- az_cosmosdb_sql_container_exists
+- az_cosmosdb_sql_container_list
+- az_cosmosdb_sql_container_show
+- az_cosmosdb_sql_container_throughput
+- az_cosmosdb_sql_container_throughput_migrate
+- az_cosmosdb_sql_container_throughput_show
+- az_cosmosdb_sql_container_throughput_update
+- az_cosmosdb_sql_container_update
+- az_cosmosdb_sql_database
+- az_cosmosdb_sql_database_create
+- az_cosmosdb_sql_database_delete
+- az_cosmosdb_sql_database_exists
+- az_cosmosdb_sql_database_list
+- az_cosmosdb_sql_database_show
+- az_cosmosdb_sql_database_throughput
+- az_cosmosdb_sql_database_throughput_migrate
+- az_cosmosdb_sql_database_throughput_show
+- az_cosmosdb_sql_database_throughput_update
+- az_cosmosdb_sql_stored_procedure
+- az_cosmosdb_sql_stored_procedure_create
+- az_cosmosdb_sql_stored_procedure_delete
+- az_cosmosdb_sql_stored_procedure_list
+- az_cosmosdb_sql_stored_procedure_show
+- az_cosmosdb_sql_stored_procedure_update
+- az_cosmosdb_sql_trigger
+- az_cosmosdb_sql_trigger_create
+- az_cosmosdb_sql_trigger_delete
+- az_cosmosdb_sql_trigger_list
+- az_cosmosdb_sql_trigger_show
+- az_cosmosdb_sql_trigger_update
+- az_cosmosdb_sql_user_defined_function
+- az_cosmosdb_sql_user_defined_function_create
+- az_cosmosdb_sql_user_defined_function_delete
+- az_cosmosdb_sql_user_defined_function_list
+- az_cosmosdb_sql_user_defined_function_show
+- az_cosmosdb_sql_user_defined_function_update
+- az_cosmosdb_table
+- az_cosmosdb_table_create
+- az_cosmosdb_table_delete
+- az_cosmosdb_table_exists
+- az_cosmosdb_table_list
+- az_cosmosdb_table_show
+- az_cosmosdb_table_throughput
+- az_cosmosdb_table_throughput_migrate
+- az_cosmosdb_table_throughput_show
+- az_cosmosdb_table_throughput_update
+- az_cosmosdb_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/23/2020
+  description: Gérer les comptes de base de données Azure Cosmos DB.
+  ms.openlocfilehash: ba009f1423500e49772759ee10ffb0c7fba88824
+  ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 10/27/2020
+  ms.locfileid: "102821132"
