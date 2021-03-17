@@ -1,0 +1,263 @@
+### YamlMime:AzureCLIGroup
+uid: ext_synapse_az_synapse_workspace
+name: az synapse workspace
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Synapse** pour Azure CLI et requiert la version 2.0.67 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Synapse Workspace** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les espaces de travail synapse.
+description: ''
+directCommands:
+- uid: ext_synapse_az_synapse_workspace_check_name
+  name: az synapse workspace check-name
+  summary: Vérifiez si un nom d’espace de travail Synapse est disponible ou non.
+  description: ''
+  syntax: az synapse workspace check-name --name
+  examples:
+  - summary: Vérifiez si un nom d’espace de travail Synapse est disponible ou non.
+    syntax: az synapse workspace check-name --name testsynapseworkspace
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom que vous souhaitez vérifier.
+    description: ''
+- uid: ext_synapse_az_synapse_workspace_create
+  name: az synapse workspace create
+  summary: Créer un espace de travail synapse.
+  description: ''
+  syntax: >-
+    az synapse workspace create --file-system
+                                --location
+                                --name
+                                --resource-group
+                                --sql-admin-login-password
+                                --sql-admin-login-user
+                                --storage-account
+                                [--no-wait]
+                                [--tags]
+  examples:
+  - summary: Créer un espace de travail Synapse
+    syntax: >-
+      az synapse workspace create --name fromcli4 --resource-group rg \
+        --storage-account testadlsgen2 --file-system testfilesystem \
+        --sql-admin-login-user cliuser1 --sql-admin-login-password Password123! --location "East US"
+  - summary: Créer un espace de travail synapse avec l’ID de ressource de stockage
+    syntax: >-
+      az synapse workspace create --name fromcli4 --resource-group rg \
+        --storage-account /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.Storage/storageAccounts/testadlsgen2 --file-system testfilesystem \
+        --sql-admin-login-user cliuser1 --sql-admin-login-password Password123! --location "East US"
+  requiredParameters:
+  - isRequired: true
+    name: --file-system
+    summary: Le système de fichiers du compte de stockage Data Lake.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’espace de travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --sql-admin-login-password -p
+    summary: Mot de passe de connexion de l’administrateur SQL.
+    description: ''
+  - isRequired: true
+    name: --sql-admin-login-user -u
+    summary: Nom d’utilisateur de connexion de l’administrateur SQL.
+    description: ''
+  - isRequired: true
+    name: --storage-account
+    summary: Nom du compte de stockage Data Lake ou ID de ressource.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_synapse_az_synapse_workspace_delete
+  name: az synapse workspace delete
+  summary: Supprimer un espace de travail synapse.
+  description: ''
+  syntax: >-
+    az synapse workspace delete --name
+                                --resource-group
+                                [--no-wait]
+                                [--yes]
+  examples:
+  - summary: Supprimer un espace de travail synapse.
+    syntax: az synapse workspace delete --name testsynapseworkspace --resource-group rg
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’espace de travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_synapse_az_synapse_workspace_list
+  name: az synapse workspace list
+  summary: Répertorie tous les espaces de travail synapse.
+  description: ''
+  syntax: az synapse workspace list [--resource-group]
+  examples:
+  - summary: Répertorier tous les espaces de travail Synapse sous un abonnement
+    syntax: az synapse workspace list
+  - summary: Répertorier tous les espaces de travail Synapse sous un groupe de ressources spécifique
+    syntax: az synapse workspace list --resource-group rg
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_synapse_az_synapse_workspace_show
+  name: az synapse workspace show
+  summary: Obtenir un espace de travail synapse.
+  description: ''
+  syntax: >-
+    az synapse workspace show --name
+                              --resource-group
+  examples:
+  - summary: Obtenir un espace de travail synapse.
+    syntax: az synapse workspace show --name testsynapseworkspace --resource-group rg
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’espace de travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_synapse_az_synapse_workspace_update
+  name: az synapse workspace update
+  summary: Mettre à jour un espace de travail synapse.
+  description: ''
+  syntax: >-
+    az synapse workspace update --name
+                                --resource-group
+                                [--no-wait]
+                                [--sql-admin-login-password]
+                                [--tags]
+  examples:
+  - summary: Mettre à jour un espace de travail Synapse
+    syntax: >-
+      az synapse workspace update --name fromcli4 --resource-group rg \
+        --tags key1=value1
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’espace de travail.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --sql-admin-login-password -p
+    summary: Mot de passe de connexion de l’administrateur SQL.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_synapse_az_synapse_workspace_wait
+  name: az synapse workspace wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de l’espace de travail soit remplie.
+  description: ''
+  syntax: >-
+    az synapse workspace wait --resource-group
+                              --workspace-name
+                              [--created]
+                              [--custom]
+                              [--deleted]
+                              [--exists]
+                              [--interval]
+                              [--timeout]
+                              [--updated]
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- ext_synapse_az_synapse_workspace_check_name
+- ext_synapse_az_synapse_workspace_create
+- ext_synapse_az_synapse_workspace_delete
+- ext_synapse_az_synapse_workspace_firewall_rule
+- ext_synapse_az_synapse_workspace_firewall_rule_create
+- ext_synapse_az_synapse_workspace_firewall_rule_delete
+- ext_synapse_az_synapse_workspace_firewall_rule_list
+- ext_synapse_az_synapse_workspace_firewall_rule_show
+- ext_synapse_az_synapse_workspace_firewall_rule_wait
+- ext_synapse_az_synapse_workspace_list
+- ext_synapse_az_synapse_workspace_show
+- ext_synapse_az_synapse_workspace_update
+- ext_synapse_az_synapse_workspace_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les espaces de travail synapse.
+  ms.openlocfilehash: 059e7c4f4d5dd9f1d9b45fdb6c60a09f9852ce1b
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102835892"
