@@ -1,0 +1,223 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_dt_twin_relationship
+name: az dt twin relationship
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ DT double Relationship** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérez et configurez les relations de fils numériques d’une instance Digital représentations.
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_dt_twin_relationship_create
+  name: az dt twin relationship create
+  summary: Créer une relation entre la source et la cible numérique représentations.
+  description: --les propriétés peuvent être inline JSON ou le chemin d’accès au fichier.
+  syntax: >-
+    az dt twin relationship create --dt-name
+                                   --kind
+                                   --relationship-id
+                                   --source
+                                   --target
+                                   [--properties]
+                                   [--resource-group]
+  examples:
+  - summary: Créer une relation entre deux représentations numériques.
+    syntax: az dt twin relationship create -n {instance_or_hostname} --relationship-id {relationship_id} --relationship contains --twin-id {source_twin_id} --target {target_twin_id}
+  - summary: Créez une relation avec des propriétés initialisées entre deux représentations numériques.
+    syntax: "az dt twin relationship create -n {instance_or_hostname} --relationship-id {relationship_id} --relationship contains --twin-id {source_twin_id} --target {target_twin_id} --properties '{\"ownershipUser\": \"me\", \"ownershipDepartment\": \"Computer Science\"}'"
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --kind --relationship
+    summary: "Nom ou genre de la relation. Par exemple : 'Contains'."
+    description: ''
+  - isRequired: true
+    name: --relationship-id -r
+    summary: ID de relation.
+    description: ''
+  - isRequired: true
+    name: --source --twin-id -t
+    summary: ID de représentation source pour une relation.
+    description: ''
+  - isRequired: true
+    name: --target --target-twin-id
+    summary: ID de représentation cible d’une relation.
+    description: ''
+  optionalParameters:
+  - name: --properties -p
+    summary: Valeurs de propriété initiales pour l’instanciation d’une relation de fils numériques. Fournissez un chemin de fichier ou un JSON en ligne.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_twin_relationship_delete
+  name: az dt twin relationship delete
+  summary: Supprimer une relation de fils numériques sur une instance Digital représentations.
+  description: ''
+  syntax: >-
+    az dt twin relationship delete --dt-name
+                                   --relationship-id
+                                   --source
+                                   [--resource-group]
+  examples:
+  - summary: Supprimer une relation de fils numériques.
+    syntax: az dt twin relationship delete -n {instance_or_hostname} --twin-id {twin_id} --relationship-id {relationship_id}
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --relationship-id -r
+    summary: ID de relation.
+    description: ''
+  - isRequired: true
+    name: --source --twin-id -t
+    summary: ID de représentation source pour une relation.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_twin_relationship_list
+  name: az dt twin relationship list
+  summary: Répertorier les relations d’une représentation numérique.
+  description: ''
+  syntax: >-
+    az dt twin relationship list --dt-name
+                                 --source
+                                 [--incoming {false, true}]
+                                 [--kind]
+                                 [--resource-group]
+  examples:
+  - summary: Répertorier les relations sortantes d’une représentation numérique.
+    syntax: az dt twin relationship list -n {instance_or_hostname} --twin-id {twin_id}
+  - summary: Répertorier les relations sortantes d’une représentation numérique et un filtre sur la relation’Contains'
+    syntax: az dt twin relationship list -n {instance_or_hostname} --twin-id {twin_id} --relationship contains
+  - summary: Répertorier les relations entrantes d’une représentation numérique.
+    syntax: az dt twin relationship list -n {instance_or_hostname} --twin-id {twin_id} --incoming
+  - summary: Répertorier les relations entrantes d’une représentation numérique et un filtre sur la relation’Contains'.
+    syntax: az dt twin relationship list -n {instance_or_hostname} --twin-id {twin_id} --relationship contains --incoming
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --source --twin-id -t
+    summary: ID de représentation source pour une relation.
+    description: ''
+  optionalParameters:
+  - name: --incoming
+    parameterValueGroup: false, true
+    summary: Récupère toutes les relations entrantes pour une représentation numérique.
+    description: ''
+  - name: --kind --relationship
+    summary: Filtrer le résultat selon le type de relation.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_twin_relationship_show
+  name: az dt twin relationship show
+  summary: Affichez les détails d’une relation de représentation numérique.
+  description: ''
+  syntax: >-
+    az dt twin relationship show --dt-name
+                                 --relationship-id
+                                 --source
+                                 [--resource-group]
+  examples:
+  - summary: Affichez les détails d’une relation de représentation numérique.
+    syntax: az dt twin relationship show -n {instance_or_hostname} --twin-id {twin_id} --relationship-id {relationship_id}
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --relationship-id -r
+    summary: ID de relation.
+    description: ''
+  - isRequired: true
+    name: --source --twin-id -t
+    summary: ID de représentation source pour une relation.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_azure-iot_az_dt_twin_relationship_update
+  name: az dt twin relationship update
+  summary: Met à jour les propriétés d’une relation entre deux représentations numériques via la spécification de correctif JSON.
+  description: Les opérations sont limitées à l’ajout, au remplacement et à la suppression.
+  syntax: >-
+    az dt twin relationship update --dt-name
+                                   --json-patch
+                                   --relationship-id
+                                   --source
+                                   [--resource-group]
+  examples:
+  - summary: Mettre à jour une relation de fils numériques via une spécification de correctif JSON.
+    syntax: "az dt twin relationship update -n {instance_or_hostname} --twin-id {twin_id} --relationship-id {relationship_id} --relationship contains --json-patch '{\"op\":\"replace\", \"path\":\"/Temperature\", \"value\": 20.5}'"
+  - summary: Mettre à jour une relation de fils numériques via une spécification de correctif JSON.
+    syntax: >-
+      az dt twin relationship update -n {instance_or_hostname} --twin-id {twin_id} --relationship-id {relationship_id} --relationship contains --json-patch '[
+        {"op":"replace", "path":"/Temperature", "value": 20.5},
+        {"op":"add", "path":"/Areas", "value": ["ControlSystem"]}
+      ]'
+  - summary: Mettre à jour une relation de fils numériques via une spécification de correctif JSON définie dans un fichier.
+    syntax: az dt twin relationship update -n {instance_or_hostname} --twin-id {twin_id} --relationship-id {relationship_id} --relationship contains --json-patch ./my/patch/document.json
+  requiredParameters:
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --json-patch --patch
+    summary: Spécification de mise à jour décrite par JSON-patch. Les mises à jour apportées aux valeurs de propriété et $model éléments peuvent se produire dans la même requête. Les opérations sont limitées à l’ajout, au remplacement et à la suppression. Fournissez un chemin de fichier ou un JSON en ligne.
+    description: ''
+  - isRequired: true
+    name: --relationship-id -r
+    summary: ID de relation.
+    description: ''
+  - isRequired: true
+    name: --source --twin-id -t
+    summary: ID de représentation source pour une relation.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- ext_azure-iot_az_dt_twin_relationship_create
+- ext_azure-iot_az_dt_twin_relationship_delete
+- ext_azure-iot_az_dt_twin_relationship_list
+- ext_azure-iot_az_dt_twin_relationship_show
+- ext_azure-iot_az_dt_twin_relationship_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérez et configurez les relations de fils numériques d’une instance Digital représentations.
+  ms.openlocfilehash: 5ae18cc15c75c27c73db87db784f0c8b20657557
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102831884"
