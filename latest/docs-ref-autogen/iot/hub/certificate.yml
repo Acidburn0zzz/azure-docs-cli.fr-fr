@@ -1,0 +1,309 @@
+### YamlMime:AzureCLIGroup
+uid: az_iot_hub_certificate
+name: az iot hub certificate
+summary: Gérer les certificats de IoT Hub.
+description: ''
+directCommands:
+- uid: az_iot_hub_certificate_create
+  name: az iot hub certificate create
+  summary: Créez/Téléchargez un certificat Azure IoT Hub.
+  description: Pour obtenir une explication détaillée des certificats d’autorité de certification dans Azure IoT Hub, consultez <a href="https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview">https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview</a> .
+  syntax: >-
+    az iot hub certificate create --hub-name
+                                  --name
+                                  --path
+                                  [--resource-group]
+                                  [--subscription]
+  examples:
+  - summary: Charge un fichier PEM de certificat d’autorité de certification sur un IoT Hub.
+    syntax: az iot hub certificate create --hub-name MyIotHub --name MyCertificate --path /certificates/Certificate.pem
+  - summary: Charge un fichier CER de certificat d’autorité de certification sur un IoT Hub.
+    syntax: az iot hub certificate create --hub-name MyIotHub --name MyCertificate --path /certificates/Certificate.cer
+  - summary: Créer/télécharger un certificat Azure IoT Hub (généré automatiquement)
+    syntax: az iot hub certificate create --hub-name MyIotHub --name MyCertificate --path /certificates/Certificate.cer --resource-group MyResourceGroup --subscription MySubscription
+  requiredParameters:
+  - isRequired: true
+    name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial du certificat.
+    description: ''
+  - isRequired: true
+    name: --path -p
+    summary: Chemin d’accès au fichier contenant le certificat.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_hub_certificate_delete
+  name: az iot hub certificate delete
+  summary: Supprime un certificat de IoT Hub Azure.
+  description: Pour obtenir une explication détaillée des certificats d’autorité de certification dans Azure IoT Hub, consultez <a href="https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview">https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview</a> .
+  syntax: >-
+    az iot hub certificate delete --etag
+                                  --name
+                                  [--hub-name]
+                                  [--ids]
+                                  [--resource-group]
+                                  [--subscription]
+  examples:
+  - summary: Supprime MyCertificate
+    syntax: az iot hub certificate delete --hub-name MyIotHub --name MyCertificate --etag AAAAAAAAAAA=
+  requiredParameters:
+  - isRequired: true
+    name: --etag -e
+    summary: Balise d’entité (ETag) de l’objet.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial du certificat.
+    description: ''
+  optionalParameters:
+  - name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_hub_certificate_generate_verification_code
+  name: az iot hub certificate generate-verification-code
+  summary: Génère un code de vérification pour un certificat de IoT Hub Azure.
+  description: Ce code de vérification est utilisé pour terminer l’étape de preuve de possession d’un certificat. Utilisez ce code de vérification en tant que nom commun d’un nouveau certificat signé avec la clé privée certificats racine. Pour obtenir une explication détaillée des certificats d’autorité de certification dans Azure IoT Hub, consultez <a href="https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview">https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview</a> .
+  syntax: >-
+    az iot hub certificate generate-verification-code --etag
+                                                      --name
+                                                      [--hub-name]
+                                                      [--ids]
+                                                      [--resource-group]
+                                                      [--subscription]
+  examples:
+  - summary: Génère un code de vérification pour MyCertificate
+    syntax: az iot hub certificate generate-verification-code --hub-name MyIotHub --name MyCertificate --etag AAAAAAAAAAA=
+  - summary: Génère un code de vérification pour un certificat Azure IoT Hub (généré automatiquement)
+    syntax: az iot hub certificate generate-verification-code --etag AAAAAAAAAAA= --hub-name MyIotHub --name MyCertificate --resource-group MyResourceGroup --subscription MySubscription
+  requiredParameters:
+  - isRequired: true
+    name: --etag -e
+    summary: Balise d’entité (ETag) de l’objet.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial du certificat.
+    description: ''
+  optionalParameters:
+  - name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_hub_certificate_list
+  name: az iot hub certificate list
+  summary: Répertorie tous les certificats contenus dans un IoT Hub Azure.
+  description: Pour obtenir une explication détaillée des certificats d’autorité de certification dans Azure IoT Hub, consultez <a href="https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview">https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview</a> .
+  syntax: >-
+    az iot hub certificate list [--hub-name]
+                                [--ids]
+                                [--query-examples]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: Répertorier tous les certificats dans MyIotHub
+    syntax: az iot hub certificate list --hub-name MyIotHub
+  optionalParameters:
+  - name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_hub_certificate_show
+  name: az iot hub certificate show
+  summary: Affiche des informations sur un certificat Azure IoT Hub particulier.
+  description: Pour obtenir une explication détaillée des certificats d’autorité de certification dans Azure IoT Hub, consultez <a href="https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview">https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview</a> .
+  syntax: >-
+    az iot hub certificate show --name
+                                [--hub-name]
+                                [--ids]
+                                [--query-examples]
+                                [--resource-group]
+                                [--subscription]
+  examples:
+  - summary: Afficher les détails sur MyCertificate
+    syntax: az iot hub certificate show --hub-name MyIotHub --name MyCertificate
+  - summary: Affiche des informations sur un certificat Azure IoT Hub particulier (généré automatiquement)
+    syntax: az iot hub certificate show --hub-name MyIotHub --name MyCertificate --resource-group MyResourceGroup --subscription MySubscription
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial du certificat.
+    description: ''
+  optionalParameters:
+  - name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_hub_certificate_update
+  name: az iot hub certificate update
+  summary: Mettre à jour un certificat de IoT Hub Azure.
+  description: Charge un nouveau certificat pour remplacer le certificat existant par le même nom. Pour obtenir une explication détaillée des certificats d’autorité de certification dans Azure IoT Hub, consultez <a href="https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview">https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview</a> .
+  syntax: >-
+    az iot hub certificate update --etag
+                                  --name
+                                  --path
+                                  [--hub-name]
+                                  [--ids]
+                                  [--resource-group]
+                                  [--subscription]
+  examples:
+  - summary: Met à jour un certificat d’autorité de certification dans un IoT Hub en chargeant un nouveau fichier PEM.
+    syntax: az iot hub certificate update --hub-name MyIotHub --name MyCertificate --path /certificates/NewCertificate.pem --etag AAAAAAAAAAA=
+  - summary: Met à jour un certificat d’autorité de certification dans un IoT Hub en chargeant un nouveau fichier CER.
+    syntax: az iot hub certificate update --hub-name MyIotHub --name MyCertificate --path /certificates/NewCertificate.cer --etag AAAAAAAAAAA=
+  requiredParameters:
+  - isRequired: true
+    name: --etag -e
+    summary: Balise d’entité (ETag) de l’objet.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial du certificat.
+    description: ''
+  - isRequired: true
+    name: --path -p
+    summary: Chemin d’accès au fichier contenant le certificat.
+    description: ''
+  optionalParameters:
+  - name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+- uid: az_iot_hub_certificate_verify
+  name: az iot hub certificate verify
+  summary: Vérifie un certificat de IoT Hub Azure.
+  description: Vérifie un certificat en chargeant un certificat de vérification contenant le code de vérification obtenu en appelant la génération de code de vérification. Il s’agit de la dernière étape du processus de preuve de possession. Pour obtenir une explication détaillée des certificats d’autorité de certification dans Azure IoT Hub, consultez <a href="https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview">https://docs.microsoft.com/azure/iot-hub/iot-hub-x509ca-overview</a> .
+  syntax: >-
+    az iot hub certificate verify --etag
+                                  --name
+                                  --path
+                                  [--hub-name]
+                                  [--ids]
+                                  [--resource-group]
+                                  [--subscription]
+  examples:
+  - summary: Vérifie la propriété de la clé privée MyCertificate.
+    syntax: az iot hub certificate verify --hub-name MyIotHub --name MyCertificate --path /certificates/Verification.pem --etag AAAAAAAAAAA=
+  - summary: Vérifie un certificat Azure IoT Hub (généré automatiquement)
+    syntax: az iot hub certificate verify --etag AAAAAAAAAAA= --hub-name MyIotHub --name MyCertificate --path /certificates/Verification.pem --resource-group MyResourceGroup --subscription MySubscription
+  requiredParameters:
+  - isRequired: true
+    name: --etag -e
+    summary: Balise d’entité (ETag) de l’objet.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom convivial du certificat.
+    description: ''
+  - isRequired: true
+    name: --path -p
+    summary: Chemin d’accès au fichier contenant le certificat.
+    description: ''
+  optionalParameters:
+  - name: --hub-name
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/iot/_help.py
+commands:
+- az_iot_hub_certificate_create
+- az_iot_hub_certificate_delete
+- az_iot_hub_certificate_generate_verification_code
+- az_iot_hub_certificate_list
+- az_iot_hub_certificate_show
+- az_iot_hub_certificate_update
+- az_iot_hub_certificate_verify
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/14/2021
+  description: Gérer les certificats de IoT Hub.
+  ms.openlocfilehash: dddad1b94ce06b960706738567db5e90c523c42f
+  ms.sourcegitcommit: 59f08c5a7a967fa68adb9eefbf5beb92acda9e08
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 01/19/2021
+  ms.locfileid: "102844234"

@@ -1,0 +1,185 @@
+### YamlMime:AzureCLIGroup
+uid: ext_log-analytics-solution_az_monitor_log_analytics_solution
+name: az monitor log-analytics solution
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **log-Analytics-solution** pour Azure CLI et requiert la version 2.3.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Monitor log-Analytics solution** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer la solution analyser les journaux d’analyse.
+description: ''
+directCommands:
+- uid: ext_log-analytics-solution_az_monitor_log_analytics_solution_create
+  name: az monitor log-analytics solution create
+  summary: Créer une solution log-Analytics.
+  description: ''
+  syntax: >-
+    az monitor log-analytics solution create --resource-group
+                                             --solution-type
+                                             --workspace
+                                             [--name]
+                                             [--no-wait]
+                                             [--plan-product]
+                                             [--plan-publisher]
+                                             [--tags]
+  examples:
+  - summary: Créer une solution log-Analytics de type conteneurs
+    syntax: >-
+      az monitor log-analytics solution create --resource-group MyResourceGroup \
+
+      --solution-type Containers --tags key=value \
+
+      --workspace "/subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/ \
+
+      Microsoft.OperationalInsights/workspaces/{WorkspaceName}"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --solution-type -t
+    summary: 'Type de la solution log-Analytics. Les plus utilisés sont les suivants : SecurityCenterFree, Security, updates, ContainerInsights, ServiceMap, AzureActivity, suivi, VMInsights, SecurityInsights, NetworkMonitoring, SQLVulnerabilityAssessment, SQLAdvancedThreatProtection, anti-malware, AzureAutomation, LogicAppsManagement, SQLDataClassification.'
+    description: ''
+  - isRequired: true
+    name: --workspace -w
+    summary: Nom ou ID de ressource de l’espace de travail log Analytics avec lequel la solution doit être liée.
+    description: ''
+  optionalParameters:
+  - name: --name -n
+    summary: Nom de la solution log-Analytics. Elle doit être au format Typesolution (workspaceName). La partie Typesolution est sensible à la casse.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --plan-product
+    summary: Nom de produit du plan de la solution. Elle doit être au format OMSGallery/ <solutionType> . Cette valeur respecte la casse.
+    description: ''
+  - name: --plan-publisher
+    summary: Nom de l’éditeur du plan pour la solution. Pour la solution de la Galerie, il s’agit de Microsoft.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: ext_log-analytics-solution_az_monitor_log_analytics_solution_delete
+  name: az monitor log-analytics solution delete
+  summary: Supprimer une solution log-Analytics.
+  description: ''
+  syntax: >-
+    az monitor log-analytics solution delete --name
+                                             --resource-group
+                                             [--no-wait]
+                                             [--yes]
+  examples:
+  - summary: Supprimer une solution log-Analytics
+    syntax: az monitor log-analytics solution delete --resource-group MyResourceGroup --name SolutionName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la solution log-Analytics. Elle doit être au format Typesolution (workspaceName). La partie Typesolution est sensible à la casse.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_log-analytics-solution_az_monitor_log_analytics_solution_list
+  name: az monitor log-analytics solution list
+  summary: Répertorie toutes les solutions d’analyse des journaux dans l’abonnement ou le groupe de ressources spécifié.
+  description: ''
+  syntax: az monitor log-analytics solution list [--resource-group]
+  examples:
+  - summary: Répertorier toutes les solutions log-Analytics dans l’abonnement actuel
+    syntax: az monitor log-analytics solution list
+  - summary: Répertorier toutes les solutions log-Analytics dans un abonnement
+    syntax: az monitor log-analytics solution list --subscription MySubscription
+  - summary: Répertorier toutes les solutions d’analyse des journaux dans un groupe de ressources
+    syntax: az monitor log-analytics solution list --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_log-analytics-solution_az_monitor_log_analytics_solution_show
+  name: az monitor log-analytics solution show
+  summary: Obtenir des détails sur la solution log-Analytics spécifiée.
+  description: ''
+  syntax: >-
+    az monitor log-analytics solution show --name
+                                           --resource-group
+  examples:
+  - summary: Obtenir une solution log-Analytics
+    syntax: az monitor log-analytics solution show --resource-group MyResourceGroup --name SolutionName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la solution log-Analytics. Elle doit être au format Typesolution (workspaceName). La partie Typesolution est sensible à la casse.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_log-analytics-solution_az_monitor_log_analytics_solution_update
+  name: az monitor log-analytics solution update
+  summary: Mise à jour d’une solution d’analyse de journaux existante.
+  description: ''
+  syntax: >-
+    az monitor log-analytics solution update --name
+                                             --resource-group
+                                             [--no-wait]
+                                             [--tags]
+  examples:
+  - summary: Mettre à jour une solution log-Analytics
+    syntax: >-
+      az monitor log-analytics solution update --resource-group MyResourceGroup \
+
+      --name SolutionName --tags key=value
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la solution log-Analytics. Elle doit être au format Typesolution (workspaceName). La partie Typesolution est sensible à la casse.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+commands:
+- ext_log-analytics-solution_az_monitor_log_analytics_solution_create
+- ext_log-analytics-solution_az_monitor_log_analytics_solution_delete
+- ext_log-analytics-solution_az_monitor_log_analytics_solution_list
+- ext_log-analytics-solution_az_monitor_log_analytics_solution_show
+- ext_log-analytics-solution_az_monitor_log_analytics_solution_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer la solution analyser les journaux d’analyse.
+  ms.openlocfilehash: 2db1cb45605a579aac5fe4fac46bdcb7220a8b9b
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102824969"
