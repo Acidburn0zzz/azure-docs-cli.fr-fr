@@ -1,0 +1,356 @@
+### YamlMime:AzureCLIGroup
+uid: az
+name: az
+summary: ''
+description: ''
+directCommands:
+- uid: az_configure
+  name: az configure
+  summary: Gérez Azure CLI configuration. Cette commande est interactive.
+  description: ''
+  syntax: >-
+    az configure [--defaults]
+                 [--list-defaults {false, true}]
+                 [--scope {global, local}]
+  examples:
+  - summary: Définissez les noms de groupe de ressources par défaut, WebApp et VM.
+    syntax: az configure --defaults group=myRG web=myweb vm=myvm
+  - summary: Effacez les noms webapp et VM par défaut.
+    syntax: az configure --defaults vm='' web=''
+  optionalParameters:
+  - name: --defaults -d
+    summary: Paires « nom = valeur » séparées par des espaces pour les valeurs par défaut des arguments courants.
+    description: ''
+  - name: --list-defaults -l
+    parameterValueGroup: false, true
+    summary: Répertorie toutes les valeurs par défaut applicables.
+    description: ''
+  - name: --scope
+    defaultValue: global
+    parameterValueGroup: global, local
+    summary: Étendue des valeurs par défaut. Utilisation de « local » pour les paramètres uniquement dans le dossier actif.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/configure/_help.py
+- uid: az_feedback
+  name: az feedback
+  summary: Envoyer des commentaires à l’équipe Azure CLI !
+  description: ''
+  syntax: az feedback
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/feedback/_help.py
+- uid: az_find
+  name: az find
+  summary: Je suis un robot AI, mon avis est basé sur notre documentation Azure, ainsi que sur les modèles d’utilisation des Azure CLI et des utilisateurs Azure ARM. L’utilisation de me améliore les produits et la documentation Azure.
+  description: ''
+  syntax: az find [<CLI_TERM>]
+  examples:
+  - summary: Donnez-moi un groupe de Azure CLI et j’afficherai les commandes les plus populaires au sein du groupe.
+    syntax: az find "az storage"
+  - summary: Donnez-moi une Azure CLI commande et j’afficherai les paramètres et sous-commandes les plus populaires.
+    syntax: az find "az monitor activity-log list"
+  - summary: Vous pouvez également entrer un terme de recherche et essayer de trouver les meilleures commandes.
+    syntax: az find "arm template"
+  optionalParameters:
+  - name: <CLI_TERM>
+    summary: Une commande ou un groupe Azure CLI pour lequel vous avez besoin d’un exemple.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/find/_help.py
+- uid: az_interactive
+  name: az interactive
+  summary: Démarrez le mode interactif. Installe l’extension interactive si elle n’est pas déjà installée.
+  description: 'Pour plus d’informations sur le mode interactif, consultez : <a href="https://azure.microsoft.com/blog/welcome-to-azure-cli-shell/">https://azure.microsoft.com/blog/welcome-to-azure-cli-shell/</a> .'
+  syntax: >-
+    az interactive [--style {bg, br, contrast, default, grey, halloween, neon, none, pastel, primary, purple, quiet}]
+                   [--update]
+  optionalParameters:
+  - name: --style -s
+    parameterValueGroup: bg, br, contrast, default, grey, halloween, neon, none, pastel, primary, purple, quiet
+    summary: Couleurs de l’interpréteur de commandes.
+    description: ''
+  - name: --update
+    summary: Mettez à jour l’extension interactive vers la dernière version disponible.
+    description: ''
+- uid: az_login
+  name: az login
+  summary: Connectez-vous à Azure.
+  description: ''
+  syntax: >-
+    az login [--allow-no-subscriptions]
+             [--identity]
+             [--password]
+             [--service-principal]
+             [--tenant]
+             [--use-cert-sn-issuer]
+             [--use-device-code]
+             [--username]
+  examples:
+  - summary: Se connecter de façon interactive.
+    syntax: az login
+  - summary: Connectez-vous avec le nom d’utilisateur et le mot de passe. Cela ne fonctionne pas avec les comptes Microsoft ou les comptes pour lesquels l’authentification à deux facteurs est activée. Utilisez-p = secret si le premier caractère du mot de passe est'-'.
+    syntax: az login -u johndoe@contoso.com -p VerySecret
+  - summary: Connectez-vous avec un principal de service à l’aide de la clé secrète client. Utilisez-p = secret si le premier caractère du mot de passe est'-'.
+    syntax: az login --service-principal -u http://azure-cli-2016-08-05-14-31-15 -p VerySecret --tenant contoso.onmicrosoft.com
+  - summary: Connectez-vous avec un principal de service à l’aide d’un certificat client.
+    syntax: az login --service-principal -u http://azure-cli-2016-08-05-14-31-15 -p ~/mycertfile.pem --tenant contoso.onmicrosoft.com
+  - summary: Connexion à l’aide de l’identité attribuée par le système d’une machine virtuelle
+    syntax: az login --identity
+  - summary: Connectez-vous à l’aide de l’identité affectée à l’utilisateur de la machine virtuelle. Les ID de client ou d’objet de l’identité de service fonctionnent également
+    syntax: az login --identity -u /subscriptions/<subscriptionId>/resourcegroups/myRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myID
+  optionalParameters:
+  - name: --allow-no-subscriptions
+    summary: Prendre en charge l’accès aux locataires sans abonnements. Il est rare mais utile d’exécuter des commandes de niveau client, telles que « AZ ad ».
+    description: ''
+  - name: --identity -i
+    summary: Connectez-vous à l’aide de l’identité de la machine virtuelle.
+    description: ''
+  - name: --password -p
+    summary: Les informations d’identification comme le mot de passe de l’utilisateur ou pour un principal du service, fournissent une clé secrète client ou un fichier PEM avec la clé et le certificat public. Invite s’il n’est pas donné.
+    description: ''
+  - name: --service-principal
+    summary: Informations d’identification représentant un principal de service.
+    description: ''
+  - name: --tenant -t
+    summary: Le locataire AAD doit fournir des principaux de service lors de l’utilisation.
+    description: ''
+  - name: --use-cert-sn-issuer
+    summary: Utilisé avec un principal de service configuré avec l’authentification de l’émetteur et du nom de l’objet afin de prendre en charge les Roll automatiques de certificats.
+    description: ''
+  - name: --use-device-code
+    summary: Utilisez l’ancien Workflow d’authentification de l’interface de commande en fonction du code de l’appareil. L’interface CLI l’utilise également si elle ne peut pas lancer un navigateur en votre nom, par exemple à l’aide de SSH ou Cloud Shell à distance.
+    description: ''
+  - name: --username -u
+    summary: Nom d’utilisateur, principal du service ou ID de l’identité du service administré.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
+- uid: az_logout
+  name: az logout
+  summary: Déconnectez-vous pour supprimer l’accès aux abonnements Azure.
+  description: ''
+  syntax: az logout [--username]
+  optionalParameters:
+  - name: --username
+    summary: Compte utilisateur, s’il est manquant, déconnecter le compte actif actuel.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
+- uid: az_rest
+  name: az rest
+  summary: Appeler une requête personnalisée.
+  description: >-
+    Cette commande s’authentifie automatiquement à l’aide des informations d’identification de connexion : si l’en-tête Authorization n’est pas défini, l’en-tête `Authorization: Bearer <token>` est attaché, où `<token>` est récupéré à partir d’AAD. La ressource cible du jeton est dérivée de--URL si--URL commence par un point de terminaison à partir de `az cloud show --query endpoints` . Vous pouvez également utiliser la ressource--pour une ressource personnalisée.
+
+    Si l’en-tête Content-type n’est pas défini et que--Body est une chaîne JSON valide, l’en-tête Content-type est défini par défaut sur application/JSON.
+  syntax: >-
+    az rest --uri
+            [--body]
+            [--headers]
+            [--method {delete, get, head, options, patch, post, put}]
+            [--output-file]
+            [--resource]
+            [--skip-authorization-header]
+            [--subscription]
+            [--uri-parameters]
+  examples:
+  - summary: Récupérer le journal d’audit via Microsoft Graph
+    syntax: az rest --method get --url https://graph.microsoft.com/beta/auditLogs/directoryAudits
+  - summary: Mettre à jour le nom d’affichage d’un utilisateur Azure Active Directory Graph
+    syntax: 'az rest --method patch --url "https://graph.microsoft.com/v1.0/users/johndoe@azuresdkteam.onmicrosoft.com" --body "{\"displayName\": \"jondoe2\"}"'
+  - summary: Obtenir une machine virtuelle
+    syntax: az rest --method get --uri /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}?api-version=2019-03-01
+  - summary: Créer une adresse IP publique à partir d' body.jssur le fichier
+    syntax: az rest --method put --url https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses/{publicIpAddressName}?api-version=2019-09-01 --body @body.json
+  - summary: Répertoriez les trois principales ressources (bash)
+    syntax: az rest --method get --url https://management.azure.com/subscriptions/{subscriptionId}/resources?api-version=2019-07-01 --url-parameters \$top=3
+  requiredParameters:
+  - isRequired: true
+    name: --uri --url -u
+    summary: URL de la requête. S’il ne commence pas par un hôte, l’interface CLI l’utilise en tant qu’ID de ressource Azure et le préfixe avec le point de terminaison ARM du Cloud actuel indiqué par `az cloud show --query endpoints.resourceManager` . Le jeton commun {subscriptionId} sera remplacé par l’ID d’abonnement actuel spécifié par `az account set` .
+    description: ''
+  optionalParameters:
+  - name: --body -b
+    summary: Corps de la demande. Utilisez @ {file} pour charger à partir d’un fichier. Pour les problèmes de devis dans différents terminaux, consultez <a href="https://github.com/Azure/azure-cli/blob/dev/doc/use_cli_effectively.md#quoting-issues">https://github.com/Azure/azure-cli/blob/dev/doc/use_cli_effectively.md#quoting-issues</a> .
+    description: ''
+  - name: --headers
+    summary: En-têtes séparés par des espaces dans la clé = valeur ou la chaîne JSON. Utilisez @ {file} pour charger à partir d’un fichier.
+    description: ''
+  - name: --method -m
+    defaultValue: get
+    parameterValueGroup: delete, get, head, options, patch, post, put
+    summary: Méthode de requête HTTP.
+    description: ''
+  - name: --output-file
+    summary: Enregistrer la charge utile de la réponse dans un fichier.
+    description: ''
+  - name: --resource
+    summary: URL de ressource pour laquelle l’interface CLI doit acquérir un jeton d’AAD pour accéder au service. Le jeton est placé dans l’en-tête Authorization. Par défaut, l’interface CLI peut déterminer cela en fonction de l’argument--URL, à moins que vous n’utilisiez des qui ne sont pas répertoriés dans la liste « AZ Cloud Show--interroger les points de terminaison ».
+    description: ''
+  - name: --skip-authorization-header
+    summary: Ne pas ajouter automatiquement l’en-tête d’autorisation.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --uri-parameters --url-parameters
+    summary: Paramètres de requête dans l’URL. Les requêtes séparées par des espaces au format clé = valeur ou la chaîne JSON. Utilisez @ {file} pour charger à partir d’un fichier.
+    description: ''
+- uid: az_self_test
+  name: az self-test
+  summary: Exécute un test automatique de l’interface CLI.
+  description: ''
+  syntax: az self-test [--subscription]
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_upgrade
+  name: az upgrade
+  summary: Mettez à niveau les extensions Azure CLI et.
+  description: ''
+  syntax: >-
+    az upgrade [--all {false, true}]
+               [--subscription]
+               [--yes]
+  optionalParameters:
+  - name: --all
+    defaultValue: "true"
+    parameterValueGroup: false, true
+    summary: Activez également les extensions de mise à jour.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander la vérification des notes de publication.
+    description: ''
+- uid: az_version
+  name: az version
+  summary: Affichez les versions de Azure CLI modules et extensions au format JSON par défaut ou format configuré par--output.
+  description: ''
+  syntax: az version [--subscription]
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_account
+- az_acr
+- az_acs
+- az_ad
+- az_advisor
+- az_aks
+- az_ams
+- az_apim
+- az_appconfig
+- az_appservice
+- az_aro
+- az_artifacts
+- az_backup
+- az_batch
+- az_batchai
+- az_billing
+- az_boards
+- az_bot
+- az_cache
+- az_cdn
+- az_cloud
+- az_cognitiveservices
+- az_config
+- az_configure
+- az_consumption
+- az_container
+- az_cosmosdb
+- az_databoxedge
+- az_demo
+- az_deployment
+- az_deployment_scripts
+- az_deploymentmanager
+- az_devops
+- az_disk
+- az_disk_access
+- az_disk_encryption_set
+- az_dla
+- az_dls
+- az_dms
+- az_eventgrid
+- az_eventhubs
+- az_extension
+- az_feature
+- az_feedback
+- az_find
+- az_functionapp
+- az_group
+- az_hdinsight
+- az_identity
+- az_image
+- az_interactive
+- az_iot
+- az_keyvault
+- az_kusto
+- az_lab
+- az_local_context
+- az_lock
+- az_login
+- az_logout
+- az_managedapp
+- az_managedservices
+- az_maps
+- az_mariadb
+- az_monitor
+- az_mysql
+- az_netappfiles
+- az_network
+- az_openshift
+- az_pipelines
+- az_policy
+- az_postgres
+- az_ppg
+- az_provider
+- az_redis
+- az_relay
+- az_repos
+- az_reservations
+- az_resource
+- az_rest
+- az_role
+- az_search
+- az_security
+- az_self_test
+- az_servicebus
+- az_sf
+- az_sig
+- az_signalr
+- az_snapshot
+- az_sql
+- az_sshkey
+- az_staticwebapp
+- az_storage
+- az_synapse
+- az_tag
+- az_ts
+- az_upgrade
+- az_version
+- az_vm
+- az_vmss
+- az_webapp
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/18/2020
+  ms.openlocfilehash: 70a9b76c3e00f31b568636ea7efdc7dacd904406
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102970193"
