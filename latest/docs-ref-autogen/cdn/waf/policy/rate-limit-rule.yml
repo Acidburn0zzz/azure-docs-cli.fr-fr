@@ -1,0 +1,201 @@
+### YamlMime:AzureCLIGroup
+uid: az_cdn_waf_policy_rate_limit_rule
+name: az cdn waf policy rate-limit-rule
+summary: Gérer les règles de limite de débit d’une stratégie CDN WAF.
+description: ''
+directCommands:
+- uid: az_cdn_waf_policy_rate_limit_rule_delete
+  name: az cdn waf policy rate-limit-rule delete
+  summary: Supprimer une règle de limite de débit d’une stratégie de WAF CDN.
+  description: ''
+  syntax: >-
+    az cdn waf policy rate-limit-rule delete --name
+                                             [--ids]
+                                             [--policy-name]
+                                             [--resource-group]
+                                             [--subscription]
+                                             [--yes]
+  examples:
+  - summary: Supprimer une règle de limite de débit d’une stratégie de WAF CDN.
+    syntax: az cdn waf policy rate-limit-rule delete -g group --policy-name policy -n ratelimitrule
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de limite de débit.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --policy-name
+    summary: Nom de la stratégie de WAF CDN.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_waf_policy_rate_limit_rule_list
+  name: az cdn waf policy rate-limit-rule list
+  summary: Répertorier les règles de limite de débit d’une stratégie CDN WAF.
+  description: ''
+  syntax: >-
+    az cdn waf policy rate-limit-rule list --policy-name
+                                           --resource-group
+                                           [--query-examples]
+                                           [--subscription]
+  examples:
+  - summary: Répertorier les règles de limite de débit d’une stratégie CDN WAF.
+    syntax: az cdn waf policy rate-limit-rule list -g group --policy-name policy
+  requiredParameters:
+  - isRequired: true
+    name: --policy-name
+    summary: Nom de la stratégie de WAF CDN.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_waf_policy_rate_limit_rule_set
+  name: az cdn waf policy rate-limit-rule set
+  summary: Ajoutez une règle de limite de débit à une stratégie de WAF CDN.
+  description: ''
+  syntax: >-
+    az cdn waf policy rate-limit-rule set --action {Allow, Block, Log, Redirect}
+                                          --duration
+                                          --match-condition
+                                          --name
+                                          --priority
+                                          --request-threshold
+                                          [--disabled]
+                                          [--ids]
+                                          [--policy-name]
+                                          [--resource-group]
+                                          [--subscription]
+  examples:
+  - summary: Créez ou mettez à jour une règle qui limite les demandes de limites de taux, sauf si la méthode est obtenir ou après.
+    syntax: az cdn waf policy rate-limit-rule set -g group --policy-name policy -n ratelimitrule --action Block --priority 100 --duration 1 --request-threshold 100 -m match-variable=RequestMethod operator=Equal negate=true match-value=GET match-value=HEAD
+  - summary: Créer ou mettre à jour une règle de limite de débit avec plusieurs conditions de correspondance.
+    syntax: az cdn waf policy rate-limit-rule set -g group --policy-name policy -n ratelimitrule --action Redirect --priority 200 --duration 5 --request-threshold 100 -m match-variable=RequestMethod operator=Equal match-value=PUT -m match-variable=RequestUri operator=Contains match-value=/expensive/resource/
+  requiredParameters:
+  - isRequired: true
+    name: --action
+    parameterValueGroup: Allow, Block, Log, Redirect
+    summary: Action à effectuer lorsque la règle est mise en correspondance.
+    description: ''
+  - isRequired: true
+    name: --duration
+    summary: Durée de la limite de débit en minutes. Les valeurs valides sont 1 et 5.
+    description: ''
+  - isRequired: true
+    name: --match-condition -m
+    summary: Conditions utilisées pour déterminer si la règle est mise en correspondance pour une demande.
+    description: Les conditions de correspondance sont spécifiées en tant que paires clé/valeur sous la forme « KEY = VALUE [clé = VALUE...] ». Les clés disponibles sont « match-variable », « Operator », « match-value », « Selector », « négation » et « Transform ». « match-variable », « Operator » et « match-value » sont requis. 'match-value’et’Transform’peuvent être spécifiés plusieurs fois par condition de correspondance.
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de limite de débit.
+    description: ''
+  - isRequired: true
+    name: --priority
+    summary: Priorité de la règle de limite de débit sous la forme d’un entier non négatif.
+    description: ''
+  - isRequired: true
+    name: --request-threshold
+    summary: Seuil de demande de déclenchement de la limitation du débit.
+    description: ''
+  optionalParameters:
+  - name: --disabled
+    summary: Désactivez la règle de limite de débit.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --policy-name
+    summary: Nom de la stratégie de WAF CDN.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+- uid: az_cdn_waf_policy_rate_limit_rule_show
+  name: az cdn waf policy rate-limit-rule show
+  summary: Affichez une règle de limite de débit d’une stratégie de WAF CDN.
+  description: ''
+  syntax: >-
+    az cdn waf policy rate-limit-rule show --name
+                                           [--ids]
+                                           [--policy-name]
+                                           [--query-examples]
+                                           [--resource-group]
+                                           [--subscription]
+  examples:
+  - summary: Obtenir une règle de limite de débit d’une stratégie de WAF CDN.
+    syntax: az cdn waf policy rate-limit-rule show -g group --policy-name policy -n ratelimitrule
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de limite de débit.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --policy-name
+    summary: Nom de la stratégie de WAF CDN.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cdn/_help.py
+commands:
+- az_cdn_waf_policy_rate_limit_rule_delete
+- az_cdn_waf_policy_rate_limit_rule_list
+- az_cdn_waf_policy_rate_limit_rule_set
+- az_cdn_waf_policy_rate_limit_rule_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/02/2020
+  description: Gérer les règles de limite de débit d’une stratégie CDN WAF.
+  ms.openlocfilehash: 22dfb825b742a1e859dec1f296096b030de3adc0
+  ms.sourcegitcommit: f379fad9c4e873cd2ca68b5494b6c240a5016b5b
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/09/2020
+  ms.locfileid: "102821921"
