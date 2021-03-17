@@ -1,0 +1,296 @@
+### YamlMime:AzureCLIGroup
+uid: az_signalr
+name: az signalr
+summary: Gérer le service Azure Signalr.
+description: ''
+directCommands:
+- uid: az_signalr_create
+  name: az signalr create
+  summary: Crée un service Signalr.
+  description: ''
+  syntax: >-
+    az signalr create --name
+                      --resource-group
+                      --sku
+                      [--allowed-origins]
+                      [--default-action {Allow, Deny}]
+                      [--enable-message-logs {false, true}]
+                      [--location]
+                      [--service-mode {Classic, Default, Serverless}]
+                      [--subscription]
+                      [--tags]
+                      [--unit-count]
+  examples:
+  - summary: Créez un service Signalr avec la référence standard et le mode sans serveur et activez les journaux de messagerie.
+    syntax: az signalr create -n MySignalR -g MyResourceGroup --sku Standard_S1 --unit-count 1 --service-mode Serverless --enable-message-logs True
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service signalr.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --sku
+    summary: Nom de la référence (SKU) du service signalr. Par exemple, Standard_S1.
+    description: ''
+  optionalParameters:
+  - name: --allowed-origins -a
+    summary: 'Les origines séparées par des espaces qui doivent être autorisées à effectuer des appels Cross-Origin (par exemple : <a href="http://example.com:12345">http://example.com:12345</a> ). Pour autoriser tout, utilisez « \* ».'
+    description: ''
+  - name: --default-action
+    defaultValue: Allow
+    parameterValueGroup: Allow, Deny
+    summary: Action par défaut à appliquer quand aucune règle ne correspond.
+    description: ''
+  - name: --enable-message-logs
+    parameterValueGroup: false, true
+    summary: Le commutateur pour les journaux de messagerie qui seront générés ou non par le service signalr.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --service-mode
+    defaultValue: Default
+    parameterValueGroup: Classic, Default, Serverless
+    summary: Mode de service sur lequel le service signalr sera utilisé.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --unit-count
+    defaultValue: "1"
+    summary: Nombre de nombre d’unités de service signalr.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/signalr/_help.py
+- uid: az_signalr_delete
+  name: az signalr delete
+  summary: Supprime un service Signalr.
+  description: ''
+  syntax: >-
+    az signalr delete --name
+                      --resource-group
+                      [--subscription]
+  examples:
+  - summary: Supprimer un service Signalr.
+    syntax: az signalr delete -n MySignalR -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service signalr.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/signalr/_help.py
+- uid: az_signalr_list
+  name: az signalr list
+  summary: Répertorie tous les services Signalr sous l’abonnement actuel.
+  description: ''
+  syntax: >-
+    az signalr list [--query-examples]
+                    [--resource-group]
+                    [--subscription]
+  examples:
+  - summary: Répertorier le service Signalr et afficher les résultats dans une table.
+    syntax: az signalr list -o table
+  - summary: Répertorier le service Signalr dans un groupe de ressources et afficher les résultats dans une table.
+    syntax: az signalr list -g MySignalR -o table
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/signalr/_help.py
+- uid: az_signalr_restart
+  name: az signalr restart
+  summary: Redémarrez un service Signalr existant.
+  description: ''
+  syntax: >-
+    az signalr restart --name
+                       --resource-group
+                       [--subscription]
+  examples:
+  - summary: Redémarrez une instance de service Signalr.
+    syntax: az signalr restart -n MySignalR -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service signalr.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/signalr/_help.py
+- uid: az_signalr_show
+  name: az signalr show
+  summary: Obtenir les détails d’un service Signalr.
+  description: ''
+  syntax: >-
+    az signalr show --name
+                    --resource-group
+                    [--query-examples]
+                    [--subscription]
+  examples:
+  - summary: Obtenir la référence pour un service Signalr.
+    syntax: az signalr show -n MySignalR -g MyResourceGroup --query sku
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service signalr.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/signalr/_help.py
+- uid: az_signalr_update
+  name: az signalr update
+  summary: Mettez à jour un service Signalr existant.
+  description: ''
+  syntax: >-
+    az signalr update --name
+                      --resource-group
+                      [--add]
+                      [--allowed-origins]
+                      [--default-action {Allow, Deny}]
+                      [--enable-message-logs {false, true}]
+                      [--force-string]
+                      [--remove]
+                      [--service-mode {Classic, Default, Serverless}]
+                      [--set]
+                      [--sku]
+                      [--subscription]
+                      [--tags]
+                      [--unit-count]
+  examples:
+  - summary: Mettez à jour le nombre d’unités pour mettre à l’échelle le service.
+    syntax: az signalr update -n MySignalR -g MyResourceGroup --sku Standard_S1 --unit-count 50
+  - summary: Mode de mise à jour du service.
+    syntax: az signalr update -n MySignalR -g MyResourceGroup --service-mode Serverless
+  - summary: Mise à jour pour l’activation des journaux de messagerie dans le service.
+    syntax: az signalr update -n MySignalR -g MyResourceGroup --enable-message-logs True
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service signalr.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --allowed-origins -a
+    summary: 'Les origines séparées par des espaces qui doivent être autorisées à effectuer des appels Cross-Origin (par exemple : <a href="http://example.com:12345">http://example.com:12345</a> ). Pour autoriser tout, utilisez « \* ».'
+    description: ''
+  - name: --default-action
+    parameterValueGroup: Allow, Deny
+    summary: Action par défaut à appliquer quand aucune règle ne correspond.
+    description: ''
+  - name: --enable-message-logs
+    parameterValueGroup: false, true
+    summary: Le commutateur pour les journaux de messagerie qui seront générés ou non par le service signalr.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --service-mode
+    parameterValueGroup: Classic, Default, Serverless
+    summary: Mode de service sur lequel le service signalr sera utilisé.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --sku
+    summary: Nom de la référence (SKU) du service signalr. Par exemple, Standard_S1.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --unit-count
+    defaultValue: "1"
+    summary: Nombre de nombre d’unités de service signalr.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/signalr/_help.py
+commands:
+- az_signalr_cors
+- az_signalr_cors_add
+- az_signalr_cors_list
+- az_signalr_cors_remove
+- az_signalr_create
+- az_signalr_delete
+- az_signalr_key
+- az_signalr_key_list
+- az_signalr_key_renew
+- az_signalr_list
+- az_signalr_network_rule
+- az_signalr_network_rule_list
+- az_signalr_network_rule_update
+- az_signalr_restart
+- az_signalr_show
+- az_signalr_update
+- az_signalr_upstream
+- az_signalr_upstream_clear
+- az_signalr_upstream_list
+- az_signalr_upstream_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 10/16/2020
+  description: Gérer le service Azure Signalr.
+  ms.openlocfilehash: 3b92debbee0fe43b428cbd4cb0c52d733d3bc888
+  ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 10/27/2020
+  ms.locfileid: "102821042"
