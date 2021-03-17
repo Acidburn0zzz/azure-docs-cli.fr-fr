@@ -1,0 +1,357 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_entity
+name: az storage entity
+summary: Gérer les entités de stockage de table.
+description: ''
+directCommands:
+- uid: az_storage_entity_delete
+  name: az storage entity delete
+  summary: Supprime une entité existante dans une table.
+  description: Lève une exception si l’entité n’existe pas.  Lorsqu’une entité est supprimée avec succès, l’entité est immédiatement marquée pour suppression et n’est plus accessible aux clients. L’entité est ensuite supprimée du service de table pendant la garbage collection.
+  syntax: >-
+    az storage entity delete --partition-key
+                             --row-key
+                             --table-name
+                             [--account-key]
+                             [--account-name]
+                             [--connection-string]
+                             [--if-match]
+                             [--sas-token]
+                             [--subscription]
+                             [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --partition-key
+    summary: PartitionKey de l’entité.
+    description: ''
+  - isRequired: true
+    name: --row-key
+    summary: RowKey de l’entité.
+    description: ''
+  - isRequired: true
+    name: --table-name -t
+    summary: Nom de la table contenant l’entité à supprimer.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    defaultValue: ''
+    summary: Le client peut indiquer l'ETag de l'entité de la demande afin de le comparer à l'ETag conservé par le service à des fins d'accès concurrentiel optimiste. L'opération de suppression sera exécutée uniquement si l'ETag envoyé par le client correspond à la valeur conservée par le serveur, ce qui indique que l'entité n'a pas été modifiée depuis sa récupération par le client. Pour forcer une suppression inconditionnelle, définissez If-Match sur le caractère générique ( \* ).
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_entity_insert
+  name: az storage entity insert
+  summary: Insérer une entité dans une table.
+  description: ''
+  syntax: >-
+    az storage entity insert --entity
+                             --table-name
+                             [--account-key]
+                             [--account-name]
+                             [--connection-string]
+                             [--if-exists {fail, merge, replace}]
+                             [--sas-token]
+                             [--subscription]
+                             [--timeout]
+  examples:
+  - summary: Insérer une entité dans une table. généré automatiquement
+    syntax: az storage entity insert --connection-string $connectionString --entity PartitionKey=AAA RowKey=BBB Content=ASDF2 --if-exists fail --table-name MyTable
+  requiredParameters:
+  - isRequired: true
+    name: --entity -e
+    summary: Liste de paires clé = valeur séparées par des espaces. Doit contenir un PartitionKey et un RowKey.
+    description: PartitionKey et RowKey doivent être uniques dans la table et peuvent avoir une taille maximale de 64 Ko. Si vous utilisez une valeur entière comme clé, convertissez-la en une chaîne de largeur fixe qui peut être triée de manière canonique. Par exemple, convertissez la valeur entière 1 en valeur de chaîne « 0000001 » pour garantir un tri correct.
+  - isRequired: true
+    name: --table-name -t
+    summary: Nom de la table dans laquelle insérer l’entité.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-exists
+    defaultValue: fail
+    parameterValueGroup: fail, merge, replace
+    summary: Comportement lorsqu’une entité existe déjà pour les PartitionKey et RowKey spécifiés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’attente du serveur, exprimé en secondes.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_entity_merge
+  name: az storage entity merge
+  summary: Met à jour une entité existante en fusionnant les propriétés de l’entité.
+  description: Lève une exception si l’entité n’existe pas.   Cette opération ne remplace pas l’entité existante comme le fait l’opération update_entity. Une propriété ne peut pas être supprimée avec merge_entity.  Toutes les propriétés avec des valeurs NULL sont ignorées. Toutes les autres propriétés seront mises à jour ou ajoutées.
+  syntax: >-
+    az storage entity merge --entity
+                            --table-name
+                            [--account-key]
+                            [--account-name]
+                            [--connection-string]
+                            [--if-match]
+                            [--sas-token]
+                            [--subscription]
+                            [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --entity -e
+    summary: Entité à fusionner. Peut être un dict ou un objet d’entité. Doit contenir un PartitionKey et un RowKey.
+    description: ''
+  - isRequired: true
+    name: --table-name -t
+    summary: Nom de la table contenant l’entité à fusionner.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    defaultValue: ''
+    summary: Le client peut indiquer l'ETag de l'entité de la demande afin de le comparer à l'ETag conservé par le service à des fins d'accès concurrentiel optimiste. L’opération de fusion sera effectuée uniquement si l’ETag envoyé par le client correspond à la valeur gérée par le serveur, ce qui indique que l’entité n’a pas été modifiée depuis sa récupération par le client. Pour forcer une fusion inconditionnelle, définissez If-Match sur le caractère générique ( \* ).
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_entity_query
+  name: az storage entity query
+  summary: Répertorier les entités qui satisfont à une requête.
+  description: ''
+  syntax: >-
+    az storage entity query --table-name
+                            [--accept {full, minimal, none}]
+                            [--account-key]
+                            [--account-name]
+                            [--connection-string]
+                            [--filter]
+                            [--marker]
+                            [--num-results]
+                            [--sas-token]
+                            [--select]
+                            [--subscription]
+                            [--timeout]
+  examples:
+  - summary: Répertorier les entités qui satisfont à une requête. généré automatiquement
+    syntax: az storage entity query --table-name MyTable
+  requiredParameters:
+  - isRequired: true
+    name: --table-name -t
+    summary: Nom de la table à interroger.
+    description: ''
+  optionalParameters:
+  - name: --accept
+    defaultValue: minimal
+    parameterValueGroup: full, minimal, none
+    summary: Spécifie la quantité de métadonnées à inclure dans la charge utile de la réponse.
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --filter
+    summary: Retourne uniquement les entités qui satisfont au filtre spécifié. Notez qu’il n’est pas possible d’autoriser plus de 15 comparaisons discrètes dans une chaîne de $filter. <a href="http://msdn.microsoft.com/en-us/library/windowsazure/dd894031.aspx">http://msdn.microsoft.com/en-us/library/windowsazure/dd894031.aspx</a>Pour plus d’informations sur la construction de filtres, consultez.
+    description: ''
+  - name: --marker
+    summary: Liste de paires clé = valeur séparées par des espaces. Doit contenir un nextpartitionkey et un nextrowkey.
+    description: Cette valeur peut être récupérée à partir du champ next_marker d’un objet générateur précédent si max_results a été spécifié et que le générateur a terminé l’énumération des résultats. S’il est spécifié, ce générateur commencera à retourner des résultats à partir du point où le générateur précédent s’est arrêté.
+  - name: --num-results
+    summary: Nombre maximal d’entités à retourner.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --select
+    summary: Liste de propriétés séparées par des espaces à retourner pour chaque entité.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_entity_replace
+  name: az storage entity replace
+  summary: Met à jour une entité existante dans une table.
+  description: Lève une exception si l’entité n’existe pas.  L’opération update_entity remplace l’entité entière et peut être utilisée pour supprimer des propriétés.
+  syntax: >-
+    az storage entity replace --entity
+                              --table-name
+                              [--account-key]
+                              [--account-name]
+                              [--connection-string]
+                              [--if-match]
+                              [--sas-token]
+                              [--subscription]
+                              [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --entity -e
+    summary: Entité à mettre à jour. Peut être un dict ou un objet d’entité. Doit contenir un PartitionKey et un RowKey.
+    description: ''
+  - isRequired: true
+    name: --table-name -t
+    summary: Nom de la table contenant l’entité à mettre à jour.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    defaultValue: ''
+    summary: Le client peut indiquer l'ETag de l'entité de la demande afin de le comparer à l'ETag conservé par le service à des fins d'accès concurrentiel optimiste. L'opération de mise à jour sera exécutée uniquement si l'ETag envoyé par le client correspond à la valeur conservée par le serveur, ce qui indique que l'entité n'a pas été modifiée depuis sa récupération par le client. Pour forcer une mise à jour inconditionnelle, définissez If-Match sur le caractère générique ( \* ).
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_entity_show
+  name: az storage entity show
+  summary: Obtient une entité à partir de la table spécifiée.
+  description: Lève une exception si l’entité n’existe pas.
+  syntax: >-
+    az storage entity show --partition-key
+                           --row-key
+                           --table-name
+                           [--accept]
+                           [--account-key]
+                           [--account-name]
+                           [--connection-string]
+                           [--query-examples]
+                           [--sas-token]
+                           [--select]
+                           [--subscription]
+                           [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --partition-key
+    summary: PartitionKey de l’entité.
+    description: ''
+  - isRequired: true
+    name: --row-key
+    summary: RowKey de l’entité.
+    description: ''
+  - isRequired: true
+    name: --table-name -t
+    summary: Nom de la table à partir de laquelle l’entité doit être obtenue.
+    description: ''
+  optionalParameters:
+  - name: --accept
+    defaultValue: application/json;odata=minimalmetadata
+    summary: Spécifie le type de contenu accepté de la charge utile de réponse. Pour connaître les valeurs possibles, consultez TablePayloadFormat.
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --select
+    summary: Liste de propriétés séparées par des espaces à retourner pour chaque entité.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_entity_delete
+- az_storage_entity_insert
+- az_storage_entity_merge
+- az_storage_entity_query
+- az_storage_entity_replace
+- az_storage_entity_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/26/2021
+  description: Gérer les entités de stockage de table.
+  ms.openlocfilehash: 2b8f978d51f076e6873b46d06c8e1897f3eea60e
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103506252"
