@@ -1,0 +1,561 @@
+### YamlMime:AzureCLIGroup
+uid: ext_storage-preview_az_storage_blob_directory
+name: az storage blob directory
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Storage-Preview** pour Azure CLI et requiert la version 2.13.0 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ Storage BLOB Directory** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les répertoires d’objets BLOB dans le conteneur de compte de stockage.
+description: Pour utiliser les commandes de répertoire, vérifiez que votre type de compte de stockage est StorageV2.
+directCommands:
+- uid: ext_storage-preview_az_storage_blob_directory_create
+  name: az storage blob directory create
+  summary: Créez un répertoire d’objets BLOB de stockage dans un conteneur de stockage.
+  description: Créez un répertoire d’objets BLOB de stockage pouvant contenir d’autres répertoires ou objets BLOB dans un conteneur de stockage.
+  syntax: >-
+    az storage blob directory create --container-name
+                                     --directory-path
+                                     [--account-key]
+                                     [--account-name]
+                                     [--auth-mode {key, login}]
+                                     [--connection-string]
+                                     [--lease-id]
+                                     [--metadata]
+                                     [--permissions]
+                                     [--sas-token]
+                                     [--timeout]
+                                     [--umask]
+  examples:
+  - summary: Créez un répertoire d’objets BLOB de stockage dans un conteneur de stockage.
+    syntax: az storage blob directory create -c MyContainer -d MyDirectoryPath --account-name MyStorageAccount
+  - summary: Créez un répertoire d’objets BLOB de stockage avec les autorisations et umask.
+    syntax: az storage blob directory create -c MyContainer -d MyDirectoryPath --account-name MyStorageAccount --permissions rwxrwxrwx --umask 0000
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --directory-path -d
+    summary: Nom du chemin d’accès du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si le répertoire à remplacer a un bail actif.
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
+    description: ''
+  - name: --permissions
+    summary: Facultatif et valide uniquement si l’espace de noms hiérarchique est activé pour le compte. Définit les autorisations d’accès POSIX pour le propriétaire du fichier, le groupe propriétaire du fichier et d’autres. Chaque classe peut recevoir une autorisation de lecture, d’écriture ou d’exécution. Le bit permanent est également pris en charge. Les notations octales symboliques (rwxrw-RW) et à 4 chiffres (par exemple, 0766) sont prises en charge.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  - name: --umask
+    defaultValue: "0027"
+    summary: Facultatif et valide uniquement si l’espace de noms hiérarchique est activé pour le compte. Umask limite les paramètres d’autorisation pour les fichiers et les répertoires, et sera appliqué uniquement lorsque la liste de contrôle d’accès par défaut n’existe pas dans le répertoire parent. Si le bit umask a la valeur, cela signifie que l’autorisation correspondante sera désactivée. De cette façon, l’autorisation obtenue est donnée par p & ^ u, où p est l’autorisation et que vous êtes l’umask. Seule la notation octale à 4 chiffres (par exemple, 0022) est prise en charge ici.
+    description: ''
+- uid: ext_storage-preview_az_storage_blob_directory_delete
+  name: az storage blob directory delete
+  summary: Supprimer un répertoire d’objets BLOB de stockage dans un conteneur de stockage.
+  description: Le comportement de cette opération est différent selon que l’espace de noms hiérarchique est activé ou non ; Si c’est le cas, l’opération de suppression peut être atomique et instantanée ; Si ce n’est pas le cas, l’opération est effectuée par lots et un jeton de continuation peut être retourné.
+  syntax: >-
+    az storage blob directory delete --container-name
+                                     --directory-path
+                                     [--account-key]
+                                     [--account-name]
+                                     [--auth-mode {key, login}]
+                                     [--connection-string]
+                                     [--fail-not-exist]
+                                     [--if-match]
+                                     [--if-modified-since]
+                                     [--if-none-match]
+                                     [--if-unmodified-since]
+                                     [--lease-id]
+                                     [--marker]
+                                     [--recursive]
+                                     [--sas-token]
+                                     [--timeout]
+  examples:
+  - summary: Supprimer un répertoire d’objets BLOB de stockage dans un conteneur de stockage.
+    syntax: az storage blob directory delete -c MyContainer -d MyDirectoryPath --account-name MyStorageAccount
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --directory-path -d
+    summary: Nom du chemin d’accès du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --fail-not-exist
+    summary: Spécifiez s’il faut lever une exception lorsque le répertoire n’existe pas.
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Modifiez uniquement si elle a été modifiée depuis le datetime UTC fourni (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Modifiez uniquement si elle n’a pas été modifiée depuis le datetime UTC fourni (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si le répertoire a un bail actif.
+    description: ''
+  - name: --marker
+    summary: Facultatif. Lors de la suppression d’un répertoire sans l’espace de noms hiérarchique, le nombre de chemins d’accès qui sont supprimés avec chaque appel est limité. Si le nombre de chemins à supprimer dépasse cette limite, un jeton de continuation est retourné. Lorsqu’un jeton de continuation est retourné, il doit être spécifié dans un appel ultérieur de l’opération de suppression pour continuer à supprimer le répertoire.
+    description: ''
+  - name: --recursive
+    summary: Si la valeur est « true », tous les chemins d’accès sous le répertoire seront supprimés. Si la valeur est « false » et que le répertoire n’est pas vide, une erreur se produit.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: ext_storage-preview_az_storage_blob_directory_download
+  name: az storage blob directory download
+  summary: Téléchargez les objets BLOB dans un chemin d’accès au fichier local.
+  description: ''
+  syntax: >-
+    az storage blob directory download --container
+                                       --destination-path
+                                       --source-path
+                                       [--account-key]
+                                       [--account-name]
+                                       [--auth-mode {key, login}]
+                                       [--connection-string]
+                                       [--recursive]
+                                       [--sas-token]
+  examples:
+  - summary: Téléchargez un objet BLOB unique dans un répertoire d’objets BLOB de stockage.
+    syntax: az storage blob directory download -c MyContainer --account-name MyStorageAccount -s "path/to/blob" -d "<local-path>"
+  - summary: Téléchargez l’intégralité du répertoire dans un conteneur de stockage.
+    syntax: az storage blob directory download -c MyContainer --account-name MyStorageAccount -s SourceDirectoryPath -d "<local-path>" --recursive
+  - summary: Téléchargez l’intégralité d’un sous-répertoire d’un répertoire d’objets BLOB de stockage.
+    syntax: az storage blob directory download -c MyContainer --account-name MyStorageAccount -s "path/to/subdirectory" -d "<local-path>" --recursive
+  requiredParameters:
+  - isRequired: true
+    name: --container -c
+    summary: Conteneur source de téléchargement.
+    description: ''
+  - isRequired: true
+    name: --destination-path -d
+    summary: Chemin d’accès au répertoire local de destination à télécharger.
+    description: ''
+  - isRequired: true
+    name: --source-path -s
+    summary: Chemin d’accès au répertoire source de téléchargement. Il doit s’agir d’un chemin d’accès absolu au conteneur.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --recursive -r
+    summary: Télécharger des objets BLOB de manière récursive. Si cette option est activée, tous les objets BLOB, y compris les objets BLOB dans les sous-répertoires, sont téléchargés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+- uid: ext_storage-preview_az_storage_blob_directory_exists
+  name: az storage blob directory exists
+  summary: Vérifiez l’existence d’un répertoire d’objets BLOB dans un conteneur de stockage.
+  description: ''
+  syntax: >-
+    az storage blob directory exists --container-name
+                                     --directory-path
+                                     [--account-key]
+                                     [--account-name]
+                                     [--auth-mode {key, login}]
+                                     [--connection-string]
+                                     [--sas-token]
+                                     [--snapshot]
+                                     [--timeout]
+  examples:
+  - summary: Vérifiez l’existence d’un répertoire d’objets BLOB dans un conteneur de stockage.
+    syntax: az storage blob directory exists -c MyContainer -d MyDirectoryPath --account-name MyStorageAccount
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --directory-path -d
+    summary: Nom du chemin d’accès du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --snapshot
+    summary: Le paramètre snapshot est une valeur DateTime opaque qui, lorsqu’elle est présente, spécifie l’instantané.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: ext_storage-preview_az_storage_blob_directory_list
+  name: az storage blob directory list
+  summary: Répertoriez les objets BLOB et les sous-répertoires d’objets BLOB dans un répertoire de stockage.
+  description: ''
+  syntax: >-
+    az storage blob directory list --container-name
+                                   --directory-path
+                                   [--account-key]
+                                   [--account-name]
+                                   [--auth-mode {key, login}]
+                                   [--connection-string]
+                                   [--delimiter]
+                                   [--include]
+                                   [--marker]
+                                   [--num-results]
+                                   [--prefix]
+                                   [--sas-token]
+                                   [--timeout]
+  examples:
+  - summary: Répertoriez les objets BLOB et les sous-répertoires d’objets BLOB dans un répertoire de stockage.
+    syntax: az storage blob directory list -c MyContainer -d DestinationDirectoryPath --account-name MyStorageAccount
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --directory-path -d
+    summary: Nom du chemin d’accès du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --delimiter
+    summary: Lorsque la demande comprend ce paramètre, l’opération retourne un élément pour blobprefix dans la liste de résultats qui agit comme un espace réservé pour tous les objets BLOB dont le nom commence par la même sous-chaîne jusqu’à l’apparence du caractère délimiteur. Le délimiteur peut être un caractère ou une chaîne.
+    description: ''
+  - name: --include
+    defaultValue: mc
+    summary: Spécifie un ou plusieurs jeux de données supplémentaires à inclure dans la réponse.
+    description: ''
+  - name: --marker
+    summary: Jeton de continuation opaque. Cette valeur peut être récupérée à partir du champ next_marker d’un objet générateur précédent si num_results a été spécifié et que le générateur a terminé l’énumération des résultats. S’il est spécifié, ce générateur commencera à retourner des résultats à partir du point où le générateur précédent s’est arrêté.
+    description: ''
+  - name: --num-results
+    defaultValue: "5000"
+    summary: Spécifie le nombre maximal de résultats à retourner. Fournissez « \* » pour retourner tous les.
+    description: ''
+  - name: --prefix
+    summary: Filtre les résultats pour renvoyer uniquement les objets blob dont le nom commence par le préfixe spécifié.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: ext_storage-preview_az_storage_blob_directory_move
+  name: az storage blob directory move
+  summary: Déplacement d’un répertoire de stockage vers un autre répertoire de stockage d’objets BLOB dans un conteneur de stockage.
+  description: Déplacer un répertoire de stockage et tout son contenu (qui peut contenir d’autres répertoires ou objets BLOB) vers un autre répertoire de stockage d’objets BLOB dans un conteneur de stockage. Le comportement de cette opération est différent selon que l’espace de noms hiérarchique est activé ou non ; Si c’est le cas, l’opération de déplacement est atomique et aucun marqueur n’est retourné ; Si ce n’est pas le cas, l’opération est effectuée par lots et un jeton de continuation peut être retourné.
+  syntax: >-
+    az storage blob directory move --container-name
+                                   --destination-path
+                                   --source-path
+                                   [--account-key]
+                                   [--account-name]
+                                   [--auth-mode {key, login}]
+                                   [--connection-string]
+                                   [--lease-id]
+                                   [--move-mode {legacy, posix}]
+                                   [--sas-token]
+                                   [--source-if-match]
+                                   [--source-if-modified-since]
+                                   [--source-if-none-match]
+                                   [--source-if-unmodified-since]
+                                   [--source-lease-id]
+                                   [--timeout]
+  examples:
+  - summary: Déplacement d’un répertoire de stockage vers un autre répertoire de stockage d’objets BLOB dans un conteneur de stockage.
+    syntax: az storage blob directory move -c MyContainer -d my-new-directory -s dir --account-name MyStorageAccount
+  - summary: Déplacer un sous-répertoire de stockage vers un autre répertoire de stockage d’objets BLOB dans un conteneur de stockage.
+    syntax: az storage blob directory move -c MyContainer -d my-new-directory -s dir/subdirectory --account-name MyStorageAccount
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --destination-path -d
+    summary: Chemin d’accès au répertoire de l’objet blob de destination. Il peut s’agir d’un nom de répertoire ou de sous-répertoire, par exemple dir, dir/subdir. Si le chemin d’accès de destination existe et qu’il est vide, la source est déplacée dans le chemin d’accès de destination. Si le chemin d’accès de destination n’existe pas, le chemin d’accès de destination est créé et remplacé par la source. Pour contrôler l’opération de déplacement pour un chemin d’accès non vide, vous pouvez utiliser--Move-mode pour déterminer son comportement.
+    description: ''
+  - isRequired: true
+    name: --source-path -s
+    summary: Chemin d’accès au répertoire de l’objet BLOB source.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --lease-id
+    summary: Un ID de bail pour la destination directory_path. Le directory_path de destination doit avoir un bail actif et l’ID de bail doit correspondre.
+    description: ''
+  - name: --move-mode
+    defaultValue: posix
+    parameterValueGroup: legacy, posix
+    summary: Valide uniquement lorsque l’espace de noms est activé. Ce paramètre détermine le comportement de l’opération de déplacement. Si le répertoire de destination est vide, pour les deux modes, le répertoire de destination sera remplacé. Toutefois, si le répertoire de destination n’est pas vide, l’opération de déplacement échouera et, en mode POSIX, le répertoire source sera déplacé dans le répertoire de destination.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --source-if-match
+    summary: Facultatif. Spécifiez une valeur ETag. Spécifiez cet en-tête pour exécuter l’opération de déplacement uniquement si l’ETag de la source correspond à la valeur spécifiée.
+    description: ''
+  - name: --source-if-modified-since
+    summary: Facultatif. Valeur de date et heure. Spécifiez cet en-tête pour exécuter l’opération de déplacement uniquement si la source a été modifiée depuis la date et l’heure spécifiées.
+    description: ''
+  - name: --source-if-none-match
+    summary: Facultatif. Valeur ETag ou valeur générique spéciale (" \* "). Spécifiez cet en-tête pour exécuter l’opération de déplacement uniquement si l’ETag de la source ne correspond pas à la valeur spécifiée.
+    description: ''
+  - name: --source-if-unmodified-since
+    summary: Facultatif. Valeur de date et heure. Spécifiez cet en-tête pour exécuter l’opération de déplacement uniquement si la source n’a pas été modifiée depuis la date et l’heure spécifiées.
+    description: ''
+  - name: --source-lease-id
+    summary: Facultatif. ID de bail pour le source_path. Le source_path doit avoir un bail actif et l’ID de bail doit correspondre.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: ext_storage-preview_az_storage_blob_directory_show
+  name: az storage blob directory show
+  summary: Affichez les propriétés d’un répertoire d’objets BLOB de stockage dans un conteneur de stockage.
+  description: ''
+  syntax: >-
+    az storage blob directory show --container-name
+                                   --directory-path
+                                   [--account-key]
+                                   [--account-name]
+                                   [--auth-mode {key, login}]
+                                   [--connection-string]
+                                   [--if-match]
+                                   [--if-modified-since]
+                                   [--if-none-match]
+                                   [--if-unmodified-since]
+                                   [--lease-id]
+                                   [--sas-token]
+                                   [--timeout]
+  examples:
+  - summary: Affichez les propriétés d’un répertoire d’objets BLOB de stockage dans un conteneur de stockage.
+    syntax: az storage blob directory show -c MyContainer -d MyDirectoryPath --account-name MyStorageAccount
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --directory-path -d
+    summary: Nom du chemin d’accès du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter theoperation uniquement si l’ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Modifiez uniquement si elle a été modifiée depuis le datetime UTC fourni (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour performthe l’opération uniquement si l’ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez WildcardCharacter ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et que le operationif n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Modifiez uniquement si elle n’a pas été modifiée depuis le datetime UTC fourni (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si l'objet blob a un bail actif.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: ext_storage-preview_az_storage_blob_directory_upload
+  name: az storage blob directory upload
+  summary: Chargez des objets BLOB ou des sous-répertoires dans un répertoire d’objets BLOB de stockage.
+  description: ''
+  syntax: >-
+    az storage blob directory upload --container
+                                     --destination-path
+                                     --source
+                                     [--account-key]
+                                     [--account-name]
+                                     [--auth-mode {key, login}]
+                                     [--connection-string]
+                                     [--recursive]
+                                     [--sas-token]
+  examples:
+  - summary: Chargez un seul objet BLOB dans un répertoire d’objets BLOB de stockage.
+    syntax: az storage blob directory upload -c MyContainer --account-name MyStorageAccount -s "path/to/file" -d directory
+  - summary: Chargez un répertoire local dans un répertoire d’objets BLOB de stockage.
+    syntax: az storage blob directory upload -c MyContainer --account-name MyStorageAccount -s "path/to/directory" -d directory --recursive
+  - summary: Chargez un ensemble de fichiers dans un répertoire local dans un répertoire d’objets BLOB de stockage.
+    syntax: az storage blob directory upload -c MyContainer --account-name MyStorageAccount -s "path/to/file*" -d directory --recursive
+  requiredParameters:
+  - isRequired: true
+    name: --container -c
+    summary: Conteneur de destination de chargement.
+    description: ''
+  - isRequired: true
+    name: --destination-path -d
+    summary: Chemin d’accès au répertoire de destination du téléchargement. Il doit s’agir d’un chemin d’accès absolu au conteneur. Si le chemin d’accès de destination spécifié n’existe pas, un nouveau chemin d’accès de répertoire sera créé.
+    description: ''
+  - isRequired: true
+    name: --source -s
+    summary: Chemin d’accès du fichier source à partir duquel effectuer le téléchargement.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --recursive -r
+    summary: Charger des objets BLOB de manière récursive. Si cette option est activée, tous les objets BLOB, y compris les objets BLOB dans les sous-répertoires, seront téléchargés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+commands:
+- ext_storage-preview_az_storage_blob_directory_access
+- ext_storage-preview_az_storage_blob_directory_access_set
+- ext_storage-preview_az_storage_blob_directory_access_show
+- ext_storage-preview_az_storage_blob_directory_access_update
+- ext_storage-preview_az_storage_blob_directory_create
+- ext_storage-preview_az_storage_blob_directory_delete
+- ext_storage-preview_az_storage_blob_directory_download
+- ext_storage-preview_az_storage_blob_directory_exists
+- ext_storage-preview_az_storage_blob_directory_list
+- ext_storage-preview_az_storage_blob_directory_metadata
+- ext_storage-preview_az_storage_blob_directory_metadata_show
+- ext_storage-preview_az_storage_blob_directory_metadata_update
+- ext_storage-preview_az_storage_blob_directory_move
+- ext_storage-preview_az_storage_blob_directory_show
+- ext_storage-preview_az_storage_blob_directory_upload
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Pour utiliser les commandes de répertoire, vérifiez que votre type de compte de stockage est StorageV2.
+  ms.openlocfilehash: ddeecf410477263e6049539b7c31fe7045a65339
+  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/16/2020
+  ms.locfileid: "102825515"

@@ -1,0 +1,244 @@
+### YamlMime:AzureCLIGroup
+uid: az_synapse_pipeline
+name: az synapse pipeline
+summary: Gérez les pipelines de Synapse.
+description: ''
+directCommands:
+- uid: az_synapse_pipeline_create
+  name: az synapse pipeline create
+  summary: Créer un pipeline.
+  description: ''
+  syntax: >-
+    az synapse pipeline create --file
+                               --name
+                               --workspace-name
+                               [--no-wait]
+                               [--subscription]
+  examples:
+  - summary: Créer un pipeline.
+    syntax: >-
+      az synapse pipeline create --workspace-name testsynapseworkspace \
+        --name testpipeline --file @path/pipeline.json
+  requiredParameters:
+  - isRequired: true
+    name: --file
+    summary: Les propriétés peuvent être fournies à partir d’un fichier JSON à l’aide de la `@{path}` syntaxe ou d’une chaîne JSON.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du pipeline.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_pipeline_create_run
+  name: az synapse pipeline create-run
+  summary: Crée une exécution d’un pipeline.
+  description: ''
+  syntax: >-
+    az synapse pipeline create-run --name
+                                   --workspace-name
+                                   [--is-recovery {false, true}]
+                                   [--parameters]
+                                   [--reference-pipeline-run-id]
+                                   [--start-activity-name]
+                                   [--subscription]
+  examples:
+  - summary: Pipelines_CreateRun
+    syntax: >-
+      az synapse pipeline create-run --workspace-name testsynapseworkspace --name "myPipeline" \
+        --parameters "{\"OutputBlobNameList\":[\"exampleoutput.csv\"]}"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du pipeline.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --is-recovery
+    parameterValueGroup: false, true
+    summary: Indicateur du mode de récupération. Si le mode de récupération est défini sur true, l’exécution du pipeline référencé spécifié et la nouvelle série seront regroupées sous le même groupId.
+    description: ''
+  - name: --parameters
+    summary: Paramètres pour l’exécution du pipeline. Peut être fourni à partir d’un fichier JSON à l’aide de la `@{path}` syntaxe ou d’une chaîne JSON.
+    description: ''
+  - name: --reference-pipeline-run-id --run-id
+    summary: ID d’exécution du pipeline pour la réexécution. Si l’ID d’exécution est spécifié, les paramètres de l’exécution spécifiée sont utilisés pour créer une nouvelle exécution.
+    description: ''
+  - name: --start-activity-name
+    summary: En mode de récupération, la réexécution démarre à partir de cette activité. Si elle n’est pas spécifiée, toutes les activités s’exécutent.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_pipeline_delete
+  name: az synapse pipeline delete
+  summary: Supprimer un pipeline.
+  description: ''
+  syntax: >-
+    az synapse pipeline delete --name
+                               --workspace-name
+                               [--no-wait]
+                               [--subscription]
+                               [--yes]
+  examples:
+  - summary: Supprimer un pipeline.
+    syntax: >-
+      az synapse pipeline delete --workspace-name testsynapseworkspace \
+        --name testpipeline
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du pipeline.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_pipeline_list
+  name: az synapse pipeline list
+  summary: Répertorier les pipelines.
+  description: ''
+  syntax: >-
+    az synapse pipeline list --workspace-name
+                             [--query-examples]
+                             [--subscription]
+  examples:
+  - summary: Répertorier les pipelines.
+    syntax: az synapse pipeline list --workspace-name testsynapseworkspace
+  requiredParameters:
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_pipeline_set
+  name: az synapse pipeline set
+  summary: Définissez un pipeline existant.
+  description: ''
+  syntax: >-
+    az synapse pipeline set --file
+                            --name
+                            --workspace-name
+                            [--no-wait]
+                            [--subscription]
+  examples:
+  - summary: Définissez un pipeline existant.
+    syntax: >-
+      az synapse pipeline set --workspace-name testsynapseworkspace \
+        --name testpipeline --file @path/pipeline.json
+  requiredParameters:
+  - isRequired: true
+    name: --file
+    summary: Les propriétés peuvent être fournies à partir d’un fichier JSON à l’aide de la `@{path}` syntaxe ou d’une chaîne JSON.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du pipeline.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+- uid: az_synapse_pipeline_show
+  name: az synapse pipeline show
+  summary: Obtenir un pipeline.
+  description: ''
+  syntax: >-
+    az synapse pipeline show --name
+                             --workspace-name
+                             [--query-examples]
+                             [--subscription]
+  examples:
+  - summary: Obtenir un pipeline.
+    syntax: >-
+      az synapse pipeline show --workspace-name testsynapseworkspace \
+        --name testpipeline
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du pipeline.
+    description: ''
+  - isRequired: true
+    name: --workspace-name
+    summary: Nom de l’espace de travail.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/synapse/_help.py
+commands:
+- az_synapse_pipeline_create
+- az_synapse_pipeline_create_run
+- az_synapse_pipeline_delete
+- az_synapse_pipeline_list
+- az_synapse_pipeline_set
+- az_synapse_pipeline_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/26/2021
+  description: Gérez les pipelines de Synapse.
+  ms.openlocfilehash: eb305ab4920dfec9280eac0545282400c33ab7d4
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963324"
