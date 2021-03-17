@@ -1,0 +1,342 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_application_gateway_http_settings
+name: az network application-gateway http-settings
+summary: Gérer les paramètres HTTP d’une passerelle Application Gateway.
+description: ''
+directCommands:
+- uid: az_network_application_gateway_http_settings_create
+  name: az network application-gateway http-settings create
+  summary: Créer des paramètres HTTP.
+  description: ''
+  syntax: >-
+    az network application-gateway http-settings create --gateway-name
+                                                        --name
+                                                        --port
+                                                        --resource-group
+                                                        [--affinity-cookie-name]
+                                                        [--auth-certs]
+                                                        [--connection-draining-timeout]
+                                                        [--cookie-based-affinity {Disabled, Enabled}]
+                                                        [--enable-probe {false, true}]
+                                                        [--host-name]
+                                                        [--host-name-from-backend-pool {false, true}]
+                                                        [--no-wait]
+                                                        [--path]
+                                                        [--probe]
+                                                        [--protocol {Http, Https}]
+                                                        [--root-certs]
+                                                        [--subscription]
+                                                        [--timeout]
+  examples:
+  - summary: Créer des paramètres HTTP.
+    syntax: >-
+      az network application-gateway http-settings create -g MyResourceGroup --gateway-name MyAppGateway \
+          -n MyHttpSettings --port 80 --protocol Http --cookie-based-affinity Disabled --timeout 30
+  - summary: Créer des paramètres HTTP. généré automatiquement
+    syntax: az network application-gateway http-settings create --gateway-name MyAppGateway --host-name MyHost --name MyHttpSettings --port 80 --probe MyNewProbe --protocol Http --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --gateway-name
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom des paramètres HTTP sauvegardés.
+    description: ''
+  - isRequired: true
+    name: --port
+    summary: Le numéro de port.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --affinity-cookie-name
+    summary: Nom utilisé pour le cookie d’affinité.
+    description: ''
+  - name: --auth-certs
+    summary: Liste séparée par des espaces de certificats d’authentification (noms ou ID) à associer aux paramètres HTTP.
+    description: ''
+  - name: --connection-draining-timeout
+    summary: 'Durée en secondes après la suppression d’un serveur principal pendant laquelle la connexion ouverte reste active. Plage : 0 (désactivé) à 3600.'
+    description: ''
+  - name: --cookie-based-affinity
+    parameterValueGroup: Disabled, Enabled
+    summary: Activez ou désactivez l’affinité basée sur les cookies.
+    description: ''
+  - name: --enable-probe
+    parameterValueGroup: false, true
+    summary: Indique si la sonde est activée.
+    description: ''
+  - name: --host-name
+    summary: En-tête de l’hôte envoyé aux serveurs principaux.
+    description: ''
+  - name: --host-name-from-backend-pool
+    parameterValueGroup: false, true
+    summary: Utilisez le nom d’hôte du serveur principal comme en-tête de l’hôte.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --path
+    summary: Chemin d’accès qui fera précéder toutes les requêtes HTTP.
+    description: ''
+  - name: --probe
+    summary: Nom ou ID de la sonde à associer aux paramètres HTTP.
+    description: ''
+  - name: --protocol
+    defaultValue: http
+    parameterValueGroup: Http, Https
+    summary: Protocole des paramètres HTTP.
+    description: ''
+  - name: --root-certs
+    summary: Liste séparée par des espaces des certificats racines de confiance (noms ou ID) à associer aux paramètres HTTP. --Host-Name ou--Host-Name-from-Back-backend-pool est requis lorsque ce champ est défini.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_http_settings_delete
+  name: az network application-gateway http-settings delete
+  summary: Supprimez les paramètres HTTP.
+  description: ''
+  syntax: >-
+    az network application-gateway http-settings delete [--gateway-name]
+                                                        [--ids]
+                                                        [--name]
+                                                        [--no-wait]
+                                                        [--resource-group]
+                                                        [--subscription]
+  examples:
+  - summary: Supprimez les paramètres HTTP.
+    syntax: az network application-gateway http-settings delete -g MyResourceGroup --gateway-name MyAppGateway -n MyHttpSettings
+  optionalParameters:
+  - name: --gateway-name
+    summary: Nom de la passerelle Application Gateway.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom des paramètres HTTP sauvegardés.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_http_settings_list
+  name: az network application-gateway http-settings list
+  summary: Répertoriez les paramètres HTTP.
+  description: ''
+  syntax: >-
+    az network application-gateway http-settings list --gateway-name
+                                                      --resource-group
+                                                      [--query-examples]
+                                                      [--subscription]
+  examples:
+  - summary: Répertoriez les paramètres HTTP.
+    syntax: az network application-gateway http-settings list -g MyResourceGroup --gateway-name MyAppGateway
+  requiredParameters:
+  - isRequired: true
+    name: --gateway-name
+    summary: Nom de la passerelle Application Gateway.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_http_settings_show
+  name: az network application-gateway http-settings show
+  summary: Obtenir les détails des paramètres HTTP d’une passerelle.
+  description: ''
+  syntax: >-
+    az network application-gateway http-settings show [--gateway-name]
+                                                      [--ids]
+                                                      [--name]
+                                                      [--query-examples]
+                                                      [--resource-group]
+                                                      [--subscription]
+  examples:
+  - summary: Obtenir les détails des paramètres HTTP d’une passerelle.
+    syntax: az network application-gateway http-settings show -g MyResourceGroup --gateway-name MyAppGateway -n MyHttpSettings
+  optionalParameters:
+  - name: --gateway-name
+    summary: Nom de la passerelle Application Gateway.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom des paramètres HTTP sauvegardés.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_application_gateway_http_settings_update
+  name: az network application-gateway http-settings update
+  summary: Mettez à jour les paramètres HTTP.
+  description: ''
+  syntax: >-
+    az network application-gateway http-settings update [--add]
+                                                        [--affinity-cookie-name]
+                                                        [--auth-certs]
+                                                        [--connection-draining-timeout]
+                                                        [--cookie-based-affinity {Disabled, Enabled}]
+                                                        [--enable-probe {false, true}]
+                                                        [--force-string]
+                                                        [--gateway-name]
+                                                        [--host-name]
+                                                        [--host-name-from-backend-pool {false, true}]
+                                                        [--ids]
+                                                        [--name]
+                                                        [--no-wait]
+                                                        [--path]
+                                                        [--port]
+                                                        [--probe]
+                                                        [--protocol {Http, Https}]
+                                                        [--remove]
+                                                        [--resource-group]
+                                                        [--root-certs]
+                                                        [--set]
+                                                        [--subscription]
+                                                        [--timeout]
+  examples:
+  - summary: Mettez à jour les paramètres HTTP pour utiliser une nouvelle sonde.
+    syntax: >-
+      az network application-gateway http-settings update -g MyResourceGroup --gateway-name MyAppGateway \
+          -n MyHttpSettings --probe MyNewProbe
+  - summary: Mettez à jour les paramètres HTTP. généré automatiquement
+    syntax: az network application-gateway http-settings update --enable-probe true --gateway-name MyAppGateway --name MyHttpSettings --probe MyNewProbe --resource-group MyResourceGroup
+  - summary: Mettez à jour les paramètres HTTP. généré automatiquement
+    syntax: az network application-gateway http-settings update --gateway-name MyAppGateway --host-name-from-backend-pool true --name MyHttpSettings --port 80 --probe MyNewProbe --resource-group MyResourceGroup
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --affinity-cookie-name
+    summary: Nom utilisé pour le cookie d’affinité.
+    description: ''
+  - name: --auth-certs
+    summary: Liste séparée par des espaces de certificats d’authentification (noms ou ID) à associer aux paramètres HTTP.
+    description: ''
+  - name: --connection-draining-timeout
+    summary: 'Durée en secondes après la suppression d’un serveur principal pendant laquelle la connexion ouverte reste active. Plage : 0 (désactivé) à 3600.'
+    description: ''
+  - name: --cookie-based-affinity
+    parameterValueGroup: Disabled, Enabled
+    summary: Activez ou désactivez l’affinité basée sur les cookies.
+    description: ''
+  - name: --enable-probe
+    parameterValueGroup: false, true
+    summary: Indique si la sonde est activée.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --gateway-name
+    summary: Nom de la passerelle d’application.
+    description: ''
+  - name: --host-name
+    summary: En-tête de l’hôte envoyé aux serveurs principaux.
+    description: ''
+  - name: --host-name-from-backend-pool
+    parameterValueGroup: false, true
+    summary: Utilisez le nom d’hôte du serveur principal comme en-tête de l’hôte.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom des paramètres HTTP sauvegardés.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --path
+    summary: Chemin d’accès qui fera précéder toutes les requêtes HTTP.
+    description: ''
+  - name: --port
+    summary: Le numéro de port.
+    description: ''
+  - name: --probe
+    summary: Nom ou ID de la sonde à associer aux paramètres HTTP.
+    description: ''
+  - name: --protocol
+    parameterValueGroup: Http, Https
+    summary: Protocole des paramètres HTTP.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --root-certs
+    summary: Liste séparée par des espaces des certificats racines de confiance (noms ou ID) à associer aux paramètres HTTP. --Host-Name ou--Host-Name-from-Back-backend-pool est requis lorsque ce champ est défini.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_application_gateway_http_settings_create
+- az_network_application_gateway_http_settings_delete
+- az_network_application_gateway_http_settings_list
+- az_network_application_gateway_http_settings_show
+- az_network_application_gateway_http_settings_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/25/2021
+  description: Gérer les paramètres HTTP d’une passerelle Application Gateway.
+  ms.openlocfilehash: 26bd5e0531ad94b280e4205009c2ecd0c373abeb
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103498092"
