@@ -1,0 +1,103 @@
+### YamlMime:AzureCLIGroup
+uid: az_monitor_metrics_alert_condition
+name: az monitor metrics alert condition
+summary: Gérer les conditions de règle d’alerte de métrique quasiment en temps réel.
+description: ''
+directCommands:
+- uid: az_monitor_metrics_alert_condition_create
+  name: az monitor metrics alert condition create
+  summary: Créez une condition de règle d’alerte métrique.
+  description: ''
+  syntax: >-
+    az monitor metrics alert condition create --aggregation {Average, Count, Maximum, Minimum, Total}
+                                              --metric
+                                              --op {Equals, GreaterOrLessThan, GreaterThan, GreaterThanOrEqual, LessThan, LessThanOrEqual, NotEquals}
+                                              --type {dynamic, static}
+                                              [--dimension]
+                                              [--namespace]
+                                              [--num-periods]
+                                              [--num-violations]
+                                              [--sensitivity {High, Low, Medium}]
+                                              [--since]
+                                              [--subscription]
+                                              [--threshold]
+  examples:
+  - summary: Générez une condition statique.
+    syntax: "$dim1 = az monitor metrics alert dimension create -n dimName --op Include -v GetBlob PutBlob\n$dim2 = az monitor metrics alert dimension create -n Instance --op Exclude -v Get Put\n$condition = az monitor metrics alert condition create -t static \n\n--aggregation Count \n\n--metric \"Percentage CPU\" \n\n--op GreaterThan  \n\n--threshold 95 \n\n--dimension \"$dim1\" \"$dim2\""
+  - summary: Générez une condition dynamique.
+    syntax: "$condition = az monitor metrics alert condition create -t dynamic \n\n--aggregation Average \n\n--metric \"Percentage Cpu\" \n\n--op GreaterOrLessThan \n\n--num-violations 4 \n\n--num-periods 4 \n\n--since 2020-11-02T12:11"
+  requiredParameters:
+  - isRequired: true
+    name: --aggregation
+    parameterValueGroup: Average, Count, Maximum, Minimum, Total
+    summary: Agrégation de temps.
+    description: ''
+  - isRequired: true
+    name: --metric
+    summary: Nom de la métrique.
+    description: ''
+  - isRequired: true
+    name: --op --operator
+    parameterValueGroup: Equals, GreaterOrLessThan, GreaterThan, GreaterThanOrEqual, LessThan, LessThanOrEqual, NotEquals
+    summary: L’opérateur pour le seuil statique peut être’Equals', 'NotEquals', 'GreaterThan', 'GreaterThanOrEqual', 'LessThan’ou’LessThanOrEqual'. L’opérateur pour le seuil dynamique peut être’GreaterThan', 'LessThan', 'GreaterOrLessThan'.
+    description: ''
+  - isRequired: true
+    name: --type -t
+    parameterValueGroup: dynamic, static
+    summary: Type de seuil de condition.
+    description: ''
+  optionalParameters:
+  - name: --dimension
+    summary: Dimension créée à l’aide de la dimension « AZ Monitor métriques alerte Create ».
+    description: ''
+  - name: --namespace
+    summary: Espace de noms de la métrique.
+    description: ''
+  - name: --num-periods
+    summary: 'Nombre de périodes d’évaluation pour le seuil dynamique. Plage : 1-6.'
+    description: ''
+  - name: --num-violations
+    summary: 'Nombre de violations pour déclencher une alerte dynamique. Plage : 1-6. Elle doit être inférieure ou égale à--num-periods.'
+    description: ''
+  - name: --sensitivity
+    defaultValue: Medium
+    parameterValueGroup: High, Low, Medium
+    summary: Sensibilité de l’alerte pour le seuil dynamique.
+    description: ''
+  - name: --since
+    summary: 'Date à partir de laquelle commencer l’apprentissage des données d’historique des métriques et calcule les seuils dynamiques. Format : Date (aaaa-mm-jj) heure (hh : mm : SS. xxxxx) TimeZone (+/-hh : mm).'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --threshold
+    summary: Valeur de seuil statique.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+commands:
+- az_monitor_metrics_alert_condition_create
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Gérer les conditions de règle d’alerte de métrique quasiment en temps réel.
+  ms.openlocfilehash: 2439345495516f57b9c6a636b17c7e24fc1ee909
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102846880"
