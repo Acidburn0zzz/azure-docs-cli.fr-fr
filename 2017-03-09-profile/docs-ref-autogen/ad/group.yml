@@ -1,0 +1,145 @@
+### YamlMime:AzureCLIGroup
+uid: az_ad_group
+name: az ad group
+summary: Gérer les groupes de Azure Active Directory.
+description: ''
+directCommands:
+- uid: az_ad_group_create
+  name: az ad group create
+  summary: Créez un groupe dans l’annuaire.
+  description: ''
+  syntax: >-
+    az ad group create --display-name
+                       --mail-nickname
+                       [--description]
+                       [--force {false, true}]
+  examples:
+  - summary: Créez un groupe dans l’annuaire. généré automatiquement
+    syntax: az ad group create --display-name MyDisplay --mail-nickname MyDisplay
+  requiredParameters:
+  - isRequired: true
+    name: --display-name
+    summary: Nom complet de l’objet ou son préfixe.
+    description: ''
+  - isRequired: true
+    name: --mail-nickname
+    summary: Surnom de messagerie.
+    description: ''
+  optionalParameters:
+  - name: --description
+    summary: Description de groupe.
+    description: ''
+  - name: --force
+    parameterValueGroup: false, true
+    summary: Créez toujours un nouveau groupe au lieu de mettre à jour celui-ci avec le même surnom d’affichage et de messagerie.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_group_delete
+  name: az ad group delete
+  summary: Supprimer un groupe de l’annuaire.
+  description: ''
+  syntax: az ad group delete --group
+  requiredParameters:
+  - isRequired: true
+    name: --group -g
+    summary: L’ID d’objet ou le nom d’affichage du groupe (préfixe fonctionne également s’il existe une correspondance unique).
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_group_get_member_groups
+  name: az ad group get-member-groups
+  summary: Obtient une collection d’ID d’objet de groupes dont le groupe spécifié est membre.
+  description: ''
+  syntax: >-
+    az ad group get-member-groups --group
+                                  [--additional-properties]
+                                  [--security-enabled-only {false, true}]
+  requiredParameters:
+  - isRequired: true
+    name: --group -g
+    summary: L’ID d’objet ou le nom d’affichage du groupe (préfixe fonctionne également s’il existe une correspondance unique).
+    description: ''
+  optionalParameters:
+  - name: --additional-properties
+    summary: Les propriétés non appariées du message sont désérialisées de cette collection.
+    description: ''
+  - name: --security-enabled-only
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, seule l’appartenance à des groupes sécurisés doit être vérifiée. Dans le cas contraire, l’appartenance à tous les groupes doit être vérifiée.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_group_list
+  name: az ad group list
+  summary: Liste des groupes dans l’annuaire.
+  description: ''
+  syntax: >-
+    az ad group list [--display-name]
+                     [--filter]
+                     [--query-examples]
+  optionalParameters:
+  - name: --display-name
+    summary: Nom complet de l’objet ou son préfixe.
+    description: ''
+  - name: --filter
+    summary: Filtre OData, par exemple--Filter « DisplayName EQ’test » et servicePrincipalType EQ’application'.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_ad_group_show
+  name: az ad group show
+  summary: Obtient les informations de groupe à partir de l’annuaire.
+  description: ''
+  syntax: >-
+    az ad group show --group
+                     [--query-examples]
+  requiredParameters:
+  - isRequired: true
+    name: --group -g
+    summary: L’ID d’objet ou le nom d’affichage du groupe (préfixe fonctionne également s’il existe une correspondance unique).
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+commands:
+- az_ad_group_create
+- az_ad_group_delete
+- az_ad_group_get_member_groups
+- az_ad_group_list
+- az_ad_group_member
+- az_ad_group_member_add
+- az_ad_group_member_check
+- az_ad_group_member_list
+- az_ad_group_member_remove
+- az_ad_group_owner
+- az_ad_group_owner_add
+- az_ad_group_owner_list
+- az_ad_group_owner_remove
+- az_ad_group_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/20/2021
+  description: Gérer les groupes de Azure Active Directory.
+  ms.openlocfilehash: fdb2b4b1aa36943dd0d54af62d4997f740a5303f
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102847996"
