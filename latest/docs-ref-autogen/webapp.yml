@@ -218,6 +218,77 @@ directCommands:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
+- uid: az_webapp_deploy
+  name: az webapp deploy
+  summary: Déploie un artefact fourni dans Azure Web Apps.
+  description: ''
+  syntax: >-
+    az webapp deploy [--async {false, true}]
+                     [--clean {false, true}]
+                     [--ids]
+                     [--ignore-stack {false, true}]
+                     [--name]
+                     [--resource-group]
+                     [--restart {false, true}]
+                     [--slot]
+                     [--src-path]
+                     [--src-url]
+                     [--subscription]
+                     [--target-path]
+                     [--timeout]
+                     [--type]
+  examples:
+  - summary: Déployez un fichier War de manière asynchrone.
+    syntax: az webapp deploy --resource-group ResouceGroup --name AppName --src-path SourcePath --type war --async IsAsync
+  - summary: Déployer un fichier texte statique sur wwwroot/staticfiles/test.txt
+    syntax: az webapp deploy --resource-group ResouceGroup --name AppName --src-path SourcePath --type static --target-path staticfiles/test.txt
+  optionalParameters:
+  - name: --async
+    parameterValueGroup: false, true
+    summary: Déploiement asynchrone.
+    description: ''
+  - name: --clean
+    parameterValueGroup: false, true
+    summary: Clean ou not. la valeur par défaut est spécifique au type de cible.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --ignore-stack
+    parameterValueGroup: false, true
+    summary: Doit remplacer la vérification de la pile par défaut.
+    description: ''
+  - name: --name -n
+    summary: Nom du webapp auquel se connecter.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --restart
+    parameterValueGroup: false, true
+    summary: Redémarrez ou non. le comportement par défaut consiste à redémarrer.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement de déploiement à utiliser.
+    description: ''
+  - name: --src-path
+    summary: Chemin d’accès du fichier à déployer. Exemple:/mnt/Apps/MyApp.War.
+    description: ''
+  - name: --src-url
+    summary: 'URL à partir de laquelle Télécharger le package. Exemple : <a href="http://mysite.com/files/myapp.war?key=123">http://mysite.com/files/myapp.war?key=123</a> .'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --target-path
+    summary: Chemin d’accès cible relatif à wwwroot vers lequel le fichier sera déployé.
+    description: ''
+  - name: --timeout
+    summary: Délai d’attente de l’opération en millisecondes.
+    description: ''
+  - name: --type
+    summary: Type de déploiement demandé.
+    description: ''
 - uid: az_webapp_list
   name: az webapp list
   summary: Répertorier les applications Web.
@@ -472,8 +543,6 @@ directCommands:
     syntax: az webapp up -n MyUniqueAppName --runtime "java:11:Java SE:8"
   - summary: Créez une application Web dans une région spécifique, en exécutant la commande à partir du dossier où se trouve le code à déployer.
     syntax: az webapp up -l locationName
-  - summary: Déployer un nouveau code dans une application créée à l’origine à l’aide de la même commande
-    syntax: az webapp up -n MyUniqueAppName -l locationName
   - summary: Créez une application Web et activez la diffusion en continu des journaux une fois l’opération de déploiement terminée. Cela permet d’activer la configuration par défaut requise pour activer la diffusion de journaux.
     syntax: az webapp up --logs
   - summary: Créez une application Web et déployez-la en tant qu’application HTML statique.
@@ -660,6 +729,7 @@ commands:
 - az_webapp_deleted
 - az_webapp_deleted_list
 - az_webapp_deleted_restore
+- az_webapp_deploy
 - az_webapp_deployment
 - az_webapp_deployment_container
 - az_webapp_deployment_container_config
@@ -745,9 +815,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérer les applications Web.
-  ms.openlocfilehash: 4b9f6201b8cd3813c5d597d8584b68ddfb7b4258
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: 2830e72e5c9b59174548f3f4676d04626e9e53d2
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102846520"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103535135"
