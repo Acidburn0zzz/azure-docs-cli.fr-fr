@@ -1,28 +1,37 @@
 ### YamlMime:AzureCLIGroup
-uid: az_storage_container_metadata
-name: az storage container metadata
-summary: Gérer les métadonnées de conteneur.
+uid: az_storage_blob_metadata
+name: az storage blob metadata
+summary: Gérer les métadonnées d’objet BLOB.
 description: ''
 directCommands:
-- uid: az_storage_container_metadata_show
-  name: az storage container metadata show
-  summary: Retourne toutes les métadonnées définies par l’utilisateur pour le conteneur spécifié.
+- uid: az_storage_blob_metadata_show
+  name: az storage blob metadata show
+  summary: Retourne toutes les métadonnées définies par l’utilisateur pour l’objet BLOB ou l’instantané spécifié.
   description: ''
   syntax: >-
-    az storage container metadata show --name
-                                       [--account-key]
-                                       [--account-name]
-                                       [--auth-mode {key, login}]
-                                       [--connection-string]
-                                       [--lease-id]
-                                       [--query-examples]
-                                       [--sas-token]
-                                       [--subscription]
-                                       [--timeout]
+    az storage blob metadata show --container-name
+                                  --name
+                                  [--account-key]
+                                  [--account-name]
+                                  [--connection-string]
+                                  [--if-match]
+                                  [--if-modified-since]
+                                  [--if-none-match]
+                                  [--if-unmodified-since]
+                                  [--lease-id]
+                                  [--query-examples]
+                                  [--sas-token]
+                                  [--snapshot]
+                                  [--subscription]
+                                  [--timeout]
   requiredParameters:
   - isRequired: true
-    name: --name -n
+    name: --container-name -c
     summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
     description: ''
   optionalParameters:
   - name: --account-key
@@ -31,21 +40,32 @@ directCommands:
   - name: --account-name
     summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
     description: ''
-  - name: --auth-mode
-    parameterValueGroup: key, login
-    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
-    description: ''
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
     description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
   - name: --lease-id
-    summary: S’il est spécifié, get_container_metadata se déroule uniquement si le bail du conteneur est actif et correspond à cet ID.
+    summary: Obligatoire si l'objet blob a un bail actif.
     description: ''
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
     description: ''
   - name: --sas-token
     summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --snapshot
+    summary: Le paramètre snapshot est une valeur opaque qui, lorsqu’elle est présente, spécifie l’instantané d’objet blob à récupérer.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -54,26 +74,33 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
-- uid: az_storage_container_metadata_update
-  name: az storage container metadata update
-  summary: Définit une ou plusieurs paires nom-valeur définies par l’utilisateur pour le conteneur spécifié.
-  description: Chaque appel à cette opération remplace toutes les métadonnées existantes attachées au conteneur. Pour supprimer toutes les métadonnées du conteneur, appelez cette opération sans dict de métadonnées.
+- uid: az_storage_blob_metadata_update
+  name: az storage blob metadata update
+  summary: Définit les métadonnées définies par l’utilisateur pour l’objet blob spécifié en tant qu’une ou plusieurs paires nom-valeur.
+  description: ''
   syntax: >-
-    az storage container metadata update --name
-                                         [--account-key]
-                                         [--account-name]
-                                         [--auth-mode {key, login}]
-                                         [--connection-string]
-                                         [--if-modified-since]
-                                         [--lease-id]
-                                         [--metadata]
-                                         [--sas-token]
-                                         [--subscription]
-                                         [--timeout]
+    az storage blob metadata update --container-name
+                                    --name
+                                    [--account-key]
+                                    [--account-name]
+                                    [--connection-string]
+                                    [--if-match]
+                                    [--if-modified-since]
+                                    [--if-none-match]
+                                    [--if-unmodified-since]
+                                    [--lease-id]
+                                    [--metadata]
+                                    [--sas-token]
+                                    [--subscription]
+                                    [--timeout]
   requiredParameters:
   - isRequired: true
-    name: --name -n
+    name: --container-name -c
     summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
     description: ''
   optionalParameters:
   - name: --account-key
@@ -82,18 +109,23 @@ directCommands:
   - name: --account-name
     summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
     description: ''
-  - name: --auth-mode
-    parameterValueGroup: key, login
-    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
-    description: ''
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
     description: ''
   - name: --if-modified-since
     summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
     description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
   - name: --lease-id
-    summary: S’il est spécifié, set_container_metadata se déroule uniquement si le bail du conteneur est actif et correspond à cet ID.
+    summary: Obligatoire si l'objet blob a un bail actif.
     description: ''
   - name: --metadata
     summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
@@ -109,8 +141,8 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
 commands:
-- az_storage_container_metadata_show
-- az_storage_container_metadata_update
+- az_storage_blob_metadata_show
+- az_storage_blob_metadata_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -128,11 +160,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/26/2021
-  description: Gérer les métadonnées de conteneur.
-  ms.openlocfilehash: ed50ace4a6de86b05ef09653997dd027c6d8dffb
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.date: 02/02/2021
+  description: Gérer les métadonnées d’objet BLOB.
+  ms.openlocfilehash: 020e2fa9c588575737d3f09f5b1b70cb4bb8d12c
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103515602"
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102966488"
