@@ -1,37 +1,65 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_ddos_protection
-name: az network ddos-protection
-summary: Gérer les plans de protection DDoS.
-description: ''
+uid: az_network_vnet
+name: az network vnet
+summary: Gérer les réseaux virtuels Azure.
+description: Pour en savoir plus sur les réseaux virtuels <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-network">https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-network</a> , visitez.
 directCommands:
-- uid: az_network_ddos_protection_create
-  name: az network ddos-protection create
-  summary: Créez un plan de protection DDoS.
-  description: ''
+- uid: az_network_vnet_create
+  name: az network vnet create
+  summary: Créez un réseau virtuel.
+  description: Vous pouvez également créer un sous-réseau en même temps en spécifiant un nom de sous-réseau et (éventuellement) un préfixe d’adresse. Pour en savoir plus sur la création d’un réseau virtuel <a href="https://docs.microsoft.com/azure/virtual-network/manage-virtual-network#create-a-virtual-network">https://docs.microsoft.com/azure/virtual-network/manage-virtual-network#create-a-virtual-network</a> , visitez.
   syntax: >-
-    az network ddos-protection create --name
-                                      --resource-group
-                                      [--location]
-                                      [--subscription]
-                                      [--tags]
-                                      [--vnets]
+    az network vnet create --name
+                           --resource-group
+                           [--address-prefixes]
+                           [--defer]
+                           [--dns-servers]
+                           [--location]
+                           [--network-security-group]
+                           [--subnet-name]
+                           [--subnet-prefix]
+                           [--subscription]
+                           [--tags]
   examples:
-  - summary: Créez un plan de protection DDoS.
-    syntax: az network ddos-protection create -g MyResourceGroup -n MyDdosPlan
-  - summary: Créez un plan de protection DDoS. généré automatiquement
-    syntax: az network ddos-protection create --location westus2 --name MyDdosPlan --resource-group MyResourceGroup
+  - summary: Créez un réseau virtuel.
+    syntax: az network vnet create -g MyResourceGroup -n MyVnet
+  - summary: Créez un réseau virtuel avec un préfixe d’adresse et un sous-réseau spécifiques.
+    syntax: >-
+      az network vnet create -g MyResourceGroup -n MyVnet --address-prefix 10.0.0.0/16 \
+          --subnet-name MySubnet --subnet-prefix 10.0.0.0/24
+  - summary: Créez un réseau virtuel. généré automatiquement
+    syntax: az network vnet create --address-prefixes 10.0.0.0/16 --name MyVirtualNetwork --resource-group MyResourceGroup --subnet-name MyAseSubnet --subnet-prefixes 10.0.0.0/24
   requiredParameters:
   - isRequired: true
     name: --name -n
-    summary: Nom du plan de protection DDoS.
+    summary: Nom du réseau virtuel (VNet).
     description: ''
   - isRequired: true
     name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   optionalParameters:
+  - name: --address-prefixes
+    defaultValue: 10.0.0.0/16
+    summary: Liste séparée par des espaces des préfixes d’adresses IP pour le réseau virtuel.
+    description: ''
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
+    description: ''
+  - name: --dns-servers
+    summary: Liste d’adresses IP de serveur DNS séparées par des espaces.
+    description: ''
   - name: --location -l
     summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --network-security-group --nsg
+    summary: Nom ou ID d’un groupe de sécurité réseau (NSG).
+    description: ''
+  - name: --subnet-name
+    summary: Nom d’un nouveau sous-réseau à créer au sein du réseau virtuel.
+    description: ''
+  - name: --subnet-prefix
+    summary: Préfixe d’adresse IP pour le nouveau sous-réseau. En cas d’omission, réserve automatiquement un bloc/24 (ou aussi grand que disponible) dans l’espace d’adressage du réseau virtuel.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -39,28 +67,25 @@ directCommands:
   - name: --tags
     summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
     description: ''
-  - name: --vnets
-    summary: Liste séparée par des espaces des réseaux virtuels (nom ou ID) à associer au plan.
-    description: Ce paramètre ne peut être utilisé que si toutes les réseaux virtuels sont dans le même abonnement que le plan de protection DDoS. Si ce n’est pas le cas, définissez le plan de protection sur le réseau virtuel directement à l’aide de la `az network vnet update` commande.
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_ddos_protection_delete
-  name: az network ddos-protection delete
-  summary: Supprimer un plan de protection DDoS.
+- uid: az_network_vnet_delete
+  name: az network vnet delete
+  summary: Supprimez un réseau virtuel.
   description: ''
   syntax: >-
-    az network ddos-protection delete [--ids]
-                                      [--name]
-                                      [--resource-group]
-                                      [--subscription]
+    az network vnet delete [--ids]
+                           [--name]
+                           [--resource-group]
+                           [--subscription]
   examples:
-  - summary: Supprimer un plan de protection DDoS.
-    syntax: az network ddos-protection delete -g MyResourceGroup -n MyDdosPlan
+  - summary: Supprimez un réseau virtuel.
+    syntax: az network vnet delete -g MyResourceGroup -n myVNet
   optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --name -n
-    summary: Nom du plan de protection DDoS.
+    summary: Nom du réseau virtuel (VNet).
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
@@ -69,17 +94,21 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_ddos_protection_list
-  name: az network ddos-protection list
-  summary: Liste des plans de protection DDoS.
+- uid: az_network_vnet_list
+  name: az network vnet list
+  summary: Répertorier les réseaux virtuels.
   description: ''
   syntax: >-
-    az network ddos-protection list [--query-examples]
-                                    [--resource-group]
-                                    [--subscription]
+    az network vnet list [--query-examples]
+                         [--resource-group]
+                         [--subscription]
   examples:
-  - summary: Liste des plans de protection DDoS
-    syntax: az network ddos-protection list
+  - summary: Répertorie tous les réseaux virtuels d’un abonnement.
+    syntax: az network vnet list
+  - summary: Répertorie tous les réseaux virtuels dans un groupe de ressources.
+    syntax: az network vnet list -g MyResourceGroup
+  - summary: Répertorier les réseaux virtuels dans un abonnement qui spécifient un préfixe d’adresse spécifique.
+    syntax: az network vnet list --query "[?contains(addressSpace.addressPrefixes, '10.0.0.0/16')]"
   optionalParameters:
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
@@ -91,25 +120,29 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_ddos_protection_show
-  name: az network ddos-protection show
-  summary: Affichez les détails d’un plan de protection DDoS.
+- uid: az_network_vnet_show
+  name: az network vnet show
+  summary: Obtenir les détails d’un réseau virtuel.
   description: ''
   syntax: >-
-    az network ddos-protection show [--ids]
-                                    [--name]
-                                    [--query-examples]
-                                    [--resource-group]
-                                    [--subscription]
+    az network vnet show [--expand]
+                         [--ids]
+                         [--name]
+                         [--query-examples]
+                         [--resource-group]
+                         [--subscription]
   examples:
-  - summary: Affichez les détails d’un plan de protection DDoS.
-    syntax: az network ddos-protection show -g MyResourceGroup -n MyDdosPlan
+  - summary: Obtenir des détails sur MyVNet.
+    syntax: az network vnet show -g MyResourceGroup -n MyVNet
   optionalParameters:
+  - name: --expand
+    summary: Développe des ressources référencées.
+    description: ''
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --name -n
-    summary: Nom du plan de protection DDoS.
+    summary: Nom du réseau virtuel (VNet).
     description: ''
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
@@ -121,29 +154,39 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_ddos_protection_update
-  name: az network ddos-protection update
-  summary: Mettez à jour un plan de protection DDoS.
+- uid: az_network_vnet_update
+  name: az network vnet update
+  summary: Mise à jour d’un réseau virtuel.
   description: ''
   syntax: >-
-    az network ddos-protection update [--add]
-                                      [--force-string]
-                                      [--ids]
-                                      [--name]
-                                      [--remove]
-                                      [--resource-group]
-                                      [--set]
-                                      [--subscription]
-                                      [--tags]
-                                      [--vnets]
+    az network vnet update [--add]
+                           [--address-prefixes]
+                           [--defer]
+                           [--dns-servers]
+                           [--force-string]
+                           [--ids]
+                           [--name]
+                           [--remove]
+                           [--resource-group]
+                           [--set]
+                           [--subscription]
   examples:
-  - summary: Ajoutez un réseau virtuel à un plan de protection DDoS dans le même abonnement.
-    syntax: az network ddos-protection update -g MyResourceGroup -n MyDdosPlan --vnets MyVnet
-  - summary: Mettez à jour un plan de protection DDoS. généré automatiquement
-    syntax: az network ddos-protection update --name MyDdosPlan --remove tags.no_80 --resource-group MyResourceGroup
+  - summary: Mettre à jour un réseau virtuel avec l’adresse IP d’un serveur DNS.
+    syntax: az network vnet update -g MyResourceGroup -n MyVNet --dns-servers 10.2.0.8
+  - summary: Mise à jour d’un réseau virtuel. généré automatiquement
+    syntax: az network vnet update --address-prefixes 40.1.0.0/24 --name MyVNet --resource-group MyResourceGroup
   optionalParameters:
   - name: --add
     summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --address-prefixes
+    summary: Liste séparée par des espaces des préfixes d’adresses IP pour le réseau virtuel.
+    description: ''
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
+    description: ''
+  - name: --dns-servers
+    summary: Liste d’adresses IP de serveur DNS séparées par des espaces.
     description: ''
   - name: --force-string
     summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
@@ -152,7 +195,7 @@ directCommands:
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --name -n
-    summary: Nom du plan de protection DDoS.
+    summary: Nom du réseau virtuel (VNet).
     description: ''
   - name: --remove
     summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
@@ -166,19 +209,19 @@ directCommands:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
-  - name: --tags
-    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
-    description: ''
-  - name: --vnets
-    summary: Liste séparée par des espaces des réseaux virtuels (nom ou ID) à associer au plan.
-    description: Ce paramètre ne peut être utilisé que si toutes les réseaux virtuels sont dans le même abonnement que le plan de protection DDoS. Si ce n’est pas le cas, définissez le plan de protection sur le réseau virtuel directement à l’aide de la `az network vnet update` commande.
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_ddos_protection_create
-- az_network_ddos_protection_delete
-- az_network_ddos_protection_list
-- az_network_ddos_protection_show
-- az_network_ddos_protection_update
+- az_network_vnet_create
+- az_network_vnet_delete
+- az_network_vnet_list
+- az_network_vnet_show
+- az_network_vnet_subnet
+- az_network_vnet_subnet_create
+- az_network_vnet_subnet_delete
+- az_network_vnet_subnet_list
+- az_network_vnet_subnet_show
+- az_network_vnet_subnet_update
+- az_network_vnet_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -197,10 +240,10 @@ globalParameters:
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/25/2021
-  description: Gérer les plans de protection DDoS.
-  ms.openlocfilehash: 458d1c97eb66462991f3a1aa692bd5b5cc58c1b0
+  description: Pour en savoir plus sur les réseaux virtuels <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-network">https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-network</a> , visitez.
+  ms.openlocfilehash: 68d4a16c4f6aa83692a04f3c685542bd69133410
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103540575"
+  ms.locfileid: "103512950"

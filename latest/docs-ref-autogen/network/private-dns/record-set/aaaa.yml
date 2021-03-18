@@ -1,25 +1,60 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_private_dns_record_set_cname
-name: az network private-dns record-set cname
-summary: Gérer des enregistrements DNS privé CNAMe.
+uid: az_network_private_dns_record_set_aaaa
+name: az network private-dns record-set aaaa
+summary: Gérer les enregistrements DNS privé AAAA.
 description: ''
 directCommands:
-- uid: az_network_private_dns_record_set_cname_create
-  name: az network private-dns record-set cname create
-  summary: Créez un jeu d’enregistrements CNAMe vide.
+- uid: az_network_private_dns_record_set_aaaa_add_record
+  name: az network private-dns record-set aaaa add-record
+  summary: Ajoutez un enregistrement AAAA.
   description: ''
   syntax: >-
-    az network private-dns record-set cname create --name
-                                                   --resource-group
-                                                   --zone-name
-                                                   [--metadata]
-                                                   [--subscription]
-                                                   [--ttl]
+    az network private-dns record-set aaaa add-record --ipv6-address
+                                                      --record-set-name
+                                                      --resource-group
+                                                      --zone-name
+                                                      [--subscription]
   examples:
-  - summary: Créez un jeu d’enregistrements CNAMe vide.
-    syntax: az network private-dns record-set cname create -g MyResourceGroup -z www.mysite.com -n MyRecordSet
-  - summary: Créer un jeu d’enregistrements CNAMe vide (généré automatiquement)
-    syntax: az network private-dns record-set cname create --name MyRecordSet --resource-group MyResourceGroup --subscription MySubscription --ttl 300 --zone-name www.mysite.com
+  - summary: Ajoutez un enregistrement AAAA.
+    syntax: >-
+      az network private-dns record-set aaaa add-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -a MyIpv6Address
+  requiredParameters:
+  - isRequired: true
+    name: --ipv6-address -a
+    summary: Adresse IPV6 en notation de chaîne.
+    description: ''
+  - isRequired: true
+    name: --record-set-name -n
+    summary: Nom du jeu d’enregistrements relatif à la zone. Crée un nouveau jeu d’enregistrements s’il n’en existe pas.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone de DNS privé.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_private_dns_record_set_aaaa_create
+  name: az network private-dns record-set aaaa create
+  summary: Créez un jeu d’enregistrements AAAA vide.
+  description: ''
+  syntax: >-
+    az network private-dns record-set aaaa create --name
+                                                  --resource-group
+                                                  --zone-name
+                                                  [--metadata]
+                                                  [--subscription]
+                                                  [--ttl]
+  examples:
+  - summary: Créez un jeu d’enregistrements AAAA vide.
+    syntax: az network private-dns record-set aaaa create -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -45,22 +80,20 @@ directCommands:
     summary: Durée de vie du jeu d’enregistrements (durée de vie).
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_cname_delete
-  name: az network private-dns record-set cname delete
-  summary: Supprimer un jeu d’enregistrements CNAMe et son enregistrement associé.
+- uid: az_network_private_dns_record_set_aaaa_delete
+  name: az network private-dns record-set aaaa delete
+  summary: Supprimer un jeu d’enregistrements AAAA et tous les enregistrements associés.
   description: ''
   syntax: >-
-    az network private-dns record-set cname delete --name
-                                                   --resource-group
-                                                   --zone-name
-                                                   [--if-match]
-                                                   [--subscription]
-                                                   [--yes]
+    az network private-dns record-set aaaa delete --name
+                                                  --resource-group
+                                                  --zone-name
+                                                  [--if-match]
+                                                  [--subscription]
+                                                  [--yes]
   examples:
-  - summary: Supprimer un jeu d’enregistrements CNAMe et son enregistrement associé.
-    syntax: az network private-dns record-set cname delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
-  - summary: Supprimer un jeu d’enregistrements CNAMe et son enregistrement associé. généré automatiquement
-    syntax: az network private-dns record-set cname delete --name MyRecordSet --resource-group MyResourceGroup --subscription MySubscription --yes --zone-name www.mysite.com
+  - summary: Supprimer un jeu d’enregistrements AAAA et tous les enregistrements associés.
+    syntax: az network private-dns record-set aaaa delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -85,18 +118,18 @@ directCommands:
     summary: Ne pas demander de confirmation.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_cname_list
-  name: az network private-dns record-set cname list
-  summary: Répertoriez le jeu d’enregistrements CNAMe dans une zone.
+- uid: az_network_private_dns_record_set_aaaa_list
+  name: az network private-dns record-set aaaa list
+  summary: Répertorie tous les jeux d’enregistrements AAAA dans une zone.
   description: ''
   syntax: >-
-    az network private-dns record-set cname list --resource-group
-                                                 --zone-name
-                                                 [--query-examples]
-                                                 [--subscription]
+    az network private-dns record-set aaaa list --resource-group
+                                                --zone-name
+                                                [--query-examples]
+                                                [--subscription]
   examples:
-  - summary: Répertoriez le jeu d’enregistrements CNAMe dans une zone.
-    syntax: az network private-dns record-set cname list -g MyResourceGroup -z www.mysite.com
+  - summary: Répertorie tous les jeux d’enregistrements AAAA dans une zone.
+    syntax: az network private-dns record-set aaaa list -g MyResourceGroup -z www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --resource-group -g
@@ -114,26 +147,26 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_cname_remove_record
-  name: az network private-dns record-set cname remove-record
-  summary: Supprimer un enregistrement CNAMe de son jeu d’enregistrements.
+- uid: az_network_private_dns_record_set_aaaa_remove_record
+  name: az network private-dns record-set aaaa remove-record
+  summary: Supprimer un enregistrement AAAA de son jeu d’enregistrements.
   description: Par défaut, si le dernier enregistrement d’un jeu est supprimé, le jeu d’enregistrements est supprimé. Pour conserver le jeu d’enregistrements vide, incluez--Keep-vide-record-Set.
   syntax: >-
-    az network private-dns record-set cname remove-record --cname
-                                                          --record-set-name
-                                                          --resource-group
-                                                          --zone-name
-                                                          [--keep-empty-record-set]
-                                                          [--subscription]
+    az network private-dns record-set aaaa remove-record --ipv6-address
+                                                         --record-set-name
+                                                         --resource-group
+                                                         --zone-name
+                                                         [--keep-empty-record-set]
+                                                         [--subscription]
   examples:
-  - summary: Supprimer un enregistrement CNAMe de son jeu d’enregistrements.
+  - summary: Supprimer un enregistrement AAAA de son jeu d’enregistrements.
     syntax: >-
-      az network private-dns record-set cname remove-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -c www.contoso.com
+      az network private-dns record-set aaaa remove-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -a MyIpv6Address
   requiredParameters:
   - isRequired: true
-    name: --cname -c
-    summary: Nom canonique.
+    name: --ipv6-address -a
+    summary: Adresse IPV6 en notation de chaîne.
     description: ''
   - isRequired: true
     name: --record-set-name -n
@@ -155,58 +188,19 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_cname_set_record
-  name: az network private-dns record-set cname set-record
-  summary: Définir la valeur d’un enregistrement CNAMe.
+- uid: az_network_private_dns_record_set_aaaa_show
+  name: az network private-dns record-set aaaa show
+  summary: Obtient les détails d’un jeu d’enregistrements AAAA.
   description: ''
   syntax: >-
-    az network private-dns record-set cname set-record --cname
-                                                       --record-set-name
-                                                       --resource-group
-                                                       --zone-name
-                                                       [--subscription]
+    az network private-dns record-set aaaa show --name
+                                                --resource-group
+                                                --zone-name
+                                                [--query-examples]
+                                                [--subscription]
   examples:
-  - summary: Définir la valeur d’un enregistrement CNAMe.
-    syntax: >-
-      az network private-dns record-set cname set-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -c www.contoso.com
-  requiredParameters:
-  - isRequired: true
-    name: --cname -c
-    summary: Nom canonique.
-    description: ''
-  - isRequired: true
-    name: --record-set-name -n
-    summary: Nom du jeu d’enregistrements relatif à la zone. Crée un nouveau jeu d’enregistrements s’il n’en existe pas.
-    description: ''
-  - isRequired: true
-    name: --resource-group -g
-    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
-    description: ''
-  - isRequired: true
-    name: --zone-name -z
-    summary: Nom de la zone de DNS privé.
-    description: ''
-  optionalParameters:
-  - name: --subscription
-    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
-    description: ''
-  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_cname_show
-  name: az network private-dns record-set cname show
-  summary: Obtient les détails d’un jeu d’enregistrements CNAMe.
-  description: ''
-  syntax: >-
-    az network private-dns record-set cname show --name
-                                                 --resource-group
-                                                 --zone-name
-                                                 [--query-examples]
-                                                 [--subscription]
-  examples:
-  - summary: Obtient les détails d’un jeu d’enregistrements CNAMe.
-    syntax: az network private-dns record-set cname show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
-  - summary: Obtenir les détails d’un jeu d’enregistrements CNAMe (généré automatiquement)
-    syntax: az network private-dns record-set cname show --name MyRecordSet --resource-group MyResourceGroup --subscription MySubscription --zone-name www.mysite.com
+  - summary: Obtient les détails d’un jeu d’enregistrements AAAA.
+    syntax: az network private-dns record-set aaaa show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -228,25 +222,25 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_cname_update
-  name: az network private-dns record-set cname update
-  summary: Mettez à jour un jeu d’enregistrements CNAMe.
+- uid: az_network_private_dns_record_set_aaaa_update
+  name: az network private-dns record-set aaaa update
+  summary: Mettez à jour un jeu d’enregistrements AAAA.
   description: ''
   syntax: >-
-    az network private-dns record-set cname update --name
-                                                   --resource-group
-                                                   --zone-name
-                                                   [--add]
-                                                   [--force-string]
-                                                   [--if-match]
-                                                   [--metadata]
-                                                   [--remove]
-                                                   [--set]
-                                                   [--subscription]
+    az network private-dns record-set aaaa update --name
+                                                  --resource-group
+                                                  --zone-name
+                                                  [--add]
+                                                  [--force-string]
+                                                  [--if-match]
+                                                  [--metadata]
+                                                  [--remove]
+                                                  [--set]
+                                                  [--subscription]
   examples:
-  - summary: Mettez à jour un jeu d’enregistrements CNAMe.
+  - summary: Mettez à jour un jeu d’enregistrements AAAA.
     syntax: >-
-      az network private-dns record-set cname update -g MyResourceGroup -z www.mysite.com \
+      az network private-dns record-set aaaa update -g MyResourceGroup -z www.mysite.com \
           -n MyRecordSet --metadata owner=WebTeam
   requiredParameters:
   - isRequired: true
@@ -285,13 +279,13 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_private_dns_record_set_cname_create
-- az_network_private_dns_record_set_cname_delete
-- az_network_private_dns_record_set_cname_list
-- az_network_private_dns_record_set_cname_remove_record
-- az_network_private_dns_record_set_cname_set_record
-- az_network_private_dns_record_set_cname_show
-- az_network_private_dns_record_set_cname_update
+- az_network_private_dns_record_set_aaaa_add_record
+- az_network_private_dns_record_set_aaaa_create
+- az_network_private_dns_record_set_aaaa_delete
+- az_network_private_dns_record_set_aaaa_list
+- az_network_private_dns_record_set_aaaa_remove_record
+- az_network_private_dns_record_set_aaaa_show
+- az_network_private_dns_record_set_aaaa_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -310,10 +304,10 @@ globalParameters:
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/25/2021
-  description: Gérer des enregistrements DNS privé CNAMe.
-  ms.openlocfilehash: d0562d80a9db122ef813dd80c7632606078f655b
+  description: Gérer les enregistrements DNS privé AAAA.
+  ms.openlocfilehash: 5192fde3ac9bca125ca457a9c2c401688d7a34d2
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103500846"
+  ms.locfileid: "103500863"

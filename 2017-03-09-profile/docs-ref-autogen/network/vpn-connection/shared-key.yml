@@ -1,75 +1,62 @@
 ### YamlMime:AzureCLIGroup
-uid: az_sql_server_ad_admin
-name: az sql server ad-admin
-summary: Gérez l’administrateur Active Directory d’un serveur.
+uid: az_network_vpn_connection_shared_key
+name: az network vpn-connection shared-key
+summary: Gérer les clés partagées VPN.
 description: ''
 directCommands:
-- uid: az_sql_server_ad_admin_create
-  name: az sql server ad-admin create
-  summary: Créez un serveur Active Directory administrateur.
+- uid: az_network_vpn_connection_shared_key_reset
+  name: az network vpn-connection shared-key reset
+  summary: Réinitialiser une clé partagée de connexion VPN.
   description: ''
   syntax: >-
-    az sql server ad-admin create --display-name
-                                  --object-id
-                                  --resource-group
-                                  --server
-                                  [--subscription]
+    az network vpn-connection shared-key reset --key-length
+                                               [--connection-name]
+                                               [--ids]
+                                               [--resource-group]
+                                               [--subscription]
+  examples:
+  - summary: Réinitialiser la clé partagée sur une connexion.
+    syntax: az network vpn-connection shared-key reset -g MyResourceGroup --connection-name MyConnection --key-length 128
+  - summary: Réinitialiser une clé partagée de connexion VPN. généré automatiquement
+    syntax: az network vpn-connection shared-key reset --connection-name MyConnection --key-length 128 --resource-group MyResourceGroup --subscription MySubscription
   requiredParameters:
   - isRequired: true
-    name: --display-name -u
-    summary: Nom complet du groupe ou de l’utilisateur de l’administrateur Azure AD.
-    description: ''
-  - isRequired: true
-    name: --object-id -i
-    summary: ID unique du Azure AD administrateur.
-    description: ''
-  - isRequired: true
-    name: --resource-group -g
-    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
-    description: ''
-  - isRequired: true
-    name: --server --server-name -s
-    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
+    name: --key-length
+    summary: La longueur de la clé partagée de réinitialisation de la connexion au réseau virtuel doit être comprise entre 1 et 128.
     description: ''
   optionalParameters:
-  - name: --subscription
-    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+  - name: --connection-name
+    summary: Nom de la connexion.
     description: ''
-  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
-- uid: az_sql_server_ad_admin_delete
-  name: az sql server ad-admin delete
-  summary: Supprime le Azure Active Directory administrateur portant le nom donné.
-  description: ''
-  syntax: >-
-    az sql server ad-admin delete [--ids]
-                                  [--resource-group]
-                                  [--server]
-                                  [--subscription]
-  optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
-  - name: --server --server-name -s
-    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
-    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
-  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
-- uid: az_sql_server_ad_admin_list
-  name: az sql server ad-admin list
-  summary: Obtient la liste des administrateurs de Azure Active Directory dans un serveur.
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_vpn_connection_shared_key_show
+  name: az network vpn-connection shared-key show
+  summary: Récupérer une clé partagée de connexion VPN.
   description: ''
   syntax: >-
-    az sql server ad-admin list [--ids]
-                                [--query-examples]
-                                [--resource-group]
-                                [--server]
-                                [--subscription]
+    az network vpn-connection shared-key show [--connection-name]
+                                              [--ids]
+                                              [--query-examples]
+                                              [--resource-group]
+                                              [--subscription]
+  examples:
+  - summary: Affichez la clé partagée d’une connexion.
+    syntax: az network vpn-connection shared-key show -g MyResourceGroup --connection-name MyConnection
+  - summary: Récupérer une clé partagée de connexion VPN. généré automatiquement
+    syntax: az network vpn-connection shared-key show --connection-name MyConnection --resource-group MyResourceGroup --subscription MySubscription
   optionalParameters:
+  - name: --connection-name
+    summary: Nom de la connexion.
+    description: ''
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
@@ -79,34 +66,40 @@ directCommands:
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
-  - name: --server --server-name -s
-    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
-    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
-  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
-- uid: az_sql_server_ad_admin_update
-  name: az sql server ad-admin update
-  summary: Mettre à jour un serveur existant Active Directory administrateur.
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_vpn_connection_shared_key_update
+  name: az network vpn-connection shared-key update
+  summary: Mettez à jour une clé partagée de connexion VPN.
   description: ''
   syntax: >-
-    az sql server ad-admin update [--add]
-                                  [--display-name]
-                                  [--force-string]
-                                  [--ids]
-                                  [--object-id]
-                                  [--remove]
-                                  [--resource-group]
-                                  [--server]
-                                  [--set]
-                                  [--subscription]
+    az network vpn-connection shared-key update --value
+                                                [--add]
+                                                [--connection-name]
+                                                [--force-string]
+                                                [--ids]
+                                                [--remove]
+                                                [--resource-group]
+                                                [--set]
+                                                [--subscription]
+  examples:
+  - summary: Remplacez la clé partagée pour la connexion par « ABC123 ».
+    syntax: az network vpn-connection shared-key update -g MyResourceGroup --connection-name MyConnection --value Abc123
+  - summary: Mettez à jour une clé partagée de connexion VPN. généré automatiquement
+    syntax: az network vpn-connection shared-key update --connection-name MyConnection --resource-group MyResourceGroup --subscription MySubscription --value Abc123
+  requiredParameters:
+  - isRequired: true
+    name: --value
+    summary: Valeur de la clé partagée de la connexion au réseau virtuel.
+    description: ''
   optionalParameters:
   - name: --add
     summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
     description: ''
-  - name: --display-name -u
-    summary: Nom complet du groupe ou de l’utilisateur de l’administrateur Azure AD.
+  - name: --connection-name
+    summary: Nom de la connexion.
     description: ''
   - name: --force-string
     summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
@@ -114,17 +107,11 @@ directCommands:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
-  - name: --object-id -i
-    summary: ID unique du Azure AD administrateur.
-    description: ''
   - name: --remove
     summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
-    description: ''
-  - name: --server --server-name -s
-    summary: Nom du serveur SQL Azure. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults sql-server=<name>` .
     description: ''
   - name: --set
     summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
@@ -132,12 +119,11 @@ directCommands:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
-  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_sql_server_ad_admin_create
-- az_sql_server_ad_admin_delete
-- az_sql_server_ad_admin_list
-- az_sql_server_ad_admin_update
+- az_network_vpn_connection_shared_key_reset
+- az_network_vpn_connection_shared_key_show
+- az_network_vpn_connection_shared_key_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -155,11 +141,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/18/2021
-  description: Gérez l’administrateur Active Directory d’un serveur.
-  ms.openlocfilehash: 5ef5f83bfa7f144b0197b906fb9d08ea3dc10b44
+  ms.date: 02/25/2021
+  description: Gérer les clés partagées VPN.
+  ms.openlocfilehash: 8071e67ad2f771a61ad7e77fc599c24a71f22b9f
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103540167"
+  ms.locfileid: "103512882"
