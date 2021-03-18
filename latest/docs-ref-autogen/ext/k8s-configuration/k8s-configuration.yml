@@ -1,0 +1,316 @@
+### YamlMime:AzureCLIGroup
+uid: ext_k8s-configuration_az_k8s_configuration
+name: az k8s-configuration
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **K8S-configuration** pour Azure CLI et requiert la version 2.15.0 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ K8S-configuration** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer la configuration de Kubernetes.
+description: ''
+directCommands:
+- uid: ext_k8s-configuration_az_k8s_configuration_create
+  name: az k8s-configuration create
+  summary: Créez une configuration Kubernetes.
+  description: ''
+  syntax: >-
+    az k8s-configuration create --cluster-name
+                                --cluster-type {connectedClusters, managedClusters}
+                                --name
+                                --repository-url
+                                --resource-group
+                                --scope {cluster, namespace}
+                                [--enable-helm-operator {false, true}]
+                                [--helm-operator-chart-version]
+                                [--helm-operator-params]
+                                [--https-key]
+                                [--https-user]
+                                [--operator-instance-name]
+                                [--operator-namespace]
+                                [--operator-params]
+                                [--operator-type]
+                                [--ssh-known-hosts]
+                                [--ssh-known-hosts-file]
+                                [--ssh-private-key]
+                                [--ssh-private-key-file]
+  examples:
+  - summary: Créer une configuration Kubernetes
+    syntax: >-
+      az k8s-configuration create --resource-group MyResourceGroup --cluster-name MyClusterName \
+
+      --cluster-type connectedClusters --name MyGitConfig --operator-instance-name OperatorInst01 \
+
+      --operator-namespace OperatorNamespace01 --operator-type flux --operator-params "'--git-readonly'" \
+
+      --repository-url git://github.com/fluxHowTo/flux-get-started --enable-helm-operator  \
+
+      --helm-operator-chart-version 1.2.0 --scope namespace --helm-operator-params '--set helm.versions=v3' \
+
+      --ssh-private-key '' --ssh-private-key-file '' --https-user '' --https-key '' \
+
+      --ssh-known-hosts '' --ssh-known-hosts-file ''
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Nom du cluster Kubernetes.
+    description: ''
+  - isRequired: true
+    name: --cluster-type
+    parameterValueGroup: connectedClusters, managedClusters
+    summary: Spécifiez des clusters arc ou des clusters managés AKS.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de Kubernetes.
+    description: ''
+  - isRequired: true
+    name: --repository-url -u
+    summary: URL du référentiel de contrôle de code source.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --scope
+    parameterValueGroup: cluster, namespace
+    summary: Spécifiez l’étendue de l’opérateur à « espace de noms » ou « cluster ».
+    description: ''
+  optionalParameters:
+  - name: --enable-helm-operator --enable-hop
+    parameterValueGroup: false, true
+    summary: Activez la prise en charge des déploiements de graphiques Helm.
+    description: ''
+  - name: --helm-operator-chart-version --hop-chart-version
+    defaultValue: 1.2.0
+    summary: Version du graphique de l’opérateur Helm (s’il est activé).
+    description: ''
+  - name: --helm-operator-params --hop-params
+    summary: Valeurs de graphique pour l’opérateur Helm (si activé).
+    description: ''
+  - name: --https-key
+    summary: Spécifiez le jeton/mot de passe HTTPs pour la synchronisation du dépôt privé.
+    description: ''
+  - name: --https-user
+    summary: Spécifiez le nom d’utilisateur HTTPs pour la synchronisation du dépôt privé.
+    description: ''
+  - name: --operator-instance-name
+    summary: Nom de l’instance de l’opérateur.
+    description: ''
+  - name: --operator-namespace
+    defaultValue: default
+    summary: Espace de noms dans lequel installer l’opérateur.
+    description: ''
+  - name: --operator-params
+    summary: Paramètres pour l’opérateur.
+    description: ''
+  - name: --operator-type
+    defaultValue: flux
+    summary: Type de l’opérateur. La valeur valide est’flux'.
+    description: ''
+  - name: --ssh-known-hosts
+    summary: Spécifiez le contenu known_hosts encodé en base64 contenant les clés SSH publiques requises pour accéder aux instances git privées.
+    description: ''
+  - name: --ssh-known-hosts-file
+    summary: Spécifiez FILEPATH pour known_hosts contenu contenant les clés SSH publiques requises pour accéder aux instances git privées.
+    description: ''
+  - name: --ssh-private-key
+    summary: Spécifiez une clé SSH privée encodée en base64 pour la synchronisation du dépôt privé.
+    description: ''
+  - name: --ssh-private-key-file
+    summary: Spécifiez le chemin d’une clé SSH privée pour la synchronisation du dépôt privé.
+    description: ''
+- uid: ext_k8s-configuration_az_k8s_configuration_delete
+  name: az k8s-configuration delete
+  summary: Supprimer une configuration Kubernetes.
+  description: ''
+  syntax: >-
+    az k8s-configuration delete --cluster-name
+                                --cluster-type {connectedClusters, managedClusters}
+                                --name
+                                --resource-group
+                                [--yes]
+  examples:
+  - summary: Supprimer une configuration Kubernetes
+    syntax: >-
+      az k8s-configuration delete --resource-group MyResourceGroup --cluster-name MyClusterName \
+
+      --cluster-type connectedClusters --name MyConfigurationName
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Nom du cluster Kubernetes.
+    description: ''
+  - isRequired: true
+    name: --cluster-type
+    parameterValueGroup: connectedClusters, managedClusters
+    summary: Spécifiez des clusters arc ou des clusters managés AKS.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de Kubernetes.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: ext_k8s-configuration_az_k8s_configuration_list
+  name: az k8s-configuration list
+  summary: Répertorier les configurations Kubernetes.
+  description: ''
+  syntax: >-
+    az k8s-configuration list --cluster-name
+                              --cluster-type {connectedClusters, managedClusters}
+                              --resource-group
+  examples:
+  - summary: Répertorier toutes les configurations Kubernetes d’un cluster
+    syntax: >-
+      az k8s-configuration list --resource-group MyResourceGroup --cluster-name MyClusterName \
+
+      --cluster-type connectedClusters
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Nom du cluster Kubernetes.
+    description: ''
+  - isRequired: true
+    name: --cluster-type
+    parameterValueGroup: connectedClusters, managedClusters
+    summary: Spécifiez des clusters arc ou des clusters managés AKS.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_k8s-configuration_az_k8s_configuration_show
+  name: az k8s-configuration show
+  summary: Affichez les détails d’une configuration Kubernetes.
+  description: ''
+  syntax: >-
+    az k8s-configuration show --cluster-name
+                              --cluster-type {connectedClusters, managedClusters}
+                              --name
+                              --resource-group
+  examples:
+  - summary: Afficher une configuration Kubernetes
+    syntax: >-
+      az k8s-configuration show --resource-group MyResourceGroup --cluster-name MyClusterName \
+
+      --cluster-type connectedClusters --name MyConfigurationName
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Nom du cluster Kubernetes.
+    description: ''
+  - isRequired: true
+    name: --cluster-type
+    parameterValueGroup: connectedClusters, managedClusters
+    summary: Spécifiez des clusters arc ou des clusters managés AKS.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de Kubernetes.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: ext_k8s-configuration_az_k8s_configuration_update
+  name: az k8s-configuration update
+  summary: Mettez à jour une configuration Kubernetes.
+  description: ''
+  syntax: >-
+    az k8s-configuration update --cluster-name
+                                --cluster-type {connectedClusters, managedClusters}
+                                --name
+                                --resource-group
+                                [--enable-helm-operator {false, true}]
+                                [--helm-operator-chart-version]
+                                [--helm-operator-params]
+                                [--operator-params]
+                                [--repository-url]
+                                [--ssh-known-hosts]
+                                [--ssh-known-hosts-file]
+  examples:
+  - summary: Mettre à jour une configuration Kubernetes existante
+    syntax: >-
+      az k8s-configuration update --resource-group MyResourceGroup --cluster-name MyClusterName \
+
+      --cluster-type connectedClusters --name MyConfigurationName --enable-helm-operator \
+
+      --repository-url git://github.com/fluxHowTo/flux-get-started --operator-params "'--git-readonly'" \
+
+      --helm-operator-chart-version 1.2.0 --helm-operator-params '--set helm.versions=v3'
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Nom du cluster Kubernetes.
+    description: ''
+  - isRequired: true
+    name: --cluster-type
+    parameterValueGroup: connectedClusters, managedClusters
+    summary: Spécifiez des clusters arc ou des clusters managés AKS.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration de Kubernetes.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --enable-helm-operator --enable-hop
+    parameterValueGroup: false, true
+    summary: Activez la prise en charge des déploiements de graphiques Helm.
+    description: ''
+  - name: --helm-operator-chart-version --hop-chart-version
+    summary: Version du graphique de l’opérateur Helm (s’il est activé).
+    description: ''
+  - name: --helm-operator-params --hop-params
+    summary: Valeurs de graphique pour l’opérateur Helm (si activé).
+    description: ''
+  - name: --operator-params
+    summary: Paramètres pour l’opérateur.
+    description: ''
+  - name: --repository-url -u
+    summary: URL du référentiel de contrôle de code source.
+    description: ''
+  - name: --ssh-known-hosts
+    summary: Spécifiez le contenu known_hosts encodé en base64 contenant les clés SSH publiques requises pour accéder aux instances git privées.
+    description: ''
+  - name: --ssh-known-hosts-file
+    summary: Spécifiez FILEPATH pour known_hosts contenu contenant les clés SSH publiques requises pour accéder aux instances git privées.
+    description: ''
+commands:
+- ext_k8s-configuration_az_k8s_configuration_create
+- ext_k8s-configuration_az_k8s_configuration_delete
+- ext_k8s-configuration_az_k8s_configuration_list
+- ext_k8s-configuration_az_k8s_configuration_show
+- ext_k8s-configuration_az_k8s_configuration_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer la configuration de Kubernetes.
+  ms.openlocfilehash: 398b0509cd8aff624e20d07014d574110c1d8761
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103552080"
