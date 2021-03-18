@@ -19,7 +19,9 @@ directCommands:
   - summary: Ajouter une intégration de réseau virtuel régional à un webapp
     syntax: az webapp vnet-integration add -g MyResourceGroup -n MyWebapp --vnet MyVnetName --subnet MySubnetName -s [slot]
   - summary: Ajouter une intégration de réseau virtuel régional à une application Web à l’aide de l’ID de ressource de réseau virtuel
-    syntax: az webapp vnet-integration add -g MyResourceGroup -n MyWebapp --vnet '/subscriptions/[sub id]/resourceGroups/[rg]/providers/Microsoft.Network/virtualNetworks/[virtual network name]' --subnet MySubnetName -s [slot]
+    syntax: az webapp vnet-integration add -g MyResourceGroup -n MyWebapp --vnet '/subscriptions/[sub id]/resourceGroups/[MyResourceGroup]/providers/Microsoft.Network/virtualNetworks/[MyVnetName]' --subnet MySubnetName -s [slot]
+  - summary: Ajouter une intégration de réseau virtuel régional à un webapp à l’aide de l’ID de ressource de sous-réseau
+    syntax: az webapp vnet-integration add -g MyResourceGroup -n MyWebapp --vnet MyVnetName --subnet '/subscriptions/[sub id]/resourceGroups/[MyResourceGroup]/providers/Microsoft.Network/virtualNetworks/[MyVnetName]/subnets/MySubnetName' -s [slot]
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -31,7 +33,7 @@ directCommands:
     description: ''
   - isRequired: true
     name: --subnet
-    summary: Nom du sous-réseau.
+    summary: Nom ou ID de ressource du sous-réseau.
     description: ''
   - isRequired: true
     name: --vnet
@@ -125,9 +127,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Méthodes qui répertorient, ajoutent et suppriment des intégrations de réseaux virtuels à partir d’une application Web.
-  ms.openlocfilehash: 82b46efe1e80849cd1c36d8f3f419edf0b86fa52
-  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.openlocfilehash: cf2e049a510503e7b405ba4dfaadb0cf0c6046cf
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 12/30/2020
-  ms.locfileid: "102841960"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103519359"

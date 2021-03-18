@@ -1,25 +1,25 @@
 ### YamlMime:AzureCLIGroup
 uid: az_network_routeserver_peering
 name: az network routeserver peering
-summary: Gérez l’homologation de routeur de concentrateur virtuel.
+summary: Gérez l’homologation de serveur de routage.
 description: ''
 directCommands:
 - uid: az_network_routeserver_peering_create
   name: az network routeserver peering create
-  summary: Créez une homologation de routeur de concentrateur virtuel.
+  summary: Créez un appairage de serveur de routage.
   description: ''
   syntax: >-
     az network routeserver peering create --name
                                           --peer-asn
                                           --peer-ip
                                           --resource-group
-                                          --vrouter-name
+                                          --routeserver
                                           [--no-wait]
                                           [--subscription]
   requiredParameters:
   - isRequired: true
     name: --name -n
-    summary: Nom de l’homologation de routeur de concentrateur virtuel.
+    summary: Nom de l’homologation de serveur de routage.
     description: ''
   - isRequired: true
     name: --peer-asn
@@ -34,8 +34,8 @@ directCommands:
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   - isRequired: true
-    name: --vrouter-name
-    summary: Nom du routeur de concentrateur virtuel.
+    name: --routeserver
+    summary: Nom du serveur de routage.
     description: ''
   optionalParameters:
   - name: --no-wait
@@ -47,22 +47,22 @@ directCommands:
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 - uid: az_network_routeserver_peering_delete
   name: az network routeserver peering delete
-  summary: Supprimer une homologation de routeur de concentrateur virtuel.
+  summary: Supprimer un appairage de serveur de routage.
   description: ''
   syntax: >-
     az network routeserver peering delete [--ids]
                                           [--name]
                                           [--no-wait]
                                           [--resource-group]
+                                          [--routeserver]
                                           [--subscription]
-                                          [--vrouter-name]
                                           [--yes]
   optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --name -n
-    summary: Nom de l’homologation de routeur de concentrateur virtuel.
+    summary: Nom de l’homologation de serveur de routage.
     description: ''
   - name: --no-wait
     summary: Ne pas attendre la fin de l’opération de longue durée.
@@ -70,11 +70,11 @@ directCommands:
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
+  - name: --routeserver
+    summary: Nom du serveur de routage.
+    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
-    description: ''
-  - name: --vrouter-name
-    summary: Nom du routeur de concentrateur virtuel.
     description: ''
   - name: --yes -y
     summary: Ne pas demander de confirmation.
@@ -82,11 +82,11 @@ directCommands:
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 - uid: az_network_routeserver_peering_list
   name: az network routeserver peering list
-  summary: Répertorie tous les homologations de routeur de concentrateur virtuel sous un groupe de ressources.
+  summary: Répertorie tous les homologations de serveur de routage sous un groupe de ressources.
   description: ''
   syntax: >-
     az network routeserver peering list --resource-group
-                                        --vrouter-name
+                                        --routeserver
                                         [--query-examples]
                                         [--subscription]
   requiredParameters:
@@ -95,8 +95,8 @@ directCommands:
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   - isRequired: true
-    name: --vrouter-name
-    summary: Nom du routeur de concentrateur virtuel.
+    name: --routeserver
+    summary: Nom du serveur de routage.
     description: ''
   optionalParameters:
   - name: --query-examples
@@ -108,75 +108,75 @@ directCommands:
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 - uid: az_network_routeserver_peering_list_advertised_routes
   name: az network routeserver peering list-advertised-routes
-  summary: Répertorie tous les itinéraires que la connexion BGP du Hub virtuel publie vers l’homologue spécifié.
+  summary: Répertorie tous les itinéraires que la connexion BGP du serveur de routage publie vers l’homologue spécifié.
   description: ''
   syntax: >-
     az network routeserver peering list-advertised-routes [--ids]
                                                           [--name]
                                                           [--resource-group]
+                                                          [--routeserver]
                                                           [--subscription]
-                                                          [--vrouter-name]
   optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --name -n
-    summary: Nom de l’homologation de routeur de concentrateur virtuel.
+    summary: Nom de l’homologation de serveur de routage.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
+  - name: --routeserver
+    summary: Nom du serveur de routage.
+    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
-    description: ''
-  - name: --vrouter-name
-    summary: Nom du routeur de concentrateur virtuel.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 - uid: az_network_routeserver_peering_list_learned_routes
   name: az network routeserver peering list-learned-routes
-  summary: Répertorie tous les itinéraires que la connexion BGP du Hub virtuel a appris.
+  summary: Répertorie tous les itinéraires que la connexion BGP du serveur de routage a appris.
   description: ''
   syntax: >-
     az network routeserver peering list-learned-routes [--ids]
                                                        [--name]
                                                        [--resource-group]
+                                                       [--routeserver]
                                                        [--subscription]
-                                                       [--vrouter-name]
   optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --name -n
-    summary: Nom de l’homologation de routeur de concentrateur virtuel.
+    summary: Nom de l’homologation de serveur de routage.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
+  - name: --routeserver
+    summary: Nom du serveur de routage.
+    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
-    description: ''
-  - name: --vrouter-name
-    summary: Nom du routeur de concentrateur virtuel.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 - uid: az_network_routeserver_peering_show
   name: az network routeserver peering show
-  summary: Affichez une homologation de routeur de concentrateur virtuel.
+  summary: Affichez une homologation de serveur de routage.
   description: ''
   syntax: >-
     az network routeserver peering show [--ids]
                                         [--name]
                                         [--query-examples]
                                         [--resource-group]
+                                        [--routeserver]
                                         [--subscription]
-                                        [--vrouter-name]
   optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --name -n
-    summary: Nom de l’homologation de routeur de concentrateur virtuel.
+    summary: Nom de l’homologation de serveur de routage.
     description: ''
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
@@ -184,16 +184,16 @@ directCommands:
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
+  - name: --routeserver
+    summary: Nom du serveur de routage.
+    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
-    description: ''
-  - name: --vrouter-name
-    summary: Nom du routeur de concentrateur virtuel.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 - uid: az_network_routeserver_peering_update
   name: az network routeserver peering update
-  summary: Mettre à jour une homologation de routeur de concentrateur virtuel.
+  summary: Mettez à jour une homologation de serveur de routage.
   description: ''
   syntax: >-
     az network routeserver peering update [--add]
@@ -204,9 +204,9 @@ directCommands:
                                           [--peer-ip]
                                           [--remove]
                                           [--resource-group]
+                                          [--routeserver]
                                           [--set]
                                           [--subscription]
-                                          [--vrouter-name]
   optionalParameters:
   - name: --add
     summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
@@ -218,7 +218,7 @@ directCommands:
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --name -n
-    summary: Nom de l’homologation de routeur de concentrateur virtuel.
+    summary: Nom de l’homologation de serveur de routage.
     description: ''
   - name: --peer-asn
     summary: ASN du pair. Sa plage est comprise entre 1 et 4294967295.
@@ -232,14 +232,14 @@ directCommands:
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
+  - name: --routeserver
+    summary: Nom du serveur de routage.
+    description: ''
   - name: --set
     summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
-    description: ''
-  - name: --vrouter-name
-    summary: Nom du routeur de concentrateur virtuel.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
@@ -267,11 +267,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/03/2021
-  description: Gérez l’homologation de routeur de concentrateur virtuel.
-  ms.openlocfilehash: 3b29c66c72a06bad5f4f3a1513707a4a75d6ffee
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.date: 02/25/2021
+  description: Gérez l’homologation de serveur de routage.
+  ms.openlocfilehash: f3e3318a62e05f23b83f9702ca38b81ae287a417
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102969232"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103530630"
