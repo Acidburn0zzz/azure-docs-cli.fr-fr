@@ -18,11 +18,14 @@ directCommands:
                                    --relationship-id
                                    --source
                                    --target
+                                   [--if-none-match]
                                    [--properties]
                                    [--resource-group]
   examples:
   - summary: Créer une relation entre deux représentations numériques.
     syntax: az dt twin relationship create -n {instance_or_hostname} --relationship-id {relationship_id} --relationship contains --twin-id {source_twin_id} --target {target_twin_id}
+  - summary: Créer une relation entre deux représentations numériques avec la balise If-None-Match
+    syntax: az dt twin relationship create -n {instance_or_hostname} --relationship-id {relationship_id} --relationship contains --twin-id {source_twin_id} --target {target_twin_id} --if-none-match
   - summary: Créez une relation avec des propriétés initialisées entre deux représentations numériques.
     syntax: "az dt twin relationship create -n {instance_or_hostname} --relationship-id {relationship_id} --relationship contains --twin-id {source_twin_id} --target {target_twin_id} --properties '{\"ownershipUser\": \"me\", \"ownershipDepartment\": \"Computer Science\"}'"
   requiredParameters:
@@ -47,6 +50,9 @@ directCommands:
     summary: ID de représentation cible d’une relation.
     description: ''
   optionalParameters:
+  - name: --if-none-match
+    summary: Indique que l’opération de création doit échouer si une représentation existante portant le même ID existe.
+    description: ''
   - name: --properties -p
     summary: Valeurs de propriété initiales pour l’instanciation d’une relation de fils numériques. Fournissez un chemin de fichier ou un JSON en ligne.
     description: ''
@@ -61,10 +67,13 @@ directCommands:
     az dt twin relationship delete --dt-name
                                    --relationship-id
                                    --source
+                                   [--etag]
                                    [--resource-group]
   examples:
   - summary: Supprimer une relation de fils numériques.
     syntax: az dt twin relationship delete -n {instance_or_hostname} --twin-id {twin_id} --relationship-id {relationship_id}
+  - summary: Supprimer une relation de fils numériques à l’aide de l’ETag.
+    syntax: az dt twin relationship delete -n {instance_or_hostname} --twin-id {twin_id} --relationship-id {relationship_id} --etag {etag}
   requiredParameters:
   - isRequired: true
     name: --dt-name --dtn -n
@@ -79,6 +88,9 @@ directCommands:
     summary: ID de représentation source pour une relation.
     description: ''
   optionalParameters:
+  - name: --etag -e
+    summary: Valeur de balise d’entité. La commande est réussie si l’ETag correspond à l’ETag actuel pour la ressource.
+    description: ''
   - name: --resource-group -g
     summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
@@ -159,10 +171,13 @@ directCommands:
                                    --json-patch
                                    --relationship-id
                                    --source
+                                   [--etag]
                                    [--resource-group]
   examples:
   - summary: Mettre à jour une relation de fils numériques via une spécification de correctif JSON.
     syntax: "az dt twin relationship update -n {instance_or_hostname} --twin-id {twin_id} --relationship-id {relationship_id} --relationship contains --json-patch '{\"op\":\"replace\", \"path\":\"/Temperature\", \"value\": 20.5}'"
+  - summary: Mettre à jour une relation de fils numériques via la spécification de correctif JSON et l’utilisation d’ETag.
+    syntax: "az dt twin relationship update -n {instance_or_hostname} --twin-id {twin_id} --relationship-id {relationship_id} --relationship contains --json-patch '{\"op\":\"replace\", \"path\":\"/Temperature\", \"value\": 20.5}' --etag {etag}"
   - summary: Mettre à jour une relation de fils numériques via une spécification de correctif JSON.
     syntax: >-
       az dt twin relationship update -n {instance_or_hostname} --twin-id {twin_id} --relationship-id {relationship_id} --relationship contains --json-patch '[
@@ -189,6 +204,9 @@ directCommands:
     summary: ID de représentation source pour une relation.
     description: ''
   optionalParameters:
+  - name: --etag -e
+    summary: Valeur de balise d’entité. La commande est réussie si l’ETag correspond à l’ETag actuel pour la ressource.
+    description: ''
   - name: --resource-group -g
     summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
@@ -215,9 +233,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérez et configurez les relations de fils numériques d’une instance Digital représentations.
-  ms.openlocfilehash: 5ae18cc15c75c27c73db87db784f0c8b20657557
-  ms.sourcegitcommit: e1faf297ba2cdf2ba7e821fbeedff9c9a724c975
+  ms.openlocfilehash: d1f1df98417015b12f34989c8cef1bcca5f4e2b0
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 12/16/2020
-  ms.locfileid: "102831884"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103528879"

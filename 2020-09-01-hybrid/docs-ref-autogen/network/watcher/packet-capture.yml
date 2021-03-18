@@ -1,0 +1,253 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_watcher_packet_capture
+name: az network watcher packet-capture
+summary: Gérer les sessions de capture de paquets sur les machines virtuelles.
+description: Ces commandes requièrent que les deux Network Watcher Azure soient activés pour la région des machines virtuelles et que AzureNetworkWatcherExtension soit activé sur la machine virtuelle. Pour plus d’informations <a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-packet-capture-manage-cli">https://docs.microsoft.com/azure/network-watcher/network-watcher-packet-capture-manage-cli</a> , consultez.
+directCommands:
+- uid: az_network_watcher_packet_capture_create
+  name: az network watcher packet-capture create
+  summary: Créez et démarrez une session de capture de paquets.
+  description: ''
+  syntax: >-
+    az network watcher packet-capture create --name
+                                             --resource-group
+                                             --vm
+                                             [--capture-limit]
+                                             [--capture-size]
+                                             [--file-path]
+                                             [--filters]
+                                             [--storage-account]
+                                             [--storage-path]
+                                             [--subscription]
+                                             [--time-limit]
+  examples:
+  - summary: Créez une session de capture de paquets sur une machine virtuelle.
+    syntax: az network watcher packet-capture create -g MyResourceGroup -n MyPacketCaptureName --vm MyVm --storage-account MyStorageAccount
+  - summary: Créez une session de capture de paquets sur une machine virtuelle avec des filtres facultatifs pour les protocoles, l’adresse IP locale et les ports et les plages d’adresses IP distantes.
+    syntax: >-
+      az network watcher packet-capture create -g MyResourceGroup -n MyPacketCaptureName --vm MyVm \
+          --storage-account MyStorageAccount --filters '[ \
+              { \
+                  "protocol":"TCP", \
+                  "remoteIPAddress":"1.1.1.1-255.255.255", \
+                  "localIPAddress":"10.0.0.3", \
+                  "remotePort":"20" \
+              }, \
+              { \
+                  "protocol":"TCP", \
+                  "remoteIPAddress":"1.1.1.1-255.255.255", \
+                  "localIPAddress":"10.0.0.3", \
+                  "remotePort":"80" \
+              }, \
+              { \
+                  "protocol":"TCP", \
+                  "remoteIPAddress":"1.1.1.1-255.255.255", \
+                  "localIPAddress":"10.0.0.3", \
+                  "remotePort":"443" \
+              }, \
+              { \
+                  "protocol":"UDP" \
+              }]'
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la session de capture de paquets.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources dans lequel se trouve la machine virtuelle cible.
+    description: ''
+  - isRequired: true
+    name: --vm
+    summary: Nom ou ID de la machine virtuelle à cibler.
+    description: ''
+  optionalParameters:
+  - name: --capture-limit
+    summary: Taille maximale, en octets, de la sortie de capture.
+    description: ''
+  - name: --capture-size
+    summary: Nombre d’octets capturés par paquet. Les octets excédentaires sont tronqués.
+    description: ''
+  - name: --file-path
+    summary: Chemin d’accès local sur la machine virtuelle cible dans laquelle enregistrer la capture de paquets. Pour les machines virtuelles Linux, le chemin d’accès doit commencer par/var/captures.
+    description: ''
+  - name: --filters
+    summary: Liste de filtres de paquets codée JSON. Utilisez `@{path}` pour charger à partir du fichier.
+    description: ''
+  - name: --storage-account
+    summary: Nom ou ID d’un compte de stockage dans lequel enregistrer la capture de paquets.
+    description: ''
+  - name: --storage-path
+    summary: URI complet d’un conteneur de stockage existant dans lequel stocker le fichier de capture.
+    description: S’il n’est pas spécifié, le conteneur « Network-Watcher-logs » est créé s’il n’existe pas et le fichier de capture y est stocké.
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --time-limit
+    summary: Durée maximale de la session de capture en secondes.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_packet_capture_delete
+  name: az network watcher packet-capture delete
+  summary: Supprimer une session de capture de paquets.
+  description: ''
+  syntax: >-
+    az network watcher packet-capture delete --location
+                                             --name
+                                             [--subscription]
+  examples:
+  - summary: Supprimer une session de capture de paquets. Cela supprime uniquement la session et non le fichier de capture.
+    syntax: az network watcher packet-capture delete -n packetCaptureName -l westcentralus
+  - summary: Supprimer une session de capture de paquets. généré automatiquement
+    syntax: az network watcher packet-capture delete --location westcentralus --name packetCaptureName --subscription MySubscription
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la session de capture de paquets.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_packet_capture_list
+  name: az network watcher packet-capture list
+  summary: Répertorie toutes les sessions de capture de paquets au sein d’un groupe de ressources.
+  description: ''
+  syntax: >-
+    az network watcher packet-capture list --location
+                                           [--query-examples]
+                                           [--subscription]
+  examples:
+  - summary: Répertorie toutes les sessions de capture de paquets au sein d’une région.
+    syntax: az network watcher packet-capture list -l westus
+  - summary: Répertorier toutes les sessions de capture de paquets au sein d’un groupe de ressources (généré automatiquement)
+    syntax: az network watcher packet-capture list --location westus --subscription MySubscription
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_packet_capture_show
+  name: az network watcher packet-capture show
+  summary: Affichez les détails d’une session de capture de paquets.
+  description: ''
+  syntax: >-
+    az network watcher packet-capture show --location
+                                           --name
+                                           [--query-examples]
+                                           [--subscription]
+  examples:
+  - summary: Affiche une session de capture de paquets.
+    syntax: az network watcher packet-capture show -l westus -n MyPacketCapture
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la session de capture de paquets.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_packet_capture_show_status
+  name: az network watcher packet-capture show-status
+  summary: Affichez l’état d’une session de capture de paquets.
+  description: ''
+  syntax: >-
+    az network watcher packet-capture show-status --location
+                                                  --name
+                                                  [--subscription]
+  examples:
+  - summary: Affichez l’état d’une session de capture de paquets.
+    syntax: az network watcher packet-capture show-status -l westus -n MyPacketCapture
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom donné à la session de capture de paquets.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+- uid: az_network_watcher_packet_capture_stop
+  name: az network watcher packet-capture stop
+  summary: Arrêter une session de capture de paquets en cours d’exécution.
+  description: ''
+  syntax: >-
+    az network watcher packet-capture stop --location
+                                           --name
+                                           [--subscription]
+  examples:
+  - summary: Arrêter une session de capture de paquets en cours d’exécution.
+    syntax: az network watcher packet-capture stop -l westus -n MyPacketCapture
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la session de capture de paquets.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
+commands:
+- az_network_watcher_packet_capture_create
+- az_network_watcher_packet_capture_delete
+- az_network_watcher_packet_capture_list
+- az_network_watcher_packet_capture_show
+- az_network_watcher_packet_capture_show_status
+- az_network_watcher_packet_capture_stop
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/03/2021
+  description: Ces commandes requièrent que les deux Network Watcher Azure soient activés pour la région des machines virtuelles et que AzureNetworkWatcherExtension soit activé sur la machine virtuelle. Pour plus d’informations <a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-packet-capture-manage-cli">https://docs.microsoft.com/azure/network-watcher/network-watcher-packet-capture-manage-cli</a> , consultez.
+  ms.openlocfilehash: 024cfaafa704017dd10b022a66b9ee7699d915c3
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102964479"

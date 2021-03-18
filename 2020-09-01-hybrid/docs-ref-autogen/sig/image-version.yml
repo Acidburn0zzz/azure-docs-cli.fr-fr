@@ -42,7 +42,7 @@ directCommands:
     syntax: az sig image-version create -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --os-snapshot /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyOSDisk
   - summary: Ajouter une nouvelle version de l’image à partir d’un disque géré et ajouter des disques de données supplémentaires
     syntax: az sig image-version create -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --os-snapshot /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyOSDisk --data-snapshots /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyDataDisk --data-snapshot-luns 0
-  - summary: Vous pouvez ajouter une nouvelle version d’image contenant un mélange de captures instantanées et de disques managés
+  - summary: Ajouter une nouvelle version d’image contenant une combinaison de captures instantanées et de disques managés
     syntax: az sig image-version create -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --os-snapshot /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyOSDisk --data-snapshots /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/snapshots/MyDiskSnapshot1 /subscriptions/00000000-0000-0000-0000-00000000xxxx/resourceGroups/imageGroups/providers/Microsoft.Compute/disks/MyDataDisk2 --data-snapshot-luns 1 2
   - summary: Ajoutez une nouvelle version d’image répliquée dans plusieurs régions avec des nombres de réplication différents. Le nombre de réplicas de Eastus2 sera défini sur le nombre de réplicas par défaut.
     syntax: >-
@@ -255,6 +255,10 @@ directCommands:
     syntax: az sig image-version update -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --target-regions westcentralus=2 eastus2
   - summary: Réplication vers une autre région
     syntax: az sig image-version update -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --add publishingProfile.targetRegions name=westcentralus
+  - summary: Ajouter une région avec un autre nombre de réplicas régionaux
+    syntax: az sig image-version update -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --add publishingProfile.targetRegions name=westcentralus regionalReplicaCount=3
+  - summary: Supprimer une région
+    syntax: az sig image-version update -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --remove publishingProfile.targetRegions name=westcentralus
   - summary: Indiquez si une image doit être incluse en considération pour la dernière version dans la définition de l’image. Si cette valeur est définie sur true, l’image n’est pas prise en compte et la définition de cette valeur sur false inclut l’image à prendre en compte.
     syntax: az sig image-version update -g MyResourceGroup --gallery-name MyGallery --gallery-image-definition MyImage --gallery-image-version 1.0.0 --set publishingProfile.excludeFromLatest=true
   - summary: Mettez à jour une version d’image de partage. généré automatiquement
@@ -395,9 +399,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Créez une nouvelle version à partir d’une définition d’image.
-  ms.openlocfilehash: af4fa1cb03829c2a5c00a86c6a2652a8959c42d4
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: 0c54e1ce511f697c73e7b2f02d439653691b7ffa
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102967723"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103547154"
