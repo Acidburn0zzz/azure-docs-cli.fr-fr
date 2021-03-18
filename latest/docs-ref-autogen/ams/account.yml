@@ -9,19 +9,18 @@ directCommands:
   summary: Vérifie si le nom de la ressource du service multimédia est disponible.
   description: ''
   syntax: >-
-    az ams account check-name --location
-                              --name
+    az ams account check-name --name
+                              [--location]
                               [--subscription]
   requiredParameters:
-  - isRequired: true
-    name: --location -l
-    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
-    description: ''
   - isRequired: true
     name: --name -n
     summary: Nom du compte Azure Media Services.
     description: ''
   optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
@@ -35,6 +34,7 @@ directCommands:
                           --resource-group
                           --storage-account
                           [--location]
+                          [--mi-system-assigned]
                           [--subscription]
                           [--tags]
   requiredParameters:
@@ -53,6 +53,9 @@ directCommands:
   optionalParameters:
   - name: --location -l
     summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --mi-system-assigned
+    summary: Définissez l’identité gérée par le système sur le compte Media Services.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -177,6 +180,9 @@ commands:
 - az_ams_account_check_name
 - az_ams_account_create
 - az_ams_account_delete
+- az_ams_account_encryption
+- az_ams_account_encryption_set
+- az_ams_account_encryption_show
 - az_ams_account_list
 - az_ams_account_mru
 - az_ams_account_mru_set
@@ -188,6 +194,7 @@ commands:
 - az_ams_account_storage
 - az_ams_account_storage_add
 - az_ams_account_storage_remove
+- az_ams_account_storage_set_authentication
 - az_ams_account_storage_sync_storage_keys
 - az_ams_account_update
 globalParameters:
@@ -207,11 +214,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 07/28/2020
+  ms.date: 02/24/2021
   description: Gérer les comptes de Azure Media Services.
-  ms.openlocfilehash: 2934705aa06e7949c8d3742fd7753eeed8f6effa
-  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.openlocfilehash: e1452651bab4ab8c4eb01de5da79a1a9283a251e
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 09/29/2020
-  ms.locfileid: "102820721"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103509941"
