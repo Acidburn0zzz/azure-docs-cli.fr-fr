@@ -1,10 +1,39 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_dns
-name: az network dns
-summary: Gérer les domaines DNS dans Azure.
+uid: az_network_dns_record_set
+name: az network dns record-set
+summary: Gérer les enregistrements DNS et les jeux d’enregistrements.
 description: ''
+directCommands:
+- uid: az_network_dns_record_set_list
+  name: az network dns record-set list
+  summary: Répertorie tous les jeux d’enregistrements dans une zone DNS.
+  description: ''
+  syntax: >-
+    az network dns record-set list --resource-group
+                                   --zone-name
+                                   [--query-examples]
+                                   [--subscription]
+  examples:
+  - summary: Répertorie tous les jeux d’enregistrements « @ » dans cette zone.
+    syntax: az network dns record-set list -g MyResourceGroup -z www.mysite.com --query "[?name=='@']"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --zone-name -z
+    summary: Nom de la zone.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_dns_record_set
 - az_network_dns_record_set_a
 - az_network_dns_record_set_a_add_record
 - az_network_dns_record_set_a_create
@@ -21,6 +50,14 @@ commands:
 - az_network_dns_record_set_aaaa_remove_record
 - az_network_dns_record_set_aaaa_show
 - az_network_dns_record_set_aaaa_update
+- az_network_dns_record_set_caa
+- az_network_dns_record_set_caa_add_record
+- az_network_dns_record_set_caa_create
+- az_network_dns_record_set_caa_delete
+- az_network_dns_record_set_caa_list
+- az_network_dns_record_set_caa_remove_record
+- az_network_dns_record_set_caa_show
+- az_network_dns_record_set_caa_update
 - az_network_dns_record_set_cname
 - az_network_dns_record_set_cname_create
 - az_network_dns_record_set_cname_delete
@@ -72,14 +109,6 @@ commands:
 - az_network_dns_record_set_txt_remove_record
 - az_network_dns_record_set_txt_show
 - az_network_dns_record_set_txt_update
-- az_network_dns_zone
-- az_network_dns_zone_create
-- az_network_dns_zone_delete
-- az_network_dns_zone_export
-- az_network_dns_zone_import
-- az_network_dns_zone_list
-- az_network_dns_zone_show
-- az_network_dns_zone_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -98,10 +127,10 @@ globalParameters:
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/25/2021
-  description: Gérer les domaines DNS dans Azure.
-  ms.openlocfilehash: ea9bbbd54458df0fdb61fcd8562adfc7110dec68
+  description: Gérer les enregistrements DNS et les jeux d’enregistrements.
+  ms.openlocfilehash: 704dd78ac8e394e739ca690f92701e2263967fd5
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103514276"
+  ms.locfileid: "103546497"
