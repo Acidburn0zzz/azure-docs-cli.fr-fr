@@ -66,7 +66,7 @@ directCommands:
                   [--appgw-watch-namespace]
                   [--assign-identity]
                   [--attach-acr]
-                  [--auto-upgrade-channel {none, patch, rapid, stable}]
+                  [--auto-upgrade-channel {node-image, none, patch, rapid, stable}]
                   [--client-secret]
                   [--cluster-autoscaler-profile]
                   [--disable-rbac]
@@ -82,11 +82,14 @@ directCommands:
                   [--enable-managed-identity]
                   [--enable-node-public-ip]
                   [--enable-pod-identity]
+                  [--enable-pod-identity-with-kubenet]
                   [--enable-pod-security-policy]
                   [--enable-private-cluster]
                   [--enable-rbac]
+                  [--enable-secret-rotation]
                   [--enable-sgxquotehelper]
                   [--enable-vmss]
+                  [--fqdn-subdomain]
                   [--generate-ssh-keys]
                   [--kubelet-config]
                   [--kubernetes-version]
@@ -109,6 +112,7 @@ directCommands:
                   [--node-osdisk-diskencryptionset-id]
                   [--node-osdisk-size]
                   [--node-osdisk-type]
+                  [--node-public-ip-prefix-id]
                   [--node-resource-group]
                   [--node-vm-size]
                   [--node-zones {1, 2, 3}]
@@ -234,8 +238,8 @@ directCommands:
     summary: Accordez l’attribution de rôle « acrpull » au ACR spécifié par le nom ou l’ID de ressource.
     description: ''
   - name: --auto-upgrade-channel
-    parameterValueGroup: none, patch, rapid, stable
-    summary: Spécifiez le canal de mise à niveau pour AutoUpgrade. Il peut s’agir d’un correctif rapide, stable ou non, aucune signifie désactiver la mise à niveau automatique.
+    parameterValueGroup: node-image, none, patch, rapid, stable
+    summary: Spécifiez le canal de mise à niveau pour AutoUpgrade. Il peut s’agir d’une opération rapide, stable, corrective, node-image ou None, aucune signifie désactiver la mise à niveau automatique.
     description: ''
   - name: --client-secret
     summary: Secret associé au principal du service. Cet argument est obligatoire si `--service-principal` est spécifié.
@@ -280,6 +284,8 @@ directCommands:
       Open-service-maille-active Open service maille addon (préversion).
 
       gitops-activer GitOps (version préliminaire).
+
+      Azure-keyvault-secrets-fournisseur-activez le module complémentaire du fournisseur de secrets du coffre de clés Azure (version préliminaire).
   - name: --enable-ahub
     summary: Activez les avantages de l’utilisateur hybride Azure (AHUB) pour les machines virtuelles Windows.
     description: ''
@@ -303,6 +309,9 @@ directCommands:
   - name: --enable-pod-identity
     summary: VISUALISER Activez le module complémentaire d’identité pod.
     description: ''
+  - name: --enable-pod-identity-with-kubenet
+    summary: VISUALISER Activez le module complémentaire d’identité Pod pour le cluster à l’aide du plug-in réseau Kubnet.
+    description: ''
   - name: --enable-pod-security-policy
     summary: VISUALISER Activez la stratégie de sécurité pod.
     description: ''
@@ -312,11 +321,17 @@ directCommands:
   - name: --enable-rbac -r
     summary: 'Active le contrôle d’accès en fonction du rôle Kubernetes. Valeur par défaut : activé.'
     description: ''
+  - name: --enable-secret-rotation
+    summary: Activez la rotation des secrets. Utilisez avec Azure-keyvault-secrets-fournisseur addon.
+    description: ''
   - name: --enable-sgxquotehelper
     summary: Activez le programme d’assistance de guillemets SGX pour confcom addon.
     description: ''
   - name: --enable-vmss
     summary: À déprécier. Utilisez à la place vm_set_type.
+    description: ''
+  - name: --fqdn-subdomain
+    summary: Visualiser Préfixe du nom de domaine complet créé pour le cluster privé avec un scénario de zone DNS privée personnalisée.
     description: ''
   - name: --generate-ssh-keys
     summary: Génère les fichiers de clés SSH publiques et privées s’ils sont manquants.
@@ -391,6 +406,9 @@ directCommands:
     description: ''
   - name: --node-osdisk-type
     summary: Type de disque de système d’exploitation à utiliser pour les ordinateurs d’un pool d’agents donné. La valeur par défaut est « Managed ». Ne peut pas être modifié pour ce pool après sa création.
+    description: ''
+  - name: --node-public-ip-prefix-id
+    summary: ID de préfixe IP public utilisé pour affecter des adresses IP publiques à des nœuds VMSS.
     description: ''
   - name: --node-resource-group
     summary: Le groupe de ressources du nœud est le groupe de ressources dans lequel toutes les ressources du client seront créées, par exemple les machines virtuelles.
@@ -529,6 +547,8 @@ directCommands:
     Open-service-maille-active Open service maille addon (préversion).
 
     gitops-activer GitOps (version préliminaire).
+
+    Azure-keyvault-secrets-fournisseur-activez le module complémentaire du fournisseur de secrets du coffre de clés Azure (version préliminaire).
   syntax: >-
     az aks enable-addons --addons
                          --name
@@ -539,6 +559,7 @@ directCommands:
                          [--appgw-subnet-id]
                          [--appgw-subnet-prefix]
                          [--appgw-watch-namespace]
+                         [--enable-secret-rotation]
                          [--enable-sgxquotehelper]
                          [--no-wait]
                          [--subnet-name]
@@ -581,6 +602,9 @@ directCommands:
     description: ''
   - name: --appgw-watch-namespace
     summary: Spécifiez l’espace de noms, que AGIC doit surveiller. Il peut être une valeur de chaîne unique ou une liste d’espaces de noms séparés par des virgules. À utiliser avec le module complémentaire d’entrée-Azure.
+    description: ''
+  - name: --enable-secret-rotation
+    summary: Activez la rotation des secrets. Utilisez avec Azure-keyvault-secrets-fournisseur addon.
     description: ''
   - name: --enable-sgxquotehelper
     summary: Activez le programme d’assistance de guillemets SGX pour confcom addon.
@@ -870,19 +894,22 @@ directCommands:
                   [--api-server-authorized-ip-ranges]
                   [--assign-identity]
                   [--attach-acr]
-                  [--auto-upgrade-channel {none, patch, rapid, stable}]
+                  [--auto-upgrade-channel {node-image, none, patch, rapid, stable}]
                   [--cluster-autoscaler-profile]
                   [--detach-acr]
                   [--disable-ahub]
                   [--disable-cluster-autoscaler]
                   [--disable-pod-identity]
                   [--disable-pod-security-policy]
+                  [--disable-secret-rotation]
                   [--enable-aad]
                   [--enable-ahub]
                   [--enable-cluster-autoscaler]
                   [--enable-managed-identity]
                   [--enable-pod-identity]
+                  [--enable-pod-identity-with-kubenet]
                   [--enable-pod-security-policy]
+                  [--enable-secret-rotation]
                   [--load-balancer-idle-timeout]
                   [--load-balancer-managed-outbound-ip-count]
                   [--load-balancer-outbound-ip-prefixes]
@@ -968,8 +995,8 @@ directCommands:
     summary: Accordez l’attribution de rôle « acrpull » au ACR spécifié par le nom ou l’ID de ressource.
     description: ''
   - name: --auto-upgrade-channel
-    parameterValueGroup: none, patch, rapid, stable
-    summary: Spécifiez le canal de mise à niveau pour AutoUpgrade. Il peut s’agir d’un correctif rapide, stable ou non, aucune signifie désactiver la mise à niveau automatique.
+    parameterValueGroup: node-image, none, patch, rapid, stable
+    summary: Spécifiez le canal de mise à niveau pour AutoUpgrade. Il peut s’agir d’une opération rapide, stable, corrective, node-image ou None, aucune signifie désactiver la mise à niveau automatique.
     description: ''
   - name: --cluster-autoscaler-profile
     summary: Liste de paires clé = valeur séparées par des espaces pour configurer la mise à l’échelle automatique du cluster. Transmettez une chaîne vide pour effacer le profil.
@@ -989,6 +1016,9 @@ directCommands:
   - name: --disable-pod-security-policy
     summary: VISUALISER Désactivez la stratégie de sécurité pod.
     description: ''
+  - name: --disable-secret-rotation
+    summary: Désactiver la rotation des secrets. Utilisez avec Azure-keyvault-secrets-fournisseur addon.
+    description: ''
   - name: --enable-aad
     summary: Activez la fonctionnalité AAD managée pour le cluster.
     description: ''
@@ -1004,8 +1034,14 @@ directCommands:
   - name: --enable-pod-identity
     summary: VISUALISER Activez le module complémentaire d’identité Pod pour le cluster.
     description: ''
+  - name: --enable-pod-identity-with-kubenet
+    summary: VISUALISER Activez le module complémentaire d’identité Pod pour le cluster à l’aide du plug-in réseau Kubnet.
+    description: ''
   - name: --enable-pod-security-policy
     summary: VISUALISER Activez la stratégie de sécurité pod.
+    description: ''
+  - name: --enable-secret-rotation
+    summary: Activez la rotation des secrets. Utilisez avec Azure-keyvault-secrets-fournisseur addon.
     description: ''
   - name: --load-balancer-idle-timeout
     summary: Délai d’inactivité de l’équilibreur de charge en minutes.
@@ -1146,6 +1182,12 @@ commands:
 - ext_aks-preview_az_aks_get_versions
 - ext_aks-preview_az_aks_kanalyze
 - ext_aks-preview_az_aks_kollect
+- ext_aks-preview_az_aks_maintenanceconfiguration
+- ext_aks-preview_az_aks_maintenanceconfiguration_add
+- ext_aks-preview_az_aks_maintenanceconfiguration_delete
+- ext_aks-preview_az_aks_maintenanceconfiguration_list
+- ext_aks-preview_az_aks_maintenanceconfiguration_show
+- ext_aks-preview_az_aks_maintenanceconfiguration_update
 - ext_aks-preview_az_aks_nodepool
 - ext_aks-preview_az_aks_nodepool_add
 - ext_aks-preview_az_aks_nodepool_delete
@@ -1189,9 +1231,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérer les services Azure Kubernetes.
-  ms.openlocfilehash: b6fd2c93c19266a935112fc4110309c6ec1bfc3f
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: e3e4c307fd5df53ee647848cff44c463852304f3
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102968851"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103503430"
