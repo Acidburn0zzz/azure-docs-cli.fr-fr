@@ -109,6 +109,7 @@ directCommands:
                   [--enable-node-public-ip]
                   [--enable-private-cluster]
                   [--enable-rbac]
+                  [--enable-sgxquotehelper]
                   [--generate-ssh-keys]
                   [--kubernetes-version]
                   [--load-balancer-idle-timeout]
@@ -282,6 +283,8 @@ directCommands:
       Requiert--ACI-subnet-name pour fournir le nom d’un sous-réseau existant pour le nœud virtuel à utiliser.
 
       ACI-subnet-name doit se trouver dans le même réseau virtuel que celui spécifié par--vnet-Subnet-ID (requis également).
+
+      confcom-Enable confcom addon, qui active par défaut le plug-in d’appareil SGX.
   - name: --enable-ahub
     summary: Activez les avantages de l’utilisateur hybride Azure (AHUB) pour les machines virtuelles Windows.
     description: ''
@@ -300,6 +303,9 @@ directCommands:
     description: ''
   - name: --enable-rbac -r
     summary: 'Active le contrôle d’accès en fonction du rôle Kubernetes. Valeur par défaut : activé.'
+    description: ''
+  - name: --enable-sgxquotehelper
+    summary: Activez le programme d’assistance de guillemets SGX pour confcom addon.
     description: ''
   - name: --generate-ssh-keys
     summary: Génère les fichiers de clés SSH publiques et privées s’ils sont manquants. Les clés sont stockées dans le répertoire ~/.ssh
@@ -529,6 +535,7 @@ directCommands:
                          [--appgw-subnet-cidr]
                          [--appgw-subnet-id]
                          [--appgw-watch-namespace]
+                         [--enable-sgxquotehelper]
                          [--no-wait]
                          [--subnet-name]
                          [--subscription]
@@ -566,6 +573,9 @@ directCommands:
     description: ''
   - name: --appgw-watch-namespace
     summary: Spécifiez l’espace de noms, que AGIC doit surveiller. Il peut être une valeur de chaîne unique ou une liste d’espaces de noms séparés par des virgules.
+    description: ''
+  - name: --enable-sgxquotehelper
+    summary: Activez le programme d’assistance de guillemets SGX pour confcom addon.
     description: ''
   - name: --no-wait
     summary: Ne pas attendre la fin de l’opération de longue durée.
@@ -1300,11 +1310,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/04/2021
+  ms.date: 02/24/2021
   description: Gérer les services Azure Kubernetes.
-  ms.openlocfilehash: 3bc32bea2b36da586e6377f1409b885d35387438
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: 9a07b9818c1feac75f9d15d5e601eccdb3de7f08
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102967480"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103509975"
