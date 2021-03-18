@@ -21,6 +21,8 @@ directCommands:
                              [--cross-domain-policy]
                              [--description]
                              [--encoding-type]
+                             [--hostname-prefix]
+                             [--key-frame-interval]
                              [--key-frame-interval-duration]
                              [--no-wait]
                              [--preset-name]
@@ -28,9 +30,11 @@ directCommands:
                              [--preview-locator]
                              [--stream-options {Default, LowLatency}]
                              [--streaming-policy-name]
+                             [--stretch-mode]
                              [--subscription]
                              [--tags]
-                             [--vanity-url {false, true}]
+                             [--transcription-lang]
+                             [--use-static-hostname]
   requiredParameters:
   - isRequired: true
     name: --account-name -a
@@ -73,7 +77,13 @@ directCommands:
     summary: Description de l’événement en direct.
     description: ''
   - name: --encoding-type
-    summary: 'Type d’encodage pour l’événement en direct. Cette valeur est spécifiée au moment de la création et ne peut pas être mise à jour. Valeurs autorisées : de base, aucun, standard.'
+    summary: 'Type d’encodage pour l’événement en direct. Cette valeur est spécifiée au moment de la création et ne peut pas être mise à jour. Valeurs autorisées : Premium1080p, None, standard.'
+    description: ''
+  - name: --hostname-prefix
+    summary: Quand useStaticHostname est défini sur true, hostname_prefix spécifie la première partie du nom d’hôte affecté aux points de terminaison d’aperçu et d’ingestion des événements en direct. Le nom d’hôte final est une combinaison de ce préfixe, du nom du compte de service multimédia et d’un code court pour le centre de données Azure Media Services.
+    description: ''
+  - name: --key-frame-interval
+    summary: Utilisez une valeur de temps ISO 8601 comprise entre 0,5 et 20 secondes pour spécifier la longueur du fragment de sortie pour la vidéo et la audiotracks d’un événement en direct d’encodage. Par exemple, utilisez PT2S pour indiquer 2 secondes. Pour la piste vidéo, elle définit également l’intervalle d’image clé ou la longueur d’un groupe d’images (groupe d’images). Si cette valeur n’est pas définie pour anencoding Live Event, la durée du fragment est par défaut de 2 secondes. La valeur ne peut pas être définie pour les événements en direct direct.
     description: ''
   - name: --key-frame-interval-duration
     summary: Durée d’intervalle ISO 8601 de la durée de l’intervalle d’image clé, en secondes. La valeur doit être un entier compris entre 1 (PT1S ou 00:00:01) et 30 (PT30S ou 00:00:30) secondes.
@@ -97,15 +107,20 @@ directCommands:
   - name: --streaming-policy-name
     summary: Nom de la stratégie de streaming utilisée pour l’aperçu des événements en direct. Cela peut être spécifié au moment de la création, mais ne peut pas être mis à jour.
     description: ''
+  - name: --stretch-mode
+    summary: 'Spécifie le mode de redimensionnement de la vidéo d’entrée en fonction de la ou des résolutions de sortie souhaitées. La valeur par défaut est None.  Valeurs autorisées : aucune, redimensionnement automatique, ajustement automatique.'
+    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   - name: --tags
     summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
     description: ''
-  - name: --vanity-url
-    parameterValueGroup: false, true
-    summary: Spécifie s’il faut utiliser une URL personnel avec l’événement en direct. Cette valeur est spécifiée au moment de la création et ne peut pas être mise à jour.
+  - name: --transcription-lang
+    summary: 'Langue de transcription en direct pour l’événement en direct. Valeurs autorisées : ca-ES, da-DK, de--, en-au, en-CA, en-GB, en-IN, en-NZ, en-US, es-ES, es-MX, FI-FI, fr-CA, fr-FR, IT-IT, NL-NL, PT-BR, PT-PT, SV-SE voir <a href="https://go.microsoft.com/fwlink/?linkid=2133742">https://go.microsoft.com/fwlink/?linkid=2133742</a> pour plus d’informations sur la fonctionnalité de transcription dynamique.'
+    description: ''
+  - name: --use-static-hostname
+    summary: Spécifie si un nom d’hôte statique doit être affecté aux points de terminaison d’aperçu et d’ingestion de l’événement en direct. Cette valeur ne peut être mise à jour que si l’événement en direct est en état de veille. Si hostname_prefix n’est pas spécifié, le nom de l’événement en direct est utilisé comme préfixe du nom d’hôte.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
 - uid: az_ams_live_event_delete
@@ -218,6 +233,37 @@ directCommands:
     description: ''
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/ams/_help.py
+- uid: az_ams_live_event_standby
+  name: az ams live-event standby
+  summary: Allouez un événement en direct à démarrer ultérieurement.
+  description: ''
+  syntax: >-
+    az ams live-event standby [--account-name]
+                              [--ids]
+                              [--name]
+                              [--no-wait]
+                              [--resource-group]
+                              [--subscription]
+  optionalParameters:
+  - name: --account-name -a
+    summary: Nom du compte Azure Media Services.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’événement en direct.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
@@ -434,6 +480,7 @@ commands:
 - az_ams_live_event_list
 - az_ams_live_event_reset
 - az_ams_live_event_show
+- az_ams_live_event_standby
 - az_ams_live_event_start
 - az_ams_live_event_stop
 - az_ams_live_event_update
@@ -455,11 +502,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 07/28/2020
+  ms.date: 02/24/2021
   description: Gérer les événements en direct pour un compte Azure Media Services.
-  ms.openlocfilehash: a452a854e7a8bb9b2b0b56f04777c811f84d61a4
-  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.openlocfilehash: 3e2330aadc3d5688ad55ebcab8cde9a5061feb17
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 09/29/2020
-  ms.locfileid: "102820430"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103523371"
