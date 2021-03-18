@@ -1,36 +1,37 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_vnet_peering
-name: az network vnet peering
-summary: Gérer les connexions d’homologation entre les réseaux virtuels Azure.
-description: Pour en savoir plus sur l’homologation de réseaux virtuels <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-peering">https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-peering</a> , consultez.
+uid: az_network_vnet_subnet
+name: az network vnet subnet
+summary: Gérer les sous-réseaux dans un réseau virtuel Azure.
+description: Pour en savoir plus sur les sous-réseaux <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-subnet">https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-subnet</a> , consultez.
 directCommands:
-- uid: az_network_vnet_peering_create
-  name: az network vnet peering create
-  summary: Créez une connexion d’homologation de réseau virtuel.
-  description: Pour réussir à homologuer deux réseaux virtuels, cette commande doit être appelée deux fois avec les valeurs--vnet-Name et--Remote-vnet inversé.
+- uid: az_network_vnet_subnet_create
+  name: az network vnet subnet create
+  summary: Créez un sous-réseau et associez une table de routage et de groupe de sécurité réseau existante.
+  description: ''
   syntax: >-
-    az network vnet peering create --name
-                                   --remote-vnet
-                                   --resource-group
-                                   --vnet-name
-                                   [--allow-forwarded-traffic]
-                                   [--allow-gateway-transit]
-                                   [--allow-vnet-access]
-                                   [--subscription]
-                                   [--use-remote-gateways]
+    az network vnet subnet create --address-prefix
+                                  --name
+                                  --resource-group
+                                  --vnet-name
+                                  [--defer]
+                                  [--network-security-group]
+                                  [--route-table]
+                                  [--subscription]
   examples:
-  - summary: Créez une connexion d’homologation entre deux réseaux virtuels.
+  - summary: Créer un nouveau sous-réseau attaché à un groupe de sécurité réseau avec une table de routage personnalisée.
     syntax: >-
-      az network vnet peering create -g MyResourceGroup -n MyVnet1ToMyVnet2 --vnet-name MyVnet1 \
-          --remote-vnet MyVnet2Id --allow-vnet-access
+      az network vnet subnet create -g MyResourceGroup --vnet-name MyVnet -n MySubnet \
+          --address-prefixes 10.0.0.0/24 --network-security-group MyNsg --route-table MyRouteTable
+  - summary: Créer un nouveau sous-réseau attaché à une passerelle NAT.
+    syntax: az network vnet subnet create -n MySubnet --vnet-name MyVnet -g MyResourceGroup --nat-gateway MyNatGateway --address-prefixes "10.0.0.0/21"
   requiredParameters:
+  - isRequired: true
+    name: --address-prefix
+    summary: Préfixe d’adresse au format CIDR.
+    description: ''
   - isRequired: true
     name: --name -n
-    summary: Nom de l’homologation de réseaux virtuels.
-    description: ''
-  - isRequired: true
-    name: --remote-vnet
-    summary: ID de ressource ou nom du réseau virtuel distant.
+    summary: nom du sous-réseau.
     description: ''
   - isRequired: true
     name: --resource-group -g
@@ -41,41 +42,40 @@ directCommands:
     summary: Nom du réseau virtuel (VNet).
     description: ''
   optionalParameters:
-  - name: --allow-forwarded-traffic
-    summary: Autorise le trafic transféré à partir du réseau virtuel local vers le réseau virtuel distant.
+  - name: --defer
+    summary: Stocker temporairement l’objet dans le cache local au lieu de l’envoyer à Azure. Utilisez les `az cache` commandes pour afficher/effacer.
     description: ''
-  - name: --allow-gateway-transit
-    summary: Autorise l’utilisation du lien de passerelle dans le réseau virtuel distant.
+  - name: --network-security-group --nsg
+    summary: Nom ou ID d’un groupe de sécurité réseau (NSG).
     description: ''
-  - name: --allow-vnet-access
-    summary: Autorise l’accès à partir du réseau virtuel local au réseau virtuel distant.
+  - name: --route-table
+    summary: Nom ou ID d’une table de routage à associer au sous-réseau.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
-  - name: --use-remote-gateways
-    summary: Permet à VNet d’utiliser la passerelle du réseau virtuel distant. La passerelle de réseau virtuel à distance doit disposer de l’option--Allow-transit-Gateway pour l’homologation à distance. Seul l’homologation 1 peut être activée pour cet indicateur. Ne peut pas être défini si le réseau virtuel a déjà une passerelle.
-    description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_peering_delete
-  name: az network vnet peering delete
-  summary: Supprimer une homologation.
+- uid: az_network_vnet_subnet_delete
+  name: az network vnet subnet delete
+  summary: Supprimer un sous-réseau.
   description: ''
   syntax: >-
-    az network vnet peering delete [--ids]
-                                   [--name]
-                                   [--resource-group]
-                                   [--subscription]
-                                   [--vnet-name]
+    az network vnet subnet delete [--ids]
+                                  [--name]
+                                  [--resource-group]
+                                  [--subscription]
+                                  [--vnet-name]
   examples:
-  - summary: Supprimer une connexion d’homologation de réseau virtuel.
-    syntax: az network vnet peering delete -g MyResourceGroup -n MyVnet1ToMyVnet2 --vnet-name MyVnet1
+  - summary: Supprimer un sous-réseau.
+    syntax: az network vnet subnet delete -g MyResourceGroup -n MySubnet
+  - summary: Supprimer un sous-réseau. généré automatiquement
+    syntax: az network vnet subnet delete --name MySubnet --resource-group MyResourceGroup --vnet-name MyVnet
   optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --name -n
-    summary: Nom de l’homologation de réseaux virtuels.
+    summary: nom du sous-réseau.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
@@ -87,18 +87,18 @@ directCommands:
     summary: Nom du réseau virtuel (VNet).
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_peering_list
-  name: az network vnet peering list
-  summary: Répertorier les homologations.
+- uid: az_network_vnet_subnet_list
+  name: az network vnet subnet list
+  summary: Répertorier les sous-réseaux dans un réseau virtuel.
   description: ''
   syntax: >-
-    az network vnet peering list --resource-group
-                                 --vnet-name
-                                 [--query-examples]
-                                 [--subscription]
+    az network vnet subnet list --resource-group
+                                --vnet-name
+                                [--query-examples]
+                                [--subscription]
   examples:
-  - summary: Répertorie tous les homologations d’un réseau virtuel spécifié.
-    syntax: az network vnet peering list -g MyResourceGroup --vnet-name MyVnet1
+  - summary: Répertorier les sous-réseaux dans un réseau virtuel.
+    syntax: az network vnet subnet list -g MyResourceGroup --vnet-name MyVNet
   requiredParameters:
   - isRequired: true
     name: --resource-group -g
@@ -116,26 +116,30 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_peering_show
-  name: az network vnet peering show
-  summary: Affichez les détails d’une homologation.
+- uid: az_network_vnet_subnet_show
+  name: az network vnet subnet show
+  summary: Affichez les détails d’un sous-réseau.
   description: ''
   syntax: >-
-    az network vnet peering show [--ids]
-                                 [--name]
-                                 [--query-examples]
-                                 [--resource-group]
-                                 [--subscription]
-                                 [--vnet-name]
+    az network vnet subnet show [--expand]
+                                [--ids]
+                                [--name]
+                                [--query-examples]
+                                [--resource-group]
+                                [--subscription]
+                                [--vnet-name]
   examples:
-  - summary: Affiche tous les détails de l’homologation de réseau virtuel spécifiée.
-    syntax: az network vnet peering show -g MyResourceGroup -n MyVnet1ToMyVnet2 --vnet-name MyVnet1
+  - summary: Affichez les détails d’un sous-réseau associé à un réseau virtuel.
+    syntax: az network vnet subnet show -g MyResourceGroup -n MySubnet --vnet-name MyVNet
   optionalParameters:
+  - name: --expand
+    summary: Développe des ressources référencées.
+    description: ''
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --name -n
-    summary: Nom de l’homologation de réseaux virtuels.
+    summary: nom du sous-réseau.
     description: ''
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
@@ -150,32 +154,36 @@ directCommands:
     summary: Nom du réseau virtuel (VNet).
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_peering_update
-  name: az network vnet peering update
-  summary: Mettez à jour une homologation.
+- uid: az_network_vnet_subnet_update
+  name: az network vnet subnet update
+  summary: Mettre à jour un sous-réseau.
   description: ''
   syntax: >-
-    az network vnet peering update [--add]
-                                   [--force-string]
-                                   [--ids]
-                                   [--name]
-                                   [--remove]
-                                   [--resource-group]
-                                   [--set]
-                                   [--subscription]
-                                   [--vnet-name]
+    az network vnet subnet update [--add]
+                                  [--address-prefix]
+                                  [--force-string]
+                                  [--ids]
+                                  [--name]
+                                  [--network-security-group]
+                                  [--remove]
+                                  [--resource-group]
+                                  [--route-table]
+                                  [--set]
+                                  [--subscription]
+                                  [--vnet-name]
   examples:
-  - summary: Modifiez la configuration du trafic transféré d’une homologation de réseaux virtuels.
-    syntax: az network vnet peering update -g MyResourceGroup -n MyVnet1ToMyVnet2 --vnet-name MyVnet1 --set allowForwardedTraffic=true
-  - summary: Modifier l’accès au réseau virtuel d’une homologation de réseaux virtuels.
-    syntax: az network vnet peering update -g MyResourceGroup -n MyVnet1ToMyVnet2 --vnet-name MyVnet1 --set allowVirtualNetworkAccess=true
-  - summary: Modifier la configuration de la propriété de transit de la passerelle d’une homologation de réseaux virtuels.
-    syntax: az network vnet peering update -g MyResourceGroup -n MyVnet1ToMyVnet2 --vnet-name MyVnet1 --set allowGatewayTransit=true
-  - summary: Utilisez des passerelles distantes dans l’homologation de réseaux virtuels.
-    syntax: az network vnet peering update -g MyResourceGroup -n MyVnet1ToMyVnet2 --vnet-name MyVnet1 --set useRemoteGateways=true
+  - summary: Associer un groupe de sécurité réseau à un sous-réseau.
+    syntax: az network vnet subnet update -g MyResourceGroup -n MySubnet --vnet-name MyVNet --network-security-group MyNsg
+  - summary: Mettez à jour le sous-réseau avec la passerelle NAT.
+    syntax: az network vnet subnet update -n MySubnet --vnet-name MyVnet -g MyResourceGroup --nat-gateway MyNatGateway --address-prefixes "10.0.0.0/21"
+  - summary: Désactiver les stratégies réseau des points de terminaison privés
+    syntax: az network vnet subnet update -n MySubnet --vnet-name MyVnet -g MyResourceGroup --disable-private-endpoint-network-policies
   optionalParameters:
   - name: --add
     summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --address-prefix
+    summary: Préfixe d’adresse au format CIDR.
     description: ''
   - name: --force-string
     summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
@@ -184,13 +192,19 @@ directCommands:
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
   - name: --name -n
-    summary: Nom de l’homologation de réseaux virtuels.
+    summary: nom du sous-réseau.
+    description: ''
+  - name: --network-security-group --nsg
+    summary: Nom ou ID d’un groupe de sécurité réseau (NSG). Utilisez une chaîne vide "" (' "" 'dans PowerShell) pour la détacher.
     description: ''
   - name: --remove
     summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --route-table
+    summary: Nom ou ID d’une table de routage à associer au sous-réseau. Utilisez une chaîne vide "" (' "" 'dans PowerShell) pour la détacher. Vous pouvez également ajouter « --Remove routeTable » dans « AZ Network vnet Subnet Update » pour le détacher.
     description: ''
   - name: --set
     summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
@@ -203,11 +217,11 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_vnet_peering_create
-- az_network_vnet_peering_delete
-- az_network_vnet_peering_list
-- az_network_vnet_peering_show
-- az_network_vnet_peering_update
+- az_network_vnet_subnet_create
+- az_network_vnet_subnet_delete
+- az_network_vnet_subnet_list
+- az_network_vnet_subnet_show
+- az_network_vnet_subnet_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -226,10 +240,10 @@ globalParameters:
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/25/2021
-  description: Pour en savoir plus sur l’homologation de réseaux virtuels <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-peering">https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-peering</a> , consultez.
-  ms.openlocfilehash: 64320b57ef77543a0bf29875ff59eb0f3d8d6f47
+  description: Pour en savoir plus sur les sous-réseaux <a href="https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-subnet">https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-subnet</a> , consultez.
+  ms.openlocfilehash: b7ee6bb9afd666531dfe33c5b577d0e5c98c14b6
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103540473"
+  ms.locfileid: "103512899"

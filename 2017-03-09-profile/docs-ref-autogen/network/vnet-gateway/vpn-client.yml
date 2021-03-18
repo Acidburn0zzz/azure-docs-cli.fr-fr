@@ -9,7 +9,7 @@ directCommands:
   summary: Générez la configuration du client VPN.
   description: La commande génère une URL vers un fichier zip pour la configuration du client VPN généré.
   syntax: >-
-    az network vnet-gateway vpn-client generate [--authentication-method {EAPMSCHAPv2, EAPTLS}]
+    az network vnet-gateway vpn-client generate [--authentication-method]
                                                 [--client-root-certificates]
                                                 [--ids]
                                                 [--name]
@@ -17,7 +17,6 @@ directCommands:
                                                 [--radius-server-auth-certificate]
                                                 [--resource-group]
                                                 [--subscription]
-                                                [--use-legacy {false, true}]
   examples:
   - summary: Créez la configuration du client VPN pour RADIUS avec l’authentification EAP-MSCHAV2.
     syntax: az network vnet-gateway vpn-client generate -g MyResourceGroup -n MyVnetGateway --authentication-method EAPMSCHAPv2
@@ -27,7 +26,6 @@ directCommands:
     syntax: az network vnet-gateway vpn-client generate --name MyVnetGateway --processor-architecture Amd64 --resource-group MyResourceGroup --subscription MySubscription
   optionalParameters:
   - name: --authentication-method
-    parameterValueGroup: EAPMSCHAPv2, EAPTLS
     summary: Méthode utilisée pour l’authentification auprès du client généré.
     description: ''
   - name: --client-root-certificates
@@ -52,40 +50,9 @@ directCommands:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
-  - name: --use-legacy
-    parameterValueGroup: false, true
-    summary: Générez un package client VPN à l’aide de l’implémentation héritée.
-    description: ''
-  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_gateway_vpn_client_show_url
-  name: az network vnet-gateway vpn-client show-url
-  summary: Récupérez une configuration de client VPN prégénérée.
-  description: Le profil doit être généré en premier à l’aide de la commande VPN-client Generate.
-  syntax: >-
-    az network vnet-gateway vpn-client show-url [--ids]
-                                                [--name]
-                                                [--resource-group]
-                                                [--subscription]
-  examples:
-  - summary: Récupérez le client VPN de point à site pré-généré de la passerelle de réseau virtuel.
-    syntax: az network vnet-gateway vpn-client show-url -g MyResourceGroup -n MyVnetGateway
-  optionalParameters:
-  - name: --ids
-    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
-    description: ''
-  - name: --name -n
-    summary: Nom de la passerelle de réseau virtuel.
-    description: ''
-  - name: --resource-group -g
-    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
-    description: ''
-  - name: --subscription
-    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
-    description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
 - az_network_vnet_gateway_vpn_client_generate
-- az_network_vnet_gateway_vpn_client_show_url
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -105,9 +72,9 @@ metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/25/2021
   description: Téléchargez une configuration de client VPN requise pour la connexion à Azure via une connexion de point à site.
-  ms.openlocfilehash: 588d966b8bca809095e6c90003425494db60ad5e
+  ms.openlocfilehash: c644f7f8493d3370cf7cf8298887080d6d995726
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103540456"
+  ms.locfileid: "103513001"
