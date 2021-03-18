@@ -1,98 +1,84 @@
 ### YamlMime:AzureCLIGroup
-uid: az_deployment_group
-name: az deployment group
-summary: Gérez Azure Resource Manager déploiement de modèle au niveau du groupe de ressources.
+uid: az_deployment_mg
+name: az deployment mg
+summary: Gérez Azure Resource Manager déploiement de modèle au niveau du groupe d’administration.
 description: ''
 directCommands:
-- uid: az_deployment_group_cancel
-  name: az deployment group cancel
-  summary: Annulez un déploiement au niveau du groupe de ressources.
+- uid: az_deployment_mg_cancel
+  name: az deployment mg cancel
+  summary: Annulez un déploiement au niveau du groupe d’administration.
   description: ''
   syntax: >-
-    az deployment group cancel --name
-                               --resource-group
-                               [--subscription]
+    az deployment mg cancel --management-group-id
+                            --name
+                            [--subscription]
   examples:
-  - summary: Annulez un déploiement au niveau du groupe de ressources.
-    syntax: az deployment group cancel -g testrg -n deployment01
+  - summary: Annulez un déploiement au niveau du groupe d’administration.
+    syntax: az deployment mg cancel -m testmg -n deployment01
   requiredParameters:
+  - isRequired: true
+    name: --management-group-id -m
+    summary: ID du groupe d’administration.
+    description: ''
   - isRequired: true
     name: --name -n
     summary: Nom du déploiement.
-    description: ''
-  - isRequired: true
-    name: --resource-group -g
-    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   optionalParameters:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_deployment_group_create
-  name: az deployment group create
-  summary: Démarrez un déploiement au niveau du groupe de ressources.
+- uid: az_deployment_mg_create
+  name: az deployment mg create
+  summary: Démarrez un déploiement au niveau du groupe d’administration.
   description: ''
   syntax: >-
-    az deployment group create --resource-group
-                               [--aux-subs]
-                               [--aux-tenants]
-                               [--confirm-with-what-if]
-                               [--handle-extended-json-format]
-                               [--mode {Complete, Incremental}]
-                               [--name]
-                               [--no-prompt {false, true}]
-                               [--no-wait]
-                               [--parameters]
-                               [--query-string]
-                               [--rollback-on-error]
-                               [--subscription]
-                               [--template-file]
-                               [--template-spec]
-                               [--template-uri]
-                               [--what-if-exclude-change-types {Create, Delete, Deploy, Ignore, Modify, NoChange}]
-                               [--what-if-result-format {FullResourcePayloads, ResourceIdOnly}]
+    az deployment mg create --location
+                            --management-group-id
+                            [--confirm-with-what-if]
+                            [--handle-extended-json-format]
+                            [--name]
+                            [--no-prompt {false, true}]
+                            [--no-wait]
+                            [--parameters]
+                            [--query-string]
+                            [--subscription]
+                            [--template-file]
+                            [--template-spec]
+                            [--template-uri]
+                            [--what-if-exclude-change-types {Create, Delete, Deploy, Ignore, Modify, NoChange}]
+                            [--what-if-result-format {FullResourcePayloads, ResourceIdOnly}]
   examples:
-  - summary: Créer un déploiement au niveau du groupe de ressources à partir d’un fichier de modèle distant, à l’aide des paramètres d’un fichier JSON local.
+  - summary: Créer un déploiement au niveau du groupe d’administration à partir d’un fichier de modèle distant, à l’aide des paramètres d’un fichier JSON local.
     syntax: >-
-      az deployment group create --resource-group testrg --name rollout01 \
+      az deployment mg create --management-group-id testrg --name rollout01 --location WestUS \
           --template-uri https://myresource/azuredeploy.json --parameters @myparameters.json
-  - summary: Créez un déploiement au niveau du groupe de ressources à partir d’un fichier de modèle local, à l’aide des paramètres d’une chaîne JSON.
+  - summary: Créez un déploiement au niveau du groupe d’administration à partir d’un fichier de modèle local, à l’aide des paramètres d’une chaîne JSON.
     syntax: >-
-      az deployment group create --resource-group testrg --name rollout01 \
-          --template-file azuredeploy.json  \
+      az deployment mg create --management-group-id testmg --name rollout01 --location WestUS \
+          --template-file azuredeploy.json \
           --parameters '{ \"policyName\": { \"value\": \"policy2\" } }'
-  - summary: Créer un déploiement au niveau du groupe de ressources à partir d’un fichier de modèle local, à l’aide des paramètres d’une chaîne de tableau.
-    syntax: az deployment group create --resource-group testgroup --template-file demotemplate.json --parameters exampleString='inline string' exampleArray='("value1", "value2")'
-  - summary: Créez un déploiement au niveau du groupe de ressources à partir d’un modèle local, à l’aide d’un fichier de paramètres, d’un fichier de paramètres distant et en remplaçant de manière sélective les paires clé/valeur.
+  - summary: Créez un déploiement au niveau du groupe d’administration à partir d’un modèle local, à l’aide d’un fichier de paramètres, d’un fichier de paramètres distant et en remplaçant de manière sélective les paires clé/valeur.
     syntax: >-
-      az deployment group create --resource-group testrg --name rollout01 \
-          --template-file azuredeploy.json  --parameters @params.json \
+      az deployment mg create --management-group-id testmg --name rollout01 --location WestUS \
+          --template-file azuredeploy.json --parameters @params.json \
           --parameters https://mysite/params.json --parameters MyValue=This MyArray=@array.json
-  - summary: Créer un déploiement au niveau de l’étendue d’abonnement à partir d’un modèle-spécification
-    syntax: az deployment group create --resource-group testrg --template-spec "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testrg/providers/Microsoft.Resources/templateSpecs/myTemplateSpec/versions/1.0"
   requiredParameters:
   - isRequired: true
-    name: --resource-group -g
-    summary: Groupe de ressources sur lequel créer le déploiement.
+    name: --location -l
+    summary: Emplacement de stockage des métadonnées de déploiement.
+    description: ''
+  - isRequired: true
+    name: --management-group-id -m
+    summary: ID du groupe d’administration sur lequel créer le déploiement.
     description: ''
   optionalParameters:
-  - name: --aux-subs
-    summary: Abonnements auxiliaires qui seront utilisés lors du déploiement sur les clients.
-    description: ''
-  - name: --aux-tenants
-    summary: Locataires auxiliaires qui seront utilisés pendant le déploiement sur les locataires.
-    description: ''
   - name: --confirm-with-what-if -c
     summary: Demandez à la commande d’exécuter le déploiement What-If avant d’exécuter le déploiement. Il vous invite ensuite à accuser réception des modifications apportées aux ressources avant de continuer.
     description: ''
   - name: --handle-extended-json-format -j
     summary: Prise en charge pour gérer le contenu de modèle étendu, y compris multiligne et les commentaires dans le déploiement.
-    description: ''
-  - name: --mode
-    defaultValue: Incremental
-    parameterValueGroup: Complete, Incremental
-    summary: Mode de déploiement.
     description: ''
   - name: --name -n
     summary: Nom du déploiement.
@@ -109,9 +95,6 @@ directCommands:
     description: Les paramètres peuvent être fournis à partir d’un fichier à l’aide de la `@{path}` syntaxe, d’une chaîne JSON ou de <clé = valeur> paires. Les paramètres sont évalués dans l’ordre. par conséquent, lorsqu’une valeur est assignée deux fois, la dernière valeur est utilisée. Nous vous recommandons de fournir d’abord votre fichier de paramètres, puis de remplacer de manière sélective à l’aide de la syntaxe KEY = VALUE.
   - name: --query-string -q
     summary: Chaîne de requête (jeton SAP) à utiliser avec l’URI de modèle dans le cas de modèles liés.
-    description: ''
-  - name: --rollback-on-error
-    summary: Nom d’un déploiement sur lequel effectuer la restauration en cas d’erreur, ou utilisez comme indicateur pour restaurer le dernier déploiement réussi.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -135,26 +118,26 @@ directCommands:
     summary: Format des résultats de What-If. Applicable lorsque `--confirm-with-what-if` est défini.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_deployment_group_delete
-  name: az deployment group delete
-  summary: Supprimer un déploiement au niveau du groupe de ressources.
+- uid: az_deployment_mg_delete
+  name: az deployment mg delete
+  summary: Supprimer un déploiement au niveau du groupe d’administration.
   description: ''
   syntax: >-
-    az deployment group delete --name
-                               --resource-group
-                               [--no-wait]
-                               [--subscription]
+    az deployment mg delete --management-group-id
+                            --name
+                            [--no-wait]
+                            [--subscription]
   examples:
-  - summary: Supprimer un déploiement au niveau du groupe de ressources.
-    syntax: az deployment group delete -g testrg -n deployment01
+  - summary: Supprimer un déploiement au niveau du groupe d’administration.
+    syntax: az deployment mg delete -m testmg -n deployment01
   requiredParameters:
+  - isRequired: true
+    name: --management-group-id -m
+    summary: ID du groupe d’administration.
+    description: ''
   - isRequired: true
     name: --name -n
     summary: Nom du déploiement.
-    description: ''
-  - isRequired: true
-    name: --resource-group -g
-    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   optionalParameters:
   - name: --no-wait
@@ -164,47 +147,47 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_deployment_group_export
-  name: az deployment group export
+- uid: az_deployment_mg_export
+  name: az deployment mg export
   summary: Exporte le modèle utilisé pour un déploiement.
   description: ''
   syntax: >-
-    az deployment group export --name
-                               --resource-group
-                               [--subscription]
+    az deployment mg export --management-group-id
+                            --name
+                            [--subscription]
   examples:
-  - summary: Exportez le modèle utilisé pour un déploiement au niveau du groupe de ressources.
-    syntax: az deployment group export --resource-group testrg --name MyDeployment
+  - summary: Exportez le modèle utilisé pour un déploiement au niveau du groupe d’administration.
+    syntax: az deployment mg export --management-group-id testmg --name MyDeployment
   requiredParameters:
+  - isRequired: true
+    name: --management-group-id -m
+    summary: ID du groupe d’administration.
+    description: ''
   - isRequired: true
     name: --name -n
     summary: Nom du déploiement.
-    description: ''
-  - isRequired: true
-    name: --resource-group -g
-    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   optionalParameters:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_deployment_group_list
-  name: az deployment group list
-  summary: Répertorier les déploiements au niveau du groupe de ressources.
+- uid: az_deployment_mg_list
+  name: az deployment mg list
+  summary: Répertorier les déploiements au niveau du groupe d’administration.
   description: ''
   syntax: >-
-    az deployment group list --resource-group
-                             [--filter]
-                             [--query-examples]
-                             [--subscription]
+    az deployment mg list --management-group-id
+                          [--filter]
+                          [--query-examples]
+                          [--subscription]
   examples:
-  - summary: Répertorier les déploiements au niveau du groupe de ressources.
-    syntax: az deployment group list -g testrg
+  - summary: Répertorier les déploiements au niveau du groupe d’administration.
+    syntax: az deployment mg list -m testmg
   requiredParameters:
   - isRequired: true
-    name: --resource-group -g
-    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    name: --management-group-id -m
+    summary: ID du groupe d’administration.
     description: ''
   optionalParameters:
   - name: --filter
@@ -217,26 +200,26 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_deployment_group_show
-  name: az deployment group show
-  summary: Affichez un déploiement au niveau du groupe de ressources.
+- uid: az_deployment_mg_show
+  name: az deployment mg show
+  summary: Affichez un déploiement au niveau du groupe d’administration.
   description: ''
   syntax: >-
-    az deployment group show --name
-                             --resource-group
-                             [--query-examples]
-                             [--subscription]
+    az deployment mg show --management-group-id
+                          --name
+                          [--query-examples]
+                          [--subscription]
   examples:
-  - summary: Affichez un déploiement au niveau du groupe de ressources.
-    syntax: az deployment group show -g testrg -n deployment01
+  - summary: Affichez un déploiement au niveau du groupe d’administration.
+    syntax: az deployment mg show -m testmg -n deployment01
   requiredParameters:
+  - isRequired: true
+    name: --management-group-id -m
+    summary: ID du groupe d’administration.
+    description: ''
   - isRequired: true
     name: --name -n
     summary: Nom du déploiement.
-    description: ''
-  - isRequired: true
-    name: --resource-group -g
-    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   optionalParameters:
   - name: --query-examples
@@ -246,41 +229,39 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_deployment_group_validate
-  name: az deployment group validate
-  summary: Vérifiez si un modèle est valide au niveau du groupe de ressources.
+- uid: az_deployment_mg_validate
+  name: az deployment mg validate
+  summary: Vérifiez si un modèle est valide au niveau du groupe d’administration.
   description: ''
   syntax: >-
-    az deployment group validate --resource-group
-                                 [--handle-extended-json-format]
-                                 [--mode {Complete, Incremental}]
-                                 [--name]
-                                 [--no-prompt {false, true}]
-                                 [--parameters]
-                                 [--query-string]
-                                 [--rollback-on-error]
-                                 [--subscription]
-                                 [--template-file]
-                                 [--template-spec]
-                                 [--template-uri]
+    az deployment mg validate --location
+                              --management-group-id
+                              [--handle-extended-json-format]
+                              [--name]
+                              [--no-prompt {false, true}]
+                              [--parameters]
+                              [--query-string]
+                              [--subscription]
+                              [--template-file]
+                              [--template-spec]
+                              [--template-uri]
   examples:
-  - summary: Vérifiez si un modèle est valide au niveau du groupe de ressources.
-    syntax: az deployment group validate --resource-group testrg --template-file {template-file}
-  - summary: Vérifiez si un modèle est valide au niveau du groupe de ressources. généré automatiquement
-    syntax: az deployment group validate --parameters MyValue=This MyArray=@array.json --resource-group testrg --template-file azuredeploy.json
+  - summary: Vérifiez si un modèle est valide au niveau du groupe d’administration.
+    syntax: az deployment mg validate --management-group-id testmg --location WestUS --template-file {template-file}
+  - summary: Vérifiez si un modèle est valide au niveau du groupe d’administration. généré automatiquement
+    syntax: az deployment mg validate --location WestUS --management-group-id testmg --name mydeployment --parameters @myparameters.json --template-file azuredeploy.json
   requiredParameters:
   - isRequired: true
-    name: --resource-group -g
-    summary: Groupe de ressources sur lequel créer le déploiement.
+    name: --location -l
+    summary: Emplacement de stockage des métadonnées de déploiement.
+    description: ''
+  - isRequired: true
+    name: --management-group-id -m
+    summary: ID du groupe d’administration sur lequel créer le déploiement.
     description: ''
   optionalParameters:
   - name: --handle-extended-json-format -j
     summary: Prise en charge pour gérer le contenu de modèle étendu, y compris multiligne et les commentaires dans le déploiement.
-    description: ''
-  - name: --mode
-    defaultValue: Incremental
-    parameterValueGroup: Complete, Incremental
-    summary: Mode de déploiement.
     description: ''
   - name: --name -n
     summary: Nom du déploiement.
@@ -295,9 +276,6 @@ directCommands:
   - name: --query-string -q
     summary: Chaîne de requête (jeton SAP) à utiliser avec l’URI de modèle dans le cas de modèles liés.
     description: ''
-  - name: --rollback-on-error
-    summary: Nom d’un déploiement sur lequel effectuer la restauration en cas d’erreur, ou utilisez comme indicateur pour restaurer le dernier déploiement réussi.
-    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
@@ -311,32 +289,29 @@ directCommands:
     summary: URI vers le fichier de modèle.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_deployment_group_wait
-  name: az deployment group wait
+- uid: az_deployment_mg_wait
+  name: az deployment mg wait
   summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de déploiement soit remplie.
   description: ''
   syntax: >-
-    az deployment group wait --name
-                             --resource-group
-                             [--created]
-                             [--custom]
-                             [--deleted]
-                             [--exists]
-                             [--interval]
-                             [--subscription]
-                             [--timeout]
-                             [--updated]
-  examples:
-  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de déploiement soit remplie. généré automatiquement
-    syntax: az deployment group wait --created --name MyDeployment --resource-group MyResourceGroup
+    az deployment mg wait --management-group-id
+                          --name
+                          [--created]
+                          [--custom]
+                          [--deleted]
+                          [--exists]
+                          [--interval]
+                          [--subscription]
+                          [--timeout]
+                          [--updated]
   requiredParameters:
+  - isRequired: true
+    name: --management-group-id -m
+    summary: ID du groupe d’administration.
+    description: ''
   - isRequired: true
     name: --name -n
     summary: Nom du déploiement.
-    description: ''
-  - isRequired: true
-    name: --resource-group -g
-    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   optionalParameters:
   - name: --created
@@ -366,49 +341,44 @@ directCommands:
     summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
-- uid: az_deployment_group_what_if
-  name: az deployment group what-if
-  summary: Exécuter une opération de What-If de déploiement au niveau de l’étendue du groupe de ressources.
+- uid: az_deployment_mg_what_if
+  name: az deployment mg what-if
+  summary: Exécuter une opération de What-If de déploiement au niveau de l’étendue du groupe d’administration.
   description: ''
   syntax: >-
-    az deployment group what-if --resource-group
-                                [--aux-tenants]
-                                [--exclude-change-types {Create, Delete, Deploy, Ignore, Modify, NoChange}]
-                                [--mode {Complete, Incremental}]
-                                [--name]
-                                [--no-pretty-print]
-                                [--no-prompt {false, true}]
-                                [--parameters]
-                                [--query-string]
-                                [--result-format {FullResourcePayloads, ResourceIdOnly}]
-                                [--subscription]
-                                [--template-file]
-                                [--template-spec]
-                                [--template-uri]
+    az deployment mg what-if --location
+                             --management-group-id
+                             [--exclude-change-types {Create, Delete, Deploy, Ignore, Modify, NoChange}]
+                             [--name]
+                             [--no-pretty-print]
+                             [--no-prompt {false, true}]
+                             [--parameters]
+                             [--query-string]
+                             [--result-format {FullResourcePayloads, ResourceIdOnly}]
+                             [--subscription]
+                             [--template-file]
+                             [--template-spec]
+                             [--template-uri]
   examples:
-  - summary: Exécuter une opération de What-If de déploiement au niveau d’un groupe de ressources.
-    syntax: az deployment group what-if --resource-group testrg --name rollout01 --template-uri https://myresource/azuredeploy.json --parameters @myparameters.json
-  - summary: Exécuter une opération de What-If de déploiement au niveau d’un groupe de ressources avec le format ResourceIdOnly.
-    syntax: az deployment group what-if --resource-group testrg --name rollout01 --template-uri https://myresource/azuredeploy.json --parameters @myparameters.json --result-format ResourceIdOnly
-  - summary: Exécuter une opération de What-If de déploiement dans un groupe de ressources sans vraiment imprimer le résultat.
-    syntax: az deployment group what-if --resource-group testrg --name rollout01 --template-uri https://myresource/azuredeploy.json --parameters @myparameters.json --no-pretty-print
+  - summary: Exécuter une opération de What-If de déploiement dans un groupe d’administration.
+    syntax: az deployment mg what-if --management-group-id testmg --location westus --name rollout01 --template-uri https://myresource/azuredeploy.json --parameters @myparameters.json
+  - summary: Exécuter une opération de What-If de déploiement au niveau d’un groupe d’administration avec le format ResourceIdOnly.
+    syntax: az deployment mg what-if --management-group-id testmg --location westus --name rollout01 --template-uri https://myresource/azuredeploy.json --parameters @myparameters.json --result-format ResourceIdOnly
+  - summary: Exécuter une opération de What-If de déploiement dans un groupe d’administration sans vraiment imprimer le résultat.
+    syntax: az deployment mg what-if --management-group-id testmg --location westus --name rollout01 --template-uri https://myresource/azuredeploy.json --parameters @myparameters.json --no-pretty-print
   requiredParameters:
   - isRequired: true
-    name: --resource-group -g
-    summary: Le groupe de ressources sur lequel exécuter le déploiement What-If opération.
+    name: --location -l
+    summary: Emplacement de stockage des métadonnées de déploiement.
+    description: ''
+  - isRequired: true
+    name: --management-group-id -m
+    summary: ID du groupe d’administration sur lequel créer le déploiement.
     description: ''
   optionalParameters:
-  - name: --aux-tenants
-    summary: Locataires auxiliaires qui seront utilisés pendant le déploiement sur les locataires.
-    description: ''
   - name: --exclude-change-types -x
     parameterValueGroup: Create, Delete, Deploy, Ignore, Modify, NoChange
     summary: Liste des types de modifications de ressources séparés par des espaces à exclure des résultats de What-If.
-    description: ''
-  - name: --mode
-    defaultValue: Incremental
-    parameterValueGroup: Complete, Incremental
-    summary: Mode de déploiement.
     description: ''
   - name: --name -n
     summary: Nom du déploiement.
@@ -435,7 +405,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   - name: --template-file -f
-    summary: Chemin d’accès au fichier de modèle ou au fichier Bicpe.
+    summary: Chemin d’accès au fichier de modèle ou au fichier bicep.
     description: ''
   - name: --template-spec -s
     summary: ID de ressource de spécification de modèle.
@@ -445,15 +415,15 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
 commands:
-- az_deployment_group_cancel
-- az_deployment_group_create
-- az_deployment_group_delete
-- az_deployment_group_export
-- az_deployment_group_list
-- az_deployment_group_show
-- az_deployment_group_validate
-- az_deployment_group_wait
-- az_deployment_group_what_if
+- az_deployment_mg_cancel
+- az_deployment_mg_create
+- az_deployment_mg_delete
+- az_deployment_mg_export
+- az_deployment_mg_list
+- az_deployment_mg_show
+- az_deployment_mg_validate
+- az_deployment_mg_wait
+- az_deployment_mg_what_if
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -472,10 +442,10 @@ globalParameters:
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/25/2021
-  description: Gérez Azure Resource Manager déploiement de modèle au niveau du groupe de ressources.
-  ms.openlocfilehash: 3c1ff77b8abca673dcc02473e98fbb70fd26ac22
+  description: Gérez Azure Resource Manager déploiement de modèle au niveau du groupe d’administration.
+  ms.openlocfilehash: 4279482b95737b0330d13efacd17607e9e0b319a
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103528505"
+  ms.locfileid: "103528471"
