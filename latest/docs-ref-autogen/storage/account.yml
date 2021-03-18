@@ -30,6 +30,7 @@ directCommands:
                               --resource-group
                               [--access-tier {Cool, Hot}]
                               [--allow-blob-public-access {false, true}]
+                              [--allow-shared-key-access {false, true}]
                               [--assign-identity]
                               [--azure-storage-sid]
                               [--bypass {AzureServices, Logging, Metrics, None}]
@@ -80,6 +81,10 @@ directCommands:
   - name: --allow-blob-public-access
     parameterValueGroup: false, true
     summary: Autorisez ou non l’accès public à tous les objets BLOB ou conteneurs du compte de stockage. La valeur par défaut de cette propriété est null, ce qui équivaut à true. Lorsque la valeur est true, les conteneurs du compte peuvent être configurés pour un accès public. Notez que l’affectation de la valeur true à cette propriété n’autorise pas l’accès anonyme aux données du compte. L’étape supplémentaire de configuration du paramètre d’accès public pour un conteneur est requise pour activer l’accès anonyme.
+    description: ''
+  - name: --allow-shared-key-access -k
+    parameterValueGroup: false, true
+    summary: Indique si le compte de stockage autorise l’autorisation des demandes avec la clé d’accès de compte via une clé partagée. Si la valeur est false, toutes les demandes, y compris les signatures d’accès partagé, doivent être autorisées avec Azure Active Directory (Azure AD). La valeur par défaut est null, ce qui équivaut à true.
     description: ''
   - name: --assign-identity
     summary: Générez et attribuez une nouvelle identité de compte de stockage pour ce compte de stockage pour une utilisation avec des services de gestion de clés comme Azure keyvault.
@@ -504,6 +509,7 @@ directCommands:
     az storage account update [--access-tier {Cool, Hot}]
                               [--add]
                               [--allow-blob-public-access {false, true}]
+                              [--allow-shared-key-access {false, true}]
                               [--assign-identity]
                               [--azure-storage-sid]
                               [--bypass {AzureServices, Logging, Metrics, None}]
@@ -551,6 +557,10 @@ directCommands:
   - name: --allow-blob-public-access
     parameterValueGroup: false, true
     summary: Autorisez ou non l’accès public à tous les objets BLOB ou conteneurs du compte de stockage. La valeur par défaut de cette propriété est null, ce qui équivaut à true. Lorsque la valeur est true, les conteneurs du compte peuvent être configurés pour un accès public. Notez que l’affectation de la valeur true à cette propriété n’autorise pas l’accès anonyme aux données du compte. L’étape supplémentaire de configuration du paramètre d’accès public pour un conteneur est requise pour activer l’accès anonyme.
+    description: ''
+  - name: --allow-shared-key-access -k
+    parameterValueGroup: false, true
+    summary: Indique si le compte de stockage autorise l’autorisation des demandes avec la clé d’accès de compte via une clé partagée. Si la valeur est false, toutes les demandes, y compris les signatures d’accès partagé, doivent être autorisées avec Azure Active Directory (Azure AD). La valeur par défaut est null, ce qui équivaut à true.
     description: ''
   - name: --assign-identity
     summary: Générez et attribuez une nouvelle identité de compte de stockage pour ce compte de stockage pour une utilisation avec des services de gestion de clés comme Azure keyvault.
@@ -652,7 +662,7 @@ directCommands:
     description: ''
   - name: --sku
     parameterValueGroup: Premium_LRS, Premium_ZRS, Standard_GRS, Standard_GZRS, Standard_LRS, Standard_RAGRS, Standard_RAGZRS, Standard_ZRS
-    summary: Référence SKU du compte de stockage.
+    summary: Notez que le nom de la référence (SKU) ne peut pas être mis à jour pour Standard_ZRS, Premium_LRS ou Premium_ZRS, et les comptes de ces noms de références ne peuvent pas être mis à jour avec une autre valeur.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -736,11 +746,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/02/2021
+  ms.date: 02/26/2021
   description: Gérer les comptes de stockage.
-  ms.openlocfilehash: ccffebf20c9f73087d4dc35ffd46cf8a05573cd6
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: d837ef2ecf339058b7be2a1aa62572d6e6198ec5
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102963432"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103522198"

@@ -632,6 +632,94 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_blob_rewrite
+  name: az storage blob rewrite
+  summary: Créer un objet blob de blocs dans lequel le contenu de l’objet blob est lu à partir d’une URL donnée.
+  description: Le contenu d’un objet BLOB existant est remplacé par le nouvel objet BLOB.
+  syntax: >-
+    az storage blob rewrite --container-name
+                            --name
+                            --source-uri
+                            [--account-key]
+                            [--account-name]
+                            [--auth-mode {key, login}]
+                            [--connection-string]
+                            [--encryption-scope]
+                            [--if-match]
+                            [--if-modified-since]
+                            [--if-none-match]
+                            [--if-unmodified-since]
+                            [--lease-id]
+                            [--sas-token]
+                            [--subscription]
+                            [--tags-condition]
+                            [--tier {Archive, Cool, Hot, P10, P15, P20, P30, P4, P40, P50, P6, P60, P70, P80}]
+                            [--timeout]
+  examples:
+  - summary: Mettez à jour l’étendue du chiffrement pour l’objet BLOB existant.
+    syntax: az storage blob rewrite --source-uri https://srcaccount.blob.core.windows.net/mycontainer/myblob?<sastoken> --encryption-scope newscope -c mycontainer -n myblob --account-name mystorageaccount --account-key 0000-0000
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’objet BLOB.
+    description: ''
+  - isRequired: true
+    name: --source-uri -u
+    summary: URL d’une longueur maximale de 2 Ko qui spécifie un fichier ou un objet BLOB. La valeur doit être encodée sous forme d'URL, comme dans une URI de demande. Si la source se trouve dans un autre compte, la source doit être publique ou authentifiée via une signature d’accès partagé. Si la source est publique, aucune authentification n’est requise.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --encryption-scope
+    summary: Étendue de chiffrement prédéfinie utilisée pour chiffrer les données sur le service. Une étendue de chiffrement peut être créée à l’aide de l’API de gestion et référencée ici par son nom. Si une étendue de chiffrement par défaut a été définie au niveau du conteneur, cette valeur le remplace si l’étendue au niveau du conteneur est configurée pour autoriser les remplacements. Dans le cas contraire, une erreur est générée.
+    description: ''
+  - name: --if-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée.
+    description: ''
+  - name: --if-modified-since
+    summary: Commencer uniquement en cas de modification depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Une valeur ETag, ou le caractère générique ( \* ). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. Spécifiez le caractère générique ( \* ) pour effectuer l’opération uniquement si la ressource n’existe pas et si elle n’existe pas.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Commencer uniquement si non modifié depuis la date/heure UTC fournie (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si l'objet blob a un bail actif. La valeur peut être un objet BlobLeaseClient ou l’ID de bail en tant que chaîne.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags-condition
+    summary: Spécifiez une clause SQL WHERE sur les balises d’objet BLOB pour qu’elle fonctionne uniquement sur les objets BLOB avec une valeur correspondante.
+    description: ''
+  - name: --tier
+    parameterValueGroup: Archive, Cool, Hot, P10, P15, P20, P30, P4, P40, P50, P6, P60, P70, P80
+    summary: Valeur de niveau d’objet BLOB standard pour laquelle définir l’objet BLOB. Pour cette version de la bibliothèque, cela s’applique uniquement aux objets BLOB de blocs sur les comptes de stockage standard.
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
 - uid: az_storage_blob_set_tier
   name: az storage blob set-tier
   summary: Définissez les niveaux de bloc ou de page sur l’objet BLOB.
@@ -718,6 +806,7 @@ directCommands:
                          [--sas-token]
                          [--snapshot]
                          [--subscription]
+                         [--tags-condition]
                          [--timeout]
   examples:
   - summary: Affiche toutes les propriétés d’un objet BLOB.
@@ -773,6 +862,9 @@ directCommands:
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags-condition
+    summary: Spécifiez une clause SQL WHERE sur les balises d’objet BLOB pour qu’elle fonctionne uniquement sur les objets BLOB avec une valeur correspondante.
     description: ''
   - name: --timeout
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
@@ -972,7 +1064,7 @@ directCommands:
                            [--auth-mode {key, login}]
                            [--clear-content-settings {false, true}]
                            [--connection-string]
-                           [--content-cache-control]
+                           [--content-cache]
                            [--content-disposition]
                            [--content-encoding]
                            [--content-language]
@@ -1013,7 +1105,7 @@ directCommands:
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
     description: ''
-  - name: --content-cache-control
+  - name: --content-cache --content-cache-control
     summary: Chaîne de contrôle du cache.
     description: ''
   - name: --content-disposition
@@ -1068,7 +1160,7 @@ directCommands:
                            [--account-name]
                            [--auth-mode {key, login}]
                            [--connection-string]
-                           [--content-cache-control]
+                           [--content-cache]
                            [--content-disposition]
                            [--content-encoding]
                            [--content-language]
@@ -1123,7 +1215,7 @@ directCommands:
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
     description: ''
-  - name: --content-cache-control
+  - name: --content-cache --content-cache-control
     summary: Chaîne de contrôle du cache.
     description: ''
   - name: --content-disposition
@@ -1207,7 +1299,7 @@ directCommands:
                                  [--account-name]
                                  [--auth-mode {key, login}]
                                  [--connection-string]
-                                 [--content-cache-control]
+                                 [--content-cache]
                                  [--content-disposition]
                                  [--content-encoding]
                                  [--content-language]
@@ -1263,7 +1355,7 @@ directCommands:
   - name: --connection-string
     summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
     description: ''
-  - name: --content-cache-control
+  - name: --content-cache --content-cache-control
     summary: Chaîne de contrôle du cache.
     description: ''
   - name: --content-disposition
@@ -1421,6 +1513,7 @@ commands:
 - az_storage_blob_metadata_show
 - az_storage_blob_metadata_update
 - az_storage_blob_restore
+- az_storage_blob_rewrite
 - az_storage_blob_service_properties
 - az_storage_blob_service_properties_delete_policy
 - az_storage_blob_service_properties_delete_policy_show
@@ -1453,11 +1546,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/02/2021
+  ms.date: 02/26/2021
   description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
-  ms.openlocfilehash: ab61ca9d2d9c13dbf336b56f22bbddcc969c26d1
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: 2878bc9f7747f89a0159884a33fbd5902bc1efa3
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102963372"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103521858"
