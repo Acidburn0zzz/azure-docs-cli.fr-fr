@@ -27,7 +27,7 @@ directCommands:
                           [--os-type {Linux, Windows}]
                           [--plan]
                           [--role]
-                          [--runtime {custom, dotnet, java, node, powershell, python}]
+                          [--runtime {custom, dotnet, dotnet-isolated, java, node, powershell, python}]
                           [--runtime-version]
                           [--scope]
                           [--subscription]
@@ -104,11 +104,11 @@ directCommands:
     summary: Nom de rôle ou ID dont l’identité a été affectée par le système.
     description: ''
   - name: --runtime
-    parameterValueGroup: custom, dotnet, java, node, powershell, python
+    parameterValueGroup: custom, dotnet, dotnet-isolated, java, node, powershell, python
     summary: Pile Runtime functions.
     description: ''
   - name: --runtime-version
-    summary: 'Version de la pile Runtime de functions. Les valeurs autorisées pour chaque Runtime sont : node-> [8, 10, 12, 14 (version préliminaire)], Java-> [8, 11], PowerShell-> [7,0], Python-> [3,6, 3,7, 3,8, 3,9 (version préliminaire)].'
+    summary: 'Version de la pile Runtime de functions. Les valeurs autorisées pour chaque Runtime sont : dotnet-isolated-> [5,0 (version préliminaire)], node-> [8, 10, 12, 14], Java-> [8, 11], PowerShell-> [7,0], Python-> [3,6, 3,7, 3,8, 3,9 (version préliminaire)].'
     description: ''
   - name: --scope
     summary: Étendue à laquelle le système affecté à l’identité peut accéder.
@@ -148,6 +148,78 @@ directCommands:
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
+- uid: az_functionapp_deploy
+  name: az functionapp deploy
+  summary: Déploie un artefact fourni dans Azure functionapp.
+  description: ''
+  syntax: >-
+    az functionapp deploy [--async {false, true}]
+                          [--clean {false, true}]
+                          [--ids]
+                          [--ignore-stack {false, true}]
+                          [--name]
+                          [--resource-group]
+                          [--restart {false, true}]
+                          [--slot]
+                          [--src-path]
+                          [--src-url]
+                          [--subscription]
+                          [--target-path]
+                          [--timeout]
+                          [--type]
+  examples:
+  - summary: Déployez un fichier War de manière asynchrone.
+    syntax: az functionapp deploy --resource-group ResouceGroup --name AppName --src-path SourcePath --type war --async true
+  - summary: Déployer un fichier texte statique sur wwwroot/staticfiles/test.txt
+    syntax: az functionapp deploy --resource-group ResouceGroup --name AppName --src-path SourcePath --type static --target-path staticfiles/test.txt
+  optionalParameters:
+  - name: --async
+    parameterValueGroup: false, true
+    summary: Déploiement asynchrone.
+    description: ''
+  - name: --clean
+    parameterValueGroup: false, true
+    summary: Clean ou not. la valeur par défaut est spécifique au type de cible.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --ignore-stack
+    parameterValueGroup: false, true
+    summary: Doit remplacer la vérification de la pile par défaut.
+    description: ''
+  - name: --name -n
+    summary: Nom du functionapp auquel se connecter.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --restart
+    parameterValueGroup: false, true
+    summary: Redémarrez ou non. le comportement par défaut consiste à redémarrer.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement de déploiement à utiliser.
+    description: ''
+  - name: --src-path
+    summary: Chemin d’accès du fichier à déployer. Exemple:/mnt/Apps/MyApp.War.
+    description: ''
+  - name: --src-url
+    summary: 'URL à partir de laquelle Télécharger le package. Exemple : <a href="http://mysite.com/files/myapp.war?key=123">http://mysite.com/files/myapp.war?key=123</a> .'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --target-path
+    summary: Chemin d’accès cible relatif à wwwroot vers lequel le fichier sera déployé.
+    description: ''
+  - name: --timeout
+    summary: Délai d’attente de l’opération en millisecondes.
+    description: ''
+  - name: --type
+    summary: Type de déploiement demandé.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/appservice/_help.py
 - uid: az_functionapp_list
@@ -395,6 +467,7 @@ commands:
 - az_functionapp_cors_show
 - az_functionapp_create
 - az_functionapp_delete
+- az_functionapp_deploy
 - az_functionapp_deployment
 - az_functionapp_deployment_container
 - az_functionapp_deployment_container_config
@@ -477,11 +550,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 01/19/2021
+  ms.date: 02/26/2021
   description: Gérer les applications de fonction. Pour installer les outils de base de Azure Functions <a href="https://github.com/Azure/azure-functions-core-tools">https://github.com/Azure/azure-functions-core-tools</a> , consultez.
-  ms.openlocfilehash: 0c01c2e209e147fc3b27148b5a2499b954950f88
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: ac55e1df2dc6887566268e2aa676dde0b7d65cae
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102971162"
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103544927"
