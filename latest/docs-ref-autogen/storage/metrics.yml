@@ -1,0 +1,145 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_metrics
+name: az storage metrics
+summary: Gérer les mesures de service de stockage.
+description: ''
+directCommands:
+- uid: az_storage_metrics_show
+  name: az storage metrics show
+  summary: Affichez les paramètres de métriques pour un compte de stockage.
+  description: ''
+  syntax: >-
+    az storage metrics show [--account-key]
+                            [--account-name]
+                            [--connection-string]
+                            [--interval {both, hour, minute}]
+                            [--query-examples]
+                            [--sas-token]
+                            [--services]
+                            [--subscription]
+                            [--timeout]
+  examples:
+  - summary: Affichez les paramètres de métriques pour un compte de stockage. généré automatiquement
+    syntax: az storage metrics show --account-key 00000000 --account-name MyAccount
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --interval
+    defaultValue: both
+    parameterValueGroup: both, hour, minute
+    summary: Filtrez l’ensemble de mesures à récupérer par intervalle de temps.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --services
+    defaultValue: bfqt
+    summary: 'Services de stockage à partir desquels récupérer des informations de métriques : (b) LOB (q) UEUE (t). Peut être combiné.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_metrics_update
+  name: az storage metrics update
+  summary: Met à jour les paramètres de métriques pour un compte de stockage.
+  description: ''
+  syntax: >-
+    az storage metrics update --retention
+                              --services
+                              [--account-key]
+                              [--account-name]
+                              [--api {false, true}]
+                              [--connection-string]
+                              [--hour {false, true}]
+                              [--minute {false, true}]
+                              [--sas-token]
+                              [--subscription]
+                              [--timeout]
+  examples:
+  - summary: Met à jour les paramètres de métriques pour un compte de stockage. généré automatiquement
+    syntax: az storage metrics update --account-name MyAccount --api true --hour true --minute true --retention 10 --services bfqt
+  - summary: Met à jour les paramètres de métriques pour un compte de stockage par chaîne de connexion. généré automatiquement
+    syntax: az storage metrics update --api true --connection-string $connectionString --hour true --minute true --retention 10 --services bfqt
+  requiredParameters:
+  - isRequired: true
+    name: --retention
+    summary: Nombre de jours pendant lesquels les métriques doivent être conservées. 0 pour désactiver. S’applique aux métriques heure et minute si les deux sont spécifiées.
+    description: ''
+  - isRequired: true
+    name: --services
+    summary: 'Services de stockage à partir desquels récupérer des informations de métriques : (b) LOB (q) UEUE (t). Peut être combiné.'
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --api
+    parameterValueGroup: false, true
+    summary: Spécifiez s’il faut inclure l’API dans les métriques. S’applique aux métriques heure et minute si les deux sont spécifiées. Doit être spécifié si les métriques heure ou minute sont activées et en cours de mise à jour.
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --hour
+    parameterValueGroup: false, true
+    summary: Mettez à jour les métriques horaires.
+    description: ''
+  - name: --minute
+    parameterValueGroup: false, true
+    summary: Mettez à jour les métriques par minute.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+commands:
+- az_storage_metrics_show
+- az_storage_metrics_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/02/2021
+  description: Gérer les mesures de service de stockage.
+  ms.openlocfilehash: b4b77ece2d5dcf8af2db2d797519f9bfc60b3288
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102963891"
