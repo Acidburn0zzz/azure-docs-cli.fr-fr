@@ -1,34 +1,25 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_private_dns_record_set_mx
-name: az network private-dns record-set mx
-summary: Gérer les enregistrements DNS privé MX.
+uid: az_network_private_dns_record_set_txt
+name: az network private-dns record-set txt
+summary: Gérer les enregistrements DNS privé TXT.
 description: ''
 directCommands:
-- uid: az_network_private_dns_record_set_mx_add_record
-  name: az network private-dns record-set mx add-record
-  summary: Ajoutez un enregistrement MX.
+- uid: az_network_private_dns_record_set_txt_add_record
+  name: az network private-dns record-set txt add-record
+  summary: Ajoutez un enregistrement TXT.
   description: ''
   syntax: >-
-    az network private-dns record-set mx add-record --exchange
-                                                    --preference
-                                                    --record-set-name
-                                                    --resource-group
-                                                    --zone-name
-                                                    [--subscription]
+    az network private-dns record-set txt add-record --record-set-name
+                                                     --resource-group
+                                                     --value
+                                                     --zone-name
+                                                     [--subscription]
   examples:
-  - summary: Ajoutez un enregistrement MX.
+  - summary: Ajoutez un enregistrement TXT.
     syntax: >-
-      az network private-dns record-set mx add-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -e mail.mysite.com -p 10
+      az network private-dns record-set txt add-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -v Owner=WebTeam
   requiredParameters:
-  - isRequired: true
-    name: --exchange -e
-    summary: Métrique Exchange.
-    description: ''
-  - isRequired: true
-    name: --preference -p
-    summary: Mesure de préférence.
-    description: ''
   - isRequired: true
     name: --record-set-name -n
     summary: Nom du jeu d’enregistrements relatif à la zone. Crée un nouveau jeu d’enregistrements s’il n’en existe pas.
@@ -36,6 +27,10 @@ directCommands:
   - isRequired: true
     name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --value -v
+    summary: Liste de valeurs de texte séparées par des espaces, qui seront concaténées ensemble.
     description: ''
   - isRequired: true
     name: --zone-name -z
@@ -46,20 +41,20 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_mx_create
-  name: az network private-dns record-set mx create
-  summary: Créez un jeu d’enregistrements MX vide.
+- uid: az_network_private_dns_record_set_txt_create
+  name: az network private-dns record-set txt create
+  summary: Créez un jeu d’enregistrements TXT vide.
   description: ''
   syntax: >-
-    az network private-dns record-set mx create --name
-                                                --resource-group
-                                                --zone-name
-                                                [--metadata]
-                                                [--subscription]
-                                                [--ttl]
+    az network private-dns record-set txt create --name
+                                                 --resource-group
+                                                 --zone-name
+                                                 [--metadata]
+                                                 [--subscription]
+                                                 [--ttl]
   examples:
-  - summary: Créez un jeu d’enregistrements MX vide.
-    syntax: az network private-dns record-set mx create -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Créez un jeu d’enregistrements TXT vide.
+    syntax: az network private-dns record-set txt create -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -85,20 +80,20 @@ directCommands:
     summary: Durée de vie du jeu d’enregistrements (durée de vie).
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_mx_delete
-  name: az network private-dns record-set mx delete
-  summary: Supprimer un jeu d’enregistrements MX et tous les enregistrements associés.
+- uid: az_network_private_dns_record_set_txt_delete
+  name: az network private-dns record-set txt delete
+  summary: Supprimer un jeu d’enregistrements TXT et tous les enregistrements associés.
   description: ''
   syntax: >-
-    az network private-dns record-set mx delete --name
-                                                --resource-group
-                                                --zone-name
-                                                [--if-match]
-                                                [--subscription]
-                                                [--yes]
+    az network private-dns record-set txt delete --name
+                                                 --resource-group
+                                                 --zone-name
+                                                 [--if-match]
+                                                 [--subscription]
+                                                 [--yes]
   examples:
-  - summary: Supprimer un jeu d’enregistrements MX et tous les enregistrements associés.
-    syntax: az network private-dns record-set mx delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Supprimer un jeu d’enregistrements TXT et tous les enregistrements associés.
+    syntax: az network private-dns record-set txt delete -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -123,18 +118,18 @@ directCommands:
     summary: Ne pas demander de confirmation.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_mx_list
-  name: az network private-dns record-set mx list
-  summary: Répertorie tous les jeux d’enregistrements MX dans une zone.
+- uid: az_network_private_dns_record_set_txt_list
+  name: az network private-dns record-set txt list
+  summary: Répertorie tous les jeux d’enregistrements TXT dans une zone.
   description: ''
   syntax: >-
-    az network private-dns record-set mx list --resource-group
-                                              --zone-name
-                                              [--query-examples]
-                                              [--subscription]
+    az network private-dns record-set txt list --resource-group
+                                               --zone-name
+                                               [--query-examples]
+                                               [--subscription]
   examples:
-  - summary: Répertorie tous les jeux d’enregistrements MX dans une zone.
-    syntax: az network private-dns record-set mx list -g MyResourceGroup -z www.mysite.com
+  - summary: Répertorie tous les jeux d’enregistrements TXT dans une zone.
+    syntax: az network private-dns record-set txt list -g MyResourceGroup -z www.mysite.com
   requiredParameters:
   - isRequired: true
     name: --resource-group -g
@@ -152,32 +147,23 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_mx_remove_record
-  name: az network private-dns record-set mx remove-record
-  summary: Supprimer un enregistrement MX de son jeu d’enregistrements.
+- uid: az_network_private_dns_record_set_txt_remove_record
+  name: az network private-dns record-set txt remove-record
+  summary: Supprimer un enregistrement TXT de son jeu d’enregistrements.
   description: Par défaut, si le dernier enregistrement d’un jeu est supprimé, le jeu d’enregistrements est supprimé. Pour conserver le jeu d’enregistrements vide, incluez--Keep-vide-record-Set.
   syntax: >-
-    az network private-dns record-set mx remove-record --exchange
-                                                       --preference
-                                                       --record-set-name
-                                                       --resource-group
-                                                       --zone-name
-                                                       [--keep-empty-record-set]
-                                                       [--subscription]
+    az network private-dns record-set txt remove-record --record-set-name
+                                                        --resource-group
+                                                        --value
+                                                        --zone-name
+                                                        [--keep-empty-record-set]
+                                                        [--subscription]
   examples:
-  - summary: Supprimer un enregistrement MX de son jeu d’enregistrements.
+  - summary: Supprimer un enregistrement TXT de son jeu d’enregistrements.
     syntax: >-
-      az network private-dns record-set mx remove-record -g MyResourceGroup -z www.mysite.com \
-          -n MyRecordSet -e mail.mysite.com -p 10
+      az network private-dns record-set txt remove-record -g MyResourceGroup -z www.mysite.com \
+          -n MyRecordSet -v Owner=WebTeam
   requiredParameters:
-  - isRequired: true
-    name: --exchange -e
-    summary: Métrique Exchange.
-    description: ''
-  - isRequired: true
-    name: --preference -p
-    summary: Mesure de préférence.
-    description: ''
   - isRequired: true
     name: --record-set-name -n
     summary: Nom du jeu d’enregistrements relatif à la zone.
@@ -185,6 +171,10 @@ directCommands:
   - isRequired: true
     name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --value -v
+    summary: Liste de valeurs de texte séparées par des espaces, qui seront concaténées ensemble.
     description: ''
   - isRequired: true
     name: --zone-name -z
@@ -198,19 +188,19 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_mx_show
-  name: az network private-dns record-set mx show
-  summary: Obtient les détails d’un jeu d’enregistrements MX.
+- uid: az_network_private_dns_record_set_txt_show
+  name: az network private-dns record-set txt show
+  summary: Obtenir les détails d’un jeu d’enregistrements TXT.
   description: ''
   syntax: >-
-    az network private-dns record-set mx show --name
-                                              --resource-group
-                                              --zone-name
-                                              [--query-examples]
-                                              [--subscription]
+    az network private-dns record-set txt show --name
+                                               --resource-group
+                                               --zone-name
+                                               [--query-examples]
+                                               [--subscription]
   examples:
-  - summary: Obtient les détails d’un jeu d’enregistrements MX.
-    syntax: az network private-dns record-set mx show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
+  - summary: Obtenir les détails d’un jeu d’enregistrements TXT.
+    syntax: az network private-dns record-set txt show -g MyResourceGroup -z www.mysite.com -n MyRecordSet
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -232,25 +222,25 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_private_dns_record_set_mx_update
-  name: az network private-dns record-set mx update
-  summary: Mettre à jour un jeu d’enregistrements MX.
+- uid: az_network_private_dns_record_set_txt_update
+  name: az network private-dns record-set txt update
+  summary: Mettez à jour un jeu d’enregistrements TXT.
   description: ''
   syntax: >-
-    az network private-dns record-set mx update --name
-                                                --resource-group
-                                                --zone-name
-                                                [--add]
-                                                [--force-string]
-                                                [--if-match]
-                                                [--metadata]
-                                                [--remove]
-                                                [--set]
-                                                [--subscription]
+    az network private-dns record-set txt update --name
+                                                 --resource-group
+                                                 --zone-name
+                                                 [--add]
+                                                 [--force-string]
+                                                 [--if-match]
+                                                 [--metadata]
+                                                 [--remove]
+                                                 [--set]
+                                                 [--subscription]
   examples:
-  - summary: Mettre à jour un jeu d’enregistrements MX.
+  - summary: Mettez à jour un jeu d’enregistrements TXT.
     syntax: >-
-      az network private-dns record-set mx update -g MyResourceGroup -z www.mysite.com \
+      az network private-dns record-set txt update -g MyResourceGroup -z www.mysite.com \
           -n MyRecordSet --metadata owner=WebTeam
   requiredParameters:
   - isRequired: true
@@ -289,13 +279,13 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_private_dns_record_set_mx_add_record
-- az_network_private_dns_record_set_mx_create
-- az_network_private_dns_record_set_mx_delete
-- az_network_private_dns_record_set_mx_list
-- az_network_private_dns_record_set_mx_remove_record
-- az_network_private_dns_record_set_mx_show
-- az_network_private_dns_record_set_mx_update
+- az_network_private_dns_record_set_txt_add_record
+- az_network_private_dns_record_set_txt_create
+- az_network_private_dns_record_set_txt_delete
+- az_network_private_dns_record_set_txt_list
+- az_network_private_dns_record_set_txt_remove_record
+- az_network_private_dns_record_set_txt_show
+- az_network_private_dns_record_set_txt_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -314,10 +304,10 @@ globalParameters:
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/25/2021
-  description: Gérer les enregistrements DNS privé MX.
-  ms.openlocfilehash: 35e47261fa0c54ab31f4574d1c043eaa3e37b6b8
+  description: Gérer les enregistrements DNS privé TXT.
+  ms.openlocfilehash: 567c2e905ef6917e7dcba429a5c921513ae19255
   ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
   ms.translationtype: MT
   ms.contentlocale: fr-FR
   ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103547936"
+  ms.locfileid: "103547749"
