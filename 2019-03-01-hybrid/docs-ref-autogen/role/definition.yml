@@ -1,0 +1,191 @@
+### YamlMime:AzureCLIGroup
+uid: az_role_definition
+name: az role definition
+summary: Gérer les définitions de rôles.
+description: ''
+directCommands:
+- uid: az_role_definition_create
+  name: az role definition create
+  summary: Créez une définition de rôle personnalisée.
+  description: ''
+  syntax: >-
+    az role definition create --role-definition
+                              [--subscription]
+  examples:
+  - summary: Créez un rôle avec un accès en lecture seule aux ressources de stockage et réseau, ainsi que la possibilité de démarrer ou de redémarrer des machines virtuelles. Anniversaire
+    syntax: >-
+      az role definition create --role-definition '{
+          "Name": "Contoso On-call",
+          "Description": "Perform VM actions and read storage and network information.",
+          "Actions": [
+              "Microsoft.Compute/*/read",
+                  "Microsoft.Compute/virtualMachines/start/action",
+                  "Microsoft.Compute/virtualMachines/restart/action",
+                  "Microsoft.Network/*/read",
+              "Microsoft.Storage/*/read",
+                  "Microsoft.Authorization/*/read",
+              "Microsoft.Resources/subscriptions/resourceGroups/read",
+              "Microsoft.Resources/subscriptions/resourceGroups/resources/read",
+              "Microsoft.Insights/alertRules/*",
+                  "Microsoft.Support/*"
+          ],
+          "DataActions": [
+              "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/*"
+          ],
+          "NotDataActions": [
+              "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/write"
+          ],
+          "AssignableScopes": ["/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"]
+      }'
+  - summary: Créez un rôle à partir d’un fichier contenant une description JSON.
+    syntax: az role definition create --role-definition @ad-role.json
+  requiredParameters:
+  - isRequired: true
+    name: --role-definition
+    summary: Description d’un rôle au format JSON ou d’un chemin d’accès à un fichier contenant une description JSON.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_role_definition_delete
+  name: az role definition delete
+  summary: Supprimer une définition de rôle.
+  description: ''
+  syntax: >-
+    az role definition delete --name
+                              [--custom-role-only {false, true}]
+                              [--resource-group]
+                              [--scope]
+                              [--subscription]
+  examples:
+  - summary: Supprimer une définition de rôle. généré automatiquement
+    syntax: az role definition delete --name MyRole
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du rôle.
+    description: ''
+  optionalParameters:
+  - name: --custom-role-only
+    parameterValueGroup: false, true
+    summary: Rôles personnalisés uniquement (par rapport à ceux de la Build).
+    description: ''
+  - name: --resource-group -g
+    summary: Utilisez-le uniquement si le rôle ou l’affectation a été ajouté au niveau d’un groupe de ressources.
+    description: ''
+  - name: --scope
+    summary: Portée à laquelle s’applique l’attribution de rôle ou la définition, par exemple/subscriptions/0b1f6471-1bf0-4DDA-AEC3-111122223333,/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup ou/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup/providers/Microsoft.Compute/virtualMachines/myVM.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_role_definition_list
+  name: az role definition list
+  summary: Répertorier les définitions de rôles.
+  description: ''
+  syntax: >-
+    az role definition list [--custom-role-only {false, true}]
+                            [--name]
+                            [--query-examples]
+                            [--resource-group]
+                            [--scope]
+                            [--subscription]
+  optionalParameters:
+  - name: --custom-role-only
+    parameterValueGroup: false, true
+    summary: Rôles personnalisés uniquement (par rapport à ceux de la Build).
+    description: ''
+  - name: --name -n
+    summary: Nom du rôle.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Utilisez-le uniquement si le rôle ou l’affectation a été ajouté au niveau d’un groupe de ressources.
+    description: ''
+  - name: --scope
+    summary: Portée à laquelle s’applique l’attribution de rôle ou la définition, par exemple/subscriptions/0b1f6471-1bf0-4DDA-AEC3-111122223333,/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup ou/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup/providers/Microsoft.Compute/virtualMachines/myVM.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+- uid: az_role_definition_update
+  name: az role definition update
+  summary: Mettre à jour une définition de rôle.
+  description: ''
+  syntax: >-
+    az role definition update --role-definition
+                              [--subscription]
+  examples:
+  - summary: Mettez à jour un rôle à l’aide de la sortie de « AZ Role Definition List ». Anniversaire
+    syntax: >-
+      az role definition update --role-definition '{
+          "roleName": "Contoso On-call",
+          "Description": "Perform VM actions and read storage and network information.",
+          "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/providers/Microsoft.Authorization/roleDefinitions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "roleType": "CustomRole",
+          "type": "Microsoft.Authorization/roleDefinitions",
+          "Actions": [
+              "Microsoft.Compute/*/read",
+                  "Microsoft.Compute/virtualMachines/start/action",
+                  "Microsoft.Compute/virtualMachines/restart/action",
+                  "Microsoft.Network/*/read",
+              "Microsoft.Storage/*/read",
+                  "Microsoft.Authorization/*/read",
+              "Microsoft.Resources/subscriptions/resourceGroups/read",
+              "Microsoft.Resources/subscriptions/resourceGroups/resources/read",
+              "Microsoft.Support/*"
+              ],
+              "DataActions": [
+                  "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/*"
+          ],
+          "NotDataActions": [
+              "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/write"
+          ],
+          "AssignableScopes": ["/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"]
+      }'
+  requiredParameters:
+  - isRequired: true
+    name: --role-definition
+    summary: Description d’un rôle existant en tant que JSON ou chemin d’accès à un fichier contenant une description JSON.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/role/_help.py
+commands:
+- az_role_definition_create
+- az_role_definition_delete
+- az_role_definition_list
+- az_role_definition_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/20/2021
+  description: Gérer les définitions de rôles.
+  ms.openlocfilehash: 62bd05ed0925a1bbcd6fbfe177e0dc677fee665e
+  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 02/09/2021
+  ms.locfileid: "102964776"
