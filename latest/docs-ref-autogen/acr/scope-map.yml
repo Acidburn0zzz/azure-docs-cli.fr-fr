@@ -1,0 +1,226 @@
+### YamlMime:AzureCLIGroup
+uid: az_acr_scope_map
+name: az acr scope-map
+summary: Gérer les mappages d’accès à l’étendue pour les registres de conteneur Azure.
+description: ''
+directCommands:
+- uid: az_acr_scope_map_create
+  name: az acr scope-map create
+  summary: Créez un mappage d’étendue pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr scope-map create --name
+                            --registry
+                            [--description]
+                            [--gateway]
+                            [--repository]
+                            [--resource-group]
+                            [--subscription]
+  examples:
+  - summary: Créez un mappage d’étendue qui autorise le contenu/l’écriture et les métadonnées/actions de lecture pour le `hello-world` référentiel, et l’action de contenu/lecture pour `hello-world-again` .
+    syntax: az acr scope-map create -n MyScopeMap -r MyRegistry --repository hello-world content/write metadata/read --repository hello-world-again content/read --description "Sample scope map."
+  - summary: Créez un mappage d’étendue qui autorise toutes les actions de référentiel pour `test` et toutes les actions de passerelle pour `connectedRegistry` .
+    syntax: >-
+      az acr scope-map create -n MyScopeMap -r MyRegistry --description "Sample scope map."
+        --repository test content/delete content/read content/write metadata/read metadata/write
+        --gateway connectedRegistry config/read config/write message/read message/write
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du mappage de l’étendue.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --description
+    summary: Description du mappage de l’étendue. 256 caractères maximum sont autorisés.
+    description: ''
+  - name: --gateway
+    summary: Autorisations de la passerelle. Utilisez le format « --passerelle de passerelle [ACTION1 ACTION2...] » par indicateur. Les actions valides sont « message/écriture », « config/lecture », « message/lecture », « configuration/écriture »}.
+    description: ''
+  - name: --repository
+    summary: Autorisations de référentiel. Utilisez le format « --Repository référentiel [ACTION1 ACTION2...] » par indicateur. Les actions valides sont {« content/Read », « content/Delete », « content/Write », « Metadata/Read », « Metadata/Write »}.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_scope_map_delete
+  name: az acr scope-map delete
+  summary: Supprimer un mappage d’étendue pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr scope-map delete --name
+                            --registry
+                            [--resource-group]
+                            [--subscription]
+                            [--yes]
+  examples:
+  - summary: Supprimez le mappage d’étendue’MyScopeMap'.
+    syntax: az acr scope-map delete -n MyScopeMap -r MyRegistry
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du mappage de l’étendue.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_scope_map_list
+  name: az acr scope-map list
+  summary: Répertorie tous les mappages d’étendue pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr scope-map list --registry
+                          [--query-examples]
+                          [--resource-group]
+                          [--subscription]
+  examples:
+  - summary: Répertorier les mappages de portée sous le registre « MyRegistry ».
+    syntax: az acr scope-map list -r MyRegistry
+  requiredParameters:
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_scope_map_show
+  name: az acr scope-map show
+  summary: Affichez les détails et les attributs d’un mappage d’étendue pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr scope-map show --name
+                          --registry
+                          [--query-examples]
+                          [--resource-group]
+                          [--subscription]
+  examples:
+  - summary: Obtenir des informations sur le mappage d’étendue’MyScopeMap'.
+    syntax: az acr scope-map show -n MyScopeMap -r MyRegistry
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du mappage de l’étendue.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+- uid: az_acr_scope_map_update
+  name: az acr scope-map update
+  summary: Mettre à jour un mappage d’étendue pour un Azure Container Registry.
+  description: ''
+  syntax: >-
+    az acr scope-map update --name
+                            --registry
+                            [--add-gateway]
+                            [--add-repository]
+                            [--description]
+                            [--remove-gateway]
+                            [--remove-repository]
+                            [--resource-group]
+                            [--subscription]
+  examples:
+  - summary: Mettez à jour le mappage d’étendue « MyScopeMap » en supprimant les métadonnées/lecture et contenu/lecture des actions pour le `hello-world` référentiel, et l’action de message/écriture pour `connectedRegistry` .
+    syntax: az acr scope-map update -n MyScopeMap -r MyRegistry --remove-repo hello-world metadata/read content/read --remove-gateway connectedRegistry message/write
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du mappage de l’étendue.
+    description: ''
+  - isRequired: true
+    name: --registry -r
+    summary: Nom du registre de conteneurs. Vous pouvez configurer le nom de Registre par défaut à l’aide de `az configure --defaults acr=<registry name>` .
+    description: ''
+  optionalParameters:
+  - name: --add-gateway
+    summary: Autorisations de passerelle à ajouter. Utilisez le format « --Add-Gateway GATEWAY [ACTION1 ACTION2...] » par indicateur. Les actions valides sont « message/écriture », « config/lecture », « message/lecture », « configuration/écriture »}.
+    description: ''
+  - name: --add-repository
+    summary: Autorisations de référentiel à ajouter. Utilisez le format « --Add-Repository référentiel [ACTION1 ACTION2...] » par indicateur. Les actions valides sont {« content/Read », « content/Delete », « content/Write », « Metadata/Read », « Metadata/Write »}.
+    description: ''
+  - name: --description
+    summary: Description du mappage de l’étendue. 256 caractères maximum sont autorisés.
+    description: ''
+  - name: --remove-gateway
+    summary: Autorisations de la passerelle à supprimer. Utilisez le format « --Remove-Gateway GATEWAY [ACTION1 ACTION2...] » par indicateur. Les actions valides sont « message/écriture », « config/lecture », « message/lecture », « configuration/écriture »}.
+    description: ''
+  - name: --remove-repository
+    summary: Autorisations Respsitory à supprimer. Utilisez le format « --Remove-Repository référentiel [ACTION1 ACTION2...] » par indicateur. Les actions valides sont {« content/Read », « content/Delete », « content/Write », « Metadata/Read », « Metadata/Write »}.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/acr/_help.py
+commands:
+- az_acr_scope_map_create
+- az_acr_scope_map_delete
+- az_acr_scope_map_list
+- az_acr_scope_map_show
+- az_acr_scope_map_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 01/26/2021
+  description: Gérer les mappages d’accès à l’étendue pour les registres de conteneur Azure.
+  ms.openlocfilehash: bd0c6c2879518989a61809ebddc80affdb54eba3
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103518883"
