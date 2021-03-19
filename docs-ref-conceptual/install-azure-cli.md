@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 2fcd8e8be4fe188143d0032822070b57f6474975
-ms.sourcegitcommit: 594e9c620a6f74f5eaedf91a7f6a791e03a64c74
+ms.openlocfilehash: d1e5adb6e577e8f301234eb17eedc04d4ce8de51
+ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/17/2021
-ms.locfileid: "100630963"
+ms.lasthandoff: 03/16/2021
+ms.locfileid: "103532063"
 ---
 # <a name="install-the-azure-cli"></a>Installer l’interface de ligne de commande Microsoft Azure
 
@@ -31,8 +31,10 @@ Azure CLI est disponible pour être installé dans les environnements Windows, m
   * [Installer avec dnf sur RHEL, Fedora ou CentOS](install-azure-cli-yum.md)
   * [Installer avec zypper sur openSUSE ou SLE](install-azure-cli-zypper.md)
   * [Installer à partir du script](install-azure-cli-linux.md)
+* [Installer la version bêta (tous les environnements)](install-azure-cli-beta.md)
 * [Exécuter dans un conteneur Docker](run-azure-cli-docker.md)
 * [Exécuter dans Azure Cloud Shell](/azure/cloud-shell/quickstart)
+
 
 > [!NOTE]
 > Si vous utilisez le modèle de déploiement Azure CLI Classic, [installez l’interface de ligne de commande Azure CLI Classic](install-classic-cli.md).

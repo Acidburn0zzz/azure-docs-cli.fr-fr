@@ -10,12 +10,12 @@ ms.topic: conceptual
 ms.devlang: azurecli
 ms.technology: azure-cli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: e8103b8b235c7ac003b2434c72e69839a39f4a9f
-ms.sourcegitcommit: e672284b83a9dbb46cbc54be17f5cd8512310e0a
+ms.openlocfilehash: e9df4821ad4b161bd129c3326e2ee24fc0cdfea7
+ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/20/2021
-ms.locfileid: "98594187"
+ms.lasthandoff: 03/16/2021
+ms.locfileid: "103532109"
 ---
 # <a name="install-azure-cli-on-windows"></a>Installer Azure CLI sur Windows
 
@@ -34,25 +34,14 @@ Lorsque le programme d’installation vous demande s’il peut apporter des modi
 
 ### <a name="azure-cli-current-version"></a>Version actuelle d’Azure CLI
 
-Téléchargez et installez la version actuelle d’Azure CLI.  
+Téléchargez et installez la version actuelle d’Azure CLI.  Une fois l’installation terminée, vous devez fermer et rouvrir toutes les invites de commandes Windows ou fenêtres PowerShell actives pour pouvoir utiliser Azure CLI.
 
 > [!div class="nextstepaction"]
 > [Version actuelle d’Azure CLI](https://aka.ms/installazurecliwindows)
 
 ### <a name="azure-cli-beta-version"></a>Version bêta d’Azure CLI
 
-La version bêta d’Azure CLI prend en charge toutes les commandes CLI disponibles dans la version finale actuelle. La version bêta est une migration de la version publiée d’Azure CLI, car la plateforme d’authentification AAD (v1.0) est sur le point d’être dépréciée.  La [Plateforme d’identité Microsoft (v2.0)](/azure/active-directory/develop/v2-overview) est la nouvelle méthode d’authentification utilisée par version bêta d’Azure CLI.  Nous vous recommandons d’essayer la version bêta à l’avance.  
-
-Pour plus d’informations sur la version bêta d’Azure CLI, consultez les [notes de publication](./release-notes-azure-cli.md?tabs=azure-cli-beta).
-
-> [!IMPORTANT]
->
-> La version bêta ne garantit pas la qualité du produit. Ne l’utilisez pas dans votre environnement de production.
-
-Téléchargez et installez la version bêta d’Azure CLI.
-
-> [!div class="nextstepaction"]
-> [Version bêta d’Azure CLI](https://aka.ms/installazurecliwindowsbeta)
+La version bêta d’Azure CLI prend en charge toutes les commandes et reste synchronisée avec la version publiée actuelle.  Pour obtenir des instructions d’installation, consultez [Installer la version bêta d’Azure CLI](install-azure-cli-beta.md). 
 
 # <a name="microsoft-installer-msi-with-command"></a>[Microsoft Installer (MSI) avec commande](#tab/azure-powershell)
 
@@ -67,7 +56,7 @@ Vous pouvez également installer Azure CLI en utilisant PowerShell. Démarrez Po
 Cette opération télécharge et installe la dernière version d’Azure CLI pour Windows. Si une version est déjà installée, le programme d’installation met à jour la version existante. Une fois l’installation terminée, vous devez rouvrir PowerShell pour utiliser Azure CLI.
 
 ### <a name="azure-cli-command-for-update-only"></a>Commande Azure CLI (pour mise à jour uniquement)
-[!INCLUDE [az-upgrade](includes/az-upgrade.md)]
+[!INCLUDE [az upgrade](includes/az-upgrade.md)]
 
 ---
 
