@@ -1,0 +1,241 @@
+### YamlMime:AzureCLIGroup
+uid: az_monitor_autoscale_profile
+name: az monitor autoscale profile
+summary: Gérer les profils de mise à l’échelle automatique.
+description: 'Pour plus d’informations sur la mise à l’échelle automatique, visitez : <a href="https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings">https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings</a> .'
+directCommands:
+- uid: az_monitor_autoscale_profile_create
+  name: az monitor autoscale profile create
+  summary: Créez un profil de mise à l’échelle automatique fixe ou périodique.
+  description: 'Pour plus d’informations sur la mise à l’échelle automatique, visitez : <a href="https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings">https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings</a> .'
+  syntax: >-
+    az monitor autoscale profile create --autoscale-name
+                                        --count
+                                        --name
+                                        --resource-group
+                                        --timezone
+                                        [--copy-rules]
+                                        [--end]
+                                        [--max-count]
+                                        [--min-count]
+                                        [--recurrence]
+                                        [--start]
+                                        [--subscription]
+  examples:
+  - summary: Créez un profil de date fixe, en héritant des règles de mise à l’échelle par défaut, mais en modifiant la capacité.
+    syntax: >-
+      az monitor autoscale create -g {myrg} --resource {resource-id} --min-count 2 --count 3 \
+        --max-count 5
+
+      az monitor autoscale rule create -g {myrg} --autoscale-name {name} --scale out 1 \
+        --condition "Percentage CPU > 75 avg 5m"
+
+      az monitor autoscale rule create -g {myrg} --autoscale-name {name} --scale in 1 \
+        --condition "Percentage CPU < 25 avg 5m"
+
+      az monitor autoscale profile create -g {myrg} --autoscale-name {name} -n Christmas \
+        --copy-rules default --min-count 3 --count 6 --max-count 10 --start 2018-12-24 \
+        --end 2018-12-26 --timezone "Pacific Standard Time"
+  - summary: Créez un profil de week-end récurrent, en héritant des règles de mise à l’échelle par défaut, mais en modifiant la capacité.
+    syntax: >-
+      az monitor autoscale create -g {myrg} --resource {resource-id} --min-count 2 --count 3 \
+        --max-count 5
+
+      az monitor autoscale rule create -g {myrg} --autoscale-name {name} --scale out 1 \
+        --condition "Percentage CPU > 75 avg 5m"
+
+      az monitor autoscale rule create -g {myrg} --autoscale-name {name} --scale in 1 \
+        --condition "Percentage CPU < 25 avg 5m"
+
+      az monitor autoscale profile create -g {myrg} --autoscale-name {name} -n weeekend \
+        --copy-rules default --min-count 1 --count 2 --max-count 2 \
+        --recurrence week sat sun --timezone "Pacific Standard Time"
+  - summary: Créez un profil de mise à l’échelle automatique fixe ou périodique. généré automatiquement
+    syntax: az monitor autoscale profile create --autoscale-name MyAutoscale --copy-rules default --count 2 --end 2018-12-26 --max-count 10 --min-count 1 --name Christmas --recurrence week sat sun --resource-group MyResourceGroup --start 2018-12-24 --timezone "Pacific Standard Time"
+  - summary: Créez un profil de mise à l’échelle automatique fixe ou périodique. généré automatiquement
+    syntax: az monitor autoscale profile create --autoscale-name MyAutoscale --count 2 --max-count 10 --min-count 1 --name Christmas --recurrence week sat sun --resource-group MyResourceGroup --start 2018-12-24 --subscription MySubscription --timezone "Pacific Standard Time"
+  requiredParameters:
+  - isRequired: true
+    name: --autoscale-name
+    summary: Nom des paramètres de mise à l’échelle automatique.
+    description: ''
+  - isRequired: true
+    name: --count
+    summary: Nombre d’instances à utiliser. S’il est utilisé avec--min/max-Count, le nombre par défaut d’instances à utiliser.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du profil de mise à l’échelle automatique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --timezone
+    summary: Nom du fuseau horaire.
+    description: ''
+    valueFrom: az monitor autoscale profile list-timezones
+  optionalParameters:
+  - name: --copy-rules
+    summary: Nom d’une planification existante à partir de laquelle copier les règles de mise à l’échelle pour la nouvelle planification.
+    description: ''
+  - name: --end
+    summary: À la fin du profil de mise à l’échelle automatique. Le format dépend du type de profil.
+    description: 'Résolu :--fin aaaa-mm-jj [hh : mm : SS] hebdomadaire : [--end hh : mm].'
+  - name: --max-count
+    summary: Nombre maximal d’instances.
+    description: ''
+  - name: --min-count
+    summary: Nombre minimal d’instances.
+    description: ''
+  - name: --recurrence -r
+    summary: Lors de la récurrence du profil. En cas d’omission, un profil fixe (non périodique) est créé.
+    description: Utilisation :--Recurrence {week} [ARG ARG...] Hebdomadaire :--Recurrence week SAT Sun.
+  - name: --start
+    summary: Lors du démarrage du profil de mise à l’échelle automatique. Le format dépend du type de profil.
+    description: 'Résolu :--Start yyyy-mm-jj [hh : mm : SS] hebdomadaire : [--Start hh : mm].'
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_autoscale_profile_delete
+  name: az monitor autoscale profile delete
+  summary: Supprimer un profil de mise à l’échelle automatique.
+  description: ''
+  syntax: >-
+    az monitor autoscale profile delete --autoscale-name
+                                        --name
+                                        --resource-group
+                                        [--subscription]
+  examples:
+  - summary: Supprimer un profil de mise à l’échelle automatique. généré automatiquement
+    syntax: az monitor autoscale profile delete --autoscale-name MyAutoscale --name MyAutoscaleProfile --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --autoscale-name
+    summary: Nom des paramètres de mise à l’échelle automatique.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du profil de mise à l’échelle automatique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_autoscale_profile_list
+  name: az monitor autoscale profile list
+  summary: Répertorier les profils de mise à l’échelle automatique.
+  description: ''
+  syntax: >-
+    az monitor autoscale profile list --autoscale-name
+                                      --resource-group
+                                      [--query-examples]
+                                      [--subscription]
+  examples:
+  - summary: Répertorier les profils de mise à l’échelle automatique. généré automatiquement
+    syntax: az monitor autoscale profile list --autoscale-name MyAutoscale --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --autoscale-name
+    summary: Nom des paramètres de mise à l’échelle automatique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_autoscale_profile_list_timezones
+  name: az monitor autoscale profile list-timezones
+  summary: Recherchez les informations de fuseau horaire.
+  description: ''
+  syntax: >-
+    az monitor autoscale profile list-timezones [--offset]
+                                                [--search-query]
+                                                [--subscription]
+  optionalParameters:
+  - name: --offset
+    summary: Filtrer les résultats en fonction du décalage horaire UTC.
+    description: ''
+  - name: --search-query -q
+    summary: Texte de la requête à rechercher.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+- uid: az_monitor_autoscale_profile_show
+  name: az monitor autoscale profile show
+  summary: Affichez les détails d’un profil de mise à l’échelle automatique.
+  description: ''
+  syntax: >-
+    az monitor autoscale profile show --autoscale-name
+                                      --name
+                                      --resource-group
+                                      [--query-examples]
+                                      [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --autoscale-name
+    summary: Nom des paramètres de mise à l’échelle automatique.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du profil de mise à l’échelle automatique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/monitor/_help.py
+commands:
+- az_monitor_autoscale_profile_create
+- az_monitor_autoscale_profile_delete
+- az_monitor_autoscale_profile_list
+- az_monitor_autoscale_profile_list_timezones
+- az_monitor_autoscale_profile_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 02/23/2021
+  description: 'Pour plus d’informations sur la mise à l’échelle automatique, visitez : <a href="https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings">https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings</a> .'
+  ms.openlocfilehash: 40292c92805358bc38b70cf7f63183fa7e0c325a
+  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 03/16/2021
+  ms.locfileid: "103498177"
