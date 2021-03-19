@@ -1,0 +1,246 @@
+### YamlMime:AzureCLIGroup
+uid: az_webapp_config_access_restriction
+name: az webapp config access-restriction
+summary: Méthodes qui affichent, définissent, ajoutent et suppriment des restrictions d’accès sur un WebApp.
+description: ''
+directCommands:
+- uid: az_webapp_config_access_restriction_add
+  name: az webapp config access-restriction add
+  summary: Ajoute une restriction d’accès au WebApp.
+  description: ''
+  syntax: >-
+    az webapp config access-restriction add --priority
+                                            [--action {Allow, Deny}]
+                                            [--description]
+                                            [--ids]
+                                            [--ignore-missing-endpoint {false, true}]
+                                            [--ip-address]
+                                            [--name]
+                                            [--resource-group]
+                                            [--rule-name]
+                                            [--scm-site {false, true}]
+                                            [--slot]
+                                            [--subnet]
+                                            [--subscription]
+                                            [--vnet-name]
+                                            [--vnet-resource-group]
+  examples:
+  - summary: Ajoutez la restriction d’accès en ouvrant (autoriser) les développeurs nommés pour l’adresse IPv4 130.220.0.0/27 avec la priorité 200 au site principal.
+    syntax: az webapp config access-restriction add -g ResourceGroup -n AppName --rule-name developers --action Allow --ip-address 130.220.0.0/27 --priority 200
+  - summary: Ajoutez une restriction d’accès ouvrant (Allow) nommée build_server pour l’adresse IPv4 192.168.0.0/27 avec la priorité 250 au site SCM.
+    syntax: az webapp config access-restriction add -g ResourceGroup -n AppName --rule-name build_server --action Allow --ip-address 192.168.0.0/27 --priority 250 --scm-site true
+  - summary: Ajoutez une restriction d’accès ouvrant (Allow) app_gateway pour le sous-réseau app_gw dans le réseau virtuel core_weu avec la priorité 300 au site principal.
+    syntax: az webapp config access-restriction add -g ResourceGroup -n AppName --rule-name app_gateway --action Allow --vnet-name core_weu --subnet app_gateway --priority 300
+  - summary: Ajoutez une restriction d’accès ouvrant (Allow) internal_agents pour le sous-réseau build_agents dans le réseau virtuel corp01 avec la priorité 500 sur le site SCM. et ignorent l’inscription du point de terminaison de service sur le sous-réseau.
+    syntax: az webapp config access-restriction add -g ResourceGroup -n AppName --rule-name internal_agents --action Allow --vnet-name corp01 --subnet build_agents --priority 500 --scm-site true --ignore-missing-endpoint true
+  - summary: Ajouter une restriction d’accès ouvrant (Allow) nommée remote_agents dans le réseau virtuel « corp01 » dans RG « réseaux virtuels » avec le sous-réseau « agents »
+    syntax: az webapp config access-restriction add -g ResourceGroup -n AppName --rule-name remote_agents --action Allow --vnet-name corp01 --subnet agents --priority 500 --vnet-resource-group vnets
+  - summary: Ajouter une restriction d’accès ouvrant (Allow) des agents nommés dans le réseau virtuel « corp01 » dans RG « réseaux virtuels » avec le sous-réseau « agents » (à l’aide de l’ID de ressource de sous-réseau)
+    syntax: az webapp config access-restriction add -g ResourceGroup -n AppName --rule-name remote_agents --action Allow --priority 800 --subnet '/subscriptions/<subscription-id>/resourceGroups/vnets/providers/Microsoft.Network/virtualNetworks/corp01/subnets/agents'
+  requiredParameters:
+  - isRequired: true
+    name: --priority -p
+    summary: Priorité de la règle de restriction d’accès.
+    description: ''
+  optionalParameters:
+  - name: --action
+    defaultValue: Allow
+    parameterValueGroup: Allow, Deny
+    summary: Autorisez ou refusez l’accès.
+    description: ''
+  - name: --description
+    summary: Description de la règle de restriction d’accès.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --ignore-missing-endpoint -i
+    parameterValueGroup: false, true
+    summary: Créez une règle de restriction d’accès en vérifiant si le point de terminaison de service Microsoft. Web est activé sur le sous-réseau.
+    description: ''
+  - name: --ip-address
+    summary: Adresse IP ou plage CIDR.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --rule-name -r
+    summary: Nom de la règle de restriction d’accès à ajouter.
+    description: ''
+  - name: --scm-site
+    parameterValueGroup: false, true
+    summary: True si des restrictions d’accès sont ajoutées pour le site SCM.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subnet
+    summary: Nom de sous-réseau (nécessite un nom de réseau virtuel) ou ID de ressource de sous-réseau.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel.
+    description: ''
+  - name: --vnet-resource-group
+    summary: Groupe de ressources de réseau virtuel (le groupe de ressources de l’application Web par défaut).
+    description: ''
+- uid: az_webapp_config_access_restriction_remove
+  name: az webapp config access-restriction remove
+  summary: Supprime une restriction d’accès de l’application WebApp.
+  description: ''
+  syntax: >-
+    az webapp config access-restriction remove [--action {Allow, Deny}]
+                                               [--ids]
+                                               [--ip-address]
+                                               [--name]
+                                               [--resource-group]
+                                               [--rule-name]
+                                               [--scm-site {false, true}]
+                                               [--slot]
+                                               [--subnet]
+                                               [--subscription]
+                                               [--vnet-name]
+  examples:
+  - summary: Supprimez la restriction d’accès nommée développeurs du site principal.
+    syntax: az webapp config access-restriction remove -g ResourceGroup -n AppName --rule-name developers
+  - summary: Supprimez la restriction d’accès nommée internal_agents du site SCM.
+    syntax: az webapp config access-restriction remove -g ResourceGroup -n AppName --rule-name internal_agents --scm-site true
+  optionalParameters:
+  - name: --action
+    defaultValue: Allow
+    parameterValueGroup: Allow, Deny
+    summary: Autorisez ou refusez l’accès.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --ip-address
+    summary: Adresse IP ou plage CIDR.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --rule-name -r
+    summary: Nom de la restriction d’accès à supprimer.
+    description: ''
+  - name: --scm-site
+    parameterValueGroup: false, true
+    summary: True si la restriction d’accès doit être supprimée du site SCM.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subnet
+    summary: Nom de sous-réseau (nécessite un nom de réseau virtuel) ou ID de ressource de sous-réseau.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet-name
+    summary: Nom du réseau virtuel.
+    description: ''
+- uid: az_webapp_config_access_restriction_set
+  name: az webapp config access-restriction set
+  summary: Définit si le site SCM utilise les mêmes restrictions que le site principal.
+  description: ''
+  syntax: >-
+    az webapp config access-restriction set --use-same-restrictions-for-scm-site {false, true}
+                                            [--ids]
+                                            [--name]
+                                            [--resource-group]
+                                            [--slot]
+                                            [--subscription]
+  examples:
+  - summary: Activez le site SCM pour qu’il utilise les mêmes restrictions d’accès que le site principal.
+    syntax: az webapp config access-restriction set -g ResourceGroup -n AppName --use-same-restrictions-for-scm-site true
+  requiredParameters:
+  - isRequired: true
+    name: --use-same-restrictions-for-scm-site
+    parameterValueGroup: false, true
+    summary: Utilisez les mêmes restrictions d’accès pour le site SCM.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_config_access_restriction_show
+  name: az webapp config access-restriction show
+  summary: Affichez les paramètres de restriction d’accès pour WebApp.
+  description: ''
+  syntax: >-
+    az webapp config access-restriction show [--ids]
+                                             [--name]
+                                             [--query-examples]
+                                             [--resource-group]
+                                             [--slot]
+                                             [--subscription]
+  examples:
+  - summary: Obtenir les paramètres de restriction d’accès pour un WebApp.
+    syntax: az webapp config access-restriction show -g ResourceGroup -n AppName
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_webapp_config_access_restriction_add
+- az_webapp_config_access_restriction_remove
+- az_webapp_config_access_restriction_set
+- az_webapp_config_access_restriction_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Méthodes qui affichent, définissent, ajoutent et suppriment des restrictions d’accès sur un WebApp.
+  ms.openlocfilehash: 944c03768fe8244d33028cd4abba3f9bab7c9496
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102842365"
