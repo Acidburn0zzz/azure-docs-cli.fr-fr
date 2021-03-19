@@ -1,0 +1,344 @@
+### YamlMime:AzureCLIGroup
+uid: az_aro
+name: az aro
+summary: Gérer les clusters Azure Red Hat OpenShift.
+description: ''
+directCommands:
+- uid: az_aro_create
+  name: az aro create
+  summary: Créer un cluster.
+  description: ''
+  syntax: >-
+    az aro create --master-subnet
+                  --name
+                  --resource-group
+                  --worker-subnet
+                  [--apiserver-visibility {Private, Public}]
+                  [--client-id]
+                  [--client-secret]
+                  [--cluster-resource-group]
+                  [--domain]
+                  [--ingress-visibility {Private, Public}]
+                  [--location]
+                  [--master-vm-size]
+                  [--no-wait]
+                  [--pod-cidr]
+                  [--pull-secret]
+                  [--service-cidr]
+                  [--subscription]
+                  [--tags]
+                  [--vnet]
+                  [--vnet-resource-group]
+                  [--worker-count]
+                  [--worker-vm-disk-size-gb]
+                  [--worker-vm-size]
+  examples:
+  - summary: Créer un cluster.
+    syntax: az aro create --resource-group MyResourceGroup --name MyCluster --vnet MyVnet --master-subnet MyMasterSubnet --worker-subnet MyWorkerSubnet
+  - summary: Créez un cluster avec 5 nœuds de calcul et une clé secrète d’extraction de Red Hat.
+    syntax: az aro create --resource-group MyResourceGroup --name MyCluster --vnet MyVnet --master-subnet MyMasterSubnet --worker-subnet MyWorkerSubnet --worker-count 5 --pull-secret @pullsecret.txt
+  - summary: Créez un cluster privé.
+    syntax: az aro create --resource-group MyResourceGroup --name MyCluster --vnet MyVnet --master-subnet MyMasterSubnet --worker-subnet MyWorkerSubnet --apiserver-visibility Private --ingress-visibility Private
+  requiredParameters:
+  - isRequired: true
+    name: --master-subnet
+    summary: Nom ou ID du sous-réseau de réseau virtuel principal.  Si le nom est fourni, `--vnet` doit être fourni.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --worker-subnet
+    summary: Nom ou ID du sous-réseau de réseau virtuel de travail.  Si le nom est fourni, `--vnet` doit être fourni.
+    description: ''
+  optionalParameters:
+  - name: --apiserver-visibility
+    parameterValueGroup: Private, Public
+    summary: Visibilité du serveur d’API.
+    description: ''
+  - name: --client-id
+    summary: ID client du principal du service de cluster.
+    description: ''
+  - name: --client-secret
+    summary: Clé secrète client du principal du service de cluster.
+    description: ''
+  - name: --cluster-resource-group
+    summary: Groupe de ressources du cluster.
+    description: ''
+  - name: --domain
+    summary: Domaine du cluster.
+    description: ''
+  - name: --ingress-visibility
+    parameterValueGroup: Private, Public
+    summary: Visibilité des entrées.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --master-vm-size
+    summary: Taille des machines virtuelles principales.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --pod-cidr
+    summary: CIDR du réseau pod.
+    description: ''
+  - name: --pull-secret
+    summary: Secret de tirage (pull) du cluster.
+    description: ''
+  - name: --service-cidr
+    summary: CIDR du réseau de service.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --vnet
+    summary: Nom ou ID du réseau virtuel.  Si le nom est fourni, `--vnet-resource-group` doit être fourni.
+    description: ''
+  - name: --vnet-resource-group
+    summary: Nom du groupe de ressources de réseau virtuel.
+    description: ''
+  - name: --worker-count
+    summary: Nombre de machines virtuelles de travail.
+    description: ''
+  - name: --worker-vm-disk-size-gb
+    summary: Taille du disque en Go des machines virtuelles de travail.
+    description: ''
+  - name: --worker-vm-size
+    summary: Taille des machines virtuelles de travail.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/aro/_help.py
+- uid: az_aro_delete
+  name: az aro delete
+  summary: Supprimer un cluster.
+  description: ''
+  syntax: >-
+    az aro delete --name
+                  --resource-group
+                  [--no-wait]
+                  [--subscription]
+                  [--yes]
+  examples:
+  - summary: Supprimer un cluster.
+    syntax: az aro delete --name MyCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/aro/_help.py
+- uid: az_aro_list
+  name: az aro list
+  summary: Répertorier les clusters.
+  description: ''
+  syntax: >-
+    az aro list [--query-examples]
+                [--resource-group]
+                [--subscription]
+  examples:
+  - summary: Répertorier les clusters.
+    syntax: az aro list
+  - summary: Répertorier les clusters avec la vue table.
+    syntax: az aro list -o table
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/aro/_help.py
+- uid: az_aro_list_credentials
+  name: az aro list-credentials
+  summary: Répertorier les informations d’identification d’un cluster.
+  description: ''
+  syntax: >-
+    az aro list-credentials --name
+                            --resource-group
+                            [--subscription]
+  examples:
+  - summary: Répertorier les informations d’identification d’un cluster.
+    syntax: az aro list-credentials --name MyCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/aro/_help.py
+- uid: az_aro_show
+  name: az aro show
+  summary: Obtenir les détails d’un cluster.
+  description: ''
+  syntax: >-
+    az aro show --name
+                --resource-group
+                [--query-examples]
+                [--subscription]
+  examples:
+  - summary: Obtenir les détails d’un cluster.
+    syntax: az aro show --name MyCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/aro/_help.py
+- uid: az_aro_update
+  name: az aro update
+  summary: Mettre à jour un cluster.
+  description: ''
+  syntax: >-
+    az aro update --name
+                  --resource-group
+                  [--no-wait]
+                  [--subscription]
+  examples:
+  - summary: Mettre à jour un cluster.
+    syntax: az aro update --name MyCluster --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/aro/_help.py
+- uid: az_aro_wait
+  name: az aro wait
+  summary: Attendez qu’un cluster atteigne un état souhaité.
+  description: Si une opération sur un cluster a été interrompue ou a été démarrée avec `--no-wait` , utilisez cette commande pour attendre qu’elle se termine.
+  syntax: >-
+    az aro wait --name
+                --resource-group
+                [--created]
+                [--custom]
+                [--deleted]
+                [--exists]
+                [--interval]
+                [--subscription]
+                [--timeout]
+                [--updated]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/aro/_help.py
+commands:
+- az_aro_create
+- az_aro_delete
+- az_aro_list
+- az_aro_list_credentials
+- az_aro_show
+- az_aro_update
+- az_aro_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 12/11/2020
+  description: Gérer les clusters Azure Red Hat OpenShift.
+  ms.openlocfilehash: ca312c0041a74f8ea45e267fbcf11e39108ba181
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102842401"

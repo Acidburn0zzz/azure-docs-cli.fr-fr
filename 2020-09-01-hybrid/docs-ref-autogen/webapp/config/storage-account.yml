@@ -1,0 +1,237 @@
+### YamlMime:AzureCLIGroup
+uid: az_webapp_config_storage_account
+name: az webapp config storage-account
+summary: Gérer les configurations de compte de stockage Azure d’une application Web. (Les conteneurs Linux Web Apps et Windows Web Apps uniquement).
+description: ''
+directCommands:
+- uid: az_webapp_config_storage_account_add
+  name: az webapp config storage-account add
+  summary: Ajoutez une configuration de compte de stockage Azure à une application Web. (Les conteneurs Linux Web Apps et Windows Web Apps uniquement).
+  description: ''
+  syntax: >-
+    az webapp config storage-account add --access-key
+                                         --account-name
+                                         --custom-id
+                                         --share-name
+                                         --storage-type {AzureBlob, AzureFiles}
+                                         [--ids]
+                                         [--mount-path]
+                                         [--name]
+                                         [--resource-group]
+                                         [--slot]
+                                         [--slot-setting]
+                                         [--subscription]
+  examples:
+  - summary: Ajoutez une connexion au partage de fichiers Azure Files appelé « partage » dans le compte de stockage nommé MyStorageAccount.
+    syntax: >-
+      az webapp config storage-account add -g MyResourceGroup -n MyUniqueApp \
+        --custom-id CustomId \
+        --storage-type AzureFiles \
+        --account-name MyStorageAccount \
+        --share-name MyShare \
+        --access-key MyAccessKey \
+        --mount-path /path/to/mount
+  requiredParameters:
+  - isRequired: true
+    name: --access-key -k
+    summary: Clé d’accès au compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --custom-id -i
+    summary: Identificateur personnalisé.
+    description: ''
+  - isRequired: true
+    name: --share-name --sn
+    summary: Nom de partage (Azure Files) ou nom de conteneur (stockage d’objets BLOB Azure).
+    description: ''
+  - isRequired: true
+    name: --storage-type -t
+    parameterValueGroup: AzureBlob, AzureFiles
+    summary: Type de stockage.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --mount-path -m
+    summary: Chemin du montage du volume de stockage dans l’application Web.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --slot-setting
+    summary: Paramètre de l’emplacement.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_config_storage_account_delete
+  name: az webapp config storage-account delete
+  summary: Supprimer la configuration d’un compte de stockage Azure d’une application Web. (Les conteneurs Linux Web Apps et Windows Web Apps uniquement).
+  description: ''
+  syntax: >-
+    az webapp config storage-account delete --custom-id
+                                            [--ids]
+                                            [--name]
+                                            [--resource-group]
+                                            [--slot]
+                                            [--subscription]
+  examples:
+  - summary: Supprimer la configuration d’un compte de stockage Azure d’une application Web. (Les conteneurs Linux Web Apps et Windows Web Apps uniquement) généré automatiquement
+    syntax: az webapp config storage-account delete --custom-id CustomId --name MyWebApp --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --custom-id -i
+    summary: Identificateur personnalisé.
+    description: ''
+  optionalParameters:
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_config_storage_account_list
+  name: az webapp config storage-account list
+  summary: Procurez-vous les configurations de compte de stockage Azure d’une application Web. (Les conteneurs Linux Web Apps et Windows Web Apps uniquement).
+  description: ''
+  syntax: >-
+    az webapp config storage-account list --name
+                                          --resource-group
+                                          [--query-examples]
+                                          [--slot]
+                                          [--subscription]
+  examples:
+  - summary: Procurez-vous les configurations de compte de stockage Azure d’une application Web. (Les conteneurs Linux Web Apps et Windows Web Apps uniquement) généré automatiquement
+    syntax: az webapp config storage-account list --name MyWebApp --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_webapp_config_storage_account_update
+  name: az webapp config storage-account update
+  summary: Mettre à jour une configuration de compte de stockage Azure existante sur une application Web. (Les conteneurs Linux Web Apps et Windows Web Apps uniquement).
+  description: ''
+  syntax: >-
+    az webapp config storage-account update --custom-id
+                                            [--access-key]
+                                            [--account-name]
+                                            [--ids]
+                                            [--mount-path]
+                                            [--name]
+                                            [--resource-group]
+                                            [--share-name]
+                                            [--slot]
+                                            [--slot-setting]
+                                            [--storage-type {AzureBlob, AzureFiles}]
+                                            [--subscription]
+  examples:
+  - summary: Mettez à jour le chemin de montage d’une connexion au partage de fichiers Azure Files avec l’ID MyId.
+    syntax: >-
+      az webapp config storage-account update -g MyResourceGroup -n MyUniqueApp \
+        --custom-id CustomId \
+        --mount-path /path/to/new/mount
+  - summary: Mettre à jour une configuration de compte de stockage Azure existante sur une application Web. (Les conteneurs Linux Web Apps et Windows Web Apps uniquement) généré automatiquement
+    syntax: az webapp config storage-account update --access-key MyAccessKey --account-name MyAccount --custom-id CustomId --mount-path /path/to/new/mount --name MyUniqueApp --resource-group MyResourceGroup --share-name MyShare --storage-type AzureFiles
+  requiredParameters:
+  - isRequired: true
+    name: --custom-id -i
+    summary: Identificateur personnalisé.
+    description: ''
+  optionalParameters:
+  - name: --access-key -k
+    summary: Clé d’accès au compte de stockage.
+    description: ''
+  - name: --account-name -a
+    summary: Nom du compte de stockage.
+    description: ''
+  - name: --ids
+    summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
+    description: ''
+  - name: --mount-path -m
+    summary: Chemin du montage du volume de stockage dans l’application Web.
+    description: ''
+  - name: --name -n
+    summary: Nom de l’application Web. Si aucun nom n’est spécifié, un nom est généré de façon aléatoire. Vous pouvez configurer la valeur par défaut à l’aide de `az configure --defaults web=<name>` .
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --share-name --sn
+    summary: Nom de partage (Azure Files) ou nom de conteneur (stockage d’objets BLOB Azure).
+    description: ''
+  - name: --slot -s
+    summary: Nom de l’emplacement. Par défaut, l’emplacement des productions n’est pas spécifié.
+    description: ''
+  - name: --slot-setting
+    summary: Paramètre de l’emplacement.
+    description: ''
+  - name: --storage-type -t
+    parameterValueGroup: AzureBlob, AzureFiles
+    summary: Type de stockage.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+commands:
+- az_webapp_config_storage_account_add
+- az_webapp_config_storage_account_delete
+- az_webapp_config_storage_account_list
+- az_webapp_config_storage_account_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les configurations de compte de stockage Azure d’une application Web. (Les conteneurs Linux Web Apps et Windows Web Apps uniquement).
+  ms.openlocfilehash: 56eb1350de4eeea8d9e8c64324cb155a7d904024
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102842434"

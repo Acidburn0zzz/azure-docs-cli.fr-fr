@@ -1,0 +1,224 @@
+### YamlMime:AzureCLIGroup
+uid: ext_azure-iot_az_iot_central_device
+name: az iot central device
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ IOT central Device** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérez et configurez les appareils IoT Central.
+description: ''
+directCommands:
+- uid: ext_azure-iot_az_iot_central_device_compute_device_key
+  name: az iot central device compute-device-key
+  summary: Générez une clé SAS d’appareil dérivé.
+  description: Générez une clé d’appareil dérivée à partir d’une clé SAS au niveau du groupe.
+  syntax: >-
+    az iot central device compute-device-key --device-id
+                                             --pk
+  examples:
+  - summary: Utilisation de base
+    syntax: az iot central device compute-device-key --pk {primaryKey} --device-id {deviceid}
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: L’ID de l’appareil cible, vous pouvez trouver l’ID de l’appareil en cliquant sur le bouton se connecter sur la page Détails de l’appareil.
+    description: ''
+  - isRequired: true
+    name: --pk --primary-key
+    summary: Clé d’accès partagé symétrique principale stockée au format Base64.
+    description: ''
+- uid: ext_azure-iot_az_iot_central_device_create
+  name: az iot central device create
+  summary: Créez un appareil dans IoT Central.
+  description: ''
+  syntax: >-
+    az iot central device create --app-id
+                                 --device-id
+                                 [--central-api-uri]
+                                 [--device-name]
+                                 [--instance-of]
+                                 [--simulated {false, true}]
+                                 [--token]
+  examples:
+  - summary: Créer un appareil
+    syntax: az iot central device create --app-id {appid} --device-id {deviceid}
+  - summary: Créez un appareil simulé.
+    syntax: az iot central device create --app-id {appid} --device-id {deviceid} --instance-of {devicetemplateid} --simulated
+  requiredParameters:
+  - isRequired: true
+    name: --app-id -n
+    summary: ID d’application de l’application IoT Central que vous souhaitez gérer. Vous pouvez trouver l’ID d’application dans la page « à propos de » de votre application dans le menu ? (aide).
+    description: ''
+  - isRequired: true
+    name: --device-id -d
+    summary: "Fournissez un identificateur unique pour l’appareil. Chaîne respectant la casse (jusqu’à 128 caractères) de caractères alphanumériques 7 bits ASCII plus certains caractères spéciaux :-. + % _ # \\* ? ! ( ) , : = @ $ '."
+    description: ''
+  optionalParameters:
+  - name: --central-api-uri --central-dns-suffix
+    defaultValue: azureiotcentral.com
+    summary: 'IoT Central suffixe DNS associé à votre application. La valeur par défaut est : azureiotcentral.com.'
+    description: ''
+  - name: --device-name
+    summary: 'Nom de l’appareil lisible par l’utilisateur. Exemple : électroménager.'
+    description: ''
+  - name: --instance-of
+    summary: 'ID de modèle central. exemple : <a href="urn:ojpkindbz:modelDefinition:iild3tm_uo">urn : ojpkindbz : modelDefinition : iild3tm_uo</a>.'
+    description: ''
+  - name: --simulated
+    parameterValueGroup: false, true
+    summary: Ajoutez cet indicateur si vous souhaitez IoT Central le configurer comme un appareil simulé. --instance-of est obligatoire si la valeur est true.
+    description: ''
+  - name: --token
+    summary: Si vous préférez soumettre votre demande sans vous authentifier auprès du Azure CLI, vous pouvez spécifier un jeton d’utilisateur valide pour authentifier votre demande. Vous devez spécifier le type de clé dans le cadre de la requête. Pour en savoir plus, rendez-vous sur <a href="https://aka.ms/iotcentraldocsapi">https://aka.ms/iotcentraldocsapi</a>.
+    description: ''
+- uid: ext_azure-iot_az_iot_central_device_delete
+  name: az iot central device delete
+  summary: Supprimer un appareil de IoT Central.
+  description: ''
+  syntax: >-
+    az iot central device delete --app-id
+                                 --device-id
+                                 [--central-api-uri]
+                                 [--token]
+  examples:
+  - summary: Supprimer une unité
+    syntax: az iot central device delete --app-id {appid} --device-id {deviceid}
+  requiredParameters:
+  - isRequired: true
+    name: --app-id -n
+    summary: ID d’application de l’application IoT Central que vous souhaitez gérer. Vous pouvez trouver l’ID d’application dans la page « à propos de » de votre application dans le menu ? (aide).
+    description: ''
+  - isRequired: true
+    name: --device-id -d
+    summary: L’ID de l’appareil cible, vous pouvez trouver l’ID de l’appareil en cliquant sur le bouton se connecter sur la page Détails de l’appareil.
+    description: ''
+  optionalParameters:
+  - name: --central-api-uri --central-dns-suffix
+    defaultValue: azureiotcentral.com
+    summary: 'IoT Central suffixe DNS associé à votre application. La valeur par défaut est : azureiotcentral.com.'
+    description: ''
+  - name: --token
+    summary: Si vous préférez soumettre votre demande sans vous authentifier auprès du Azure CLI, vous pouvez spécifier un jeton d’utilisateur valide pour authentifier votre demande. Vous devez spécifier le type de clé dans le cadre de la requête. Pour en savoir plus, rendez-vous sur <a href="https://aka.ms/iotcentraldocsapi">https://aka.ms/iotcentraldocsapi</a>.
+    description: ''
+- uid: ext_azure-iot_az_iot_central_device_registration_info
+  name: az iot central device registration-info
+  summary: Obtient des informations d’inscription sur les appareils à partir de IoT Central.
+  description: 'Remarque : cette commande peut prendre beaucoup de temps pour être retournée si aucun ID d’appareil n’est spécifié et que votre application contient un grand nombre d’appareils.'
+  syntax: >-
+    az iot central device registration-info --app-id
+                                            --device-id
+                                            [--central-api-uri]
+                                            [--token]
+  examples:
+  - summary: Recevoir des informations d’inscription sur l’appareil spécifié
+    syntax: az iot central device registration-info --app-id {appid} --device-id {deviceid}
+  requiredParameters:
+  - isRequired: true
+    name: --app-id -n
+    summary: ID d’application de l’application IoT Central que vous souhaitez gérer. Vous pouvez trouver l’ID d’application dans la page « à propos de » de votre application dans le menu ? (aide).
+    description: ''
+  - isRequired: true
+    name: --device-id -d
+    summary: L’ID de l’appareil cible, vous pouvez trouver l’ID de l’appareil en cliquant sur le bouton se connecter sur la page Détails de l’appareil.
+    description: ''
+  optionalParameters:
+  - name: --central-api-uri --central-dns-suffix
+    defaultValue: azureiotcentral.com
+    summary: 'IoT Central suffixe DNS associé à votre application. La valeur par défaut est : azureiotcentral.com.'
+    description: ''
+  - name: --token
+    summary: Si vous préférez soumettre votre demande sans vous authentifier auprès du Azure CLI, vous pouvez spécifier un jeton d’utilisateur valide pour authentifier votre demande. Vous devez spécifier le type de clé dans le cadre de la requête. Pour en savoir plus, rendez-vous sur <a href="https://aka.ms/iotcentraldocsapi">https://aka.ms/iotcentraldocsapi</a>.
+    description: ''
+- uid: ext_azure-iot_az_iot_central_device_show
+  name: az iot central device show
+  summary: Obtenir un appareil à partir de IoT Central.
+  description: ''
+  syntax: >-
+    az iot central device show --app-id
+                               --device-id
+                               [--central-api-uri]
+                               [--token]
+  examples:
+  - summary: Obtenir un appareil
+    syntax: az iot central device show --app-id {appid} --device-id {deviceid}
+  requiredParameters:
+  - isRequired: true
+    name: --app-id -n
+    summary: ID d’application de l’application IoT Central que vous souhaitez gérer. Vous pouvez trouver l’ID d’application dans la page « à propos de » de votre application dans le menu ? (aide).
+    description: ''
+  - isRequired: true
+    name: --device-id -d
+    summary: L’ID de l’appareil cible, vous pouvez trouver l’ID de l’appareil en cliquant sur le bouton se connecter sur la page Détails de l’appareil.
+    description: ''
+  optionalParameters:
+  - name: --central-api-uri --central-dns-suffix
+    defaultValue: azureiotcentral.com
+    summary: 'IoT Central suffixe DNS associé à votre application. La valeur par défaut est : azureiotcentral.com.'
+    description: ''
+  - name: --token
+    summary: Si vous préférez soumettre votre demande sans vous authentifier auprès du Azure CLI, vous pouvez spécifier un jeton d’utilisateur valide pour authentifier votre demande. Vous devez spécifier le type de clé dans le cadre de la requête. Pour en savoir plus, rendez-vous sur <a href="https://aka.ms/iotcentraldocsapi">https://aka.ms/iotcentraldocsapi</a>.
+    description: ''
+- uid: ext_azure-iot_az_iot_central_device_show_credentials
+  name: az iot central device show-credentials
+  summary: Obtient les informations d’identification de l’appareil à partir de IoT Central.
+  description: ''
+  syntax: >-
+    az iot central device show-credentials --app-id
+                                           --device-id
+                                           [--central-api-uri]
+                                           [--token]
+  examples:
+  - summary: Obtenir les informations d’identification de l’appareil pour un appareil
+    syntax: az iot central device show-credentials --app-id {appid} --device-id {deviceid}
+  requiredParameters:
+  - isRequired: true
+    name: --app-id -n
+    summary: ID d’application de l’application IoT Central que vous souhaitez gérer. Vous pouvez trouver l’ID d’application dans la page « à propos de » de votre application dans le menu ? (aide).
+    description: ''
+  - isRequired: true
+    name: --device-id -d
+    summary: L’ID de l’appareil cible, vous pouvez trouver l’ID de l’appareil en cliquant sur le bouton se connecter sur la page Détails de l’appareil.
+    description: ''
+  optionalParameters:
+  - name: --central-api-uri --central-dns-suffix
+    defaultValue: azureiotcentral.com
+    summary: 'IoT Central suffixe DNS associé à votre application. La valeur par défaut est : azureiotcentral.com.'
+    description: ''
+  - name: --token
+    summary: Si vous préférez soumettre votre demande sans vous authentifier auprès du Azure CLI, vous pouvez spécifier un jeton d’utilisateur valide pour authentifier votre demande. Vous devez spécifier le type de clé dans le cadre de la requête. Pour en savoir plus, rendez-vous sur <a href="https://aka.ms/iotcentraldocsapi">https://aka.ms/iotcentraldocsapi</a>.
+    description: ''
+commands:
+- ext_azure-iot_az_iot_central_device_command
+- ext_azure-iot_az_iot_central_device_command_history
+- ext_azure-iot_az_iot_central_device_command_run
+- ext_azure-iot_az_iot_central_device_compute_device_key
+- ext_azure-iot_az_iot_central_device_create
+- ext_azure-iot_az_iot_central_device_delete
+- ext_azure-iot_az_iot_central_device_registration_info
+- ext_azure-iot_az_iot_central_device_show
+- ext_azure-iot_az_iot_central_device_show_credentials
+- ext_azure-iot_az_iot_central_device_twin
+- ext_azure-iot_az_iot_central_device_twin_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérez et configurez les appareils IoT Central.
+  ms.openlocfilehash: 0702fea49fd74c5246355071f59da89f51497184
+  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 12/30/2020
+  ms.locfileid: "102842134"
