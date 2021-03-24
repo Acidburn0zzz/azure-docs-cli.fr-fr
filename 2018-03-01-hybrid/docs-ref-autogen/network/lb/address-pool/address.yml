@@ -14,11 +14,13 @@ directCommands:
                                            --name
                                            --pool-name
                                            --resource-group
-                                           --vnet
                                            [--subscription]
+                                           [--vnet]
   examples:
   - summary: Ajoutez une adresse principale dans le pool d’adresses principales de l’équilibrage de charge.
     syntax: az network lb address-pool address add -g MyResourceGroup --lb-name MyLb --pool-name MyAddressPool -n MyAddress --vnet MyVnet --ip-address 10.0.0.1
+  - summary: Ajoutez une adresse principale dans le pool d’adresses principales d’équilibrage de charge avec sous-réseau.
+    syntax: az network lb address-pool address add -g MyResourceGroup --lb-name MyLb --pool-name MyAddressPool -n MyAddress --subnet /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MyRg/providers/Microsoft.Network/virtualNetworks/vnet/subnets/subnet2 --ip-address 10.0.0.1
   requiredParameters:
   - isRequired: true
     name: --ip-address
@@ -40,13 +42,12 @@ directCommands:
     name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
-  - isRequired: true
-    name: --vnet
-    summary: Nom ou ID du réseau virtuel.
-    description: ''
   optionalParameters:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --vnet
+    summary: Nom ou ID du réseau virtuel.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 - uid: az_network_lb_address_pool_address_list
@@ -139,11 +140,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/25/2021
+  ms.date: 03/18/2021
   description: Gérer les adresses principales du pool d’adresses principales de l’équilibrage de charge.
-  ms.openlocfilehash: 0c17dc756b4230b0604066b9afa3598759eac716
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.openlocfilehash: b8d92719fd9340412d0e2f318488ea67f831f97c
+  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103536801"
+  ms.lasthandoff: 03/23/2021
+  ms.locfileid: "104941053"
