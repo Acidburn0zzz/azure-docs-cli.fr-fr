@@ -9,36 +9,32 @@ directCommands:
   summary: Créer une base de données MySQL sur un serveur flexible.
   description: ''
   syntax: >-
-    az mysql flexible-server db create --database-name
-                                       --resource-group
-                                       --server-name
-                                       [--charset]
+    az mysql flexible-server db create [--charset]
                                        [--collation]
+                                       [--database-name]
+                                       [--resource-group]
+                                       [--server-name]
                                        [--subscription]
   examples:
   - summary: Créez la base de données « testDatabase » dans le serveur flexible « testServer » avec les paramètres par défaut.
     syntax: az mysql flexible-server db create --resource-group testGroup --server-name testServer --database-name testDatabase
   - summary: Créez la base de données « testDatabase » dans le serveur flexible « testServer » avec un jeu de caractères et des règles de classement donnés.
-    syntax: az mysql flexible-server db create --resource-group testGroup --server-name testServer --database-name testDatabase// --charset validCharset --collation validCollation
-  requiredParameters:
-  - isRequired: true
-    name: --database-name -d
-    summary: Nom d’une base de données.
-    description: ''
-  - isRequired: true
-    name: --resource-group -g
-    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
-    description: ''
-  - isRequired: true
-    name: --server-name -s
-    summary: Nom du serveur.
-    description: ''
+    syntax: az mysql flexible-server db create --resource-group testGroup --server-name testServer --database-name testDatabase \ --charset validCharset --collation validCollation
   optionalParameters:
   - name: --charset
-    summary: Jeu de caractères de la base de données.
+    summary: Jeu de caractères de la base de données. La valeur par défaut est UTF8.
     description: ''
   - name: --collation
     summary: Classement de la base de données.
+    description: ''
+  - name: --database-name -d
+    summary: Nom d’une base de données.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server-name -s
+    summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -68,7 +64,7 @@ directCommands:
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   - name: --server-name -s
-    summary: Nom du serveur.
+    summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -109,7 +105,7 @@ directCommands:
   summary: Affichez les détails d’une base de données.
   description: ''
   syntax: >-
-    az mysql flexible-server db show --database-name
+    az mysql flexible-server db show [--database-name]
                                      [--ids]
                                      [--query-examples]
                                      [--resource-group]
@@ -118,12 +114,10 @@ directCommands:
   examples:
   - summary: Affichez la base de données « testDatabase » sur le serveur « testServer ».
     syntax: az mysql flexible-server db show --resource-group testGroup --server-name testServer --database-name testDatabase
-  requiredParameters:
-  - isRequired: true
-    name: --database-name -d
+  optionalParameters:
+  - name: --database-name -d
     summary: Nom d’une base de données.
     description: ''
-  optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
@@ -134,7 +128,7 @@ directCommands:
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   - name: --server-name -s
-    summary: Nom du serveur.
+    summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -161,9 +155,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérer les bases de données MySQL sur un serveur flexible.
-  ms.openlocfilehash: 386506f1ec96dd8f3de066f5ec839318a9468723
-  ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
+  ms.openlocfilehash: b0430f194da0f9cef3be4a3550d4d0990066698f
+  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 10/27/2020
-  ms.locfileid: "102820979"
+  ms.lasthandoff: 03/23/2021
+  ms.locfileid: "104914743"

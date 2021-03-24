@@ -37,13 +37,26 @@ directCommands:
     syntax: az mysql flexible-server create --public-access all
   - summary: Créez un serveur flexible MySQL avec des paramètres par défaut (groupe de ressources, emplacement, NomServeur, nom d’utilisateur, mot de passe) avec accès public sans aucune règle de pare-feu.
     syntax: az mysql flexible-server create --public-access none
+  - summary: Créer un serveur MySQL flexible avec accès public et ajouter une adresse IP cliente pour accéder au serveur
+    syntax: az mysql flexible-server create --public-access <my_client_ip>
+  - summary: Créer un serveur MySQL flexible avec accès public et ajouter la plage d’adresses IP pour accéder à ce serveur
+    syntax: az mysql flexible-server create --public-access <start_ip_address-end_ip_address>
+  - summary: Créer un serveur MySQL flexible avec accès public et autoriser les applications à partir d’adresses IP Azure à se connecter à votre serveur flexible
+    syntax: az mysql flexible-server create --public-access 0.0.0.0
   - summary: Créez un serveur MySQL flexible avec la référence SKU et le stockage spécifiés, en utilisant les valeurs par défaut du contexte local.
     syntax: az mysql flexible-server create --name testServer --admin-password password
+  - summary: Créez un serveur MySQL flexible à l’aide d’un réseau virtuel et d’un sous-réseau existants. Si le réseau virtuel et le sous-réseau spécifiés n’existent pas, ils seront créés avec le préfixe d’adresse par défaut.
+    syntax: az mysql flexible-server create --vnet myVnet --subnet mySubnet
+  - summary: Créez un serveur MySQL flexible à l’aide d’un réseau virtuel existant, d’un sous-réseau et de l’ID de sous-réseau. Le sous-réseau fourni ne doit pas contenir d’autres ressources déjà déployées. Il est délégué à Microsoft.DBforMySQL/flexibleServers, en l’absence de délégation existante.
+    syntax: az mysql flexible-server create --subnet /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/Microsoft.Network/virtualNetworks/{VNetName}/subnets/{SubnetName}
+  - summary: Créer un serveur flexible MySQL à l’aide du nouveau réseau virtuel, sous-réseau avec préfixe d’adresse non défini par défaut.
+    syntax: az mysql flexible-server create --vnet myVnet --address-prefixes 10.0.0.0/24 --subnet mySubnet --subnet-prefixes 10.0.0.0/24
   - summary: Créez un serveur MySQL flexible avec des paramètres définis.
     syntax: >-
-      az mysql flexible-server create --location northeurope --resource-group testGroup --name testServer --admin-user username \
-          --admin-password password --sku-name Standard_B1ms --tier GeneralPurpose --public-access 0.0.0.0 \
-          --storage-size 32 --tags "key=value" --version 5.7
+      az mysql flexible-server create --location northeurope --resource-group testGroup \
+        --name testServer --admin-user username --admin-password password \
+        --sku-name Standard-B1ms --tier Burstable --public-access 0.0.0.0 --storage-size 32 \
+        --tags "key=value" --version 5.7
   optionalParameters:
   - name: --address-prefixes
     summary: Préfixe d’adresse IP à utiliser lors de la création d’un réseau virtuel au format CIDR. La valeur par défaut est 10.0.0.0/16.
@@ -52,7 +65,7 @@ directCommands:
     summary: 'Mot de passe de l’administrateur. 8 caractères minimum et 128 caractères au maximum. Le mot de passe doit contenir des caractères de trois des catégories suivantes : Lettres majuscules, lettres minuscules, chiffres et caractères non alphanumériques.'
     description: ''
   - name: --admin-user, -u
-    defaultValue: joyfulCordial2
+    defaultValue: panickyGull9
     summary: Nom d’utilisateur de l’administrateur du serveur. Une fois définie, elle ne peut pas être modifiée.
     description: ''
   - name: --assign-identity
@@ -76,7 +89,7 @@ directCommands:
     summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
     description: ''
   - name: --public-access
-    summary: Détermine l’accès public. Entrez une seule ou une plage d’adresses IP à inclure dans la liste des adresses IP autorisées. Les plages d’adresses IP doivent être séparées par des tirets et ne pas contenir d’espaces. La spécification de 0.0.0.0 autorise l’accès public à partir de toutes les ressources déployées dans Azure pour accéder à votre serveur. La spécification d’aucune adresse IP définit le serveur en mode d’accès public, mais ne crée pas de règle de pare-feu.
+    summary: Détermine l’accès public. Entrez une seule ou une plage d’adresses IP à inclure dans la liste des adresses IP autorisées. Les plages d’adresses IP doivent être séparées par des tirets et ne pas contenir d’espaces. La spécification de 0.0.0.0 autorise l’accès public à partir de toutes les ressources déployées dans Azure pour accéder à votre serveur. La valeur « None » définit le serveur en mode d’accès public, mais ne crée pas de règle de pare-feu.
     description: ''
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
@@ -232,12 +245,12 @@ directCommands:
   - summary: Restaurez « testServer2 » sur « testServerNew », où « testServerNew » se trouve dans un groupe de ressources différent de « testServer2 ».
     syntax: >-
       az mysql flexible-server restore --resource-group testGroup --name testServerNew \
-          --source-server "/subscriptions/${SubID}/resourceGroups/${ResourceGroup}/providers/Microsoft.DBforMySQL/servers/testServer2" \
-          --restore-time "2017-06-15T13:10:00Z"
+        --source-server "/subscriptions/${SubID}/resourceGroups/${ResourceGroup}/providers/Microsoft.DBforMySQL/servers/testServer2" \
+        --restore-time "2017-06-15T13:10:00Z"
   requiredParameters:
   - isRequired: true
     name: --restore-time
-    defaultValue: 2021-03-11T09:15:26+00:00
+    defaultValue: 2021-03-23T15:19:48+00:00
     summary: Point dans le temps UTC à partir duquel effectuer la restauration (format ISO8601), par exemple 2017-04-26T02:10:00 + 08:00.
     description: ''
   - isRequired: true
@@ -317,7 +330,7 @@ directCommands:
     description: ''
   - name: --database-name -d
     defaultValue: '{database}'
-    summary: Nom d’une base de données.
+    summary: Nom de la base de données.
     description: ''
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
@@ -581,9 +594,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérez la base de données Azure pour les serveurs flexibles MySQL.
-  ms.openlocfilehash: 6af2574f566149f4c73b3334f300391c841d6c26
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.openlocfilehash: c69221fe2e05b990a4a2cc4e4cdbfa474c82f3bd
+  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103542683"
+  ms.lasthandoff: 03/23/2021
+  ms.locfileid: "104914777"
