@@ -9,11 +9,11 @@ directCommands:
   summary: Créez une nouvelle règle de pare-feu pour un serveur flexible.
   description: ''
   syntax: >-
-    az mysql flexible-server firewall-rule create --end-ip-address
-                                                  --name
+    az mysql flexible-server firewall-rule create --name
                                                   --resource-group
-                                                  --rule-name
-                                                  --start-ip-address
+                                                  [--end-ip-address]
+                                                  [--rule-name]
+                                                  [--start-ip-address]
                                                   [--subscription]
   examples:
   - summary: Créer une règle de pare-feu autorisant les connexions à partir d’une adresse IP spécifique.
@@ -22,10 +22,6 @@ directCommands:
     syntax: az mysql flexible-server firewall-rule create --resource-group testGroup --name testServer --rule-name allowiprange --start-ip-address 107.46.14.0 --end-ip-address 107.46.14.221
   requiredParameters:
   - isRequired: true
-    name: --end-ip-address
-    summary: Adresse IP de fin de la règle de pare-feu. Doit être au format IPv4. Utilisez la valeur « 0.0.0.0 » pour représenter toutes les adresses IP Azure-Internal.
-    description: ''
-  - isRequired: true
     name: --name -n
     summary: Nom du serveur. Le nom ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’Union (-). 3 caractères minimum et 63 caractères au maximum.
     description: ''
@@ -33,15 +29,16 @@ directCommands:
     name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
-  - isRequired: true
-    name: --rule-name -r
+  optionalParameters:
+  - name: --end-ip-address
+    summary: Adresse IP de fin de la règle de pare-feu. Doit être au format IPv4. Utilisez la valeur « 0.0.0.0 » pour représenter toutes les adresses IP Azure-Internal.
+    description: ''
+  - name: --rule-name -r
     summary: Nom de la règle de pare-feu. Si le nom est omis, le nom par défaut est choisi pour le nom du pare-feu. Le nom de la règle de pare-feu ne peut contenir que 0-9, a-z, A-Z, '-'et' _ '. En outre, le nom de la règle de pare-feu ne peut pas dépasser 128 caractères.
     description: ''
-  - isRequired: true
-    name: --start-ip-address
+  - name: --start-ip-address
     summary: Adresse IP de début de la règle de pare-feu. Doit être au format IPv4. Utilisez la valeur « 0.0.0.0 » pour représenter toutes les adresses IP Azure-Internal.
     description: ''
-  optionalParameters:
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
@@ -154,9 +151,9 @@ directCommands:
                                                   [--subscription]
   examples:
   - summary: Mettez à jour l’adresse IP de début d’une règle de pare-feu.
-    syntax: az mysql flexible-server firewall-rule update --resource-group testGroup --name testServer --rule-name allowiprange --start-ip-address 107.46.14.1
+    syntax: az mysql flexible-server firewall-rule update --resource-group testGroup --name testServer \ --rule-name allowiprange --start-ip-address 107.46.14.1
   - summary: Mettez à jour l’adresse IP de début et de fin d’une règle de pare-feu.
-    syntax: az mysql flexible-server firewall-rule update --resource-group testGroup --name testServer --rule-name allowiprange --start-ip-address 107.46.14.2 --end-ip-address 107.46.14.218
+    syntax: az mysql flexible-server firewall-rule update --resource-group testGroup --name testServer \ --rule-name allowiprange --start-ip-address 107.46.14.2 --end-ip-address 107.46.14.218
   optionalParameters:
   - name: --add
     summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
@@ -214,9 +211,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérer les règles de pare-feu pour un serveur.
-  ms.openlocfilehash: c8c918b6a9a61669119c4e8065ce9a1b024fc31f
-  ms.sourcegitcommit: 1187fb75b68426c46e84b3f294c509ee7b7da9be
+  ms.openlocfilehash: aec6b85dd7e64c61d46d4d1f63ca10cbb1060d2a
+  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 10/27/2020
-  ms.locfileid: "102821012"
+  ms.lasthandoff: 03/23/2021
+  ms.locfileid: "104914726"
