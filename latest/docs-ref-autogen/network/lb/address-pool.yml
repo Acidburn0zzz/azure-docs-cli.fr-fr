@@ -38,14 +38,16 @@ directCommands:
     description: ''
   optionalParameters:
   - name: --backend-address
-    summary: Informations d’adresses principales pour le pool d’adresses principales. S’il est utilisé,--vnet est également requis.
+    summary: Informations d’adresses principales pour le pool d’adresses principales. S’il est utilisé,--le réseau virtuel est obligatoire ou le sous-réseau est requis.
     description: >-
-      Utilisation :--backend-Address Name = addr1 adresse IP-adresse = 10.0.0.1--vnet MyVnet
+      Usage1 :--backend-Address Name = addr1 adresse IP-adresse = 10.0.0.1--vnet MyVnet Usage2 :--backend-adresse Name = addr1 adresse IP-adresse IP = 10.0.0.1 sous-réseau =/subscriptions/000/resourceGroups/MyRg/providers/Microsoft.Network/virtualNetworks/vnet/subnets/subnet1 Usage3 :--backend-adresse Name = addr1 adresse IP-adresse = 10.0.0.1 sous-réseau = subnet1--vnet MyVnet
 
 
       nom : obligatoire. Nom de l’adresse du serveur principal.
 
       adresse IP : obligatoire. Adresse IP dans le réseau virtuel.
+
+      sous-réseau : nom ou ID du sous-réseau.
 
 
       Plusieurs adresses principales peuvent être spécifiées à l’aide de plusieurs `--backend-address` arguments.
@@ -55,7 +57,7 @@ directCommands:
       Utilisation :--backend-addresses-config-file @ "{config_file.json}"
 
 
-      Exemple de fichier de configuration : [{« Name » : « adresse1 », « virtualNetwork » : « clitestvnet », « ipAddress » : « 10.0.0.4 »}, {« Name » : « adresse2 », « virtualNetwork » : « /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/cli_test_lb_address_pool_addresses000001/providers/Microsoft.Network/virtualNetworks/clitestvnet », « ipAddress » : « 10.0.0.5 »}].
+      Exemple de fichier de configuration : [{"Name" : "adresse1", "virtualNetwork" : "clitestvnet", "ipAddress" : "10.0.0.4"}, {"Name" : "adresse2», « virtualNetwork » : « /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/cli_test_lb_address_pool_addresses000001/providers/Microsoft.Network/virtualNetworks/clitestvnet », « ipAddress » : « 10.0.0.5 »}, {« Name » : « address3 », « Subnet » : « Subnet3 », « ipAddress » : « 10.0.0.6 »}, {« Name » : « address4 », « Subnet » : « /subscriptions/000/resourceGroups/MyRg/providers/Microsoft.Network/virtualNetworks/vnet/subnets/subnet4 », « ipAddress » : « 10.0.0.7 »}].
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
@@ -182,11 +184,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/25/2021
+  ms.date: 03/18/2021
   description: Gérer les pools d’adresses d’un équilibreur de charge.
-  ms.openlocfilehash: c9983063e331f00e5c0b5fbd537d87cf14e8624c
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.openlocfilehash: 2fcc9494a03ed5d6923a354c46a9456fc7ad4fc9
+  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103543482"
+  ms.lasthandoff: 03/23/2021
+  ms.locfileid: "104933947"
