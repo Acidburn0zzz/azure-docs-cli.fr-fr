@@ -7,12 +7,12 @@ ms.service: azure-supportability
 ms.topic: how-to
 ms.date: 02/12/2021
 ms.custom: template-how-to
-ms.openlocfilehash: 446fe0d3a6d7c726167d07e8eb5f4cfa2321d9b7
-ms.sourcegitcommit: 594e9c620a6f74f5eaedf91a7f6a791e03a64c74
+ms.openlocfilehash: 297b8b65973a7d2b3d377a56865f1cbdd42e08f2
+ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/17/2021
-ms.locfileid: "100631166"
+ms.lasthandoff: 03/23/2021
+ms.locfileid: "104911122"
 ---
 # <a name="create-an-azure-support-request-in-azure-cli"></a>Créer une demande de support Azure dans Azure CLI
 
@@ -102,6 +102,6 @@ az support tickets communications list --ticket-name VM012 \
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- [Questions fréquentes (FAQ) sur le support technique Azure](/support/faq/)
-- [Niveaux de gravité Azure](/support/plans/response/)
+- [Questions fréquentes (FAQ) sur le support technique Azure](https://azure.microsoft.com/support/faq/)
+- [Niveaux de gravité Azure](https://azure.microsoft.com/support/plans/response/)
 - [Guide pratique pour créer un ticket de support via le portail Azure](/azure/azure-portal/supportability/how-to-create-azure-support-request)

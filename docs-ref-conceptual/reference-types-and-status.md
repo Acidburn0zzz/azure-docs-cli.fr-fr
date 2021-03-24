@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: ff77011db5a64e7c541dc67f2b2564301bfeebfb
-ms.sourcegitcommit: 6996f3d05d73f528a95b61fdce1422eee3c7a580
+ms.openlocfilehash: 982e2c5efc4ee0426de81025a558888c2e29790e
+ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "95870149"
+ms.lasthandoff: 03/23/2021
+ms.locfileid: "104909966"
 ---
 # <a name="overview-azure-cli-reference-types-and-status"></a>Présentation : Types et état de référence Azure CLI
 
@@ -61,7 +61,7 @@ Les extensions ne sont pas fournies dans le cadre de l’interface CLI mais elle
 > [!IMPORTANT]
 > Vous devez installer une extension avant de l’utiliser en exécutant la commande [az extension add](/cli/azure/extension#az-extension-add).
 
-Vous pouvez en savoir plus sur les références d’extension, notamment l’installation et la mise à jour dans [Utiliser des extensions avec l’interface Azure CLI](azure-cli-extensions-overview.md).  Passez en revue les [conseils wiki](https://github.com/Azure/azure-network-cli-extension/wiki/Tips) relatifs aux extensions pour optimiser leur utilisation.  Pour obtenir la liste complète des commandes de références d’extension, consultez [Extensions disponibles pour Azure CLI](azure-cli-extensions-list.md).
+Vous pouvez en savoir plus sur les références d’extension, notamment l’installation et la mise à jour dans [Utiliser des extensions avec l’interface Azure CLI](azure-cli-extensions-overview.md).  Pour obtenir la liste complète des commandes de références d’extension, consultez [Extensions disponibles pour Azure CLI](azure-cli-extensions-list.md).
 
 ## <a name="reference-status"></a>États de référence
 
