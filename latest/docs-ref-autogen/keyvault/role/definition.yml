@@ -4,16 +4,83 @@ name: az keyvault role definition
 summary: Gérer les définitions de rôles.
 description: ''
 directCommands:
+- uid: az_keyvault_role_definition_create
+  name: az keyvault role definition create
+  summary: Créez une définition de rôle personnalisée.
+  description: ''
+  syntax: >-
+    az keyvault role definition create --hsm-name
+                                       --role-definition
+                                       [--subscription]
+  examples:
+  - summary: Créez un rôle à l’aide d’une chaîne JSON.
+    syntax: >-
+      az keyvault role definition create --hsm-name MyHSM --role-definition '{
+          "roleName": "My Custom Role",
+          "description": "The description of the custom rule.",
+          "actions": [],
+          "notActions": [],
+          "dataActions": [
+              "Microsoft.KeyVault/managedHsm/keys/read/action"
+          ],
+          "notDataActions": []
+      }'
+  - summary: Créez un rôle à partir d’un fichier contenant une description JSON.
+    syntax: az keyvault role definition create --hsm-name MyHSM --role-definition @keyvault-role.json
+  requiredParameters:
+  - isRequired: true
+    name: --hsm-name
+    summary: Nom du HSM.
+    description: ''
+  - isRequired: true
+    name: --role-definition
+    summary: Description d’un rôle au format JSON ou d’un chemin d’accès à un fichier contenant une description JSON.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_role_definition_delete
+  name: az keyvault role definition delete
+  summary: Supprimer une définition de rôle.
+  description: ''
+  syntax: >-
+    az keyvault role definition delete --hsm-name
+                                       [--name]
+                                       [--role-id]
+                                       [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --hsm-name
+    summary: Nom du HSM.
+    description: ''
+  optionalParameters:
+  - name: --name -n
+    summary: Nom de la définition de rôle. Il s’agit d’un GUID dans la propriété « Name » d’une définition de rôle.
+    description: ''
+  - name: --role-id
+    summary: ID de définition de rôle.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
 - uid: az_keyvault_role_definition_list
   name: az keyvault role definition list
   summary: Répertorier les définitions de rôles.
   description: ''
   syntax: >-
-    az keyvault role definition list [--hsm-name]
+    az keyvault role definition list [--custom-role-only {false, true}]
+                                     [--hsm-name]
                                      [--query-examples]
                                      [--scope]
                                      [--subscription]
   optionalParameters:
+  - name: --custom-role-only
+    parameterValueGroup: false, true
+    summary: Afficher uniquement les définitions de rôle personnalisées.
+    description: ''
   - name: --hsm-name
     summary: Nom du HSM.
     description: ''
@@ -27,8 +94,83 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_role_definition_show
+  name: az keyvault role definition show
+  summary: Affichez les détails d’une définition de rôle.
+  description: ''
+  syntax: >-
+    az keyvault role definition show --hsm-name
+                                     [--name]
+                                     [--query-examples]
+                                     [--role-id]
+                                     [--subscription]
+  requiredParameters:
+  - isRequired: true
+    name: --hsm-name
+    summary: Nom du HSM.
+    description: ''
+  optionalParameters:
+  - name: --name -n
+    summary: Nom de la définition de rôle. Il s’agit d’un GUID dans la propriété « Name » d’une définition de rôle.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --role-id
+    summary: ID de définition de rôle.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
+- uid: az_keyvault_role_definition_update
+  name: az keyvault role definition update
+  summary: Mettre à jour une définition de rôle.
+  description: ''
+  syntax: >-
+    az keyvault role definition update --hsm-name
+                                       --role-definition
+                                       [--subscription]
+  examples:
+  - summary: Mettre à jour un rôle par une chaîne JSON.
+    syntax: >-
+      az keyvault role definition update --hsm-name MyHSM --role-definition '{
+          "roleName": "My Custom Role",
+          "name": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "id": "Microsoft.KeyVault/providers/Microsoft.Authorization/roleDefinitions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "description": "The description of the custom rule.",
+          "actions": [],
+          "notActions": [],
+          "dataActions": [
+              "Microsoft.KeyVault/managedHsm/keys/read/action",
+              "Microsoft.KeyVault/managedHsm/keys/write/action",
+              "Microsoft.KeyVault/managedHsm/keys/backup/action",
+              "Microsoft.KeyVault/managedHsm/keys/create"
+          ],
+          "notDataActions": []
+      }'
+  - summary: Mettre à jour un rôle à partir d’un fichier contenant une description JSON.
+    syntax: az keyvault role definition update --hsm-name MyHSM --role-definition @keyvault-role.json
+  requiredParameters:
+  - isRequired: true
+    name: --hsm-name
+    summary: Nom du HSM.
+    description: ''
+  - isRequired: true
+    name: --role-definition
+    summary: Description d’un rôle au format JSON ou d’un chemin d’accès à un fichier contenant une description JSON.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
 commands:
+- az_keyvault_role_definition_create
+- az_keyvault_role_definition_delete
 - az_keyvault_role_definition_list
+- az_keyvault_role_definition_show
+- az_keyvault_role_definition_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -46,11 +188,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 12/14/2020
+  ms.date: 03/04/2021
   description: Gérer les définitions de rôles.
-  ms.openlocfilehash: 7be64da35d294063b1b131ac3c9538c1beb08f6c
-  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.openlocfilehash: 990d8a123775f64fa28752188e76a961735ac266
+  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 12/30/2020
-  ms.locfileid: "102842182"
+  ms.lasthandoff: 03/23/2021
+  ms.locfileid: "104942736"
