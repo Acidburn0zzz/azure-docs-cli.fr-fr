@@ -180,6 +180,7 @@ directCommands:
                  [--availability-set]
                  [--boot-diagnostics-storage]
                  [--computer-name]
+                 [--count]
                  [--custom-data]
                  [--data-disk-caching]
                  [--data-disk-encryption-sets]
@@ -187,6 +188,8 @@ directCommands:
                  [--enable-agent {false, true}]
                  [--enable-auto-update {false, true}]
                  [--enable-hotpatching {false, true}]
+                 [--enable-secure-boot {false, true}]
+                 [--enable-vtpm {false, true}]
                  [--encryption-at-host {false, true}]
                  [--ephemeral-os-disk {false, true}]
                  [--eviction-policy {Deallocate, Delete}]
@@ -206,11 +209,12 @@ directCommands:
                  [--os-disk-name]
                  [--os-disk-size-gb]
                  [--os-type {linux, windows}]
-                 [--patch-mode]
+                 [--patch-mode {AutomaticByOS, AutomaticByPlatform, ImageDefault, Manual}]
                  [--plan-name]
                  [--plan-product]
                  [--plan-promotion-code]
                  [--plan-publisher]
+                 [--platform-fault-domain]
                  [--ppg]
                  [--priority {Low, Regular, Spot}]
                  [--private-ip-address]
@@ -221,6 +225,7 @@ directCommands:
                  [--role]
                  [--scope]
                  [--secrets]
+                 [--security-type {TrustedLaunch}]
                  [--size]
                  [--specialized {false, true}]
                  [--ssh-dest-key-path]
@@ -287,6 +292,8 @@ directCommands:
     syntax: az vm create -n MyVm -g rg1 --image debian --assign-identity [system] /subscriptions/99999999-1bf0-4dda-aec3-cb9272f09590/resourcegroups/myRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myID
   - summary: Créez une machine virtuelle dans une zone de disponibilité de la région du groupe de ressources actuel.
     syntax: az vm create -n MyVm -g MyResourceGroup --image Centos --zone 1
+  - summary: Créez plusieurs machines virtuelles. Dans cet exemple, 3 machines virtuelles sont créées. Il s’agit de MyVm0, MyVm1, MyVm2.
+    syntax: az vm create -n MyVm -g MyResourceGroup --image centos --count 3
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -332,6 +339,9 @@ directCommands:
   - name: --computer-name
     summary: Nom du système d’exploitation hôte de la machine virtuelle. La valeur par défaut est le nom de la machine virtuelle.
     description: ''
+  - name: --count
+    summary: Nombre de machines virtuelles à créer. La plage de valeurs est [2, 250], inclus. Ne spécifiez pas ce paramètre si vous souhaitez créer une machine virtuelle unique normale. Les machines virtuelles sont créées en parallèle. La sortie de cette commande est un tableau de machines virtuelles au lieu d’une seule machine virtuelle. Chaque machine virtuelle a sa propre adresse IP publique, NIC. Les réseaux virtuels et NSG sont partagés. Il est recommandé de ne pas disposer d’une adresse IP publique, d’une carte réseau, d’un réseau virtuel et d’un groupe de sécurité réseau existants. Quand--Count est spécifié,--Attach-Data-Disks,--Attach-OS-Disk,--Boot-Diagnostics-Storage,--Computer-Name,--hôte,--Host-Group,--cartes réseau,--OS-Disk-Name,--Private-IP-adresse,--public-IP-Address,--public-IP-adresse-DNS-Name,--storage-account,--Storage-Container-Name,--Subnet,--use-unmanaged-Disk,--vnet-Name n’est pas autorisé.
+    description: ''
   - name: --custom-data
     summary: Fichier de script init personnalisé ou texte (Cloud-init, Cloud-config, etc.).
     description: ''
@@ -355,6 +365,14 @@ directCommands:
   - name: --enable-hotpatching
     parameterValueGroup: false, true
     summary: Corriger les machines virtuelles sans redémarrage. --Enable-agent doit être défini et--patch-mode doit être défini sur AutomaticByPlatform.
+    description: ''
+  - name: --enable-secure-boot
+    parameterValueGroup: false, true
+    summary: Activez le démarrage sécurisé. Elle fait partie du lancement approuvé.
+    description: ''
+  - name: --enable-vtpm
+    parameterValueGroup: false, true
+    summary: Activez vTPM. Elle fait partie du lancement approuvé.
     description: ''
   - name: --encryption-at-host
     parameterValueGroup: false, true
@@ -422,7 +440,8 @@ directCommands:
     summary: Type de système d’exploitation installé sur un disque dur virtuel personnalisé. N’utilisez pas lors de la spécification d’un alias URN ou URN.
     description: ''
   - name: --patch-mode
-    summary: 'Mode de mise à jour corrective en invité vers une machine virtuelle IaaS. Les valeurs possibles sont : Manual : vous contrôlez l’application des correctifs sur une machine virtuelle. Pour ce faire, vous devez appliquer les correctifs manuellement à l’intérieur de la machine virtuelle. Dans ce mode, les mises à jour automatiques sont désactivées. le paramètre paramétrer--Enable-Auto-Update doit avoir la valeur false. AutomaticByOS : la machine virtuelle est automatiquement mise à jour par le système d’exploitation. Le paramètre--Enable-Auto-Update doit avoir la valeur true. AutomaticByPlatform : l’ordinateur virtuel est automatiquement mis à jour par le système d’exploitation. Le paramètre--enable-agent et--Enable-Auto-Update doit avoir la valeur true.'
+    parameterValueGroup: AutomaticByOS, AutomaticByPlatform, ImageDefault, Manual
+    summary: 'Mode de mise à jour corrective en invité vers une machine virtuelle IaaS. Valeurs autorisées pour la machine virtuelle Windows : AutomaticByOS, AutomaticByPlatform, Manual. Valeurs autorisées pour la machine virtuelle Linux : AutomaticByPlatform, ImageDefault. Manuel : vous contrôlez l’application des correctifs sur une machine virtuelle. Pour ce faire, vous devez appliquer les correctifs manuellement à l’intérieur de la machine virtuelle. Dans ce mode, les mises à jour automatiques sont désactivées. le paramètre paramétrer--Enable-Auto-Update doit avoir la valeur false. AutomaticByOS : la machine virtuelle est automatiquement mise à jour par le système d’exploitation. Le paramètre--Enable-Auto-Update doit avoir la valeur true. AutomaticByPlatform : l’ordinateur virtuel est automatiquement mis à jour par le système d’exploitation. ImageDefault : la configuration de mise à jour corrective par défaut de la machine virtuelle est utilisée. Le paramètre--enable-agent et--Enable-Auto-Update doit avoir la valeur true.'
     description: ''
   - name: --plan-name
     summary: Nom du plan.
@@ -435,6 +454,9 @@ directCommands:
     description: ''
   - name: --plan-publisher
     summary: Éditeur de plan.
+    description: ''
+  - name: --platform-fault-domain
+    summary: Spécifiez le domaine d’erreur logique du groupe identique dans lequel la machine virtuelle sera créée. Par défaut, l’ordinateur virtuel est automatiquement affecté à un domaine d’erreur qui gère le mieux l’équilibre entre les domaines d’erreur disponibles. Cela s’applique uniquement si la propriété virtualMachineScaleSet de cet ordinateur virtuel est définie. Le groupe de machines virtuelles identiques référencé doit avoir le nombre de domaines d’erreur de plateforme. Cette propriété ne peut pas être mise à jour une fois que l’ordinateur virtuel est créé. L’attribution de domaine d’erreur peut être affichée dans la vue d’instance de machine virtuelle.
     description: ''
   - name: --ppg
     summary: Nom ou ID du groupe de positionnement de proximité auquel la machine virtuelle doit être associée.
@@ -469,6 +491,10 @@ directCommands:
     description: ''
   - name: --secrets
     summary: 'Un ou plusieurs secrets Key Vault en tant que chaînes ou fichiers JSON via `@{path}` contenant `[{ "sourceVault": { "id": "value" }, "vaultCertificates": [{ "certificateUrl": "value", "certificateStore": "cert store name (only on windows)"}] }]` .'
+    description: ''
+  - name: --security-type
+    parameterValueGroup: TrustedLaunch
+    summary: Spécifiez si le lancement approuvé est activé sur la machine virtuelle. Voir <a href="https://docs.microsoft.com/azure/virtual-machines/trusted-launch">https://docs.microsoft.com/azure/virtual-machines/trusted-launch</a>.
     description: ''
   - name: --size
     defaultValue: Standard_DS1_v2
@@ -646,11 +672,11 @@ directCommands:
     syntax: >-
       vms_ids=$(az vm list -g MyResourceGroup --query "[].id" -o tsv)
 
-      az vm deallocate --ids {vms_ids}
+      az vm deallocate --ids ${vms_ids}
 
-      az vm generalize --ids {vms_ids}
+      az vm generalize --ids ${vms_ids}
 
-      az vm capture --ids {vms_ids} --vhd-name-prefix MyPrefix
+      az vm capture --ids ${vms_ids} --vhd-name-prefix MyPrefix
   optionalParameters:
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
@@ -882,12 +908,14 @@ directCommands:
     syntax: az vm open-port -g MyResourceGroup -n MyVm --port '*'
   - summary: Ouvrez une plage de ports sur une machine virtuelle pour le trafic entrant ayant la priorité la plus élevée.
     syntax: az vm open-port -g MyResourceGroup -n MyVm --port 80-100 --priority 100
+  - summary: Ouvrez les ports 555, 557, 558 et 559 pour le trafic entrant avec la priorité la plus élevée.
+    syntax: az vm open-port -g MyResourceGroup -n MyVm --port 555,557-559 --priority 100
   - summary: Ouvrez tous les ports de toutes les machines virtuelles d’un groupe de ressources.
     syntax: az vm open-port --ids $(az vm list -g MyResourceGroup --query "[].id" -o tsv) --port '*'
   requiredParameters:
   - isRequired: true
     name: --port
-    summary: 'Port ou plage de ports (par exemple : 80-100) pour ouvrir le trafic entrant. Utilisez « \* » pour autoriser le trafic sur tous les ports.'
+    summary: 'Port ou plage de ports (par exemple : 80-100) pour ouvrir le trafic entrant. Utilisez « \* » pour autoriser le trafic sur tous les ports. Utilisez des valeurs séparées par des virgules pour spécifier plusieurs ports ou plages de ports.'
     description: ''
   optionalParameters:
   - name: --apply-to-subnet
@@ -1216,6 +1244,8 @@ directCommands:
   syntax: >-
     az vm update [--add]
                  [--disk-caching]
+                 [--enable-secure-boot {false, true}]
+                 [--enable-vtpm {false, true}]
                  [--force-string]
                  [--ids]
                  [--license-type {None, RHEL_BYOS, RHEL_ELS_6, SLES_BYOS, Windows_Client, Windows_Server}]
@@ -1249,6 +1279,14 @@ directCommands:
     description: ''
   - name: --disk-caching
     summary: Utilisez une valeur singulière pour appliquer ou spécifier des disques individuels, par exemple « OS = ReadWrite 0 = none 1 = ReadOnly » doit activer Update OS Disk et 2 Data Disks.
+    description: ''
+  - name: --enable-secure-boot
+    parameterValueGroup: false, true
+    summary: Activez le démarrage sécurisé.
+    description: ''
+  - name: --enable-vtpm
+    parameterValueGroup: false, true
+    summary: Activez vTPM.
     description: ''
   - name: --force-string
     summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
@@ -1497,11 +1535,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/24/2021
+  ms.date: 03/18/2021
   description: Gérer des machines virtuelles Linux ou Windows.
-  ms.openlocfilehash: 6a1ff75f6c942e1600afaf274189147d47e9a51c
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.openlocfilehash: 4276391d2887706f1f846390412d626f7d3be572
+  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103526040"
+  ms.lasthandoff: 03/23/2021
+  ms.locfileid: "104916392"
