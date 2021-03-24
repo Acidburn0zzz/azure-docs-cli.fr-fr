@@ -17,9 +17,12 @@ directCommands:
                                  --resource-group
                                  --usage-threshold
                                  --vnet
+                                 [--allowed-clients]
                                  [--backup-enabled {false, true}]
                                  [--backup-id]
                                  [--backup-policy-id]
+                                 [--cifs {false, true}]
+                                 [--encryption-key-source]
                                  [--endpoint-type]
                                  [--has-root-access]
                                  [--kerberos-enabled {false, true}]
@@ -33,6 +36,7 @@ directCommands:
                                  [--protocol-types]
                                  [--remote-volume-resource-id]
                                  [--replication-schedule]
+                                 [--rule-index]
                                  [--security-style]
                                  [--service-level {Premium, Standard, Ultra}]
                                  [--smb-continuously-avl {false, true}]
@@ -44,6 +48,8 @@ directCommands:
                                  [--subscription]
                                  [--tags]
                                  [--throughput-mibps]
+                                 [--unix-read-only {false, true}]
+                                 [--unix-read-write {false, true}]
                                  [--vault-id]
                                  [--volume-type]
   examples:
@@ -83,6 +89,9 @@ directCommands:
     summary: ID ARM ou nom du réseau virtuel pour le volume.
     description: ''
   optionalParameters:
+  - name: --allowed-clients
+    summary: Spécification d’entrée du client comme chaîne séparée par des virgules avec les CIDR IPv4, les adresses hôtes IPv4 et les noms d’hôte.
+    description: ''
   - name: --backup-enabled
     parameterValueGroup: false, true
     summary: Sauvegarde activée.
@@ -92,6 +101,13 @@ directCommands:
     description: ''
   - name: --backup-policy-id
     summary: ID de ressource de la stratégie de sauvegarde.
+    description: ''
+  - name: --cifs
+    parameterValueGroup: false, true
+    summary: Autorise le protocole NFSv3. Activez uniquement pour les volumes de type NFSv3.
+    description: ''
+  - name: --encryption-key-source
+    summary: Source de la clé de chiffrement.
     description: ''
   - name: --endpoint-type
     summary: Indique si le volume est source (« SRC ») ou de destination (« DST »).
@@ -134,6 +150,9 @@ directCommands:
   - name: --replication-schedule
     summary: La planification de la réplication, par exemple « _10minutely, horaire, quotidienne, hebdomadaire, mensuelle ».
     description: ''
+  - name: --rule-index
+    summary: Index de la commande.
+    description: ''
   - name: --security-style
     summary: Le style de sécurité du volume.
     description: ''
@@ -170,6 +189,14 @@ directCommands:
     description: ''
   - name: --throughput-mibps
     summary: Débit maximal dans Mibps qui peut être atteint par ce volume.
+    description: ''
+  - name: --unix-read-only
+    parameterValueGroup: false, true
+    summary: Accès en lecture seule.
+    description: ''
+  - name: --unix-read-write
+    parameterValueGroup: false, true
+    summary: Accès en lecture et en écriture.
     description: ''
   - name: --vault-id
     summary: ID de ressource du coffre.
@@ -495,11 +522,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 01/25/2021
+  ms.date: 03/10/2021
   description: Gérer les ressources de volume Azure NetApp Files (et).
-  ms.openlocfilehash: 6f4c41575674eb12247041823aba6f7e8aa3b088
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: 2f6fc0dee1011959f99c913b216e973a43abac57
+  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102847819"
+  ms.lasthandoff: 03/23/2021
+  ms.locfileid: "104914676"
