@@ -14,6 +14,7 @@ directCommands:
                                          --security-domain-file
                                          [--hsm-name]
                                          [--id]
+                                         [--no-wait]
                                          [--subscription]
   examples:
   - summary: Téléchargement du domaine de sécurité (N = 3, M = 2).
@@ -37,6 +38,9 @@ directCommands:
     description: ''
   - name: --id
     summary: ID du HSM.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -124,6 +128,7 @@ directCommands:
     az keyvault security-domain wait [--hsm-name]
                                      [--id]
                                      [--subscription]
+                                     [--target-operation {download, upload}]
   examples:
   - summary: Interrompez l’interface CLI jusqu’à ce que l’opération de domaine de sécurité soit terminée.
     syntax: az keyvault security-domain wait --hsm-name MyHSM
@@ -136,6 +141,11 @@ directCommands:
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --target-operation
+    defaultValue: upload
+    parameterValueGroup: download, upload
+    summary: Opération cible qui doit être en attente.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/keyvault/_help.py
 commands:
@@ -160,11 +170,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 12/14/2020
+  ms.date: 03/04/2021
   description: Gérer les opérations de domaine de sécurité.
-  ms.openlocfilehash: 4724097837df346d177c0f7b7ece0f63b11c4568
-  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.openlocfilehash: 840a58261da7ea93674d14f2b01f03ec3f519e4d
+  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 12/30/2020
-  ms.locfileid: "102841468"
+  ms.lasthandoff: 03/23/2021
+  ms.locfileid: "104934270"

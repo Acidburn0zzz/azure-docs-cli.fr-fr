@@ -21,7 +21,7 @@ directCommands:
     syntax: az vm extension image list --query "[].publisher" -o tsv | sort -u
   - summary: Recherchez les extensions avec « docker » dans le nom.
     syntax: az vm extension image list --query "[].name" -o tsv | sort -u | grep Docker
-  - summary: Répertoriez les noms d’extension où le nom de l’éditeur commence par « Microsoft. Azure. app ».
+  - summary: Répertoriez les noms d’extension où le nom du serveur de publication commence par « Microsoft.Azure.App ».
     syntax: >-
       az vm extension image list --query \
           "[?starts_with(publisher, 'Microsoft.Azure.App')].publisher" \
@@ -150,11 +150,11 @@ directCommands:
 
 
       latest=$(az vm extension image list-versions \
-        --publisher {publisher} -l {location} -n {extension} \
+        --publisher ${publisher} -l ${location} -n ${extension} \
         --query "[].name" -o tsv | sort | tail -n 1)
 
-      az vm extension image show -l {location} \
-        --publisher {publisher} -n {extension} --version {latest}
+      az vm extension image show -l ${location} \
+        --publisher ${publisher} -n ${extension} --version ${latest}
   requiredParameters:
   - isRequired: true
     name: --location -l
@@ -202,11 +202,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/24/2021
+  ms.date: 03/18/2021
   description: Recherchez les extensions de machine virtuelle disponibles pour un abonnement et une région.
-  ms.openlocfilehash: 7b82d061c3dce80893a626a147c12124c0a7e9e1
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.openlocfilehash: 17bd1d9e3ef0ecf095d92f5c9de60a84145f1dd7
+  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103523864"
+  ms.lasthandoff: 03/23/2021
+  ms.locfileid: "104934593"
