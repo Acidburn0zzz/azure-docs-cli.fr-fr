@@ -10,10 +10,10 @@ ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
 ms.openlocfilehash: d1e5adb6e577e8f301234eb17eedc04d4ce8de51
-ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/16/2021
+ms.lasthandoff: 03/23/2021
 ms.locfileid: "103532063"
 ---
 # <a name="install-the-azure-cli"></a>Installer l’interface de ligne de commande Microsoft Azure
