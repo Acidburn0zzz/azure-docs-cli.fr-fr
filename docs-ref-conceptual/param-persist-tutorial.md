@@ -10,59 +10,59 @@ ms.topic: conceptual
 ms.devlang: azurecli
 ms.technology: azure-cli
 ms.custom: devex-track-azurecli
-ms.openlocfilehash: 75833b18da0aea04dfc2aa33d9d7d18910525e98
-ms.sourcegitcommit: 4c41593455b473c796735c73590403d9b6be87a2
+ms.openlocfilehash: c4dea58ba62632eeb46d137bf6d4fa4485da4599
+ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "99572780"
+ms.lasthandoff: 03/23/2021
+ms.locfileid: "104947524"
 ---
-# <a name="tutorial-use-persisted-parameters-to-simplify-sequential-azure-cli-commands"></a><span data-ttu-id="07ae5-103">Tutoriel : Utiliser des paramètres persistants pour simplifier les commandes Azure CLI séquentielles</span><span class="sxs-lookup"><span data-stu-id="07ae5-103">Tutorial: Use persisted parameters to simplify sequential Azure CLI commands</span></span>
+# <a name="tutorial-use-persisted-parameters-to-simplify-sequential-azure-cli-commands"></a><span data-ttu-id="154b6-103">Tutoriel : Utiliser des paramètres persistants pour simplifier les commandes Azure CLI séquentielles</span><span class="sxs-lookup"><span data-stu-id="154b6-103">Tutorial: Use persisted parameters to simplify sequential Azure CLI commands</span></span>
 
-<span data-ttu-id="07ae5-104">Azure CLI offre des paramètres persistants qui vous permettent de stocker les valeurs de paramètres en vue d’une utilisation continue.</span><span class="sxs-lookup"><span data-stu-id="07ae5-104">Azure CLI offers persisted parameters that enable you to store parameter values for continued use.</span></span>  <span data-ttu-id="07ae5-105">Dans ce tutoriel, vous allez apprendre à vous servir de valeurs persistantes et à utiliser ces valeurs locales pour exécuter efficacement des commandes séquentielles.</span><span class="sxs-lookup"><span data-stu-id="07ae5-105">In this tutorial, you learn how to work with persisted values, and use these local values to efficiently execute sequential commands.</span></span>
+<span data-ttu-id="154b6-104">Azure CLI offre des paramètres persistants qui vous permettent de stocker les valeurs de paramètres en vue d’une utilisation continue.</span><span class="sxs-lookup"><span data-stu-id="154b6-104">Azure CLI offers persisted parameters that enable you to store parameter values for continued use.</span></span>  <span data-ttu-id="154b6-105">Dans ce tutoriel, vous allez apprendre à vous servir de valeurs persistantes et à utiliser ces valeurs locales pour exécuter efficacement des commandes séquentielles.</span><span class="sxs-lookup"><span data-stu-id="154b6-105">In this tutorial, you learn how to work with persisted values, and use these local values to efficiently execute sequential commands.</span></span>
 
-<span data-ttu-id="07ae5-106">Ce didacticiel vous apprendra à effectuer les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="07ae5-106">In this tutorial, you will learn to:</span></span>
+<span data-ttu-id="154b6-106">Ce didacticiel vous apprendra à effectuer les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="154b6-106">In this tutorial, you will learn to:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="07ae5-107">Utiliser des commandes de référence `az config param-persist`</span><span class="sxs-lookup"><span data-stu-id="07ae5-107">Use `az config param-persist` reference commands</span></span>
-> * <span data-ttu-id="07ae5-108">Exécuter des commandes séquentielles à l’aide de paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="07ae5-108">Execute sequential commands using persisted parameters</span></span>
+> * <span data-ttu-id="154b6-107">Utiliser des commandes de référence `az config param-persist`</span><span class="sxs-lookup"><span data-stu-id="154b6-107">Use `az config param-persist` reference commands</span></span>
+> * <span data-ttu-id="154b6-108">Exécuter des commandes séquentielles à l’aide de paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="154b6-108">Execute sequential commands using persisted parameters</span></span>
 
-<span data-ttu-id="07ae5-109">Ce tutoriel utilise les commandes Azure CLI suivantes :</span><span class="sxs-lookup"><span data-stu-id="07ae5-109">This tutorial uses the following Azure CLI commands</span></span>
+<span data-ttu-id="154b6-109">Ce tutoriel utilise les commandes Azure CLI suivantes :</span><span class="sxs-lookup"><span data-stu-id="154b6-109">This tutorial uses the following Azure CLI commands</span></span>
 
-- [<span data-ttu-id="07ae5-110">az config param-persist delete</span><span class="sxs-lookup"><span data-stu-id="07ae5-110">az config param-persist delete</span></span>](/cli/azure/config/param-persist#az_config_param_persist_delete)
-- [<span data-ttu-id="07ae5-111">az config param-persist off</span><span class="sxs-lookup"><span data-stu-id="07ae5-111">az config param-persist off</span></span>](/cli/azure/config/param-persist#az_config_param_persist_off)
-- [<span data-ttu-id="07ae5-112">az config param-persist on</span><span class="sxs-lookup"><span data-stu-id="07ae5-112">az config param-persist on</span></span>](/cli/azure/config/param-persist#az_config_param_persist_on)
-- [<span data-ttu-id="07ae5-113">az config param-persist show</span><span class="sxs-lookup"><span data-stu-id="07ae5-113">az config param-persist show</span></span>](/cli/azure/config/param-persist#az_config_param_persist_show)
-- [<span data-ttu-id="07ae5-114">az function app create</span><span class="sxs-lookup"><span data-stu-id="07ae5-114">az function app create</span></span>](/cli/azure/functionapp#az_functionapp_create)
-- [<span data-ttu-id="07ae5-115">az group create</span><span class="sxs-lookup"><span data-stu-id="07ae5-115">az group create</span></span>](/cli/azure/group#az_group_create)
-- [<span data-ttu-id="07ae5-116">az storage account create</span><span class="sxs-lookup"><span data-stu-id="07ae5-116">az storage account create</span></span>](/cli/azure/storage/account#az_storage_account_create)
+- [<span data-ttu-id="154b6-110">az config param-persist delete</span><span class="sxs-lookup"><span data-stu-id="154b6-110">az config param-persist delete</span></span>](/cli/azure/config/param-persist#az_config_param_persist_delete)
+- [<span data-ttu-id="154b6-111">az config param-persist off</span><span class="sxs-lookup"><span data-stu-id="154b6-111">az config param-persist off</span></span>](/cli/azure/config/param-persist#az_config_param_persist_off)
+- [<span data-ttu-id="154b6-112">az config param-persist on</span><span class="sxs-lookup"><span data-stu-id="154b6-112">az config param-persist on</span></span>](/cli/azure/config/param-persist#az_config_param_persist_on)
+- [<span data-ttu-id="154b6-113">az config param-persist show</span><span class="sxs-lookup"><span data-stu-id="154b6-113">az config param-persist show</span></span>](/cli/azure/config/param-persist#az_config_param_persist_show)
+- [<span data-ttu-id="154b6-114">az function app create</span><span class="sxs-lookup"><span data-stu-id="154b6-114">az function app create</span></span>](/cli/azure/functionapp#az_functionapp_create)
+- [<span data-ttu-id="154b6-115">az group create</span><span class="sxs-lookup"><span data-stu-id="154b6-115">az group create</span></span>](/cli/azure/group#az_group_create)
+- [<span data-ttu-id="154b6-116">az storage account create</span><span class="sxs-lookup"><span data-stu-id="154b6-116">az storage account create</span></span>](/cli/azure/storage/account#az_storage_account_create)
 
 
-<span data-ttu-id="07ae5-117">Si vous n’avez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) avant de commencer.</span><span class="sxs-lookup"><span data-stu-id="07ae5-117">If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.</span></span>
+<span data-ttu-id="154b6-117">Si vous n’avez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) avant de commencer.</span><span class="sxs-lookup"><span data-stu-id="154b6-117">If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="07ae5-118">Prérequis</span><span class="sxs-lookup"><span data-stu-id="07ae5-118">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="154b6-118">Prérequis</span><span class="sxs-lookup"><span data-stu-id="154b6-118">Prerequisites</span></span>
 
-1. [<span data-ttu-id="07ae5-119">Installer l’interface de ligne de commande Microsoft Azure</span><span class="sxs-lookup"><span data-stu-id="07ae5-119">Install the Azure CLI</span></span>](install-azure-cli.md)
+1. [<span data-ttu-id="154b6-119">Installer l’interface de ligne de commande Microsoft Azure</span><span class="sxs-lookup"><span data-stu-id="154b6-119">Install the Azure CLI</span></span>](install-azure-cli.md)
 
-   <span data-ttu-id="07ae5-120">Si vous préférez, vous pouvez également utiliser Azure Cloud Shell pour effectuer les étapes décrites dans ce didacticiel.</span><span class="sxs-lookup"><span data-stu-id="07ae5-120">If you prefer, you can also use Azure Cloud Shell to complete the steps in this tutorial.</span></span>  <span data-ttu-id="07ae5-121">Azure Cloud Shell est un environnement d’interpréteur de commandes interactif que vous utilisez dans votre navigateur.</span><span class="sxs-lookup"><span data-stu-id="07ae5-121">Azure Cloud Shell is an interactive shell environment that you use through your browser.</span></span>  <span data-ttu-id="07ae5-122">Démarrez Cloud Shell à l’aide de l’une des méthodes suivantes :</span><span class="sxs-lookup"><span data-stu-id="07ae5-122">Start Cloud Shell by using one of these methods:</span></span>
+   <span data-ttu-id="154b6-120">Si vous préférez, vous pouvez également utiliser Azure Cloud Shell pour effectuer les étapes décrites dans ce didacticiel.</span><span class="sxs-lookup"><span data-stu-id="154b6-120">If you prefer, you can also use Azure Cloud Shell to complete the steps in this tutorial.</span></span>  <span data-ttu-id="154b6-121">Azure Cloud Shell est un environnement d’interpréteur de commandes interactif que vous utilisez dans votre navigateur.</span><span class="sxs-lookup"><span data-stu-id="154b6-121">Azure Cloud Shell is an interactive shell environment that you use through your browser.</span></span>  <span data-ttu-id="154b6-122">Démarrez Cloud Shell à l’aide de l’une des méthodes suivantes :</span><span class="sxs-lookup"><span data-stu-id="154b6-122">Start Cloud Shell by using one of these methods:</span></span>
 
-   - <span data-ttu-id="07ae5-123">Ouvrez Cloud Shell en accédant à [https://shell.azure.com](https://shell.azure.com).</span><span class="sxs-lookup"><span data-stu-id="07ae5-123">Open Cloud Shell by going to [https://shell.azure.com](https://shell.azure.com)</span></span>
+   - <span data-ttu-id="154b6-123">Ouvrez Cloud Shell en accédant à [https://shell.azure.com](https://shell.azure.com).</span><span class="sxs-lookup"><span data-stu-id="154b6-123">Open Cloud Shell by going to [https://shell.azure.com](https://shell.azure.com)</span></span>
 
-   - <span data-ttu-id="07ae5-124">Sélectionnez le bouton **Cloud Shell** dans la barre de menus en haut à droite du [portail Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="07ae5-124">Select the **Cloud Shell** button on the menu bar at the upper right corner in the [Azure portal](https://portal.azure.com)</span></span>
+   - <span data-ttu-id="154b6-124">Sélectionnez le bouton **Cloud Shell** dans la barre de menus en haut à droite du [portail Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="154b6-124">Select the **Cloud Shell** button on the menu bar at the upper right corner in the [Azure portal](https://portal.azure.com)</span></span>
 
-1. <span data-ttu-id="07ae5-125">Si vous utilisez une installation locale d’Azure CLI, effectuez les étapes suivantes :</span><span class="sxs-lookup"><span data-stu-id="07ae5-125">If you are using a local install of the Azure CLI, complete the following:</span></span>
-   - <span data-ttu-id="07ae5-126">Connectez-vous à l’aide de la commande [az login](/cli/azure/reference-index#az-login), puis suivez les étapes affichées dans votre terminal pour effectuer le processus d’authentification.</span><span class="sxs-lookup"><span data-stu-id="07ae5-126">Sign in using the [az login](/cli/azure/reference-index#az-login) command, then follow the steps displayed in your terminal to complete the authentication process.</span></span>
+1. <span data-ttu-id="154b6-125">Si vous utilisez une installation locale d’Azure CLI, effectuez les étapes suivantes :</span><span class="sxs-lookup"><span data-stu-id="154b6-125">If you are using a local install of the Azure CLI, complete the following:</span></span>
+   - <span data-ttu-id="154b6-126">Connectez-vous à l’aide de la commande [az login](/cli/azure/reference-index#az-login), puis suivez les étapes affichées dans votre terminal pour effectuer le processus d’authentification.</span><span class="sxs-lookup"><span data-stu-id="154b6-126">Sign in using the [az login](/cli/azure/reference-index#az-login) command, then follow the steps displayed in your terminal to complete the authentication process.</span></span>
 
      ```azurecli
      az login
      ```
-    - <span data-ttu-id="07ae5-127">Ce tutoriel nécessite Azure CLI version 2.12.0 ou ultérieure.</span><span class="sxs-lookup"><span data-stu-id="07ae5-127">This tutorial requires version 2.12.0 or later of the Azure CLI.</span></span>  <span data-ttu-id="07ae5-128">Exécutez [az version](/cli/azure/reference-index#az_version) pour rechercher la version et les bibliothèques dépendantes installées.</span><span class="sxs-lookup"><span data-stu-id="07ae5-128">Run [az version](/cli/azure/reference-index#az_version) to find the version and dependent libraries that are installed.</span></span> <span data-ttu-id="07ae5-129">Pour effectuer une mise à niveau vers la dernière version, exécutez [az upgrade](/cli/azure/reference-index#az_upgrade).</span><span class="sxs-lookup"><span data-stu-id="07ae5-129">To upgrade to the latest version, run [az upgrade](/cli/azure/reference-index#az_upgrade).</span></span>
+    - <span data-ttu-id="154b6-127">Ce tutoriel nécessite Azure CLI version 2.12.0 ou ultérieure.</span><span class="sxs-lookup"><span data-stu-id="154b6-127">This tutorial requires version 2.12.0 or later of the Azure CLI.</span></span>  <span data-ttu-id="154b6-128">Exécutez [az version](/cli/azure/reference-index#az_version) pour rechercher la version et les bibliothèques dépendantes installées.</span><span class="sxs-lookup"><span data-stu-id="154b6-128">Run [az version](/cli/azure/reference-index#az_version) to find the version and dependent libraries that are installed.</span></span> <span data-ttu-id="154b6-129">Pour effectuer une mise à niveau vers la dernière version, exécutez [az upgrade](/cli/azure/reference-index#az_upgrade).</span><span class="sxs-lookup"><span data-stu-id="154b6-129">To upgrade to the latest version, run [az upgrade](/cli/azure/reference-index#az_upgrade).</span></span>
 
-## <a name="1-determine-your-local-directory"></a><span data-ttu-id="07ae5-130">1. Déterminer votre répertoire local</span><span class="sxs-lookup"><span data-stu-id="07ae5-130">1. Determine your local directory</span></span>
+## <a name="1-determine-your-local-directory"></a><span data-ttu-id="154b6-130">1. Déterminer votre répertoire local</span><span class="sxs-lookup"><span data-stu-id="154b6-130">1. Determine your local directory</span></span>
 
-<span data-ttu-id="07ae5-131">Les valeurs de paramètres persistants sont stockées dans le répertoire de travail du compte de stockage Azure utilisé par Azure Cloud Shell.</span><span class="sxs-lookup"><span data-stu-id="07ae5-131">Persisted parameter values are stored in the working directory of the Azure storage account used by Azure Cloud Shell.</span></span>  <span data-ttu-id="07ae5-132">Si vous utilisez une installation locale d’Azure CLI, les valeurs sont stockées dans le répertoire de travail sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="07ae5-132">If you are using a local install of the Azure CLI, values are stored in the working directory on your machine.</span></span>
+<span data-ttu-id="154b6-131">Les valeurs de paramètres persistants sont stockées dans le répertoire de travail du compte de stockage Azure utilisé par Azure Cloud Shell.</span><span class="sxs-lookup"><span data-stu-id="154b6-131">Persisted parameter values are stored in the working directory of the Azure storage account used by Azure Cloud Shell.</span></span>  <span data-ttu-id="154b6-132">Si vous utilisez une installation locale d’Azure CLI, les valeurs sont stockées dans le répertoire de travail sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="154b6-132">If you are using a local install of the Azure CLI, values are stored in the working directory on your machine.</span></span>
 
-<span data-ttu-id="07ae5-133">Pour rechercher, créer ou changer le répertoire de travail utilisé par Azure CLI, utilisez ces commandes CLI bien connues.</span><span class="sxs-lookup"><span data-stu-id="07ae5-133">To find, create or change the working directory being used by the Azure CLI, use these familiar CLI commands.</span></span>
+<span data-ttu-id="154b6-133">Pour rechercher, créer ou changer le répertoire de travail utilisé par Azure CLI, utilisez ces commandes CLI bien connues.</span><span class="sxs-lookup"><span data-stu-id="154b6-133">To find, create or change the working directory being used by the Azure CLI, use these familiar CLI commands.</span></span>
 
 ```azurecli
 # List directories
@@ -75,19 +75,19 @@ mkdir azCLI
 cd azCLI
 ```
 
-## <a name="2-turn-on-persisted-parameters"></a><span data-ttu-id="07ae5-134">2. Activer les paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="07ae5-134">2. Turn on Persisted parameters</span></span>
+## <a name="2-turn-on-persisted-parameters"></a><span data-ttu-id="154b6-134">2. Activer les paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="154b6-134">2. Turn on Persisted parameters</span></span>
 
-<span data-ttu-id="07ae5-135">Vous devez activer les [paramètres persistants](/cli/azure/param-persist) pour pouvoir stocker les valeurs de paramètres.</span><span class="sxs-lookup"><span data-stu-id="07ae5-135">[Persisted parameters](/cli/azure/param-persist) must be turned on before parameter values can be stored.</span></span>  <span data-ttu-id="07ae5-136">Un avertissement s’affiche tant que `az config param-persist` est en phase expérimentale.</span><span class="sxs-lookup"><span data-stu-id="07ae5-136">You will receive a warning until `az config param-persist` moves out of the experimental stage.</span></span>  <span data-ttu-id="07ae5-137">Consultez [Vue d’ensemble : Types et état de référence Azure CLI](/cli/azure/reference-types-and-status) pour en savoir plus sur les types de référence, états et niveaux de prise en charge Azure CLI.</span><span class="sxs-lookup"><span data-stu-id="07ae5-137">See [Overview: Azure CLI reference types and status](/cli/azure/reference-types-and-status) to learn about the Azure CLI reference types, status, and support levels.</span></span>
+<span data-ttu-id="154b6-135">Vous devez activer les [paramètres persistants](/cli/azure/config/param-persist) pour pouvoir stocker les valeurs de paramètres.</span><span class="sxs-lookup"><span data-stu-id="154b6-135">[Persisted parameters](/cli/azure/config/param-persist) must be turned on before parameter values can be stored.</span></span>  <span data-ttu-id="154b6-136">Un avertissement s’affiche tant que `az config param-persist` est en phase expérimentale.</span><span class="sxs-lookup"><span data-stu-id="154b6-136">You will receive a warning until `az config param-persist` moves out of the experimental stage.</span></span>  <span data-ttu-id="154b6-137">Consultez [Vue d’ensemble : Types et état de référence Azure CLI](/cli/azure/reference-types-and-status) pour en savoir plus sur les types de référence, états et niveaux de prise en charge Azure CLI.</span><span class="sxs-lookup"><span data-stu-id="154b6-137">See [Overview: Azure CLI reference types and status](/cli/azure/reference-types-and-status) to learn about the Azure CLI reference types, status, and support levels.</span></span>
 
 ```azurecli
 az config param-persist on
 ```
 
-## <a name="3-create-persisted-parameters"></a><span data-ttu-id="07ae5-138">3. Créer des paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="07ae5-138">3. Create persisted parameters</span></span>
+## <a name="3-create-persisted-parameters"></a><span data-ttu-id="154b6-138">3. Créer des paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="154b6-138">3. Create persisted parameters</span></span>
 
-<span data-ttu-id="07ae5-139">Pour stocker les valeurs de paramètres persistants, exécutez une commande Azure CLI de votre choix qui contient les paramètres à stocker.</span><span class="sxs-lookup"><span data-stu-id="07ae5-139">To store values for persisted parameters, execute an Azure CLI command of your choice that contains the parameters you want to store.</span></span>  <span data-ttu-id="07ae5-140">Par exemple, si vous créez un groupe de ressources, les paramètres `--location` et `--name` sont stockés en vue d’une utilisation ultérieure.</span><span class="sxs-lookup"><span data-stu-id="07ae5-140">For example, create a resource group and the `--location` and `--name` parameters are stored for future use.</span></span>
+<span data-ttu-id="154b6-139">Pour stocker les valeurs de paramètres persistants, exécutez une commande Azure CLI de votre choix qui contient les paramètres à stocker.</span><span class="sxs-lookup"><span data-stu-id="154b6-139">To store values for persisted parameters, execute an Azure CLI command of your choice that contains the parameters you want to store.</span></span>  <span data-ttu-id="154b6-140">Par exemple, si vous créez un groupe de ressources, les paramètres `--location` et `--name` sont stockés en vue d’une utilisation ultérieure.</span><span class="sxs-lookup"><span data-stu-id="154b6-140">For example, create a resource group and the `--location` and `--name` parameters are stored for future use.</span></span>
 
-1. <span data-ttu-id="07ae5-141">Stockez l’emplacement (location) et le nom du groupe de ressources (name).</span><span class="sxs-lookup"><span data-stu-id="07ae5-141">Store the location and resource group name.</span></span>
+1. <span data-ttu-id="154b6-141">Stockez l’emplacement (location) et le nom du groupe de ressources (name).</span><span class="sxs-lookup"><span data-stu-id="154b6-141">Store the location and resource group name.</span></span>
    ```azurecli
    # With persisted parameters turned on, create a resource group
    az group create --name RG1forTutorial --location eastus2
@@ -105,7 +105,7 @@ az config param-persist on
    }
    ```
 
-1. <span data-ttu-id="07ae5-142">À l’aide des nouveaux paramètres persistants, créez un compte de stockage.</span><span class="sxs-lookup"><span data-stu-id="07ae5-142">Using the new persisted parameters, create a storage account.</span></span>
+1. <span data-ttu-id="154b6-142">À l’aide des nouveaux paramètres persistants, créez un compte de stockage.</span><span class="sxs-lookup"><span data-stu-id="154b6-142">Using the new persisted parameters, create a storage account.</span></span>
 
    ```azurecli
    # Create a storage account
@@ -125,9 +125,9 @@ az config param-persist on
    }
    ```
 
-1. <span data-ttu-id="07ae5-143">Créez un paramètre persistant sans définir de nouvelle ressource.</span><span class="sxs-lookup"><span data-stu-id="07ae5-143">Create a persisted parameter without creating a new resource.</span></span>
+1. <span data-ttu-id="154b6-143">Créez un paramètre persistant sans définir de nouvelle ressource.</span><span class="sxs-lookup"><span data-stu-id="154b6-143">Create a persisted parameter without creating a new resource.</span></span>
 
-   <span data-ttu-id="07ae5-144">Si vous ne souhaitez pas définir une nouvelle ressource Azure, les paramètres `resource_group_name` et `location` peuvent être stockés à l’aide de commandes non-create comme `show` ou `list`.</span><span class="sxs-lookup"><span data-stu-id="07ae5-144">If you do not want to create a new Azure resource, `resource_group_name` and `location` parameters can be stored by using non-create commands like `show` or `list`.</span></span>   <span data-ttu-id="07ae5-145">Pour obtenir la liste complète des paramètres pris en charge et l’action nécessaire pour conserver les valeurs, consultez [Paramètres persistants dans Azure CLI](/cli/azure/param-persist-howto#compare-parameter-persistence-and-global-variables).</span><span class="sxs-lookup"><span data-stu-id="07ae5-145">See [Azure CLI persisted parameters](/cli/azure/param-persist-howto#compare-parameter-persistence-and-global-variables) for a full list of supported parameters,   and the action needed to retain values.</span></span>  <span data-ttu-id="07ae5-146">Cet exemple supprime également toutes les valeurs des paramètres à l’aide de la commande [az config param-persist delete](/cli/azure/config/param-persist#az-param-persist-delete).</span><span class="sxs-lookup"><span data-stu-id="07ae5-146">This example also removes all parameter values by using the [az config param-persist delete](/cli/azure/config/param-persist#az-param-persist-delete) command.</span></span>
+   <span data-ttu-id="154b6-144">Si vous ne souhaitez pas définir une nouvelle ressource Azure, les paramètres `resource_group_name` et `location` peuvent être stockés à l’aide de commandes non-create comme `show` ou `list`.</span><span class="sxs-lookup"><span data-stu-id="154b6-144">If you do not want to create a new Azure resource, `resource_group_name` and `location` parameters can be stored by using non-create commands like `show` or `list`.</span></span>   <span data-ttu-id="154b6-145">Pour obtenir la liste complète des paramètres pris en charge et l’action nécessaire pour conserver les valeurs, consultez [Paramètres persistants dans Azure CLI](/cli/azure/param-persist-howto#compare-parameter-persistence-and-global-variables).</span><span class="sxs-lookup"><span data-stu-id="154b6-145">See [Azure CLI persisted parameters](/cli/azure/param-persist-howto#compare-parameter-persistence-and-global-variables) for a full list of supported parameters,   and the action needed to retain values.</span></span>  <span data-ttu-id="154b6-146">Cet exemple supprime également toutes les valeurs des paramètres à l’aide de la commande [az config param-persist delete](/cli/azure/config/param-persist#az-param-persist-delete).</span><span class="sxs-lookup"><span data-stu-id="154b6-146">This example also removes all parameter values by using the [az config param-persist delete](/cli/azure/config/param-persist#az-param-persist-delete) command.</span></span>
 
    ```azurecli
    # Clear all persisted parameters for demonstration.
@@ -148,11 +148,11 @@ az config param-persist on
    }
    ```
 
-## <a name="4-replace-persisted-parameters"></a><span data-ttu-id="07ae5-147">4. Remplacer des paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="07ae5-147">4. Replace persisted parameters</span></span>
+## <a name="4-replace-persisted-parameters"></a><span data-ttu-id="154b6-147">4. Remplacer des paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="154b6-147">4. Replace persisted parameters</span></span>
 
-<span data-ttu-id="07ae5-148">Pour remplacer une valeur de paramètre stockée, il suffit d’exécuter une commande contenant une valeur différente.</span><span class="sxs-lookup"><span data-stu-id="07ae5-148">Replacing a stored parameter value is as simple as executing a command containing a different value.</span></span>
+<span data-ttu-id="154b6-148">Pour remplacer une valeur de paramètre stockée, il suffit d’exécuter une commande contenant une valeur différente.</span><span class="sxs-lookup"><span data-stu-id="154b6-148">Replacing a stored parameter value is as simple as executing a command containing a different value.</span></span>
 
-1. <span data-ttu-id="07ae5-149">Définissez de nouveaux paramètres persistants.</span><span class="sxs-lookup"><span data-stu-id="07ae5-149">Create new persisted parameters.</span></span>
+1. <span data-ttu-id="154b6-149">Définissez de nouveaux paramètres persistants.</span><span class="sxs-lookup"><span data-stu-id="154b6-149">Create new persisted parameters.</span></span>
    ```azurecli
    # Clear all persisted parameters for demonstration
    az config param-persist delete --all
@@ -174,7 +174,7 @@ az config param-persist on
    }
    ```
 
-1. <span data-ttu-id="07ae5-150">Remplacez les valeurs nouvellement stockées.</span><span class="sxs-lookup"><span data-stu-id="07ae5-150">Replace the newly stored values.</span></span>
+1. <span data-ttu-id="154b6-150">Remplacez les valeurs nouvellement stockées.</span><span class="sxs-lookup"><span data-stu-id="154b6-150">Replace the newly stored values.</span></span>
 
    ```azurecli
    # Create a second storage account while changing both the "storage_account_name" and "location" persisted parameters
@@ -196,13 +196,13 @@ az config param-persist on
 
    > [!NOTE]
    >
-   > <span data-ttu-id="07ae5-151">Même si les paramètres persistants sont activés, vous n’êtes pas obligé de les utiliser.</span><span class="sxs-lookup"><span data-stu-id="07ae5-151">Even if persisted parameters are turned on, you don't have to use them.</span></span>  <span data-ttu-id="07ae5-152">Vous pouvez toujours exécuter des commandes en spécifiant toutes les valeurs des paramètres.</span><span class="sxs-lookup"><span data-stu-id="07ae5-152">You can still execute commands with all parameter values specified.</span></span>  <span data-ttu-id="07ae5-153">Toutefois, sachez que lorsque les paramètres persistants sont activés, _vous créez des paramètres persistants ou remplacez des paramètres persistants existants_.</span><span class="sxs-lookup"><span data-stu-id="07ae5-153">However, be aware that with persisted parameters turned on, _you will be creating new persisted parameters, or overwriting existing ones._</span></span>
+   > <span data-ttu-id="154b6-151">Même si les paramètres persistants sont activés, vous n’êtes pas obligé de les utiliser.</span><span class="sxs-lookup"><span data-stu-id="154b6-151">Even if persisted parameters are turned on, you don't have to use them.</span></span>  <span data-ttu-id="154b6-152">Vous pouvez toujours exécuter des commandes en spécifiant toutes les valeurs des paramètres.</span><span class="sxs-lookup"><span data-stu-id="154b6-152">You can still execute commands with all parameter values specified.</span></span>  <span data-ttu-id="154b6-153">Toutefois, sachez que lorsque les paramètres persistants sont activés, _vous créez des paramètres persistants ou remplacez des paramètres persistants existants_.</span><span class="sxs-lookup"><span data-stu-id="154b6-153">However, be aware that with persisted parameters turned on, _you will be creating new persisted parameters, or overwriting existing ones._</span></span>
 
-## <a name="5-execute-sequential-commands"></a><span data-ttu-id="07ae5-154">5. Exécuter des commandes séquentielles</span><span class="sxs-lookup"><span data-stu-id="07ae5-154">5. Execute sequential commands</span></span>
+## <a name="5-execute-sequential-commands"></a><span data-ttu-id="154b6-154">5. Exécuter des commandes séquentielles</span><span class="sxs-lookup"><span data-stu-id="154b6-154">5. Execute sequential commands</span></span>
 
-<span data-ttu-id="07ae5-155">Ces scripts créent une application de fonction Azure à l’aide du plan Consommation.</span><span class="sxs-lookup"><span data-stu-id="07ae5-155">These scripts create an Azure Function app using the Consumption plan.</span></span>
+<span data-ttu-id="154b6-155">Ces scripts créent une application de fonction Azure à l’aide du plan Consommation.</span><span class="sxs-lookup"><span data-stu-id="154b6-155">These scripts create an Azure Function app using the Consumption plan.</span></span>
 
-### <a name="using-persisted-parameters"></a>[<span data-ttu-id="07ae5-156">Utilisation de paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="07ae5-156">Using persisted parameters</span></span>](#tab/azure-cli)
+### <a name="using-persisted-parameters"></a>[<span data-ttu-id="154b6-156">Utilisation de paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="154b6-156">Using persisted parameters</span></span>](#tab/azure-cli)
 
 ```azurecli
 # Reminder: function app and storage account names must be unique.
@@ -228,7 +228,7 @@ az functionapp create \
 az config param-persist show
 ```
 
-### <a name="without-persisted-parameters"></a>[<span data-ttu-id="07ae5-157">Sans paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="07ae5-157">Without persisted parameters</span></span>](#tab/azure-portal)
+### <a name="without-persisted-parameters"></a>[<span data-ttu-id="154b6-157">Sans paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="154b6-157">Without persisted parameters</span></span>](#tab/azure-portal)
 
 ```azurecli
 # Reminder: function app and storage account names must be unique.
@@ -257,9 +257,9 @@ az functionapp create \
 
 * * *
 
-## <a name="6-delete-persisted-parameters"></a><span data-ttu-id="07ae5-158">6. Supprimer des paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="07ae5-158">6. Delete persisted parameters</span></span>
+## <a name="6-delete-persisted-parameters"></a><span data-ttu-id="154b6-158">6. Supprimer des paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="154b6-158">6. Delete persisted parameters</span></span>
 
-<span data-ttu-id="07ae5-159">Utilisez la commande [az config param-persist delete](/cli/azure/param-persist#az-param-persist-delete) pour supprimer des entrées.</span><span class="sxs-lookup"><span data-stu-id="07ae5-159">Use the [az config param-persist delete](/cli/azure/param-persist#az-param-persist-delete) command to remove entries.</span></span>
+<span data-ttu-id="154b6-159">Utilisez la commande [az config param-persist delete](/cli/azure/param-persist#az-param-persist-delete) pour supprimer des entrées.</span><span class="sxs-lookup"><span data-stu-id="154b6-159">Use the [az config param-persist delete](/cli/azure/param-persist#az-param-persist-delete) command to remove entries.</span></span>
 
 ```azurecli
 # Remove a single persisted parameters entry by specifying the name, not the value
@@ -271,7 +271,7 @@ az config param-persist delete --all --yes
 
 > [!IMPORTANT]
 >
-> <span data-ttu-id="07ae5-160">Les paramètres persistants ne sont pas mis à jour quand une ressource Azure est supprimée.</span><span class="sxs-lookup"><span data-stu-id="07ae5-160">Persisted parameters do not get updated when an Azure resource is deleted.</span></span>
+> <span data-ttu-id="154b6-160">Les paramètres persistants ne sont pas mis à jour quand une ressource Azure est supprimée.</span><span class="sxs-lookup"><span data-stu-id="154b6-160">Persisted parameters do not get updated when an Azure resource is deleted.</span></span>
 >
 > ```azurecli
 > # delete a resource group
@@ -284,9 +284,9 @@ az config param-persist delete --all --yes
 > az config param-persist show
 > ```
 
-## <a name="7-turn-persisted-parameters-off"></a><span data-ttu-id="07ae5-161">7. Désactiver les paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="07ae5-161">7. Turn persisted parameters off</span></span>
+## <a name="7-turn-persisted-parameters-off"></a><span data-ttu-id="154b6-161">7. Désactiver les paramètres persistants</span><span class="sxs-lookup"><span data-stu-id="154b6-161">7. Turn persisted parameters off</span></span>
 
-<span data-ttu-id="07ae5-162">Vous pouvez désactiver les paramètres persistants à l’aide de la commande [az config param-persist off](/cli/azure/param-persist#az-param-persist-off), mais les données enregistrées des paramètres persistants ne sont pas supprimées.</span><span class="sxs-lookup"><span data-stu-id="07ae5-162">You can turn persisted parameters off by using the [az config param-persist off](/cli/azure/param-persist#az-param-persist-off) command, but your saved persisted parameters data won't be deleted.</span></span>
+<span data-ttu-id="154b6-162">Vous pouvez désactiver les paramètres persistants à l’aide de la commande [az config param-persist off](/cli/azure/param-persist#az-param-persist-off), mais les données enregistrées des paramètres persistants ne sont pas supprimées.</span><span class="sxs-lookup"><span data-stu-id="154b6-162">You can turn persisted parameters off by using the [az config param-persist off](/cli/azure/param-persist#az-param-persist-off) command, but your saved persisted parameters data won't be deleted.</span></span>
 
 ```azurecli
 # Turn persisted parameters off
@@ -299,15 +299,15 @@ az config param-persist show
 az storage account create --name SA4inAzCLI --sku Standard_LRS
 ```
 
-## <a name="8-clean-up-resources"></a><span data-ttu-id="07ae5-163">8. Nettoyer les ressources</span><span class="sxs-lookup"><span data-stu-id="07ae5-163">8. Clean up resources</span></span>
+## <a name="8-clean-up-resources"></a><span data-ttu-id="154b6-163">8. Nettoyer les ressources</span><span class="sxs-lookup"><span data-stu-id="154b6-163">8. Clean up resources</span></span>
 
-<span data-ttu-id="07ae5-164">Quand vous n’avez plus besoin du groupe de ressources, utilisez la commande [az group delete](/cli/azure/group) pour supprimer celui-ci ainsi que toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="07ae5-164">When no longer needed, use the [az group delete](/cli/azure/group) command to remove the resource group, and all related resources.</span></span>
+<span data-ttu-id="154b6-164">Quand vous n’avez plus besoin du groupe de ressources, utilisez la commande [az group delete](/cli/azure/group) pour supprimer celui-ci ainsi que toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="154b6-164">When no longer needed, use the [az group delete](/cli/azure/group) command to remove the resource group, and all related resources.</span></span>
 
 ```azurecli
 az group delete --name RG1forTutorial
 ```
 
-## <a name="see-also"></a><span data-ttu-id="07ae5-165">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="07ae5-165">See also</span></span>
+## <a name="see-also"></a><span data-ttu-id="154b6-165">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="154b6-165">See also</span></span>
 
-- [<span data-ttu-id="07ae5-166">Comment utiliser des paramètres persistants Azure CLI</span><span class="sxs-lookup"><span data-stu-id="07ae5-166">(How to work with Azure CLI persisted parameters</span></span>](param-persist-howto.md)
-- [<span data-ttu-id="07ae5-167">Configuration d’Azure CLI avec az configure</span><span class="sxs-lookup"><span data-stu-id="07ae5-167">Azure CLI Configuration using az configure</span></span>](/cli/azure/azure-cli-configuration)
+- [<span data-ttu-id="154b6-166">Comment utiliser des paramètres persistants Azure CLI</span><span class="sxs-lookup"><span data-stu-id="154b6-166">(How to work with Azure CLI persisted parameters</span></span>](param-persist-howto.md)
+- [<span data-ttu-id="154b6-167">Configuration d’Azure CLI avec az configure</span><span class="sxs-lookup"><span data-stu-id="154b6-167">Azure CLI Configuration using az configure</span></span>](/cli/azure/azure-cli-configuration)
