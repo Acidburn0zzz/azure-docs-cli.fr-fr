@@ -4,21 +4,141 @@ description: En savoir plus sur les dernières mises à jour d’Azure CLI
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
-ms.date: 03/02/2021
+ms.date: 03/23/2021
 ms.topic: article
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 632ad5195cd07d779d71314af3f9b4db2503a647
-ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+ms.openlocfilehash: 2a5dd1e49962a6ab3ed5a1f24761bf4c851a7333
+ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/16/2021
-ms.locfileid: "103498993"
+ms.lasthandoff: 03/23/2021
+ms.locfileid: "104928779"
 ---
 # <a name="azure-cli-release-notes"></a>Notes de publication d’Azure CLI
 
 # <a name="current-release-notes"></a>[Notes de publication de la version actuelle](#tab/azure-cli)
+
+## <a name="march-23-2021"></a>23 mars 2021
+
+Version 2.21.0
+
+### <a name="acr"></a>ACR
+
+* Sortie d’une trace dans `az acr login` pour l’auto-diagnostic de la latence des commandes Docker potentielle
+* Correctif #17172 : Exécution du contrôle d’intégrité derrière le proxy d’entreprise
+* `acr update` : Prise en charge de l’extraction anonyme
+* Correctif #16700 : Utilisation de l’API « exists » pour vérifier l’existence de blob de stockage
+
+### <a name="aks"></a>AKS
+
+* `aks update` : ajout de `--no-uptime-sla`
+* Correction de l’erreur cross-sub assigning identity et de l’erreur attach acr
+* Ajout de la prise en charge de l’ID de préfixe d’IP publique de nœud
+
+### <a name="apim"></a>APIM
+
+* [CHANGEMENT CASSANT]  `apim backup` : `--storage-account-container` ne prend pas en charge les valeurs multiples.
+* [CHANGEMENT CASSANT]  `apim restore` : `--storage-account-container` ne prend pas en charge les valeurs multiples.
+
+### <a name="app-service"></a>App Service
+
+* [CHANGEMENT CASSANT] Correction #16087 : `az webapp config ssl create` : définition du paramètre `--name` comme nécessaire.
+* Correction #17053 : `az webapp show` retourne des valeurs null pour les propriétés SiteConfig
+* Correction #17207 : `az webapp log config` : « level » toujours défini par défaut sur verbose
+
+### <a name="arm"></a>ARM
+
+* `az bicep build` : résolution d’un problème où les avertissements de génération ne s’affichaient pas
+
+### <a name="backup"></a>Sauvegarde
+
+* Ajout de `id_part` pour les noms de sous-ressources pour corriger `--ids`
+* Correctif #17094 : Création d’une suite de tests distincte pour les tests CRR
+* `az backup protection check-vm`: Ajout de `--vm` et de `--resource-group` comme paramètres facultatifs
+
+### <a name="cache"></a>Cache
+
+* `az cache` en GA
+
+### <a name="cdn"></a>CDN
+
+* `az afd rule create` : Correction du message `--help`
+
+### <a name="compute"></a>Compute
+
+* Correction d’un bogue de mise à jour d’utilisateur de machine virtuelle Windows
+* Correction #16585 : `az vmss deallocate` : `--instance-ids` échouait
+* `az vm create` : Nouveau paramètre `--platform-fault-domain` en mode Flex VMSS
+* `az vm create` : `--patch-mode` pour les machines virtuelles Linux
+* `az ssh vm` : Lancement automatique du navigateur quand l’obtention d’un certificat échoue
+* `az vm create` : Nouveau paramètre `--count`
+* `az vm create` : Lancement approuvé
+* Correction #16037 : az vm open-port accepte la liste des ports
+
+### <a name="extension"></a>Extension
+
+* Ajout d’un message actionnable quand une extension n’est pas compatible avec le noyau de l’interface CLI
+
+### <a name="key-vault"></a>Key Vault
+
+* `az keyvault role definition list` : Prise en charge de `--custom-role-only` pour lister uniquement les définitions de rôle personnalisées
+* Prise en charge de la définition de rôle personnalisé keyvault
+* Ajout de `--no-wait` pour la commande `az keyvault security-domain download` et de `--target-operation` pour la commande `az keyvault security-domain wait`
+
+### <a name="netappfiles"></a>NetAppFiles
+
+* `az netappfiles account backup show` : Opération ajoutée.
+* `az netappfiles account backup delete` : Opération ajoutée.
+* `az netappfiles account ad add` : Paramètre `--ldap-over-tls` ajouté.
+* `az netappfiles account create` : Paramètre `--encryption` ajouté.
+* `az netappfiles account update` : Paramètre `--encryption` ajouté.
+* `az netappfiles volume create` : Paramètre `--encryption-key-source` ajouté.
+* `az netappfiles volume create` : Suppression de la stratégie d’exportation par défaut pour nfsv4.1 et ajout de paramètres facultatifs pour la configuration d’une stratégie d’exportation pour nfsv4.1 : rule_index, unix_read_only, unix_read_write, cifs, allowed_clients
+
+### <a name="network"></a>Réseau
+
+* `az network public-ip prefix create`: Prise en charge d’`--zone 1 2 3`
+* `az network lb frontend-ip create`: Prise en charge d’`--zone 1 2 3`
+* Passage de la version « 2020-08-01 » à « 2020-11-01 »
+* `az network lb address-pool` : Prise en charge de sous-réseau lors de la création ou de la mise à jour d’un pool de back-ends basé sur IP d’un équilibreur de charge.
+
+### <a name="rdbms"></a>SGBDR
+
+* Ajout de tests pour le pipeline d’équipe de serveur flexible
+* Migration du SDK Python
+* Ajout de la fonctionnalité de création, d’affichage et de suppression de bases de données PostgreSQL
+* Mise à jour du SDK Python vers 8.1.0b2
+
+### <a name="role"></a>Role
+
+* `az ad app permission list/grant` : Amélioration du message d’erreur quand aucun principal de service associé n’existe pour l’application
+
+### <a name="search"></a>Recherche
+
+* `az search` : GA
+
+### <a name="service-fabric"></a>Service Fabric
+
+* `az sf certificate` : dépréciation des commandes cluster cert.
+
+### <a name="sql"></a>SQL
+
+* Ajout de commandes de groupe d’approbations de serveur
+
+### <a name="storage"></a>Stockage
+
+* Correction #16917 : `az storage account generate-sas` échouait quand une chaîne de connexion était fournie
+* Correction #16979 : `az storage container create` échouait quand des métadonnées de conteneur de stockage étaient fournies
+
+### <a name="upgrade"></a>Mettre à niveau
+
+* Correction #16952 : Correction d’ImportError après la mise à niveau
+
+### <a name="misc"></a>Divers
+
+* Autorisation de configurer un thème
 
 ## <a name="march-02-2021"></a>02 mars 2021
 

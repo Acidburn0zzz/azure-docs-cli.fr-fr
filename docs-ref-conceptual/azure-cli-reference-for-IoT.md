@@ -10,12 +10,12 @@ ms.author: dbradish
 ms.service: azure-cli
 ms.reviewer: paymaun.heidari
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 0d1c117274d4e363c921d9161fbbf1051d0b078b
-ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
+ms.openlocfilehash: 1d72cb1e2aad7f72c833145a966506623169dce6
+ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2020
-ms.locfileid: "91225454"
+ms.lasthandoff: 03/23/2021
+ms.locfileid: "104911054"
 ---
 # <a name="azure-cli-for-azure-iot"></a>Azure CLI pour Azure IoT
 
@@ -49,14 +49,13 @@ L’**extension** IoT introduit des fonctions en enrichies pour gérer, manipule
 | [az iot dps](/cli/azure/ext/azure-iot/iot/dps) | Oui | Gérer les entités dans un service Azure IoT Hub Device Provisioning.
 | [az iot edge](/cli/azure/ext/azure-iot/iot/edge) | | Gérer les solutions IoT en périphérie.
 | [az iot hub](/cli/azure/ext/azure-iot/iot/hub) | Oui | Gérer les entités dans un hub IoT Azure.
-| [az iot pnp](/cli/azure/ext/azure-iot/iot/pnp) | | Gérer les entités d’un référentiel de modèle IoT Plug-and-Play.
 
 ### <a name="additional-cli-commands-for-azure-services-used-by-iot"></a>Commandes CLI supplémentaires pour les services Azure utilisés par IoT
 
 | Informations de référence | Type | Description
 |-|-|-|
 | [az maps](/cli/azure/maps) | core | Gérer Azure Maps.
-| [az timeseriesinsights](/cli/azure/ext/timeseriesinsights/timeseriesinsights) | extension | Gérer Azure Time Series Insights.
+| [az tsi](/cli/azure/ext/timeseriesinsights) | extension | Gérer Azure Time Series Insights.
 
 ### <a name="extension-reference-installation"></a>Installation de référence des extensions
 
@@ -76,7 +75,6 @@ az extension add --name azure-iot
 - [Déployer et superviser des modules IoT Edge à grande échelle avec l’extension Azure CLI pour IoT](/azure/iot-edge/how-to-deploy-cli-at-scale)
 - [Envoyer des données de télémétrie à un appareil et les superviser avec l’extension Azure CLI pour IoT](/azure/iot-hub/quickstart-send-telemetry-cli)
 - [Utiliser Azure CLI pour configurer le routage des messages IoT Hub](/azure/iot-hub/tutorial-routing-config-message-routing-cli)
-- [Gérer les interfaces dans un référentiel de modèles Plug-and-Play](/azure/iot-pnp/howto-install-pnp-cli#manage-interfaces-in-a-model-repository)
 
 ## <a name="azure-cli-reference-examples"></a>Exemples de référence Azure CLI
 
