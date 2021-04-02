@@ -7,12 +7,12 @@ ms.service: azure-cli
 ms.topic: how-to
 ms.date: 03/01/2021
 ms.custom: template-how-to
-ms.openlocfilehash: 18bd938403d18a14278a7b8a97ca93bc0e0d0f1c
-ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+ms.openlocfilehash: 6b43bb426ae0ad3e9d7b5c46fbf59ff1552d1560
+ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/16/2021
-ms.locfileid: "103554912"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105581646"
 ---
 # <a name="specifying-values-in-azure-cli-commands"></a>Spécification de valeurs dans les commandes Azure CLI
 
@@ -62,7 +62,7 @@ De nombreuses commandes nécessitent un abonnement spécifique. Les ressources A
 az account show --output table
 ```
 
-Il est possible que vous n’ayez accès qu’à un seul abonnement. Pour plus d’informations, consultez [Utiliser des abonnements Azure avec Azure CLI](/cli/azure/manage-azure-subscriptions-azure-cli). Vous pouvez utiliser la commande [az account set](/cli/azure/account#az-account-set) pour définir votre abonnement actif :
+Il est possible que vous n’ayez accès qu’à un seul abonnement. Pour plus d’informations, consultez [Utiliser des abonnements Azure avec Azure CLI](/cli/azure/manage-azure-subscriptions-azure-cli). Vous pouvez utiliser la commande [az account set](/cli/azure/account#az_account_set) pour définir votre abonnement actif :
 
 ```azurecli
 az account set --subscription "My Demos"

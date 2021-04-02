@@ -10,12 +10,12 @@ ms.topic: conceptual
 ms.devlang: azurecli
 ms.technology: azure-cli
 ms.custom: devex-track-azurecli
-ms.openlocfilehash: c4dea58ba62632eeb46d137bf6d4fa4485da4599
-ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
+ms.openlocfilehash: a5c46dcc428cc491e7153633c269faacfa2cebfc
+ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/23/2021
-ms.locfileid: "104947524"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105581561"
 ---
 # <a name="tutorial-use-persisted-parameters-to-simplify-sequential-azure-cli-commands"></a>Tutoriel : Utiliser des paramètres persistants pour simplifier les commandes Azure CLI séquentielles
 
@@ -51,7 +51,7 @@ Si vous n’avez pas d’abonnement Azure, créez un [compte gratuit](https://az
    - Sélectionnez le bouton **Cloud Shell** dans la barre de menus en haut à droite du [portail Azure](https://portal.azure.com).
 
 1. Si vous utilisez une installation locale d’Azure CLI, effectuez les étapes suivantes :
-   - Connectez-vous à l’aide de la commande [az login](/cli/azure/reference-index#az-login), puis suivez les étapes affichées dans votre terminal pour effectuer le processus d’authentification.
+   - Connectez-vous à l’aide de la commande [az login](/cli/azure/reference-index#az_login), puis suivez les étapes affichées dans votre terminal pour effectuer le processus d’authentification.
 
      ```azurecli
      az login
@@ -127,7 +127,7 @@ Pour stocker les valeurs de paramètres persistants, exécutez une commande Azur
 
 1. Créez un paramètre persistant sans définir de nouvelle ressource.
 
-   Si vous ne souhaitez pas définir une nouvelle ressource Azure, les paramètres `resource_group_name` et `location` peuvent être stockés à l’aide de commandes non-create comme `show` ou `list`.   Pour obtenir la liste complète des paramètres pris en charge et l’action nécessaire pour conserver les valeurs, consultez [Paramètres persistants dans Azure CLI](/cli/azure/param-persist-howto#compare-parameter-persistence-and-global-variables).  Cet exemple supprime également toutes les valeurs des paramètres à l’aide de la commande [az config param-persist delete](/cli/azure/config/param-persist#az-param-persist-delete).
+   Si vous ne souhaitez pas définir une nouvelle ressource Azure, les paramètres `resource_group_name` et `location` peuvent être stockés à l’aide de commandes non-create comme `show` ou `list`.   Pour obtenir la liste complète des paramètres pris en charge et l’action nécessaire pour conserver les valeurs, consultez [Paramètres persistants dans Azure CLI](/cli/azure/param-persist-howto#compare-parameter-persistence-and-global-variables).  Cet exemple supprime également toutes les valeurs des paramètres à l’aide de la commande [az config param-persist delete](/cli/azure/config/param-persist#az_param_persist_delete).
 
    ```azurecli
    # Clear all persisted parameters for demonstration.
@@ -259,7 +259,7 @@ az functionapp create \
 
 ## <a name="6-delete-persisted-parameters"></a>6. Supprimer des paramètres persistants
 
-Utilisez la commande [az config param-persist delete](/cli/azure/param-persist#az-param-persist-delete) pour supprimer des entrées.
+Utilisez la commande [az config param-persist delete](/cli/azure/param-persist#az_param_persist_delete) pour supprimer des entrées.
 
 ```azurecli
 # Remove a single persisted parameters entry by specifying the name, not the value
@@ -286,7 +286,7 @@ az config param-persist delete --all --yes
 
 ## <a name="7-turn-persisted-parameters-off"></a>7. Désactiver les paramètres persistants
 
-Vous pouvez désactiver les paramètres persistants à l’aide de la commande [az config param-persist off](/cli/azure/param-persist#az-param-persist-off), mais les données enregistrées des paramètres persistants ne sont pas supprimées.
+Vous pouvez désactiver les paramètres persistants à l’aide de la commande [az config param-persist off](/cli/azure/param-persist#az_param_persist_off), mais les données enregistrées des paramètres persistants ne sont pas supprimées.
 
 ```azurecli
 # Turn persisted parameters off

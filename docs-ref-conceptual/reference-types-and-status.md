@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 982e2c5efc4ee0426de81025a558888c2e29790e
-ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
+ms.openlocfilehash: 2d651dc718413ba69138344680290350ca077c69
+ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/23/2021
-ms.locfileid: "104909966"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105581153"
 ---
 # <a name="overview-azure-cli-reference-types-and-status"></a>Présentation : Types et état de référence Azure CLI
 
@@ -26,8 +26,8 @@ La syntaxe d’Azure CLI est une combinaison de références, de commandes et d
 
 | Service Azure | Informations de référence | Sous-service de référence | Commande | Commande de référence complète | Exemples de paramètres
 |-|-|-|-|-|-|
-| Azure CLI | [az configure](/cli/azure/reference-index#az-configure) | | | az configure | --defaults, --list-default, --scope
-| Réseau Azure | [az network](/cli/azure/network) | application-gateway | create | [az network application-gateway create](/cli/azure/network/application-gateway#az-network-application-gateway-create) | --name, --resource-group, --capacity
+| Azure CLI | [az configure](/cli/azure/reference-index#az_configure) | | | az configure | --defaults, --list-default, --scope
+| Réseau Azure | [az network](/cli/azure/network) | application-gateway | create | [az network application-gateway create](/cli/azure/network/application-gateway#az_network_application_gateway_create) | --name, --resource-group, --capacity
 | Azure DevOps Server | [az pipelines](/cli/azure/pipelines) | agent | list | [az pipelines agent list](/cli/azure/pipelines/agent) | --pool-id, --agent-name, --demands
 
 ## <a name="reference-types"></a>Types référence
@@ -59,7 +59,7 @@ Les extensions ne sont pas fournies dans le cadre de l’interface CLI mais elle
 | az iot hub device identify create | | Oui
 
 > [!IMPORTANT]
-> Vous devez installer une extension avant de l’utiliser en exécutant la commande [az extension add](/cli/azure/extension#az-extension-add).
+> Vous devez installer une extension avant de l’utiliser en exécutant la commande [az extension add](/cli/azure/extension#az_extension_add).
 
 Vous pouvez en savoir plus sur les références d’extension, notamment l’installation et la mise à jour dans [Utiliser des extensions avec l’interface Azure CLI](azure-cli-extensions-overview.md).  Pour obtenir la liste complète des commandes de références d’extension, consultez [Extensions disponibles pour Azure CLI](azure-cli-extensions-list.md).
 

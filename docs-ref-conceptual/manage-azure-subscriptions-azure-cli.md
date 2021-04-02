@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 6a980c45627c79c9e3f8c6c920944cc3dc62281f
-ms.sourcegitcommit: 3e79897e0aeca4d74bc8ff0410121b011b5884ec
+ms.openlocfilehash: a2a4467bc25fb8da8ced0c7b8cb6c4db9eb35e64
+ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99495225"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105581833"
 ---
 # <a name="use-azure-subscriptions-with-azure-cli"></a>Utiliser des abonnements Azure avec Azure CLI
 
@@ -63,9 +63,9 @@ az storage account create --resource-group StorageGroups --subscription "My Demo
 
 ## <a name="change-the-active-subscription"></a>Modifier l’abonnement actif
 
-Vous pouvez modifier votre abonnement actif à l’aide de la commande [az account set](/cli/azure/account#az-account-set).
+Vous pouvez modifier votre abonnement actif à l’aide de la commande [az account set](/cli/azure/account#az_account_set).
 
-Obtenez une liste de vos abonnements à l’aide de la commande [az account list](/cli/azure/account#az-account-list) :
+Obtenez une liste de vos abonnements à l’aide de la commande [az account list](/cli/azure/account#az_account_list) :
 
 ```azurecli
 az account list --output table
@@ -73,7 +73,7 @@ az account list --output table
 
 Cette commande liste tous les abonnements auxquels vous pouvez accéder. Votre abonnement actif est marqué comme `True` dans la colonne `IsDefault`. Si, contre toute attente, il manque un abonnement, ajoutez le paramètre `--refresh` pour obtenir la liste la plus récente des abonnements.
 
-Pour basculer vers un autre abonnement, utilisez [az account set](/cli/azure/account#az-account-set) avec l’ID ou le nom de l’abonnement vers lequel vous voulez basculer.
+Pour basculer vers un autre abonnement, utilisez [az account set](/cli/azure/account#az_account_set) avec l’ID ou le nom de l’abonnement vers lequel vous voulez basculer.
 
 ```azurecli
 az account set --subscription "My Demos"
@@ -81,7 +81,7 @@ az account set --subscription "My Demos"
 
 Vos abonnements ont à la fois un nom et un ID, qui est un GUID. Vous pouvez utiliser l’un ou l’autre pour ces commandes. Si vous utilisez un nom qui comprend des espaces, utilisez des guillemets.
 
-Si vous réexécutez la commande [az account list](/cli/azure/account#az-account-list), la colonne `IsDefault` indique votre abonnement actif actuel.
+Si vous réexécutez la commande [az account list](/cli/azure/account#az_account_list), la colonne `IsDefault` indique votre abonnement actif actuel.
 
 ## <a name="create-management-groups"></a>Créer des groupes d’administration
 

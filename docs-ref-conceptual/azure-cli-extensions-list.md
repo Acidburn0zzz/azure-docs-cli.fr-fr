@@ -9,18 +9,18 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure-cli
 ms.devlang: azure-cli
-ms.openlocfilehash: c2e4b7d024ca20f65690dcfd5caf35026c926c45
-ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+ms.openlocfilehash: 3e54f934770a71fff80ac063bdd41ccf74b3a673
+ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/16/2021
-ms.locfileid: "103523558"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105581340"
 ---
 # <a name="available-extensions-for-the-azure-cli"></a>Extensions disponibles pour Azure CLI
 
 Cet article comporte une liste complète des extensions disponibles pour Azure CLI qui sont prises en charge par Microsoft.
 
-La liste des extensions est également disponible à partir de l’interface CLI. Pour l’obtenir, exécutez [az extension list-available](/cli/azure/extension#az-extension-list-available) :
+La liste des extensions est également disponible à partir de l’interface CLI. Pour l’obtenir, exécutez [az extension list-available](/cli/azure/extension#az_extension_list_available) :
 
 ```azurecli-interactive
 az extension list-available --output table

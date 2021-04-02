@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: a399fde57b85b7e0b46e426d35cb67fd10efed1a
-ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
+ms.openlocfilehash: 4569f66f58c18257c461e553d2d6ce0979fa0295
+ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2020
-ms.locfileid: "91225743"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105581323"
 ---
 # <a name="use-extensions-with-azure-cli"></a>Utilisez des extensions avec Azure CLI 
 
@@ -23,7 +23,7 @@ Avec les extensions, vous obtenez l’accès aux commandes expérimentales et pr
 
 ## <a name="find-extensions"></a>Rechercher des extensions
 
-Pour voir les extensions fournies et gérées par Microsoft, utiliser la commande [az extension list-available](/cli/azure/extension#az-extension-list-available).
+Pour voir les extensions fournies et gérées par Microsoft, utiliser la commande [az extension list-available](/cli/azure/extension#az_extension_list_available).
 
 ```azurecli-interactive
 az extension list-available --output table
@@ -35,7 +35,7 @@ Nous hébergeons également une [liste des extensions](azure-cli-extensions-list
 
 ### <a name="install-extensions-manually"></a>Installer les extensions manuellement
 
-Une fois que vous avez trouvé une extension à installer, utilisez la commande [az extension add](/cli/azure/extension#az-extension-add) pour l’obtenir. Si l’extension est répertoriée dans `az extension list-available`, vous pouvez installer l’extension par nom.
+Une fois que vous avez trouvé une extension à installer, utilisez la commande [az extension add](/cli/azure/extension#az_extension_add) pour l’obtenir. Si l’extension est répertoriée dans `az extension list-available`, vous pouvez installer l’extension par nom.
 
 ```azurecli-interactive
 az extension add --name <extension-name>
@@ -73,7 +73,7 @@ az config set extension.run_after_dynamic_install=yes
 
 ## <a name="update-extensions"></a>Mettre à jour les extensions
 
-Si une extension a été installée par nom, mettez-la à jour à l’aide de la commande [az extension update](/cli/azure/extension#az-extension-update).
+Si une extension a été installée par nom, mettez-la à jour à l’aide de la commande [az extension update](/cli/azure/extension#az_extension_update).
 
 ```azurecli-interactive
 az extension update --name <extension-name>
@@ -86,7 +86,7 @@ Essayez de mettre à jour l’interface de ligne de commande en suivant les inst
 
 ## <a name="uninstall-extensions"></a>Désinstaller les extensions
 
-Si vous n’avez plus besoin d’une extension, vous pouvez la supprimer avec la commande [az extension remove](/cli/azure/extension#az-extension-remove).
+Si vous n’avez plus besoin d’une extension, vous pouvez la supprimer avec la commande [az extension remove](/cli/azure/extension#az_extension_remove).
 
 ```azurecli-interactive
 az extension remove --name <extension-name>

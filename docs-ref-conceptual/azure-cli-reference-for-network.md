@@ -3,19 +3,19 @@ title: Références Azure CLI pour Azure Network
 description: Page de destination des références Azure CLI pour Azure Network
 author: dbradish-microsoft
 manager: barbkess
-ms.devlang: azurecli
 ms.topic: reference
 ms.date: 06/30/2020
 ms.author: dbradish
 ms.service: azure-cli
+ms.devlang: azurecli
 ms.reviewer: mohnader
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 2155be0bca6b6aa297e4be07a685a379892523c6
-ms.sourcegitcommit: 5d29362589078b66d15f5cd494fe903a5195658d
+ms.openlocfilehash: 171d35be6bd43cd4de8436f49f4b766e9ae90626
+ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2020
-ms.locfileid: "91225913"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105581306"
 ---
 # <a name="azure-cli-for-azure-network"></a>Azure CLI pour Azure Network
 
@@ -95,9 +95,9 @@ Pour obtenir la liste complète des références principales d’interface de li
 
 | Sous-groupe | Informations de référence | Utilisation | Est une extension
 |-|-|-|-|
-| Service | [az network list-service-aliases](/cli/azure/network#az-network-list-service-aliases) | Lister les alias de service disponibles dans la région qui peuvent être utilisés pour les stratégies de point de terminaison de service. |
-| Service | [az network list-service-tags](/cli/azure/network#az-network-list-service-tags) | Lister toutes les étiquettes de service qui appartiennent à des ressources différentes. |
-| Usage | [az network list-usages](/cli/azure/network#az-network-list-usages) | Lister le nombre de ressources réseau dans une région utilisées par rapport à un quota d’abonnement. |
+| Service | [az network list-service-aliases](/cli/azure/network#az_network_list_service_aliases) | Lister les alias de service disponibles dans la région qui peuvent être utilisés pour les stratégies de point de terminaison de service. |
+| Service | [az network list-service-tags](/cli/azure/network#az_network_list_service_tags) | Lister toutes les étiquettes de service qui appartiennent à des ressources différentes. |
+| Usage | [az network list-usages](/cli/azure/network#az_network_list_usages) | Lister le nombre de ressources réseau dans une région utilisées par rapport à un quota d’abonnement. |
 
 ## <a name="installing-extension-references"></a>Installation des références d’extension
 

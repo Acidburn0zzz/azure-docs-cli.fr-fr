@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 6b64a8f781907977d6123561d91fb8266a0ebe08
-ms.sourcegitcommit: 594e9c620a6f74f5eaedf91a7f6a791e03a64c74
+ms.openlocfilehash: 5bcabef8d4223ced6585ec4a6151fb475b13e6e7
+ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/17/2021
-ms.locfileid: "100631065"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105581170"
 ---
 # <a name="create-an-azure-service-principal-with-the-azure-cli"></a>Créer un principal du service Azure à l’aide d’Azure CLI
 
@@ -26,7 +26,7 @@ Cet article vous explique les étapes à suivre pour créer, réinitialiser et o
 
 ## <a name="create-a-service-principal"></a>Créer un principal du service
 
-Créez un principal de service à l’aide de la commande [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac). Lorsque vous créez un principal de service, vous choisissez le type d’authentification de connexion qu’il utilise.
+Créez un principal de service à l’aide de la commande [az ad sp create-for-rbac](/cli/azure/ad/sp#az_ad_sp_create_for_rbac). Lorsque vous créez un principal de service, vous choisissez le type d’authentification de connexion qu’il utilise.
 
 Il existe deux types d’authentification disponibles pour les principaux de service : L’authentification basée sur un mot de passe et l’authentification basée sur un certificat.
 
@@ -55,7 +55,7 @@ Sans aucun paramètre d’authentification, l’authentification basée sur un m
 La sortie d’un principal de service avec l’authentification par mot de passe comprend la clé `password`. __Assurez-vous__ d’avoir copié cette valeur : elle ne pourra être récupérée. Si vous oubliez le mot de passe, effectuez une [réinitialisation des informations d’identification du principal du service](#reset-credentials).
 
 Les clés `appId` et `tenant` s’affichent dans la sortie de `az ad sp create-for-rbac` et sont utilisés dans l’authentification du principal du service.
-Enregistrez leurs valeurs, mais elles peuvent être récupérées à tout moment avec la [liste az ad sp](/cli/azure/ad/sp#az-ad-sp-list).
+Enregistrez leurs valeurs, mais elles peuvent être récupérées à tout moment avec la [liste az ad sp](/cli/azure/ad/sp#az_ad_sp_list).
 
 ### <a name="certificate-based-authentication"></a>Authentification par certificat
 
@@ -124,14 +124,14 @@ az ad sp create-for-rbac --name ServicePrincipalName --create-cert --cert CertNa
 À moins que vous ne stockiez le certificat dans Key Vault, la sortie comprend la clé `fileWithCertAndPrivateKey`. La valeur de cette clé vous indique l’emplacement dans lequel le certificat généré est stocké.
 __Assurez-vous__ d’avoir copié le certificat à un emplacement sécurisé ou vous ne pourrez pas vous connecter avec ce principal de service.
 
-Pour les certificats stockés dans Key Vault, récupérez la clé privée du certificat avec l’[affichage du secret du coffre de clés az](/cli/azure/keyvault/secret#az-keyvault-secret-show). Dans Key Vault, le nom du secret du certificat est le même que le nom du certificat. Si vous perdez l’accès à la clé privée d’un certificat, effectuez la [réinitialisation des informations d’identification du principal du service](#reset-credentials).
+Pour les certificats stockés dans Key Vault, récupérez la clé privée du certificat avec l’[affichage du secret du coffre de clés az](/cli/azure/keyvault/secret#az_keyvault_secret_show). Dans Key Vault, le nom du secret du certificat est le même que le nom du certificat. Si vous perdez l’accès à la clé privée d’un certificat, effectuez la [réinitialisation des informations d’identification du principal du service](#reset-credentials).
 
 Les clés `appId` et `tenant` s’affichent dans la sortie de `az ad sp create-for-rbac` et sont utilisés dans l’authentification du principal du service.
-Enregistrez leurs valeurs, mais elles peuvent être récupérées à tout moment avec la [liste az ad sp](/cli/azure/ad/sp#az-ad-sp-list).
+Enregistrez leurs valeurs, mais elles peuvent être récupérées à tout moment avec la [liste az ad sp](/cli/azure/ad/sp#az_ad_sp_list).
 
 ## <a name="get-an-existing-service-principal"></a>Obtenir un principal de service existant
 
-Une liste des principaux de service dans un locataire peut être récupérée avec la [liste az ad sp](/cli/azure/ad/sp#az-ad-sp-list). Par défaut, la commande retourne les cents premiers principaux de service de votre locataire. Pour obtenir tous les principaux de service d’un locataire, utilisez l’argument `--all`. Obtenir cette liste peut prendre beaucoup de temps, il est donc recommandé de filtrer la liste avec l’un des arguments suivants :
+Une liste des principaux de service dans un locataire peut être récupérée avec la [liste az ad sp](/cli/azure/ad/sp#az_ad_sp_list). Par défaut, la commande retourne les cents premiers principaux de service de votre locataire. Pour obtenir tous les principaux de service d’un locataire, utilisez l’argument `--all`. Obtenir cette liste peut prendre beaucoup de temps, il est donc recommandé de filtrer la liste avec l’un des arguments suivants :
 
 * `--display-name` demande les principaux de service ayant un _préfixe_ qui correspond au nom fourni. Le nom d’affichage d’un principal de service est la valeur définie avec le paramètre `--name` lors de la création. Si vous n’avez pas défini `--name` lors de la création du principal de service, le nom du préfixe est `azure-cli-`.
 * `--spn` filtre la correspondance exacte de nom de principal du service. Le nom de principal du service commence toujours par `https://`.
@@ -147,17 +147,17 @@ az ad sp list --show-mine --query "[].{id:appId, tenant:appOwnerTenantId}"
 
 > [!IMPORTANT]
 >
-> `az ad sp list` ou [affichage az ad sp](/cli/azure/ad/sp#az-ad-sp-show) permettent d’obtenir l’utilisateur et le locataire, mais pas les secrets d’authentification _ou_ la méthode d’authentification.
-> Les secrets des certificats dans Key Vault peuvent être récupérés avec [affichage du secret du coffre de clés az](/cli/azure/keyvault/secret#az-keyvault-secret-show), mais aucun autre secret n’est stocké par défaut.
+> `az ad sp list` ou [affichage az ad sp](/cli/azure/ad/sp#az_ad_sp_show) permettent d’obtenir l’utilisateur et le locataire, mais pas les secrets d’authentification _ou_ la méthode d’authentification.
+> Les secrets des certificats dans Key Vault peuvent être récupérés avec [affichage du secret du coffre de clés az](/cli/azure/keyvault/secret#az_keyvault_secret_show), mais aucun autre secret n’est stocké par défaut.
 > Si vous oubliez une méthode d’authentification ou un secret, effectuez la [réinitialisation des informations d’identification du principal du service](#reset-credentials).
 
 ## <a name="manage-service-principal-roles"></a>Gérer les rôles du principal du service
 
 L’interface de ligne de commande Azure fournit les commandes suivantes de gestion d’attributions de rôle :
 
-* [az role assignment list](/cli/azure/role/assignment#az-role-assignment-list)
-* [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create)
-* [az role assignment delete](/cli/azure/role/assignment#az-role-assignment-delete)
+* [az role assignment list](/cli/azure/role/assignment#az_role_assignment_list)
+* [az role assignment create](/cli/azure/role/assignment#az_role_assignment_create)
+* [az role assignment delete](/cli/azure/role/assignment#az_role_assignment_delete)
 
 Un principal du service a le rôle **Contributor** (Collaborateur) par défaut. Ce rôle dispose des autorisations complètes de lecture et d’écriture dans un compte Azure. Le rôle de **Lecteur** est plus restrictif avec un accès en lecture seule.  Pour plus d’informations sur les rôles et le contrôle d’accès en fonction du rôle, consultez [RBAC : rôles intégrés pour les ressources Azure](/azure/active-directory/role-based-access-built-in-roles).
 
@@ -242,7 +242,7 @@ Pour vous connecter avec un principal de service, vous avez besoin que `appId`, 
 
 ## <a name="reset-credentials"></a>Réinitialiser les informations d’identification
 
-Si vous avez oublié les informations d’identification d’un principal du service, utilisez la [réinitialisation des informations d’identification az ad sp](/cli/azure/ad/sp/credential#az-ad-sp-credential-reset). La commande de réinitialisation utilise les mêmes arguments que `az ad sp create-for-rbac`.
+Si vous avez oublié les informations d’identification d’un principal du service, utilisez la [réinitialisation des informations d’identification az ad sp](/cli/azure/ad/sp/credential#az_ad_sp_credential_reset). La commande de réinitialisation utilise les mêmes arguments que `az ad sp create-for-rbac`.
 
 ```azurecli-interactive
 az ad sp credential reset --name APP_ID
