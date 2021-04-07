@@ -5,12 +5,12 @@ manager: barbkess
 ms.date: 11/24/2020
 ms.topic: include
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: c0de92ff9aed581d192d72ca920fafea8bbd192b
-ms.sourcegitcommit: 594e9c620a6f74f5eaedf91a7f6a791e03a64c74
+ms.openlocfilehash: 6044626c584eba4fd4ec55e11314cb89e20b3417
+ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/17/2021
-ms.locfileid: "100631002"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105582269"
 ---
 ## <a name="overview"></a>Vue d’ensemble
 
@@ -49,7 +49,7 @@ Pour les distributions Linux avec `dnf` telles que RHEL, Fedora ou CentOS, il ex
    sudo dnf install azure-cli
    ```
  
-Exécutez Azure CLI avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).
+Exécutez Azure CLI avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az_login).
 
 
 [!INCLUDE [interactive-login](interactive-login.md)]

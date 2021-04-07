@@ -7,12 +7,12 @@ ms.topic: include
 ms.service: azure-cli
 ms.devlang: azurecli
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 2cba7031b3fe4c54edcb7c0dcef6f37b97d2f785
-ms.sourcegitcommit: d5f026468ea20bbd7ef35bdbf9852bcb2b812d83
+ms.openlocfilehash: d02856e18fcbf395bb6f304b3dea9a17a6dc0a2c
+ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/23/2020
-ms.locfileid: "97744613"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105582348"
 ---
 ## <a name="overview"></a>Vue d’ensemble
 
@@ -39,7 +39,7 @@ curl -L https://aka.ms/InstallAzureCli | bash
 
 Le script peut également être téléchargé et exécuté localement. Vous devrez peut-être redémarrer votre interpréteur de commandes pour que certaines modifications soient prises en compte.
 
-Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).
+Vous pouvez ensuite exécuter l’interface de ligne de commande Azure avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az_login).
 
 [!INCLUDE [interactive-login](interactive-login.md)]
 
@@ -86,7 +86,7 @@ Pour obtenir les scripts d’installation, votre proxy doit autoriser les connex
 
 [!INCLUDE[troubleshoot-wsl.md](troubleshoot-wsl.md)]
 
-## <a name="uninstall"></a>Désinstaller
+## <a name="uninstall"></a>Désinstaller l’interface
 
 [!INCLUDE [uninstall-boilerplate.md](uninstall-boilerplate.md)]
 

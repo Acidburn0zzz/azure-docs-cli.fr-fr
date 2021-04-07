@@ -5,12 +5,12 @@ manager: barbkess
 ms.date: 09/29/2020
 ms.topic: include
 ms.custom: devx-track-azurecli
-ms.openlocfilehash: 31b6a6e1c4c987ea351ccebc5d5bf23313ed856f
-ms.sourcegitcommit: 547d3db8a1469f11d33e738a82d96cb51de61bd6
+ms.openlocfilehash: 5f395b922ae4c39932854adf9f10fba14d71e47a
+ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98147695"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105582908"
 ---
 ## <a name="overview"></a>Vue d’ensemble
 
@@ -74,7 +74,7 @@ Si vous préférez suivre un processus d’installation pas à pas, effectuez le
 
 ## <a name="sign-in-to-azure-with-the-azure-cli"></a>Se connecter à Azure avec Azure CLI
 
-Exécutez Azure CLI avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az-login).
+Exécutez Azure CLI avec la commande `az`. Pour vous connecter, utilisez la commande [az login](/cli/azure/reference-index#az_login).
 
 [!INCLUDE [interactive-login](interactive-login.md)]
 
