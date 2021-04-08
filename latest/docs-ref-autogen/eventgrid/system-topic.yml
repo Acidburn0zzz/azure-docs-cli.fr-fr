@@ -1,29 +1,28 @@
 ### YamlMime:AzureCLIGroup
-uid: az_eventgrid_system_topic
+uid: az_eventgrid_system-topic
 name: az eventgrid system-topic
 summary: Gérer les rubriques du système.
 description: ''
 directCommands:
-- uid: az_eventgrid_system_topic_create
+- uid: az_eventgrid_system-topic_create
   name: az eventgrid system-topic create
   summary: Créer une rubrique système.
   description: ''
   syntax: >-
-    az eventgrid system-topic create --location
-                                     --name
+    az eventgrid system-topic create --name
                                      --resource-group
                                      --source
                                      --topic-type
+                                     [--identity {noidentity, systemassigned}]
+                                     [--location]
                                      [--subscription]
                                      [--tags]
   examples:
   - summary: Créer une nouvelle rubrique système pour la source du compte de stockage.
     syntax: az eventgrid system-topic create -g rg1 --name systemtopic1 --location westus2 --topic-type microsoft.storage.storageaccounts --source /subscriptions/1b3b4501-23b9-4790-c31b-ddbd88d72123/resourceGroups/rg2/providers/Microsoft.Storage/storageAccounts/stgaccountname
+  - summary: Créer une nouvelle rubrique système avec l’identité systemassigned
+    syntax: az eventgrid system-topic create -g rg1 --name systemtopic1 --location westus2 --topic-type microsoft.storage.storageaccounts --source /subscriptions/1b3b4501-23b9-4790-c31b-ddbd88d72123/resourceGroups/rg2/providers/Microsoft.Storage/storageAccounts/stgaccountname --identity systemassigned
   requiredParameters:
-  - isRequired: true
-    name: --location -l
-    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
-    description: ''
   - isRequired: true
     name: --name -n
     summary: Nom de la rubrique du système.
@@ -41,6 +40,13 @@ directCommands:
     summary: Nom du type de rubrique.
     description: ''
   optionalParameters:
+  - name: --identity
+    parameterValueGroup: noidentity, systemassigned
+    summary: Type d’identité managée pour la ressource.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
@@ -48,7 +54,7 @@ directCommands:
     summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
-- uid: az_eventgrid_system_topic_delete
+- uid: az_eventgrid_system-topic_delete
   name: az eventgrid system-topic delete
   summary: Supprimer une rubrique du système.
   description: ''
@@ -78,7 +84,7 @@ directCommands:
     summary: Ne pas demander de confirmation.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
-- uid: az_eventgrid_system_topic_list
+- uid: az_eventgrid_system-topic_list
   name: az eventgrid system-topic list
   summary: Répertorier les rubriques système disponibles.
   description: ''
@@ -110,7 +116,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
-- uid: az_eventgrid_system_topic_show
+- uid: az_eventgrid_system-topic_show
   name: az eventgrid system-topic show
   summary: Obtenir les détails d’une rubrique du système.
   description: ''
@@ -142,12 +148,13 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
-- uid: az_eventgrid_system_topic_update
+- uid: az_eventgrid_system-topic_update
   name: az eventgrid system-topic update
   summary: Met à jour une rubrique du système.
   description: ''
   syntax: >-
-    az eventgrid system-topic update [--ids]
+    az eventgrid system-topic update [--identity {noidentity, systemassigned}]
+                                     [--ids]
                                      [--name]
                                      [--resource-group]
                                      [--subscription]
@@ -155,7 +162,13 @@ directCommands:
   examples:
   - summary: Met à jour les propriétés d’une rubrique système existante.
     syntax: az eventgrid system-topic update -g rg1 --name systemtopic1 --tags Dept=IT
+  - summary: Mettre à jour l’identité d’une rubrique système existante.
+    syntax: az eventgrid system-topic update -g rg1 --name systemtopic1 --identity systemassigned
   optionalParameters:
+  - name: --identity
+    parameterValueGroup: noidentity, systemassigned
+    summary: Type d’identité managée pour la ressource.
+    description: ''
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
     description: ''
@@ -173,17 +186,17 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
 commands:
-- az_eventgrid_system_topic_create
-- az_eventgrid_system_topic_delete
-- az_eventgrid_system_topic_event_subscription
-- az_eventgrid_system_topic_event_subscription_create
-- az_eventgrid_system_topic_event_subscription_delete
-- az_eventgrid_system_topic_event_subscription_list
-- az_eventgrid_system_topic_event_subscription_show
-- az_eventgrid_system_topic_event_subscription_update
-- az_eventgrid_system_topic_list
-- az_eventgrid_system_topic_show
-- az_eventgrid_system_topic_update
+- az_eventgrid_system-topic_create
+- az_eventgrid_system-topic_delete
+- az_eventgrid_system-topic_event-subscription
+- az_eventgrid_system-topic_event-subscription_create
+- az_eventgrid_system-topic_event-subscription_delete
+- az_eventgrid_system-topic_event-subscription_list
+- az_eventgrid_system-topic_event-subscription_show
+- az_eventgrid_system-topic_event-subscription_update
+- az_eventgrid_system-topic_list
+- az_eventgrid_system-topic_show
+- az_eventgrid_system-topic_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -201,11 +214,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 07/06/2020
+  ms.date: 04/01/2021
   description: Gérer les rubriques du système.
-  ms.openlocfilehash: 7e87991fc89e717974a09c8560ec8ee98365fe62
-  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.openlocfilehash: 0db11e893cd64e94eb0125d07828e1f3079478bb
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 09/29/2020
-  ms.locfileid: "102820760"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106869844"
