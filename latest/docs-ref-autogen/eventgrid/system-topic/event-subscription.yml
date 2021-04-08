@@ -1,10 +1,10 @@
 ### YamlMime:AzureCLIGroup
-uid: az_eventgrid_system_topic_event_subscription
+uid: az_eventgrid_system-topic_event-subscription
 name: az eventgrid system-topic event-subscription
 summary: Gérer les abonnements aux événements de la rubrique système.
 description: ''
 directCommands:
-- uid: az_eventgrid_system_topic_event_subscription_create
+- uid: az_eventgrid_system-topic_event-subscription_create
   name: az eventgrid system-topic event-subscription create
   summary: Créer un nouvel abonnement aux événements pour une rubrique du système.
   description: ''
@@ -16,6 +16,8 @@ directCommands:
                                                         [--azure-active-directory-application-id-or-uri]
                                                         [--azure-active-directory-tenant-id]
                                                         [--deadletter-endpoint]
+                                                        [--delivery-attribute-mapping]
+                                                        [--enable-advanced-filtering-on-arrays {false, true}]
                                                         [--endpoint]
                                                         [--endpoint-type {azurefunction, eventhub, hybridconnection, servicebusqueue, servicebustopic, storagequeue, webhook}]
                                                         [--event-delivery-schema {cloudeventschemav1_0, custominputschema, eventgridschema}]
@@ -26,6 +28,7 @@ directCommands:
                                                         [--max-delivery-attempts]
                                                         [--max-events-per-batch]
                                                         [--preferred-batch-size-in-kilobytes]
+                                                        [--qttl]
                                                         [--subject-begins-with]
                                                         [--subject-case-sensitive {false, true}]
                                                         [--subject-ends-with]
@@ -67,6 +70,19 @@ directCommands:
       az eventgrid system-topic event-subscription create -n es1 \
           -g rg1 --system-topic-name systemtopic1 \
           --endpoint /subscriptions/{SubID}/resourceGroups/{RG}/providers/Microsoft.Web/sites/{functionappname}/functions/{functionname} --endpoint-type azurefunction
+  - summary: Créer un nouvel abonnement aux événements pour une rubrique du système Event Grid à l’aide de la file d’attente de stockage comme destination avec une durée de vie de 5 minutes
+    syntax: >-
+      az eventgrid system-topic event-subscription create -n es1 \
+          -g rg1 --system-topic-name systemtopic1 \
+          --endpoint-type storagequeue \
+          --endpoint /subscriptions/{SubID}/resourceGroups/TestRG/providers/Microsoft.Storage/storageAccounts/sa1/queueservices/default/queues/q1 \
+          --storage-queue-msg-ttl 300
+  - summary: Créer un nouvel abonnement aux événements pour une rubrique du système Event Grid et activer le filtrage avancé sur les tableaux
+    syntax: >-
+      az eventgrid system-topic event-subscription create -n es1 \
+          -g rg1 --system-topic-name systemtopic1 \
+          --endpoint /subscriptions/{SubID}/resourceGroups/{RG}/providers/Microsoft.Web/sites/{functionappname}/functions/{functionname} --endpoint-type azurefunction \
+          --enable-advanced-filtering-on-arrays true
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -83,7 +99,7 @@ directCommands:
   optionalParameters:
   - name: --advanced-filter
     summary: Un filtre avancé permet de filtrer les événements en fonction d’une propriété d’événement spécifique.
-    description: Utilisation :--avancé-clé de filtre [. INNERKEY] FILTEROPERATOR VALEUR [VALEUR...] Chaîne :--avancé-filtrer les données. Chaîne de couleur en bleu rouge orange jaune StringNotIn :--avancé-filtrer les données. Couleur StringNotIn bleu rouge orange jaune StringContains :--avancé-filtre objet StringContains bleu rouge StringBeginsWith :--avancé-filtre objet StringBeginsWith bleu rouge StringEndsWith :--avancé-filtre objet StringEndsWith img png jpg numéro in :--Advanced-filtre Data. property1 Number in 5 10 20 NumberNotIn :--Advanced-filtre Data. Property2 NumberNotIn 100 200 300 NumberLessThan :--Advanced-filtrer les données. property3 NumberLessThan 100 NumberLessThanOrEquals :--Advanced-filtre Data. Property2 NumberLessThanOrEquals 100 NumberGreaterThan :--Advanced-filtre Data. property3 NumberGreaterThan 100 NumberGreaterThanOrEquals :--Advanced-filtre Data. Property2 NumberGreaterThanOrEquals 100 BoolEquals :--Advanced-filtre Data. property3 BoolEquals plusieurs filtres avancés peuvent être spécifiés à l’aide de plusieurs `--advanced-filter` arguments.
+    description: Utilisation :--avancé-clé de filtre [. INNERKEY] FILTEROPERATOR VALEUR [VALEUR...] Chaîne :--avancé-filtrer les données. Chaîne de couleur en bleu rouge orange jaune StringNotIn :--avancé-filtrer les données. Couleur StringNotIn bleue rouge orange jaune StringContains :--avancé-filtre objet StringContains bleu rouge StringNotContains :--avancé-filtre objet StringNotContains bleu rouge StringBeginsWith :--avancé-filtre objet StringBeginsWith bleu rouge StringNotBeginsWith :--avancé-objet filtre StringNotBeginsWith bleu rouge StringEndsWith :--Advanced-filtre objet StringEndsWith img png jpg StringNotEndsWith :--avancé-filtre objet StringNotEndsWith img png jpg numéro :--avancé-filtrer les données. property1 numéro de 5 10 20 NumberInRange--avancé-filtrer les données. property1 NumberInRange 5, 10 20, 30 40, 50 NumberNotIn :--avancé-filtrer les données. Property2 NumberNotIn 100 200 300 NumberNotInRange :--avancé-filtrer les données. Property2 NumberNotInRange 100 110 200 210 300 310 NumberLessThan :--Advanced-filtre Data. property3 NumberLessThan 100 NumberLessThanOrEquals :--Advanced-filtre Data. Property2 NumberLessThanOrEquals 100 NumberGreaterThan :--Advanced-filtre Data. property3 NumberGreaterThan 100 NumberGreaterThanOrEquals :--Advanced-filtre Data. Property2 NumberGreaterThanOrEquals 100 BoolEquals :--Advanced-filtre Data. property3 BoolEquals true IsNullOrUndefined :--Advanced-filtre Data. property3 IsNullOrUndefined IsNotNull :--Advanced-filtre Data. property3 IsNotNull plusieurs filtres avancés peuvent être spécifiés à l’aide de plusieurs `--advanced-filter` arguments.
   - name: --azure-active-directory-application-id-or-uri
     summary: L’ID d’application Azure Active Directory ou l’URI pour récupérer le jeton d’accès qui sera inclus comme jeton du porteur dans les demandes de remise. S’applique uniquement au webhook en tant que destination.
     description: ''
@@ -93,6 +109,13 @@ directCommands:
   - name: --deadletter-endpoint
     summary: ID de ressource Azure d’une destination de conteneur d’objets BLOB de stockage Azure où EventGrid doit lettres mortes des événements non remis pour cet abonnement aux événements.
     description: Exemple :--lettres mortes-Endpoint/subscriptions/{SubID}/resourceGroups/rg1/providers/Microsoft.Storage/storageAccounts/sa1/blobServices/default/containers/containerName.
+  - name: --delivery-attribute-mapping
+    summary: Ajoutez un mappage d’attribut de remise pour envoyer des informations supplémentaires via les en-têtes HTTP lors de la remise des événements. Cet attribut est valide pour tous les types de destinations, à l’exception de StorageQueue. Plusieurs attributs peuvent être spécifiés à l’aide de plusieurs `--delivery-attribute-mapping` arguments.
+    description: Utilisation :--Delivery-attribute-Mapping-attribut-Name-Attribute-Value [attribute-is-secret] mappage d’attribut statique :--Delivery-attribute-Mapping nom static SomeValue static attribute Mapping :--Delivery-attribute-Mapping nom statique SomeValue false mappage d’attribut statique :--Delivery-attribute-Mapping nom static SomeValue true Dynamic attribute :--Delivery-attribute-Mapping nom Dynamic SomeValue static :--Delivery-attribute-Mapping nom Dynamic SomeValue--Delivery-attribute-Mapping somename2 static SomeValue.
+  - name: --enable-advanced-filtering-on-arrays --enable-af-arr
+    parameterValueGroup: false, true
+    summary: Permet d’évaluer les filtres avancés par rapport à un tableau de valeurs au lieu d’attendre une valeur singulière.
+    description: ''
   - name: --endpoint
     summary: Point de terminaison où EventGrid doit remettre les événements correspondant à cet abonnement aux événements. Pour le type de point de terminaison webhook, il doit s’agir de l’URL du webhook correspondant. Pour les autres types de points de terminaison, il doit s’agir de l’identificateur de ressource Azure du point de terminaison. Il est prévu que le point de terminaison de destination soit déjà créé et disponible pour être utilisé avant d’exécuter une commande Event Grid.
     description: ''
@@ -128,6 +151,9 @@ directCommands:
   - name: --preferred-batch-size-in-kilobytes
     summary: Taille de lot par défaut, en kilo-octets. Doit être un nombre compris entre 1 et 1024.
     description: ''
+  - name: --qttl --storage-queue-msg-ttl
+    summary: Durée de vie du message de file d’attente de stockage en secondes.
+    description: ''
   - name: --subject-begins-with
     summary: Chaîne facultative pour filtrer les événements d’un abonnement d’événement en fonction d’un préfixe. Les caractères génériques ne sont pas pris en charge.
     description: ''
@@ -142,7 +168,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
-- uid: az_eventgrid_system_topic_event_subscription_delete
+- uid: az_eventgrid_system-topic_event-subscription_delete
   name: az eventgrid system-topic event-subscription delete
   summary: Supprimer un abonnement aux événements d’une rubrique système.
   description: ''
@@ -178,7 +204,7 @@ directCommands:
     summary: Ne pas demander de confirmation.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
-- uid: az_eventgrid_system_topic_event_subscription_list
+- uid: az_eventgrid_system-topic_event-subscription_list
   name: az eventgrid system-topic event-subscription list
   summary: Répertorier les abonnements aux événements d’une rubrique spécifique du système.
   description: ''
@@ -211,7 +237,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
-- uid: az_eventgrid_system_topic_event_subscription_show
+- uid: az_eventgrid_system-topic_event-subscription_show
   name: az eventgrid system-topic event-subscription show
   summary: Obtenir les détails d’un abonnement aux événements d’une rubrique du système.
   description: ''
@@ -219,6 +245,7 @@ directCommands:
     az eventgrid system-topic event-subscription show --name
                                                       --resource-group
                                                       --system-topic-name
+                                                      [--include-attrib-secret {false, true}]
                                                       [--include-full-endpoint-url {false, true}]
                                                       [--query-examples]
                                                       [--subscription]
@@ -227,6 +254,10 @@ directCommands:
     syntax: >-
       az eventgrid system-topic event-subscription show --name es1 \
            -g rg1 --system-topic-name systemtopic1
+  - summary: Afficher les détails d’un abonnement aux événements pour une rubrique du système de Event Grid inclut les secrets d’attribut de remise statique.
+    syntax: >-
+      az eventgrid system-topic event-subscription show --name es1 \
+           -g rg1 --system-topic-name systemtopic1 --include-attrib-secret
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -241,6 +272,10 @@ directCommands:
     summary: Nom de la rubrique du système.
     description: ''
   optionalParameters:
+  - name: --include-attrib-secret --include-static-delivery-attribute-secret
+    parameterValueGroup: false, true
+    summary: Indiquez si des secrets d’attribut de remise statique doivent être retournés. True si l’indicateur est présent.
+    description: ''
   - name: --include-full-endpoint-url
     parameterValueGroup: false, true
     summary: Spécifiez pour indiquer si l’URL complète du point de terminaison doit être retournée. True si l’indicateur est présent.
@@ -252,7 +287,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
-- uid: az_eventgrid_system_topic_event_subscription_update
+- uid: az_eventgrid_system-topic_event-subscription_update
   name: az eventgrid system-topic event-subscription update
   summary: Mettre à jour un abonnement aux événements d’une rubrique du système.
   description: ''
@@ -262,10 +297,13 @@ directCommands:
                                                         --system-topic-name
                                                         [--advanced-filter]
                                                         [--deadletter-endpoint]
+                                                        [--delivery-attribute-mapping]
+                                                        [--enable-advanced-filtering-on-arrays {false, true}]
                                                         [--endpoint]
                                                         [--endpoint-type {azurefunction, eventhub, hybridconnection, servicebusqueue, servicebustopic, storagequeue, webhook}]
                                                         [--included-event-types]
                                                         [--labels]
+                                                        [--qttl]
                                                         [--subject-begins-with]
                                                         [--subject-ends-with]
                                                         [--subscription]
@@ -298,6 +336,16 @@ directCommands:
           --endpoint https://contoso.azurewebsites.net/api/f1?code=code
           --advanced-filter data.blobType StringIn BlockBlob
           --advanced-filter data.url StringBeginsWith https://myaccount.blob.core.windows.net
+  - summary: Mettre à jour un abonnement aux événements pour une rubrique du système Event Grid avec la file d’attente de stockage comme destination avec une durée de vie de 5 minutes
+    syntax: >-
+      az eventgrid system-topic event-subscription update -n es1 \
+          -g rg1 --system-topic-name systemtopic1 \
+          --storage-queue-msg-ttl 300
+  - summary: Mettre à jour un abonnement aux événements pour une rubrique système Event Grid avec le filtrage avancé sur les groupes activés
+    syntax: >-
+      az eventgrid system-topic event-subscription update -n es1 \
+          -g rg1 --system-topic-name systemtopic1 \
+          --enable-advanced-filtering-on-arrays true
   requiredParameters:
   - isRequired: true
     name: --name -n
@@ -314,9 +362,16 @@ directCommands:
   optionalParameters:
   - name: --advanced-filter
     summary: Un filtre avancé permet de filtrer les événements en fonction d’une propriété d’événement spécifique.
-    description: Utilisation :--avancé-clé de filtre [. INNERKEY] FILTEROPERATOR VALEUR [VALEUR...] Chaîne :--avancé-filtrer les données. Chaîne de couleur en bleu rouge orange jaune StringNotIn :--avancé-filtrer les données. Couleur StringNotIn bleu rouge orange jaune StringContains :--avancé-filtre objet StringContains bleu rouge StringBeginsWith :--avancé-filtre objet StringBeginsWith bleu rouge StringEndsWith :--avancé-filtre objet StringEndsWith img png jpg numéro in :--Advanced-filtre Data. property1 Number in 5 10 20 NumberNotIn :--Advanced-filtre Data. Property2 NumberNotIn 100 200 300 NumberLessThan :--Advanced-filtrer les données. property3 NumberLessThan 100 NumberLessThanOrEquals :--Advanced-filtre Data. Property2 NumberLessThanOrEquals 100 NumberGreaterThan :--Advanced-filtre Data. property3 NumberGreaterThan 100 NumberGreaterThanOrEquals :--Advanced-filtre Data. Property2 NumberGreaterThanOrEquals 100 BoolEquals :--Advanced-filtre Data. property3 BoolEquals plusieurs filtres avancés peuvent être spécifiés à l’aide de plusieurs `--advanced-filter` arguments.
+    description: Utilisation :--avancé-clé de filtre [. INNERKEY] FILTEROPERATOR VALEUR [VALEUR...] Chaîne :--avancé-filtrer les données. Chaîne de couleur en bleu rouge orange jaune StringNotIn :--avancé-filtrer les données. Couleur StringNotIn bleue rouge orange jaune StringContains :--avancé-filtre objet StringContains bleu rouge StringNotContains :--avancé-filtre objet StringNotContains bleu rouge StringBeginsWith :--avancé-filtre objet StringBeginsWith bleu rouge StringNotBeginsWith :--avancé-objet filtre StringNotBeginsWith bleu rouge StringEndsWith :--Advanced-filtre objet StringEndsWith img png jpg StringNotEndsWith :--avancé-filtre objet StringNotEndsWith img png jpg numéro :--avancé-filtrer les données. property1 numéro de 5 10 20 NumberInRange--avancé-filtrer les données. property1 NumberInRange 5, 10 20, 30 40, 50 NumberNotIn :--avancé-filtrer les données. Property2 NumberNotIn 100 200 300 NumberNotInRange :--avancé-filtrer les données. Property2 NumberNotInRange 100 110 200 210 300 310 NumberLessThan :--Advanced-filtre Data. property3 NumberLessThan 100 NumberLessThanOrEquals :--Advanced-filtre Data. Property2 NumberLessThanOrEquals 100 NumberGreaterThan :--Advanced-filtre Data. property3 NumberGreaterThan 100 NumberGreaterThanOrEquals :--Advanced-filtre Data. Property2 NumberGreaterThanOrEquals 100 BoolEquals :--Advanced-filtre Data. property3 BoolEquals true IsNullOrUndefined :--Advanced-filtre Data. property3 IsNullOrUndefined IsNotNull :--Advanced-filtre Data. property3 IsNotNull plusieurs filtres avancés peuvent être spécifiés à l’aide de plusieurs `--advanced-filter` arguments.
   - name: --deadletter-endpoint
     summary: ID de ressource Azure d’une destination de conteneur d’objets BLOB de stockage Azure où EventGrid doit lettres mortes des événements non remis pour cet abonnement aux événements.
+    description: ''
+  - name: --delivery-attribute-mapping
+    summary: Ajoutez un mappage d’attribut de remise pour envoyer des informations supplémentaires via les en-têtes HTTP lors de la remise des événements. Cet attribut est valide pour tous les types de destinations, à l’exception de StorageQueue. Plusieurs attributs peuvent être spécifiés à l’aide de plusieurs `--delivery-attribute-mapping` arguments.
+    description: Utilisation :--Delivery-attribute-Mapping-attribut-Name-Attribute-Value [attribute-is-secret] mappage d’attribut statique :--Delivery-attribute-Mapping nom static SomeValue static attribute Mapping :--Delivery-attribute-Mapping nom statique SomeValue false mappage d’attribut statique :--Delivery-attribute-Mapping nom static SomeValue true Dynamic attribute :--Delivery-attribute-Mapping nom Dynamic SomeValue static :--Delivery-attribute-Mapping nom Dynamic SomeValue--Delivery-attribute-Mapping somename2 static SomeValue.
+  - name: --enable-advanced-filtering-on-arrays --enable-af-arr
+    parameterValueGroup: false, true
+    summary: Permet d’évaluer les filtres avancés par rapport à un tableau de valeurs au lieu d’attendre une valeur singulière.
     description: ''
   - name: --endpoint
     summary: Point de terminaison où EventGrid doit remettre les événements correspondant à cet abonnement aux événements. Pour le type de point de terminaison webhook, il doit s’agir de l’URL du webhook correspondant. Pour les autres types de points de terminaison, il doit s’agir de l’identificateur de ressource Azure du point de terminaison. Il est prévu que le point de terminaison de destination soit déjà créé et disponible pour être utilisé avant d’exécuter une commande Event Grid.
@@ -332,6 +387,9 @@ directCommands:
   - name: --labels
     summary: Liste séparée par des espaces des étiquettes à associer à cet abonnement aux événements.
     description: ''
+  - name: --qttl --storage-queue-msg-ttl
+    summary: Durée de vie du message de file d’attente de stockage en secondes.
+    description: ''
   - name: --subject-begins-with
     summary: Chaîne facultative pour filtrer les événements d’un abonnement d’événement en fonction d’un préfixe. Les caractères génériques ne sont pas pris en charge.
     description: ''
@@ -343,11 +401,11 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/eventgrid/_help.py
 commands:
-- az_eventgrid_system_topic_event_subscription_create
-- az_eventgrid_system_topic_event_subscription_delete
-- az_eventgrid_system_topic_event_subscription_list
-- az_eventgrid_system_topic_event_subscription_show
-- az_eventgrid_system_topic_event_subscription_update
+- az_eventgrid_system-topic_event-subscription_create
+- az_eventgrid_system-topic_event-subscription_delete
+- az_eventgrid_system-topic_event-subscription_list
+- az_eventgrid_system-topic_event-subscription_show
+- az_eventgrid_system-topic_event-subscription_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -365,11 +423,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 07/06/2020
+  ms.date: 04/01/2021
   description: Gérer les abonnements aux événements de la rubrique système.
-  ms.openlocfilehash: 7c490703564ec3d5d0840a28aa6a0e0c7a6e64ea
-  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.openlocfilehash: 4e251cd2ac695d32abf50a53772a3e62490f658c
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 09/29/2020
-  ms.locfileid: "102820643"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106801912"

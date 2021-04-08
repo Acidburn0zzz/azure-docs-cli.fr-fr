@@ -9,14 +9,17 @@ directCommands:
   summary: Créer une rubrique.
   description: ''
   syntax: >-
-    az eventgrid topic create --location
-                              --name
+    az eventgrid topic create --name
                               --resource-group
+                              [--extended-location-name]
+                              [--extended-location-type {customlocation}]
                               [--identity {noidentity, systemassigned}]
                               [--inbound-ip-rules]
                               [--input-mapping-default-values]
                               [--input-mapping-fields]
                               [--input-schema {cloudeventschemav1_0, customeventschema, eventgridschema}]
+                              [--kind {azure, azurearc}]
+                              [--location]
                               [--public-network-access {disabled, enabled}]
                               [--sku {basic, premium}]
                               [--subscription]
@@ -30,11 +33,13 @@ directCommands:
     syntax: az eventgrid topic create -g rg1 --name topic1 -l westus2 --input-schema cloudeventschemav1_0
   - summary: Créer une nouvelle rubrique qui autorise des règles IP entrantes spécifiques avec la référence SKU de base et l’identité attribuée par le système
     syntax: az eventgrid topic create -g rg1 --name topic1 -l westus2 --public-network-access enabled --inbound-ip-rules 10.0.0.0/8 Allow --inbound-ip-rules 10.2.0.0/8 Allow --sku Basic --identity systemassigned
+  - summary: Créez une nouvelle rubrique dans Azure.
+    syntax: az eventgrid topic create -g rg1 --name topic1 -l westus2
+  - summary: Créez une nouvelle rubrique dans Azure.
+    syntax: az eventgrid topic create -g rg1 --name topic1 -l westus2 --kind azure
+  - summary: Créer une nouvelle rubrique dans AzureArc ciblant un emplacement personnalisé.
+    syntax: az eventgrid topic create -g rg1 --name topic1 -l eastus2euap --kind azurearc --extended-location-name /subscriptions/<subid>/resourcegroups/<rgname>/providers/microsoft.extendedlocation/customlocations/<cust-loc-name> --extended-location-type customlocation --input-schema CloudEventSchemaV1_0
   requiredParameters:
-  - isRequired: true
-    name: --location -l
-    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
-    description: ''
   - isRequired: true
     name: --name -n
     summary: Nom de la rubrique.
@@ -44,9 +49,16 @@ directCommands:
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   optionalParameters:
+  - name: --extended-location-name
+    summary: Nom de l’emplacement étendu si Kind = = azurearc.
+    description: ''
+  - name: --extended-location-type
+    parameterValueGroup: customlocation
+    summary: Type d’emplacement étendu si Kind = = azurearc.
+    description: ''
   - name: --identity
     parameterValueGroup: noidentity, systemassigned
-    summary: Type d’identité de la ressource (par exemple, une rubrique ou un domaine).
+    summary: Type d’identité managée pour la ressource.
     description: ''
   - name: --inbound-ip-rules
     summary: Liste des règles IP entrantes.
@@ -61,6 +73,14 @@ directCommands:
     defaultValue: eventgridschema
     parameterValueGroup: cloudeventschemav1_0, customeventschema, eventgridschema
     summary: Schéma dans lequel les événements entrants seront publiés sur cette rubrique/domaine. Si vous spécifiez customeventschema comme valeur pour ce paramètre, vous devez également fournir des valeurs pour au moins l’un des input_mapping_default_values/--input_mapping_fields.
+    description: ''
+  - name: --kind
+    defaultValue: Azure
+    parameterValueGroup: azure, azurearc
+    summary: Type de ressource de rubrique.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
     description: ''
   - name: --public-network-access
     parameterValueGroup: disabled, enabled
@@ -188,7 +208,7 @@ directCommands:
   optionalParameters:
   - name: --identity
     parameterValueGroup: noidentity, systemassigned
-    summary: Type d’identité de la ressource (par exemple, une rubrique ou un domaine).
+    summary: Type d’identité managée pour la ressource.
     description: ''
   - name: --ids
     summary: Un ou plusieurs ID de ressource (délimités par des espaces). Il doit s’agir d’un ID de ressource complet contenant toutes les informations des arguments « ID de ressource ». Vous devez fournir des ID ou d’autres arguments « ID de ressource ».
@@ -226,6 +246,15 @@ commands:
 - az_eventgrid_topic_list
 - az_eventgrid_topic_show
 - az_eventgrid_topic_update
+- az_eventgrid_topic_private-endpoint-connection
+- az_eventgrid_topic_private-endpoint-connection_approve
+- az_eventgrid_topic_private-endpoint-connection_delete
+- az_eventgrid_topic_private-endpoint-connection_list
+- az_eventgrid_topic_private-endpoint-connection_reject
+- az_eventgrid_topic_private-endpoint-connection_show
+- az_eventgrid_topic_private-link-resource
+- az_eventgrid_topic_private-link-resource_list
+- az_eventgrid_topic_private-link-resource_show
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -243,11 +272,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 07/06/2020
+  ms.date: 04/01/2021
   description: Gérer les rubriques de Azure Event Grid.
-  ms.openlocfilehash: 049c669592e35ceccde4ec9b74ff236d856ecff7
-  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.openlocfilehash: 8a3a10a8f452cd0cdb44254369d267d18fa7260d
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 09/29/2020
-  ms.locfileid: "102819833"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106801895"

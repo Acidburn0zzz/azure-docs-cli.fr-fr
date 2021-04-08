@@ -1,0 +1,155 @@
+### YamlMime:AzureCLIGroup
+uid: az_iot_central_api-token
+name: az iot central api-token
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ IOT central API-token** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les jetons d’API pour votre application IoT Central.
+description: IoT Central vous permet de générer et de gérer des jetons d’API à utiliser pour accéder à l’API IoT Central. Pour plus d’informations sur les API https://aka.ms/iotcentraldocsapi , consultez.
+directCommands:
+- uid: az_iot_central_api-token_create
+  name: az iot central api-token create
+  summary: Générez un jeton d’API associé à votre application IoT Central.
+  description: 'Remarque : Notez votre jeton une fois qu’il a été généré, car vous ne pourrez pas le récupérer à nouveau.'
+  syntax: >-
+    az iot central api-token create --app-id
+                                    --role {admin, builder, operator}
+                                    --tkid
+                                    [--central-api-uri]
+                                    [--token]
+  examples:
+  - summary: Ajouter un nouveau jeton d’API
+    syntax: az iot central api-token create --token-id {tokenId} --app-id {appId} --role admin
+  requiredParameters:
+  - isRequired: true
+    name: --app-id -n
+    summary: ID d’application de l’application IoT Central que vous souhaitez gérer. Vous pouvez trouver l’ID d’application dans la page « à propos de » de votre application dans le menu ? (aide).
+    description: ''
+  - isRequired: true
+    name: --role -r
+    parameterValueGroup: admin, builder, operator
+    summary: Rôle qui sera associé à ce jeton. Vous pouvez spécifier l’un des rôles intégrés ou spécifier l’ID de rôle d’un rôle personnalisé. Pour plus d’informations https://aka.ms/iotcentral-customrolesdocs , consultez.
+    description: ''
+  - isRequired: true
+    name: --tkid --token-id
+    summary: ID de IoT Central associé à ce jeton, [0-9A-zA-Z-] autorisé, limite de longueur maximale à 40. Spécifiez un ID que vous utiliserez ensuite lors de la modification ou de la suppression de ce jeton ultérieurement via l’interface CLI ou l’API.
+    description: ''
+  optionalParameters:
+  - name: --central-api-uri --central-dns-suffix
+    defaultValue: azureiotcentral.com
+    summary: 'IoT Central suffixe DNS associé à votre application. La valeur par défaut est : azureiotcentral.com.'
+    description: ''
+  - name: --token
+    summary: Si vous préférez soumettre votre demande sans vous authentifier auprès du Azure CLI, vous pouvez spécifier un jeton d’utilisateur valide pour authentifier votre demande. Vous devez spécifier le type de clé dans le cadre de la requête. Pour en savoir plus, rendez-vous sur https://aka.ms/iotcentraldocsapi.
+    description: ''
+- uid: az_iot_central_api-token_delete
+  name: az iot central api-token delete
+  summary: Supprimez un jeton d’API associé à votre application IoT Central.
+  description: ''
+  syntax: >-
+    az iot central api-token delete --app-id
+                                    --tkid
+                                    [--central-api-uri]
+                                    [--token]
+  examples:
+  - summary: Supprimer un jeton d’API
+    syntax: az iot central api-token delete --app-id {appid} --token-id {tokenId}
+  requiredParameters:
+  - isRequired: true
+    name: --app-id -n
+    summary: ID d’application de l’application IoT Central que vous souhaitez gérer. Vous pouvez trouver l’ID d’application dans la page « à propos de » de votre application dans le menu ? (aide).
+    description: ''
+  - isRequired: true
+    name: --tkid --token-id
+    summary: ID de IoT Central associé à ce jeton, [0-9A-zA-Z-] autorisé, limite de longueur maximale à 40. Spécifiez un ID que vous utiliserez ensuite lors de la modification ou de la suppression de ce jeton ultérieurement via l’interface CLI ou l’API.
+    description: ''
+  optionalParameters:
+  - name: --central-api-uri --central-dns-suffix
+    defaultValue: azureiotcentral.com
+    summary: 'IoT Central suffixe DNS associé à votre application. La valeur par défaut est : azureiotcentral.com.'
+    description: ''
+  - name: --token
+    summary: Si vous préférez soumettre votre demande sans vous authentifier auprès du Azure CLI, vous pouvez spécifier un jeton d’utilisateur valide pour authentifier votre demande. Vous devez spécifier le type de clé dans le cadre de la requête. Pour en savoir plus, rendez-vous sur https://aka.ms/iotcentraldocsapi.
+    description: ''
+- uid: az_iot_central_api-token_list
+  name: az iot central api-token list
+  summary: Répertorie tous les jetons d’API associés à votre application IoT Central.
+  description: Les informations de la liste contiennent des informations de base sur les jetons de l’application et n’incluent pas de valeurs de jeton.
+  syntax: >-
+    az iot central api-token list --app-id
+                                  [--central-api-uri]
+                                  [--token]
+  examples:
+  - summary: Liste des jetons d’API
+    syntax: az iot central api-token list --app-id {appid}
+  requiredParameters:
+  - isRequired: true
+    name: --app-id -n
+    summary: ID d’application de l’application IoT Central que vous souhaitez gérer. Vous pouvez trouver l’ID d’application dans la page « à propos de » de votre application dans le menu ? (aide).
+    description: ''
+  optionalParameters:
+  - name: --central-api-uri --central-dns-suffix
+    defaultValue: azureiotcentral.com
+    summary: 'IoT Central suffixe DNS associé à votre application. La valeur par défaut est : azureiotcentral.com.'
+    description: ''
+  - name: --token
+    summary: Si vous préférez soumettre votre demande sans vous authentifier auprès du Azure CLI, vous pouvez spécifier un jeton d’utilisateur valide pour authentifier votre demande. Vous devez spécifier le type de clé dans le cadre de la requête. Pour en savoir plus, rendez-vous sur https://aka.ms/iotcentraldocsapi.
+    description: ''
+- uid: az_iot_central_api-token_show
+  name: az iot central api-token show
+  summary: Obtenir des détails sur un jeton d’API associé à votre application IoT Central.
+  description: Répertoriez les détails, comme son rôle associé, pour un jeton d’API dans votre application IoT Central.
+  syntax: >-
+    az iot central api-token show --app-id
+                                  --tkid
+                                  [--central-api-uri]
+                                  [--token]
+  examples:
+  - summary: Obtient le jeton d’API
+    syntax: az iot central api-token show --app-id {appid} --token-id {tokenId}
+  requiredParameters:
+  - isRequired: true
+    name: --app-id -n
+    summary: ID d’application de l’application IoT Central que vous souhaitez gérer. Vous pouvez trouver l’ID d’application dans la page « à propos de » de votre application dans le menu ? (aide).
+    description: ''
+  - isRequired: true
+    name: --tkid --token-id
+    summary: ID de IoT Central associé à ce jeton, [0-9A-zA-Z-] autorisé, limite de longueur maximale à 40. Spécifiez un ID que vous utiliserez ensuite lors de la modification ou de la suppression de ce jeton ultérieurement via l’interface CLI ou l’API.
+    description: ''
+  optionalParameters:
+  - name: --central-api-uri --central-dns-suffix
+    defaultValue: azureiotcentral.com
+    summary: 'IoT Central suffixe DNS associé à votre application. La valeur par défaut est : azureiotcentral.com.'
+    description: ''
+  - name: --token
+    summary: Si vous préférez soumettre votre demande sans vous authentifier auprès du Azure CLI, vous pouvez spécifier un jeton d’utilisateur valide pour authentifier votre demande. Vous devez spécifier le type de clé dans le cadre de la requête. Pour en savoir plus, rendez-vous sur https://aka.ms/iotcentraldocsapi.
+    description: ''
+commands:
+- az_iot_central_api-token_create
+- az_iot_central_api-token_delete
+- az_iot_central_api-token_list
+- az_iot_central_api-token_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: IoT Central vous permet de générer et de gérer des jetons d’API à utiliser pour accéder à l’API IoT Central. Pour plus d’informations sur les API https://aka.ms/iotcentraldocsapi , consultez.
+  ms.openlocfilehash: 736fc08dcecf74eaf3c763083606deb1cafcd331
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106896542"
