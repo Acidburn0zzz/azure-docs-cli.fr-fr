@@ -1,62 +1,103 @@
 ### YamlMime:AzureCLIGroup
-uid: az_monitor_log_analytics
+uid: az_monitor_log-analytics
 name: az monitor log-analytics
 summary: Gérer Azure log Analytics.
 description: ''
+directCommands:
+- uid: az_monitor_log-analytics_query
+  name: az monitor log-analytics query
+  summary: Interrogez un espace de travail Log Analytics.
+  description: ''
+  syntax: >-
+    az monitor log-analytics query --analytics-query
+                                   --workspace
+                                   [--timespan]
+                                   [--workspaces]
+  examples:
+  - summary: Exécutez une requête simple au cours des 3,5 derniers jours.
+    syntax: az monitor log-analytics query -w workspace-customId --analytics-query "AzureActivity | summarize count() by bin(timestamp, 1h)" -t P3DT12H
+  - summary: Exécuter une requête enregistrée dans l’espace de travail
+    syntax: >-
+      QUERY=$(az monitor log-analytics workspace saved-search show -g resource-group --workspace-name workspace-name -n query-name --query query --output tsv)
+
+      az monitor log-analytics query -w workspace-customId --analytics-query "$QUERY"
+  requiredParameters:
+  - isRequired: true
+    name: --analytics-query
+    summary: Requête à exécuter sur Log Analytics données.
+    description: ''
+  - isRequired: true
+    name: --workspace -w
+    summary: GUID de l’espace de travail Log Analytics.
+    description: ''
+  optionalParameters:
+  - name: --timespan -t
+    summary: Intervalle de temps à interroger. La valeur par défaut est l’interrogation de toutes les données disponibles.
+    description: ''
+  - name: --workspaces
+    summary: Espaces de travail supplémentaires pour l’interrogation des données. Spécifiez des ID d’espace de travail supplémentaires séparés par un espace.
+    description: ''
 commands:
-- az_monitor_log_analytics_cluster
-- az_monitor_log_analytics_cluster_create
-- az_monitor_log_analytics_cluster_delete
-- az_monitor_log_analytics_cluster_list
-- az_monitor_log_analytics_cluster_show
-- az_monitor_log_analytics_cluster_update
-- az_monitor_log_analytics_cluster_wait
-- az_monitor_log_analytics_workspace
-- az_monitor_log_analytics_workspace_create
-- az_monitor_log_analytics_workspace_data_export
-- az_monitor_log_analytics_workspace_data_export_create
-- az_monitor_log_analytics_workspace_data_export_delete
-- az_monitor_log_analytics_workspace_data_export_list
-- az_monitor_log_analytics_workspace_data_export_show
-- az_monitor_log_analytics_workspace_data_export_update
-- az_monitor_log_analytics_workspace_delete
-- az_monitor_log_analytics_workspace_get_schema
-- az_monitor_log_analytics_workspace_get_shared_keys
-- az_monitor_log_analytics_workspace_linked_service
-- az_monitor_log_analytics_workspace_linked_service_create
-- az_monitor_log_analytics_workspace_linked_service_delete
-- az_monitor_log_analytics_workspace_linked_service_list
-- az_monitor_log_analytics_workspace_linked_service_show
-- az_monitor_log_analytics_workspace_linked_service_update
-- az_monitor_log_analytics_workspace_linked_service_wait
-- az_monitor_log_analytics_workspace_linked_storage
-- az_monitor_log_analytics_workspace_linked_storage_add
-- az_monitor_log_analytics_workspace_linked_storage_create
-- az_monitor_log_analytics_workspace_linked_storage_delete
-- az_monitor_log_analytics_workspace_linked_storage_list
-- az_monitor_log_analytics_workspace_linked_storage_remove
-- az_monitor_log_analytics_workspace_linked_storage_show
-- az_monitor_log_analytics_workspace_list
-- az_monitor_log_analytics_workspace_list_deleted_workspaces
-- az_monitor_log_analytics_workspace_list_management_groups
-- az_monitor_log_analytics_workspace_list_usages
-- az_monitor_log_analytics_workspace_pack
-- az_monitor_log_analytics_workspace_pack_disable
-- az_monitor_log_analytics_workspace_pack_enable
-- az_monitor_log_analytics_workspace_pack_list
-- az_monitor_log_analytics_workspace_recover
-- az_monitor_log_analytics_workspace_saved_search
-- az_monitor_log_analytics_workspace_saved_search_create
-- az_monitor_log_analytics_workspace_saved_search_delete
-- az_monitor_log_analytics_workspace_saved_search_list
-- az_monitor_log_analytics_workspace_saved_search_show
-- az_monitor_log_analytics_workspace_saved_search_update
-- az_monitor_log_analytics_workspace_show
-- az_monitor_log_analytics_workspace_table
-- az_monitor_log_analytics_workspace_table_list
-- az_monitor_log_analytics_workspace_table_show
-- az_monitor_log_analytics_workspace_table_update
-- az_monitor_log_analytics_workspace_update
+- az_monitor_log-analytics_cluster
+- az_monitor_log-analytics_cluster_create
+- az_monitor_log-analytics_cluster_delete
+- az_monitor_log-analytics_cluster_list
+- az_monitor_log-analytics_cluster_show
+- az_monitor_log-analytics_cluster_update
+- az_monitor_log-analytics_cluster_wait
+- az_monitor_log-analytics_workspace
+- az_monitor_log-analytics_workspace_create
+- az_monitor_log-analytics_workspace_data-export
+- az_monitor_log-analytics_workspace_data-export_create
+- az_monitor_log-analytics_workspace_data-export_delete
+- az_monitor_log-analytics_workspace_data-export_list
+- az_monitor_log-analytics_workspace_data-export_show
+- az_monitor_log-analytics_workspace_data-export_update
+- az_monitor_log-analytics_workspace_delete
+- az_monitor_log-analytics_workspace_get-schema
+- az_monitor_log-analytics_workspace_get-shared-keys
+- az_monitor_log-analytics_workspace_linked-service
+- az_monitor_log-analytics_workspace_linked-service_create
+- az_monitor_log-analytics_workspace_linked-service_delete
+- az_monitor_log-analytics_workspace_linked-service_list
+- az_monitor_log-analytics_workspace_linked-service_show
+- az_monitor_log-analytics_workspace_linked-service_update
+- az_monitor_log-analytics_workspace_linked-service_wait
+- az_monitor_log-analytics_workspace_linked-storage
+- az_monitor_log-analytics_workspace_linked-storage_add
+- az_monitor_log-analytics_workspace_linked-storage_create
+- az_monitor_log-analytics_workspace_linked-storage_delete
+- az_monitor_log-analytics_workspace_linked-storage_list
+- az_monitor_log-analytics_workspace_linked-storage_remove
+- az_monitor_log-analytics_workspace_linked-storage_show
+- az_monitor_log-analytics_workspace_list
+- az_monitor_log-analytics_workspace_list-deleted-workspaces
+- az_monitor_log-analytics_workspace_list-management-groups
+- az_monitor_log-analytics_workspace_list-usages
+- az_monitor_log-analytics_workspace_pack
+- az_monitor_log-analytics_workspace_pack_disable
+- az_monitor_log-analytics_workspace_pack_enable
+- az_monitor_log-analytics_workspace_pack_list
+- az_monitor_log-analytics_workspace_recover
+- az_monitor_log-analytics_workspace_saved-search
+- az_monitor_log-analytics_workspace_saved-search_create
+- az_monitor_log-analytics_workspace_saved-search_delete
+- az_monitor_log-analytics_workspace_saved-search_list
+- az_monitor_log-analytics_workspace_saved-search_show
+- az_monitor_log-analytics_workspace_saved-search_update
+- az_monitor_log-analytics_workspace_show
+- az_monitor_log-analytics_workspace_table
+- az_monitor_log-analytics_workspace_table_list
+- az_monitor_log-analytics_workspace_table_show
+- az_monitor_log-analytics_workspace_table_update
+- az_monitor_log-analytics_workspace_update
+- az_monitor_log-analytics_query
+- az_monitor_log-analytics_solution
+- az_monitor_log-analytics_solution_create
+- az_monitor_log-analytics_solution_delete
+- az_monitor_log-analytics_solution_list
+- az_monitor_log-analytics_solution_show
+- az_monitor_log-analytics_solution_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -76,9 +117,9 @@ metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/23/2021
   description: Gérer Azure log Analytics.
-  ms.openlocfilehash: f60bfdc313faf27ac60c44fa6d5928511d572700
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.openlocfilehash: 7bd0864643c79e8147add84be91037e5539ad7bf
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103538127"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106841754"
