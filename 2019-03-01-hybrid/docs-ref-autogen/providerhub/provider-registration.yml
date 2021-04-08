@@ -1,0 +1,296 @@
+### YamlMime:AzureCLIGroup
+uid: az_providerhub_provider-registration
+name: az providerhub provider-registration
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **providerhub** pour Azure CLI et requiert la version 2.15.0 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez la commande **AZ providerhub Provider-Registration** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer l’inscription du fournisseur avec providerhub.
+description: ''
+directCommands:
+- uid: az_providerhub_provider-registration_create
+  name: az providerhub provider-registration create
+  summary: Créez l’inscription du fournisseur.
+  description: ''
+  syntax: >-
+    az providerhub provider-registration create --provider-namespace
+                                                [--capabilities]
+                                                [--incident-contact-email]
+                                                [--incident-routing-service]
+                                                [--incident-routing-team]
+                                                [--lighthouse-authorizations]
+                                                [--managed-by-tenant-id]
+                                                [--manifest-owners]
+                                                [--metadata]
+                                                [--namespace]
+                                                [--no-wait]
+                                                [--opt-in-headers {ClientGroupMembership, NotSpecified, SignedAuxiliaryTokens, SignedUserToken, UnboundedClientGroupMembership}]
+                                                [--provider-authentication]
+                                                [--provider-authorizations]
+                                                [--provider-type {AuthorizationFree, External, Hidden, Internal, LegacyRegistrationRequired, NotSpecified, RegistrationFree, TenantOnly}]
+                                                [--provider-version]
+                                                [--providerhub-metadata-provider-authorizations]
+                                                [--providerhub-metadata-rp-authentication]
+                                                [--required-features-policy {All, Any}]
+                                                [--resource-access-policy {AcisActionAllowed, AcisReadAllowed, NotSpecified}]
+                                                [--schema-owners]
+                                                [--service-tree-infos]
+                                                [--template-deployment-options]
+  examples:
+  - summary: ProviderRegistrations_CreateOrUpdate
+    syntax: az providerhub provider-registration create --capabilities effect="Allow" quota-id="CSP_2015-05-01" --capabilities effect="Allow" quota-id="CSP_MG_2017-12-01" --incident-contact-email "helpme@contoso.com" --incident-routing-service "Contoso Resource Provider" --incident-routing-team "Contoso Triage" --provider-type "Internal" --provider-version "2.0" --provider-namespace "Microsoft.Contoso"
+  requiredParameters:
+  - isRequired: true
+    name: --provider-namespace
+    summary: Nom du fournisseur de ressources hébergé dans ProviderHub.
+    description: ''
+  optionalParameters:
+  - name: --capabilities
+    summary: Fonctionnalités du fournisseur de ressources.
+    description: >-
+      Utilisation :--capacités quota-ID = XX Effect = XX required-features = XX
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Capabilities.
+  - name: --incident-contact-email
+    summary: Adresse e-mail des contacts pour les incidents liés au RP.
+    description: Utilisation :--incident-contact-e-mail « helpme@contoso.com ».
+  - name: --incident-routing-service
+    summary: Service dans IcM lors de la création ou du transfert d’incidents à la partie de confiance.
+    description: Utilisation :--incident-Routing-service « Contoso Resource Provider ».
+  - name: --incident-routing-team
+    summary: L’équipe dans IcM lors de la création ou du transfert d’incidents à la partie de confiance.
+    description: Utilisation :--incident-Routing-Team « contoso triage ».
+  - name: --lighthouse-authorizations
+    summary: Les autorisations de phare.
+    description: >-
+      Utilisation :--phare-Authorizations principal-ID = XX Role-Definition-ID = XX
+
+
+      ID principal : obligatoire. ID du principal.
+
+      Role-Definition-ID : obligatoire. ID de définition de rôle.
+  - name: --managed-by-tenant-id
+    summary: L’ID managé par locataire.
+    description: Utilisation :--Managed-by-locataire-ID « 00000000-0000-0000-0000-000000000000 ».
+  - name: --manifest-owners
+    summary: Spécifie un tableau de revendications ACIS requises pour modifier le contenu du manifeste du fournisseur de ressources via ACIS.
+    description: >-
+      Utilisation :--manifest-Owners "SPARTA-PlatformServiceAdministrator"
+
+       Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--manifest-Owners.
+  - name: --metadata
+    summary: Métadonnées.
+    description: ''
+  - name: --namespace
+    summary: Nom du fournisseur de ressources hébergé dans ProviderHub.
+    description: Utilisation :--espace de noms « Microsoft. contoso ».
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --opt-in-headers
+    parameterValueGroup: ClientGroupMembership, NotSpecified, SignedAuxiliaryTokens, SignedUserToken, UnboundedClientGroupMembership
+    summary: En-têtes d’abonnement.
+    description: Utilisation :--opt-in-headers "SignedUserToken".
+  - name: --provider-authentication
+    summary: Utilisé pour définir d’autres audiences ou ressources que ARM doit accepter à partir du jeton lors de l’authentification des demandes pour le fournisseur.
+    description: >-
+      Utilisation :--Provider-Authentication allowed-audience = XX
+
+
+      allowed-audience : obligatoire. Publics autorisés.
+  - name: --provider-authorizations
+    summary: Autorisations du fournisseur de ressources.
+    description: >-
+      Utilisation :--Provider-Authorizations application-ID = XX Role-Definition-ID = XX géré par rôle-Definition-ID = XX
+
+
+      ID d’application : obligatoire. L’ID de l'application.
+
+      Role-Definition-ID : obligatoire. ID de définition de rôle.
+
+      géré par rôle-définition-ID : obligatoire. ID de définition de rôle géré par.
+  - name: --provider-type
+    parameterValueGroup: AuthorizationFree, External, Hidden, Internal, LegacyRegistrationRequired, NotSpecified, RegistrationFree, TenantOnly
+    summary: Type de fournisseur.
+    description: Utilisation :--Provider-type "Internal".
+  - name: --provider-version
+    defaultValue: "2.0"
+    summary: Version du fournisseur.
+    description: Utilisation :--Provider-version « 2,0 ».
+  - name: --providerhub-metadata-provider-authorizations
+    summary: Autorisations du fournisseur.
+    description: >-
+      Utilisation :--providerhub-Metadata-Provider-Authorization application-ID = XX Role-Definition-ID = XX géré par rôle-Definition-ID = XX
+
+
+      ID d’application : obligatoire. L’ID de l'application.
+
+      Role-Definition-ID : obligatoire. ID de définition de rôle.
+
+      géré par rôle-définition-ID : obligatoire. ID de définition de rôle géré par.
+  - name: --providerhub-metadata-rp-authentication
+    summary: Utilisé pour définir d’autres audiences ou ressources que ARM doit accepter à partir du jeton lors de l’authentification des demandes pour le fournisseur. Disponible uniquement pour les fournisseurs de niveau client.
+    description: >-
+      Utilisation :--providerhub-Metadata-RP-Authentication allowed-audience = XX
+
+
+      allowed-audience : obligatoire. Publics autorisés.
+  - name: --required-features-policy
+    parameterValueGroup: All, Any
+    summary: Les valeurs acceptées sont « any » ou « All ». Si la valeur est « All », seuls les abonnements inscrits à l’ensemble de l’indicateur de fonctionnalité correspondant seront autorisés.
+    description: Utilisation :--required-features-Policy "All".
+  - name: --resource-access-policy
+    parameterValueGroup: AcisActionAllowed, AcisReadAllowed, NotSpecified
+    summary: Stratégie d’accès aux ressources.
+    description: Utilisation :--Resource-Access-Policy "AcisReadAllowed, AcisActionAllowed".
+  - name: --schema-owners
+    summary: Spécifie un tableau de revendications ACIS nécessaires pour modifier le schéma du fournisseur de ressources via ACIS.
+    description: >-
+      Utilisation :--Schema-Owners "contoso Schema Owners"
+
+       Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--owner-Owners.
+  - name: --service-tree-infos
+    summary: Informations ServiceTree pour le fournisseur de ressources.
+    description: >-
+      Utilisation :--service-Tree-Infos service-ID = XX composant-ID = XX
+
+
+      service-ID : obligatoire. ID du service.
+
+      Component-ID : obligatoire. ID du composant.
+  - name: --template-deployment-options
+    summary: Options de déploiement de modèle.
+    description: Utilisation :--template-Deployment-options Preflight-Supported = XX Preflight-options = XX.
+- uid: az_providerhub_provider-registration_delete
+  name: az providerhub provider-registration delete
+  summary: Supprime l’inscription d’un fournisseur.
+  description: ''
+  syntax: >-
+    az providerhub provider-registration delete --provider-namespace
+                                                [--yes]
+  examples:
+  - summary: ProviderRegistrations_Delete
+    syntax: az providerhub provider-registration delete --provider-namespace "Microsoft.Contoso"
+  requiredParameters:
+  - isRequired: true
+    name: --provider-namespace
+    summary: Nom du fournisseur de ressources hébergé dans ProviderHub.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_providerhub_provider-registration_generate-operation
+  name: az providerhub provider-registration generate-operation
+  summary: Génère l’API Operations pour le fournisseur donné.
+  description: ''
+  syntax: az providerhub provider-registration generate-operation --provider-namespace
+  examples:
+  - summary: ProviderRegistrations_GenerateOperations
+    syntax: az providerhub provider-registration generate-operation --provider-namespace "Microsoft.Contoso"
+  requiredParameters:
+  - isRequired: true
+    name: --provider-namespace
+    summary: Nom du fournisseur de ressources hébergé dans ProviderHub.
+    description: ''
+- uid: az_providerhub_provider-registration_list
+  name: az providerhub provider-registration list
+  summary: Obtient la liste des inscriptions de fournisseur dans l’abonnement.
+  description: ''
+  syntax: az providerhub provider-registration list [--resource-group]
+  examples:
+  - summary: ProviderRegistrations_List
+    syntax: az providerhub provider-registration list
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_providerhub_provider-registration_show
+  name: az providerhub provider-registration show
+  summary: Obtient les détails de l’inscription du fournisseur.
+  description: ''
+  syntax: az providerhub provider-registration show --provider-namespace
+  examples:
+  - summary: ProviderRegistrations_Get
+    syntax: az providerhub provider-registration show --provider-namespace "Microsoft.Contoso"
+  requiredParameters:
+  - isRequired: true
+    name: --provider-namespace
+    summary: Nom du fournisseur de ressources hébergé dans ProviderHub.
+    description: ''
+- uid: az_providerhub_provider-registration_wait
+  name: az providerhub provider-registration wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de l’inscription du fournisseur providerhub soit remplie.
+  description: ''
+  syntax: >-
+    az providerhub provider-registration wait --provider-namespace
+                                              [--created]
+                                              [--custom]
+                                              [--deleted]
+                                              [--exists]
+                                              [--interval]
+                                              [--timeout]
+                                              [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que l’inscription du fournisseur providerhub soit correctement créée.
+    syntax: az providerhub provider-registration wait --provider-namespace "Microsoft.Contoso" --created
+  requiredParameters:
+  - isRequired: true
+    name: --provider-namespace
+    summary: Nom du fournisseur de ressources hébergé dans ProviderHub.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_providerhub_provider-registration_create
+- az_providerhub_provider-registration_delete
+- az_providerhub_provider-registration_generate-operation
+- az_providerhub_provider-registration_list
+- az_providerhub_provider-registration_show
+- az_providerhub_provider-registration_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer l’inscription du fournisseur avec providerhub.
+  ms.openlocfilehash: 01bfd7ea141edf2341370b63c3a046255c663007
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106909325"
