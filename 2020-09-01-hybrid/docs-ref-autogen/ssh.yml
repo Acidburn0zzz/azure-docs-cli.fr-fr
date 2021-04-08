@@ -1,0 +1,143 @@
+### YamlMime:AzureCLIGroup
+uid: az_ssh
+name: az ssh
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **SSH** pour Azure CLI et requiert la version 2.4.0 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ SSH** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Utilisez le protocole SSH pour les ressources (machines virtuelles Azure, etc.) à l’aide des certificats OpenSSH émis par AAD.
+description: ''
+directCommands:
+- uid: az_ssh_cert
+  name: az ssh cert
+  summary: Créez un certificat SSH RSA signé par AAD.
+  description: ''
+  syntax: >-
+    az ssh cert [--file]
+                [--public-key-file]
+  examples:
+  - summary: Créer un certificat SSH à courte durée de vie signé par AAD
+    syntax: az ssh cert --public-key-file ./id_rsa.pub --file ./id_rsa-aadcert.pub
+  optionalParameters:
+  - name: --file -f
+    summary: Chemin d’accès du fichier dans lequel écrire le certificat SSH, par défaut, chemin d’accès de la clé publique avec-aadcert. pub appened.
+    description: ''
+  - name: --public-key-file -p
+    summary: Chemin du fichier de clé publique RSA.
+    description: ''
+- uid: az_ssh_config
+  name: az ssh config
+  summary: Créez une configuration SSH pour les ressources (machines virtuelles Azure, etc.) qui peuvent ensuite être importées vers des clients SSH tiers.
+  description: ''
+  syntax: >-
+    az ssh config --file
+                  [--ip]
+                  [--name]
+                  [--overwrite]
+                  [--prefer-private-ip]
+                  [--private-key-file]
+                  [--public-key-file]
+                  [--resource-group]
+  examples:
+  - summary: Fournir un groupe de ressources et une machine virtuelle pour lequel créer une configuration et l’enregistrer dans un fichier local
+    syntax: az ssh config --resource-group myResourceGroup --vm-name myVm --file ./sshconfig
+  - summary: Donnez à l’adresse IP publique (ou au nom d’hôte) d’une machine virtuelle pour laquelle créer une configuration
+    syntax: az ssh config --ip 1.2.3.4 --file ./sshconfig
+  - summary: Créer une configuration générique à utiliser avec n’importe quel hôte
+    syntax: >-
+      #Bash
+
+      az ssh config --ip \* --file ./sshconfig
+
+      #PowerShell
+
+      az ssh config --ip * --file ./sshconfig
+  requiredParameters:
+  - isRequired: true
+    name: --file -f
+    summary: Chemin d’accès du fichier dans lequel écrire la configuration SSH.
+    description: ''
+  optionalParameters:
+  - name: --ip
+    summary: Adresse IP publique (ou nom d’hôte) de la machine virtuelle.
+    description: ''
+  - name: --name --vm-name -n
+    summary: nom de la machine virtuelle.
+    description: ''
+  - name: --overwrite
+    summary: Remplace le fichier de configuration si cet indicateur est défini.
+    description: ''
+  - name: --prefer-private-ip
+    summary: Utilisera une adresse IP privée si elle est disponible. Par défaut, seules les adresses IP publiques sont utilisées.
+    description: ''
+  - name: --private-key-file -i
+    summary: Chemin du fichier de clé privée RSA.
+    description: ''
+  - name: --public-key-file -p
+    summary: Chemin du fichier de clé publique RSA.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_ssh_vm
+  name: az ssh vm
+  summary: Utilisez SSH dans des machines virtuelles Azure à l’aide d’un certificat SSH.
+  description: ''
+  syntax: >-
+    az ssh vm [--ip]
+              [--name]
+              [--prefer-private-ip]
+              [--private-key-file]
+              [--public-key-file]
+              [--resource-group]
+  examples:
+  - summary: Attribuer un groupe de ressources et une machine virtuelle à SSH
+    syntax: az ssh vm --resource-group myResourceGroup --vm-name myVm
+  - summary: Fournir l’adresse IP publique (ou le nom d’hôte) d’une machine virtuelle à SSH
+    syntax: az ssh vm --ip 1.2.3.4
+  optionalParameters:
+  - name: --ip
+    summary: Adresse IP publique (ou nom d’hôte) de la machine virtuelle.
+    description: ''
+  - name: --name --vm-name -n
+    summary: nom de la machine virtuelle.
+    description: ''
+  - name: --prefer-private-ip
+    summary: Utilisera une adresse IP privée si elle est disponible. Par défaut, seules les adresses IP publiques sont utilisées.
+    description: ''
+  - name: --private-key-file -i
+    summary: Chemin du fichier de clé privée RSA.
+    description: ''
+  - name: --public-key-file -p
+    summary: Chemin du fichier de clé publique RSA.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- az_ssh_cert
+- az_ssh_config
+- az_ssh_vm
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Utilisez le protocole SSH pour les ressources (machines virtuelles Azure, etc.) à l’aide des certificats OpenSSH émis par AAD.
+  ms.openlocfilehash: 900a8bcffe7f0f8418a54445661cf729cd4aeb73
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106908947"
