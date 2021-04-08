@@ -1,0 +1,232 @@
+### YamlMime:AzureCLIGroup
+uid: az_datafactory_dataset
+name: az datafactory dataset
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **DataFactory** pour Azure CLI et requiert la version 2.11.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez la commande **AZ DataFactory DataSet** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Jeu de données DataFactory.
+description: ''
+directCommands:
+- uid: az_datafactory_dataset_create
+  name: az datafactory dataset create
+  summary: Crée ou met à jour un jeu de données.
+  description: ''
+  syntax: >-
+    az datafactory dataset create --dataset-name
+                                  --factory-name
+                                  --properties
+                                  --resource-group
+                                  [--if-match]
+  examples:
+  - summary: Datasets_Create
+    syntax: az datafactory dataset create --properties "{\"type\":\"AzureBlob\",\"linkedServiceName\":{\"type\":\"LinkedServiceReference\",\"referenceName\":\"exampleLinkedService\"},\"parameters\":{\"MyFileName\":{\"type\":\"String\"},\"MyFolderPath\":{\"type\":\"String\"}},\"typeProperties\":{\"format\":{\"type\":\"TextFormat\"},\"fileName\":{\"type\":\"Expression\",\"value\":\"@dataset().MyFileName\"},\"folderPath\":{\"type\":\"Expression\",\"value\":\"@dataset().MyFolderPath\"}}}" --name "exampleDataset" --factory-name "exampleFactoryName" --resource-group "exampleResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --dataset-name --name -n
+    summary: Nom de dataset.
+    description: ''
+  - isRequired: true
+    name: --factory-name
+    summary: Nom de la fabrique.
+    description: ''
+  - isRequired: true
+    name: --properties
+    summary: 'Propriétés du DataSet. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --if-match
+    summary: ETag de l’entité du DataSet.  Doit uniquement être spécifié pour la mise à jour, pour laquelle il doit correspondre à une entité existante ou peut être \* pour une mise à jour inconditionnelle.
+    description: ''
+- uid: az_datafactory_dataset_delete
+  name: az datafactory dataset delete
+  summary: Supprime un DataSet.
+  description: ''
+  syntax: >-
+    az datafactory dataset delete --dataset-name
+                                  --factory-name
+                                  --resource-group
+                                  [--yes]
+  examples:
+  - summary: Datasets_Delete
+    syntax: az datafactory dataset delete --name "exampleDataset" --factory-name "exampleFactoryName" --resource-group "exampleResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --dataset-name --name -n
+    summary: Nom de dataset.
+    description: ''
+  - isRequired: true
+    name: --factory-name
+    summary: Nom de la fabrique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_datafactory_dataset_list
+  name: az datafactory dataset list
+  summary: Répertorie les jeux de données.
+  description: ''
+  syntax: >-
+    az datafactory dataset list --factory-name
+                                --resource-group
+  examples:
+  - summary: Datasets_ListByFactory
+    syntax: az datafactory dataset list --factory-name "exampleFactoryName" --resource-group "exampleResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --factory-name
+    summary: Nom de la fabrique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_datafactory_dataset_show
+  name: az datafactory dataset show
+  summary: Obtient un DataSet.
+  description: ''
+  syntax: >-
+    az datafactory dataset show --dataset-name
+                                --factory-name
+                                --resource-group
+                                [--if-none-match]
+  examples:
+  - summary: Datasets_Get
+    syntax: az datafactory dataset show --name "exampleDataset" --factory-name "exampleFactoryName" --resource-group "exampleResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --dataset-name --name -n
+    summary: Nom de dataset.
+    description: ''
+  - isRequired: true
+    name: --factory-name
+    summary: Nom de la fabrique.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --if-none-match
+    summary: ETag de l’entité du DataSet. Doit uniquement être spécifié pour la récupération. Si l’ETag correspond à la balise d’entité existante, ou si \* a été fourni, aucun contenu n’est retourné.
+    description: ''
+- uid: az_datafactory_dataset_update
+  name: az datafactory dataset update
+  summary: Crée ou met à jour un jeu de données.
+  description: ''
+  syntax: >-
+    az datafactory dataset update --dataset-name
+                                  --factory-name
+                                  --linked-service-name
+                                  --resource-group
+                                  [--add]
+                                  [--annotations]
+                                  [--description]
+                                  [--folder]
+                                  [--force-string]
+                                  [--if-match]
+                                  [--if-none-match]
+                                  [--parameters]
+                                  [--remove]
+                                  [--schema]
+                                  [--set]
+                                  [--structure]
+  examples:
+  - summary: Datasets_Update
+    syntax: az datafactory dataset update --description "Example description" --linked-service-name "{\"type\":\"LinkedServiceReference\",\"referenceName\":\"exampleLinkedService\"}" --parameters "{\"MyFileName\":{\"type\":\"String\"},\"MyFolderPath\":{\"type\":\"String\"}}" --name "exampleDataset" --factory-name "exampleFactoryName" --resource-group "exampleResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --dataset-name --name -n
+    summary: Nom de dataset.
+    description: ''
+  - isRequired: true
+    name: --factory-name
+    summary: Nom de la fabrique.
+    description: ''
+  - isRequired: true
+    name: --linked-service-name
+    summary: 'Référence de service lié. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --annotations
+    summary: 'Liste des balises qui peuvent être utilisées pour décrire le DataSet. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --description
+    summary: Description du jeu de données.
+    description: ''
+  - name: --folder
+    summary: Dossier dans lequel se trouve ce jeu de données. S’il n’est pas spécifié, le jeu de données apparaît au niveau de la racine.
+    description: >-
+      Utilisation :--nom du dossier = XX
+
+
+      nom : nom du dossier dans lequel se trouve ce jeu de données.
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --if-match
+    summary: ETag de l’entité du DataSet.  Doit uniquement être spécifié pour la mise à jour, pour laquelle il doit correspondre à une entité existante ou peut être \* pour une mise à jour inconditionnelle.
+    description: ''
+  - name: --if-none-match
+    summary: ETag de l’entité du DataSet. Doit uniquement être spécifié pour la récupération. Si l’ETag correspond à la balise d’entité existante, ou si \* a été fourni, aucun contenu n’est retourné.
+    description: ''
+  - name: --parameters
+    summary: 'Paramètres du jeu de données. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --schema
+    summary: 'Colonnes qui définissent le schéma de type physique du DataSet. Type : Array (ou expression avec tableau resultType), itemType : DatasetSchemaDataElement. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --structure
+    summary: 'Colonnes qui définissent la structure du DataSet. Type : Array (ou expression avec tableau resultType), itemType : DatasetDataElement. Valeur attendue : json-string/@json-file .'
+    description: ''
+commands:
+- az_datafactory_dataset_create
+- az_datafactory_dataset_delete
+- az_datafactory_dataset_list
+- az_datafactory_dataset_show
+- az_datafactory_dataset_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Jeu de données DataFactory.
+  ms.openlocfilehash: c3fa3b61a278d3f61f66745ed3874e34dc2494ac
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106898771"
