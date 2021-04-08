@@ -1,0 +1,111 @@
+### YamlMime:AzureCLIGroup
+uid: az_dt_twin_component
+name: az dt twin component
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ DT double Component** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Affichez et mettez à jour les composants de représentation numérique d’une instance représentations numérique.
+description: ''
+directCommands:
+- uid: az_dt_twin_component_show
+  name: az dt twin component show
+  summary: Affichez les détails d’un composant numérique.
+  description: ''
+  syntax: >-
+    az dt twin component show --component
+                              --dt-name
+                              --twin-id
+                              [--resource-group]
+  examples:
+  - summary: Afficher les détails d’un composant numérique
+    syntax: az dt twin component show -n {instance_or_hostname} --twin-id {twin_id} --component Thermostat
+  requiredParameters:
+  - isRequired: true
+    name: --component
+    summary: Chemin d’accès au composant DTDL.
+    description: ''
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --twin-id -t
+    summary: ID de représentation numérique.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_dt_twin_component_update
+  name: az dt twin component update
+  summary: Mettez à jour un composant numérique à l’aide de la spécification de correctif JSON.
+  description: Les mises à jour apportées aux valeurs de propriété et $model éléments peuvent se produire dans la même requête. Les opérations sont limitées à l’ajout, au remplacement et à la suppression.
+  syntax: >-
+    az dt twin component update --component
+                                --dt-name
+                                --json-patch
+                                --twin-id
+                                [--etag]
+                                [--resource-group]
+  examples:
+  - summary: Mettez à jour un composant numérique à l’aide de la spécification de correctif JSON.
+    syntax: "az dt twin component update -n {instance_or_hostname} --twin-id {twin_id} --component {component_path} --json-patch '{\"op\":\"replace\", \"path\":\"/Temperature\", \"value\": 20.5}'"
+  - summary: Mettez à jour un composant numérique à l’aide de la spécification de correctif JSON.
+    syntax: >-
+      az dt twin component update -n {instance_or_hostname} --twin-id {twin_id} --component {component_path} --json-patch '[
+        {"op":"replace", "path":"/Temperature", "value": 20.5},
+        {"op":"add", "path":"/Areas", "value": ["ControlSystem"]}
+      ]'
+  - summary: Mettre à jour un composant numérique à l’aide d’une spécification de correctif JSON définie dans un fichier.
+    syntax: az dt twin component update -n {instance_or_hostname} --twin-id {twin_id} --component {component_path} --json-patch ./my/patch/document.json
+  requiredParameters:
+  - isRequired: true
+    name: --component
+    summary: Chemin d’accès au composant DTDL.
+    description: ''
+  - isRequired: true
+    name: --dt-name --dtn -n
+    summary: Nom de l’instance représentations numérique ou nom d’hôte. Si un nom d’instance est fourni, l’abonnement de l’utilisateur est d’abord interrogé pour que l’instance cible récupère le nom d’hôte. Si un nom d’hôte est fourni, la requête d’abonnement est ignorée et la valeur fournie est utilisée pour l’interaction suivante.
+    description: ''
+  - isRequired: true
+    name: --json-patch --patch
+    summary: Spécification de mise à jour décrite par JSON-patch. Les mises à jour apportées aux valeurs de propriété et $model éléments peuvent se produire dans la même requête. Les opérations sont limitées à l’ajout, au remplacement et à la suppression. Fournissez un chemin de fichier ou un JSON en ligne.
+    description: ''
+  - isRequired: true
+    name: --twin-id -t
+    summary: ID de représentation numérique.
+    description: ''
+  optionalParameters:
+  - name: --etag -e
+    summary: Valeur de balise d’entité. La commande est réussie si l’ETag correspond à l’ETag actuel pour la ressource.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources d’instance représentations numérique. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- az_dt_twin_component_show
+- az_dt_twin_component_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Affichez et mettez à jour les composants de représentation numérique d’une instance représentations numérique.
+  ms.openlocfilehash: 321d7f002b600f8579402bcef202d45e883642cc
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106896667"

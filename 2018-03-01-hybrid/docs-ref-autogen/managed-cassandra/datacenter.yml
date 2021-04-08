@@ -1,0 +1,201 @@
+### YamlMime:AzureCLIGroup
+uid: az_managed-cassandra_datacenter
+name: az managed-cassandra datacenter
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **cosmosdb-Preview** pour Azure CLI et requiert la version 2.17.1 ou une version ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ Managed-Cassandra Datacenter** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Azure Managed Cassandra DataCenter.
+description: ''
+directCommands:
+- uid: az_managed-cassandra_datacenter_create
+  name: az managed-cassandra datacenter create
+  summary: Créez un centre de centres dans un cluster Cassandra géré par Azure.
+  description: ''
+  syntax: >-
+    az managed-cassandra datacenter create --cluster-name
+                                           --data-center-location
+                                           --data-center-name
+                                           --delegated-subnet-id
+                                           --node-count
+                                           --resource-group
+                                           [--base64-encoded-cassandra-yaml-fragment]
+  examples:
+  - summary: Créer un centre de cassandra managé dans un cluster Cassandra. Chaque centre de centres doit avoir au moins 3 nœuds.
+    syntax: >-
+      az managed-cassandra datacenter create --cluster-name MyCluster --data-center-name MyDataCenter \
+        --resource-group MyResourceGroup \
+        --data-center-location westus2 \
+        --delegated-subnet-id /subscriptions/94d9b402-77b4-4049-b4c1-947bc6b7729b/resourceGroups/My-vnet/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/test-subnet \
+        --node-count 3
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --data-center-location -l
+    summary: Emplacement Azure du centre de centres.
+    description: ''
+  - isRequired: true
+    name: --data-center-name -d
+    summary: Nom du centre de.
+    description: ''
+  - isRequired: true
+    name: --delegated-subnet-id -s
+    summary: L’ID de ressource d’un sous-réseau dans lequel les adresses IP des machines virtuelles Cassandra seront allouées. Il doit se trouver dans la même région que data_center_location.
+    description: ''
+  - isRequired: true
+    name: --node-count -n
+    summary: Nombre de machines virtuelles Cassandra dans ce centre de données.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --base64-encoded-cassandra-yaml-fragment -b
+    summary: Il s’agit d’un fichier YAML encodé en base64 qui est un sous-ensemble de cassandra. YAML.  Les champs pris en charge seront honorés et d’autres seront ignorés.
+    description: ''
+- uid: az_managed-cassandra_datacenter_delete
+  name: az managed-cassandra datacenter delete
+  summary: Supprime un centre de cassandra managé.
+  description: ''
+  syntax: >-
+    az managed-cassandra datacenter delete --cluster-name
+                                           --data-center-name
+                                           --resource-group
+                                           [--yes]
+  examples:
+  - summary: Supprime un centre de données Cassandra managé dans le cluster donné.
+    syntax: az managed-cassandra datacenter delete --data-center-name MyDataCenter --cluster-name MyCluster --resource-group MyResourceGroup \
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --data-center-name -d
+    summary: Nom du centre de.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_managed-cassandra_datacenter_list
+  name: az managed-cassandra datacenter list
+  summary: Utilisé pour répertorier les centres de données Cassandra managés dans un cluster donné.
+  description: ''
+  syntax: >-
+    az managed-cassandra datacenter list --cluster-name
+                                         --resource-group
+  examples:
+  - summary: Répertorie tous les centres de données Cassandra gérés dans un cluster donné.
+    syntax: az managed-cassandra datacenter list --cluster-name MyCluster --resource-group MyResourceGroup \
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_managed-cassandra_datacenter_show
+  name: az managed-cassandra datacenter show
+  summary: Obtenir une ressource Managed Cassandra DataCenter.
+  description: ''
+  syntax: >-
+    az managed-cassandra datacenter show --cluster-name
+                                         --data-center-name
+                                         --resource-group
+  examples:
+  - summary: Obtient une ressource Cassandra Datacenter managée. ProvisioningState indique l’état de ce centre de donnes. Si le centre de ne existe, une réponse NotFound est retournée.
+    syntax: az managed-cassandra datacenter show --data-center-name MyDataCenter --cluster-name MyCluster --resource-group MyResourceGroup \
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --data-center-name -d
+    summary: Nom du centre de.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_managed-cassandra_datacenter_update
+  name: az managed-cassandra datacenter update
+  summary: Mise à jour d’un centre de datacenter dans un cluster Cassandra géré par Azure.
+  description: ''
+  syntax: >-
+    az managed-cassandra datacenter update --cluster-name
+                                           --data-center-name
+                                           --resource-group
+                                           [--base64-encoded-cassandra-yaml-fragment]
+                                           [--node-count]
+  examples:
+  - summary: Mettre à l’échelle le nombre de nœuds dans un centre de centres. Il s’agit d’une opération de mise à l’échelle en partant du principe que la création d’un centre de centres a été effectuée avec 3 nœuds. Chaque centre de centres doit avoir au moins 3 nœuds.
+    syntax: >-
+      az managed-cassandra datacenter update --cluster-name MyCluster --data-center-name MyDataCenter \
+        --resource-group MyResourceGroup \
+        --node-count 6
+  - summary: Mettre à l’échelle le nombre de nœuds dans un centre de centres. Il s’agit d’une opération de mise à l’échelle en partant du principe que la création d’un centre de centres a été effectuée avec 3 nœuds, puis une mise à l’échelle allant jusqu’à 6 nœuds. Chaque centre de centres doit avoir au moins 3 nœuds.
+    syntax: >-
+      az managed-cassandra datacenter update --cluster-name MyCluster --data-center-name MyDataCenter \
+        --resource-group MyResourceGroup \
+        --node-count 4
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Nom du cluster.
+    description: ''
+  - isRequired: true
+    name: --data-center-name -d
+    summary: Nom du centre de.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --base64-encoded-cassandra-yaml-fragment -b
+    summary: Il s’agit d’un fichier YAML encodé en base64 qui est un sous-ensemble de cassandra. YAML.  Les champs pris en charge seront honorés et d’autres seront ignorés.
+    description: ''
+  - name: --node-count -n
+    summary: Nombre de machines virtuelles Cassandra dans ce centre de données.
+    description: ''
+commands:
+- az_managed-cassandra_datacenter_create
+- az_managed-cassandra_datacenter_delete
+- az_managed-cassandra_datacenter_list
+- az_managed-cassandra_datacenter_show
+- az_managed-cassandra_datacenter_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Azure Managed Cassandra DataCenter.
+  ms.openlocfilehash: be75cd5665fc1911b3da557ba079e5ad5a38afc3
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106896734"

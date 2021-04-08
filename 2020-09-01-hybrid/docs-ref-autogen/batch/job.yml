@@ -1,0 +1,113 @@
+### YamlMime:AzureCLIGroup
+uid: az_batch_job
+name: az batch job
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-batch-CLI-extensions** pour Azure CLI et requiert la version 2.0.74 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ batch Job** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les travaux de traitement par lots.
+description: ''
+directCommands:
+- uid: az_batch_job_create
+  name: az batch job create
+  summary: Ajoutez un travail et les tâches associées à un compte batch.
+  description: ''
+  syntax: >-
+    az batch job create [--account-endpoint]
+                        [--account-key]
+                        [--account-name]
+                        [--id]
+                        [--job-manager-task-command-line]
+                        [--job-manager-task-environment-settings]
+                        [--job-manager-task-id]
+                        [--job-manager-task-resource-files]
+                        [--job-max-task-retry-count]
+                        [--job-max-wall-clock-time]
+                        [--json-file]
+                        [--metadata]
+                        [--parameters]
+                        [--pool-id]
+                        [--priority]
+                        [--resource-group]
+                        [--template]
+                        [--uses-task-dependencies]
+  optionalParameters:
+  - name: --account-endpoint
+    summary: 'Point de terminaison du service batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ENDPOINT.'
+    description: ''
+  - name: --account-key
+    summary: 'Clé du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCESS_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte batch. Vous pouvez également définir par variable d’environnement : AZURE_BATCH_ACCOUNT.'
+    description: ''
+  - name: --id
+    summary: Obligatoire. Chaîne qui identifie de façon unique le travail dans le compte. L’ID peut contenir n’importe quelle combinaison de caractères alphanumériques, notamment des traits d’Union et des traits de soulignement, et ne peut pas contenir plus de 64 caractères. L’ID respecte la casse et ne respecte pas la casse (autrement dit, vous ne pouvez pas avoir deux ID dans un compte qui diffèrent uniquement par la casse).
+    description: ''
+  - name: --job-manager-task-command-line
+    summary: Ligne de commande de la tâche du gestionnaire de travaux. La ligne de commande ne s’exécute pas sous un interpréteur de commandes et ne peut donc pas tirer parti des fonctionnalités de l’interpréteur de commandes telles que l’expansion des variables d’environnement. Si vous souhaitez tirer parti de ces fonctionnalités, vous devez appeler l’interpréteur de commandes dans la ligne de commande, par exemple en utilisant « cmd/c MyCommand » dans Windows ou « /bin/sh-c MyCommand » dans Linux.
+    description: ''
+  - name: --job-manager-task-environment-settings
+    summary: Liste de paramètres de variables d’environnement pour la tâche du gestionnaire de travaux. Valeurs séparées par des espaces dans le format’key = value'.
+    description: ''
+  - name: --job-manager-task-id
+    summary: Chaîne qui identifie de façon unique la tâche du gestionnaire de travaux dans le travail. L’ID peut contenir n’importe quelle combinaison de caractères alphanumériques, notamment des traits d’Union et des traits de soulignement, et ne peut pas contenir plus de 64 caractères.
+    description: ''
+  - name: --job-manager-task-resource-files
+    summary: Liste des fichiers que le service batch télécharge sur le nœud de calcul avant d’exécuter la ligne de commande. Les fichiers répertoriés sous cet élément se trouvent dans le répertoire de travail de la tâche. Références de ressource séparées par des espaces au format filename = httpurl.
+    description: ''
+  - name: --job-max-task-retry-count
+    summary: Nombre maximal de nouvelles tentatives de chaque tâche. Le service Batch retente une tâche si le code de sortie de celle-ci diffère de zéro. Notez que cette valeur contrôle spécifiquement le nombre de nouvelles tentatives. Le service batch essaiera chaque tâche une seule fois, puis peut réessayer jusqu’à cette limite. Par exemple, si le nombre maximal de nouvelles tentatives est 3, le service Batch peut tenter d’exécuter la tâche jusqu’à 4 fois (tentative initiale + 3 tentatives supplémentaires). Si le nombre maximal de tentatives est 0, le service Batch ne réessaye pas d’exécuter des tâches. Si le nombre maximal de nouvelles tentatives est -1, le service Batch réessaie d’exécuter les tâches sans limite. La valeur par défaut est 0 (aucune nouvelle tentative).
+    description: ''
+  - name: --job-max-wall-clock-time
+    summary: Durée maximale d’exécution du travail, mesurée à partir de l’heure de création du travail. Si le travail ne se termine pas dans le délai imparti, le service batch le termine et toutes les tâches qui sont toujours en cours d’exécution. Dans ce cas, la raison de l’arrêt sera MaxWallClockTimeExpiry. Si cette propriété n’est pas spécifiée, il n’y a aucune limite de durée pendant laquelle la tâche peut s’exécuter. Le format attendu est une durée ISO-8601.
+    description: ''
+  - name: --json-file
+    summary: Le fichier contenant le travail à créer au format JSON, si ce paramètre est spécifié, tous les autres paramètres sont ignorés.
+    description: ''
+  - name: --metadata
+    summary: Liste des paires nom-valeur associées au travail en tant que métadonnées. Le service batch n’affecte aucune signification aux métadonnées ; C’est uniquement pour l’utilisation du code utilisateur. Valeurs séparées par des espaces dans le format’key = value'.
+    description: ''
+  - name: --parameters
+    summary: Valeurs de paramètre pour un fichier de modèle JSON de traitement par lots. Peut uniquement être utilisé avec--template.
+    description: ''
+  - name: --pool-id
+    summary: ID d’un pool existant. Toutes les tâches du travail seront exécutées sur le pool spécifié.
+    description: ''
+  - name: --priority
+    summary: Priorité du travail. Les valeurs de priorité peuvent être comprises entre -1000 et 1000, -1 000 étant la priorité la plus basse et 1000 la plus haute. La valeur par défaut est 0.
+    description: ''
+  - name: --resource-group
+    summary: Groupe de ressources du compte batch.
+    description: ''
+  - name: --template
+    summary: Fichier de modèle JSON de traitement par lots. Si ce paramètre est spécifié, tous les autres paramètres sont ignorés.
+    description: ''
+  - name: --uses-task-dependencies
+    summary: Indicateur qui détermine si ce travail utilisera des tâches avec des dépendances. True si l’indicateur est présent.
+    description: ''
+commands:
+- az_batch_job_create
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les travaux de traitement par lots.
+  ms.openlocfilehash: 19ba95ab387ba87307c6616b4590d82af80578da
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106909044"
