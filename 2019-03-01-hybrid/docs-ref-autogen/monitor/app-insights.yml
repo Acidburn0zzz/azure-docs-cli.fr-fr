@@ -1,0 +1,102 @@
+### YamlMime:AzureCLIGroup
+uid: az_monitor_app-insights
+name: az monitor app-insights
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **application-Insights** pour Azure CLI et requiert la version 2.0.79 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez la commande **AZ Monitor App-Insights** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour interroger des données dans des applications Application Insights.
+description: ''
+directCommands:
+- uid: az_monitor_app-insights_query
+  name: az monitor app-insights query
+  summary: Exécutez une requête sur des données dans votre application.
+  description: ''
+  syntax: >-
+    az monitor app-insights query --analytics-query
+                                  --apps
+                                  [--end-time]
+                                  [--offset]
+                                  [--resource-group]
+                                  [--start-time]
+  examples:
+  - summary: Exécutez une requête simple au cours des dernières 1 heure et 30 minutes.
+    syntax: az monitor app-insights query --app e292531c-eb03-4079-9bb0-fe6b56b99f8b --analytics-query 'requests | summarize count() by bin(timestamp, 1h)' --offset 1h30m
+  requiredParameters:
+  - isRequired: true
+    name: --analytics-query
+    summary: Requête à exécuter sur Application Insights données.
+    description: ''
+  - isRequired: true
+    name: --apps -a
+    summary: GUID, nom de l’application ou nom de ressource Azure complet du composant Application Insights. Le GUID de l’application peut être acquis à partir de l’élément de menu accès à l’API sur n’importe quelle ressource Application Insights dans le Portail Azure. Si vous utilisez un nom d’application, spécifiez le groupe de ressources.
+    description: ''
+  optionalParameters:
+  - name: --end-time
+    summary: 'Fin de l’intervalle de temps pour l’opération en cours. La valeur par défaut est l’heure actuelle. Format : Date (aaaa-mm-jj) heure (hh : mm : SS. xxxxx) TimeZone (+/-hh : mm).'
+    description: ''
+  - name: --offset
+    defaultValue: 1h
+    summary: 'Décalage de l’heure de la plage de requêtes, au format # #d # #h.'
+    description: Peut être utilisé avec l’heure de début ou l’heure de fin. Si elle est utilisée avec--Start-Time, l’heure de fin est calculée en ajoutant le décalage. S’il est utilisé avec l’heure de fin (par défaut), l’heure de début est calculée en soustrayant l’offset. Si--Start-Time et--Time sont fournis,--offset est ignoré.
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --start-time
+    summary: 'Heure de début de l’intervalle de temps pendant lequel les données doivent être récupérées. Format : Date (aaaa-mm-jj) heure (hh : mm : SS. xxxxx) TimeZone (+/-hh : mm).'
+    description: ''
+commands:
+- az_monitor_app-insights_api-key
+- az_monitor_app-insights_api-key_create
+- az_monitor_app-insights_api-key_delete
+- az_monitor_app-insights_api-key_show
+- az_monitor_app-insights_component
+- az_monitor_app-insights_component_billing
+- az_monitor_app-insights_component_billing_show
+- az_monitor_app-insights_component_billing_update
+- az_monitor_app-insights_component_connect-webapp
+- az_monitor_app-insights_component_continues-export
+- az_monitor_app-insights_component_continues-export_create
+- az_monitor_app-insights_component_continues-export_delete
+- az_monitor_app-insights_component_continues-export_list
+- az_monitor_app-insights_component_continues-export_show
+- az_monitor_app-insights_component_continues-export_update
+- az_monitor_app-insights_component_create
+- az_monitor_app-insights_component_delete
+- az_monitor_app-insights_component_linked-storage
+- az_monitor_app-insights_component_linked-storage_link
+- az_monitor_app-insights_component_linked-storage_show
+- az_monitor_app-insights_component_linked-storage_unlink
+- az_monitor_app-insights_component_linked-storage_update
+- az_monitor_app-insights_component_show
+- az_monitor_app-insights_component_update
+- az_monitor_app-insights_component_update-tags
+- az_monitor_app-insights_events
+- az_monitor_app-insights_events_show
+- az_monitor_app-insights_metrics
+- az_monitor_app-insights_metrics_get-metadata
+- az_monitor_app-insights_metrics_show
+- az_monitor_app-insights_query
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour interroger des données dans des applications Application Insights.
+  ms.openlocfilehash: fc719c1449126712d862b4f79f8eb525bddc7707
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106905408"
