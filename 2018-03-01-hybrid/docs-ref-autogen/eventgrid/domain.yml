@@ -1,0 +1,231 @@
+### YamlMime:AzureCLIGroup
+uid: az_eventgrid_domain
+name: az eventgrid domain
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **eventgrid** pour Azure CLI et requiert la version 2.0.49 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ eventgrid Domain** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les domaines d’événements.
+description: ''
+directCommands:
+- uid: az_eventgrid_domain_create
+  name: az eventgrid domain create
+  summary: Créez un domaine.
+  description: ''
+  syntax: >-
+    az eventgrid domain create --location
+                               --name
+                               --resource-group
+                               [--identity {noidentity, systemassigned}]
+                               [--inbound-ip-rules]
+                               [--input-mapping-default-values]
+                               [--input-mapping-fields]
+                               [--input-schema {cloudeventschemav1_0, customeventschema, eventgridschema}]
+                               [--public-network-access {disabled, enabled}]
+                               [--sku {basic, premium}]
+                               [--tags]
+  examples:
+  - summary: Créer un domaine.
+    syntax: az eventgrid domain create -g rg1 --name domain1 -l westus2
+  - summary: Créez un nouveau domaine avec des mappages d’entrée personnalisés.
+    syntax: az eventgrid domain create -g rg1 --name domain1 -l westus2 --input-schema customeventschema --input-mapping-fields topic=mytopicField eventType=myEventTypeField --input-mapping-default-values subject=DefaultSubject dataVersion=1.0
+  - summary: Créez un nouveau domaine qui accepte les événements publiés dans le schéma CloudEvents V 1.0 et mappe une propriété mytopicfield au nom de la rubrique.
+    syntax: az eventgrid domain create -g rg1 --name domain1 -l westus2 --input-schema cloudeventschemav1_0 --input-mapping-fields topic=mytopicfield
+  - summary: Créez un domaine qui autorise des règles d’adresse IP entrantes spécifiques.
+    syntax: az eventgrid domain create -g rg1 --name domain1 -l westus2 --public-network-access enabled --inbound-ip-rules 10.0.0.0/8 Allow --inbound-ip-rules 10.2.0.0/8 Allow --sku basic
+  requiredParameters:
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du domaine.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --identity
+    parameterValueGroup: noidentity, systemassigned
+    summary: Type d’identité de la ressource (par exemple, une rubrique ou un domaine).
+    description: ''
+  - name: --inbound-ip-rules
+    summary: Liste des règles IP entrantes.
+    description: 'Liste des règles IP entrantes spécifiant l’adresse IP en notation CIDR, par exemple 10.0.0.0/8, ainsi que l’action correspondante à exécuter en fonction de la correspondance ou de la non-correspondance du IpMask. Les valeurs possibles sont : allow.'
+  - name: --input-mapping-default-values
+    summary: Quand le schéma d’entrée est spécifié en tant que customeventschema, ce paramètre peut être utilisé pour spécifier des mappages d’entrée en fonction des valeurs par défaut. Vous pouvez utiliser ce paramètre lorsque votre schéma personnalisé n’inclut pas un champ qui correspond à l’un des trois champs pris en charge par ce paramètre. Spécifiez des mappages séparés par des espaces dans le format’key = value'. Les noms de clé autorisés sont « Subject », « EventType », « dataversion ». Les noms de valeurs correspondants doivent spécifier les valeurs par défaut à utiliser pour le mappage et elles seront utilisées uniquement lorsque l’événement publié n’a pas de mappage valide pour un champ particulier.
+    description: ''
+  - name: --input-mapping-fields
+    summary: Quand le schéma d’entrée est spécifié en tant que customeventschema, ce paramètre est utilisé pour spécifier des mappages d’entrée en fonction des noms de champs. Spécifiez des mappages séparés par des espaces dans le format’key = value'. Les noms de clé autorisés sont « ID », « topic », « EventTime », « Subject », « EventType », « dataversion ». Les noms de valeurs correspondants doivent spécifier les noms des champs dans le schéma d’entrée personnalisé. Si aucun mappage n’est fourni pour « ID » ou « EventTime », Event Grid génère automatiquement une valeur par défaut pour ces deux champs.
+    description: ''
+  - name: --input-schema
+    defaultValue: eventgridschema
+    parameterValueGroup: cloudeventschemav1_0, customeventschema, eventgridschema
+    summary: Schéma dans lequel les événements entrants seront publiés sur cette rubrique/domaine. Si vous spécifiez customeventschema comme valeur pour ce paramètre, vous devez également fournir des valeurs pour au moins l’un des input_mapping_default_values/--input_mapping_fields.
+    description: ''
+  - name: --public-network-access
+    parameterValueGroup: disabled, enabled
+    summary: Cela détermine si le trafic est autorisé sur le réseau public. Par défaut, il est activé. Vous pouvez restreindre davantage à des adresses IP spécifiques en configurant.
+    description: ''
+  - name: --sku
+    defaultValue: Basic
+    parameterValueGroup: basic, premium
+    summary: Nom de la référence (SKU) de la ressource.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_eventgrid_domain_delete
+  name: az eventgrid domain delete
+  summary: Supprimer un domaine.
+  description: ''
+  syntax: >-
+    az eventgrid domain delete --name
+                               --resource-group
+  examples:
+  - summary: Supprimer un domaine.
+    syntax: az eventgrid domain delete -g rg1 --name domain1
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du domaine.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_eventgrid_domain_list
+  name: az eventgrid domain list
+  summary: Répertorier les domaines disponibles.
+  description: ''
+  syntax: >-
+    az eventgrid domain list [--odata-query]
+                             [--resource-group]
+  examples:
+  - summary: Répertorie tous les domaines de l’abonnement Azure actuel.
+    syntax: az eventgrid domain list
+  - summary: Répertorie tous les domaines d’un groupe de ressources.
+    syntax: az eventgrid domain list -g rg1
+  - summary: Répertorie tous les domaines d’un groupe de ressources dont le nom contient le modèle « XYZ »
+    syntax: az eventgrid domain list -g rg1 --odata-query "Contains(name, 'XYZ')"
+  - summary: Répertorie tous les domaines d’un groupe de ressources, à l’exception du domaine nommé « nom1 »
+    syntax: az eventgrid domain list -g rg1 --odata-query "NOT (name eq 'name1')"
+  optionalParameters:
+  - name: --odata-query
+    summary: Requête utilisée pour filtrer les résultats à l’aide de la syntaxe OData.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_eventgrid_domain_show
+  name: az eventgrid domain show
+  summary: Obtenir les détails d’un domaine.
+  description: ''
+  syntax: >-
+    az eventgrid domain show --name
+                             --resource-group
+  examples:
+  - summary: Affichez les détails d’un domaine.
+    syntax: az eventgrid domain show -g rg1 -n domain1
+  - summary: Affichez les détails d’un domaine en fonction de l’ID de ressource.
+    syntax: az eventgrid domain show --ids /subscriptions/{SubID}/resourceGroups/{RG}/providers/Microsoft.EventGrid/domains/domain1
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du domaine.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_eventgrid_domain_update
+  name: az eventgrid domain update
+  summary: Mettre à jour un domaine.
+  description: ''
+  syntax: >-
+    az eventgrid domain update --name
+                               --resource-group
+                               [--identity {noidentity, systemassigned}]
+                               [--inbound-ip-rules]
+                               [--public-network-access {disabled, enabled}]
+                               [--sku {basic, premium}]
+                               [--tags]
+  examples:
+  - summary: Mettez à jour les propriétés d’un domaine existant.
+    syntax: az eventgrid domain update -g rg1 --name domain1 --sku Basic --identity noidentity --public-network-access enabled --inbound-ip-rules 10.0.0.0/8 Allow --inbound-ip-rules 10.2.0.0/8 Allow --tags Dept=IT --sku basic
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du domaine.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --identity
+    parameterValueGroup: noidentity, systemassigned
+    summary: Type d’identité de la ressource (par exemple, une rubrique ou un domaine).
+    description: ''
+  - name: --inbound-ip-rules
+    summary: Liste des règles IP entrantes.
+    description: 'Liste des règles IP entrantes spécifiant l’adresse IP en notation CIDR, par exemple 10.0.0.0/8, ainsi que l’action correspondante à exécuter en fonction de la correspondance ou de la non-correspondance du IpMask. Les valeurs possibles sont : allow.'
+  - name: --public-network-access
+    parameterValueGroup: disabled, enabled
+    summary: Cela détermine si le trafic est autorisé sur le réseau public. Par défaut, il est activé. Vous pouvez restreindre davantage à des adresses IP spécifiques en configurant.
+    description: ''
+  - name: --sku
+    parameterValueGroup: basic, premium
+    summary: Nom de la référence (SKU) de la ressource.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+commands:
+- az_eventgrid_domain_create
+- az_eventgrid_domain_delete
+- az_eventgrid_domain_key
+- az_eventgrid_domain_key_list
+- az_eventgrid_domain_key_regenerate
+- az_eventgrid_domain_list
+- az_eventgrid_domain_private-endpoint-connection
+- az_eventgrid_domain_private-endpoint-connection_approve
+- az_eventgrid_domain_private-endpoint-connection_delete
+- az_eventgrid_domain_private-endpoint-connection_list
+- az_eventgrid_domain_private-endpoint-connection_reject
+- az_eventgrid_domain_private-endpoint-connection_show
+- az_eventgrid_domain_private-link-resource
+- az_eventgrid_domain_private-link-resource_list
+- az_eventgrid_domain_private-link-resource_show
+- az_eventgrid_domain_show
+- az_eventgrid_domain_topic
+- az_eventgrid_domain_topic_create
+- az_eventgrid_domain_topic_delete
+- az_eventgrid_domain_topic_list
+- az_eventgrid_domain_topic_show
+- az_eventgrid_domain_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les domaines d’événements.
+  ms.openlocfilehash: b705218dcf2a9dce63cae351f743676a8d800990
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106904682"
