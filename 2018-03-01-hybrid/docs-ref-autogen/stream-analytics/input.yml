@@ -1,0 +1,238 @@
+### YamlMime:AzureCLIGroup
+uid: az_stream-analytics_input
+name: az stream-analytics input
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Stream-Analytics** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Stream-Analytics Input** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer l’entrée Stream-Analytics.
+description: ''
+directCommands:
+- uid: az_stream-analytics_input_create
+  name: az stream-analytics input create
+  summary: Crée une entrée ou remplace une entrée déjà existante dans une tâche de streaming existante.
+  description: ''
+  syntax: >-
+    az stream-analytics input create --datasource
+                                     --job-name
+                                     --name
+                                     --resource-group
+                                     --serialization
+                                     --type {Reference, Stream}
+  examples:
+  - summary: Créer une entrée
+    syntax: >-
+      az stream-analytics input create --resource-group MyResourceGroup --job-name MyJobName \
+
+      --name MyInputName --type Stream --datasource @datasource.json --serialization \
+
+      @serialization.json
+       (below is an example of Blob Storage for "datasource.json")
+       {
+           "type": "Microsoft.Storage/Blob",
+           "properties": {
+               "storageAccounts": [
+                   {
+                       "accountName": "someAccountName",
+                       "accountKey": "someAccountKey=="
+                   }
+               ],
+               "container": "state",
+               "pathPattern": "{date}/{time}",
+               "dateFormat": "yyyy/MM/dd",
+               "timeFormat": "HH",
+               "sourcePartitionCount": 16
+           }
+       }
+       (below is an example of Event Hub for "datasource.json")
+       {
+           "type": "Microsoft.ServiceBus/EventHub",
+           "properties": {
+               "serviceBusNamespace": "sdktest",
+               "sharedAccessPolicyName": "RootManageSharedAccessKey",
+               "sharedAccessPolicyKey": "someSharedAccessPolicyKey==",
+               "eventHubName": "sdkeventhub",
+               "consumerGroupName": "sdkconsumergroup"
+           }
+       }
+       (below is an example of Iot Hub for "datasource.json")
+       {
+           "type": "Microsoft.Devices/IotHubs",
+           "properties": {
+               "iotHubNamespace": "iothub",
+               "sharedAccessPolicyName": "owner",
+               "sharedAccessPolicyKey": "sharedAccessPolicyKey=",
+               "consumerGroupName": "sdkconsumergroup",
+               "endpoint": "messages/events"
+           }
+       }
+       (below is an example of Csv for "serialization.json")
+       {
+           "type": "Csv",
+           "properties": {
+               "fieldDelimiter": ",",
+               "encoding": "UTF8"
+           }
+       }
+       (below is an example of Json for "serialization.json")
+       {
+           "type": "Json",
+           "properties": {
+               "encoding": "UTF8"
+           }
+       }
+       (below is an example of Avro for "serialization.json")
+       {
+           "type": "Avro"
+       }
+  requiredParameters:
+  - isRequired: true
+    name: --datasource
+    summary: Source de données de l’entrée.
+    description: ''
+  - isRequired: true
+    name: --job-name
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l'entrée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --serialization
+    summary: Sérialisation de l’entrée.
+    description: ''
+  - isRequired: true
+    name: --type
+    parameterValueGroup: Reference, Stream
+    summary: Type de l’entrée.
+    description: ''
+- uid: az_stream-analytics_input_delete
+  name: az stream-analytics input delete
+  summary: Supprimer une entrée du travail de diffusion en continu.
+  description: ''
+  syntax: >-
+    az stream-analytics input delete --job-name
+                                     --name
+                                     --resource-group
+  examples:
+  - summary: Supprimer une entrée
+    syntax: az stream-analytics input delete --resource-group MyResourceGroup --job-name MyJobName --name MyInputName
+  requiredParameters:
+  - isRequired: true
+    name: --job-name
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l'entrée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_stream-analytics_input_list
+  name: az stream-analytics input list
+  summary: Répertorie toutes les entrées sous le travail de diffusion en continu spécifié.
+  description: ''
+  syntax: >-
+    az stream-analytics input list --job-name
+                                   --resource-group
+  examples:
+  - summary: Répertorier toutes les entrées dans une tâche de streaming
+    syntax: az stream-analytics input list --resource-group MyResourceGroup --job-name MyJobName
+  requiredParameters:
+  - isRequired: true
+    name: --job-name
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_stream-analytics_input_show
+  name: az stream-analytics input show
+  summary: Obtenir des détails sur l’entrée spécifiée.
+  description: ''
+  syntax: >-
+    az stream-analytics input show --job-name
+                                   --name
+                                   --resource-group
+  examples:
+  - summary: Obtenir des détails sur l’entrée spécifiée
+    syntax: az stream-analytics input show --resource-group MyResourceGroup --job-name MyJobName --name MyInputName
+  requiredParameters:
+  - isRequired: true
+    name: --job-name
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l'entrée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_stream-analytics_input_test
+  name: az stream-analytics input test
+  summary: Tester une entrée.
+  description: ''
+  syntax: >-
+    az stream-analytics input test --job-name
+                                   --name
+                                   --resource-group
+                                   [--no-wait]
+  examples:
+  - summary: Tester la connexion pour une entrée
+    syntax: az stream-analytics input test --resource-group MyResourceGroup --job-name MyJobName --name MyInputName
+  requiredParameters:
+  - isRequired: true
+    name: --job-name
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l'entrée.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+commands:
+- az_stream-analytics_input_create
+- az_stream-analytics_input_delete
+- az_stream-analytics_input_list
+- az_stream-analytics_input_show
+- az_stream-analytics_input_test
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer l’entrée Stream-Analytics.
+  ms.openlocfilehash: 7f36ad28efa9eb6ff113d0c856cbda61fa31ba19
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106909506"

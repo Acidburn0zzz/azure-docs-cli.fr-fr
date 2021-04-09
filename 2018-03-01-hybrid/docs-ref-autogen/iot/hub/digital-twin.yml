@@ -1,0 +1,159 @@
+### YamlMime:AzureCLIGroup
+uid: az_iot_hub_digital-twin
+name: az iot hub digital-twin
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ IOT Hub Digital-** balancer.  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Manipulez et interagissez avec la représentation numérique d’un appareil IoT Hub.
+description: ''
+directCommands:
+- uid: az_iot_hub_digital-twin_invoke-command
+  name: az iot hub digital-twin invoke-command
+  summary: Appeler une commande racine ou de niveau composant d’un appareil numérique.
+  description: ''
+  syntax: >-
+    az iot hub digital-twin invoke-command --cn
+                                           --device-id
+                                           [--component-path]
+                                           [--connect-timeout]
+                                           [--hub-name]
+                                           [--login]
+                                           [--payload]
+                                           [--resource-group]
+                                           [--response-timeout]
+  examples:
+  - summary: Appelez la commande de niveau racine « reboot » qui prend une charge utile qui comprend la propriété « Delay ».
+    syntax: az iot hub digital-twin invoke-command --command-name reboot -n {iothub_name} -d {device_id} --payload '{"delay":5}'
+  - summary: Appelez la commande « getMaxMinReport » sur le composant « thermostat1 » qui n’accepte aucune entrée.
+    syntax: az iot hub digital-twin invoke-command --cn getMaxMinReport -n {iothub_name} -d {device_id} --component-path thermostat1
+  requiredParameters:
+  - isRequired: true
+    name: --cn --command-name
+    summary: Nom de la commande de représentation numérique.
+    description: ''
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  optionalParameters:
+  - name: --component-path
+    summary: 'Chemin du composant numérique. Par exemple : thermostat1.'
+    description: ''
+  - name: --connect-timeout --cto
+    summary: Intervalle de temps maximal, en secondes, pendant lequel IoT Hub tentera de se connecter à l’appareil.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --payload
+    defaultValue: '{}'
+    summary: Entrée de charge utile JSON pour la commande. Fournissez un chemin de fichier ou un JSON en ligne.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --response-timeout --rto
+    summary: Intervalle de temps maximal, en secondes, pendant lequel la commande de représentation numérique attend le résultat.
+    description: ''
+- uid: az_iot_hub_digital-twin_show
+  name: az iot hub digital-twin show
+  summary: Affichez la représentation numérique d’un appareil IoT Hub.
+  description: ''
+  syntax: >-
+    az iot hub digital-twin show --device-id
+                                 [--hub-name]
+                                 [--login]
+                                 [--resource-group]
+  examples:
+  - summary: Affichez la représentation numérique de l’appareil cible.
+    syntax: az iot hub digital-twin show -n {iothub_name} -d {device_id}
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  optionalParameters:
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_iot_hub_digital-twin_update
+  name: az iot hub digital-twin update
+  summary: Mettez à jour les propriétés de lecture-écriture d’un appareil numérique à l’aide de la spécification de correctif JSON.
+  description: Actuellement, les opérations sont limitées à l’ajout, au remplacement et à la suppression.
+  syntax: >-
+    az iot hub digital-twin update --device-id
+                                   --json-patch
+                                   [--etag]
+                                   [--hub-name]
+                                   [--login]
+                                   [--resource-group]
+  examples:
+  - summary: Mise à jour d’une spécification de patch numérique par le biais de JSON.
+    syntax: "az iot hub digital-twin update --hub-name {iothub_name} --device-id {device_id} --json-patch '{\"op\":\"add\", \"path\":\"/thermostat1/targetTemperature\", \"value\": 54}'"
+  - summary: Mise à jour d’une spécification de patch numérique par le biais de JSON.
+    syntax: >-
+      az iot hub digital-twin update -n {iothub_name} -d {device_id} --json-patch '[
+        {"op":"remove", "path":"/thermostat1/targetTemperature"},
+        {"op":"add", "path":"/thermostat2/targetTemperature", "value": 22}
+      ]'
+  - summary: Mettre à jour une propriété de représentation numérique via une spécification de correctif JSON définie dans un fichier.
+    syntax: az iot hub digital-twin update -n {iothub_name} -d {device_id} --json-patch ./my/patch/document.json
+  requiredParameters:
+  - isRequired: true
+    name: --device-id -d
+    summary: Appareil cible.
+    description: ''
+  - isRequired: true
+    name: --json-patch --patch
+    summary: Spécification de mise à jour décrite par JSON-patch. Les opérations sont limitées à l’ajout, au remplacement et à la suppression. Fournissez un chemin de fichier ou un JSON en ligne.
+    description: ''
+  optionalParameters:
+  - name: --etag -e
+    summary: L’ETag ou la balise d’entité correspondant au dernier état de la ressource. Si aucun ETag n’est fourni, la valeur' \* 'est utilisée.
+    description: ''
+  - name: --hub-name -n
+    summary: Nom de l’IoT Hub.
+    description: ''
+  - name: --login -l
+    summary: Cette commande prend en charge une chaîne de connexion d’entité avec les droits d’exécution de l’action. Utilisez pour éviter la connexion de session via « AZ login ». Si une chaîne de connexion d’entité et un nom sont fournis, la chaîne de connexion est prioritaire.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- az_iot_hub_digital-twin_invoke-command
+- az_iot_hub_digital-twin_show
+- az_iot_hub_digital-twin_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Manipulez et interagissez avec la représentation numérique d’un appareil IoT Hub.
+  ms.openlocfilehash: d19309258d0bce032fc385beffb9bea50290efdf
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106894488"
