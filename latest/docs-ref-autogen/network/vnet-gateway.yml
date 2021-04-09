@@ -1,10 +1,10 @@
 ### YamlMime:AzureCLIGroup
-uid: az_network_vnet_gateway
+uid: az_network_vnet-gateway
 name: az network vnet-gateway
 summary: Utiliser une passerelle de réseau virtuel Azure pour établir une connectivité entre sites sécurisée.
-description: Pour en savoir plus sur les passerelles de réseau virtuel Azure, visitez <a href="https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli">https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli</a> .
+description: Pour en savoir plus sur les passerelles de réseau virtuel Azure, visitez https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli .
 directCommands:
-- uid: az_network_vnet_gateway_create
+- uid: az_network_vnet-gateway_create
   name: az network vnet-gateway create
   summary: Créez une passerelle de réseau virtuel.
   description: ''
@@ -13,6 +13,9 @@ directCommands:
                                    --public-ip-addresses
                                    --resource-group
                                    --vnet
+                                   [--aad-audience]
+                                   [--aad-issuer]
+                                   [--aad-tenant]
                                    [--address-prefixes]
                                    [--asn]
                                    [--bgp-peering-address]
@@ -25,9 +28,12 @@ directCommands:
                                    [--peer-weight]
                                    [--radius-secret]
                                    [--radius-server]
+                                   [--root-cert-data]
+                                   [--root-cert-name]
                                    [--sku {Basic, ErGw1AZ, ErGw2AZ, ErGw3AZ, HighPerformance, Standard, UltraPerformance, VpnGw1, VpnGw1AZ, VpnGw2, VpnGw2AZ, VpnGw3, VpnGw3AZ, VpnGw4, VpnGw4AZ, VpnGw5, VpnGw5AZ}]
                                    [--subscription]
                                    [--tags]
+                                   [--vpn-auth-type {AAD, Certificate, Radius}]
                                    [--vpn-gateway-generation {Generation1, Generation2}]
                                    [--vpn-type {PolicyBased, RouteBased}]
   examples:
@@ -40,6 +46,8 @@ directCommands:
       az network vnet-gateway create -g MyResourceGroup -n MyVnetGateway --public-ip-address MyGatewayIp \
           --vnet MyVnet --gateway-type Vpn --sku VpnGw1 --vpn-type RouteBased --address-prefixes 40.1.0.0/24 \
           --client-protocol IkeV2 SSTP --radius-secret 111_aaa --radius-server 30.1.1.15 --vpn-gateway-generation Generation1
+  - summary: Créer une passerelle de réseau virtuel de base avec authentification multiple
+    syntax: az network vnet-gateway create -g MyResourceGroup -n MyVnetGateway --public-ip-address MyGatewayIp --vnet MyVnet --gateway-type Vpn --sku VpnGw1 --vpn-type RouteBased --address-prefixes 40.1.0.0/24 --client-protocol OpenVPN --radius-secret 111_aaa --radius-server 30.1.1.15 --aad-issuer https://sts.windows.net/00000-000000-00000-0000-000/ --aad-tenant https://login.microsoftonline.com/000 --aad-audience 0000-000 --root-cert-name root-cert --root-cert-data "root-cert.cer" --vpn-auth-type AAD Certificate Radius
   - summary: Créez une passerelle de réseau virtuel. généré automatiquement
     syntax: az network vnet-gateway create --gateway-type Vpn --location westus2 --name MyVnetGateway --no-wait --public-ip-addresses myVGPublicIPAddress --resource-group MyResourceGroup --sku Basic --vnet MyVnet --vpn-type PolicyBased
   requiredParameters:
@@ -60,6 +68,15 @@ directCommands:
     summary: Nom ou ID d’un réseau virtuel existant qui possède un sous-réseau nommé « GatewaySubnet ».
     description: ''
   optionalParameters:
+  - name: --aad-audience
+    summary: ID AADAudience du VirtualNetworkGateway.
+    description: ''
+  - name: --aad-issuer
+    summary: URI de l’émetteur AAD de VirtualNetworkGateway.
+    description: ''
+  - name: --aad-tenant
+    summary: URI du locataire AAD de VirtualNetworkGateway.
+    description: ''
   - name: --address-prefixes
     summary: Liste séparée par des espaces des préfixes CIDR représentant l’espace d’adressage du définit P2S.
     description: ''
@@ -99,6 +116,12 @@ directCommands:
   - name: --radius-server
     summary: Adresse du serveur RADIUS à laquelle se connecter.
     description: ''
+  - name: --root-cert-data
+    summary: Contenu en base64 du fichier de certificat racine ou du chemin d’accès au fichier.
+    description: ''
+  - name: --root-cert-name
+    summary: Nom du certificat racine.
+    description: ''
   - name: --sku
     defaultValue: Basic
     parameterValueGroup: Basic, ErGw1AZ, ErGw2AZ, ErGw3AZ, HighPerformance, Standard, UltraPerformance, VpnGw1, VpnGw1AZ, VpnGw2, VpnGw2AZ, VpnGw3, VpnGw3AZ, VpnGw4, VpnGw4AZ, VpnGw5, VpnGw5AZ
@@ -110,6 +133,10 @@ directCommands:
   - name: --tags
     summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
     description: ''
+  - name: --vpn-auth-type
+    parameterValueGroup: AAD, Certificate, Radius
+    summary: Types d’authentification VPN activés pour la passerelle de réseau virtuel.
+    description: ''
   - name: --vpn-gateway-generation
     parameterValueGroup: Generation1, Generation2
     summary: Génération de la passerelle de réseau virtuel. vpn_gateway_generation ne doit pas être fourni si gateway_type n’est pas VPN.
@@ -120,13 +147,13 @@ directCommands:
     summary: Type de routage VPN.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_gateway_delete
+- uid: az_network_vnet-gateway_delete
   name: az network vnet-gateway delete
   summary: Supprimer une passerelle de réseau virtuel.
   description: >-
     Pour supprimer une passerelle de réseau virtuel, vous devez d’abord supprimer tous les objets de connexion dans Azure qui sont connectés à la passerelle. Après avoir supprimé la passerelle, continuez à supprimer les autres ressources qui ne sont pas en cours d’utilisation.
 
-    Pour plus d’informations, suivez l’ordre des instructions sur cette page : <a href="https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-delete-vnet-gateway-portal">https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-delete-vnet-gateway-portal</a> .
+    Pour plus d’informations, suivez l’ordre des instructions sur cette page : https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-delete-vnet-gateway-portal .
   syntax: >-
     az network vnet-gateway delete [--ids]
                                    [--name]
@@ -153,7 +180,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_gateway_list
+- uid: az_network_vnet-gateway_list
   name: az network vnet-gateway list
   summary: Répertoriez les passerelles de réseau virtuel.
   description: ''
@@ -177,7 +204,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_gateway_list_advertised_routes
+- uid: az_network_vnet-gateway_list-advertised-routes
   name: az network vnet-gateway list-advertised-routes
   summary: Répertorier les itinéraires d’une passerelle de réseau virtuel publiée sur l’homologue spécifié.
   description: ''
@@ -209,7 +236,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_gateway_list_bgp_peer_status
+- uid: az_network_vnet-gateway_list-bgp-peer-status
   name: az network vnet-gateway list-bgp-peer-status
   summary: Récupérez l’état des homologues BGP.
   description: ''
@@ -239,7 +266,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_gateway_list_learned_routes
+- uid: az_network_vnet-gateway_list-learned-routes
   name: az network vnet-gateway list-learned-routes
   summary: Cette opération récupère une liste d’itinéraires que la passerelle de réseau virtuel a appris, y compris les itinéraires appris par les homologues BGP.
   description: ''
@@ -265,7 +292,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_gateway_reset
+- uid: az_network_vnet-gateway_reset
   name: az network vnet-gateway reset
   summary: Réinitialisation d’une passerelle de réseau virtuel.
   description: ''
@@ -297,7 +324,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_gateway_show
+- uid: az_network_vnet-gateway_show
   name: az network vnet-gateway show
   summary: Obtenir les détails d’une passerelle de réseau virtuel.
   description: ''
@@ -327,12 +354,15 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_gateway_update
+- uid: az_network_vnet-gateway_update
   name: az network vnet-gateway update
   summary: Mettre à jour une passerelle de réseau virtuel.
   description: ''
   syntax: >-
-    az network vnet-gateway update [--add]
+    az network vnet-gateway update [--aad-audience]
+                                   [--aad-issuer]
+                                   [--aad-tenant]
+                                   [--add]
                                    [--address-prefixes]
                                    [--asn]
                                    [--bgp-peering-address]
@@ -351,11 +381,14 @@ directCommands:
                                    [--radius-server]
                                    [--remove]
                                    [--resource-group]
+                                   [--root-cert-data]
+                                   [--root-cert-name]
                                    [--set]
                                    [--sku {Basic, ErGw1AZ, ErGw2AZ, ErGw3AZ, HighPerformance, Standard, UltraPerformance, VpnGw1, VpnGw1AZ, VpnGw2, VpnGw2AZ, VpnGw3, VpnGw3AZ, VpnGw4, VpnGw4AZ, VpnGw5, VpnGw5AZ}]
                                    [--subscription]
                                    [--tags]
                                    [--vnet]
+                                   [--vpn-auth-type {AAD, Certificate, Radius}]
                                    [--vpn-type {PolicyBased, RouteBased}]
   examples:
   - summary: Modifier la référence (SKU) d’une passerelle de réseau virtuel.
@@ -363,6 +396,15 @@ directCommands:
   - summary: Mettre à jour une passerelle de réseau virtuel. généré automatiquement
     syntax: az network vnet-gateway update --address-prefixes 40.1.0.0/24 --client-protocol IkeV2 --name MyVnetGateway --resource-group MyResourceGroup
   optionalParameters:
+  - name: --aad-audience
+    summary: ID AADAudience du VirtualNetworkGateway.
+    description: ''
+  - name: --aad-issuer
+    summary: URI de l’émetteur AAD de VirtualNetworkGateway.
+    description: ''
+  - name: --aad-tenant
+    summary: URI du locataire AAD de VirtualNetworkGateway.
+    description: ''
   - name: --add
     summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
     description: ''
@@ -423,6 +465,12 @@ directCommands:
   - name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
+  - name: --root-cert-data
+    summary: Contenu en base64 du fichier de certificat racine ou du chemin d’accès au fichier.
+    description: ''
+  - name: --root-cert-name
+    summary: Nom du certificat racine.
+    description: ''
   - name: --set
     summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
     description: ''
@@ -439,12 +487,16 @@ directCommands:
   - name: --vnet
     summary: Nom ou ID d’un réseau virtuel qui contient un sous-réseau nommé « GatewaySubnet ».
     description: ''
+  - name: --vpn-auth-type
+    parameterValueGroup: AAD, Certificate, Radius
+    summary: Types d’authentification VPN activés pour la passerelle de réseau virtuel.
+    description: ''
   - name: --vpn-type
     parameterValueGroup: PolicyBased, RouteBased
     summary: Type de routage VPN.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
-- uid: az_network_vnet_gateway_wait
+- uid: az_network_vnet-gateway_wait
   name: az network vnet-gateway wait
   summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de la passerelle de réseau virtuel soit remplie.
   description: ''
@@ -503,33 +555,33 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/network/_help.py
 commands:
-- az_network_vnet_gateway_aad
-- az_network_vnet_gateway_aad_assign
-- az_network_vnet_gateway_aad_remove
-- az_network_vnet_gateway_aad_show
-- az_network_vnet_gateway_create
-- az_network_vnet_gateway_delete
-- az_network_vnet_gateway_ipsec_policy
-- az_network_vnet_gateway_ipsec_policy_add
-- az_network_vnet_gateway_ipsec_policy_clear
-- az_network_vnet_gateway_ipsec_policy_list
-- az_network_vnet_gateway_list
-- az_network_vnet_gateway_list_advertised_routes
-- az_network_vnet_gateway_list_bgp_peer_status
-- az_network_vnet_gateway_list_learned_routes
-- az_network_vnet_gateway_reset
-- az_network_vnet_gateway_revoked_cert
-- az_network_vnet_gateway_revoked_cert_create
-- az_network_vnet_gateway_revoked_cert_delete
-- az_network_vnet_gateway_root_cert
-- az_network_vnet_gateway_root_cert_create
-- az_network_vnet_gateway_root_cert_delete
-- az_network_vnet_gateway_show
-- az_network_vnet_gateway_update
-- az_network_vnet_gateway_vpn_client
-- az_network_vnet_gateway_vpn_client_generate
-- az_network_vnet_gateway_vpn_client_show_url
-- az_network_vnet_gateway_wait
+- az_network_vnet-gateway_aad
+- az_network_vnet-gateway_aad_assign
+- az_network_vnet-gateway_aad_remove
+- az_network_vnet-gateway_aad_show
+- az_network_vnet-gateway_create
+- az_network_vnet-gateway_delete
+- az_network_vnet-gateway_ipsec-policy
+- az_network_vnet-gateway_ipsec-policy_add
+- az_network_vnet-gateway_ipsec-policy_clear
+- az_network_vnet-gateway_ipsec-policy_list
+- az_network_vnet-gateway_list
+- az_network_vnet-gateway_list-advertised-routes
+- az_network_vnet-gateway_list-bgp-peer-status
+- az_network_vnet-gateway_list-learned-routes
+- az_network_vnet-gateway_reset
+- az_network_vnet-gateway_revoked-cert
+- az_network_vnet-gateway_revoked-cert_create
+- az_network_vnet-gateway_revoked-cert_delete
+- az_network_vnet-gateway_root-cert
+- az_network_vnet-gateway_root-cert_create
+- az_network_vnet-gateway_root-cert_delete
+- az_network_vnet-gateway_show
+- az_network_vnet-gateway_update
+- az_network_vnet-gateway_vpn-client
+- az_network_vnet-gateway_vpn-client_generate
+- az_network_vnet-gateway_vpn-client_show-url
+- az_network_vnet-gateway_wait
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -547,11 +599,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 03/18/2021
-  description: Pour en savoir plus sur les passerelles de réseau virtuel Azure, visitez <a href="https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli">https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli</a> .
-  ms.openlocfilehash: 897ac3b467de6841038e50527e07fa991e7b663a
-  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
+  ms.date: 04/07/2021
+  description: Pour en savoir plus sur les passerelles de réseau virtuel Azure, visitez https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli .
+  ms.openlocfilehash: e21b58bde16c23b37594fbdb9a53c4299cbbd01e
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/23/2021
-  ms.locfileid: "104917310"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106825032"

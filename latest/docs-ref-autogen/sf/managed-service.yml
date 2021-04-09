@@ -1,0 +1,388 @@
+### YamlMime:AzureCLIGroup
+uid: az_sf_managed-service
+name: az sf managed-service
+summary: Gérer les services qui s’exécutent sur un cluster géré Azure Service Fabric. Ne prennent en charge que les services ARM déployés.
+description: ''
+directCommands:
+- uid: az_sf_managed-service_create
+  name: az sf managed-service create
+  summary: Créez un nouveau service géré sur un cluster Azure Service Fabric géré.
+  description: ''
+  syntax: >-
+    az sf managed-service create --application
+                                 --cluster-name
+                                 --name
+                                 --resource-group
+                                 --service-type
+                                 --state {Stateful, Stateless}
+                                 [--activation-mode]
+                                 [--close-duration]
+                                 [--default-move-cost {High, Low, Medium, Zero}]
+                                 [--dns-name]
+                                 [--drop-source]
+                                 [--has-persisted-state {false, true}]
+                                 [--high-key]
+                                 [--instance-count]
+                                 [--keep-duration]
+                                 [--low-key]
+                                 [--min-inst-pct]
+                                 [--min-instance-count]
+                                 [--min-replica]
+                                 [--partition-count]
+                                 [--partition-names]
+                                 [--partition-scheme {Named, Singleton, UniformInt64Range}]
+                                 [--placement-constraints]
+                                 [--plcmt-time-limit]
+                                 [--quorum-loss-wait]
+                                 [--replica-restart-wait]
+                                 [--subscription]
+                                 [--tags]
+                                 [--target-replica]
+  examples:
+  - summary: Créez un nouveau service géré sans état « testService1 » avec le nombre d’instances-1 (sur tous les nœuds).
+    syntax: >-
+      az sf managed-service create -g testRG -c testCluster --application-name testApp --state stateless --service-name testService \
+        --service-type testStateless --instance-count -1 --partition-scheme singleton
+  - summary: Créez un service avec état « testService2 » avec une cible de 5 nœuds.
+    syntax: >-
+      az sf managed-service create -g testRG -c testCluster --application-name testApp --state stateful --service-name testService2 --has-persisted-state \
+        --service-type testStatefulType --min-replica-set-size 3 --target-replica-set-size 5 --partition-scheme uniformint64range --partition-count 1 --low-key 0 --high-key 25
+  requiredParameters:
+  - isRequired: true
+    name: --application --application-name
+    summary: Spécifiez le nom du service.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --name --service-name
+    summary: Spécifiez le nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-type --type
+    summary: Spécifiez le nom du type de service de l’application, il doit exister dans le manifeste de l’application.
+    description: ''
+  - isRequired: true
+    name: --state
+    parameterValueGroup: Stateful, Stateless
+    summary: Spécifiez si le service est sans État ou avec état.
+    description: ''
+  optionalParameters:
+  - name: --activation-mode --package-activation-mode --service-package-activation-mode
+    summary: Spécifiez le mode d’activation du package de services.
+    description: ''
+  - name: --close-duration --instance-close-delay-duration --instance-close-duration
+    summary: Spécifiez la durée en secondes d’attente avant la fermeture d’une instance sans État, afin de permettre aux demandes actives de se purger correctement. Cela est efficace lorsque l’instance se ferme pendant la mise à niveau de l’application/du cluster et la désactivation du nœud. Le point de terminaison exposé sur cette instance est supprimé avant le délai de démarrage, ce qui empêche les nouvelles connexions à cette instance.
+    description: ''
+  - name: --default-move-cost
+    parameterValueGroup: High, Low, Medium, Zero
+    summary: Spécifiez le coût par défaut d’un déplacement. Des coûts plus élevés réduisent le risque que le cluster Gestionnaire des ressources déplace le réplica en tentant d’équilibrer le cluster.
+    description: ''
+  - name: --dns-name --service-dns-name
+    summary: Spécifiez le nom DNS du service. Il requiert l’activation du service système DNS dans Service Fabric cluster.
+    description: ''
+  - name: --drop-source --drop-source-replica-on-move
+    summary: Détermine s’il faut supprimer le réplica secondaire source même si le réplica cible n’a pas terminé la génération. Si le comportement souhaité est de le supprimer dès que possible, la valeur de cette propriété est true, sinon elle est false.
+    description: ''
+  - name: --has-persisted-state
+    parameterValueGroup: false, true
+    summary: Détermine s’il s’agit d’un service persistant qui stocke les États sur le disque local. Si c’est le cas, la valeur de cette propriété est true, sinon elle est false.
+    description: ''
+  - name: --high-key
+    summary: Spécifiez la limite supérieure de la plage de clés de partition qui doit être fractionnée entre la partition « Count ». cette valeur est utilisée uniquement avec le schéma de partition UniformInt64.
+    description: ''
+  - name: --instance-count
+    summary: Spécifiez le nombre d’instances pour le service sans État. Si-1 est utilisé, cela signifie qu’il s’exécutera sur tous les nœuds.
+    description: ''
+  - name: --keep-duration --stand-by-keep-duration --stand-by-replica-keep-duration
+    summary: 'Spécifiez la définition de la durée pendant laquelle les réplicas de secours doivent être conservés avant d’être supprimés, représentés au format ISO 8601 « hh : mm : SS ».'
+    description: ''
+  - name: --low-key
+    summary: Spécifiez la limite inférieure de la plage de clés de partition qui doit être fractionnée entre la partition « Count ». cette valeur est utilisée uniquement avec le schéma de partition UniformInt64.
+    description: ''
+  - name: --min-inst-pct --min-instance-percentage
+    summary: Spécifiez le pourcentage minimal de InstanceCount qui doit être atteint pour atteindre la vérification de sécurité EnsureAvailability pendant des opérations telles que mettre à niveau ou désactiver le nœud. Le nombre réel utilisé est Max (MinInstanceCount, ceil (MinInstancePercentage/100.0 \* InstanceCount)). Notez que si la valeur de InstanceCount est égale à-1, au cours du calcul MinInstancePercentage,-1 est d’abord converti en nombre de nœuds sur lesquels les instances peuvent être placées en fonction des contraintes de placement sur le service. Les valeurs autorisées sont comprises entre 0 et 100.
+    description: ''
+  - name: --min-instance-count
+    summary: Spécifiez le nombre minimal d’instances qui doivent être respectées pour respecter la vérification de sécurité EnsureAvailability pendant des opérations telles que mettre à niveau ou désactiver le nœud. Le nombre réel utilisé est Max (MinInstanceCount, ceil (MinInstancePercentage/100.0 \* InstanceCount)). Notez que si InstanceCount a la valeur-1, lors du calcul MinInstanceCount-1, est d’abord converti en nombre de nœuds sur lesquels les instances peuvent être placées en fonction des contraintes de placement sur le service.
+    description: ''
+  - name: --min-replica --min-replica-set-size
+    summary: Spécifiez la taille minimale du jeu de réplicas pour le service avec état.
+    description: ''
+  - name: --partition-count
+    summary: Spécifiez le nombre de partitions. Utilisé uniquement avec le schéma de partition UniformInt64.
+    description: ''
+  - name: --partition-names
+    summary: Spécifiez le tableau pour les noms des partitions. Utilisé uniquement avec le schéma de partition nommé.
+    description: ''
+  - name: --partition-scheme
+    defaultValue: singleton
+    parameterValueGroup: Named, Singleton, UniformInt64Range
+    summary: Spécifiez le schéma de partition à utiliser. Les partitions singleton sont généralement utilisées lorsque le service ne requiert aucun routage supplémentaire. UniformInt64 signifie que chaque partition possède une plage de clés Int64. Le nom est généralement destiné aux services avec des données qui peuvent être compartiments, au sein d’un ensemble limité. Les régions, les codes postaux, les groupes de clients ou les autres limites de l’entreprise constituent des exemples courants de champs de données utilisés comme clés de partition nommées.
+    description: ''
+  - name: --placement-constraints
+    summary: 'Spécifiez les contraintes de placement sous la forme d’une chaîne. Les contraintes de placement sont des expressions booléennes sur les propriétés de nœud et permettent de restreindre un service à des nœuds particuliers en fonction des besoins du service. Par exemple, pour placer un service sur des nœuds où NodeType est bleu, spécifiez ce qui suit : « NodeColor = = Blue) ».'
+    description: ''
+  - name: --plcmt-time-limit --service-placement-time-limit
+    summary: 'Spécifiez la durée pendant laquelle les réplicas peuvent rester ingénérés avant de signaler que la build est bloquée, représentée au format ISO 8601 « hh : mm : SS ».'
+    description: ''
+  - name: --quorum-loss-wait --quorum-loss-wait-duration
+    summary: 'Spécifiez la durée maximale pendant laquelle une partition peut être dans un état de perte de quorum, représentée au format ISO 8601 « hh : mm : SS ».'
+    description: ''
+  - name: --replica-restart-wait --replica-restart-wait-duration
+    summary: 'Spécifiez la durée entre le moment où un réplica tombe en panne et le moment où un nouveau réplica est créé, représenté au format ISO 8601 « hh : mm : SS ».'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --target-replica --target-replica-set-size
+    summary: Spécifiez la taille du jeu de réplicas cible pour le service avec état.
+    description: ''
+- uid: az_sf_managed-service_delete
+  name: az sf managed-service delete
+  summary: Supprimer un service géré.
+  description: ''
+  syntax: >-
+    az sf managed-service delete --application
+                                 --cluster-name
+                                 --name
+                                 --resource-group
+                                 [--subscription]
+  examples:
+  - summary: Supprimer le service géré.
+    syntax: az sf managed-service delete -g testRG -c testCluster --application-name testApp --service-name testService
+  requiredParameters:
+  - isRequired: true
+    name: --application --application-name
+    summary: Spécifiez le nom du service.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --name --service-name
+    summary: Spécifiez le nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_managed-service_list
+  name: az sf managed-service list
+  summary: Répertorier les services managés d’une application managée donnée.
+  description: ''
+  syntax: >-
+    az sf managed-service list --application
+                               --cluster-name
+                               --resource-group
+                               [--query-examples]
+                               [--subscription]
+  examples:
+  - summary: Répertorier les services gérés.
+    syntax: az sf managed-service list -g testRG -c testCluster --application-name testApp
+  requiredParameters:
+  - isRequired: true
+    name: --application --application-name
+    summary: Spécifiez le nom du service.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_managed-service_show
+  name: az sf managed-service show
+  summary: Obtenir un service.
+  description: ''
+  syntax: >-
+    az sf managed-service show --application
+                               --cluster-name
+                               --name
+                               --resource-group
+                               [--query-examples]
+                               [--subscription]
+  examples:
+  - summary: Affichez les propriétés d’un service géré sur un cluster Azure Service Fabric géré.
+    syntax: az sf managed-service show -g testRG -c testCluster --application-name testApp --service-name testService
+  requiredParameters:
+  - isRequired: true
+    name: --application --application-name
+    summary: Spécifiez le nom du service.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --name --service-name
+    summary: Spécifiez le nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+- uid: az_sf_managed-service_update
+  name: az sf managed-service update
+  summary: Mettez à jour un service géré.
+  description: ''
+  syntax: >-
+    az sf managed-service update --application
+                                 --cluster-name
+                                 --name
+                                 --resource-group
+                                 [--close-duration]
+                                 [--default-move-cost {High, Low, Medium, Zero}]
+                                 [--drop-source]
+                                 [--instance-count]
+                                 [--keep-duration]
+                                 [--min-inst-pct]
+                                 [--min-instance-count]
+                                 [--min-replica]
+                                 [--placement-constraints]
+                                 [--plcmt-time-limit]
+                                 [--quorum-loss-wait]
+                                 [--replica-restart-wait]
+                                 [--subscription]
+                                 [--tags]
+                                 [--target-replica]
+  examples:
+  - summary: Mettez à jour le service géré sans État.
+    syntax: >-
+      az sf managed-service update -g testRG -c testCluster --application-name testApp --service-name testService --min-instance-count 2 \
+        --min-instance-percentage 20 --instance-close-delay-duration '00:11:00'
+  - summary: Mettez à jour le service avec état géré.
+    syntax: >-
+      az sf managed-service update -g testRG -c testCluster --application-name testApp --service-name testService2 --service-placement-time-limit '00:11:00' \
+        --stand-by-replica-keep-duration '00:11:00' --replica-restart-wait-duration '00:11:00' --quorum-loss-wait-duration '00:11:00'
+  requiredParameters:
+  - isRequired: true
+    name: --application --application-name
+    summary: Spécifiez le nom du service.
+    description: ''
+  - isRequired: true
+    name: --cluster-name -c
+    summary: Spécifiez le nom du cluster, si ce n’est pas le cas, il sera le même que le nom du groupe de ressources.
+    description: ''
+  - isRequired: true
+    name: --name --service-name
+    summary: Spécifiez le nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Spécifiez le nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --close-duration --instance-close-delay-duration --instance-close-duration
+    summary: Spécifiez la durée en secondes d’attente avant la fermeture d’une instance sans État, afin de permettre aux demandes actives de se purger correctement. Cela est efficace lorsque l’instance se ferme pendant la mise à niveau de l’application/du cluster et la désactivation du nœud. Le point de terminaison exposé sur cette instance est supprimé avant le délai de démarrage, ce qui empêche les nouvelles connexions à cette instance.
+    description: ''
+  - name: --default-move-cost
+    parameterValueGroup: High, Low, Medium, Zero
+    summary: Spécifiez le coût par défaut d’un déplacement. Des coûts plus élevés réduisent le risque que le cluster Gestionnaire des ressources déplace le réplica en tentant d’équilibrer le cluster.
+    description: ''
+  - name: --drop-source --drop-source-replica-on-move
+    summary: Détermine s’il faut supprimer le réplica secondaire source même si le réplica cible n’a pas terminé la génération. Si le comportement souhaité est de le supprimer dès que possible, la valeur de cette propriété est true, sinon elle est false.
+    description: ''
+  - name: --instance-count
+    summary: Spécifiez le nombre d’instances pour le service sans État. Si-1 est utilisé, cela signifie qu’il s’exécutera sur tous les nœuds.
+    description: ''
+  - name: --keep-duration --stand-by-keep-duration --stand-by-replica-keep-duration
+    summary: 'Spécifiez la définition de la durée pendant laquelle les réplicas de secours doivent être conservés avant d’être supprimés, représentés au format ISO 8601 « hh : mm : SS ».'
+    description: ''
+  - name: --min-inst-pct --min-instance-percentage
+    summary: Spécifiez le pourcentage minimal de InstanceCount qui doit être atteint pour atteindre la vérification de sécurité EnsureAvailability pendant des opérations telles que mettre à niveau ou désactiver le nœud. Le nombre réel utilisé est Max (MinInstanceCount, ceil (MinInstancePercentage/100.0 \* InstanceCount)). Notez que si la valeur de InstanceCount est égale à-1, au cours du calcul MinInstancePercentage,-1 est d’abord converti en nombre de nœuds sur lesquels les instances peuvent être placées en fonction des contraintes de placement sur le service. Les valeurs autorisées sont comprises entre 0 et 100.
+    description: ''
+  - name: --min-instance-count
+    summary: Spécifiez le nombre minimal d’instances qui doivent être respectées pour respecter la vérification de sécurité EnsureAvailability pendant des opérations telles que mettre à niveau ou désactiver le nœud. Le nombre réel utilisé est Max (MinInstanceCount, ceil (MinInstancePercentage/100.0 \* InstanceCount)). Notez que si InstanceCount a la valeur-1, lors du calcul MinInstanceCount-1, est d’abord converti en nombre de nœuds sur lesquels les instances peuvent être placées en fonction des contraintes de placement sur le service.
+    description: ''
+  - name: --min-replica --min-replica-set-size
+    summary: Spécifiez la taille minimale du jeu de réplicas pour le service avec état.
+    description: ''
+  - name: --placement-constraints
+    summary: 'Spécifiez les contraintes de placement sous la forme d’une chaîne. Les contraintes de placement sont des expressions booléennes sur les propriétés de nœud et permettent de restreindre un service à des nœuds particuliers en fonction des besoins du service. Par exemple, pour placer un service sur des nœuds où NodeType est bleu, spécifiez ce qui suit : « NodeColor = = Blue) ».'
+    description: ''
+  - name: --plcmt-time-limit --service-placement-time-limit
+    summary: 'Spécifiez la durée pendant laquelle les réplicas peuvent rester ingénérés avant de signaler que la build est bloquée, représentée au format ISO 8601 « hh : mm : SS ».'
+    description: ''
+  - name: --quorum-loss-wait --quorum-loss-wait-duration
+    summary: 'Spécifiez la durée maximale pendant laquelle une partition peut être dans un état de perte de quorum, représentée au format ISO 8601 « hh : mm : SS ».'
+    description: ''
+  - name: --replica-restart-wait --replica-restart-wait-duration
+    summary: 'Spécifiez la durée entre le moment où un réplica tombe en panne et le moment où un nouveau réplica est créé, représenté au format ISO 8601 « hh : mm : SS ».'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --target-replica --target-replica-set-size
+    summary: Spécifiez la taille du jeu de réplicas cible pour le service avec état.
+    description: ''
+commands:
+- az_sf_managed-service_correlation-scheme
+- az_sf_managed-service_correlation-scheme_create
+- az_sf_managed-service_correlation-scheme_delete
+- az_sf_managed-service_correlation-scheme_update
+- az_sf_managed-service_create
+- az_sf_managed-service_delete
+- az_sf_managed-service_list
+- az_sf_managed-service_load-metrics
+- az_sf_managed-service_load-metrics_create
+- az_sf_managed-service_load-metrics_delete
+- az_sf_managed-service_load-metrics_update
+- az_sf_managed-service_show
+- az_sf_managed-service_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les services qui s’exécutent sur un cluster géré Azure Service Fabric. Ne prennent en charge que les services ARM déployés.
+  ms.openlocfilehash: 5bb7268c3a5b01043b22e56a1696f2d4eb872b13
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106904729"
