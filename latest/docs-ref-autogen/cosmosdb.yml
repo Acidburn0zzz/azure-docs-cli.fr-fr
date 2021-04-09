@@ -4,7 +4,7 @@ name: az cosmosdb
 summary: Gérer les comptes de base de données Azure Cosmos DB.
 description: ''
 directCommands:
-- uid: az_cosmosdb_check_name_exists
+- uid: az_cosmosdb_check-name-exists
   name: az cosmosdb check-name-exists
   summary: Vérifie s’il existe un nom de compte Azure Cosmos DB.
   description: ''
@@ -190,7 +190,7 @@ directCommands:
     summary: Ne pas demander de confirmation.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
-- uid: az_cosmosdb_failover_priority_change
+- uid: az_cosmosdb_failover-priority-change
   name: az cosmosdb failover-priority-change
   summary: Modifie la priorité de basculement pour le compte de base de données Azure Cosmos DB.
   description: ''
@@ -241,7 +241,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
-- uid: az_cosmosdb_list_connection_strings
+- uid: az_cosmosdb_list-connection-strings
   name: az cosmosdb list-connection-strings
   summary: Répertorie les chaînes de connexion pour un compte de base de données Azure Cosmos DB.
   description: ''
@@ -267,7 +267,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
-- uid: az_cosmosdb_list_keys
+- uid: az_cosmosdb_list-keys
   name: az cosmosdb list-keys
   summary: Répertorie les clés d’accès pour un compte de base de données Azure Cosmos DB.
   description: ''
@@ -293,7 +293,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
-- uid: az_cosmosdb_list_read_only_keys
+- uid: az_cosmosdb_list-read-only-keys
   name: az cosmosdb list-read-only-keys
   summary: Répertorier les clés d’accès en lecture seule pour un compte de base de données Azure Cosmos DB.
   description: ''
@@ -319,7 +319,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
-- uid: az_cosmosdb_regenerate_key
+- uid: az_cosmosdb_regenerate-key
   name: az cosmosdb regenerate-key
   summary: Régénérez une clé d’accès pour un compte de base de données Azure Cosmos DB.
   description: ''
@@ -500,6 +500,47 @@ directCommands:
     summary: Des listes de contrôle d’accès pour le réseau virtuel.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/cosmosdb/_help.py
+- uid: az_cosmosdb_restore
+  name: az cosmosdb restore
+  summary: Créez un compte de base de données Azure Cosmos DB en restaurant à partir d’un compte de base de données existant.
+  description: ''
+  syntax: >-
+    az cosmosdb restore --account-name
+                        --location
+                        --resource-group
+                        --restore-timestamp
+                        --target-database-account-name
+                        [--databases-to-restore]
+  examples:
+  - summary: Créez un compte de base de données Azure Cosmos DB en restaurant à partir d’un compte de base de données existant.
+    syntax: az cosmosdb restore --target-database-account-name MyRestoredCosmosDBDatabaseAccount --account-name MySourceAccount --restore-timestamp 2020-07-13T16:03:41+0000 -g MyResourceGroup --location westus
+  - summary: Créez un compte de base de données Azure Cosmos DB en restaurant uniquement les bases de données et les regroupements sélectionnés à partir d’un compte de base de données existant.
+    syntax: az cosmosdb restore -g MyResourceGroup --target-database-account-name MyRestoredCosmosDBDatabaseAccount --account-name MySourceAccount --restore-timestamp 2020-07-13T16:03:41+0000 --location westus --databases-to-restore name=MyDB1 collections=collection1 collection2 --databases-to-restore name=MyDB2 collections=collection3 collection4
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a
+    summary: Nom du compte de base de données Cosmos DB source pour la restauration.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: Emplacement du compte source à partir duquel la restauration est déclenchée. Il s’agit également de la région d’écriture du compte restauré.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --restore-timestamp -t
+    summary: Horodatage vers lequel le compte doit être restauré.
+    description: ''
+  - isRequired: true
+    name: --target-database-account-name -n
+    summary: Nom du nouveau compte de base de données Cosmos DB cible après la restauration.
+    description: ''
+  optionalParameters:
+  - name: --databases-to-restore
+    summary: Ajoutez une base de données et ses noms de collection à restaurer.
+    description: Utilisation :--bases de données-to-Restore Name = DatabaseName collections = Collection1 [collection2...] Plusieurs bases de données peuvent être spécifiées à l’aide de plusieurs `--databases-to-restore` arguments.
 commands:
 - az_cosmosdb_cassandra
 - az_cosmosdb_cassandra_keyspace
@@ -523,7 +564,7 @@ commands:
 - az_cosmosdb_cassandra_table_throughput_show
 - az_cosmosdb_cassandra_table_throughput_update
 - az_cosmosdb_cassandra_table_update
-- az_cosmosdb_check_name_exists
+- az_cosmosdb_check-name-exists
 - az_cosmosdb_collection
 - az_cosmosdb_collection_create
 - az_cosmosdb_collection_delete
@@ -539,7 +580,7 @@ commands:
 - az_cosmosdb_database_list
 - az_cosmosdb_database_show
 - az_cosmosdb_delete
-- az_cosmosdb_failover_priority_change
+- az_cosmosdb_failover-priority-change
 - az_cosmosdb_gremlin
 - az_cosmosdb_gremlin_database
 - az_cosmosdb_gremlin_database_create
@@ -566,9 +607,9 @@ commands:
 - az_cosmosdb_keys_list
 - az_cosmosdb_keys_regenerate
 - az_cosmosdb_list
-- az_cosmosdb_list_connection_strings
-- az_cosmosdb_list_keys
-- az_cosmosdb_list_read_only_keys
+- az_cosmosdb_list-connection-strings
+- az_cosmosdb_list-keys
+- az_cosmosdb_list-read-only-keys
 - az_cosmosdb_mongodb
 - az_cosmosdb_mongodb_collection
 - az_cosmosdb_mongodb_collection_create
@@ -591,18 +632,18 @@ commands:
 - az_cosmosdb_mongodb_database_throughput_migrate
 - az_cosmosdb_mongodb_database_throughput_show
 - az_cosmosdb_mongodb_database_throughput_update
-- az_cosmosdb_network_rule
-- az_cosmosdb_network_rule_add
-- az_cosmosdb_network_rule_list
-- az_cosmosdb_network_rule_remove
-- az_cosmosdb_private_endpoint_connection
-- az_cosmosdb_private_endpoint_connection_approve
-- az_cosmosdb_private_endpoint_connection_delete
-- az_cosmosdb_private_endpoint_connection_reject
-- az_cosmosdb_private_endpoint_connection_show
-- az_cosmosdb_private_link_resource
-- az_cosmosdb_private_link_resource_list
-- az_cosmosdb_regenerate_key
+- az_cosmosdb_network-rule
+- az_cosmosdb_network-rule_add
+- az_cosmosdb_network-rule_list
+- az_cosmosdb_network-rule_remove
+- az_cosmosdb_private-endpoint-connection
+- az_cosmosdb_private-endpoint-connection_approve
+- az_cosmosdb_private-endpoint-connection_delete
+- az_cosmosdb_private-endpoint-connection_reject
+- az_cosmosdb_private-endpoint-connection_show
+- az_cosmosdb_private-link-resource
+- az_cosmosdb_private-link-resource_list
+- az_cosmosdb_regenerate-key
 - az_cosmosdb_show
 - az_cosmosdb_sql
 - az_cosmosdb_sql_container
@@ -626,24 +667,24 @@ commands:
 - az_cosmosdb_sql_database_throughput_migrate
 - az_cosmosdb_sql_database_throughput_show
 - az_cosmosdb_sql_database_throughput_update
-- az_cosmosdb_sql_stored_procedure
-- az_cosmosdb_sql_stored_procedure_create
-- az_cosmosdb_sql_stored_procedure_delete
-- az_cosmosdb_sql_stored_procedure_list
-- az_cosmosdb_sql_stored_procedure_show
-- az_cosmosdb_sql_stored_procedure_update
+- az_cosmosdb_sql_stored-procedure
+- az_cosmosdb_sql_stored-procedure_create
+- az_cosmosdb_sql_stored-procedure_delete
+- az_cosmosdb_sql_stored-procedure_list
+- az_cosmosdb_sql_stored-procedure_show
+- az_cosmosdb_sql_stored-procedure_update
 - az_cosmosdb_sql_trigger
 - az_cosmosdb_sql_trigger_create
 - az_cosmosdb_sql_trigger_delete
 - az_cosmosdb_sql_trigger_list
 - az_cosmosdb_sql_trigger_show
 - az_cosmosdb_sql_trigger_update
-- az_cosmosdb_sql_user_defined_function
-- az_cosmosdb_sql_user_defined_function_create
-- az_cosmosdb_sql_user_defined_function_delete
-- az_cosmosdb_sql_user_defined_function_list
-- az_cosmosdb_sql_user_defined_function_show
-- az_cosmosdb_sql_user_defined_function_update
+- az_cosmosdb_sql_user-defined-function
+- az_cosmosdb_sql_user-defined-function_create
+- az_cosmosdb_sql_user-defined-function_delete
+- az_cosmosdb_sql_user-defined-function_list
+- az_cosmosdb_sql_user-defined-function_show
+- az_cosmosdb_sql_user-defined-function_update
 - az_cosmosdb_table
 - az_cosmosdb_table_create
 - az_cosmosdb_table_delete
@@ -655,6 +696,37 @@ commands:
 - az_cosmosdb_table_throughput_show
 - az_cosmosdb_table_throughput_update
 - az_cosmosdb_update
+- az_cosmosdb_mongodb_restorable-collection
+- az_cosmosdb_mongodb_restorable-collection_list
+- az_cosmosdb_mongodb_restorable-database
+- az_cosmosdb_mongodb_restorable-database_list
+- az_cosmosdb_mongodb_restorable-resource
+- az_cosmosdb_mongodb_restorable-resource_list
+- az_cosmosdb_restorable-database-account
+- az_cosmosdb_restorable-database-account_list
+- az_cosmosdb_restorable-database-account_show
+- az_cosmosdb_restore
+- az_cosmosdb_sql_restorable-container
+- az_cosmosdb_sql_restorable-container_list
+- az_cosmosdb_sql_restorable-database
+- az_cosmosdb_sql_restorable-database_list
+- az_cosmosdb_sql_restorable-resource
+- az_cosmosdb_sql_restorable-resource_list
+- az_cosmosdb_sql_role
+- az_cosmosdb_sql_role_assignment
+- az_cosmosdb_sql_role_assignment_create
+- az_cosmosdb_sql_role_assignment_delete
+- az_cosmosdb_sql_role_assignment_exists
+- az_cosmosdb_sql_role_assignment_list
+- az_cosmosdb_sql_role_assignment_show
+- az_cosmosdb_sql_role_assignment_update
+- az_cosmosdb_sql_role_definition
+- az_cosmosdb_sql_role_definition_create
+- az_cosmosdb_sql_role_definition_delete
+- az_cosmosdb_sql_role_definition_exists
+- az_cosmosdb_sql_role_definition_list
+- az_cosmosdb_sql_role_definition_show
+- az_cosmosdb_sql_role_definition_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -674,9 +746,9 @@ metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 02/24/2021
   description: Gérer les comptes de base de données Azure Cosmos DB.
-  ms.openlocfilehash: 4ee04545dc4e3085c672a010b59520fde16bcc69
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.openlocfilehash: 1584d0f299a70e02d47bbf2781c1545c4ab5e190
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103527179"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106845381"

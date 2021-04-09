@@ -4,7 +4,7 @@ name: az sql
 summary: Gérer des bases de données SQL Azure et des entrepôts de données.
 description: ''
 directCommands:
-- uid: az_sql_list_usages
+- uid: az_sql_list-usages
   name: az sql list-usages
   summary: Obtient toutes les métriques d’utilisation d’abonnements dans un emplacement donné.
   description: ''
@@ -21,7 +21,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
-- uid: az_sql_show_usage
+- uid: az_sql_show-usage
   name: az sql show-usage
   summary: Obtient une mesure d’utilisation d’abonnement.
   description: ''
@@ -43,12 +43,91 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/sql/_help.py
+- uid: az_sql_down
+  name: az sql down
+  summary: Supprimez le serveur SQL Server et ses informations mises en cache.
+  description: ''
+  syntax: >-
+    az sql down [--delete-group]
+                [--no-wait]
+                [--resource-group]
+                [--server-name]
+                [--yes]
+  examples:
+  - summary: Supprimez le serveur et les données mises en cache, en dehors du groupe de ressources.
+    syntax: az sql down
+  - summary: Supprimez le groupe de ressources et le cache complet.
+    syntax: az sql down --delete-group
+  optionalParameters:
+  - name: --delete-group
+    summary: Supprimez le groupe de ressources.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server-name -s
+    summary: Nom du serveur.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_sql_up
+  name: az sql up
+  summary: Configurez une base de données Azure pour SQL Server et les configurations.
+  description: ''
+  syntax: >-
+    az sql up [--admin-password]
+              [--admin-user]
+              [--database-name]
+              [--generate-password]
+              [--location]
+              [--resource-group]
+              [--server-name]
+              [--tags]
+              [--version]
+  examples:
+  - summary: Assurez-vous qu’une base de données Azure pour SQL Server est en cours d’exécution et configurée pour une utilisation immédiate.
+    syntax: az sql up
+  - summary: Pour remplacer les noms par défaut, fournissez des paramètres indiquant les valeurs souhaitées/les ressources existantes.
+    syntax: az sql up -g MyResourceGroup -s MyServer -d MyDatabase -u MyUsername -p MyPassword
+  optionalParameters:
+  - name: --admin-password -p
+    summary: 'Mot de passe de connexion de l’administrateur. 8 caractères minimum et 128 caractères au maximum. Le mot de passe doit contenir des caractères appartenant à trois des catégories suivantes : lettres majuscules, lettres minuscules, chiffres et caractères non alphanumériques. Votre mot de passe ne peut pas contenir tout ou partie du nom de connexion. Une partie d’un nom de connexion est définie comme trois caractères alphanumériques consécutifs ou plus.'
+    description: ''
+  - name: --admin-user -u
+    summary: Nom d’utilisateur de connexion de l’administrateur.
+    description: ''
+  - name: --database-name -d
+    summary: Nom d’une base de données à initialiser.
+    description: ''
+  - name: --generate-password
+    summary: Générez un mot de passe.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --server-name -s
+    summary: Nom du serveur.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --version
+    defaultValue: "12.0"
+    summary: Version du serveur.
+    description: ''
 commands:
 - az_sql_db
-- az_sql_db_audit_policy
-- az_sql_db_audit_policy_show
-- az_sql_db_audit_policy_update
-- az_sql_db_audit_policy_wait
+- az_sql_db_audit-policy
+- az_sql_db_audit-policy_show
+- az_sql_db_audit-policy_update
+- az_sql_db_audit-policy_wait
 - az_sql_db_classification
 - az_sql_db_classification_delete
 - az_sql_db_classification_list
@@ -64,37 +143,37 @@ commands:
 - az_sql_db_export
 - az_sql_db_import
 - az_sql_db_list
-- az_sql_db_list_deleted
-- az_sql_db_list_editions
-- az_sql_db_list_usages
-- az_sql_db_ltr_backup
-- az_sql_db_ltr_backup_delete
-- az_sql_db_ltr_backup_list
-- az_sql_db_ltr_backup_restore
-- az_sql_db_ltr_backup_show
-- az_sql_db_ltr_backup_wait
-- az_sql_db_ltr_policy
-- az_sql_db_ltr_policy_set
-- az_sql_db_ltr_policy_show
+- az_sql_db_list-deleted
+- az_sql_db_list-editions
+- az_sql_db_list-usages
+- az_sql_db_ltr-backup
+- az_sql_db_ltr-backup_delete
+- az_sql_db_ltr-backup_list
+- az_sql_db_ltr-backup_restore
+- az_sql_db_ltr-backup_show
+- az_sql_db_ltr-backup_wait
+- az_sql_db_ltr-policy
+- az_sql_db_ltr-policy_set
+- az_sql_db_ltr-policy_show
 - az_sql_db_op
 - az_sql_db_op_cancel
 - az_sql_db_op_list
 - az_sql_db_rename
 - az_sql_db_replica
 - az_sql_db_replica_create
-- az_sql_db_replica_delete_link
-- az_sql_db_replica_list_links
-- az_sql_db_replica_set_primary
+- az_sql_db_replica_delete-link
+- az_sql_db_replica_list-links
+- az_sql_db_replica_set-primary
 - az_sql_db_restore
 - az_sql_db_show
-- az_sql_db_show_connection_string
+- az_sql_db_show-connection-string
 - az_sql_db_tde
-- az_sql_db_tde_list_activity
+- az_sql_db_tde_list-activity
 - az_sql_db_tde_set
 - az_sql_db_tde_show
-- az_sql_db_threat_policy
-- az_sql_db_threat_policy_show
-- az_sql_db_threat_policy_update
+- az_sql_db_threat-policy
+- az_sql_db_threat-policy_show
+- az_sql_db_threat-policy_update
 - az_sql_db_update
 - az_sql_dw
 - az_sql_dw_create
@@ -104,48 +183,48 @@ commands:
 - az_sql_dw_resume
 - az_sql_dw_show
 - az_sql_dw_update
-- az_sql_elastic_pool
-- az_sql_elastic_pool_create
-- az_sql_elastic_pool_delete
-- az_sql_elastic_pool_list
-- az_sql_elastic_pool_list_dbs
-- az_sql_elastic_pool_list_editions
-- az_sql_elastic_pool_op
-- az_sql_elastic_pool_op_cancel
-- az_sql_elastic_pool_op_list
-- az_sql_elastic_pool_show
-- az_sql_elastic_pool_update
-- az_sql_failover_group
-- az_sql_failover_group_create
-- az_sql_failover_group_delete
-- az_sql_failover_group_list
-- az_sql_failover_group_set_primary
-- az_sql_failover_group_show
-- az_sql_failover_group_update
-- az_sql_instance_failover_group
-- az_sql_instance_failover_group_create
-- az_sql_instance_failover_group_delete
-- az_sql_instance_failover_group_set_primary
-- az_sql_instance_failover_group_show
-- az_sql_instance_failover_group_update
-- az_sql_instance_pool
-- az_sql_instance_pool_create
-- az_sql_instance_pool_delete
-- az_sql_instance_pool_list
-- az_sql_instance_pool_show
-- az_sql_instance_pool_update
-- az_sql_instance_pool_wait
-- az_sql_list_usages
+- az_sql_elastic-pool
+- az_sql_elastic-pool_create
+- az_sql_elastic-pool_delete
+- az_sql_elastic-pool_list
+- az_sql_elastic-pool_list-dbs
+- az_sql_elastic-pool_list-editions
+- az_sql_elastic-pool_op
+- az_sql_elastic-pool_op_cancel
+- az_sql_elastic-pool_op_list
+- az_sql_elastic-pool_show
+- az_sql_elastic-pool_update
+- az_sql_failover-group
+- az_sql_failover-group_create
+- az_sql_failover-group_delete
+- az_sql_failover-group_list
+- az_sql_failover-group_set-primary
+- az_sql_failover-group_show
+- az_sql_failover-group_update
+- az_sql_instance-failover-group
+- az_sql_instance-failover-group_create
+- az_sql_instance-failover-group_delete
+- az_sql_instance-failover-group_set-primary
+- az_sql_instance-failover-group_show
+- az_sql_instance-failover-group_update
+- az_sql_instance-pool
+- az_sql_instance-pool_create
+- az_sql_instance-pool_delete
+- az_sql_instance-pool_list
+- az_sql_instance-pool_show
+- az_sql_instance-pool_update
+- az_sql_instance-pool_wait
+- az_sql_list-usages
 - az_sql_mi
-- az_sql_mi_ad_admin
-- az_sql_mi_ad_admin_create
-- az_sql_mi_ad_admin_delete
-- az_sql_mi_ad_admin_list
-- az_sql_mi_ad_admin_update
-- az_sql_mi_ad_only_auth
-- az_sql_mi_ad_only_auth_disable
-- az_sql_mi_ad_only_auth_enable
-- az_sql_mi_ad_only_auth_get
+- az_sql_mi_ad-admin
+- az_sql_mi_ad-admin_create
+- az_sql_mi_ad-admin_delete
+- az_sql_mi_ad-admin_list
+- az_sql_mi_ad-admin_update
+- az_sql_mi_ad-only-auth
+- az_sql_mi_ad-only-auth_disable
+- az_sql_mi_ad-only-auth_enable
+- az_sql_mi_ad-only-auth_get
 - az_sql_mi_create
 - az_sql_mi_delete
 - az_sql_mi_failover
@@ -160,120 +239,122 @@ commands:
 - az_sql_mi_op_list
 - az_sql_mi_op_show
 - az_sql_mi_show
-- az_sql_mi_tde_key
-- az_sql_mi_tde_key_set
-- az_sql_mi_tde_key_show
+- az_sql_mi_tde-key
+- az_sql_mi_tde-key_set
+- az_sql_mi_tde-key_show
 - az_sql_mi_update
 - az_sql_midb
 - az_sql_midb_create
 - az_sql_midb_delete
 - az_sql_midb_list
-- az_sql_midb_list_deleted
-- az_sql_midb_log_replay
-- az_sql_midb_log_replay_complete
-- az_sql_midb_log_replay_show
-- az_sql_midb_log_replay_start
-- az_sql_midb_log_replay_stop
-- az_sql_midb_log_replay_wait
-- az_sql_midb_ltr_backup
-- az_sql_midb_ltr_backup_delete
-- az_sql_midb_ltr_backup_list
-- az_sql_midb_ltr_backup_restore
-- az_sql_midb_ltr_backup_show
-- az_sql_midb_ltr_backup_wait
-- az_sql_midb_ltr_policy
-- az_sql_midb_ltr_policy_set
-- az_sql_midb_ltr_policy_show
+- az_sql_midb_list-deleted
+- az_sql_midb_log-replay
+- az_sql_midb_log-replay_complete
+- az_sql_midb_log-replay_show
+- az_sql_midb_log-replay_start
+- az_sql_midb_log-replay_stop
+- az_sql_midb_log-replay_wait
+- az_sql_midb_ltr-backup
+- az_sql_midb_ltr-backup_delete
+- az_sql_midb_ltr-backup_list
+- az_sql_midb_ltr-backup_restore
+- az_sql_midb_ltr-backup_show
+- az_sql_midb_ltr-backup_wait
+- az_sql_midb_ltr-policy
+- az_sql_midb_ltr-policy_set
+- az_sql_midb_ltr-policy_show
 - az_sql_midb_restore
-- az_sql_midb_short_term_retention_policy
-- az_sql_midb_short_term_retention_policy_set
-- az_sql_midb_short_term_retention_policy_show
+- az_sql_midb_short-term-retention-policy
+- az_sql_midb_short-term-retention-policy_set
+- az_sql_midb_short-term-retention-policy_show
 - az_sql_midb_show
 - az_sql_server
-- az_sql_server_ad_admin
-- az_sql_server_ad_admin_create
-- az_sql_server_ad_admin_delete
-- az_sql_server_ad_admin_list
-- az_sql_server_ad_admin_update
-- az_sql_server_ad_only_auth
-- az_sql_server_ad_only_auth_disable
-- az_sql_server_ad_only_auth_enable
-- az_sql_server_ad_only_auth_get
-- az_sql_server_audit_policy
-- az_sql_server_audit_policy_show
-- az_sql_server_audit_policy_update
-- az_sql_server_audit_policy_wait
-- az_sql_server_conn_policy
-- az_sql_server_conn_policy_show
-- az_sql_server_conn_policy_update
+- az_sql_server_ad-admin
+- az_sql_server_ad-admin_create
+- az_sql_server_ad-admin_delete
+- az_sql_server_ad-admin_list
+- az_sql_server_ad-admin_update
+- az_sql_server_ad-only-auth
+- az_sql_server_ad-only-auth_disable
+- az_sql_server_ad-only-auth_enable
+- az_sql_server_ad-only-auth_get
+- az_sql_server_audit-policy
+- az_sql_server_audit-policy_show
+- az_sql_server_audit-policy_update
+- az_sql_server_audit-policy_wait
+- az_sql_server_conn-policy
+- az_sql_server_conn-policy_show
+- az_sql_server_conn-policy_update
 - az_sql_server_create
 - az_sql_server_delete
-- az_sql_server_dns_alias
-- az_sql_server_dns_alias_create
-- az_sql_server_dns_alias_delete
-- az_sql_server_dns_alias_list
-- az_sql_server_dns_alias_set
-- az_sql_server_dns_alias_show
-- az_sql_server_firewall_rule
-- az_sql_server_firewall_rule_create
-- az_sql_server_firewall_rule_delete
-- az_sql_server_firewall_rule_list
-- az_sql_server_firewall_rule_show
-- az_sql_server_firewall_rule_update
+- az_sql_server_dns-alias
+- az_sql_server_dns-alias_create
+- az_sql_server_dns-alias_delete
+- az_sql_server_dns-alias_list
+- az_sql_server_dns-alias_set
+- az_sql_server_dns-alias_show
+- az_sql_server_firewall-rule
+- az_sql_server_firewall-rule_create
+- az_sql_server_firewall-rule_delete
+- az_sql_server_firewall-rule_list
+- az_sql_server_firewall-rule_show
+- az_sql_server_firewall-rule_update
 - az_sql_server_key
 - az_sql_server_key_create
 - az_sql_server_key_delete
 - az_sql_server_key_list
 - az_sql_server_key_show
 - az_sql_server_list
-- az_sql_server_list_usages
-- az_sql_server_ms_support
-- az_sql_server_ms_support_audit_policy
-- az_sql_server_ms_support_audit_policy_show
-- az_sql_server_ms_support_audit_policy_update
-- az_sql_server_ms_support_audit_policy_wait
+- az_sql_server_list-usages
+- az_sql_server_ms-support
+- az_sql_server_ms-support_audit-policy
+- az_sql_server_ms-support_audit-policy_show
+- az_sql_server_ms-support_audit-policy_update
+- az_sql_server_ms-support_audit-policy_wait
 - az_sql_server_show
-- az_sql_server_tde_key
-- az_sql_server_tde_key_set
-- az_sql_server_tde_key_show
+- az_sql_server_tde-key
+- az_sql_server_tde-key_set
+- az_sql_server_tde-key_show
 - az_sql_server_update
-- az_sql_server_vnet_rule
-- az_sql_server_vnet_rule_create
-- az_sql_server_vnet_rule_delete
-- az_sql_server_vnet_rule_list
-- az_sql_server_vnet_rule_show
-- az_sql_server_vnet_rule_update
+- az_sql_server_vnet-rule
+- az_sql_server_vnet-rule_create
+- az_sql_server_vnet-rule_delete
+- az_sql_server_vnet-rule_list
+- az_sql_server_vnet-rule_show
+- az_sql_server_vnet-rule_update
 - az_sql_server_wait
-- az_sql_show_usage
+- az_sql_show-usage
 - az_sql_stg
 - az_sql_stg_create
 - az_sql_stg_delete
 - az_sql_stg_list
 - az_sql_stg_show
-- az_sql_virtual_cluster
-- az_sql_virtual_cluster_delete
-- az_sql_virtual_cluster_list
-- az_sql_virtual_cluster_show
+- az_sql_virtual-cluster
+- az_sql_virtual-cluster_delete
+- az_sql_virtual-cluster_list
+- az_sql_virtual-cluster_show
 - az_sql_vm
-- az_sql_vm_add_to_group
+- az_sql_vm_add-to-group
 - az_sql_vm_create
 - az_sql_vm_delete
 - az_sql_vm_group
-- az_sql_vm_group_ag_listener
-- az_sql_vm_group_ag_listener_create
-- az_sql_vm_group_ag_listener_delete
-- az_sql_vm_group_ag_listener_list
-- az_sql_vm_group_ag_listener_show
-- az_sql_vm_group_ag_listener_update
+- az_sql_vm_group_ag-listener
+- az_sql_vm_group_ag-listener_create
+- az_sql_vm_group_ag-listener_delete
+- az_sql_vm_group_ag-listener_list
+- az_sql_vm_group_ag-listener_show
+- az_sql_vm_group_ag-listener_update
 - az_sql_vm_group_create
 - az_sql_vm_group_delete
 - az_sql_vm_group_list
 - az_sql_vm_group_show
 - az_sql_vm_group_update
 - az_sql_vm_list
-- az_sql_vm_remove_from_group
+- az_sql_vm_remove-from-group
 - az_sql_vm_show
 - az_sql_vm_update
+- az_sql_down
+- az_sql_up
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -293,9 +374,9 @@ metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 03/18/2021
   description: Gérer des bases de données SQL Azure et des entrepôts de données.
-  ms.openlocfilehash: 9cb4e75081561928b83c9ac136505e5ec9849727
-  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
+  ms.openlocfilehash: 361b884b6ff77b837572044fe1b809efe4819bc5
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/23/2021
-  ms.locfileid: "104933607"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106845908"
