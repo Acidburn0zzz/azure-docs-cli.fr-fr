@@ -1,0 +1,425 @@
+### YamlMime:AzureCLIGroup
+uid: az_cloud-service
+name: az cloud-service
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Cloud-service** pour Azure CLI et requiert la version 2.15.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Cloud-service** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer le service Cloud.
+description: ''
+directCommands:
+- uid: az_cloud-service_create
+  name: az cloud-service create
+  summary: Créer un service Cloud (prise en charge étendue). Notez que certaines propriétés peuvent être définies uniquement lors de la création du service Cloud.
+  description: ''
+  syntax: >-
+    az cloud-service create --cloud-service-name
+                            --resource-group
+                            [--configuration]
+                            [--configuration-url]
+                            [--extensions]
+                            [--id]
+                            [--lb]
+                            [--location]
+                            [--no-wait]
+                            [--package-url]
+                            [--roles]
+                            [--secrets]
+                            [--start-cloud-service {false, true}]
+                            [--tags]
+                            [--upgrade-mode {Auto, Manual, Simultaneous}]
+  examples:
+  - summary: Créez un service Cloud avec 2 rôles, 2 équilibrages de charge (l’un a une adresse IP publique et l’autre avec une adresse IP privée), des secrets et des extensions.
+    syntax: 'az cloud-service create -g ResourceGroup -n CloudService --roles ContosoFrontend:Standard_D1_v2:1:Standard ContosoBackend:Standard_D1_v2:1:Standard --package-url PackageURL --configuration Config --load-balancer-configurations MyLoadBalancer:MyFe:PublicIP:: MyLoadBalancer2:MyFe2::SubnetIDd:PrivateIPID --secrets Vault0:Cert0:Cert1 Vault1:Cert2:Cert3:Cert4 --extensions "@extensions.json"'
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --configuration
+    summary: 'Spécifiez la configuration du service XML (. cscfg) pour le service Cloud. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --configuration-url
+    summary: Spécifiez une URL qui fait référence à l’emplacement de la configuration du service dans le service BLOB. L’URL du package de services peut être un URI de signature d’accès partagé (SAS) à partir de n’importe quel compte de stockage. Il s’agit d’une propriété en écriture seule qui n’est pas retournée dans les appels d’accès.
+    description: ''
+  - name: --extensions
+    summary: 'Liste des extensions pour le service Cloud. Valeur attendue : json-string/@json-file . Exemple : [{"Properties" : {"type" : "RDP", "autoUpgradeMinorVersion" : false, "protectedSettings" : "Settings", "Publisher" : "Microsoft. Windows. Azure. extensions", "Settings" : "Settings", "typeHandlerVersion" : "1.2.1"}, "Name" : "RDPExtension"}].'
+    description: ''
+  - name: --id
+    summary: ID de ressource.
+    description: ''
+  - name: --lb --load-balancer-configurations
+    summary: 'Liste des configurations d’équilibrage de charge, séparées par des espaces pour le service Cloud. L’adresse IP publique est un champ obligatoire. Format : LBName : configuration IP frontale : PublicIPAddress : Subnet : PrivateIP.'
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --package-url
+    summary: Spécifiez une URL qui fait référence à l’emplacement du package de service dans le service BLOB. L’URL du package de services peut être un URI de signature d’accès partagé (SAS) à partir de n’importe quel compte de stockage. Il s’agit d’une propriété en écriture seule qui n’est pas retournée dans les appels d’accès.
+    description: ''
+  - name: --roles
+    summary: 'Liste des rôles séparés par un espace pour le service Cloud. Format : RoleName : SkuName : SkuCapacity : SkuTier.'
+    description: ''
+  - name: --secrets
+    summary: 'Spécifiez les certificats séparés par un espace qui doit être installé sur les instances de rôle. Format : KeyVaultName : CertificateUrl : CertificateUrl2 :... : CertificateUrlN.'
+    description: ''
+  - name: --start-cloud-service
+    parameterValueGroup: false, true
+    summary: Indiquez si le service Cloud doit être démarré immédiatement après sa création. La valeur par défaut est `true`. Si la valeur est false, le modèle de service est toujours déployé, mais le code n’est pas exécuté immédiatement. Au lieu de cela, le service est PoweredOff jusqu’à ce que vous appeliez Start, moment auquel le service sera démarré. Un service déployé engendre toujours des frais, même s’il s’agit d’poweredoff.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --upgrade-mode
+    parameterValueGroup: Auto, Manual, Simultaneous
+    summary: Mode de mise à jour pour le service Cloud. Les instances de rôle sont allouées aux domaines de mise à jour lorsque le service est déployé. Les mises à jour peuvent être appelées manuellement dans chaque domaine de mise à jour ou automatiquement dans tous les domaines de mise à jour. Les valeurs possibles sont auto, Manual, SIMULTANE. S’il n’est pas spécifié, la valeur par défaut est auto. S’il est défini sur manuel, PUT UpdateDomain doit être appelé pour appliquer la mise à jour. Si cette option est définie sur auto, la mise à jour est automatiquement appliquée à chaque domaine de mise à jour dans l’ordre.
+    description: ''
+- uid: az_cloud-service_delete
+  name: az cloud-service delete
+  summary: Supprimer un service Cloud.
+  description: ''
+  syntax: >-
+    az cloud-service delete --cloud-service-name
+                            --resource-group
+                            [--no-wait]
+                            [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_cloud-service_delete-instance
+  name: az cloud-service delete-instance
+  summary: Supprimer des instances de rôle dans un service Cloud.
+  description: ''
+  syntax: >-
+    az cloud-service delete-instance --cloud-service-name
+                                     --resource-group
+                                     [--no-wait]
+                                     [--role-instances]
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --role-instances
+    summary: Liste des noms d’instance de rôle de service Cloud. La valeur de « \* » correspond à toutes les instances de rôle du service Cloud.
+    description: ''
+- uid: az_cloud-service_list
+  name: az cloud-service list
+  summary: Obtenir la liste de tous les services Cloud sous un groupe de ressources.
+  description: ''
+  syntax: az cloud-service list --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_cloud-service_list-all
+  name: az cloud-service list-all
+  summary: Obtenir la liste de tous les services Cloud de l’abonnement, quel que soit le groupe de ressources associé.
+  description: ''
+  syntax: az cloud-service list-all
+- uid: az_cloud-service_power-off
+  name: az cloud-service power-off
+  summary: Mettez hors tension le service Cloud. Notez que les ressources sont toujours attachées et que vous êtes facturé pour les ressources.
+  description: ''
+  syntax: >-
+    az cloud-service power-off --cloud-service-name
+                               --resource-group
+                               [--no-wait]
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_cloud-service_rebuild
+  name: az cloud-service rebuild
+  summary: Reconstruisez les instances de rôle. Réinstallez le système d’exploitation sur les instances de rôles Web ou les rôles de travail et initialisez les ressources de stockage utilisées par ces rôles. Si vous ne souhaitez pas initialiser les ressources de stockage, vous pouvez utiliser des instances de rôle de réimage.
+  description: ''
+  syntax: >-
+    az cloud-service rebuild --cloud-service-name
+                             --resource-group
+                             [--no-wait]
+                             [--role-instances]
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --role-instances
+    summary: Liste des noms d’instance de rôle de service Cloud. La valeur de « \* » correspond à toutes les instances de rôle du service Cloud.
+    description: ''
+- uid: az_cloud-service_reimage
+  name: az cloud-service reimage
+  summary: La réinitialisation de l’opération asynchrone réinstalle le système d’exploitation sur des instances de rôles Web ou de travail.
+  description: ''
+  syntax: >-
+    az cloud-service reimage --cloud-service-name
+                             --resource-group
+                             [--no-wait]
+                             [--role-instances]
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --role-instances
+    summary: Liste des noms d’instance de rôle de service Cloud. La valeur de « \* » correspond à toutes les instances de rôle du service Cloud.
+    description: ''
+- uid: az_cloud-service_restart
+  name: az cloud-service restart
+  summary: Redémarrez une ou plusieurs instances de rôle dans un service Cloud.
+  description: ''
+  syntax: >-
+    az cloud-service restart --cloud-service-name
+                             --resource-group
+                             [--no-wait]
+                             [--role-instances]
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --role-instances
+    summary: Liste des noms d’instance de rôle de service Cloud. La valeur de « \* » correspond à toutes les instances de rôle du service Cloud.
+    description: ''
+- uid: az_cloud-service_show
+  name: az cloud-service show
+  summary: Affichez des informations sur un service Cloud.
+  description: ''
+  syntax: >-
+    az cloud-service show --cloud-service-name
+                          --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_cloud-service_show-instance-view
+  name: az cloud-service show-instance-view
+  summary: Obtenir l’état d’un service Cloud.
+  description: ''
+  syntax: >-
+    az cloud-service show-instance-view --cloud-service-name
+                                        --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_cloud-service_start
+  name: az cloud-service start
+  summary: Démarrez le service Cloud.
+  description: ''
+  syntax: >-
+    az cloud-service start --cloud-service-name
+                           --resource-group
+                           [--no-wait]
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_cloud-service_update
+  name: az cloud-service update
+  summary: Mettre à jour un service Cloud.
+  description: ''
+  syntax: >-
+    az cloud-service update --cloud-service-name
+                            --resource-group
+                            [--no-wait]
+                            [--tags]
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_cloud-service_wait
+  name: az cloud-service wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du service Cloud soit remplie.
+  description: ''
+  syntax: >-
+    az cloud-service wait --cloud-service-name
+                          --resource-group
+                          [--created]
+                          [--custom]
+                          [--deleted]
+                          [--exists]
+                          [--interval]
+                          [--timeout]
+                          [--updated]
+  requiredParameters:
+  - isRequired: true
+    name: --cloud-service-name --name -n
+    summary: Nom du service cloud.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_cloud-service_create
+- az_cloud-service_delete
+- az_cloud-service_delete-instance
+- az_cloud-service_list
+- az_cloud-service_list-all
+- az_cloud-service_power-off
+- az_cloud-service_rebuild
+- az_cloud-service_reimage
+- az_cloud-service_restart
+- az_cloud-service_role
+- az_cloud-service_role_list
+- az_cloud-service_role_show
+- az_cloud-service_role-instance
+- az_cloud-service_role-instance_delete
+- az_cloud-service_role-instance_list
+- az_cloud-service_role-instance_rebuild
+- az_cloud-service_role-instance_reimage
+- az_cloud-service_role-instance_restart
+- az_cloud-service_role-instance_show
+- az_cloud-service_role-instance_show-instance-view
+- az_cloud-service_role-instance_show-remote-desktop-file
+- az_cloud-service_role-instance_wait
+- az_cloud-service_show
+- az_cloud-service_show-instance-view
+- az_cloud-service_start
+- az_cloud-service_update
+- az_cloud-service_update-domain
+- az_cloud-service_update-domain_list-update-domain
+- az_cloud-service_update-domain_show-update-domain
+- az_cloud-service_update-domain_walk-update-domain
+- az_cloud-service_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer le service Cloud.
+  ms.openlocfilehash: 71313e3d67ea089dc9b5f81d6e6ef0a40eadcab8
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106908144"

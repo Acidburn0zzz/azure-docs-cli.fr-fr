@@ -10,7 +10,7 @@ directCommands:
   description: Pour effacer l’abonnement actuel, utilisez’AZ logout'.
   syntax: az account clear
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
-- uid: az_account_get_access_token
+- uid: az_account_get-access-token
   name: az account get-access-token
   summary: Obtenir un jeton pour que les utilitaires accèdent à Azure.
   description: Le jeton sera valide pendant au moins 5 minutes avec la valeur maximale à 60 minutes. Si l’argument d’abonnement n’est pas spécifié, le compte actuel est utilisé.
@@ -62,7 +62,7 @@ directCommands:
     summary: Récupération des abonnements mis à jour à partir du serveur.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
-- uid: az_account_list_locations
+- uid: az_account_list-locations
   name: az account list-locations
   summary: Répertorie les régions prises en charge pour l’abonnement actuel.
   description: ''
@@ -86,7 +86,7 @@ directCommands:
     Si l’abonnement n’est pas spécifié, affiche les détails de l’abonnement par défaut.
 
 
-    Quand--SDK-auth est utilisé, la sortie contient les informations d’identification que vous devez protéger. Veillez à ne pas inclure ces informations d’identification dans votre code ou vérifiez les informations d’identification dans votre contrôle de code source. Vous pouvez également utiliser [Managed Identities] ( <a href="https://aka.ms/azadsp-managed-identities">https://aka.ms/azadsp-managed-identities</a> ) si elle est disponible pour éviter d’avoir à utiliser des informations d’identification.
+    Quand--SDK-auth est utilisé, la sortie contient les informations d’identification que vous devez protéger. Veillez à ne pas inclure ces informations d’identification dans votre code ou vérifiez les informations d’identification dans votre contrôle de code source. Vous pouvez aussi utiliser des [identités managées](https://aka.ms/azadsp-managed-identities), si elles sont disponibles, pour éviter d’avoir à utiliser les informations d’identification.
   syntax: >-
     az account show [--query-examples]
                     [--sdk-auth]
@@ -102,28 +102,78 @@ directCommands:
     summary: Nom ou ID de l’abonnement.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/profile/_help.py
+- uid: az_account_create
+  name: az account create
+  summary: Créer un abonnement
+  description: ''
+  syntax: >-
+    az account create --enrollment-account-name
+                      --offer-type {MS-AZR-0017P, MS-AZR-0148P}
+                      [--display-name]
+                      [--owner-object-id]
+                      [--owner-spn]
+                      [--owner-upn]
+  requiredParameters:
+  - isRequired: true
+    name: --enrollment-account-name --enrollment-account-object-id
+    summary: Nom du compte d’inscription à utiliser pour créer un abonnement.
+    description: ''
+  - isRequired: true
+    name: --offer-type
+    parameterValueGroup: MS-AZR-0017P, MS-AZR-0148P
+    summary: Type d’offre de l’abonnement. Par exemple, MS-AZR-0017P (EnterpriseAgreement) et MS-AZR-0148P (EnterpriseAgreement devTest) sont disponibles.
+    description: ''
+  optionalParameters:
+  - name: --display-name
+    summary: Nom d’affichage de l’abonnement.
+    description: ''
+  - name: --owner-object-id
+    summary: ID (s) d’objet du ou des propriétaires qui doivent avoir accès au nouvel abonnement.
+    description: ''
+  - name: --owner-spn
+    summary: Le ou les noms de principal du service (s) du ou des propriétaires qui doivent avoir accès au nouvel abonnement.
+    description: ''
+  - name: --owner-upn
+    summary: Nom (s) d’utilisateur principal du ou des propriétaires qui doivent avoir accès au nouvel abonnement.
+    description: ''
 commands:
 - az_account_clear
-- az_account_get_access_token
+- az_account_get-access-token
 - az_account_list
-- az_account_list_locations
+- az_account_list-locations
 - az_account_lock
 - az_account_lock_create
 - az_account_lock_delete
 - az_account_lock_list
 - az_account_lock_show
 - az_account_lock_update
-- az_account_management_group
-- az_account_management_group_create
-- az_account_management_group_delete
-- az_account_management_group_list
-- az_account_management_group_show
-- az_account_management_group_subscription
-- az_account_management_group_subscription_add
-- az_account_management_group_subscription_remove
-- az_account_management_group_update
+- az_account_management-group
+- az_account_management-group_create
+- az_account_management-group_delete
+- az_account_management-group_list
+- az_account_management-group_show
+- az_account_management-group_subscription
+- az_account_management-group_subscription_add
+- az_account_management-group_subscription_remove
+- az_account_management-group_update
 - az_account_set
 - az_account_show
+- az_account_alias
+- az_account_alias_create
+- az_account_alias_delete
+- az_account_alias_list
+- az_account_alias_show
+- az_account_alias_wait
+- az_account_subscription
+- az_account_subscription_cancel
+- az_account_subscription_enable
+- az_account_subscription_list
+- az_account_subscription_list-location
+- az_account_subscription_rename
+- az_account_subscription_show
+- az_account_tenant
+- az_account_tenant_list
+- az_account_create
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -143,9 +193,9 @@ metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 12/18/2020
   description: Gérer les informations d’abonnement Azure.
-  ms.openlocfilehash: 66cf3c8e8cfe1dc6b9f8acd1300360928fe3e467
-  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.openlocfilehash: 615210e2331951d6f690ceb2095902fe0b7ea219
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 12/30/2020
-  ms.locfileid: "102841939"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106831866"
