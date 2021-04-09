@@ -1,0 +1,250 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_cross-connection_peering
+name: az network cross-connection peering
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Express-route-Cross-connection** pour Azure CLI et requiert la version 2.0.41 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez la commande **AZ Network Cross-connection peering** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer l’homologation ExpressRoute d’une connexion croisée ExpressRoute.
+description: ''
+directCommands:
+- uid: az_network_cross-connection_peering_create
+  name: az network cross-connection peering create
+  summary: Créer des paramètres d’homologation pour une connexion croisée ExpressRoute.
+  description: ''
+  syntax: >-
+    az network cross-connection peering create --cross-connection-name
+                                               --peer-asn
+                                               --peering-type {AzurePrivatePeering, AzurePublicPeering, MicrosoftPeering}
+                                               --primary-peer-subnet
+                                               --resource-group
+                                               --secondary-peer-subnet
+                                               --vlan-id
+                                               [--advertised-public-prefixes]
+                                               [--customer-asn]
+                                               [--routing-registry-name {AFRINIC, ALTDB, APNIC, ARIN, LACNIC, LEVEL3, RADB, RIPENCC}]
+                                               [--shared-key]
+  examples:
+  - summary: Créez des paramètres d’homologation Microsoft avec la configuration IPv4.
+    syntax: >-
+      az network cross-connection peering create -g MyResourceGroup --cross-connection-name MyCircuit \
+          --peering-type MicrosoftPeering --peer-asn 10002 --vlan-id 103 \
+          --primary-peer-subnet 101.0.0.0/30 --secondary-peer-subnet 102.0.0.0/30 \
+          --advertised-public-prefixes 101.0.0.0/30
+  requiredParameters:
+  - isRequired: true
+    name: --cross-connection-name
+    summary: Nom de la connexion croisée ExpressRoute.
+    description: ''
+  - isRequired: true
+    name: --peer-asn
+    summary: Numéro de système autonome du fournisseur de connectivité/client.
+    description: ''
+  - isRequired: true
+    name: --peering-type
+    parameterValueGroup: AzurePrivatePeering, AzurePublicPeering, MicrosoftPeering
+    summary: Type d’appairage BGP pour le circuit.
+    description: ''
+  - isRequired: true
+    name: --primary-peer-subnet
+    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface principale.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --secondary-peer-subnet
+    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface secondaire.
+    description: ''
+  - isRequired: true
+    name: --vlan-id
+    summary: Identificateur utilisé pour identifier le client.
+    description: ''
+  optionalParameters:
+  - name: --advertised-public-prefixes
+    summary: Liste séparée par des espaces des préfixes à publier par le biais de l’homologation BGP.
+    description: ''
+  - name: --customer-asn
+    summary: Numéro de système autonome du client.
+    description: ''
+  - name: --routing-registry-name
+    parameterValueGroup: AFRINIC, ALTDB, APNIC, ARIN, LACNIC, LEVEL3, RADB, RIPENCC
+    summary: Registre de routage Internet/registre Internet régional.
+    description: ''
+  - name: --shared-key
+    summary: Clé pour la génération d’un MD5 pour la session BGP.
+    description: ''
+- uid: az_network_cross-connection_peering_delete
+  name: az network cross-connection peering delete
+  summary: Supprimer les paramètres d’homologation.
+  description: ''
+  syntax: >-
+    az network cross-connection peering delete --cross-connection-name
+                                               --name
+                                               --resource-group
+  examples:
+  - summary: Supprimer l’homologation privée.
+    syntax: az network cross-connection peering delete -g MyResourceGroup --cross-connection-name MyCircuit -n AzurePrivatePeering
+  requiredParameters:
+  - isRequired: true
+    name: --cross-connection-name
+    summary: Nom de la connexion croisée ExpressRoute.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’homologation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_cross-connection_peering_list
+  name: az network cross-connection peering list
+  summary: Répertorier les paramètres d’homologation d’une connexion croisée ExpressRoute.
+  description: ''
+  syntax: >-
+    az network cross-connection peering list --cross-connection-name
+                                             --resource-group
+  examples:
+  - summary: Répertorier les paramètres d’homologation d’une connexion croisée ExpressRoute.
+    syntax: az network cross-connection peering list -g MyResourceGroup --cross-connection-name MyCircuit
+  requiredParameters:
+  - isRequired: true
+    name: --cross-connection-name
+    summary: Nom de la connexion croisée ExpressRoute.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_cross-connection_peering_show
+  name: az network cross-connection peering show
+  summary: Obtient les détails d’une homologation Express route.
+  description: ''
+  syntax: >-
+    az network cross-connection peering show --cross-connection-name
+                                             --name
+                                             --resource-group
+  examples:
+  - summary: Obtient les détails de l’homologation privée d’une connexion croisée ExpressRoute.
+    syntax: az network cross-connection peering show -g MyResourceGroup --cross-connection-name MyCircuit -n AzurePrivatePeering
+  requiredParameters:
+  - isRequired: true
+    name: --cross-connection-name
+    summary: Nom de la connexion croisée ExpressRoute.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’homologation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_cross-connection_peering_update
+  name: az network cross-connection peering update
+  summary: Met à jour les paramètres d’homologation pour une connexion croisée ExpressRoute.
+  description: ''
+  syntax: >-
+    az network cross-connection peering update --cross-connection-name
+                                               --name
+                                               --resource-group
+                                               [--add]
+                                               [--advertised-public-prefixes]
+                                               [--customer-asn]
+                                               [--force-string]
+                                               [--ip-version {IPv4, IPv6}]
+                                               [--peer-asn]
+                                               [--primary-peer-subnet]
+                                               [--remove]
+                                               [--routing-registry-name {AFRINIC, ALTDB, APNIC, ARIN, LACNIC, LEVEL3, RADB, RIPENCC}]
+                                               [--secondary-peer-subnet]
+                                               [--set]
+                                               [--shared-key]
+                                               [--vlan-id]
+  requiredParameters:
+  - isRequired: true
+    name: --cross-connection-name
+    summary: Nom de la connexion croisée ExpressRoute.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’homologation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --advertised-public-prefixes
+    summary: Liste séparée par des espaces des préfixes à publier par le biais de l’homologation BGP.
+    description: ''
+  - name: --customer-asn
+    summary: Numéro de système autonome du client.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --ip-version
+    defaultValue: IPv4
+    parameterValueGroup: IPv4, IPv6
+    summary: Version IP pour laquelle mettre à jour les paramètres d’homologation Microsoft.
+    description: ''
+  - name: --peer-asn
+    summary: Numéro de système autonome du fournisseur de connectivité/client.
+    description: ''
+  - name: --primary-peer-subnet
+    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface principale.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --routing-registry-name
+    parameterValueGroup: AFRINIC, ALTDB, APNIC, ARIN, LACNIC, LEVEL3, RADB, RIPENCC
+    summary: Registre de routage Internet/registre Internet régional.
+    description: ''
+  - name: --secondary-peer-subnet
+    summary: /30 sous-réseau utilisé pour configurer les adresses IP de l’interface secondaire.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --shared-key
+    summary: Clé pour la génération d’un MD5 pour la session BGP.
+    description: ''
+  - name: --vlan-id
+    summary: Identificateur utilisé pour identifier le client.
+    description: ''
+commands:
+- az_network_cross-connection_peering_create
+- az_network_cross-connection_peering_delete
+- az_network_cross-connection_peering_list
+- az_network_cross-connection_peering_show
+- az_network_cross-connection_peering_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer l’homologation ExpressRoute d’une connexion croisée ExpressRoute.
+  ms.openlocfilehash: 5a7c321a6350649c7e55454aeac905f9d7fe548d
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106893678"

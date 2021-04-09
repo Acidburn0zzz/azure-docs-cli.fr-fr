@@ -1,0 +1,189 @@
+### YamlMime:AzureCLIGroup
+uid: az_quantum_workspace
+name: az quantum workspace
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Quantum** pour Azure CLI et requiert la version 2.5.1 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ Quantum Workspace** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les espaces de travail Quantum Azure.
+description: ''
+directCommands:
+- uid: az_quantum_workspace_clear
+  name: az quantum workspace clear
+  summary: Effacez l’espace de travail Quantum Azure par défaut.
+  description: ''
+  syntax: az quantum workspace clear
+  examples:
+  - summary: Désactivez l’espace de travail Quantum Azure par défaut s’il a déjà été défini.
+    syntax: az quantum workspace clear
+- uid: az_quantum_workspace_create
+  name: az quantum workspace create
+  summary: Créez un nouvel espace de travail Quantum Azure.
+  description: ''
+  syntax: >-
+    az quantum workspace create [--location]
+                                [--provider-sku-list]
+                                [--resource-group]
+                                [--skip-role-assignment]
+                                [--storage-account]
+                                [--workspace-name]
+  examples:
+  - summary: Créez un nouvel espace de travail Quantum Azure avec une liste spécifique de fournisseurs.
+    syntax: >-
+      az quantum workspace create -g MyResourceGroup -w MyWorkspace -l MyLocation \
+          -r "MyProvider1 / MySKU1, MyProvider2 / MySKU2" -a MyStorageAccountName
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --provider-sku-list -r
+    summary: Liste séparée par des virgules de paires fournisseur/référence SKU.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --skip-role-assignment
+    summary: Ignorez l’étape d’attribution de rôle pour l’espace de travail Quantum dans le compte de stockage.
+    description: ''
+  - name: --storage-account -a
+    summary: Nom du compte de stockage à utiliser par un espace de travail Quantum.
+    description: ''
+  - name: --workspace-name -w
+    summary: Nom de l’espace de travail Quantum. Vous pouvez configurer l’espace de travail par défaut à l’aide de `az quantum workspace set` .
+    description: ''
+- uid: az_quantum_workspace_delete
+  name: az quantum workspace delete
+  summary: Supprimer l’espace de travail Quantum Azure donné (ou actuel).
+  description: ''
+  syntax: >-
+    az quantum workspace delete [--resource-group]
+                                [--workspace-name]
+  examples:
+  - summary: Supprimer un espace de travail Quantum Azure par nom et groupe.
+    syntax: az quantum workspace delete -g MyResourceGroup -w MyWorkspace
+  - summary: Supprimer et effacer l’espace de travail Quantum Azure par défaut (s’il a été défini).
+    syntax: az quantum workspace delete
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --workspace-name -w
+    summary: Nom de l’espace de travail Quantum. Vous pouvez configurer l’espace de travail par défaut à l’aide de `az quantum workspace set` .
+    description: ''
+- uid: az_quantum_workspace_list
+  name: az quantum workspace list
+  summary: Obtient la liste des espaces de travail Quantum Azure disponibles.
+  description: ''
+  syntax: >-
+    az quantum workspace list [--location]
+                              [--resource-group]
+                              [--tag]
+  examples:
+  - summary: Obtient la liste de tous les espaces de travail Quantum Azure disponibles.
+    syntax: az quantum workspace list
+  - summary: Obtenir la liste des espaces de travail Quantum Azure disponibles dans un emplacement.
+    syntax: az quantum workspace list -l MyLocation
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --tag
+    summary: Affichez uniquement les espaces de travail Quantum associés à la balise spécifiée.
+    description: ''
+- uid: az_quantum_workspace_quotas
+  name: az quantum workspace quotas
+  summary: Répertorie les quotas pour l’espace de travail Quantum Azure donné (ou actuel).
+  description: ''
+  syntax: >-
+    az quantum workspace quotas [--location]
+                                [--resource-group]
+                                [--workspace-name]
+  examples:
+  - summary: Répertorie les informations de quota de l’espace de travail par défaut s’il est défini.
+    syntax: az quantum workspace quotas
+  - summary: Répertorie les informations de quota d’un espace de travail Quantum Azure spécifié.
+    syntax: az quantum workspace quotas -g MyResourceGroup -w MyWorkspace -l MyLocation
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --workspace-name -w
+    summary: Nom de l’espace de travail Quantum. Vous pouvez configurer l’espace de travail par défaut à l’aide de `az quantum workspace set` .
+    description: ''
+- uid: az_quantum_workspace_set
+  name: az quantum workspace set
+  summary: Sélectionnez un espace de travail Quantum Azure par défaut pour les commandes ultérieures.
+  description: ''
+  syntax: >-
+    az quantum workspace set [--location]
+                             [--resource-group]
+                             [--workspace-name]
+  examples:
+  - summary: Définissez l’espace de travail Quantum Azure par défaut.
+    syntax: az quantum workspace set -g MyResourceGroup -w MyWorkspace -l MyLocation
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --workspace-name -w
+    summary: Nom de l’espace de travail Quantum. Vous pouvez configurer l’espace de travail par défaut à l’aide de `az quantum workspace set` .
+    description: ''
+- uid: az_quantum_workspace_show
+  name: az quantum workspace show
+  summary: Obtient les détails de l’espace de travail Quantum Azure donné (ou actuel).
+  description: ''
+  syntax: >-
+    az quantum workspace show [--resource-group]
+                              [--workspace-name]
+  examples:
+  - summary: Affichez l’espace de travail Azure Quantum par défaut actuellement sélectionné.
+    syntax: az quantum workspace show
+  - summary: Affichez les détails d’un espace de travail Quantum Azure fourni.
+    syntax: az quantum workspace show -g MyResourceGroup -w MyWorkspace
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --workspace-name -w
+    summary: Nom de l’espace de travail Quantum. Vous pouvez configurer l’espace de travail par défaut à l’aide de `az quantum workspace set` .
+    description: ''
+commands:
+- az_quantum_workspace_clear
+- az_quantum_workspace_create
+- az_quantum_workspace_delete
+- az_quantum_workspace_list
+- az_quantum_workspace_quotas
+- az_quantum_workspace_set
+- az_quantum_workspace_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les espaces de travail Quantum Azure.
+  ms.openlocfilehash: 7f096012673ceac771e9e0381284f03c2b861f34
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106893756"
