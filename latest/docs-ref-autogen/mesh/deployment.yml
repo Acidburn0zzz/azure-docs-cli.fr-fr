@@ -1,0 +1,88 @@
+### YamlMime:AzureCLIGroup
+uid: az_mesh_deployment
+name: az mesh deployment
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de **maille** pour Azure CLI et requiert la version 2.0.67 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Mesh Deployment** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les déploiements de maille Service Fabric.
+description: ''
+directCommands:
+- uid: az_mesh_deployment_create
+  name: az mesh deployment create
+  summary: Créez une application de maillage Service Fabric.
+  description: ''
+  syntax: >-
+    az mesh deployment create --resource-group
+                              [--input-yaml-files]
+                              [--mode]
+                              [--name]
+                              [--no-wait]
+                              [--parameters]
+                              [--template-file]
+                              [--template-uri]
+  examples:
+  - summary: Créez un déploiement avec un fichier de modèle sur l’accès à distance.
+    syntax: az mesh deployment create --resource-group mygroup --template-uri https://seabreezequickstart.blob.core.windows.net/templates/quickstart/sbz_rp.linux.json
+  - summary: Créez un déploiement avec un fichier de modèle sur le disque local.
+    syntax: az mesh deployment create --resource-group mygroup --template-file ./appTemplate.json
+  - summary: Liste des fichiers YAML séparés par des virgules ou un répertoire qui contient tous les fichiers YAML.
+    syntax: az mesh deployment create --resource-group mygroup --input-yaml-files ./app.yaml,./network.yaml
+  - summary: Créez un déploiement avec des fichiers YAML, ainsi qu’un fichier de paramètres YAML, qui se compose de paires clé/valeur.
+    syntax: az mesh deployment create --resource-group mygroup --input-yaml-files ./app.yaml,./network.yaml --parameters ../params.yaml
+  - summary: Créez un déploiement avec des paramètres au format JSON ARM.
+    syntax: az mesh deployment create --resource-group mygroup --input-yaml-files ./app.yaml,./network.yaml --parameters "params.json"
+  - summary: Créez un déploiement avec des paramètres transmis directement sous la forme d’un objet JSON.
+    syntax: "az mesh deployment create --resource-group mygroup --input-yaml-files ./app.yaml,./network.yaml --parameters \"{ 'location' : {'value' : 'eastus'}, 'myparam' : {'value' : 'myvalue'} }\""
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --input-yaml-files
+    summary: Liste des fichiers YAML séparés par des virgules ou un répertoire qui contient tous les fichiers YAML.
+    description: ''
+  - name: --mode
+    summary: Le mode de déploiement peut être incrémentiel (les ressources sont uniquement ajoutées) ou terminées (les ressources précédentes seront supprimées).
+    description: ''
+  - name: --name -n
+    summary: Nom du déploiement. Nom de base du fichier de modèle par défaut.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --parameters
+    summary: Paramètres dans le fichier YAML en tant que paires clé-valeur ou objet en tant qu’objet JSON ou en tant que fichier de paramètres ARM JSON pour compléter les paramètres du modèle de déploiement.
+    description: ''
+  - name: --template-file
+    summary: Chemin de fichier complet du modèle de création.
+    description: ''
+  - name: --template-uri
+    summary: Chemin de fichier complet du modèle de création sur un lien http ou HTTPS.
+    description: ''
+commands:
+- az_mesh_deployment_create
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les déploiements de maille Service Fabric.
+  ms.openlocfilehash: 38846c5690bd236f7a83cab08998220577934127
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106897859"
