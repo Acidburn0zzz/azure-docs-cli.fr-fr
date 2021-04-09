@@ -1,0 +1,339 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_front-door_routing-rule
+name: az network front-door routing-rule
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de la **porte avant** pour Azure CLI et requiert la version 2.0.68 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez la commande **AZ Network Front-Door Routing-Rule** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les règles de routage de la porte avant.
+description: ''
+directCommands:
+- uid: az_network_front-door_routing-rule_create
+  name: az network front-door routing-rule create
+  summary: Créez une règle de routage de la porte avant.
+  description: >-
+    Créez une règle de routage avant la porte pour transférer les demandes vers un serveur principal ou rediriger les utilisateurs vers une autre URL.
+
+
+    Exemple 1 : AZ Network Front-Door Routing-Rule Create-f frontdoor1-g RG1--frontend-Endpoints DefaultFrontendEndpoint--route-type Forward--backend-pool DefaultBackendPool-n forwardRoutingrule1--patterns/Forward1
+
+
+    Exemple 2 : AZ Network Front-Door Routing-Rule Create-f frontdoor1-g RG1--frontend-Endpoints DefaultFrontendEndpoint--route-type redirection--Custom-Host redirecthost.com-n redirectRouteRule1--patterns/redirect1--Custom-query-string queryString.
+  syntax: >-
+    az network front-door routing-rule create --front-door-name
+                                              --frontend-endpoints
+                                              --name
+                                              --resource-group
+                                              --route-type {Forward, Redirect}
+                                              [--accepted-protocols]
+                                              [--backend-pool]
+                                              [--cache-duration]
+                                              [--caching {Disabled, Enabled}]
+                                              [--custom-forwarding-path]
+                                              [--custom-fragment]
+                                              [--custom-host]
+                                              [--custom-path]
+                                              [--custom-query-string]
+                                              [--disabled {false, true}]
+                                              [--dynamic-compression {Disabled, Enabled}]
+                                              [--forwarding-protocol {HttpOnly, HttpsOnly, MatchRequest}]
+                                              [--patterns]
+                                              [--query-parameter-strip-directive {StripAll, StripAllExcept, StripNone, StripOnly}]
+                                              [--query-parameters]
+                                              [--redirect-protocol {HttpOnly, HttpsOnly, MatchRequest}]
+                                              [--redirect-type {Found, Moved, PermanentRedirect, TemporaryRedirect}]
+                                              [--rules-engine]
+  requiredParameters:
+  - isRequired: true
+    name: --front-door-name -f
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --frontend-endpoints
+    summary: Liste séparée par des espaces des noms ou ID des points de terminaison frontend.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de routage.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --route-type
+    parameterValueGroup: Forward, Redirect
+    summary: Type de routage pour définir la manière dont la porte doit gérer les demandes de cet itinéraire, par exemple les transférer vers un serveur principal ou rediriger les utilisateurs vers une autre URL.
+    description: ''
+  optionalParameters:
+  - name: --accepted-protocols
+    summary: 'Liste séparée par des espaces des protocoles à accepter. Valeur par défaut : http.'
+    description: ''
+  - name: --backend-pool
+    summary: Nom ou ID d’un pool principal. Il est nécessaire de créer une règle de routage direct.
+    description: ''
+  - name: --cache-duration
+    summary: Durée pendant laquelle le contenu doit être mis en cache. Le format autorisé est ISO 8601 durée.
+    description: ''
+  - name: --caching
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique s’il faut activer la mise en cache pour cette route.
+    description: ''
+  - name: --custom-forwarding-path
+    summary: Chemin personnalisé utilisé pour réécrire les chemins d’accès aux ressources correspondant à cette règle. Laissez cette option vide pour utiliser le chemin entrant.
+    description: ''
+  - name: --custom-fragment
+    summary: 'Fragment à ajouter à l’URL de redirection. Fragment est la partie de l’URL qui vient après #. N’incluez pas le #.'
+    description: ''
+  - name: --custom-host
+    summary: Hôte à rediriger. Laissez vide pour utiliser utiliser l’hôte entrant comme ordinateur hôte de destination.
+    description: ''
+  - name: --custom-path
+    summary: Chemin d’accès complet à rediriger. Le chemin d’accès ne peut pas être vide et doit commencer par/. Laissez vide pour utiliser le chemin d’accès entrant comme chemin d’accès de destination.
+    description: ''
+  - name: --custom-query-string
+    summary: Ensemble de chaînes de requête à placer dans l’URL de redirection. La définition de cette valeur remplace toute chaîne de requête existante ; laissez vide pour conserver la chaîne de requête entrante. La chaîne de requête doit être dans <key>=<value> HH:MM:SS. La première ? et & sont ajoutés automatiquement. ne les incluez donc pas à l’avant, mais Séparez plusieurs chaînes de requête par des &.
+    description: ''
+  - name: --disabled
+    parameterValueGroup: false, true
+    summary: Créer dans un état désactivé.
+    description: ''
+  - name: --dynamic-compression
+    parameterValueGroup: Disabled, Enabled
+    summary: Utilisez la compression dynamique pour le contenu mis en cache.
+    description: ''
+  - name: --forwarding-protocol
+    parameterValueGroup: HttpOnly, HttpsOnly, MatchRequest
+    summary: Protocole à utiliser pour transférer le trafic.
+    description: ''
+  - name: --patterns
+    summary: 'Liste séparée par des espaces des modèles à mettre en correspondance. Valeur par défaut : « / \* ».'
+    description: ''
+  - name: --query-parameter-strip-directive
+    parameterValueGroup: StripAll, StripAllExcept, StripNone, StripOnly
+    summary: Traitement des termes de requête d’URL lors de la création de la clé de cache.
+    description: ''
+  - name: --query-parameters
+    summary: Paramètres de requête à inclure ou à exclure (séparés par des virgules) lors de l’utilisation du type StripAllExcept ou StripOnly, respectivement.
+    description: ''
+  - name: --redirect-protocol
+    defaultValue: MatchRequest
+    parameterValueGroup: HttpOnly, HttpsOnly, MatchRequest
+    summary: Protocole de destination vers lequel le trafic est redirigé.
+    description: ''
+  - name: --redirect-type
+    defaultValue: Moved
+    parameterValueGroup: Found, Moved, PermanentRedirect, TemporaryRedirect
+    summary: Type de redirection que la règle utilisera lors de la redirection du trafic.
+    description: ''
+  - name: --rules-engine
+    summary: Nom ou ID d’une configuration de moteur de règles. Pour dissocier la propriété, « --Remove rulesEngine ».
+    description: ''
+- uid: az_network_front-door_routing-rule_delete
+  name: az network front-door routing-rule delete
+  summary: Supprimer une règle de routage d’une porte d’entrée.
+  description: ''
+  syntax: >-
+    az network front-door routing-rule delete --front-door-name
+                                              --name
+                                              --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --front-door-name -f
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de routage.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_front-door_routing-rule_list
+  name: az network front-door routing-rule list
+  summary: Répertorier les règles d’acheminement de la porte d’avant.
+  description: ''
+  syntax: >-
+    az network front-door routing-rule list --front-door-name
+                                            --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --front-door-name -f
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_front-door_routing-rule_show
+  name: az network front-door routing-rule show
+  summary: Obtenir les détails d’une règle de routage d’une porte d’entrée.
+  description: ''
+  syntax: >-
+    az network front-door routing-rule show --front-door-name
+                                            --name
+                                            --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --front-door-name -f
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de routage.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_front-door_routing-rule_update
+  name: az network front-door routing-rule update
+  summary: Mettre à jour une règle de routage d’une porte d’entrée.
+  description: ''
+  syntax: >-
+    az network front-door routing-rule update --front-door-name
+                                              --name
+                                              --resource-group
+                                              [--accepted-protocols]
+                                              [--add]
+                                              [--backend-pool]
+                                              [--cache-duration]
+                                              [--caching {Disabled, Enabled}]
+                                              [--custom-forwarding-path]
+                                              [--custom-fragment]
+                                              [--custom-host]
+                                              [--custom-path]
+                                              [--custom-query-string]
+                                              [--dynamic-compression {Disabled, Enabled}]
+                                              [--enabled {Disabled, Enabled}]
+                                              [--force-string]
+                                              [--forwarding-protocol {HttpOnly, HttpsOnly, MatchRequest}]
+                                              [--frontend-endpoints]
+                                              [--patterns]
+                                              [--query-parameter-strip-directive {StripAll, StripAllExcept, StripNone, StripOnly}]
+                                              [--query-parameters]
+                                              [--redirect-protocol {HttpOnly, HttpsOnly, MatchRequest}]
+                                              [--redirect-type {Found, Moved, PermanentRedirect, TemporaryRedirect}]
+                                              [--remove]
+                                              [--rules-engine]
+                                              [--set]
+  requiredParameters:
+  - isRequired: true
+    name: --front-door-name -f
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la règle de routage.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --accepted-protocols
+    summary: 'Liste séparée par des espaces des protocoles à accepter. Valeur par défaut : http.'
+    description: ''
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --backend-pool
+    summary: Nom ou ID d’un pool principal. Il est nécessaire de créer une règle de routage direct.
+    description: ''
+  - name: --cache-duration
+    summary: Durée pendant laquelle le contenu doit être mis en cache. Le format autorisé est ISO 8601 durée.
+    description: ''
+  - name: --caching
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique s’il faut activer la mise en cache pour cette route.
+    description: ''
+  - name: --custom-forwarding-path
+    summary: Chemin personnalisé utilisé pour réécrire les chemins d’accès aux ressources correspondant à cette règle. Laissez cette option vide pour utiliser le chemin entrant.
+    description: ''
+  - name: --custom-fragment
+    summary: 'Fragment à ajouter à l’URL de redirection. Fragment est la partie de l’URL qui vient après #. N’incluez pas le #.'
+    description: ''
+  - name: --custom-host
+    summary: Hôte à rediriger. Laissez vide pour utiliser utiliser l’hôte entrant comme ordinateur hôte de destination.
+    description: ''
+  - name: --custom-path
+    summary: Chemin d’accès complet à rediriger. Le chemin d’accès ne peut pas être vide et doit commencer par/. Laissez vide pour utiliser le chemin d’accès entrant comme chemin d’accès de destination.
+    description: ''
+  - name: --custom-query-string
+    summary: Ensemble de chaînes de requête à placer dans l’URL de redirection. La définition de cette valeur remplace toute chaîne de requête existante ; laissez vide pour conserver la chaîne de requête entrante. La chaîne de requête doit être dans <key>=<value> HH:MM:SS. La première ? et & sont ajoutés automatiquement. ne les incluez donc pas à l’avant, mais Séparez plusieurs chaînes de requête par des &.
+    description: ''
+  - name: --dynamic-compression
+    parameterValueGroup: Disabled, Enabled
+    summary: Utilisez la compression dynamique pour le contenu mis en cache.
+    description: ''
+  - name: --enabled
+    parameterValueGroup: Disabled, Enabled
+    summary: État activé.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --forwarding-protocol
+    parameterValueGroup: HttpOnly, HttpsOnly, MatchRequest
+    summary: Protocole à utiliser pour transférer le trafic.
+    description: ''
+  - name: --frontend-endpoints
+    summary: Liste séparée par des espaces des noms ou ID des points de terminaison frontend.
+    description: ''
+  - name: --patterns
+    summary: 'Liste séparée par des espaces des modèles à mettre en correspondance. Valeur par défaut : « / \* ».'
+    description: ''
+  - name: --query-parameter-strip-directive
+    parameterValueGroup: StripAll, StripAllExcept, StripNone, StripOnly
+    summary: Traitement des termes de requête d’URL lors de la création de la clé de cache.
+    description: ''
+  - name: --query-parameters
+    summary: Paramètres de requête à inclure ou à exclure (séparés par des virgules) lors de l’utilisation du type StripAllExcept ou StripOnly, respectivement.
+    description: ''
+  - name: --redirect-protocol
+    parameterValueGroup: HttpOnly, HttpsOnly, MatchRequest
+    summary: Protocole de destination vers lequel le trafic est redirigé.
+    description: ''
+  - name: --redirect-type
+    parameterValueGroup: Found, Moved, PermanentRedirect, TemporaryRedirect
+    summary: Type de redirection que la règle utilisera lors de la redirection du trafic.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --rules-engine
+    summary: Nom ou ID d’une configuration de moteur de règles. Pour dissocier la propriété, « --Remove rulesEngine ».
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+commands:
+- az_network_front-door_routing-rule_create
+- az_network_front-door_routing-rule_delete
+- az_network_front-door_routing-rule_list
+- az_network_front-door_routing-rule_show
+- az_network_front-door_routing-rule_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les règles de routage de la porte avant.
+  ms.openlocfilehash: 3db3180a9fa18a9d22240d52bdf367228afef81b
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106906722"
