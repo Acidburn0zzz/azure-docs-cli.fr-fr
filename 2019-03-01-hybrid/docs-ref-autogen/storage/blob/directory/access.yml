@@ -1,0 +1,261 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_blob_directory_access
+name: az storage blob directory access
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Storage-Preview** pour Azure CLI et requiert la version 2.13.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Storage BLOB Directory Access** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les propriétés de contrôle d’accès d’un répertoire lorsque l’espace de noms hiérarchique est activé.
+description: ''
+directCommands:
+- uid: az_storage_blob_directory_access_set
+  name: az storage blob directory access set
+  summary: Définissez les propriétés de contrôle d’accès d’un répertoire.
+  description: ''
+  syntax: >-
+    az storage blob directory access set --acl-spec
+                                         --container-name
+                                         --directory-path
+                                         [--account-key]
+                                         [--account-name]
+                                         [--auth-mode {key, login}]
+                                         [--connection-string]
+                                         [--if-match]
+                                         [--if-modified-since]
+                                         [--if-none-match]
+                                         [--if-unmodified-since]
+                                         [--lease-id]
+                                         [--sas-token]
+                                         [--timeout]
+  examples:
+  - summary: Définissez les propriétés de contrôle d’accès d’un répertoire.
+    syntax: az storage blob directory access set -a "user::rwx,group::r--,other::---" -d MyDirectoryPath -c MyContainer --account-name MyStorageAccount
+  requiredParameters:
+  - isRequired: true
+    name: --acl-spec -a
+    summary: 'Spécification de liste de contrôle d’accès (ACL) à définir sur le chemin d’accès au format «[default :] User | Group | Other | Mask : [ID d’entité ou UPN] : r |-w |-x |-, [default :] User | Group | Other | Mask : [ID d’entité ou UPN] : r |-w |-x |-,... par exemple, « utilisateur :: rwx, user:john.doe@contoso:rwx , groupe :: r--, autre ::---, Mask :: rwx ».'
+    description: ''
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --directory-path -d
+    summary: Nom du chemin d’accès du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    summary: Spécifiez une valeur ETag. Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée. L’ETag doit être spécifié entre guillemets.
+    description: ''
+  - name: --if-modified-since
+    summary: Modifiez uniquement si elle a été modifiée depuis le datetime UTC fourni (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Valeur ETag ou valeur générique spéciale (" \* "). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. L’ETag doit être spécifié entre guillemets.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Modifiez uniquement si elle n’a pas été modifiée depuis le datetime UTC fourni (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si le chemin d’accès a un bail actif.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+- uid: az_storage_blob_directory_access_show
+  name: az storage blob directory access show
+  summary: Affichez les propriétés de contrôle d’accès d’un répertoire.
+  description: ''
+  syntax: >-
+    az storage blob directory access show --container-name
+                                          --directory-path
+                                          [--account-key]
+                                          [--account-name]
+                                          [--auth-mode {key, login}]
+                                          [--connection-string]
+                                          [--if-match]
+                                          [--if-modified-since]
+                                          [--if-none-match]
+                                          [--if-unmodified-since]
+                                          [--lease-id]
+                                          [--sas-token]
+                                          [--timeout]
+                                          [--user-principle-names]
+  examples:
+  - summary: Affichez les propriétés de contrôle d’accès d’un répertoire.
+    syntax: az storage blob directory access show -d MyDirectoryPath -c MyContainer --account-name MyStorageAccount
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --directory-path -d
+    summary: Nom du chemin d’accès du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --if-match
+    summary: Spécifiez une valeur ETag. Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée. L’ETag doit être spécifié entre guillemets.
+    description: ''
+  - name: --if-modified-since
+    summary: Modifiez uniquement si elle a été modifiée depuis le datetime UTC fourni (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Valeur ETag ou valeur générique spéciale (" \* "). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. L’ETag doit être spécifié entre guillemets.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Modifiez uniquement si elle n’a pas été modifiée depuis le datetime UTC fourni (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si le chemin d’accès a un bail actif.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+  - name: --user-principle-names
+    summary: Valide uniquement lorsque l’espace de noms hiérarchique est activé pour le compte. Si la valeur est « true », les valeurs d’identité de l’utilisateur retournées pour le propriétaire, le groupe et la liste de contrôle d’accès sont transformées de Azure Active Directory ID d’objet en noms d’utilisateur principaux. Si la valeur est « false », les valeurs sont retournées en tant qu’ID d’objet Azure Active Directory. La valeur par défaut est false. Notez que les ID d’objet de groupe et d’application ne sont pas traduits, car ils n’ont pas de noms conviviaux uniques.
+    description: ''
+- uid: az_storage_blob_directory_access_update
+  name: az storage blob directory access update
+  summary: Mettez à jour les propriétés de contrôle d’accès d’un répertoire.
+  description: ''
+  syntax: >-
+    az storage blob directory access update --container-name
+                                            --directory-path
+                                            [--account-key]
+                                            [--account-name]
+                                            [--acl-spec]
+                                            [--auth-mode {key, login}]
+                                            [--connection-string]
+                                            [--group]
+                                            [--if-match]
+                                            [--if-modified-since]
+                                            [--if-none-match]
+                                            [--if-unmodified-since]
+                                            [--lease-id]
+                                            [--owner]
+                                            [--permissions]
+                                            [--sas-token]
+                                            [--timeout]
+  examples:
+  - summary: Mettez à jour les autorisations d’accès d’un répertoire.
+    syntax: az storage blob directory access update --permissions "rwxrwxrwx" -d MyDirectoryPath -c MyContainer --account-name MyStorageAccount
+  - summary: Mettre à jour l’utilisateur propriétaire d’un répertoire.
+    syntax: az storage blob directory access update --owner [entityId/UPN] -d MyDirectoryPath -c MyContainer --account-name MyStorageAccount
+  - summary: Mettez à jour le groupe propriétaire d’un répertoire.
+    syntax: az storage blob directory access update --group [entityId/UPN] -d MyDirectoryPath -c MyContainer --account-name MyStorageAccount
+  requiredParameters:
+  - isRequired: true
+    name: --container-name -c
+    summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --directory-path -d
+    summary: Nom du chemin d’accès du répertoire.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --acl-spec -a
+    summary: 'Spécification de liste de contrôle d’accès (ACL) à définir sur le chemin d’accès au format «[default :] User | Group | Other | Mask : [ID d’entité ou UPN] : r |-w |-x |-, [default :] User | Group | Other | Mask : [ID d’entité ou UPN] : r |-w |-x |-,... par exemple, « utilisateur :: rwx, user:john.doe@contoso:rwx , groupe :: r--, autre ::---, Mask :: rwx ».'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --group
+    summary: Groupe propriétaire de l’annuaire.
+    description: ''
+  - name: --if-match
+    summary: Spécifiez une valeur ETag. Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource correspond à la valeur spécifiée. L’ETag doit être spécifié entre guillemets.
+    description: ''
+  - name: --if-modified-since
+    summary: Modifiez uniquement si elle a été modifiée depuis le datetime UTC fourni (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --if-none-match
+    summary: Valeur ETag ou valeur générique spéciale (" \* "). Spécifiez cet en-tête pour exécuter l'opération uniquement si l'ETag de la ressource ne correspond pas à la valeur spécifiée. L’ETag doit être spécifié entre guillemets.
+    description: ''
+  - name: --if-unmodified-since
+    summary: Modifiez uniquement si elle n’a pas été modifiée depuis le datetime UTC fourni (Y-m-d’T’H :M’Z').
+    description: ''
+  - name: --lease-id
+    summary: Obligatoire si le chemin d’accès a un bail actif.
+    description: ''
+  - name: --owner
+    summary: Utilisateur propriétaire de l’annuaire.
+    description: ''
+  - name: --permissions
+    summary: Les autorisations d’accès POSIX pour le propriétaire du fichier, le groupe propriétaire du fichier et d’autres. Les notations octales symboliques (rwxrw-RW) et à 4 chiffres (par exemple, 0766) sont prises en charge.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
+commands:
+- az_storage_blob_directory_access_set
+- az_storage_blob_directory_access_show
+- az_storage_blob_directory_access_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les propriétés de contrôle d’accès d’un répertoire lorsque l’espace de noms hiérarchique est activé.
+  ms.openlocfilehash: 5efc6efa6080cda777dbd304a2d3b28b0f4f9a45
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106905737"
