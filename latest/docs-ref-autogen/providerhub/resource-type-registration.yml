@@ -1,0 +1,366 @@
+### YamlMime:AzureCLIGroup
+uid: az_providerhub_resource-type-registration
+name: az providerhub resource-type-registration
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **providerhub** pour Azure CLI et requiert la version 2.15.0 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ providerhub Resource-type-Registration** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer l’inscription des types de ressources avec providerhub.
+description: ''
+directCommands:
+- uid: az_providerhub_resource-type-registration_create
+  name: az providerhub resource-type-registration create
+  summary: Créez un type de ressource.
+  description: ''
+  syntax: >-
+    az providerhub resource-type-registration create --provider-namespace
+                                                     --resource-type
+                                                     [--allowed-unauthorized-actions]
+                                                     [--authorization-action-mappings]
+                                                     [--check-name-availability-specifications]
+                                                     [--default-api-version]
+                                                     [--disallowed-action-verbs]
+                                                     [--enable-async-operation {false, true}]
+                                                     [--enable-third-party-s2s {false, true}]
+                                                     [--endpoints]
+                                                     [--extended-locations]
+                                                     [--identity-management]
+                                                     [--is-pure-proxy {false, true}]
+                                                     [--linked-access-checks]
+                                                     [--logging-rules]
+                                                     [--marketplace-type {AddOn, Bypass, NotSpecified, Store}]
+                                                     [--opt-in-headers {ClientGroupMembership, NotSpecified, SignedAuxiliaryTokens, SignedUserToken, UnboundedClientGroupMembership}]
+                                                     [--regionality {Global, NotSpecified, Regional}]
+                                                     [--required-features]
+                                                     [--required-features-policy {All, Any}]
+                                                     [--resource-creation-begin]
+                                                     [--resource-deletion-policy {CascadeDeleteAll, CascadeDeleteProxyOnlyChildren, NotSpecified}]
+                                                     [--resource-move-policy]
+                                                     [--resource-patch-begin]
+                                                     [--routing-type {CascadeExtension, Default, Extension, Failover, Fanout, HostBased, LocationBased, ProxyOnly, Tenant}]
+                                                     [--service-tree-infos]
+                                                     [--subscription-state-rules]
+                                                     [--swagger-specifications]
+                                                     [--template-deployment-options]
+                                                     [--throttling-rules]
+  examples:
+  - summary: ResourceTypeRegistration_CreateOrUpdate
+    syntax: az providerhub resource-type-registration create --endpoints api-versions="2020-01-01-preview,2019-01-01" locations="West US, West Central US" required-features="Microsoft.Contoso/SampleApp" --regionality "regional" --routing-type "Default" --swagger-specifications api-versions="2020-06-01-preview" swagger-spec-folder-uri="https://rp-swagger-spec-uri.com/" --provider-namespace "Microsoft.Contoso" --resource-type "testResourceType"
+  requiredParameters:
+  - isRequired: true
+    name: --provider-namespace
+    summary: Nom du fournisseur de ressources hébergé dans ProviderHub.
+    description: ''
+  - isRequired: true
+    name: --resource-type
+    summary: Type de ressource.
+    description: ''
+  optionalParameters:
+  - name: --allowed-unauthorized-actions
+    summary: Actions non autorisées autorisées.
+    description: Utilisation :--allowed-Unauthorized-actions "Microsoft. contoso/rpResourceType/Read, Microsoft. contoso/rpResourceType/Delete".
+  - name: --authorization-action-mappings
+    summary: Permet à RP de remplacer le verbe d’action à des fins RBAC à ARM.
+    description: >-
+      Utilisation :--Authorization-action-mappages originaux = XX desired = XX
+
+
+      original : obligatoire. Nom de l’action d’origine.
+
+      desired : obligatoire. Nom de l’action souhaitée.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Authorization-action-mappings.
+  - name: --check-name-availability-specifications
+    summary: Fonctionnalité de vérification de la disponibilité des noms au niveau de la plateforme.
+    description: >-
+      Utilisation :--Check-Name-Availability-Specifications Enable-default-validation = XX Resource-types-with-Custom-validation = XX
+
+
+      Enable-default-validation : valeur booléenne indiquant si la partie de confiance a choisi de désactiver RPaaS pour effectuer la vérification.
+
+      Resource-types-with-Custom-validation : types qui nécessitent une validation supplémentaire de la partie de confiance.
+  - name: --default-api-version
+    summary: Version de l’API par défaut pour le point de terminaison.
+    description: Utilisation :--default-API-version « 2021-01-01 ».
+  - name: --disallowed-action-verbs
+    summary: Verbes d’action non autorisés.
+    description: Utilisation :--interdit-actions-verbes « lecture ».
+  - name: --enable-async-operation
+    parameterValueGroup: false, true
+    summary: Indique si l’opération asynchrone est activée pour ce type de ressource.
+    description: Utilisation :--Enable-Async-opération « false ».
+  - name: --enable-third-party-s2s
+    parameterValueGroup: false, true
+    summary: Indique si le S2S tiers est activé pour ce type de ressource.
+    description: Utilisation :--Enable-tiers-S2S « false ».
+  - name: --endpoints
+    summary: Points de terminaison de type de ressource.
+    description: >-
+      Utilisation :--points de terminaison API-versions = XX locations = XX required-features = XX
+
+
+      API-versions : obligatoire. Liste de versions d’API séparées par des virgules.
+
+      emplacements : obligatoire. Liste d’emplacements séparés par des virgules.
+
+      required : fonctionnalités : obligatoire. Liste séparée par des virgules des fonctionnalités requises.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Endpoints.
+  - name: --extended-locations
+    summary: Options d’emplacement étendues.
+    description: >-
+      Utilisation :--Extended-locations type = XX pris en charge-Policy = XX
+
+
+      type : le type d’emplacement étendu.
+
+      pris en charge-stratégie : la stratégie prise en charge.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Extended-locations.
+  - name: --identity-management
+    summary: Paramètres relatifs à MSI.
+    description: >-
+      Utilisation :--Identity-Management type = XX application-ID = XX
+
+
+      type : type de la gestion des identités.
+
+      ID d’application : ID d’application qui gère l’identité.
+  - name: --is-pure-proxy
+    parameterValueGroup: false, true
+    summary: Indique s’il s’agit d’un type de ressource PureProxy.
+    description: Utilisation :--est-pure-proxy « false ».
+  - name: --linked-access-checks
+    summary: Active des vérifications supplémentaires Access Control en fonction du rôle (RBAC) sur les ressources associées.
+    description: >-
+      Utilisation :--Linked-Access-Checks action-Name = XX Linked-Property = XX Linked-action = XX Linked-action-Verb = XX Linked-type = XX
+
+
+      action-Name : nom de l’action.
+
+      Linked-Property : propriété liée.
+
+      Linked-action : action liée.
+
+      Linked-action-Verb : verbe d’action lié.
+
+      Linked-type : le type lié.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Linked-Access-Checks.
+  - name: --logging-rules
+    summary: Règles de journalisation.
+    description: >-
+      Utilisation :--Logging-Rules action = XX direction = XX Detail-Level = XX
+
+
+      action : obligatoire. Nom de l’action.
+
+      Direction : obligatoire. Sens.
+
+      Detail-Level : obligatoire. Niveau de détail.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Logging-Rules.
+  - name: --marketplace-type
+    parameterValueGroup: AddOn, Bypass, NotSpecified, Store
+    summary: Type de comportement de la place de marché pour le type de ressource.
+    description: Utilisation :--Marketplace-tapez « AddOn ».
+  - name: --opt-in-headers
+    parameterValueGroup: ClientGroupMembership, NotSpecified, SignedAuxiliaryTokens, SignedUserToken, UnboundedClientGroupMembership
+    summary: En-têtes d’abonnement.
+    description: Utilisation :--opt-in-headers "SignedUserToken".
+  - name: --regionality
+    parameterValueGroup: Global, NotSpecified, Regional
+    summary: Région du type de ressource.
+    description: Utilisation :--régionalisation « régionale ».
+  - name: --required-features
+    summary: Fonctionnalités requises.
+    description: Utilisation :--required-features "Microsoft. contoso/Feature1, Microsoft. contoso/feature2".
+  - name: --required-features-policy
+    parameterValueGroup: All, Any
+    summary: Les valeurs acceptées sont « any » ou « All ». Si la valeur est « All », seuls les abonnements inscrits à l’ensemble de l’indicateur de fonctionnalité correspondant seront autorisés.
+    description: Utilisation :--required-features-Policy "All".
+  - name: --resource-creation-begin
+    summary: Options d’extension pour la gestion de la demande d’extension de début de création de ressource.
+    description: >-
+      Utilisation :--Resource-Creation-Begin Request = XX Response = XX
+
+
+      Request : liste séparée par des virgules des types d’option d’extension.
+
+      réponse : liste séparée par des virgules des types d’option d’extension.
+  - name: --resource-deletion-policy
+    parameterValueGroup: CascadeDeleteAll, CascadeDeleteProxyOnlyChildren, NotSpecified
+    summary: Stratégie de suppression des ressources.
+    description: Utilisation :--Resource-suppression-stratégie « CascadeDeleteAll ».
+  - name: --resource-move-policy
+    summary: Stratégie de déplacement de ressources.
+    description: >-
+      Utilisation :--Resource-Move-Policy validation-required = XX Cross-Resource-Group-Move-compatible = XX Cross-subscription-Move-Enabled = XX
+
+
+      validation-required : valeur booléenne indiquant si la validation est requise pour déplacer la ressource.
+
+      Cross-Resource-Group-Move-Enabled : valeur booléenne indiquant si le déplacement des ressources entre les groupes de ressources est autorisé.
+
+      Cross-subscription-Move-Enabled : valeur booléenne indiquant si le déplacement des ressources entre les abonnements est autorisé.
+  - name: --resource-patch-begin
+    summary: Options d’extension pour la gestion de la demande d’extension de début de correctif de ressource.
+    description: >-
+      Utilisation :--Resource-patch-Begin Request = XX Response = XX
+
+
+      Request : liste séparée par des virgules des types d’option d’extension.
+
+      réponse : liste séparée par des virgules des types d’option d’extension.
+  - name: --routing-type
+    parameterValueGroup: CascadeExtension, Default, Extension, Failover, Fanout, HostBased, LocationBased, ProxyOnly, Tenant
+    summary: Type de routage de la ressource.
+    description: Utilisation :--Routing-type « default ».
+  - name: --service-tree-infos
+    summary: Informations ServiceTree pour le fournisseur de ressources.
+    description: >-
+      Utilisation :--service-Tree-Infos service-ID = XX composant-ID = XX
+
+
+      service-ID : obligatoire. ID du service.
+
+      Component-ID : obligatoire. ID du composant.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--service-Tree-info.
+  - name: --subscription-state-rules
+    summary: Règles d’état de l’abonnement.
+    description: >-
+      Utilisation :--Subscription-State-Rules State = XX allowed-actions = XX
+
+
+      État : état de l’abonnement.
+
+      allowed-actions : actions autorisées.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--subscription-State-Rules.
+  - name: --swagger-specifications
+    summary: Spécification Swagger du type de ressource.
+    description: >-
+      Utilisation :--Swagger-Specifications API-versions = XX Swagger-spec-Folder-URI = XX
+
+
+      API-versions : obligatoire. Les versions de l’API de type de ressource, séparées par des virgules.
+
+      Swagger-spec-Folder-URI : obligatoire. URI de spécification Swagger.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Swagger-Specifications.
+  - name: --template-deployment-options
+    summary: Options de déploiement de modèle.
+    description: >-
+      Utilisation :--template-Deployment-options Preflight-Supported = XX Preflight-options = XX
+
+
+      prévols-pris en charge : valeur booléenne indiquant si la validation préliminaire est prise en charge.
+
+      Preflight-options : options de prévols.
+  - name: --throttling-rules
+    summary: Permet de définir des limites individuelles pour des actions différentes en termes de nombre de demandes ou de ressources (pour les demandes de lecture de collection uniquement).
+    description: >-
+      Utilisation :--limitation-règles action = XX métriques = XX required-features = XX
+
+
+      action : obligatoire. Nom de l’action.
+
+      métriques : obligatoire. Métriques de limitation.
+
+      required-Features : la règle de limitation des fonctionnalités requises.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--limitation-Rules.
+- uid: az_providerhub_resource-type-registration_delete
+  name: az providerhub resource-type-registration delete
+  summary: Supprime un type de ressource.
+  description: ''
+  syntax: >-
+    az providerhub resource-type-registration delete --provider-namespace
+                                                     --resource-type
+                                                     [--yes]
+  examples:
+  - summary: ResourceTypeRegistration_Delete
+    syntax: az providerhub resource-type-registration delete --provider-namespace "Microsoft.Contoso" --resource-type "testResourceType"
+  requiredParameters:
+  - isRequired: true
+    name: --provider-namespace
+    summary: Nom du fournisseur de ressources hébergé dans ProviderHub.
+    description: ''
+  - isRequired: true
+    name: --resource-type
+    summary: Type de ressource.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_providerhub_resource-type-registration_list
+  name: az providerhub resource-type-registration list
+  summary: Obtient la liste des types de ressources pour le fournisseur donné.
+  description: ''
+  syntax: az providerhub resource-type-registration list --provider-namespace
+  examples:
+  - summary: ResourceTypeRegistrations_ListByProviderRegistration
+    syntax: az providerhub resource-type-registration list --provider-namespace "Microsoft.Contoso"
+  requiredParameters:
+  - isRequired: true
+    name: --provider-namespace
+    summary: Nom du fournisseur de ressources hébergé dans ProviderHub.
+    description: ''
+- uid: az_providerhub_resource-type-registration_show
+  name: az providerhub resource-type-registration show
+  summary: Obtient les détails d’un type de ressource dans l’abonnement et le fournisseur donnés.
+  description: ''
+  syntax: >-
+    az providerhub resource-type-registration show --provider-namespace
+                                                   --resource-type
+  examples:
+  - summary: ResourceTypeRegistrations_Get
+    syntax: az providerhub resource-type-registration show --provider-namespace "Microsoft.Contoso" --resource-type "testResourceType"
+  requiredParameters:
+  - isRequired: true
+    name: --provider-namespace
+    summary: Nom du fournisseur de ressources hébergé dans ProviderHub.
+    description: ''
+  - isRequired: true
+    name: --resource-type
+    summary: Type de ressource.
+    description: ''
+commands:
+- az_providerhub_resource-type-registration_create
+- az_providerhub_resource-type-registration_delete
+- az_providerhub_resource-type-registration_list
+- az_providerhub_resource-type-registration_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer l’inscription des types de ressources avec providerhub.
+  ms.openlocfilehash: b115c4b5adc8239d200085e22d4e48df48c2b2d8
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106900483"

@@ -1,0 +1,247 @@
+### YamlMime:AzureCLIGroup
+uid: az_notification-hub_namespace
+name: az notification-hub namespace
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de **Hub de notification** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ notification-Hub namespace** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer l’espace de noms du Hub de notification.
+description: ''
+directCommands:
+- uid: az_notification-hub_namespace_check-availability
+  name: az notification-hub namespace check-availability
+  summary: Vérifiez la disponibilité de l’espace de noms de service donné sur tous les abonnements Azure. Cela est utile car le nom de domaine est créé en fonction du nom de l’espace de noms de service.
+  description: ''
+  syntax: az notification-hub namespace check-availability --name
+  examples:
+  - summary: Vérifier la disponibilité du nom de l’espace de noms
+    syntax: az notification-hub namespace check-availability --name "my-test-space"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’espace de noms à vérifier.
+    description: ''
+- uid: az_notification-hub_namespace_create
+  name: az notification-hub namespace create
+  summary: Créez un espace de noms de service. Une fois créé, le manifeste de ressources de cet espace de noms est immuable. Cette opération est idempotente.
+  description: ''
+  syntax: >-
+    az notification-hub namespace create --name
+                                         --resource-group
+                                         --sku {Basic, Free, Standard}
+                                         [--location]
+                                         [--tags]
+  examples:
+  - summary: Créer un espace de noms
+    syntax: >-
+      az notification-hub namespace create --resource-group MyResourceGroup --name \
+
+      my-namespace --location "South Central US" --sku Standard
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --sku
+    parameterValueGroup: Basic, Free, Standard
+    summary: Nom de la référence du Hub de notification.
+    description: ''
+  optionalParameters:
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_notification-hub_namespace_delete
+  name: az notification-hub namespace delete
+  summary: Supprimer un espace de noms existant. Cette opération supprime également tous les hubs de notification associés sous l’espace de noms.
+  description: ''
+  syntax: >-
+    az notification-hub namespace delete --name
+                                         --resource-group
+                                         [--no-wait]
+                                         [--yes]
+  examples:
+  - summary: Supprimer l’espace de noms
+    syntax: >-
+      az notification-hub namespace delete --resource-group MyResourceGroup --name \
+
+      my-namespace
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_notification-hub_namespace_list
+  name: az notification-hub namespace list
+  summary: Répertorier les espaces de noms disponibles.
+  description: ''
+  syntax: az notification-hub namespace list [--resource-group]
+  examples:
+  - summary: Répertorier les espaces de noms disponibles au sein d’un groupe de ressources
+    syntax: az notification-hub namespace list --resource-group MyResourceGroup
+  - summary: Répertorie tous les espaces de noms disponibles dans l’abonnement, quel que soit le resourceGroups
+    syntax: az notification-hub namespace list
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_notification-hub_namespace_show
+  name: az notification-hub namespace show
+  summary: Retourne la description de l’espace de noms spécifié.
+  description: ''
+  syntax: >-
+    az notification-hub namespace show --name
+                                       --resource-group
+  examples:
+  - summary: Afficher les informations d’espace de noms
+    syntax: >-
+      az notification-hub namespace show --resource-group MyResourceGroup --name \
+
+      my-namespace
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_notification-hub_namespace_update
+  name: az notification-hub namespace update
+  summary: Mettre à jour un espace de noms de service. Le manifeste de ressources de l’espace de noms est immuable et ne peut pas être modifié.
+  description: ''
+  syntax: >-
+    az notification-hub namespace update --name
+                                         --resource-group
+                                         [--sku {Basic, Free, Standard}]
+                                         [--tags]
+  examples:
+  - summary: Mettre à jour l’espace de noms
+    syntax: >-
+      az notification-hub namespace update --resource-group MyResourceGroup --name \
+
+      my-namespace --sku Standard
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --sku
+    parameterValueGroup: Basic, Free, Standard
+    summary: Nom de la référence du Hub de notification.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_notification-hub_namespace_wait
+  name: az notification-hub namespace wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du espace du Hub de notification soit remplie.
+  description: ''
+  syntax: >-
+    az notification-hub namespace wait --name
+                                       --resource-group
+                                       [--created]
+                                       [--custom]
+                                       [--deleted]
+                                       [--exists]
+                                       [--interval]
+                                       [--timeout]
+                                       [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que le espace du Hub de notification soit correctement approvisionné.
+    syntax: az notification-hub namespace wait --resource-group MyResourceGroup --name \ my-namespace --created
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: L'espace de noms.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_notification-hub_namespace_authorization-rule
+- az_notification-hub_namespace_authorization-rule_create
+- az_notification-hub_namespace_authorization-rule_delete
+- az_notification-hub_namespace_authorization-rule_list
+- az_notification-hub_namespace_authorization-rule_list-keys
+- az_notification-hub_namespace_authorization-rule_regenerate-keys
+- az_notification-hub_namespace_authorization-rule_show
+- az_notification-hub_namespace_check-availability
+- az_notification-hub_namespace_create
+- az_notification-hub_namespace_delete
+- az_notification-hub_namespace_list
+- az_notification-hub_namespace_show
+- az_notification-hub_namespace_update
+- az_notification-hub_namespace_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer l’espace de noms du Hub de notification.
+  ms.openlocfilehash: fe3c71fd398e9b12aed129855e98953bcc446be7
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106900536"
