@@ -1,0 +1,615 @@
+### YamlMime:AzureCLIGroup
+uid: az_spring-cloud_app
+name: az spring-cloud app
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Cloud Spring** pour Azure CLI et requiert la version 2.0.67 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Spring-Cloud App** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer les applications dans Azure Spring Cloud.
+description: ''
+directCommands:
+- uid: az_spring-cloud_app_create
+  name: az spring-cloud app create
+  summary: Créer une application avec un déploiement par défaut dans Azure Spring Cloud.
+  description: ''
+  syntax: >-
+    az spring-cloud app create --name
+                               --resource-group
+                               --service
+                               [--assign-endpoint {false, true}]
+                               [--assign-identity {false, true}]
+                               [--cpu]
+                               [--enable-persistent-storage {false, true}]
+                               [--env]
+                               [--instance-count]
+                               [--jvm-options]
+                               [--memory]
+                               [--runtime-version {Java_11, Java_8, NetCore_31}]
+  examples:
+  - summary: Créer une application avec la configuration par défaut.
+    syntax: az spring-cloud app create -n MyApp -s MyCluster -g MyResourceGroup
+  - summary: Créez une application publique accessible avec 3 instances et 2 cœurs d’UC et 3 Go de mémoire par instance.
+    syntax: az spring-cloud app create -n MyApp -s MyCluster -g MyResourceGroup --assign-endpoint true --cpu 2 --memory 3 --instance-count 3
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+  optionalParameters:
+  - name: --assign-endpoint
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, assignez l’URL du point de terminaison pour l’accès direct.
+    description: ''
+  - name: --assign-identity
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, assignez l’identité de service managée.
+    description: ''
+  - name: --cpu
+    defaultValue: "1"
+    summary: Nombre de cœurs de processeurs virtuels par instance.
+    description: ''
+  - name: --enable-persistent-storage
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, montez un disque 50G (niveau tarifaire standard) ou 1G (niveau tarifaire de base) avec le chemin d’accès par défaut.
+    description: ''
+  - name: --env
+    summary: Variables d’environnement séparées par des espaces au format « clé[= valeur] ».
+    description: ''
+  - name: --instance-count
+    defaultValue: "1"
+    summary: Nombre d’instances.
+    description: ''
+  - name: --jvm-options
+    summary: Chaîne contenant les options JVM, utilisez' = 'à la place de' 'pour cet argument afin d’éviter l’erreur d’analyse bash, par exemple :--JVM-options = '-Xms1024m-Xmx2048m'.
+    description: ''
+  - name: --memory
+    defaultValue: "1"
+    summary: Nombre de Go de mémoire par instance.
+    description: ''
+  - name: --runtime-version
+    parameterValueGroup: Java_11, Java_8, NetCore_31
+    summary: Version du runtime du langage utilisé.
+    description: ''
+- uid: az_spring-cloud_app_delete
+  name: az spring-cloud app delete
+  summary: Supprimer une application dans Azure Spring Cloud.
+  description: ''
+  syntax: >-
+    az spring-cloud app delete --name
+                               --resource-group
+                               --service
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+- uid: az_spring-cloud_app_deploy
+  name: az spring-cloud app deploy
+  summary: Déployez le code source ou un fichier binaire prédéfini dans une application et mettez à jour les configurations associées.
+  description: ''
+  syntax: >-
+    az spring-cloud app deploy --name
+                               --resource-group
+                               --service
+                               [--artifact-path]
+                               [--deployment]
+                               [--env]
+                               [--jvm-options]
+                               [--main-entry]
+                               [--no-wait]
+                               [--runtime-version {Java_11, Java_8, NetCore_31}]
+                               [--target-module]
+                               [--version]
+  examples:
+  - summary: Déployer le code source dans une application. Cela permet de compresser le répertoire actif, de générer un fichier binaire avec le service de build Pivotal, puis de déployer dans l’application.
+    syntax: az spring-cloud app deploy -n MyApp -s MyCluster -g MyResourceGroup
+  - summary: Déployez un fichier jar prédéfini dans une application avec des options JVM et des variables d’environnement.
+    syntax: az spring-cloud app deploy -n MyApp -s MyCluster -g MyResourceGroup --jar-path app.jar --jvm-options="-XX:+UseG1GC -XX:+UseStringDeduplication" --env foo=bar
+  - summary: Déployer le code source vers un déploiement spécifique d’une application.
+    syntax: az spring-cloud app deploy -n MyApp -s MyCluster -g MyResourceGroup -d green-deployment
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+  optionalParameters:
+  - name: --artifact-path --jar-path -p
+    summary: S’il est fourni, déployez l’artefact prédéfini (jar ou Netcore zip), sinon déployez le dossier actuel en tant que tar.
+    description: ''
+  - name: --deployment -d
+    summary: Nom d’un déploiement existant de l’application. Par défaut, le déploiement de production n’est pas spécifié.
+    description: ''
+  - name: --env
+    summary: Variables d’environnement séparées par des espaces au format « clé[= valeur] ».
+    description: ''
+  - name: --jvm-options
+    summary: Chaîne contenant les options JVM, utilisez' = 'à la place de' 'pour cet argument afin d’éviter l’erreur d’analyse bash, par exemple :--JVM-options = '-Xms1024m-Xmx2048m'.
+    description: ''
+  - name: --main-entry -m
+    summary: Chaîne contenant le chemin d’accès au fichier exécutable .NET relatif à la racine zip.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --runtime-version
+    parameterValueGroup: Java_11, Java_8, NetCore_31
+    summary: Version du runtime du langage utilisé.
+    description: ''
+  - name: --target-module
+    summary: Module enfant à déployer, requis pour plusieurs packages jar générés à partir du code source.
+    description: ''
+  - name: --version
+    summary: Version du déploiement, conservez la valeur inchangée si elle n’est pas définie.
+    description: ''
+- uid: az_spring-cloud_app_list
+  name: az spring-cloud app list
+  summary: Lister toutes les applications dans Azure Spring Cloud.
+  description: ''
+  syntax: >-
+    az spring-cloud app list --resource-group
+                             --service
+  examples:
+  - summary: État de la requête de stockage persistant de toutes les applications
+    syntax: az spring-cloud app list -s MyCluster -g MyResourceGroup -o json --query '[].{Name:name, PersistentStorage:properties.persistentDisk}'
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+- uid: az_spring-cloud_app_logs
+  name: az spring-cloud app logs
+  summary: Afficher les journaux d’une instance d’application, les journaux sont diffusés en continu lorsque vous définissez « -f/--follow ».
+  description: ''
+  syntax: >-
+    az spring-cloud app logs --name
+                             --resource-group
+                             --service
+                             [--deployment]
+                             [--follow]
+                             [--instance]
+                             [--limit]
+                             [--lines]
+                             [--since]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+  optionalParameters:
+  - name: --deployment -d
+    summary: Nom d’un déploiement existant de l’application. Par défaut, le déploiement de production n’est pas spécifié.
+    description: ''
+  - name: --follow  -f
+    summary: Spécifiez si les journaux doivent être diffusés en continu.
+    description: ''
+  - name: --instance -i
+    summary: Nom d’une instance existante du déploiement.
+    description: ''
+  - name: --limit
+    defaultValue: "2048"
+    summary: Nombre maximal de kilo-octets de journaux à retourner. Le plafond numéro est 2048.
+    description: ''
+  - name: --lines
+    defaultValue: "50"
+    summary: Nombre de lignes à afficher. La valeur maximale est 10000.
+    description: ''
+  - name: --since
+    summary: Retourne uniquement les journaux plus récents qu’une durée relative telle que 5 s, 2m ou 1H. La valeur maximale est 1H.
+    description: ''
+- uid: az_spring-cloud_app_restart
+  name: az spring-cloud app restart
+  summary: Redémarrez les instances de l’application, par défaut en tant que déploiement de production.
+  description: ''
+  syntax: >-
+    az spring-cloud app restart --name
+                                --resource-group
+                                --service
+                                [--deployment]
+                                [--no-wait]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+  optionalParameters:
+  - name: --deployment -d
+    summary: Nom d’un déploiement existant de l’application. Par défaut, le déploiement de production n’est pas spécifié.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_spring-cloud_app_scale
+  name: az spring-cloud app scale
+  summary: Mettre à l’échelle manuellement une application ou ses déploiements.
+  description: ''
+  syntax: >-
+    az spring-cloud app scale --name
+                              --resource-group
+                              --service
+                              [--cpu]
+                              [--deployment]
+                              [--instance-count]
+                              [--memory]
+                              [--no-wait]
+  examples:
+  - summary: Mettez à l’échelle une application sur 4 cœurs d’UC et 8 Go de mémoire par instance.
+    syntax: az spring-cloud app scale -n MyApp -s MyCluster -g MyResourceGroup --cpu 3 --memory 8
+  - summary: Effectuer le scale-up d’un déploiement de l’application sur cinq instances.
+    syntax: az spring-cloud app scale -n MyApp -s MyCluster -g MyResourceGroup -d green-deployment --instance-count 5
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+  optionalParameters:
+  - name: --cpu
+    summary: Nombre de cœurs de processeurs virtuels par instance.
+    description: ''
+  - name: --deployment -d
+    summary: Nom d’un déploiement existant de l’application. Par défaut, le déploiement de production n’est pas spécifié.
+    description: ''
+  - name: --instance-count
+    summary: Nombre d’instances.
+    description: ''
+  - name: --memory
+    summary: Nombre de Go de mémoire par instance.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_spring-cloud_app_set-deployment
+  name: az spring-cloud app set-deployment
+  summary: Définir le déploiement de production d’une application.
+  description: ''
+  syntax: >-
+    az spring-cloud app set-deployment --deployment
+                                       --name
+                                       --resource-group
+                                       --service
+                                       [--no-wait]
+  examples:
+  - summary: Permuter un déploiement intermédiaire d’une application en production.
+    syntax: az spring-cloud app set-deployment -d green-deployment -n MyApp -s MyCluster -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --deployment -d
+    summary: Nom d’un déploiement existant de l’application.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_spring-cloud_app_show
+  name: az spring-cloud app show
+  summary: Afficher les détails d’une application dans Azure Spring Cloud.
+  description: ''
+  syntax: >-
+    az spring-cloud app show --name
+                             --resource-group
+                             --service
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+- uid: az_spring-cloud_app_show-deploy-log
+  name: az spring-cloud app show-deploy-log
+  summary: Afficher le journal de génération du dernier déploiement, appliquer uniquement au déploiement du code source, par défaut au déploiement de production.
+  description: ''
+  syntax: >-
+    az spring-cloud app show-deploy-log --name
+                                        --resource-group
+                                        --service
+                                        [--deployment]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+  optionalParameters:
+  - name: --deployment -d
+    summary: Nom d’un déploiement existant de l’application. Par défaut, le déploiement de production n’est pas spécifié.
+    description: ''
+- uid: az_spring-cloud_app_start
+  name: az spring-cloud app start
+  summary: Démarrer les instances de l’application, par défaut en tant que déploiement de production.
+  description: ''
+  syntax: >-
+    az spring-cloud app start --name
+                              --resource-group
+                              --service
+                              [--deployment]
+                              [--no-wait]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+  optionalParameters:
+  - name: --deployment -d
+    summary: Nom d’un déploiement existant de l’application. Par défaut, le déploiement de production n’est pas spécifié.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_spring-cloud_app_stop
+  name: az spring-cloud app stop
+  summary: Arrêter les instances de l’application, par défaut en tant que déploiement de production.
+  description: ''
+  syntax: >-
+    az spring-cloud app stop --name
+                             --resource-group
+                             --service
+                             [--deployment]
+                             [--no-wait]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+  optionalParameters:
+  - name: --deployment -d
+    summary: Nom d’un déploiement existant de l’application. Par défaut, le déploiement de production n’est pas spécifié.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_spring-cloud_app_unset-deployment
+  name: az spring-cloud app unset-deployment
+  summary: Annuler le déploiement de production d’une application.
+  description: ''
+  syntax: >-
+    az spring-cloud app unset-deployment --name
+                                         --resource-group
+                                         --service
+                                         [--no-wait]
+  examples:
+  - summary: Permuter le déploiement de production d’une application dans l’environnement intermédiaire si le déploiement de l’application est en production.
+    syntax: az spring-cloud app unset-deployment -n MyApp -s MyCluster -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_spring-cloud_app_update
+  name: az spring-cloud app update
+  summary: Met à jour les configurations d’une application.
+  description: ''
+  syntax: >-
+    az spring-cloud app update --name
+                               --resource-group
+                               --service
+                               [--assign-endpoint {false, true}]
+                               [--deployment]
+                               [--enable-end-to-end-tls {false, true}]
+                               [--enable-persistent-storage {false, true}]
+                               [--env]
+                               [--https-only {false, true}]
+                               [--jvm-options]
+                               [--main-entry]
+                               [--runtime-version {Java_11, Java_8, NetCore_31}]
+  examples:
+  - summary: Ajouter une variable d’environnement pour l’application.
+    syntax: az spring-cloud app update -n MyApp -s MyCluster -g MyResourceGroup --env foo=bar
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’application.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service -s
+    summary: Nom du Cloud Azure Spring, vous pouvez configurer le service par défaut à l’aide de la commande AZ configure--valeurs par défaut Spring-Cloud = <name> .
+    description: ''
+  optionalParameters:
+  - name: --assign-endpoint
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, assignez l’URL du point de terminaison pour l’accès direct.
+    description: ''
+  - name: --deployment -d
+    summary: Nom d’un déploiement existant de l’application. Par défaut, le déploiement de production n’est pas spécifié.
+    description: ''
+  - name: --enable-end-to-end-tls
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, active le TLS de bout en bout.
+    description: ''
+  - name: --enable-persistent-storage
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, montez un disque 50G (niveau tarifaire standard) ou 1G (niveau tarifaire de base) avec le chemin d’accès par défaut.
+    description: ''
+  - name: --env
+    summary: Variables d’environnement séparées par des espaces au format « clé[= valeur] ».
+    description: ''
+  - name: --https-only
+    parameterValueGroup: false, true
+    summary: Si la valeur est true, l’application accède via HTTPS.
+    description: ''
+  - name: --jvm-options
+    summary: Chaîne contenant les options JVM, utilisez' = 'à la place de' 'pour cet argument afin d’éviter l’erreur d’analyse bash, par exemple :--JVM-options = '-Xms1024m-Xmx2048m'.
+    description: ''
+  - name: --main-entry -m
+    summary: Chemin d’accès au fichier exécutable .NET relatif à la racine zip.
+    description: ''
+  - name: --runtime-version
+    parameterValueGroup: Java_11, Java_8, NetCore_31
+    summary: Version du runtime du langage utilisé.
+    description: ''
+commands:
+- az_spring-cloud_app_binding
+- az_spring-cloud_app_binding_cosmos
+- az_spring-cloud_app_binding_cosmos_add
+- az_spring-cloud_app_binding_cosmos_update
+- az_spring-cloud_app_binding_list
+- az_spring-cloud_app_binding_mysql
+- az_spring-cloud_app_binding_mysql_add
+- az_spring-cloud_app_binding_mysql_update
+- az_spring-cloud_app_binding_redis
+- az_spring-cloud_app_binding_redis_add
+- az_spring-cloud_app_binding_redis_update
+- az_spring-cloud_app_binding_remove
+- az_spring-cloud_app_binding_show
+- az_spring-cloud_app_create
+- az_spring-cloud_app_custom-domain
+- az_spring-cloud_app_custom-domain_bind
+- az_spring-cloud_app_custom-domain_list
+- az_spring-cloud_app_custom-domain_show
+- az_spring-cloud_app_custom-domain_unbind
+- az_spring-cloud_app_custom-domain_update
+- az_spring-cloud_app_delete
+- az_spring-cloud_app_deploy
+- az_spring-cloud_app_deployment
+- az_spring-cloud_app_deployment_create
+- az_spring-cloud_app_deployment_delete
+- az_spring-cloud_app_deployment_list
+- az_spring-cloud_app_deployment_show
+- az_spring-cloud_app_identity
+- az_spring-cloud_app_identity_assign
+- az_spring-cloud_app_identity_remove
+- az_spring-cloud_app_identity_show
+- az_spring-cloud_app_list
+- az_spring-cloud_app_log
+- az_spring-cloud_app_log_tail
+- az_spring-cloud_app_logs
+- az_spring-cloud_app_restart
+- az_spring-cloud_app_scale
+- az_spring-cloud_app_set-deployment
+- az_spring-cloud_app_show
+- az_spring-cloud_app_show-deploy-log
+- az_spring-cloud_app_start
+- az_spring-cloud_app_stop
+- az_spring-cloud_app_unset-deployment
+- az_spring-cloud_app_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer les applications dans Azure Spring Cloud.
+  ms.openlocfilehash: 8e5c659b71b1ad1f0aff6d4adb5b997a64ca8afc
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106895148"

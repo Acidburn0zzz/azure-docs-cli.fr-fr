@@ -1,0 +1,182 @@
+### YamlMime:AzureCLIGroup
+uid: az_storagesync_registered-server
+name: az storagesync registered-server
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **storagesync** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ storagesync Registered-Server** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérez le serveur inscrit.
+description: ''
+directCommands:
+- uid: az_storagesync_registered-server_delete
+  name: az storagesync registered-server delete
+  summary: Annule l’inscription d’un serveur local à partir du service de synchronisation de stockage.
+  description: Annulez l’inscription d’un serveur local à partir du service de synchronisation de stockage, ce qui entraînera des suppressions en cascade de tous les points de terminaison de serveur sur ce serveur.
+  syntax: >-
+    az storagesync registered-server delete --server-id
+                                            --storage-sync-service
+                                            [--no-wait]
+                                            [--resource-group]
+                                            [--yes]
+  examples:
+  - summary: Annule l’inscription d’un serveur local « 41166691-AB03-43e9-ab3e-0330eda162ac » à partir du service de synchronisation de stockage « SampleStorageSyncService ».
+    syntax: >-
+      az storagesync registered-server delete --resource-group "SampleResourceGroup" --storage-sync-service \
+
+      "SampleStorageSyncService" --server-id "41166691-ab03-43e9-ab3e-0330eda162ac"
+  requiredParameters:
+  - isRequired: true
+    name: --server-id
+    summary: GUID identifiant le serveur local.
+    description: ''
+  - isRequired: true
+    name: --storage-sync-service
+    summary: Nom ou ID du service de synchronisation de stockage.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_storagesync_registered-server_list
+  name: az storagesync registered-server list
+  summary: Répertorie tous les serveurs inscrits pour un service de synchronisation de stockage donné.
+  description: ''
+  syntax: >-
+    az storagesync registered-server list --storage-sync-service
+                                          [--resource-group]
+  examples:
+  - summary: Répertorie tous les serveurs inscrits pour le service de synchronisation de stockage « SampleStorageSyncService ».
+    syntax: >-
+      az storagesync registered-server list --resource-group "SampleResourceGroup" --storage-sync-service \
+
+      "SampleStorageSyncService"
+  requiredParameters:
+  - isRequired: true
+    name: --storage-sync-service
+    summary: Nom ou ID du service de synchronisation de stockage.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_storagesync_registered-server_show
+  name: az storagesync registered-server show
+  summary: Affichez les propriétés d’un serveur inscrit donné.
+  description: ''
+  syntax: >-
+    az storagesync registered-server show --server-id
+                                          --storage-sync-service
+                                          [--resource-group]
+  examples:
+  - summary: Affichez les propriétés du serveur inscrit « 080d4133-bdb5-40a0-96A0-71a6057bfe9a ».
+    syntax: >-
+      az storagesync registered-server show --resource-group "SampleResourceGroup" --storage-sync-service \
+
+      "SampleStorageSyncService" --server-id "080d4133-bdb5-40a0-96a0-71a6057bfe9a"
+  requiredParameters:
+  - isRequired: true
+    name: --server-id
+    summary: GUID identifiant le serveur local.
+    description: ''
+  - isRequired: true
+    name: --storage-sync-service
+    summary: Nom ou ID du service de synchronisation de stockage.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_storagesync_registered-server_wait
+  name: az storagesync registered-server wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’un serveur inscrit soit remplie.
+  description: ''
+  syntax: >-
+    az storagesync registered-server wait --resource-group
+                                          --server-id
+                                          --storage-sync-service-name
+                                          [--created]
+                                          [--custom]
+                                          [--deleted]
+                                          [--exists]
+                                          [--interval]
+                                          [--timeout]
+                                          [--updated]
+  examples:
+  - summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition d’un serveur inscrit soit supprimée.
+    syntax: >-
+      az storagesync registered-server wait --resource-group "SampleResourceGroup" \
+
+      --storage-sync-service "SampleStorageSyncService" \
+
+      --server-id "080d4133-bdb5-40a0-96a0-71a6057bfe9a" --deleted
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --server-id
+    summary: GUID identifiant le serveur local.
+    description: ''
+  - isRequired: true
+    name: --storage-sync-service-name
+    summary: Nom de la ressource de service de synchronisation de stockage.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_storagesync_registered-server_delete
+- az_storagesync_registered-server_list
+- az_storagesync_registered-server_show
+- az_storagesync_registered-server_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérez le serveur inscrit.
+  ms.openlocfilehash: 8c333255a2126af4abe6e2bcd46a13b7a6902523
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106895064"
