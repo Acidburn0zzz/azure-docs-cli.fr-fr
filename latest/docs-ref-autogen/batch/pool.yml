@@ -52,7 +52,7 @@ directCommands:
     summary: Liste des packages à installer sur chaque nœud de calcul dans le pool. Les modifications apportées aux références de package affectent tous les nouveaux nœuds qui rejoignent le pool, mais n’affectent pas les nœuds de calcul qui se trouvent déjà dans le pool tant qu’ils ne sont pas redémarrés ou réinitialisés. Il existe un maximum de 10 références de package sur un pool donné. Les ID d’application séparés par des espaces avec une version facultative dans le format « ID [#version] ».
     description: ''
   - name: --auto-scale-formula
-    summary: Formule pour le nombre souhaité de nœuds de calcul dans le pool. La validité de la formule est vérifiée avant la création du pool. Si la formule n’est pas valide, le service de traitement par lots rejette la demande avec des informations détaillées sur l’erreur. Pour plus d’informations sur la spécification de cette formule, consultez <a href="https://azure.microsoft.com/documentation/articles/batch-automatic-scaling/">https://azure.microsoft.com/documentation/articles/batch-automatic-scaling/</a> .
+    summary: Formule pour le nombre souhaité de nœuds de calcul dans le pool. La validité de la formule est vérifiée avant la création du pool. Si la formule n’est pas valide, le service de traitement par lots rejette la demande avec des informations détaillées sur l’erreur. Pour plus d'informations sur la spécification de cette formule, consultez https://azure.microsoft.com/documentation/articles/batch-automatic-scaling/.
     description: ''
   - name: --certificate-references
     summary: Liste des certificats à installer sur chaque nœud de calcul dans le pool. Pour les nœuds Windows, le service batch installe les certificats dans le magasin de certificats et l’emplacement spécifiés. Pour les nœuds de calcul Linux, les certificats sont stockés dans un répertoire à l’intérieur du répertoire de travail de la tâche et une variable d’environnement AZ_BATCH_CERTIFICATES_DIR est fournie à la tâche pour interroger cet emplacement. Pour les certificats dont la visibilité est « UtilisateurDistant », un répertoire « certs » est créé dans le répertoire de démarrage de l’utilisateur (par exemple,/home/{user-name}/certs), et les certificats sont placés dans ce répertoire. Empreintes numériques de certificat séparées par des espaces.
@@ -80,7 +80,7 @@ directCommands:
     description: ''
   - name: --os-family
     parameterValueGroup: 2, 3, 4, 5, 6
-    summary: 'Obligatoire. Famille de systèmes d’exploitation invités Azure à installer sur les machines virtuelles du pool. Les valeurs possibles sont les suivantes : 2-famille de systèmes d’exploitation 2, équivalent à Windows Server 2008 R2 SP1. 3-famille 3 du système d’exploitation, équivalent à Windows Server 2012. 4-famille 4 de systèmes d’exploitation, équivalent à Windows Server 2012 R2. 5-famille 5 du système d’exploitation, équivalent à Windows Server 2016. Famille 6-OS 6, équivalent à Windows Server 2019. Pour plus d’informations, consultez releases du système d’exploitation invité Azure ( <a href="https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases">https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases</a> ).'
+    summary: 'Obligatoire. Famille de systèmes d’exploitation invités Azure à installer sur les machines virtuelles du pool. Les valeurs possibles sont les suivantes : 2-famille de systèmes d’exploitation 2, équivalent à Windows Server 2008 R2 SP1. 3-famille 3 du système d’exploitation, équivalent à Windows Server 2012. 4-famille 4 de systèmes d’exploitation, équivalent à Windows Server 2012 R2. 5-famille 5 du système d’exploitation, équivalent à Windows Server 2016. Famille 6-OS 6, équivalent à Windows Server 2019. Pour plus d’informations, consultez versions de système d’exploitation invité Azure ( https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases) .'
     description: ''
   - name: --os-version
     summary: Version du système d’exploitation invité Azure à installer sur les machines virtuelles du pool. La valeur par défaut est, \* qui spécifie la dernière version du système d’exploitation pour la famille de systèmes d’exploitation spécifiée.
@@ -89,7 +89,7 @@ directCommands:
     summary: Délai d’attente pour l’allocation des nœuds de calcul au pool. Ce délai d’attente s’applique uniquement à la mise à l’échelle manuelle. elle n’a aucun effet quand enableAutoScale a la valeur true. La valeur par défaut est 15 minutes. La valeur minimale est de 5 minutes. Si vous spécifiez une valeur inférieure à 5 minutes, le service de traitement par lots renvoie une erreur. Si vous appelez l’API REST directement, le code d’état HTTP est 400 (requête incorrecte). Le format attendu est une durée ISO-8601.
     description: ''
   - name: --start-task-command-line
-    summary: Obligatoire. Ligne de commande de StartTask. La ligne de commande ne s’exécute pas sous un interpréteur de commandes et ne peut donc pas tirer parti des fonctionnalités de l’interpréteur de commandes telles que l’expansion des variables d’environnement. Si vous souhaitez tirer parti de ces fonctionnalités, vous devez appeler l’interpréteur de commandes dans la ligne de commande, par exemple en utilisant « cmd/c MyCommand » dans Windows ou « /bin/sh-c MyCommand » dans Linux. Si la ligne de commande fait référence à des chemins d’accès de fichier, elle doit utiliser un chemin d’accès relatif (relatif au répertoire de travail de la tâche), ou utiliser la variable d’environnement fournie par le lot ( <a href="https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables">https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables</a> ).
+    summary: Obligatoire. Ligne de commande de StartTask. La ligne de commande ne s’exécute pas sous un interpréteur de commandes et ne peut donc pas tirer parti des fonctionnalités de l’interpréteur de commandes telles que l’expansion des variables d’environnement. Si vous souhaitez tirer parti de ces fonctionnalités, vous devez appeler l’interpréteur de commandes dans la ligne de commande, par exemple en utilisant « cmd/c MyCommand » dans Windows ou « /bin/sh-c MyCommand » dans Linux. Si la ligne de commande fait référence à des chemins d’accès de fichiers, elle doit utiliser un chemin d’accès relatif (relatif au répertoire de travail de la tâche), ou utiliser la variable d’environnement fournie par le lot ( https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables) .
     description: ''
   - name: --start-task-resource-files
     summary: Liste des fichiers que le service batch télécharge sur le nœud de calcul avant d’exécuter la ligne de commande.  Il y a une taille maximale pour la liste des fichiers de ressources. Lorsque la taille maximale est dépassée, la demande échoue et le code d’erreur de réponse est RequestEntityTooLarge. Si cela se produit, la taille de la collection de ResourceFiles doit être réduite. Pour ce faire, vous pouvez utiliser les fichiers. zip, les packages d’application ou les conteneurs de l’ancrage. Les fichiers répertoriés sous cet élément se trouvent dans le répertoire de travail de la tâche. Références de ressource séparées par des espaces au format filename = httpurl.
@@ -113,7 +113,7 @@ directCommands:
     summary: Nombre d’emplacements de tâche utilisables pour exécuter des tâches simultanées sur un nœud de calcul unique au sein du pool. La valeur par défaut est 1. La valeur maximale est la plus petite de 4 fois le nombre de cœurs du vmSize du pool ou 256.
     description: ''
   - name: --vm-size
-    summary: Obligatoire. Taille des machines virtuelles dans le pool. Toutes les machines virtuelles d’un pool ont la même taille. Pour plus d’informations sur les tailles disponibles des machines virtuelles pour les pools de services Cloud (pools créés avec cloudServiceConfiguration), consultez tailles pour les services Cloud ( <a href="https://azure.microsoft.com/documentation/articles/cloud-services-sizes-specs/">https://azure.microsoft.com/documentation/articles/cloud-services-sizes-specs/</a> ). Batch prend en charge toutes les tailles de machine virtuelle des services Cloud, à l’exception de très petite, A1V2 et A2V2. Pour plus d’informations sur les tailles de machine virtuelle disponibles pour les pools à l’aide d’images de la place de marché de machines virtuelles (pools créés avec virtualMachineConfiguration), voir tailles des machines virtuelles (Linux) ( <a href="https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/">https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/</a> ) ou tailles des machines virtuelles (Windows) ( <a href="https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/">https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/</a> ). Batch prend en charge toutes les tailles de machine virtuelle Azure, à l’exception des STANDARD_A0 et de celles avec stockage Premium (STANDARD_GS, STANDARD_DS et STANDARD_DSV2 Series).
+    summary: Obligatoire. Taille des machines virtuelles dans le pool. Toutes les machines virtuelles d’un pool ont la même taille. Pour plus d’informations sur les tailles disponibles des machines virtuelles pour les pools de services Cloud (pools créés avec cloudServiceConfiguration), consultez tailles pour les services Cloud ( https://azure.microsoft.com/documentation/articles/cloud-services-sizes-specs/) . Batch prend en charge toutes les tailles de machine virtuelle des services Cloud, à l’exception de très petite, A1V2 et A2V2. Pour plus d’informations sur les tailles de machine virtuelle disponibles pour les pools à l’aide d’images de la place de marché de machines virtuelles (pools créés avec virtualMachineConfiguration), voir tailles des machines virtuelles (Linux) ( https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/) ou tailles des machines virtuelles (Windows) () https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/) . Batch prend en charge toutes les tailles de machine virtuelle Azure, à l’exception des STANDARD_A0 et de celles avec stockage Premium (STANDARD_GS, STANDARD_DS et STANDARD_DSV2 Series).
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batch/_help.py
 - uid: az_batch_pool_delete
@@ -192,7 +192,7 @@ directCommands:
     summary: Clause $expand OData.
     description: ''
   - name: --filter
-    summary: Clause $filter OData. Pour plus d’informations sur la construction de ce filtre, consultez <a href="https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-pools">https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-pools</a> .
+    summary: Clause $filter OData. Pour plus d’informations sur la construction de ce filtre, consultez https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-pools .
     description: ''
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
@@ -394,7 +394,7 @@ directCommands:
     summary: Liste de paires nom-valeur associées au pool en tant que métadonnées. Si cet élément est présent, il remplace toutes les métadonnées existantes configurées sur le pool. Si vous spécifiez une collection vide, toutes les métadonnées sont supprimées du pool. En cas d’omission, les métadonnées existantes restent inchangées. Valeurs séparées par des espaces dans le format’key = value'.
     description: ''
   - name: --start-task-command-line
-    summary: Obligatoire. Ligne de commande de StartTask. La ligne de commande ne s’exécute pas sous un interpréteur de commandes et ne peut donc pas tirer parti des fonctionnalités de l’interpréteur de commandes telles que l’expansion des variables d’environnement. Si vous souhaitez tirer parti de ces fonctionnalités, vous devez appeler l’interpréteur de commandes dans la ligne de commande, par exemple en utilisant « cmd/c MyCommand » dans Windows ou « /bin/sh-c MyCommand » dans Linux. Si la ligne de commande fait référence à des chemins d’accès de fichier, elle doit utiliser un chemin d’accès relatif (relatif au répertoire de travail de la tâche), ou utiliser la variable d’environnement fournie par le lot ( <a href="https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables">https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables</a> ).
+    summary: Obligatoire. Ligne de commande de StartTask. La ligne de commande ne s’exécute pas sous un interpréteur de commandes et ne peut donc pas tirer parti des fonctionnalités de l’interpréteur de commandes telles que l’expansion des variables d’environnement. Si vous souhaitez tirer parti de ces fonctionnalités, vous devez appeler l’interpréteur de commandes dans la ligne de commande, par exemple en utilisant « cmd/c MyCommand » dans Windows ou « /bin/sh-c MyCommand » dans Linux. Si la ligne de commande fait référence à des chemins d’accès de fichiers, elle doit utiliser un chemin d’accès relatif (relatif au répertoire de travail de la tâche), ou utiliser la variable d’environnement fournie par le lot ( https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables) .
     description: ''
   - name: --start-task-environment-settings
     summary: Liste de paramètres de variables d’environnement pour StartTask. Valeurs séparées par des espaces dans le format’key = value'.
@@ -470,8 +470,8 @@ directCommands:
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/batch/_help.py
 commands:
-- az_batch_pool_all_statistics
-- az_batch_pool_all_statistics_show
+- az_batch_pool_all-statistics
+- az_batch_pool_all-statistics_show
 - az_batch_pool_autoscale
 - az_batch_pool_autoscale_disable
 - az_batch_pool_autoscale_enable
@@ -479,16 +479,16 @@ commands:
 - az_batch_pool_create
 - az_batch_pool_delete
 - az_batch_pool_list
-- az_batch_pool_node_counts
-- az_batch_pool_node_counts_list
+- az_batch_pool_node-counts
+- az_batch_pool_node-counts_list
 - az_batch_pool_reset
 - az_batch_pool_resize
 - az_batch_pool_set
 - az_batch_pool_show
-- az_batch_pool_supported_images
-- az_batch_pool_supported_images_list
-- az_batch_pool_usage_metrics
-- az_batch_pool_usage_metrics_list
+- az_batch_pool_supported-images
+- az_batch_pool_supported-images_list
+- az_batch_pool_usage-metrics
+- az_batch_pool_usage-metrics_list
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -508,9 +508,9 @@ metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 12/07/2020
   description: Gérer les pools batch.
-  ms.openlocfilehash: ca37b4f8c085bd34436f09bcb0289207120f1e5f
-  ms.sourcegitcommit: 206495efe9707e52f6a3dc121133f26651f23f59
+  ms.openlocfilehash: 2d9efecb0f4ca3fcb4349fc063d15f697f44acc5
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 12/30/2020
-  ms.locfileid: "102840790"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106830336"
