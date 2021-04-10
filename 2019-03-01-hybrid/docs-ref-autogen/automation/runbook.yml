@@ -1,0 +1,394 @@
+### YamlMime:AzureCLIGroup
+uid: az_automation_runbook
+name: az automation runbook
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Automation** pour Azure CLI et requiert la version 2.13.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Automation runbook** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Runbook Automation.
+description: ''
+directCommands:
+- uid: az_automation_runbook_create
+  name: az automation runbook create
+  summary: Créez le runbook identifié par le nom de runbook.
+  description: ''
+  syntax: >-
+    az automation runbook create --automation-account-name
+                                 --name
+                                 --resource-group
+                                 --type {Graph, GraphPowerShell, GraphPowerShellWorkflow, PowerShell, PowerShellWorkflow, Script}
+                                 [--description]
+                                 [--location]
+                                 [--log-activity-trace]
+                                 [--log-progress {false, true}]
+                                 [--log-verbose {false, true}]
+                                 [--tags]
+  examples:
+  - summary: Créer un runbook
+    syntax: az automation runbook create --automation-account-name "myAutomationAccount" --resource-group "rg"                --name "myRunbook" --type "PowerShell" --location "East US 2"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --name --runbook-name -n
+    summary: Nom de runbook.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --type
+    parameterValueGroup: Graph, GraphPowerShell, GraphPowerShellWorkflow, PowerShell, PowerShellWorkflow, Script
+    summary: Type de runbook.
+    description: ''
+  optionalParameters:
+  - name: --description
+    summary: Description du runbook.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --log-activity-trace
+    summary: Options de suivi au niveau de l’activité de runbook.
+    description: ''
+  - name: --log-progress
+    parameterValueGroup: false, true
+    summary: Option de journalisation de la progression de runbook.
+    description: ''
+  - name: --log-verbose
+    parameterValueGroup: false, true
+    summary: Option de journalisation détaillée de runbook.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_automation_runbook_delete
+  name: az automation runbook delete
+  summary: Supprimez runbook par son nom.
+  description: ''
+  syntax: >-
+    az automation runbook delete --automation-account-name
+                                 --name
+                                 --resource-group
+                                 [--yes]
+  examples:
+  - summary: Supprimer un runbook
+    syntax: az automation runbook delete --automation-account-name "myAutomationAccount" --resource-group "rg"                --name "myRunbook"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --name --runbook-name -n
+    summary: Nom de runbook.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_automation_runbook_list
+  name: az automation runbook list
+  summary: Récupérez une liste de runbooks.
+  description: ''
+  syntax: >-
+    az automation runbook list --automation-account-name
+                               --resource-group
+  examples:
+  - summary: Répertorier les runbooks par compte Automation
+    syntax: az automation runbook list --automation-account-name "myAutomationAccount" --resource-group "rg"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_automation_runbook_publish
+  name: az automation runbook publish
+  summary: Publiez le brouillon runbook.
+  description: ''
+  syntax: >-
+    az automation runbook publish --automation-account-name
+                                  --name
+                                  --resource-group
+                                  [--no-wait]
+  examples:
+  - summary: Publier le brouillon runbook
+    syntax: az automation runbook publish --automation-account-name "myAutomationAccount" --resource-group                "rg" --name "myRunbook"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --name --runbook-name -n
+    summary: Paramètres fournis à l’opération de publication de runbook.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_automation_runbook_replace-content
+  name: az automation runbook replace-content
+  summary: Remplacez le contenu du runbook.
+  description: ''
+  syntax: >-
+    az automation runbook replace-content --automation-account-name
+                                          --content
+                                          --name
+                                          --resource-group
+                                          [--no-wait]
+  examples:
+  - summary: Remplacer le contenu du runbook
+    syntax: az automation runbook replace-content --automation-account-name "myAutomationAccount" --resource-group                "rg" --name "myRunbook" --content @/path/to/script
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --content
+    summary: Contenu runbook.
+    description: ''
+  - isRequired: true
+    name: --name --runbook-name -n
+    summary: Nom de runbook.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_automation_runbook_revert-to-published
+  name: az automation runbook revert-to-published
+  summary: Rétablissez le contenu du runbook dans le dernier État publié connu.
+  description: ''
+  syntax: >-
+    az automation runbook revert-to-published --automation-account-name
+                                              --name
+                                              --resource-group
+  examples:
+  - summary: Remplacer le contenu du runbook
+    syntax: az automation runbook revert-to-published --automation-account-name "myAutomationAccount"                --resource-group "rg" --name "myRunbook"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --name --runbook-name -n
+    summary: Nom de runbook.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_automation_runbook_show
+  name: az automation runbook show
+  summary: Récupérez le runbook identifié par le nom de runbook.
+  description: ''
+  syntax: >-
+    az automation runbook show --automation-account-name
+                               --name
+                               --resource-group
+  examples:
+  - summary: Obtient runbook
+    syntax: az automation runbook show --automation-account-name "myAutomationAccount" --resource-group "rg"                --name "myRunbook"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --name --runbook-name -n
+    summary: Nom de runbook.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_automation_runbook_start
+  name: az automation runbook start
+  summary: Démarrer le runbook.
+  description: ''
+  syntax: >-
+    az automation runbook start --automation-account-name
+                                --resource-group
+                                [--name]
+                                [--parameters]
+                                [--run-on]
+  examples:
+  - summary: Démarrer le runbook
+    syntax: az automation runbook start --automation-account-name "myAutomationAccount" --resource-group "rg"                --name "myRunbook"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --name --runbook-name -n
+    summary: Nom de runbook.
+    description: ''
+  - name: --parameters
+    summary: 'Paramètres du travail. Valeur attendue : KEY1 = VALUE1 KEY2 = VALUE2...'
+    description: ''
+  - name: --run-on
+    summary: RunOn qui spécifie le nom du groupe dans lequel le travail doit être exécuté.
+    description: ''
+- uid: az_automation_runbook_update
+  name: az automation runbook update
+  summary: Mettez à jour le runbook identifié par le nom de runbook.
+  description: ''
+  syntax: >-
+    az automation runbook update --automation-account-name
+                                 --name
+                                 --resource-group
+                                 [--description]
+                                 [--log-activity-trace]
+                                 [--log-progress {false, true}]
+                                 [--log-verbose {false, true}]
+                                 [--tags]
+  examples:
+  - summary: Mettre à jour un runbook
+    syntax: az automation runbook update --automation-account-name "myAutomationAccount" --description                "Runbook Description" --log-activity-trace 1 --log-progress true --log-verbose false                --resource-group "rg" --runbook-name "myRunbook"
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --name --runbook-name -n
+    summary: Nom de runbook.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --description
+    summary: Description du runbook.
+    description: ''
+  - name: --log-activity-trace
+    summary: Options de suivi au niveau de l’activité de runbook.
+    description: ''
+  - name: --log-progress
+    parameterValueGroup: false, true
+    summary: Option de journalisation de la progression de runbook.
+    description: ''
+  - name: --log-verbose
+    parameterValueGroup: false, true
+    summary: Option de journalisation détaillée de runbook.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_automation_runbook_wait
+  name: az automation runbook wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du runbook Automation soit remplie.
+  description: ''
+  syntax: >-
+    az automation runbook wait --automation-account-name
+                               --name
+                               --resource-group
+                               [--created]
+                               [--custom]
+                               [--deleted]
+                               [--exists]
+                               [--interval]
+                               [--timeout]
+                               [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à la création réussie du runbook Automation.
+    syntax: az automation runbook wait --automation-account-name "myAutomationAccount" --resource-group "rg"                --name "myRunbook" --created
+  requiredParameters:
+  - isRequired: true
+    name: --automation-account-name
+    summary: Nom du compte Automation.
+    description: ''
+  - isRequired: true
+    name: --name --runbook-name -n
+    summary: Nom de runbook.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_automation_runbook_create
+- az_automation_runbook_delete
+- az_automation_runbook_list
+- az_automation_runbook_publish
+- az_automation_runbook_replace-content
+- az_automation_runbook_revert-to-published
+- az_automation_runbook_show
+- az_automation_runbook_start
+- az_automation_runbook_update
+- az_automation_runbook_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Runbook Automation.
+  ms.openlocfilehash: a765b8997230bd006e5b8d83e1395bbcc2a4a23d
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106901646"
