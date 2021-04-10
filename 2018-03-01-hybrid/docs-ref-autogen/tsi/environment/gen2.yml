@@ -1,0 +1,159 @@
+### YamlMime:AzureCLIGroup
+uid: az_tsi_environment_gen2
+name: az tsi environment gen2
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **timeseriesinsights** pour Azure CLI et requiert la version 2.11.0 ou une version ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ TSI Environment Gen2** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérez un environnement Gen2 dans l’abonnement et le groupe de ressources spécifiés.
+description: ''
+directCommands:
+- uid: az_tsi_environment_gen2_create
+  name: az tsi environment gen2 create
+  summary: Créez un environnement Gen2 dans l’abonnement et le groupe de ressources spécifiés.
+  description: ''
+  syntax: >-
+    az tsi environment gen2 create --environment-name
+                                   --id-properties
+                                   --location
+                                   --resource-group
+                                   --sku
+                                   --storage-config
+                                   [--no-wait]
+                                   [--tags]
+                                   [--warm-store-config]
+  examples:
+  - summary: EnvironmentsGen2Create
+    syntax: az tsi environment gen2 create --name "env2" --location westus --resource-group "rg1"                --sku name="L1" capacity=1 --time-series-id-properties name=idName type=String                --storage-configuration account-name=your-account-name management-key=your-account-key
+  requiredParameters:
+  - isRequired: true
+    name: --environment-name --name -n
+    summary: Nom de l’environnement.
+    description: ''
+  - isRequired: true
+    name: --id-properties --time-series-id-properties
+    summary: Liste des propriétés d’événement qui sera utilisée pour définir l’ID de série chronologique de l’environnement.
+    description: >-
+      Utilisation :--Time-Series-ID-Properties Name = XX type = String
+
+
+      nom : nom de la propriété.
+
+      type : type de la propriété.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Time-Series-ID-Properties.
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --sku
+    summary: La référence détermine le type d’environnement, L1.
+    description: >-
+      Utilisation :--SKU Name = XX Capacity = XX
+
+
+      nom : obligatoire. Nom de cette référence (SKU).
+
+      capacité : obligatoire. Capacité de la référence (SKU).
+  - isRequired: true
+    name: --storage-config --storage-configuration
+    summary: La configuration du stockage fournit les détails de connexion qui permettent au service Time Series Insights de se connecter au compte de stockage client utilisé pour stocker les données de l’environnement.
+    description: >-
+      Utilisation :--Storage-configuration Account-Name = XX Management-Key = XX
+
+
+      Account-Name : obligatoire. Nom du compte de stockage qui contiendra les données de la génération de l’environnement.
+
+      clé de gestion : obligatoire. Valeur de la clé de gestion qui accorde au service Time Series Insights l’accès en écriture au compte de stockage. Cette propriété n’est pas indiquée dans les réponses d’environnement.
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --warm-store-config --warm-store-configuration
+    summary: La configuration du magasin à chaud fournit les détails pour créer un cache de magasin chaud qui conserve une copie des données de l’environnement disponible pour une requête plus rapide.
+    description: >-
+      Utilisation :--rechargement-magasin-données de configuration-rétention = XX
+
+
+      rétention des données : obligatoire. ISO8601 TimeSpan spécifiant le nombre de jours pendant lesquels les événements de l’environnement seront disponibles pour la requête à partir du magasin à chaud.
+- uid: az_tsi_environment_gen2_update
+  name: az tsi environment gen2 update
+  summary: Mettre à jour un environnement Gen2 dans l’abonnement et le groupe de ressources spécifiés.
+  description: ''
+  syntax: >-
+    az tsi environment gen2 update --environment-name
+                                   --resource-group
+                                   [--no-wait]
+                                   [--storage-config]
+                                   [--tags]
+                                   [--warm-store-config]
+  examples:
+  - summary: EnvironmentsGen2Update
+    syntax: az tsi environment gen2 update --name "env2" --resource-group "rg1"                --warm-store-configuration data-retention=P30D                --storage-configuration account-name=your-account-name management-key=your-account-key
+  requiredParameters:
+  - isRequired: true
+    name: --environment-name --name -n
+    summary: Nom de l’environnement.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --storage-config --storage-configuration
+    summary: La configuration du stockage fournit les détails de connexion qui permettent au service Time Series Insights de se connecter au compte de stockage client utilisé pour stocker les données de l’environnement.
+    description: >-
+      Utilisation :--Storage-configuration Account-Name = XX Management-Key = XX
+
+
+      Account-Name : obligatoire. Nom du compte de stockage qui contiendra les données de la génération de l’environnement.
+
+      clé de gestion : obligatoire. Valeur de la clé de gestion qui accorde au service Time Series Insights l’accès en écriture au compte de stockage. Cette propriété n’est pas indiquée dans les réponses d’environnement.
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --warm-store-config --warm-store-configuration
+    summary: La configuration du magasin à chaud fournit les détails pour créer un cache de magasin chaud qui conserve une copie des données de l’environnement disponible pour une requête plus rapide.
+    description: >-
+      Utilisation :--rechargement-magasin-données de configuration-rétention = XX
+
+
+      rétention des données : obligatoire. ISO8601 TimeSpan spécifiant le nombre de jours pendant lesquels les événements de l’environnement seront disponibles pour la requête à partir du magasin à chaud.
+commands:
+- az_tsi_environment_gen2_create
+- az_tsi_environment_gen2_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérez un environnement Gen2 dans l’abonnement et le groupe de ressources spécifiés.
+  ms.openlocfilehash: aa0902a2f57036082647274d7bd95dabffc3cab3
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106900878"
