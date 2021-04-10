@@ -1,0 +1,577 @@
+### YamlMime:AzureCLIGroup
+uid: az_support_tickets
+name: az support tickets
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de **prise en charge** pour Azure CLI et requiert la version 2.0.81 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ support tickets** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Créer et gérer le ticket de support Azure.
+description: ''
+directCommands:
+- uid: az_support_tickets_create
+  name: az support tickets create
+  summary: Crée un nouveau ticket de support pour les problèmes d’augmentation de quota, de gestion technique, de facturation et de gestion des abonnements pour l’abonnement spécifié.
+  description: ''
+  syntax: >-
+    az support tickets create --contact-country
+                              --contact-email
+                              --contact-first-name
+                              --contact-language
+                              --contact-last-name
+                              --contact-method {email, phone}
+                              --contact-timezone
+                              --description
+                              --problem-classification
+                              --severity {critical, highestcriticalimpact, minimal, moderate}
+                              --ticket-name
+                              --title
+                              [--contact-additional-emails]
+                              [--contact-phone-number]
+                              [--partner-tenant-id]
+                              [--quota-change-payload]
+                              [--quota-change-regions]
+                              [--quota-change-subtype]
+                              [--quota-change-version]
+                              [--require-24-by-7-response {false, true}]
+                              [--start-time]
+                              [--technical-resource]
+  examples:
+  - summary: Créez un ticket pour les problèmes liés à la facturation.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "BillingTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/BillingServiceNameGuid/problemClassifications/BillingProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "BillingTestTicketName" \
+        --title "BillingTicketTitle"
+  - summary: Créez un ticket pour les problèmes liés à la gestion des abonnements.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "SubMgmtTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/SubMgmtServiceNameGuid/problemClassifications/SubMgmtProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "SubMgmtTestTicketName" \
+        --title "SubMgmtTicketTitle"
+  - summary: Créer un ticket pour un problème technique lié à une ressource spécifique.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "TechnicalTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/TechnicalServiceNameGuid/problemClassifications/TechnicalProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "TechnicalTestTicketName" \
+        --title "TechnicalTicketTitle" \
+        --contact-additional-emails "xyz@contoso.com" "devs@contoso.com" \
+        --technical-resource "/subscriptions/SubscriptionGuid/resourceGroups/RgName/providers/Microsoft.Compute/virtualMachines/RName"
+  - summary: Créez un ticket pour les problèmes liés à la facturation dans l’administrateur pour le compte du mode (ADMINISTRATE).
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "BillingTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/BillingServiceNameGuid/problemClassifications/BillingProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "BillingTestTicketName" \
+        --title "BillingTicketTitle" \
+        --partner-tenant-id "CSPPartnerTenantIdGuid"
+  - summary: Créez un ticket pour l’augmentation générique du quota pour n’importe quel service Azure.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/GenericProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle"
+  - summary: Créez un ticket pour demander une augmentation du quota pour les cœurs de machines virtuelles de calcul.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/CoresQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"SKU\":\"DSv3 Series\", \"NewLimit\":104}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0"
+  - summary: Créez un ticket pour demander une augmentation du quota pour les cœurs de faible priorité pour un compte batch.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/BatchQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"AccountName\":\"test\", \"NewLimit\":200, \"Type\":\"LowPriority\"}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0" \
+        --quota-change-subtype "Account"
+  - summary: Créez un ticket pour demander une augmentation du quota pour des cœurs de la famille de machines virtuelles spécifiques pour un compte batch.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/BatchQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"AccountName\":\"test\", \"VMFamily\":\"standardA0_A7Family\", \"NewLimit\":200, \"Type\":\"Dedicated\"}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0" \
+        --quota-change-subtype "Account"
+  - summary: Créez un ticket pour demander une augmentation du quota pour les pools pour un compte batch.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/BatchQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"AccountName\":\"test\", \"NewLimit\":200, \"Type\":\"Pools\"}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0" \
+        --quota-change-subtype "Account"
+  - summary: Créez un ticket pour demander une augmentation de quota pour les travaux actifs et les planifications de travaux pour un compte batch.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/BatchQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"AccountName\":\"test\", \"NewLimit\":200, \"Type\":\"Jobs\"}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0" \
+        --quota-change-subtype "Account"
+  - summary: Créez un ticket pour demander une augmentation du quota pour le nombre de comptes batch d’un abonnement.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/BatchQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"NewLimit\":200, \"Type\":\"Account\"}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0" \
+        --quota-change-subtype "Subscription"
+  - summary: Créez un ticket pour demander une augmentation du quota pour DTU pour SQL Database.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/SqlDatabaseQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"ServerName\":\"testserver\", \"NewLimit\":54000}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0" \
+        --quota-change-subtype "DTUs"
+  - summary: Créez un ticket pour demander une augmentation du quota pour les serveurs pour SQL Database.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/SqlDatabaseQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"NewLimit\":54000}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0" \
+        --quota-change-subtype "Servers"
+  - summary: Créez un ticket pour demander une augmentation du quota pour DTU pour SQL Data Warehouse.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/SqlDataWarehouseQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"ServerName\":\"testserver\", \"NewLimit\":54000}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0" \
+        --quota-change-subtype "DTUs"
+  - summary: Créez un ticket pour demander une augmentation du quota pour les serveurs pour SQL Data Warehouse.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/SqlDataWarehouseQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"NewLimit\":200}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0" \
+        --quota-change-subtype "Servers"
+  - summary: Créez un ticket pour demander une augmentation du quota pour des cœurs de la famille de machines virtuelles spécifiques pour Machine Learning service.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/MachineLearningQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"VMFamily\":\"standardA0_A7Family\", \"NewLimit\":200, \"Type\":\"Dedicated\"}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0" \
+        --quota-change-subtype "BatchAml"
+  - summary: Créez un ticket pour demander une augmentation du quota pour les cœurs de faible priorité pour Machine Learning service.
+    syntax: >-
+      az support tickets create \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "email" \
+        --contact-timezone "Pacific Standard Time" \
+        --description "QuotaTicketDescription" \
+        --problem-classification "/providers/Microsoft.Support/services/QuotaServiceNameGuid/problemClassifications/MachineLearningQuotaProblemClassificationNameGuid" \
+        --severity "minimal" \
+        --ticket-name "QuotaTestTicketName" \
+        --title "QuotaTicketTitle" \
+        --quota-change-payload "{\"NewLimit\":200, \"Type\":\"LowPriority\"}" \
+        --quota-change-regions "EastUS" \
+        --quota-change-version "1.0" \
+        --quota-change-subtype "BatchAml"
+  requiredParameters:
+  - isRequired: true
+    name: --contact-country
+    summary: Pays de l’utilisateur. Il s’agit du code ISO alpha-3.
+    description: ''
+  - isRequired: true
+    name: --contact-email
+    summary: Adresse de messagerie principale.
+    description: ''
+  - isRequired: true
+    name: --contact-first-name
+    summary: Prénom.
+    description: ''
+  - isRequired: true
+    name: --contact-language
+    summary: Langue par défaut de la prise en charge d’Azure. Les langues de prise en charge varient en fonction de la gravité que vous choisissez pour votre ticket de support. Il s’agit du code de langue standard du pays.
+    description: ''
+  - isRequired: true
+    name: --contact-last-name
+    summary: Nom.
+    description: ''
+  - isRequired: true
+    name: --contact-method
+    parameterValueGroup: email, phone
+    summary: Méthode de contact préférée.
+    description: ''
+  - isRequired: true
+    name: --contact-timezone
+    summary: Fuseau horaire de l’utilisateur. Il s’agit du nom du fuseau horaire des valeurs d’index des fuseaux horaires Microsoft.
+    description: ''
+  - isRequired: true
+    name: --description
+    summary: Description détaillée de la question ou du problème.
+    description: ''
+  - isRequired: true
+    name: --problem-classification
+    summary: Chaque service Azure possède son propre ensemble de catégories de problèmes appelée classification des problèmes qui correspond au type de problème que vous rencontrez. Ce paramètre est l’ID de ressource de la ressource ProblemClassification.
+    description: ''
+  - isRequired: true
+    name: --severity
+    parameterValueGroup: critical, highestcriticalimpact, minimal, moderate
+    summary: Valeur qui indique l’urgence du cas, qui à son tour détermine le temps de réponse en fonction du contrat de niveau de service du plan de support technique que vous avez avec Azure.
+    description: ''
+  - isRequired: true
+    name: --ticket-name
+    summary: Nom du ticket de support.
+    description: ''
+  - isRequired: true
+    name: --title
+    summary: Titre du ticket de support.
+    description: ''
+  optionalParameters:
+  - name: --contact-additional-emails
+    summary: Liste d’adresses de messagerie supplémentaires séparées par des espaces. Les adresses de messagerie supplémentaires seront copiées sur toute correspondance concernant le ticket de support.
+    description: ''
+  - name: --contact-phone-number
+    summary: Numéro de téléphone. Cette condition est requise si la méthode de contact préférée est téléphone.
+    description: ''
+  - name: --partner-tenant-id
+    summary: ID de locataire partenaire pour le scénario administrateur pour le compte de (ADMINISTRATE). En plus de se connecter au locataire du client, la connexion au locataire partenaire (PT) à l’aide de « AZ login-t PT--allow-no-subscriptions » est requise.
+    description: ''
+  - name: --quota-change-payload
+    summary: Liste séparée par des espaces de la charge utile sérialisée de la demande d’augmentation de quota correspondant aux régions. https://aka.ms/supportrpquotarequestpayloadPour plus d’informations, consultez.
+    description: ''
+  - name: --quota-change-regions
+    summary: Liste séparée par des espaces de la région pour laquelle la demande d’augmentation de quota est effectuée.
+    description: ''
+  - name: --quota-change-subtype
+    summary: 'Requis pour certains types de quota lorsqu’il existe un sous-type pour lequel vous demandez une augmentation du quota. Exemple : batch.'
+    description: ''
+  - name: --quota-change-version
+    summary: Version de la demande de modification de quota.
+    description: ''
+  - name: --require-24-by-7-response
+    parameterValueGroup: false, true
+    summary: Indique si cela nécessite une réponse 24h/24 et 7j/7 d’Azure. La valeur par défaut est false.
+    description: ''
+  - name: --start-time
+    summary: "Heure au format DateTime UTC (Y-m-d’T’H :M: S’Z') lorsque le problème a démarré. La valeur par défaut est Today."
+    description: ''
+  - name: --technical-resource
+    summary: Il s’agit de l’ID de ressource de la ressource de service Azure pour laquelle le ticket de support est créé.
+    description: ''
+- uid: az_support_tickets_list
+  name: az support tickets list
+  summary: Répertorie tous les tickets de support pour un abonnement Azure.
+  description: ''
+  syntax: az support tickets list [--filters]
+  examples:
+  - summary: Répertorier les tickets de support pour un abonnement.
+    syntax: az support tickets list
+  - summary: Répertorier les tickets de support dans l’état ouvert d’un abonnement.
+    syntax: az support tickets list --filters "Status eq 'Open'"
+  - summary: Répertorier les tickets de support créés le ou après une certaine date et l’état ouvert d’un abonnement.
+    syntax: az support tickets list --filters "CreatedDate ge 2020-01-01 and Status eq 'Open'"
+  optionalParameters:
+  - name: --filters
+    summary: Filtre à appliquer à l’opération. Nous prenons en charge OData v 4.0 semtantics. Le filtre peut être spécifié sur la propriété « Status » à l’aide de l’opérateur eq ou sur « CreatedDate » à l’aide de gt/GE. Pour combiner les deux filtres, utilisez l’opérateur and logique. La valeur par défaut est CreatedDate >= une semaine.
+    description: ''
+- uid: az_support_tickets_show
+  name: az support tickets show
+  summary: Obtient les détails du ticket de support pour un abonnement Azure.
+  description: ''
+  syntax: az support tickets show --ticket-name
+  examples:
+  - summary: Obtenir les détails d’un ticket d’abonnement.
+    syntax: az support tickets show --ticket-name "TestTicketName"
+  requiredParameters:
+  - isRequired: true
+    name: --ticket-name
+    summary: Nom du ticket de support.
+    description: ''
+- uid: az_support_tickets_update
+  name: az support tickets update
+  summary: Met à jour le niveau de gravité, l’État et les informations de contact du client pour un ticket de support.
+  description: ''
+  syntax: >-
+    az support tickets update --ticket-name
+                              [--contact-additional-emails]
+                              [--contact-country]
+                              [--contact-email]
+                              [--contact-first-name]
+                              [--contact-language]
+                              [--contact-last-name]
+                              [--contact-method {email, phone}]
+                              [--contact-phone-number]
+                              [--contact-timezone]
+                              [--severity {critical, highestcriticalimpact, minimal, moderate}]
+                              [--status {closed, open}]
+  examples:
+  - summary: Mise à jour gravité du ticket de support.
+    syntax: az support tickets update --ticket-name "TestTicketName" --severity "moderate"
+  - summary: Mettre à jour l’état du ticket de support.
+    syntax: az support tickets update --ticket-name "TestTicketName" --status "closed"
+  - summary: Mettez à jour le ticket de support propriétés Détails du contact client.
+    syntax: >-
+      az support tickets update --ticket-name "TestTicketName" \
+        --contact-additional-emails "xyz@contoso.com" "devs@contoso.com" \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "phone" \
+        --contact-phone-number "123-456-7890" \
+        --contact-timezone "Pacific Standard Time"
+  - summary: Mettez à jour support ticket Severity, Status and Customer contact details Properties.
+    syntax: >-
+      az support tickets update --ticket-name "TestTicketName" \
+        --status "open" \
+        --contact-additional-emails "xyz@contoso.com" "devs@contoso.com" \
+        --contact-country "USA" \
+        --contact-email "abc@contoso.com" \
+        --contact-first-name "Foo" \
+        --contact-language "en-US" \
+        --contact-last-name "Bar" \
+        --contact-method "phone" \
+        --contact-phone-number "123-456-7890" \
+        --contact-timezone "Pacific Standard Time" \
+        --severity "moderate"
+  requiredParameters:
+  - isRequired: true
+    name: --ticket-name
+    summary: Nom du ticket de support.
+    description: ''
+  optionalParameters:
+  - name: --contact-additional-emails
+    summary: Liste d’adresses de messagerie supplémentaires séparées par des espaces. Les adresses de messagerie supplémentaires seront copiées sur toute correspondance concernant le ticket de support.
+    description: ''
+  - name: --contact-country
+    summary: Pays de l’utilisateur. Il s’agit du code ISO alpha-3.
+    description: ''
+  - name: --contact-email
+    summary: Adresse de messagerie principale.
+    description: ''
+  - name: --contact-first-name
+    summary: Prénom.
+    description: ''
+  - name: --contact-language
+    summary: Langue par défaut de la prise en charge d’Azure. Les langues de prise en charge varient en fonction de la gravité que vous choisissez pour votre ticket de support. Il s’agit du code de langue standard du pays.
+    description: ''
+  - name: --contact-last-name
+    summary: Nom.
+    description: ''
+  - name: --contact-method
+    parameterValueGroup: email, phone
+    summary: Méthode de contact préférée.
+    description: ''
+  - name: --contact-phone-number
+    summary: Numéro de téléphone. Cette condition est requise si la méthode de contact préférée est téléphone.
+    description: ''
+  - name: --contact-timezone
+    summary: Fuseau horaire de l’utilisateur. Il s’agit du nom du fuseau horaire des valeurs d’index des fuseaux horaires Microsoft.
+    description: ''
+  - name: --severity
+    parameterValueGroup: critical, highestcriticalimpact, minimal, moderate
+    summary: Valeur qui indique l’urgence du cas, qui à son tour détermine le temps de réponse en fonction du contrat de niveau de service du plan de support technique que vous avez avec Azure.
+    description: ''
+  - name: --status
+    parameterValueGroup: closed, open
+    summary: État à mettre à jour sur le ticket.
+    description: ''
+commands:
+- az_support_tickets_communications
+- az_support_tickets_communications_create
+- az_support_tickets_communications_list
+- az_support_tickets_communications_show
+- az_support_tickets_create
+- az_support_tickets_list
+- az_support_tickets_show
+- az_support_tickets_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Créer et gérer le ticket de support Azure.
+  ms.openlocfilehash: 522170eb2e7a85bd6cda3ae73ca2025776da0937
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106893603"

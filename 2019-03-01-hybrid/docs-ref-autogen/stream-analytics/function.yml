@@ -1,0 +1,237 @@
+### YamlMime:AzureCLIGroup
+uid: az_stream-analytics_function
+name: az stream-analytics function
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Stream-Analytics** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Stream-Analytics Function** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer la fonction Stream-Analytics.
+description: ''
+directCommands:
+- uid: az_stream-analytics_function_create
+  name: az stream-analytics function create
+  summary: Crée une fonction ou remplace une fonction déjà existante dans une tâche de streaming existante.
+  description: ''
+  syntax: >-
+    az stream-analytics function create --binding
+                                        --function-output
+                                        --inputs
+                                        --job-name
+                                        --name
+                                        --resource-group
+                                        [--type {Scalar}]
+  examples:
+  - summary: Créer une fonction
+    syntax: >-
+      az stream-analytics function create --resource-group MyResourceGroup --job-name MyJobName \
+
+      --name MyFunctionName --inputs @inputs.json --function-output @output.json --binding \
+
+      @binding.json
+       (below is an example for "inputs.json")
+       [
+           {
+               "dataType": "Any"
+           }
+       ]
+       (below is an example for "output.json")
+       {
+           "dataType": "Any"
+       }
+       (below is an example of JavascripUDF for "binding.json")
+       {
+           "type": "Microsoft.StreamAnalytics/JavascriptUdf",
+           "properties": {
+               "script": "function (x, y) { return x + y; }"
+           }
+       }
+       (below is an example of Azure Machine Learning for "binding.json")
+       {
+           "type": "Microsoft.MachineLearning/WebService",
+           "properties": {
+               "endpoint": "someAzureMLEndpointURL",
+               "apiKey": "someApiKey==",
+               "inputs": {
+                   "name": "input1",
+                   "columnNames": [
+                       {
+                           "name": "tweet",
+                           "dataType": "string",
+                           "mapTo": 0
+                       }
+                   ]
+               },
+               "outputs": [
+                   {
+                       "name": "Sentiment",
+                       "dataType": "string"
+                   }
+               ],
+               "batchSize": 1000
+           }
+       }
+  requiredParameters:
+  - isRequired: true
+    name: --binding
+    summary: Liaison de la fonction.
+    description: ''
+  - isRequired: true
+    name: --function-output
+    summary: Sortie de la fonction.
+    description: ''
+  - isRequired: true
+    name: --inputs
+    summary: Entrées de la fonction.
+    description: ''
+  - isRequired: true
+    name: --job-name
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la fonction.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --type
+    defaultValue: Scalar
+    parameterValueGroup: Scalar
+    summary: Type UDF de la fonction.
+    description: ''
+- uid: az_stream-analytics_function_delete
+  name: az stream-analytics function delete
+  summary: Supprimer une fonction du travail de diffusion en continu.
+  description: ''
+  syntax: >-
+    az stream-analytics function delete --job-name
+                                        --name
+                                        --resource-group
+  examples:
+  - summary: Supprimer une fonction
+    syntax: >-
+      az stream-analytics function delete --resource-group MyResourceGroup --job-name MyJobName \
+
+      --name MyFunctionName
+  requiredParameters:
+  - isRequired: true
+    name: --job-name
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la fonction.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_stream-analytics_function_list
+  name: az stream-analytics function list
+  summary: Répertorie toutes les fonctions sous le travail de diffusion en continu spécifié.
+  description: ''
+  syntax: >-
+    az stream-analytics function list --job-name
+                                      --resource-group
+  examples:
+  - summary: Répertorier toutes les fonctions dans une tâche de streaming
+    syntax: az stream-analytics function list --resource-group MyResourceGroup --job-name MyJobName
+  requiredParameters:
+  - isRequired: true
+    name: --job-name
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_stream-analytics_function_show
+  name: az stream-analytics function show
+  summary: Obtenir des détails sur la fonction spécifiée.
+  description: ''
+  syntax: >-
+    az stream-analytics function show --job-name
+                                      --name
+                                      --resource-group
+  examples:
+  - summary: Obtenir des détails sur une fonction
+    syntax: >-
+      az stream-analytics function show --resource-group MyResourceGroup --job-name MyJobName --name \
+
+      MyFunctionName
+  requiredParameters:
+  - isRequired: true
+    name: --job-name
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la fonction.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_stream-analytics_function_test
+  name: az stream-analytics function test
+  summary: Teste si les informations fournies pour une fonction sont valides.
+  description: ''
+  syntax: >-
+    az stream-analytics function test --job-name
+                                      --name
+                                      --resource-group
+                                      [--no-wait]
+  examples:
+  - summary: Tester la connexion pour une fonction
+    syntax: >-
+      az stream-analytics function test --resource-group MyResourceGroup --job-name MyJobName --name \
+
+      MyFunctionName
+  requiredParameters:
+  - isRequired: true
+    name: --job-name
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la fonction.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+commands:
+- az_stream-analytics_function_create
+- az_stream-analytics_function_delete
+- az_stream-analytics_function_list
+- az_stream-analytics_function_show
+- az_stream-analytics_function_test
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer la fonction Stream-Analytics.
+  ms.openlocfilehash: 977bad2a24f97d42abba6f49c3c29b074543ff50
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106893642"
