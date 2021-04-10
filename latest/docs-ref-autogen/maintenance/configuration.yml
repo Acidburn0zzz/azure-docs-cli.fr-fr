@@ -1,0 +1,222 @@
+### YamlMime:AzureCLIGroup
+uid: az_maintenance_configuration
+name: az maintenance configuration
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de **maintenance** de Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ maintenance configuration** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Configuration de la maintenance.
+description: ''
+directCommands:
+- uid: az_maintenance_configuration_create
+  name: az maintenance configuration create
+  summary: Crée ou met à jour un enregistrement de configuration.
+  description: ''
+  syntax: >-
+    az maintenance configuration create --resource-group
+                                        --resource-name
+                                        [--duration]
+                                        [--expiration-datetime]
+                                        [--extension-properties]
+                                        [--location]
+                                        [--maintenance-scope {All, Extension, Host, InGuestPatch, InResource, OSImage, Resource, SQLDB, SQLManagedInstance}]
+                                        [--maintenance-window-recur-every]
+                                        [--maintenance-window-start-date-time]
+                                        [--maintenance-window-time-zone]
+                                        [--namespace]
+                                        [--tags]
+                                        [--visibility {Custom, Public}]
+  examples:
+  - summary: MaintenanceConfigurations_CreateOrUpdateForResource
+    syntax: az maintenance configuration create --location "westus2" --maintenance-scope "OSImage" --maintenance-window-duration "05:00" --maintenance-window-expiration-date-time "9999-12-31 00:00" --maintenance-window-recur-every "Day" --maintenance-window-start-date-time "2020-04-30 08:00" --maintenance-window-time-zone "Pacific Standard Time" --namespace "Microsoft.Maintenance" --visibility "Custom" --resource-group "examplerg" --resource-name "configuration1"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Identificateur de ressource.
+    description: ''
+  optionalParameters:
+  - name: --duration --maintenance-window-duration
+    summary: 'Durée de la fenêtre de maintenance au format HH : mm. S’il n’est pas fourni, la valeur par défaut sera utilisée en fonction de l’étendue de maintenance fournie. Exemple : 05:00.'
+    description: ''
+  - name: --expiration-datetime --maintenance-window-expiration-date-time
+    summary: 'Date d’expiration effective de la fenêtre de maintenance au format AAAA-MM-JJ hh : mm. La fenêtre est créée dans le fuseau horaire fourni et ajustée à l’heure d’été en fonction de ce fuseau horaire. La date d’expiration doit être définie sur une date future. S’il n’est pas fourni, il sera défini sur la valeur maximale DateTime 9999-12-31 23:59:59.'
+    description: ''
+  - name: --extension-properties
+    summary: 'Obtient ou définit la valeur de extensionProperties de l’maintenanceConfiguration expected value : KEY1 = VALUE1 KEY2 = VALUE2...'
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --maintenance-scope
+    parameterValueGroup: All, Extension, Host, InGuestPatch, InResource, OSImage, Resource, SQLDB, SQLManagedInstance
+    summary: Obtient ou définit le maintenanceScope de la configuration.
+    description: ''
+  - name: --maintenance-window-recur-every --recur-every
+    summary: "Vitesse à laquelle une fenêtre de maintenance doit se répéter. La fréquence peut être exprimée sous la forme de planifications quotidiennes, hebdomadaires ou mensuelles. La planification quotidienne est au format recurEvery : [Frequency As Integer] ['Day (s) ']. Si aucune fréquence n’est fournie, la fréquence par défaut est 1. Voici des exemples de planifications quotidiennes recurEvery: Day, recurEvery: 3Days.  La planification hebdomadaire est mise en forme en tant que recurEvery : [Frequency As Integer] ['week (s) '] [Liste facultative de jours de la semaine lundi-dimanche]. Voici des exemples de planifications hebdomadaires recurEvery: 3Weeks, recurEvery: Week Saturday,Sunday. Les planifications mensuelles sont au format [fréquence en tant qu’entier] [« mois (s) »] [liste séparée par des virgules des jours de mois] ou [fréquence en tant que nombre entier] [« mois (s) »] [semaine du mois (premier, deuxième, troisième, quatrième, dernière)] [jour du lundi-dimanche]. Les exemples de planification mensuelle sont recurEvery : month, recurEvery : 2Months, recurEvery : month day23, day24, recurEvery : mois Last dimanche, recurEvery : month Fourth lundi."
+    description: ''
+  - name: --maintenance-window-start-date-time --start-datetime
+    summary: 'Date de début effective de la fenêtre de maintenance au format AAAA-MM-JJ hh : mm. La date de début peut être définie sur la date actuelle ou la date à venir. La fenêtre est créée dans le fuseau horaire fourni et ajustée à l’heure d’été en fonction de ce fuseau horaire.'
+    description: ''
+  - name: --maintenance-window-time-zone --time-zone
+    summary: 'Nom du fuseau horaire. Vous pouvez obtenir la liste des fuseaux horaires en exécutant [System. TimeZoneInfo] :: GetSystemTimeZones () dans PowerShell. Exemple : heure du Pacifique, heure UTC, heure standard de l’Europe de l’Ouest, heure d’hiver Corée, CEN. Australie (heure d’hiver).'
+    description: ''
+  - name: --namespace
+    summary: Obtient ou définit l’espace de noms de la ressource.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --visibility
+    parameterValueGroup: Custom, Public
+    summary: Obtient ou définit la visibilité de la configuration.
+    description: ''
+- uid: az_maintenance_configuration_delete
+  name: az maintenance configuration delete
+  summary: Supprimer l’enregistrement de configuration.
+  description: ''
+  syntax: >-
+    az maintenance configuration delete --resource-group
+                                        --resource-name
+                                        [--yes]
+  examples:
+  - summary: MaintenanceConfigurations_DeleteForResource
+    syntax: az maintenance configuration delete --resource-group "examplerg" --resource-name "example1"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Identificateur de ressource.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_maintenance_configuration_list
+  name: az maintenance configuration list
+  summary: Obtenir des enregistrements de configuration au sein d’un abonnement.
+  description: ''
+  syntax: az maintenance configuration list
+  examples:
+  - summary: MaintenanceConfigurations_List
+    syntax: az maintenance configuration list
+- uid: az_maintenance_configuration_show
+  name: az maintenance configuration show
+  summary: Obtient l’enregistrement de configuration.
+  description: ''
+  syntax: >-
+    az maintenance configuration show --resource-group
+                                      --resource-name
+  examples:
+  - summary: MaintenanceConfigurations_GetForResource
+    syntax: az maintenance configuration show --resource-group "examplerg" --resource-name "configuration1"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Identificateur de ressource.
+    description: ''
+- uid: az_maintenance_configuration_update
+  name: az maintenance configuration update
+  summary: Enregistrement de la configuration des correctifs.
+  description: ''
+  syntax: >-
+    az maintenance configuration update --resource-group
+                                        --resource-name
+                                        [--duration]
+                                        [--expiration-datetime]
+                                        [--extension-properties]
+                                        [--location]
+                                        [--maintenance-scope {All, Extension, Host, InGuestPatch, InResource, OSImage, Resource, SQLDB, SQLManagedInstance}]
+                                        [--maintenance-window-recur-every]
+                                        [--maintenance-window-start-date-time]
+                                        [--maintenance-window-time-zone]
+                                        [--namespace]
+                                        [--tags]
+                                        [--visibility {Custom, Public}]
+  examples:
+  - summary: MaintenanceConfigurations_UpdateForResource
+    syntax: az maintenance configuration update --location "westus2" --maintenance-scope "OSImage" --maintenance-window-duration "05:00" --maintenance-window-expiration-date-time "9999-12-31 00:00" --maintenance-window-recur-every "Month Third Sunday" --maintenance-window-start-date-time "2020-04-30 08:00" --maintenance-window-time-zone "Pacific Standard Time" --namespace "Microsoft.Maintenance" --visibility "Custom" --resource-group "examplerg" --resource-name "configuration1"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-name
+    summary: Identificateur de ressource.
+    description: ''
+  optionalParameters:
+  - name: --duration --maintenance-window-duration
+    summary: 'Durée de la fenêtre de maintenance au format HH : mm. S’il n’est pas fourni, la valeur par défaut sera utilisée en fonction de l’étendue de maintenance fournie. Exemple : 05:00.'
+    description: ''
+  - name: --expiration-datetime --maintenance-window-expiration-date-time
+    summary: 'Date d’expiration effective de la fenêtre de maintenance au format AAAA-MM-JJ hh : mm. La fenêtre est créée dans le fuseau horaire fourni et ajustée à l’heure d’été en fonction de ce fuseau horaire. La date d’expiration doit être définie sur une date future. S’il n’est pas fourni, il sera défini sur la valeur maximale DateTime 9999-12-31 23:59:59.'
+    description: ''
+  - name: --extension-properties
+    summary: 'Obtient ou définit la valeur de extensionProperties de l’maintenanceConfiguration expected value : KEY1 = VALUE1 KEY2 = VALUE2...'
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --maintenance-scope
+    parameterValueGroup: All, Extension, Host, InGuestPatch, InResource, OSImage, Resource, SQLDB, SQLManagedInstance
+    summary: Obtient ou définit le maintenanceScope de la configuration.
+    description: ''
+  - name: --maintenance-window-recur-every --recur-every
+    summary: "Vitesse à laquelle une fenêtre de maintenance doit se répéter. La fréquence peut être exprimée sous la forme de planifications quotidiennes, hebdomadaires ou mensuelles. La planification quotidienne est au format recurEvery : [Frequency As Integer] ['Day (s) ']. Si aucune fréquence n’est fournie, la fréquence par défaut est 1. Voici des exemples de planifications quotidiennes recurEvery: Day, recurEvery: 3Days.  La planification hebdomadaire est mise en forme en tant que recurEvery : [Frequency As Integer] ['week (s) '] [Liste facultative de jours de la semaine lundi-dimanche]. Voici des exemples de planifications hebdomadaires recurEvery: 3Weeks, recurEvery: Week Saturday,Sunday. Les planifications mensuelles sont au format [fréquence en tant qu’entier] [« mois (s) »] [liste séparée par des virgules des jours de mois] ou [fréquence en tant que nombre entier] [« mois (s) »] [semaine du mois (premier, deuxième, troisième, quatrième, dernière)] [jour du lundi-dimanche]. Les exemples de planification mensuelle sont recurEvery : month, recurEvery : 2Months, recurEvery : month day23, day24, recurEvery : mois Last dimanche, recurEvery : month Fourth lundi."
+    description: ''
+  - name: --maintenance-window-start-date-time --start-datetime
+    summary: 'Date de début effective de la fenêtre de maintenance au format AAAA-MM-JJ hh : mm. La date de début peut être définie sur la date actuelle ou la date à venir. La fenêtre est créée dans le fuseau horaire fourni et ajustée à l’heure d’été en fonction de ce fuseau horaire.'
+    description: ''
+  - name: --maintenance-window-time-zone --time-zone
+    summary: 'Nom du fuseau horaire. Vous pouvez obtenir la liste des fuseaux horaires en exécutant [System. TimeZoneInfo] :: GetSystemTimeZones () dans PowerShell. Exemple : heure du Pacifique, heure UTC, heure standard de l’Europe de l’Ouest, heure d’hiver Corée, CEN. Australie (heure d’hiver).'
+    description: ''
+  - name: --namespace
+    summary: Obtient ou définit l’espace de noms de la ressource.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --visibility
+    parameterValueGroup: Custom, Public
+    summary: Obtient ou définit la visibilité de la configuration.
+    description: ''
+commands:
+- az_maintenance_configuration_create
+- az_maintenance_configuration_delete
+- az_maintenance_configuration_list
+- az_maintenance_configuration_show
+- az_maintenance_configuration_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Configuration de la maintenance.
+  ms.openlocfilehash: 88926c1a56135abe67c4ce030e4be33c63037f1a
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106906169"

@@ -1,0 +1,329 @@
+### YamlMime:AzureCLIGroup
+uid: az_guestconfig_guest-configuration-assignment
+name: az guestconfig guest-configuration-assignment
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **guestconfig** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ guestconfig Guest-configuration-Assignment** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Guestconfig invité-configuration-affectation.
+description: ''
+directCommands:
+- uid: az_guestconfig_guest-configuration-assignment_create
+  name: az guestconfig guest-configuration-assignment create
+  summary: Crée une association entre une machine virtuelle et une configuration invitée.
+  description: ''
+  syntax: >-
+    az guestconfig guest-configuration-assignment create --guest-configuration-assignment-name
+                                                         --resource-group
+                                                         --vm-name
+                                                         [--context]
+                                                         [--guest-configuration-configuration-parameter]
+                                                         [--guest-configuration-configuration-setting]
+                                                         [--guest-configuration-name]
+                                                         [--guest-configuration-version]
+                                                         [--latest-assignment-report-assignment]
+                                                         [--location]
+                                                         [--name]
+                                                         [--no-wait]
+  examples:
+  - summary: Créer ou mettre à jour une attribution de configuration d’invité
+    syntax: az guestconfig guest-configuration-assignment create --guest-configuration-assignment-name "WhitelistedApplication" --guest-configuration-name "WhitelistedApplication" --location "westcentralus" --context "Azure policy" --guest-configuration-name "WhitelistedApplication" --guest-configuration-configuration-parameter name="[InstalledApplication]bwhitelistedapp;Name" value="NotePad,sql" --guest-configuration-configuration-setting action-after-reboot="ContinueConfiguration" configuration-mode="MonitorOnly" configuration-mode-frequency-mins=15 reboot-if-needed="False" --guest-configuration-version "1.*" --resource-group "myResourceGroupName" --vm-name "myVMName"
+  requiredParameters:
+  - isRequired: true
+    name: --guest-configuration-assignment-name
+    summary: Nom de l’attribution de la configuration d’invité.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle.
+    description: ''
+  optionalParameters:
+  - name: --context
+    summary: 'Source à l’origine de l’attribution de la configuration invitée. Ex : Azure Policy.'
+    description: ''
+  - name: --guest-configuration-configuration-parameter
+    summary: Paramètres de configuration de la configuration d’invité.
+    description: >-
+      Utilisation :--Guest-Configuration-Configuration-nom du paramètre = XX value = XX
+
+
+      nom : nom du paramètre de configuration.
+
+      valeur : valeur du paramètre de configuration.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Guest-Configuration-Configuration-Parameter.
+  - name: --guest-configuration-configuration-setting
+    summary: Paramètre de configuration de la configuration d’invité.
+    description: >-
+      Utilisation :--Guest-configuration-configuration-Setting configuration-mode = XX allow-module-overwrite = XX action-after-reboot = XX actualiser-Frequency-min = XX reboot-if-needed = XX configuration-mode-Frequency-mins = XX
+
+
+      configuration-mode : spécifie la façon dont le LCM (local Configuration Manager) applique réellement la configuration aux nœuds cibles. Les valeurs possibles sont ApplyOnly, ApplyAndMonitor et ApplyAndAutoCorrect.
+
+      allow-module-Overwrite : si la valeur est true, les nouvelles configurations téléchargées à partir du service d’extraction sont autorisées à remplacer les anciennes dans le nœud cible. Sinon, false action-after-reboot : spécifie ce qui se produit après un redémarrage lors de l’application d’une configuration. Les valeurs possibles sont ContinueConfiguration et StopConfiguration Refresh-Frequency-min : l’intervalle de temps, en minutes, auquel le LCM vérifie un service d’extraction pour obtenir des configurations mises à jour. Cette valeur est ignorée si le LCM n’est pas configuré en mode d’extraction. La valeur par défaut est 30.
+
+      redémarrage-si nécessaire : affectez la valeur true pour redémarrer automatiquement le nœud après l’application d’une configuration nécessitant un redémarrage. Sinon, vous devez redémarrer manuellement le nœud. La valeur par défaut est false. Pour utiliser ce paramètre lorsqu’une condition de redémarrage est imposée par autre chose que DSC (par exemple Windows Installer), combinez ce paramètre avec le module xPendingReboot.
+
+      configuration-mode-Frequency-min : fréquence, en minutes, à laquelle la configuration actuelle est vérifiée et appliquée. Cette propriété est ignorée si la propriété ConfigurationMode est définie sur ApplyOnly. La valeur par défaut est 15.
+  - name: --guest-configuration-name
+    summary: Nom de la configuration d’invité.
+    description: ''
+  - name: --guest-configuration-version
+    summary: Version de la configuration d’invité.
+    description: ''
+  - name: --latest-assignment-report-assignment
+    summary: 'Détails de configuration de l’attribution de la configuration d’invité. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --name
+    summary: Nom de l’attribution de la configuration d’invité.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_guestconfig_guest-configuration-assignment_delete
+  name: az guestconfig guest-configuration-assignment delete
+  summary: Supprimer une attribution de configuration d’invité.
+  description: ''
+  syntax: >-
+    az guestconfig guest-configuration-assignment delete --name
+                                                         --resource-group
+                                                         --vm-name
+                                                         [--no-wait]
+  examples:
+  - summary: Supprimer une attribution de configuration d’invité
+    syntax: az guestconfig guest-configuration-assignment delete --name "SecureProtocol" --resource-group "myResourceGroupName" --vm-name "myVMName"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’attribution de la configuration d’invité.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_guestconfig_guest-configuration-assignment_list
+  name: az guestconfig guest-configuration-assignment list
+  summary: Répertorie toutes les attributions de configuration d’invité pour un ordinateur virtuel.
+  description: ''
+  syntax: >-
+    az guestconfig guest-configuration-assignment list --resource-group
+                                                       --vm-name
+  examples:
+  - summary: Liste de toutes les attributions de configuration d’invité pour un ordinateur virtuel
+    syntax: az guestconfig guest-configuration-assignment list --resource-group "myResourceGroupName" --vm-name "myVMName"
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle.
+    description: ''
+- uid: az_guestconfig_guest-configuration-assignment_show
+  name: az guestconfig guest-configuration-assignment show
+  summary: Obtenir des informations sur une attribution de configuration d’invité.
+  description: ''
+  syntax: >-
+    az guestconfig guest-configuration-assignment show --name
+                                                       --resource-group
+                                                       --vm-name
+  examples:
+  - summary: Obtenir une attribution de configuration d’invité
+    syntax: az guestconfig guest-configuration-assignment show --name "SecureProtocol" --resource-group "myResourceGroupName" --vm-name "myVMName"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’attribution de la configuration invité.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle.
+    description: ''
+- uid: az_guestconfig_guest-configuration-assignment_update
+  name: az guestconfig guest-configuration-assignment update
+  summary: Crée une association entre une machine virtuelle et une configuration invitée.
+  description: ''
+  syntax: >-
+    az guestconfig guest-configuration-assignment update --guest-configuration-assignment-name
+                                                         --resource-group
+                                                         --vm-name
+                                                         [--context]
+                                                         [--guest-configuration-configuration-parameter]
+                                                         [--guest-configuration-configuration-setting]
+                                                         [--guest-configuration-name]
+                                                         [--guest-configuration-version]
+                                                         [--latest-assignment-report-assignment]
+                                                         [--location]
+                                                         [--name]
+                                                         [--no-wait]
+  examples:
+  - summary: Créer ou mettre à jour une attribution de configuration d’invité
+    syntax: az guestconfig guest-configuration-assignment update --guest-configuration-assignment-name "WhitelistedApplication" --guest-configuration-name "WhitelistedApplication" --location "westcentralus" --context "Azure policy" --guest-configuration-name "WhitelistedApplication" --guest-configuration-configuration-parameter name="[InstalledApplication]bwhitelistedapp;Name" value="NotePad,sql" --guest-configuration-configuration-setting action-after-reboot="ContinueConfiguration" configuration-mode="MonitorOnly" configuration-mode-frequency-mins=15 reboot-if-needed="False" --guest-configuration-version "1.*" --resource-group "myResourceGroupName" --vm-name "myVMName"
+  requiredParameters:
+  - isRequired: true
+    name: --guest-configuration-assignment-name
+    summary: Nom de l’attribution de la configuration d’invité.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle.
+    description: ''
+  optionalParameters:
+  - name: --context
+    summary: 'Source à l’origine de l’attribution de la configuration invitée. Ex : Azure Policy.'
+    description: ''
+  - name: --guest-configuration-configuration-parameter
+    summary: Paramètres de configuration de la configuration d’invité.
+    description: >-
+      Utilisation :--Guest-Configuration-Configuration-nom du paramètre = XX value = XX
+
+
+      nom : nom du paramètre de configuration.
+
+      valeur : valeur du paramètre de configuration.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--Guest-Configuration-Configuration-Parameter.
+  - name: --guest-configuration-configuration-setting
+    summary: Paramètre de configuration de la configuration d’invité.
+    description: >-
+      Utilisation :--Guest-configuration-configuration-Setting configuration-mode = XX allow-module-overwrite = XX action-after-reboot = XX actualiser-Frequency-min = XX reboot-if-needed = XX configuration-mode-Frequency-mins = XX
+
+
+      configuration-mode : spécifie la façon dont le LCM (local Configuration Manager) applique réellement la configuration aux nœuds cibles. Les valeurs possibles sont ApplyOnly, ApplyAndMonitor et ApplyAndAutoCorrect.
+
+      allow-module-Overwrite : si la valeur est true, les nouvelles configurations téléchargées à partir du service d’extraction sont autorisées à remplacer les anciennes dans le nœud cible. Sinon, false action-after-reboot : spécifie ce qui se produit après un redémarrage lors de l’application d’une configuration. Les valeurs possibles sont ContinueConfiguration et StopConfiguration Refresh-Frequency-min : l’intervalle de temps, en minutes, auquel le LCM vérifie un service d’extraction pour obtenir des configurations mises à jour. Cette valeur est ignorée si le LCM n’est pas configuré en mode d’extraction. La valeur par défaut est 30.
+
+      redémarrage-si nécessaire : affectez la valeur true pour redémarrer automatiquement le nœud après l’application d’une configuration nécessitant un redémarrage. Sinon, vous devez redémarrer manuellement le nœud. La valeur par défaut est false. Pour utiliser ce paramètre lorsqu’une condition de redémarrage est imposée par autre chose que DSC (par exemple Windows Installer), combinez ce paramètre avec le module xPendingReboot.
+
+      configuration-mode-Frequency-min : fréquence, en minutes, à laquelle la configuration actuelle est vérifiée et appliquée. Cette propriété est ignorée si la propriété ConfigurationMode est définie sur ApplyOnly. La valeur par défaut est 15.
+  - name: --guest-configuration-name
+    summary: Nom de la configuration d’invité.
+    description: ''
+  - name: --guest-configuration-version
+    summary: Version de la configuration d’invité.
+    description: ''
+  - name: --latest-assignment-report-assignment
+    summary: 'Détails de configuration de l’attribution de la configuration d’invité. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --name
+    summary: Nom de l’attribution de la configuration d’invité.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_guestconfig_guest-configuration-assignment_wait
+  name: az guestconfig guest-configuration-assignment wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de l’affectation guestconfig invité-configuration-attribution soit remplie.
+  description: ''
+  syntax: >-
+    az guestconfig guest-configuration-assignment wait --name
+                                                       --resource-group
+                                                       --vm-name
+                                                       [--created]
+                                                       [--custom]
+                                                       [--deleted]
+                                                       [--exists]
+                                                       [--interval]
+                                                       [--timeout]
+                                                       [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à la création réussie de l’attribution guestconfig Guest-configuration.
+    syntax: az guestconfig guest-configuration-assignment wait --name "SecureProtocol" --resource-group "myResourceGroupName" --vm-name "myVMName" --created
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à la suppression réussie de l’attribution guestconfig Guest-configuration.
+    syntax: az guestconfig guest-configuration-assignment wait --name "SecureProtocol" --resource-group "myResourceGroupName" --vm-name "myVMName" --deleted
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’attribution de la configuration invité.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_guestconfig_guest-configuration-assignment_create
+- az_guestconfig_guest-configuration-assignment_delete
+- az_guestconfig_guest-configuration-assignment_list
+- az_guestconfig_guest-configuration-assignment_show
+- az_guestconfig_guest-configuration-assignment_update
+- az_guestconfig_guest-configuration-assignment_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Guestconfig invité-configuration-affectation.
+  ms.openlocfilehash: 4916fdeb97620a6229e319a9d12be4e5db1729a5
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106906049"
