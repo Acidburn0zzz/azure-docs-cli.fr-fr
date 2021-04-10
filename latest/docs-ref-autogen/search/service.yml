@@ -15,6 +15,7 @@ directCommands:
                              [--identity-type]
                              [--ip-rules]
                              [--location]
+                             [--no-wait]
                              [--partition-count]
                              [--public-access]
                              [--replica-count]
@@ -38,10 +39,13 @@ directCommands:
     summary: 'Type d’identité ; les valeurs possibles sont les suivantes : « None », « SystemAssigned ».'
     description: ''
   - name: --ip-rules
-    summary: Adresses IP publiques (v4) ou plages CIDR du service de recherche, séparées par des virgules ou des points-virgules ; Ces règles IP s’appliquent uniquement lorsque public_network_access est « activé ».
+    summary: Adresses IP publiques (v4) ou plages CIDR du service de recherche, séparées par des virgules ou des points-virgules ; ces règles IP s’appliquent uniquement quand--public-Network-Access est « Enabled ».
     description: ''
   - name: --location -l
     summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
     description: ''
   - name: --partition-count
     summary: Nombre de partitions dans le service de recherche.
@@ -141,6 +145,7 @@ directCommands:
                              [--force-string]
                              [--identity-type]
                              [--ip-rules]
+                             [--no-wait]
                              [--partition-count]
                              [--public-access]
                              [--remove]
@@ -167,7 +172,10 @@ directCommands:
     summary: 'Type d’identité ; les valeurs possibles sont les suivantes : « None », « SystemAssigned ».'
     description: ''
   - name: --ip-rules
-    summary: Adresses IP publiques (v4) ou plages CIDR du service de recherche, séparées par une virgule (', ') ou un point-virgule ('; '); Si des espaces (ex-' '), ', 'ou'; 'sont fournis, toute règle d’adresse IP existante est annulée et aucune règle d’adresse IP publique n’est appliquée. Ces règles IP s’appliquent uniquement lorsque public_network_access est « activé ».
+    summary: Adresses IP publiques (v4) ou plages CIDR du service de recherche, séparées par une virgule (', ') ou un point-virgule ('; '); Si des espaces (' '), ', 'ou'; 'sont fournis, toute règle d’adresse IP existante est annulée et aucune règle d’adresse IP publique n’est appliquée. Ces règles IP s’appliquent uniquement lorsque public_network_access est « activé ».
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
     description: ''
   - name: --partition-count
     summary: Nombre de partitions dans le service de recherche.
@@ -188,12 +196,65 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/search/_help.py
+- uid: az_search_service_wait
+  name: az search service wait
+  summary: Attendez les opérations de service asynchrones.
+  description: ''
+  syntax: >-
+    az search service wait --name
+                           --resource-group
+                           [--created]
+                           [--custom]
+                           [--deleted]
+                           [--exists]
+                           [--interval]
+                           [--subscription]
+                           [--timeout]
+                           [--updated]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service de recherche.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/search/_help.py
 commands:
 - az_search_service_create
 - az_search_service_delete
 - az_search_service_list
 - az_search_service_show
 - az_search_service_update
+- az_search_service_wait
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -211,11 +272,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/02/2021
+  ms.date: 04/01/2021
   description: Gérer les services Azure Search.
-  ms.openlocfilehash: 3c9f77709ba2ec424ffe32411082d2a3ba5d9eae
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.openlocfilehash: 8e3308994052b7a8182ee3c37af2ab93fc1c8606
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103540201"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106843188"
