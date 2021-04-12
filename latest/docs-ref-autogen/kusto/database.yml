@@ -257,6 +257,122 @@ directCommands:
     summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/kusto/_help.py
+- uid: az_kusto_database_add-principal
+  name: az kusto database add-principal
+  summary: Ajouter des autorisations de principal de base de données.
+  description: ''
+  syntax: >-
+    az kusto database add-principal --cluster-name
+                                    --database-name
+                                    --resource-group
+                                    [--value]
+  examples:
+  - summary: KustoDatabaseAddPrincipals
+    syntax: az kusto database add-principal --cluster-name "kustoclusterrptest4" --database-name "KustoDatabase8" --value name="Some User" type="User" app-id="" email="user@microsoft.com" fqn="aaduser=some_guid" role="Admin" --value name="Kusto" type="Group" app-id="" email="kusto@microsoft.com" fqn="aadgroup=some_guid" role="Viewer" --value name="SomeApp" type="App" app-id="some_guid_app_id" email="" fqn="aadapp=some_guid_app_id" role="Admin" --resource-group "kustorptest"
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster Kusto.
+    description: ''
+  - isRequired: true
+    name: --database-name
+    summary: Nom de la base de données dans le cluster Kusto.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --value
+    summary: Liste des principaux de base de données Kusto.
+    description: >-
+      Utilisation :--value Role = XX Name = XX type = XX Fqn = XX email = XX App-ID = XX
+
+
+      rôle : obligatoire. Rôle de principal de base de données.
+
+      nom : obligatoire. Nom principal de la base de données.
+
+      type : obligatoire. Type de principal de base de données.
+
+      Fqn : nom complet du principal de la base de données.
+
+      e-mail : adresse de messagerie principale de la base de données si exists.
+
+      App-ID : ID d’application-pertinent uniquement pour le type de principal d’application.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--value.
+- uid: az_kusto_database_list-principal
+  name: az kusto database list-principal
+  summary: Retourne la liste des principaux de base de données du cluster et de la base de données Kusto donnés.
+  description: ''
+  syntax: >-
+    az kusto database list-principal --cluster-name
+                                     --database-name
+                                     --resource-group
+  examples:
+  - summary: KustoDatabaseListPrincipals
+    syntax: az kusto database list-principal --cluster-name "kustoclusterrptest4" --database-name "KustoDatabase8" --resource-group "kustorptest"
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster Kusto.
+    description: ''
+  - isRequired: true
+    name: --database-name
+    summary: Nom de la base de données dans le cluster Kusto.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_kusto_database_remove-principal
+  name: az kusto database remove-principal
+  summary: Autorisations de suppression des principaux de base de données.
+  description: ''
+  syntax: >-
+    az kusto database remove-principal --cluster-name
+                                       --database-name
+                                       --resource-group
+                                       [--value]
+  examples:
+  - summary: KustoDatabaseRemovePrincipals
+    syntax: az kusto database remove-principal --cluster-name "kustoclusterrptest4" --database-name "KustoDatabase8" --value name="Some User" type="User" app-id="" email="user@microsoft.com" fqn="aaduser=some_guid" role="Admin" --value name="Kusto" type="Group" app-id="" email="kusto@microsoft.com" fqn="aadgroup=some_guid" role="Viewer" --value name="SomeApp" type="App" app-id="some_guid_app_id" email="" fqn="aadapp=some_guid_app_id" role="Admin" --resource-group "kustorptest"
+  requiredParameters:
+  - isRequired: true
+    name: --cluster-name
+    summary: Nom du cluster Kusto.
+    description: ''
+  - isRequired: true
+    name: --database-name
+    summary: Nom de la base de données dans le cluster Kusto.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --value
+    summary: Liste des principaux de base de données Kusto.
+    description: >-
+      Utilisation :--value Role = XX Name = XX type = XX Fqn = XX email = XX App-ID = XX
+
+
+      rôle : obligatoire. Rôle de principal de base de données.
+
+      nom : obligatoire. Nom principal de la base de données.
+
+      type : obligatoire. Type de principal de base de données.
+
+      Fqn : nom complet du principal de la base de données.
+
+      e-mail : adresse de messagerie principale de la base de données si exists.
+
+      App-ID : ID d’application-pertinent uniquement pour le type de principal d’application.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--value.
 commands:
 - az_kusto_database_create
 - az_kusto_database_delete
@@ -264,6 +380,9 @@ commands:
 - az_kusto_database_show
 - az_kusto_database_update
 - az_kusto_database_wait
+- az_kusto_database_add-principal
+- az_kusto_database_list-principal
+- az_kusto_database_remove-principal
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -283,9 +402,9 @@ metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
   ms.date: 09/07/2020
   description: Ce module ne sera pas pris en charge à partir du 1er janvier 2021. Exécutez « AZ extension Add-n Kusto » pour installer l’extension Kusto prise en charge.
-  ms.openlocfilehash: 709628d52cbe9a1f1881c96b826379d98ad42b10
-  ms.sourcegitcommit: dd42eae9469c48f3cce66347e8e1cac317887a3a
+  ms.openlocfilehash: dec5d324f0c7cc97ec4ce8f8eea57b9d362343e0
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 09/29/2020
-  ms.locfileid: "102820853"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106850396"
