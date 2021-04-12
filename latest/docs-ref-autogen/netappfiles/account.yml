@@ -172,6 +172,41 @@ directCommands:
     summary: Balises séparées par des espaces dans le `key[=value]` format.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/netappfiles/_help.py
+- uid: az_netappfiles_account_set
+  name: az netappfiles account set
+  summary: Définit les balises ou les détails Active Directory pour un compte et spécifié. Affecte exactement à la propriété Active Directory ce qui est fourni. Si aucune valeur n’est fournie, le répertoire Active Directory est supprimé, ce qui signifie qu’il doit être vide [].
+  description: ''
+  syntax: >-
+    az netappfiles account set --account-name
+                               --location
+                               --resource-group
+                               [--active-directories]
+                               [--tags]
+  examples:
+  - summary: Mettre à jour les balises et Active Directory d’un compte et
+    syntax: "az netappfiles account set -g group --account-name name --tags 'key[=value] key[=value]' --active-directories '[{\"username\": \"aduser\", \"password\": \"aduser\", \"smbservername\": \"SMBSERVER\", \"dns\": \"1.2.3.4\", \"domain\": \"westcentralus\"}]' -l westus2"
+  - summary: Supprimer Active Directory du compte et
+    syntax: az netappfiles account set -g group --account-name name --active-directories '[]' -l westus2
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -a -n
+    summary: Nom du compte et.
+    description: ''
+  - isRequired: true
+    name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --active-directories
+    summary: Tableau de paramètres Active Directory (AD) au format JSON. Limiter une publicité/un abonnement. Se compose des champs nom d’utilisateur (nom d’utilisateur de Active Directory administrateur de domaine), mot de passe (mot de passe en texte brut de Active Directory administrateur de domaine), domaine (nom du domaine Active Directory), DNS (liste séparée par des virgules des adresses IP du serveur DNS pour le domaine Active Directory), smb_server_name (nom NetBIOS du serveur SMB). Ce nom sera enregistré en tant que compte d’ordinateur dans AD et utilisé pour monter les volumes. Doit être inférieur ou égal à 10 caractères), organizational_unit (l’unité d’organisation (UO) dans le Active Directory Windows).
+    description: ''
+  - name: --tags
+    summary: Liste de balises séparées par des espaces à appliquer au compte.
+    description: ''
 commands:
 - az_netappfiles_account_ad
 - az_netappfiles_account_ad_add
@@ -181,17 +216,18 @@ commands:
 - az_netappfiles_account_backup_delete
 - az_netappfiles_account_backup_list
 - az_netappfiles_account_backup_show
-- az_netappfiles_account_backup_policy
-- az_netappfiles_account_backup_policy_create
-- az_netappfiles_account_backup_policy_delete
-- az_netappfiles_account_backup_policy_list
-- az_netappfiles_account_backup_policy_show
-- az_netappfiles_account_backup_policy_update
+- az_netappfiles_account_backup-policy
+- az_netappfiles_account_backup-policy_create
+- az_netappfiles_account_backup-policy_delete
+- az_netappfiles_account_backup-policy_list
+- az_netappfiles_account_backup-policy_show
+- az_netappfiles_account_backup-policy_update
 - az_netappfiles_account_create
 - az_netappfiles_account_delete
 - az_netappfiles_account_list
 - az_netappfiles_account_show
 - az_netappfiles_account_update
+- az_netappfiles_account_set
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -209,11 +245,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 03/10/2021
+  ms.date: 03/26/2021
   description: Gérer les ressources de compte Azure NetApp Files (et).
-  ms.openlocfilehash: 52ff9b686e20f5bf1d37f7922d06f8de3f7609ad
-  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
+  ms.openlocfilehash: 53f43171d6f398fb408732fa2d2b834d38cb9b1a
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/23/2021
-  ms.locfileid: "104931907"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106809579"
