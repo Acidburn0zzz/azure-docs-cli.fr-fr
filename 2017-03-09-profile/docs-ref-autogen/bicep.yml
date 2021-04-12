@@ -6,27 +6,35 @@ description: ''
 directCommands:
 - uid: az_bicep_build
   name: az bicep build
-  summary: Générez un ou plusieurs fichiers bicep.
+  summary: Générez un fichier bicep.
   description: ''
   syntax: >-
-    az bicep build --files
+    az bicep build --file
+                   [--outdir]
+                   [--outfile]
                    [--stdout]
                    [--subscription]
   examples:
   - summary: Générez un fichier bicep.
-    syntax: az bicep build --files {bicep_file}
-  - summary: Générez plusieurs fichiers bicep.
-    syntax: az bicep build --files {bicep_file1} {bicep_file2}
+    syntax: az bicep build --file {bicep_file}
   - summary: Générez un fichier bicep et imprimez toutes les sorties dans stdout.
-    syntax: az bicep build --files {bicep_file} --stdout
-  - summary: Générez plusieurs fichiers bicep et imprimez toutes les sorties dans stdout.
-    syntax: az bicep build --files {bicep_file1} {bicep_file2} --stdout
+    syntax: az bicep build --file {bicep_file} --stdout
+  - summary: Générez un fichier bicep et enregistrez le résultat dans le répertoire spécifié.
+    syntax: az bicep build --file {bicep_file} --outdir {out_dir}
+  - summary: Crée un fichier bicep et enregistre le résultat dans le fichier spécifié.
+    syntax: az bicep build --file {bicep_file} --outfile {out_file}
   requiredParameters:
   - isRequired: true
-    name: --files -f
-    summary: Chemins d’accès au fichier bicep séparés par des espaces dans le système de fichiers.
+    name: --file -f
+    summary: Chemin d’accès au fichier bicep à générer dans le système de fichiers.
     description: ''
   optionalParameters:
+  - name: --outdir
+    summary: Lorsque cette valeur est définie, enregistre la sortie dans le répertoire spécifié.
+    description: ''
+  - name: --outfile
+    summary: Lorsque cette valeur est définie, enregistre la sortie en tant que chemin d’accès au fichier spécifié.
+    description: ''
   - name: --stdout
     summary: Lorsque cette valeur est définie, imprime toutes les sorties dans stdout au lieu des fichiers correspondants.
     description: ''
@@ -35,20 +43,18 @@ directCommands:
     description: ''
 - uid: az_bicep_decompile
   name: az bicep decompile
-  summary: Tentative de décompilation d’un ou plusieurs fichiers de modèle ARM dans des fichiers bicep.
+  summary: Tentative de décompilation d’un fichier de modèle ARM dans un fichier baBicep.
   description: ''
   syntax: >-
-    az bicep decompile --files
+    az bicep decompile --file
                        [--subscription]
   examples:
   - summary: Décompiler un fichier de modèle ARM.
-    syntax: az bicep decompile --files {json_template_file}
-  - summary: Décompiler plusieurs fichiers de modèle ARM.
-    syntax: az bicep decompile --files {json_template_file1} {json_template_file2}
+    syntax: az bicep decompile --file {json_template_file}
   requiredParameters:
   - isRequired: true
-    name: --files -f
-    summary: Chemins d’accès du modèle ARM séparés par des espaces dans le système de fichiers.
+    name: --file -f
+    summary: Chemin d’accès au modèle ARM à décompiler dans le système de fichiers.
     description: ''
   optionalParameters:
   - name: --subscription
@@ -124,9 +130,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Groupe de commandes CLI bicep.
-  ms.openlocfilehash: 8295dfde2cd6dd2237d3351e80c6811b8ae8ba39
-  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.openlocfilehash: 5832cf44cafcdec0dc10ef0ce385d26439c4aad4
+  ms.sourcegitcommit: b7481a4363417987865106c343ef8e60c69c9170
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 04/07/2021
-  ms.locfileid: "106804326"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "107239202"
