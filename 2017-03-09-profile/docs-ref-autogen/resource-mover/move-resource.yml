@@ -1,0 +1,256 @@
+### YamlMime:AzureCLIGroup
+uid: az_resource-mover_move-resource
+name: az resource-mover move-resource
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Resource-Mover** pour Azure CLI et requiert la version 2.15.0 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ Resource-Mover Move-Resource** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer Move-Resource.
+description: ''
+directCommands:
+- uid: az_resource-mover_move-resource_add
+  name: az resource-mover move-resource add
+  summary: Crée ou met à jour une ressource Move-Resource dans Move-collection.
+  description: ''
+  syntax: >-
+    az resource-mover move-resource add --move-collection-name
+                                        --move-resource-name
+                                        --resource-group
+                                        [--depends-on-overrides]
+                                        [--existing-target-id]
+                                        [--no-wait]
+                                        [--resource-settings]
+                                        [--source-id]
+  examples:
+  - summary: Ajoutez un réseau virtuel en tant que Move-Resource à Move-collection.
+    syntax: >-
+      az resource-mover move-resource add --resource-group MyResourceGroup --move-collection-name MyMoveCollection --name MoveResourceName
+
+      --source-id "/subscriptions/subID/resourceGroups/myRG/providers/Microsoft.Network/virtualNetworks/MyVNet"
+
+      --resource-settings '{
+          "resourceType": "Microsoft.Network/virtualNetworks",
+          "targetResourceName": "MyVNet-target"
+      }'
+  - summary: Ajoutez un réseau virtuel en tant que Move-Resource à Move-collection.
+    syntax: >-
+      az resource-mover move-resource add --resource-group MyResourceGroup --move-collection-name MyMoveCollection --name MoveResourceName
+
+      --source-id "/subscriptions/subID/resourceGroups/myRG/providers/Microsoft.Network/virtualNetworks/MyVNet"
+
+      --resource-settings @resource-settings.json
+  - summary: Ajoutez une machine virtuelle en tant que Move-Resource à Move-collection.
+    syntax: >-
+      az resource-mover move-resource add --resource-group MyResourceGroup --move-collection-name MyMoveCollection --name MoveResourceName
+
+      --source-id "/subscriptions/subID/resourceGroups/eastusRG/providers/Microsoft.Compute/virtualMachines/MyVM"
+
+      --depends-on-overrides id="/subscriptions/subID/resourceGroups/eastusRG/providers/Microsoft.Network/networkInterfaces/MyNIC" target-id="/subscriptions/subID/resourceGroups/westusRG/providers/Microsoft.Network/networkInterfaces/MyNIC"
+
+      --resource-settings '{
+          "resourceType": "Microsoft.Compute/virtualMachines",
+          "targetAvailabilitySetId": "/subscriptions/subID/resourceGroups/eastusRG/providers/Microsoft.Compute/availabilitySets/MyAVSet",
+          "targetAvailabilityZone": "2",
+          "targetResourceName": "MyVM-target",
+          "targetVmSize": null
+      }'
+  requiredParameters:
+  - isRequired: true
+    name: --move-collection-name
+    summary: Nom de la collection de déplacements.
+    description: ''
+  - isRequired: true
+    name: --move-resource-name --name -n
+    summary: Nom de la ressource Move.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --depends-on-overrides
+    summary: Les dépendances de déplacement-ressources remplacent.
+    description: >-
+      Utilisation :--depends-on-Overrides ID = XX cible-ID = XX
+
+
+      ID : ID ARM de la ressource dépendante.
+
+      Target-ID : ID du bras de ressource de l’ID de la ressource de déplacement ou de la ressource dépendante.
+
+
+      Plusieurs actions peuvent être spécifiées à l’aide de plusieurs arguments--depends on-Overrides.
+  - name: --existing-target-id
+    summary: ID ARM cible existant de la ressource.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --resource-settings
+    summary: 'Paramètres de ressource. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --source-id
+    summary: ID ARM source de la ressource.
+    description: ''
+- uid: az_resource-mover_move-resource_delete
+  name: az resource-mover move-resource delete
+  summary: Supprimer un Move-Resource de la collection Move-collection.
+  description: ''
+  syntax: >-
+    az resource-mover move-resource delete --move-collection-name
+                                           --move-resource-name
+                                           --resource-group
+                                           [--no-wait]
+                                           [--yes]
+  examples:
+  - summary: Supprimer un Move-Resource de la collection Move-collection.
+    syntax: az resource-mover move-resource delete --move-collection-name MyMoveCollection --name MyMoveResource --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --move-collection-name
+    summary: Nom de la collection de déplacements.
+    description: ''
+  - isRequired: true
+    name: --move-resource-name --name -n
+    summary: Nom de la ressource Move.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_resource-mover_move-resource_list
+  name: az resource-mover move-resource list
+  summary: Répertorier les ressources de déplacement dans un Move-collection.
+  description: ''
+  syntax: >-
+    az resource-mover move-resource list --move-collection-name
+                                         --resource-group
+  examples:
+  - summary: Répertorier les ressources de déplacement dans un Move-collection.
+    syntax: az resource-mover move-resource list --move-collection-name MyMoveCollection --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --move-collection-name
+    summary: Nom de la collection de déplacements.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_resource-mover_move-resource_show
+  name: az resource-mover move-resource show
+  summary: Obtient les détails d’une ressource Move-Resource.
+  description: ''
+  syntax: >-
+    az resource-mover move-resource show --move-collection-name
+                                         --move-resource-name
+                                         --resource-group
+  examples:
+  - summary: Obtient les détails d’une ressource Move-Resource.
+    syntax: az resource-mover move-resource show --move-collection-name MyMoveCollection --name MyMoveResource --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --move-collection-name
+    summary: Nom de la collection de déplacements.
+    description: ''
+  - isRequired: true
+    name: --move-resource-name --name -n
+    summary: Nom de la ressource Move.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_resource-mover_move-resource_wait
+  name: az resource-mover move-resource wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de Move-Resource soit remplie.
+  description: ''
+  syntax: >-
+    az resource-mover move-resource wait --move-collection-name
+                                         --move-resource-name
+                                         --resource-group
+                                         [--created]
+                                         [--custom]
+                                         [--deleted]
+                                         [--exists]
+                                         [--interval]
+                                         [--timeout]
+                                         [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à la création réussie de la ressource Move.
+    syntax: az resource-mover move-resource wait --move-collection-name MyMoveCollection --name MyMoveResource --resource-group MyResourceGroup --created
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à la suppression réussie de la ressource Move.
+    syntax: az resource-mover move-resource wait --move-collection-name MyMoveCollection --name MyMoveResource --resource-group MyResourceGroup --deleted
+  requiredParameters:
+  - isRequired: true
+    name: --move-collection-name
+    summary: Nom de la collection de déplacements.
+    description: ''
+  - isRequired: true
+    name: --move-resource-name --name -n
+    summary: Nom de la ressource Move.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_resource-mover_move-resource_add
+- az_resource-mover_move-resource_delete
+- az_resource-mover_move-resource_list
+- az_resource-mover_move-resource_show
+- az_resource-mover_move-resource_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer Move-Resource.
+  ms.openlocfilehash: c8594288abc61e5fa8fbf341812cfd3cf60af5a0
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106899142"

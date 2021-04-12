@@ -1,0 +1,349 @@
+### YamlMime:AzureCLIGroup
+uid: az_stream-analytics_job
+name: az stream-analytics job
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Stream-Analytics** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Stream-Analytics Job** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Commandes pour gérer le travail de diffusion en continu Stream-Analytics.
+description: ''
+directCommands:
+- uid: az_stream-analytics_job_create
+  name: az stream-analytics job create
+  summary: Créer une tâche de streaming ou remplacer une tâche de diffusion en continu déjà existante.
+  description: ''
+  syntax: >-
+    az stream-analytics job create --name
+                                   --resource-group
+                                   [--compatibility-level {1.0}]
+                                   [--data-locale]
+                                   [--events-late-arrival-max-delay]
+                                   [--events-outoforder-max-delay]
+                                   [--events-outoforder-policy {Adjust, Drop}]
+                                   [--location]
+                                   [--no-wait]
+                                   [--output-error-policy {Drop, Stop}]
+                                   [--sku {Standard}]
+                                   [--tags]
+  examples:
+  - summary: Créer une tâche de streaming
+    syntax: >-
+      az stream-analytics job create --resource-group MyResourceGroup --name MyJobName \
+
+      --location "West US" --output-error-policy "Drop" --events-outoforder-policy "Drop" \
+
+      --events-outoforder-max-delay 5 --events-late-arrival-max-delay 16 --data-locale "en-US"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --compatibility-level
+    defaultValue: "1.0"
+    parameterValueGroup: "1.0"
+    summary: Contrôle certains comportements d’exécution de la tâche de streaming.
+    description: ''
+  - name: --data-locale
+    summary: Paramètres régionaux des données de la tâche Stream Analytics. La valeur doit être le nom d’une culture .NET prise en charge à partir du jeu https://msdn.microsoft.com/en-us/library/system.globalization.culturetypes(v=vs.110).aspx . La valeur par défaut est « en-US » si aucun n’est spécifié.
+    description: ''
+  - name: --events-late-arrival-max-delay
+    summary: Délai maximal acceptable en secondes pendant lequel les événements arrivant en retard peuvent être inclus.  La plage prise en charge est comprise entre -1 et 1814399 (20.23:59:59 jours) et -1 est utilisé pour spécifier d’attendre indéfiniment.
+    description: ''
+  - name: --events-outoforder-max-delay
+    summary: Délai maximal acceptable en secondes pendant lequel les événements en désordre peuvent être ajustés pour être restaurés dans l’ordre.
+    description: ''
+  - name: --events-outoforder-policy
+    parameterValueGroup: Adjust, Drop
+    summary: Indique la stratégie à appliquer aux événements qui arrivent en désordre dans le flux d’événements d’entrée.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --output-error-policy
+    parameterValueGroup: Drop, Stop
+    summary: Indique la stratégie à appliquer aux événements qui arrivent à la sortie.
+    description: ''
+  - name: --sku
+    defaultValue: Standard
+    parameterValueGroup: Standard
+    summary: Nom de la référence SKU.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_stream-analytics_job_delete
+  name: az stream-analytics job delete
+  summary: Supprimer une tâche de streaming.
+  description: ''
+  syntax: >-
+    az stream-analytics job delete --name
+                                   --resource-group
+                                   [--no-wait]
+  examples:
+  - summary: Supprimer une tâche de streaming
+    syntax: az stream-analytics job delete --resource-group MyResourceGroup --name MyJobName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_stream-analytics_job_list
+  name: az stream-analytics job list
+  summary: Répertorie toutes les tâches de streaming dans le groupe de ressources spécifié.
+  description: ''
+  syntax: >-
+    az stream-analytics job list [--expand]
+                                 [--resource-group]
+  examples:
+  - summary: Répertorier tous les travaux de diffusion en continu dans l’abonnement actuel
+    syntax: az stream-analytics job list
+  - summary: Répertorier toutes les tâches de streaming dans un groupe de ressources
+    syntax: az stream-analytics job list --resource-group MyResourceGroup
+  - summary: Répertorier tous les travaux de diffusion en continu et développer leurs entrées, sorties, transformations et fonctions
+    syntax: az stream-analytics job list --resource-group MyResourceGroup --expand
+  optionalParameters:
+  - name: --expand
+    summary: Développez entrées, transformation, sorties et fonctions du travail de streaming.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_stream-analytics_job_show
+  name: az stream-analytics job show
+  summary: Obtenir des détails sur le travail de diffusion en continu spécifié.
+  description: ''
+  syntax: >-
+    az stream-analytics job show --name
+                                 --resource-group
+                                 [--expand]
+  examples:
+  - summary: Obtenir une tâche de streaming
+    syntax: az stream-analytics job show --resource-group MyResourceGroup --name MyJobName
+  - summary: Obtenir une tâche de streaming et étendre ses entrées, sorties, transformations et fonctions
+    syntax: az stream-analytics job show --resource-group MyResourceGroup --name MyJobName --expand
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --expand
+    summary: Développez entrées, transformation, sorties et fonctions du travail de streaming.
+    description: ''
+- uid: az_stream-analytics_job_start
+  name: az stream-analytics job start
+  summary: Démarrez une tâche de streaming.
+  description: ''
+  syntax: >-
+    az stream-analytics job start --name
+                                  --resource-group
+                                  [--no-wait]
+                                  [--output-start-mode {CustomTime, JobStartTime, LastOutputEventTime}]
+                                  [--output-start-time]
+  examples:
+  - summary: Démarrer une tâche de streaming avec le mode de démarrage de sortie LastOutputEventTime
+    syntax: az stream-analytics job start --resource-group MyResourceGroup --name MyJobName --output-start-mode LastOutputEventTime
+  - summary: Démarrer une tâche de streaming avec le mode de démarrage de sortie JobStartTime
+    syntax: az stream-analytics job start --resource-group MyResourceGroup --name MyJobName --output-start-mode JobStartTime
+  - summary: Démarrer une tâche de streaming avec le mode de démarrage de sortie CustomTime
+    syntax: az stream-analytics job start --resource-group MyResourceGroup --name MyJobName --output-start-mode CustomTime --output-start-time 2020-01-01T00:00:00Z
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --output-start-mode
+    defaultValue: JobStartTime
+    parameterValueGroup: CustomTime, JobStartTime, LastOutputEventTime
+    summary: Mode de démarrage de sortie.
+    description: ''
+  - name: --output-start-time
+    summary: L’heure de début de la sortie doit avoir une valeur si--output-Start-mode est défini sur CustomTime.
+    description: ''
+- uid: az_stream-analytics_job_stop
+  name: az stream-analytics job stop
+  summary: Arrêter un travail de diffusion en continu en cours d’exécution.
+  description: ''
+  syntax: >-
+    az stream-analytics job stop --name
+                                 --resource-group
+                                 [--no-wait]
+  examples:
+  - summary: Arrêter une tâche de streaming
+    syntax: az stream-analytics job stop --resource-group MyResourceGroup --name MyJobName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_stream-analytics_job_update
+  name: az stream-analytics job update
+  summary: Mettez à jour la tâche de streaming existante.
+  description: ''
+  syntax: >-
+    az stream-analytics job update --name
+                                   --resource-group
+                                   [--data-locale]
+                                   [--events-late-arrival-max-delay]
+                                   [--events-outoforder-max-delay]
+                                   [--events-outoforder-policy {Adjust, Drop}]
+                                   [--output-error-policy {Drop, Stop}]
+                                   [--tags]
+  examples:
+  - summary: Mettre à jour une tâche de streaming
+    syntax: >-
+      az stream-analytics job update --resource-group MyResourceGroup --name MyJobName \
+
+      --events-outoforder-max-delay 21 --events-late-arrival-max-delay 13
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --data-locale
+    summary: Paramètres régionaux des données de la tâche Stream Analytics. La valeur doit être le nom d’une culture .NET prise en charge à partir du jeu https://msdn.microsoft.com/en-us/library/system.globalization.culturetypes(v=vs.110).aspx .
+    description: ''
+  - name: --events-late-arrival-max-delay
+    summary: Délai maximal acceptable en secondes pendant lequel les événements arrivant en retard peuvent être inclus.  La plage prise en charge est comprise entre -1 et 1814399 (20.23:59:59 jours) et -1 est utilisé pour spécifier d’attendre indéfiniment.
+    description: ''
+  - name: --events-outoforder-max-delay
+    summary: Délai maximal acceptable en secondes pendant lequel les événements en désordre peuvent être ajustés pour être restaurés dans l’ordre.
+    description: ''
+  - name: --events-outoforder-policy
+    parameterValueGroup: Adjust, Drop
+    summary: Indique la stratégie à appliquer aux événements qui arrivent en désordre dans le flux d’événements d’entrée.
+    description: ''
+  - name: --output-error-policy
+    parameterValueGroup: Drop, Stop
+    summary: Indique la stratégie à appliquer aux événements qui arrivent à la sortie.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_stream-analytics_job_wait
+  name: az stream-analytics job wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du travail de diffusion en continu soit remplie.
+  description: ''
+  syntax: >-
+    az stream-analytics job wait --name
+                                 --resource-group
+                                 [--created]
+                                 [--custom]
+                                 [--deleted]
+                                 [--exists]
+                                 [--expand]
+                                 [--interval]
+                                 [--timeout]
+                                 [--updated]
+  examples:
+  - summary: Interrompez l’exécution de la ligne suivante du script CLI jusqu’à ce que le travail de diffusion en continu soit correctement approvisionné.
+    syntax: az stream-analytics job wait --resource-group MyResourceGroup --name MyJobName --created
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du travail de diffusion en continu.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --expand
+    summary: Le $expand paramètre de requête OData. Il s’agit d’une liste séparée par des virgules de propriétés de travaux en continu supplémentaires à inclure dans la réponse, au-delà de l’ensemble par défaut retourné lorsque ce paramètre est absent. Le jeu par défaut est toutes les propriétés de la tâche de streaming autres que « inputs », « transformation », « outputs » et « functions ».
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_stream-analytics_job_create
+- az_stream-analytics_job_delete
+- az_stream-analytics_job_list
+- az_stream-analytics_job_show
+- az_stream-analytics_job_start
+- az_stream-analytics_job_stop
+- az_stream-analytics_job_update
+- az_stream-analytics_job_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Commandes pour gérer le travail de diffusion en continu Stream-Analytics.
+  ms.openlocfilehash: b19cfa798914f5cddd4055108bc2e42adaac799c
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106908263"
