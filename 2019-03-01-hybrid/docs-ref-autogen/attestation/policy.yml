@@ -1,0 +1,159 @@
+### YamlMime:AzureCLIGroup
+uid: az_attestation_policy
+name: az attestation policy
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension d' **attestation** pour Azure CLI et requiert la version 2.11.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ attestation Policy** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les stratégies.
+description: ''
+directCommands:
+- uid: az_attestation_policy_reset
+  name: az attestation policy reset
+  summary: Réinitialise la stratégie d’attestation pour le locataire spécifié et revient à la stratégie par défaut.
+  description: ''
+  syntax: >-
+    az attestation policy reset --attestation-type {SGX-IntelSDK, SGX-OpenEnclaveSDK, TPM}
+                                [--id]
+                                [--name]
+                                [--policy-jws]
+                                [--resource-group]
+  examples:
+  - summary: Réinitialise la stratégie d’attestation pour le locataire spécifié et revient à la stratégie par défaut.
+    syntax: >-
+      az attestation policy reset -n "myattestationprovider" -g "MyResourceGroup" \
+
+      --attestation-type SGX-OpenEnclaveSDK --policy-jws "eyJhbGciOiJub25lIn0.."
+  requiredParameters:
+  - isRequired: true
+    name: --attestation-type
+    parameterValueGroup: SGX-IntelSDK, SGX-OpenEnclaveSDK, TPM
+    summary: Type de l’attestation.
+    description: ''
+  optionalParameters:
+  - name: --id
+    summary: ID de ressource du fournisseur. Veuillez omettre--Resource-Group/-g ou--Name/-n Si vous avez déjà spécifié--ID.
+    description: ''
+  - name: --name -n
+    summary: Nom du fournisseur d’attestations.
+    description: ''
+  - name: --policy-jws
+    defaultValue: eyJhbGciOiJub25lIn0..
+    summary: Signature Web JSON avec un document de stratégie vide.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_attestation_policy_set
+  name: az attestation policy set
+  summary: Définit la stratégie pour un type donné de type d’attestation.
+  description: ''
+  syntax: >-
+    az attestation policy set --attestation-type {SGX-IntelSDK, SGX-OpenEnclaveSDK, TPM}
+                              [--id]
+                              [--name]
+                              [--new-attestation-policy]
+                              [--new-attestation-policy-file]
+                              [--policy-format {JWT, Text}]
+                              [--resource-group]
+  examples:
+  - summary: Définit la stratégie pour un type donné de type d’attestation à l’aide du contenu JWT.
+    syntax: >-
+      az attestation policy set -n "myattestationprovider" -g "MyResourceGroup" \
+
+      --attestation-type SGX-OpenEnclaveSDK --new-attestation-policy "{JWT}" --policy-format JWT
+  - summary: Définit la stratégie pour un type donné de type d’attestation à l’aide du contenu texte.
+    syntax: >-
+      az attestation policy set -n "myattestationprovider" -g "MyResourceGroup" \
+
+      --attestation-type SGX-OpenEnclaveSDK --new-attestation-policy "{json_text}"
+  - summary: Définit la stratégie pour un type donné de type d’attestation à l’aide du nom de fichier.
+    syntax: >-
+      az attestation policy set -n "myattestationprovider" -g "MyResourceGroup" \
+
+      --attestation-type SGX-OpenEnclaveSDK --new-attestation-policy-file "{file_name}" --policy-format JWT
+  requiredParameters:
+  - isRequired: true
+    name: --attestation-type
+    parameterValueGroup: SGX-IntelSDK, SGX-OpenEnclaveSDK, TPM
+    summary: Type de l’attestation.
+    description: ''
+  optionalParameters:
+  - name: --id
+    summary: ID de ressource du fournisseur. Veuillez omettre--Resource-Group/-g ou--Name/-n Si vous avez déjà spécifié--ID.
+    description: ''
+  - name: --name -n
+    summary: Nom du fournisseur d’attestations.
+    description: ''
+  - name: --new-attestation-policy
+    summary: Contenu de la nouvelle stratégie d’attestation (texte ou JWT).
+    description: ''
+  - name: --new-attestation-policy-file -f
+    summary: Nom de fichier de la nouvelle stratégie d’attestation.
+    description: ''
+  - name: --policy-format
+    defaultValue: Text
+    parameterValueGroup: JWT, Text
+    summary: Spécifie le format de la stratégie, à savoir texte ou JWT (JSON Web Token).
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_attestation_policy_show
+  name: az attestation policy show
+  summary: Récupère la stratégie actuelle pour un type donné de type d’attestation.
+  description: ''
+  syntax: >-
+    az attestation policy show --attestation-type {SGX-IntelSDK, SGX-OpenEnclaveSDK, TPM}
+                               [--id]
+                               [--name]
+                               [--resource-group]
+  examples:
+  - summary: Récupère la stratégie actuelle pour un type donné de type d’attestation.
+    syntax: >-
+      az attestation policy show -n "myattestationprovider" -g "MyResourceGroup" \
+
+      --attestation-type SGX-OpenEnclaveSDK
+  requiredParameters:
+  - isRequired: true
+    name: --attestation-type
+    parameterValueGroup: SGX-IntelSDK, SGX-OpenEnclaveSDK, TPM
+    summary: Type de l’attestation.
+    description: ''
+  optionalParameters:
+  - name: --id
+    summary: ID de ressource du fournisseur. Veuillez omettre--Resource-Group/-g ou--Name/-n Si vous avez déjà spécifié--ID.
+    description: ''
+  - name: --name -n
+    summary: Nom du fournisseur d’attestations.
+    description: ''
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+commands:
+- az_attestation_policy_reset
+- az_attestation_policy_set
+- az_attestation_policy_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les stratégies.
+  ms.openlocfilehash: ae7b7ef9a39a1845d12a807caa074daadb044f0a
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106902593"
