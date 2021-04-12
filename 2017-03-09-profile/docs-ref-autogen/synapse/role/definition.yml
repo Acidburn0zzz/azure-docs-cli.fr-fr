@@ -10,17 +10,24 @@ directCommands:
   description: ''
   syntax: >-
     az synapse role definition list --workspace-name
+                                    [--is-built-in {false, true}]
                                     [--query-examples]
                                     [--subscription]
   examples:
   - summary: Répertorier les définitions de rôles.
     syntax: az synapse role definition list --workspace-name testsynapseworkspace
+  - summary: Répertorier les définitions de rôles intégrées par synapse.
+    syntax: az synapse role definition list --workspace-name testsynapseworkspace --is-built-in True
   requiredParameters:
   - isRequired: true
     name: --workspace-name
     summary: Nom de l’espace de travail.
     description: ''
   optionalParameters:
+  - name: --is-built-in
+    parameterValueGroup: false, true
+    summary: Est un rôle Synapse Built-In ou non.
+    description: ''
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
     description: ''
@@ -43,6 +50,11 @@ directCommands:
       az synapse role definition show --workspace-name testsynapseworkspace \
 
       --role 00000000-0000-0000-0000-000000000000
+  - summary: Obtient la définition de rôle par nom de rôle.
+    syntax: >-
+      az synapse role definition show --workspace-name testsynapseworkspace \
+
+      --role "Synapse SQL Administrator"
   requiredParameters:
   - isRequired: true
     name: --role
@@ -80,11 +92,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 01/26/2021
+  ms.date: 04/08/2021
   description: Gérez les définitions de rôle de Synapse.
-  ms.openlocfilehash: 5399249c33be20a4f9d02310128f4daf6b3e979f
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: 30d329b129c3d359ef864c0f8281de8b17802524
+  ms.sourcegitcommit: b7481a4363417987865106c343ef8e60c69c9170
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102849052"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "107234604"
