@@ -6,27 +6,35 @@ description: ''
 directCommands:
 - uid: az_bicep_build
   name: az bicep build
-  summary: Générez un ou plusieurs fichiers bicep.
+  summary: Générez un fichier bicep.
   description: ''
   syntax: >-
-    az bicep build --files
+    az bicep build --file
+                   [--outdir]
+                   [--outfile]
                    [--stdout]
                    [--subscription]
   examples:
   - summary: Générez un fichier bicep.
-    syntax: az bicep build --files {bicep_file}
-  - summary: Générez plusieurs fichiers bicep.
-    syntax: az bicep build --files {bicep_file1} {bicep_file2}
+    syntax: az bicep build --file {bicep_file}
   - summary: Générez un fichier bicep et imprimez toutes les sorties dans stdout.
-    syntax: az bicep build --files {bicep_file} --stdout
-  - summary: Générez plusieurs fichiers bicep et imprimez toutes les sorties dans stdout.
-    syntax: az bicep build --files {bicep_file1} {bicep_file2} --stdout
+    syntax: az bicep build --file {bicep_file} --stdout
+  - summary: Générez un fichier bicep et enregistrez le résultat dans le répertoire spécifié.
+    syntax: az bicep build --file {bicep_file} --outdir {out_dir}
+  - summary: Crée un fichier bicep et enregistre le résultat dans le fichier spécifié.
+    syntax: az bicep build --file {bicep_file} --outfile {out_file}
   requiredParameters:
   - isRequired: true
-    name: --files -f
-    summary: Chemins d’accès au fichier bicep séparés par des espaces dans le système de fichiers.
+    name: --file -f
+    summary: Chemin d’accès au fichier bicep à générer dans le système de fichiers.
     description: ''
   optionalParameters:
+  - name: --outdir
+    summary: Lorsque cette valeur est définie, enregistre la sortie dans le répertoire spécifié.
+    description: ''
+  - name: --outfile
+    summary: Lorsque cette valeur est définie, enregistre la sortie en tant que chemin d’accès au fichier spécifié.
+    description: ''
   - name: --stdout
     summary: Lorsque cette valeur est définie, imprime toutes les sorties dans stdout au lieu des fichiers correspondants.
     description: ''
@@ -35,20 +43,18 @@ directCommands:
     description: ''
 - uid: az_bicep_decompile
   name: az bicep decompile
-  summary: Tentative de décompilation d’un ou plusieurs fichiers de modèle ARM dans des fichiers bicep.
+  summary: Tentative de décompilation d’un fichier de modèle ARM dans un fichier baBicep.
   description: ''
   syntax: >-
-    az bicep decompile --files
+    az bicep decompile --file
                        [--subscription]
   examples:
   - summary: Décompiler un fichier de modèle ARM.
-    syntax: az bicep decompile --files {json_template_file}
-  - summary: Décompiler plusieurs fichiers de modèle ARM.
-    syntax: az bicep decompile --files {json_template_file1} {json_template_file2}
+    syntax: az bicep decompile --file {json_template_file}
   requiredParameters:
   - isRequired: true
-    name: --files -f
-    summary: Chemins d’accès du modèle ARM séparés par des espaces dans le système de fichiers.
+    name: --file -f
+    summary: Chemin d’accès au modèle ARM à décompiler dans le système de fichiers.
     description: ''
   optionalParameters:
   - name: --subscription
@@ -73,7 +79,7 @@ directCommands:
   - name: --version -v
     summary: Version de bicep CLI à installer. La valeur par défaut est la dernière valeur si elle n’est pas spécifiée.
     description: ''
-- uid: az_bicep_list_versions
+- uid: az_bicep_list-versions
   name: az bicep list-versions
   summary: Répertorie toutes les versions disponibles de l’interface CLI bicep.
   description: ''
@@ -104,7 +110,7 @@ commands:
 - az_bicep_build
 - az_bicep_decompile
 - az_bicep_install
-- az_bicep_list_versions
+- az_bicep_list-versions
 - az_bicep_upgrade
 - az_bicep_version
 globalParameters:
@@ -124,9 +130,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Groupe de commandes CLI bicep.
-  ms.openlocfilehash: a0827980e4ba70648bcfcfebf7da56f5c5f8df2e
-  ms.sourcegitcommit: f9e23f29c59c6957d3df4d5ca2f4425093e6fd80
+  ms.openlocfilehash: 5832cf44cafcdec0dc10ef0ce385d26439c4aad4
+  ms.sourcegitcommit: b7481a4363417987865106c343ef8e60c69c9170
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/16/2021
-  ms.locfileid: "103551810"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "107245390"
