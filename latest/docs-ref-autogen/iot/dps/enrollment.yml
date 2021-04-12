@@ -1,0 +1,348 @@
+### YamlMime:AzureCLIGroup
+uid: az_iot_dps_enrollment
+name: az iot dps enrollment
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Azure-IOT** pour Azure CLI et requiert la version 2.0.70 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ IOT DPS disrollion** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les inscriptions dans un service Azure IoT Hub Device Provisioning.
+description: ''
+directCommands:
+- uid: az_iot_dps_enrollment_create
+  name: az iot dps enrollment create
+  summary: Créer une inscription d’appareil dans un service Azure IoT Hub Device Provisioning.
+  description: ''
+  syntax: >-
+    az iot dps enrollment create --at {symmetricKey, tpm, x509}
+                                 --dps-name
+                                 --enrollment-id
+                                 --resource-group
+                                 [--allocation-policy {custom, geolatency, hashed, static}]
+                                 [--api-version]
+                                 [--certificate-path]
+                                 [--device-id]
+                                 [--edge-enabled {false, true}]
+                                 [--ek]
+                                 [--hn]
+                                 [--ih]
+                                 [--initial-twin-properties]
+                                 [--initial-twin-tags]
+                                 [--pk]
+                                 [--provisioning-status {disabled, enabled}]
+                                 [--reprovision-policy {never, reprovisionandmigratedata, reprovisionandresetdata}]
+                                 [--scp]
+                                 [--secondary-key]
+                                 [--webhook-url]
+  examples:
+  - summary: Créer une inscription « {enrollment_id} » avec le type d’attestation « x509 » dans le service d’approvisionnement Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} »
+    syntax: az iot dps enrollment create -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --attestation-type x509 --certificate-path /certificates/Certificate.pem
+  - summary: 'Créer une inscription « {enrollment_id} » avec le type d’attestation « x509 » dans le service d’approvisionnement des appareils Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} » avec l’état de configuration « désactivé », la cible IoT Hub « {iothub_host_name} », l’ID d’appareil « {device_id} », les propriétés de la représentation initiale « {Location » : {« Region » : « US »}}» et les balises initiales « {version » : « 1 »}».'
+    syntax: az iot dps enrollment create -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --attestation-type x509 --certificate-path /certificates/Certificate.pem --provisioning-status disabled --iot-hub-host-name {iothub_host_name} --initial-twin-properties "{'location':{'region':'US'}}" --initial-twin-tags "{'version':'1'}" --device-id {device_id}
+  - summary: Créez une inscription « MyEnrollment » avec le type d’attestation « TPM » dans le service d’approvisionnement d’appareil Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} ».
+    syntax: az iot dps enrollment create -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --attestation-type tpm --endorsement-key 14963E8F3BA5B3984110B3C1CA8E8B89
+  - summary: Créez une inscription « MyEnrollment » avec le type d’attestation « SymmetricKey » dans le service d’approvisionnement d’appareil Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} ».
+    syntax: az iot dps enrollment create -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --attestation-type symmetrickey --primary-key {primary_key} --secondary-key {secondary_key}
+  - summary: Créez une inscription « MyEnrollment » avec remise en service dans le service d’approvisionnement d’appareil Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} ».
+    syntax: az iot dps enrollment create -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --attestation-type tpm --reprovision-policy {reprovision_type} --endorsement-key 14963E8F3BA5B3984110B3C1CA8E8B89
+  - summary: Créez une inscription « MyEnrollment » avec une stratégie d’allocation statique dans le service d’approvisionnement d’appareil Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} ».
+    syntax: az iot dps enrollment create -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --attestation-type tpm --allocation-policy static --endorsement-key 14963E8F3BA5B3984110B3C1CA8E8B89 --iot-hubs {iot_hub_host_name}
+  - summary: Créez une inscription « MyEnrollment » avec une stratégie d’allocation hachée et plusieurs hubs dans le service d’approvisionnement d’appareil Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} ».
+    syntax: az iot dps enrollment create -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --attestation-type tpm --allocation-policy hashed --endorsement-key 14963E8F3BA5B3984110B3C1CA8E8B89 --iot-hubs "{iot_hub_host_name1} {iot_hub_host_name2}"
+  - summary: Créer une inscription « MyEnrollment » avec une stratégie d’allocation personnalisée,
+    syntax: az iot dps enrollment create -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --attestation-type symmetrickey --allocation-policy custom --webhook-url {webhook_url} --api-version {api_version}
+  requiredParameters:
+  - isRequired: true
+    name: --at --attestation-type
+    parameterValueGroup: symmetricKey, tpm, x509
+    summary: Mécanisme d’attestation.
+    description: ''
+  - isRequired: true
+    name: --dps-name
+    summary: Nom du service de provisionnement d’appareils Azure IoT Hub.
+    description: ''
+  - isRequired: true
+    name: --enrollment-id
+    summary: ID de l’enregistrement d’inscription de l’appareil.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --allocation-policy --ap
+    parameterValueGroup: custom, geolatency, hashed, static
+    summary: Type d’allocation pour l’appareil affecté au Hub.
+    description: ''
+  - name: --api-version --av
+    summary: 'Version d’API des types de service d’approvisionnement envoyés dans la demande d’allocation personnalisée. Version minimale prise en charge : 2018-09-01-preview.'
+    description: ''
+  - name: --certificate-path --cp
+    summary: Chemin d’accès au fichier contenant le certificat principal. Lorsque vous choisissez x509 comme type d’attestation, l’un des chemins d’accès de certificat est obligatoire.
+    description: ''
+  - name: --device-id -d
+    summary: ID de l’appareil IoT Hub.
+    description: ''
+  - name: --edge-enabled --ee
+    parameterValueGroup: false, true
+    summary: Indicateur qui spécifie l’activation des bords.
+    description: ''
+  - name: --ek --endorsement-key
+    summary: Clé de type EK TPM pour un appareil TPM. Lorsque vous choisissez le type d’attestation TPM, la clé de type EK est obligatoire.
+    description: ''
+  - name: --hn --iot-hub-host-name
+    summary: Nom d’hôte du IoT Hub cible.
+    description: ''
+  - name: --ih --iot-hubs
+    summary: Nom d’hôte du IoT Hub cible. Utilisez une liste séparée par des espaces pour plusieurs hubs IoT.
+    description: ''
+  - name: --initial-twin-properties --props
+    summary: Propriétés de la représentation initiale.
+    description: ''
+  - name: --initial-twin-tags --tags
+    summary: Étiquettes de double initiales.
+    description: ''
+  - name: --pk --primary-key
+    summary: Clé d’accès partagé symétrique principale stockée au format Base64.
+    description: ''
+  - name: --provisioning-status --ps
+    parameterValueGroup: disabled, enabled
+    summary: Activez ou désactivez l’entrée d’inscription.
+    description: ''
+  - name: --reprovision-policy --rp
+    parameterValueGroup: never, reprovisionandmigratedata, reprovisionandresetdata
+    summary: Données de l’appareil à traiter lors de la réapprovisionnement vers un autre hub IOT.
+    description: ''
+  - name: --scp --secondary-certificate-path
+    summary: Chemin d’accès au fichier contenant le certificat secondaire. Lorsque vous choisissez x509 comme type d’attestation, l’un des chemins d’accès de certificat est obligatoire.
+    description: ''
+  - name: --secondary-key --sk
+    summary: Clé d’accès partagé symétrique secondaire stockée au format Base64.
+    description: ''
+  - name: --webhook-url --wh
+    summary: URL du webhook utilisée pour les demandes d’allocation personnalisées.
+    description: ''
+- uid: az_iot_dps_enrollment_delete
+  name: az iot dps enrollment delete
+  summary: Supprimer une inscription d’appareil dans un service Azure IoT Hub Device Provisioning.
+  description: ''
+  syntax: >-
+    az iot dps enrollment delete --dps-name
+                                 --enrollment-id
+                                 --resource-group
+                                 [--etag]
+  requiredParameters:
+  - isRequired: true
+    name: --dps-name
+    summary: Nom du service de provisionnement d’appareils Azure IoT Hub.
+    description: ''
+  - isRequired: true
+    name: --enrollment-id
+    summary: ID de l’enregistrement d’inscription de l’appareil.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --etag -e
+    summary: L’ETag ou la balise d’entité correspondant au dernier état de la ressource. Si aucun ETag n’est fourni, la valeur' \* 'est utilisée.
+    description: ''
+- uid: az_iot_dps_enrollment_list
+  name: az iot dps enrollment list
+  summary: Répertorier les inscriptions d’appareils dans un service Azure IoT Hub Device Provisioning.
+  description: ''
+  syntax: >-
+    az iot dps enrollment list --dps-name
+                               --resource-group
+                               [--top]
+  requiredParameters:
+  - isRequired: true
+    name: --dps-name
+    summary: Nom du service de provisionnement d’appareils Azure IoT Hub.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --top
+    summary: Nombre maximal d’éléments à retourner. Utilisez-1 pour un nombre illimité.
+    description: ''
+- uid: az_iot_dps_enrollment_show
+  name: az iot dps enrollment show
+  summary: Obtient les détails de l’inscription de l’appareil dans un service Azure IoT Hub Device Provisioning.
+  description: ''
+  syntax: >-
+    az iot dps enrollment show --dps-name
+                               --enrollment-id
+                               --resource-group
+                               [--keys {false, true}]
+  examples:
+  - summary: Utilisation de base
+    syntax: az iot dps enrollment show --dps-name {dps_name} -g {resource_group} --enrollment-id {enrollment_id}
+  - summary: Inclure les informations d’attestation complètes dans les résultats d’une inscription de clé symétrique
+    syntax: az iot dps enrollment show --dps-name {dps_name} -g {resource_group} --enrollment-id {symmetric_key_enrollment_id} --show-keys
+  requiredParameters:
+  - isRequired: true
+    name: --dps-name
+    summary: Nom du service de provisionnement d’appareils Azure IoT Hub.
+    description: ''
+  - isRequired: true
+    name: --enrollment-id
+    summary: ID de l’enregistrement d’inscription de l’appareil.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --keys --show-keys
+    parameterValueGroup: false, true
+    summary: Incluez les clés et les informations d’attestation dans les résultats de l’inscription.
+    description: ''
+- uid: az_iot_dps_enrollment_update
+  name: az iot dps enrollment update
+  summary: Mettre à jour une inscription d’appareil dans un service Azure IoT Hub Device Provisioning.
+  description: ''
+  syntax: >-
+    az iot dps enrollment update --dps-name
+                                 --enrollment-id
+                                 --resource-group
+                                 [--allocation-policy {custom, geolatency, hashed, static}]
+                                 [--api-version]
+                                 [--certificate-path]
+                                 [--device-id]
+                                 [--edge-enabled {false, true}]
+                                 [--ek]
+                                 [--etag]
+                                 [--hn]
+                                 [--ih]
+                                 [--initial-twin-properties]
+                                 [--initial-twin-tags]
+                                 [--pk]
+                                 [--provisioning-status {disabled, enabled}]
+                                 [--rc {false, true}]
+                                 [--remove-secondary-certificate {false, true}]
+                                 [--reprovision-policy {never, reprovisionandmigratedata, reprovisionandresetdata}]
+                                 [--scp]
+                                 [--secondary-key]
+                                 [--webhook-url]
+  examples:
+  - summary: Mettez à jour l’inscription « {enrollment_id} » avec un nouveau certificat x509 dans le service d’approvisionnement d’appareil Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} ».
+    syntax: az iot dps enrollment update -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --certificate-path /certificates/NewCertificate.pem --etag AAAAAAAAAAA=
+  - summary: Mettez à jour l’inscription « {enrollment_id} » avec une nouvelle clé de type EK dans le service d’approvisionnement d’appareil Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} ».
+    syntax: az iot dps enrollment update -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --endorsement-key 14963E8F3BA5B3984110B3C1CA8E8B89 --etag AAAAAAAAAAA=
+  - summary: Mettez à jour l’inscription « {enrollment_id} » avec une nouvelle clé primaire dans le service d’approvisionnement d’appareil Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} ».
+    syntax: az iot dps enrollment update -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --primary-key {new_primary_key} --etag AAAAAAAAAAA=
+  - summary: Mettez à jour l’inscription « {enrollment_id} » avec un nouveau type de réapprovisionnement dans le service d’approvisionnement d’appareil Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} ».
+    syntax: az iot dps enrollment update -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --reprovision-policy {reprovision_type} --etag AAAAAAAAAAA=
+  - summary: Mettez à jour l’inscription « {enrollment_id} » avec une nouvelle stratégie d’allocation dans le service d’approvisionnement d’appareil Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} ».
+    syntax: az iot dps enrollment update -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --allocation-policy geolatency --etag AAAAAAAAAAA= --iot-hubs "{iot_hub_host_name1} {iot_hub_host_name2} {iot_hub_host_name3}"
+  - summary: 'Mettez à jour l’inscription « {enrollment_id} » dans le service d’approvisionnement d’appareil Azure IoT « {dps_name} » dans le groupe de ressources « {resource_group_name} » avec les propriétés de la représentation initiale « { » : {« Region » : « USA »}}» et les balises initiales « {version » : « 2 »}».'
+    syntax: az iot dps enrollment update -g {resource_group_name} --dps-name {dps_name} --enrollment-id {enrollment_id} --initial-twin-properties "{'location':{'region':'USA'}}" --initial-twin-tags "{'version1':'2'}"
+  requiredParameters:
+  - isRequired: true
+    name: --dps-name
+    summary: Nom du service de provisionnement d’appareils Azure IoT Hub.
+    description: ''
+  - isRequired: true
+    name: --enrollment-id
+    summary: ID de l’enregistrement d’inscription de l’appareil.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --allocation-policy --ap
+    parameterValueGroup: custom, geolatency, hashed, static
+    summary: Type d’allocation pour l’appareil affecté au Hub.
+    description: ''
+  - name: --api-version --av
+    summary: 'Version d’API des types de service d’approvisionnement envoyés dans la demande d’allocation personnalisée. Version minimale prise en charge : 2018-09-01-preview.'
+    description: ''
+  - name: --certificate-path --cp
+    summary: Chemin d’accès au fichier contenant le certificat principal.
+    description: ''
+  - name: --device-id -d
+    summary: ID de l’appareil IoT Hub.
+    description: ''
+  - name: --edge-enabled --ee
+    parameterValueGroup: false, true
+    summary: Indicateur qui spécifie l’activation des bords.
+    description: ''
+  - name: --ek --endorsement-key
+    summary: Clé de type EK TPM pour un appareil TPM.
+    description: ''
+  - name: --etag -e
+    summary: L’ETag ou la balise d’entité correspondant au dernier état de la ressource. Si aucun ETag n’est fourni, la valeur' \* 'est utilisée.
+    description: ''
+  - name: --hn --iot-hub-host-name
+    summary: Nom d’hôte du IoT Hub cible.
+    description: ''
+  - name: --ih --iot-hubs
+    summary: Nom d’hôte du IoT Hub cible. Utilisez une liste séparée par des espaces pour plusieurs hubs IoT.
+    description: ''
+  - name: --initial-twin-properties --props
+    summary: Propriétés de la représentation initiale.
+    description: ''
+  - name: --initial-twin-tags --tags
+    summary: Étiquettes de double initiales.
+    description: ''
+  - name: --pk --primary-key
+    summary: Clé d’accès partagé symétrique principale stockée au format Base64.
+    description: ''
+  - name: --provisioning-status --ps
+    parameterValueGroup: disabled, enabled
+    summary: Activez ou désactivez l’entrée d’inscription.
+    description: ''
+  - name: --rc --remove-certificate
+    parameterValueGroup: false, true
+    summary: Supprimer le certificat principal actuel.
+    description: ''
+  - name: --remove-secondary-certificate --rsc
+    parameterValueGroup: false, true
+    summary: Supprimer le certificat secondaire actuel.
+    description: ''
+  - name: --reprovision-policy --rp
+    parameterValueGroup: never, reprovisionandmigratedata, reprovisionandresetdata
+    summary: Données de l’appareil à traiter lors de la réapprovisionnement vers un autre hub IOT.
+    description: ''
+  - name: --scp --secondary-certificate-path
+    summary: Chemin d’accès au fichier contenant le certificat secondaire.
+    description: ''
+  - name: --secondary-key --sk
+    summary: Clé d’accès partagé symétrique secondaire stockée au format Base64.
+    description: ''
+  - name: --webhook-url --wh
+    summary: URL du webhook utilisée pour les demandes d’allocation personnalisées.
+    description: ''
+commands:
+- az_iot_dps_enrollment_create
+- az_iot_dps_enrollment_delete
+- az_iot_dps_enrollment_list
+- az_iot_dps_enrollment_show
+- az_iot_dps_enrollment_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les inscriptions dans un service Azure IoT Hub Device Provisioning.
+  ms.openlocfilehash: 336d5d89859ad6de15f9c3b3b4e3f4d421267dc2
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106902941"
