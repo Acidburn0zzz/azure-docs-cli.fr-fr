@@ -34,13 +34,17 @@ directCommands:
   syntax: >-
     az storage account file-service-properties update --account-name
                                                       [--add]
+                                                      [--auth-methods]
+                                                      [--channel-encryption]
                                                       [--delete-retention-days]
                                                       [--enable-delete-retention {false, true}]
                                                       [--enable-smb-multichannel {false, true}]
                                                       [--force-string]
+                                                      [--kerb-ticket-encryption]
                                                       [--remove]
                                                       [--resource-group]
                                                       [--set]
+                                                      [--versions]
   examples:
   - summary: Activez la stratégie de suppression réversible et définissez les jours de rétention de suppression sur 100 pour le service de fichiers dans le compte de stockage.
     syntax: az storage account file-service-properties update --enable-delete-retention true --delete-retention-days 100 -n mystorageaccount -g MyResourceGroup
@@ -50,6 +54,8 @@ directCommands:
     syntax: az storage account file-service-properties update --enable-smb-multichannel -n mystorageaccount -g MyResourceGroup
   - summary: Désactivez le paramètre Multichannel SMB pour le service de fichiers.
     syntax: az storage account file-service-properties update --enable-smb-multichannel false -n mystorageaccount -g MyResourceGroup
+  - summary: Définissez le paramètre SMB sécurisé pour le service de fichiers.
+    syntax: az storage account file-service-properties update --versions SMB2.1;SMB3.0;SMB3.1.1 --auth-methods NTLMv2;Kerberos --kerb-ticket-encryption RC4-HMAC;AES-256 --channel-encryption AES-CCM-128;AES-GCM-128;AES-GCM-256 -n mystorageaccount -g MyResourceGroup
   requiredParameters:
   - isRequired: true
     name: --account-name -n
@@ -58,6 +64,12 @@ directCommands:
   optionalParameters:
   - name: --add
     summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --auth-methods
+    summary: Méthodes d’authentification SMB prises en charge par le serveur. Les valeurs valides sont NTLMv2, Kerberos. Doit être passé comme une chaîne avec le délimiteur « ; ».
+    description: ''
+  - name: --channel-encryption
+    summary: Chiffrement du canal SMB pris en charge par le serveur. Les valeurs valides sont AES-CCM-128, AES-GCM-128, AES-GCM-256. Doit être passé comme une chaîne avec le délimiteur « ; ».
     description: ''
   - name: --delete-retention-days
     summary: Indiquez le nombre de jours pendant lesquels l’élément supprimé doit être conservé. La valeur minimale spécifiée peut être 1 et la valeur maximale peut être 365.
@@ -73,6 +85,9 @@ directCommands:
   - name: --force-string
     summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
     description: ''
+  - name: --kerb-ticket-encryption -k
+    summary: Chiffrement de ticket Kerberos pris en charge par le serveur. Les valeurs valides sont RC4-HMAC, AES-256. Doit être passé comme une chaîne avec le délimiteur « ; ».
+    description: ''
   - name: --remove
     summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
     description: ''
@@ -81,6 +96,9 @@ directCommands:
     description: ''
   - name: --set
     summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --versions
+    summary: Versions de protocole SMB prises en charge par le serveur. Les valeurs valides sont SMB 2.1, SMB 3.0, SMB 3.1.1. Doit être passé comme une chaîne avec le délimiteur « ; ».
     description: ''
 commands:
 - az_storage_account_file-service-properties_show
@@ -102,9 +120,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérez les propriétés du service de fichiers dans le compte de stockage.
-  ms.openlocfilehash: 4edaf49169e4d01a41b4d7dcaa103ec32d71b385
-  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.openlocfilehash: e0548a865390dfdd9e3c4a17a71f512b29fe129b
+  ms.sourcegitcommit: b7481a4363417987865106c343ef8e60c69c9170
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 04/07/2021
-  ms.locfileid: "106900817"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "107238556"
