@@ -1,47 +1,47 @@
 ### YamlMime:AzureCLIGroup
-uid: az_storage_blob_access
-name: az storage blob access
+uid: az_storage_blob_directory_access
+name: az storage blob directory access
 extensionInformation: >-
   > [!Note]
 
-  > Cette référence fait partie de l’extension **Storage-Preview** pour Azure CLI et requiert la version 2.21.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Storage BLOB Access** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
-summary: Gérer les propriétés de contrôle d’accès d’un objet BLOB lorsque l’espace de noms hiérarchique est activé.
+  > Cette référence fait partie de l’extension **Storage-Preview** pour Azure CLI et requiert la version 2.13.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ Storage BLOB Directory Access** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les propriétés de contrôle d’accès d’un répertoire lorsque l’espace de noms hiérarchique est activé.
 description: ''
 directCommands:
-- uid: az_storage_blob_access_set
-  name: az storage blob access set
-  summary: Définir les propriétés de contrôle d’accès d’un objet BLOB.
+- uid: az_storage_blob_directory_access_set
+  name: az storage blob directory access set
+  summary: Définissez les propriétés de contrôle d’accès d’un répertoire.
   description: ''
   syntax: >-
-    az storage blob access set --acl-spec
-                               --blob-name
-                               --container-name
-                               [--account-key]
-                               [--account-name]
-                               [--auth-mode {key, login}]
-                               [--connection-string]
-                               [--if-match]
-                               [--if-modified-since]
-                               [--if-none-match]
-                               [--if-unmodified-since]
-                               [--lease-id]
-                               [--sas-token]
-                               [--timeout]
+    az storage blob directory access set --acl-spec
+                                         --container-name
+                                         --directory-path
+                                         [--account-key]
+                                         [--account-name]
+                                         [--auth-mode {key, login}]
+                                         [--connection-string]
+                                         [--if-match]
+                                         [--if-modified-since]
+                                         [--if-none-match]
+                                         [--if-unmodified-since]
+                                         [--lease-id]
+                                         [--sas-token]
+                                         [--timeout]
   examples:
-  - summary: Définir les propriétés de contrôle d’accès d’un objet BLOB.
-    syntax: az storage blob access set -a "user::rwx,group::r--,other::---" -b MyBlob -c MyContainer --account-name MyStorageAccount
+  - summary: Définissez les propriétés de contrôle d’accès d’un répertoire.
+    syntax: az storage blob directory access set -a "user::rwx,group::r--,other::---" -d MyDirectoryPath -c MyContainer --account-name MyStorageAccount
   requiredParameters:
   - isRequired: true
     name: --acl-spec -a
     summary: 'Spécification de liste de contrôle d’accès (ACL) à définir sur le chemin d’accès au format «[default :] User | Group | Other | Mask : [ID d’entité ou UPN] : r |-w |-x |-, [default :] User | Group | Other | Mask : [ID d’entité ou UPN] : r |-w |-x |-,... par exemple, « utilisateur :: rwx, user:john.doe@contoso:rwx , groupe :: r--, autre ::---, Mask :: rwx ».'
     description: ''
   - isRequired: true
-    name: --blob-name -b
-    summary: Nom de l’objet BLOB.
-    description: ''
-  - isRequired: true
     name: --container-name -c
     summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --directory-path -d
+    summary: Nom du chemin d’accès du répertoire.
     description: ''
   optionalParameters:
   - name: --account-key
@@ -78,36 +78,36 @@ directCommands:
   - name: --timeout
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
-- uid: az_storage_blob_access_show
-  name: az storage blob access show
-  summary: Affichez les propriétés de contrôle d’accès d’un objet BLOB.
+- uid: az_storage_blob_directory_access_show
+  name: az storage blob directory access show
+  summary: Affichez les propriétés de contrôle d’accès d’un répertoire.
   description: ''
   syntax: >-
-    az storage blob access show --blob-name
-                                --container-name
-                                [--account-key]
-                                [--account-name]
-                                [--auth-mode {key, login}]
-                                [--connection-string]
-                                [--if-match]
-                                [--if-modified-since]
-                                [--if-none-match]
-                                [--if-unmodified-since]
-                                [--lease-id]
-                                [--sas-token]
-                                [--timeout]
-                                [--user-principle-names]
+    az storage blob directory access show --container-name
+                                          --directory-path
+                                          [--account-key]
+                                          [--account-name]
+                                          [--auth-mode {key, login}]
+                                          [--connection-string]
+                                          [--if-match]
+                                          [--if-modified-since]
+                                          [--if-none-match]
+                                          [--if-unmodified-since]
+                                          [--lease-id]
+                                          [--sas-token]
+                                          [--timeout]
+                                          [--user-principle-names]
   examples:
-  - summary: Affichez les propriétés de contrôle d’accès d’un objet BLOB.
-    syntax: az storage blob access show -b MyBlob -c MyContainer --account-name MyStorageAccount
+  - summary: Affichez les propriétés de contrôle d’accès d’un répertoire.
+    syntax: az storage blob directory access show -d MyDirectoryPath -c MyContainer --account-name MyStorageAccount
   requiredParameters:
-  - isRequired: true
-    name: --blob-name -b
-    summary: Nom de l’objet BLOB.
-    description: ''
   - isRequired: true
     name: --container-name -c
     summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --directory-path -d
+    summary: Nom du chemin d’accès du répertoire.
     description: ''
   optionalParameters:
   - name: --account-key
@@ -147,43 +147,43 @@ directCommands:
   - name: --user-principle-names
     summary: Valide uniquement lorsque l’espace de noms hiérarchique est activé pour le compte. Si la valeur est « true », les valeurs d’identité de l’utilisateur retournées pour le propriétaire, le groupe et la liste de contrôle d’accès sont transformées de Azure Active Directory ID d’objet en noms d’utilisateur principaux. Si la valeur est « false », les valeurs sont retournées en tant qu’ID d’objet Azure Active Directory. La valeur par défaut est false. Notez que les ID d’objet de groupe et d’application ne sont pas traduits, car ils n’ont pas de noms conviviaux uniques.
     description: ''
-- uid: az_storage_blob_access_update
-  name: az storage blob access update
-  summary: Mettez à jour les propriétés de contrôle d’accès d’un objet BLOB.
+- uid: az_storage_blob_directory_access_update
+  name: az storage blob directory access update
+  summary: Mettez à jour les propriétés de contrôle d’accès d’un répertoire.
   description: ''
   syntax: >-
-    az storage blob access update --blob-name
-                                  --container-name
-                                  [--account-key]
-                                  [--account-name]
-                                  [--acl-spec]
-                                  [--auth-mode {key, login}]
-                                  [--connection-string]
-                                  [--group]
-                                  [--if-match]
-                                  [--if-modified-since]
-                                  [--if-none-match]
-                                  [--if-unmodified-since]
-                                  [--lease-id]
-                                  [--owner]
-                                  [--permissions]
-                                  [--sas-token]
-                                  [--timeout]
+    az storage blob directory access update --container-name
+                                            --directory-path
+                                            [--account-key]
+                                            [--account-name]
+                                            [--acl-spec]
+                                            [--auth-mode {key, login}]
+                                            [--connection-string]
+                                            [--group]
+                                            [--if-match]
+                                            [--if-modified-since]
+                                            [--if-none-match]
+                                            [--if-unmodified-since]
+                                            [--lease-id]
+                                            [--owner]
+                                            [--permissions]
+                                            [--sas-token]
+                                            [--timeout]
   examples:
-  - summary: Mettez à jour les autorisations d’accès d’un objet BLOB.
-    syntax: az storage blob access update --permissions "rwxrwxrwx" -b MyBlob -c MyContainer --account-name MyStorageAccount
-  - summary: Mettre à jour l’utilisateur propriétaire d’un objet BLOB.
-    syntax: az storage blob access update --owner [entityId/UPN] -b MyBlob -c MyContainer --account-name MyStorageAccount
-  - summary: Mettez à jour le groupe propriétaire d’un objet BLOB.
-    syntax: az storage blob access update --group [entityId/UPN] -b MyBlob -c MyContainer --account-name MyStorageAccount
+  - summary: Mettez à jour les autorisations d’accès d’un répertoire.
+    syntax: az storage blob directory access update --permissions "rwxrwxrwx" -d MyDirectoryPath -c MyContainer --account-name MyStorageAccount
+  - summary: Mettre à jour l’utilisateur propriétaire d’un répertoire.
+    syntax: az storage blob directory access update --owner [entityId/UPN] -d MyDirectoryPath -c MyContainer --account-name MyStorageAccount
+  - summary: Mettez à jour le groupe propriétaire d’un répertoire.
+    syntax: az storage blob directory access update --group [entityId/UPN] -d MyDirectoryPath -c MyContainer --account-name MyStorageAccount
   requiredParameters:
-  - isRequired: true
-    name: --blob-name -b
-    summary: Nom de l’objet BLOB.
-    description: ''
   - isRequired: true
     name: --container-name -c
     summary: Nom du conteneur.
+    description: ''
+  - isRequired: true
+    name: --directory-path -d
+    summary: Nom du chemin d’accès du répertoire.
     description: ''
   optionalParameters:
   - name: --account-key
@@ -233,9 +233,9 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
 commands:
-- az_storage_blob_access_set
-- az_storage_blob_access_show
-- az_storage_blob_access_update
+- az_storage_blob_directory_access_set
+- az_storage_blob_directory_access_show
+- az_storage_blob_directory_access_update
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -252,10 +252,10 @@ globalParameters:
 - name: --verbose
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
-  description: Gérer les propriétés de contrôle d’accès d’un objet BLOB lorsque l’espace de noms hiérarchique est activé.
-  ms.openlocfilehash: ae61803650aa93c0d92de91fc79e3659e4c51956
-  ms.sourcegitcommit: d01260d847ea835a8bbab0e0db73d1b39f5c18ef
+  description: Gérer les propriétés de contrôle d’accès d’un répertoire lorsque l’espace de noms hiérarchique est activé.
+  ms.openlocfilehash: 5efc6efa6080cda777dbd304a2d3b28b0f4f9a45
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 04/13/2021
-  ms.locfileid: "107354449"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106896054"

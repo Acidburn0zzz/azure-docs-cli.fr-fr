@@ -1,0 +1,194 @@
+### YamlMime:AzureCLIGroup
+uid: az_dms_task
+name: az dms task
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **DMS-Preview** pour Azure CLI et requiert la version 2.0.43 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ DMS Task** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérez les tâches de niveau de service pour une instance de Database Migration Service.
+description: Les tâches de niveau de service sont des tâches de non-migration qui sont effectuées au niveau du service. C’est généralement le cas pour les tâches d’administration et de maintenance qui s’appliquent à l’agent et à la machine virtuelle du service.
+directCommands:
+- uid: az_dms_task_cancel
+  name: az dms task cancel
+  summary: Annulez une tâche de niveau de service si elle est actuellement en file d’attente ou en cours d’exécution.
+  description: ''
+  syntax: >-
+    az dms task cancel --name
+                       --resource-group
+                       --service-name
+  examples:
+  - summary: Annuler une tâche de niveau de service
+    syntax: az dms task cancel -g myresourcegroup --service-name mydms -n mytask
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la tâche. Une tâche DMS est l’activité qui effectue un travail lié au niveau du service. Plusieurs tâches peuvent être associées à un service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name
+    summary: Nom du service.
+    description: ''
+- uid: az_dms_task_create
+  name: az dms task create
+  summary: Créez et démarrez une tâche de niveau de service.
+  description: >-
+    Les tâches suivantes sont actuellement prises en charge :
+        1) Vérifier la compatibilité du pilote OCI par rapport à la source Oracle
+        2) Télécharger le package d’installation du pilote OCI
+        3) Installez un package de pilotes OCI déjà téléchargé.
+  syntax: >-
+    az dms task create --name
+                       --resource-group
+                       --service-name
+                       --task-options-json
+                       --task-type
+  examples:
+  - summary: Créer une tâche de niveau de service qui vérifie si le pilote OCI actuellement installé prend en charge
+    syntax: 'az dms task create -g myresourcegroup --service-name mydms -n checkocitask1 --task-options-json "{"serverVersion": "12.2.0.1"}" --task-type CheckOciDriver'
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la tâche. Une tâche DMS est l’activité qui effectue un travail lié au niveau du service. Plusieurs tâches peuvent être associées à un service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name
+    summary: Nom du service.
+    description: ''
+  - isRequired: true
+    name: --task-options-json
+    summary: Informations et paramètres relatifs au type de la tâche particulière. Il peut s’agir d’une chaîne au format JSON ou de l’emplacement d’un fichier contenant l’objet JSON. Consultez les exemples ci-dessous pour le format.
+    description: >-
+      Pour CheckOciDriver : {//la version de votre serveur source Oracle par rapport à laquelle vérifier la compatibilité du pilote.
+
+      Peut également avoir la valeur null pour obtenir la liste des versions prises en charge.
+
+      « serverVersion » : « Oracle source version »}
+
+
+      Pour UploadOciDriver : {"ociDriverPath" : chemin d’accès au partage de fichiers du package d’installation du pilote, "userName" : "nom d’utilisateur",//s’il est manquant ou null, vous êtes invité à "mot de passe" : "mot de passe"//s’il est manquant ou null (recommandé), vous êtes invité à le faire}
+
+
+      Pour InstallOciDriver : {//la sortie de la tâche UploadOciDriver peut être utilisée ici « ociDriverPackageName » : « OCI Driver Installer Package Name »}.
+  - isRequired: true
+    name: --task-type
+    summary: Type de tâche à créer. Les types pris en charge sont CheckOciDriver, UploadOciDriver et InstallOciDriver.
+    description: ''
+- uid: az_dms_task_delete
+  name: az dms task delete
+  summary: Supprimer une tâche de niveau de service.
+  description: ''
+  syntax: >-
+    az dms task delete --name
+                       --resource-group
+                       --service-name
+                       [--delete-running-tasks]
+                       [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la tâche. Une tâche DMS est l’activité qui effectue un travail lié au niveau du service. Plusieurs tâches peuvent être associées à un service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name
+    summary: Nom du service.
+    description: ''
+  optionalParameters:
+  - name: --delete-running-tasks
+    summary: Supprimer la tâche de niveau de service même si la tâche est en cours d’exécution.
+    description: ''
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_dms_task_list
+  name: az dms task list
+  summary: Répertoriez les tâches de niveau de service au sein d’une instance DMS. Certaines tâches peuvent avoir l’état inconnu, ce qui indique qu’une erreur s’est produite lors de l’interrogation de l’état de cette tâche.
+  description: ''
+  syntax: >-
+    az dms task list --name
+                     --resource-group
+                     [--task-type]
+  examples:
+  - summary: Répertorie toutes les tâches au sein d’une instance DMS.
+    syntax: az dms task list -g myresourcegroup -n mydms
+  - summary: Répertorier uniquement les tâches qui vérifient la compatibilité du pilote OCI au sein d’une instance DMS.
+    syntax: az dms task list -g myresourcegroup -n mydms --task-type Service.Check.OCI
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --task-type
+    summary: Type de tâche à répertorier. Pour obtenir la liste des types possibles, consultez « AZ DMS Check-Status ».
+    description: ''
+- uid: az_dms_task_show
+  name: az dms task show
+  summary: Affichez les détails d’une tâche de niveau de service. Utilisez l’extension « --Expand » pour obtenir plus de détails.
+  description: ''
+  syntax: >-
+    az dms task show --name
+                     --resource-group
+                     --service-name
+                     [--expand]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la tâche. Une tâche DMS est l’activité qui effectue un travail lié au niveau du service. Plusieurs tâches peuvent être associées à un service.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --service-name
+    summary: Nom du service.
+    description: ''
+  optionalParameters:
+  - name: --expand
+    summary: Développez la réponse pour fournir plus de détails. Utilisez avec « Command » pour afficher plus de détails sur la tâche. Utilisez avec « output » pour afficher les résultats de la migration de la tâche.
+    description: ''
+commands:
+- az_dms_task_cancel
+- az_dms_task_create
+- az_dms_task_delete
+- az_dms_task_list
+- az_dms_task_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Les tâches de niveau de service sont des tâches de non-migration qui sont effectuées au niveau du service. C’est généralement le cas pour les tâches d’administration et de maintenance qui s’appliquent à l’agent et à la machine virtuelle du service.
+  ms.openlocfilehash: 37b04f9cbf76b7940b25e198e5dcaef4bfe29190
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106896081"
