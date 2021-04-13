@@ -93,7 +93,7 @@ directCommands:
 - uid: az_network_front-door_frontend-endpoint_enable-https
   name: az network front-door frontend-endpoint enable-https
   summary: Activez le protocole HTTPs pour un domaine personnalisé.
-  description: Le protocole HTTPs pour un domaine personnalisé peut être activé à l’aide d’un certificat géré par le porte ou à l’aide de votre propre certificat dans Azure Key Vault. Par Azure Key Vault, les autorisations appropriées doivent être définies pour que la porte du serveur d’accès au coffre de clés soit accessible. Pour en savoir plus https://aka.ms/FrontDoorCustomDomain , consultez.
+  description: Le protocole HTTPs pour un domaine personnalisé peut être activé à l’aide d’un certificat géré par le porte ou à l’aide de votre propre certificat dans Azure Key Vault. Par Azure Key Vault, les autorisations appropriées doivent être définies pour que la porte du serveur d’accès au coffre de clés soit accessible. Pour en savoir plus, rendez-vous sur https://aka.ms/FrontDoorCustomDomain.
   syntax: >-
     az network front-door frontend-endpoint enable-https --front-door-name
                                                          --name
@@ -131,7 +131,7 @@ directCommands:
     summary: Nom de la Key Vault Secret représentant le certificat PFX complet.
     description: ''
   - name: --secret-version
-    summary: Version du Key Vault Secret représentant le certificat PFX complet.
+    summary: La version de la Key Vault Secret représentant le certificat PFX complet, la version « la plus récente » sera toujours utilisée si elle n’est pas spécifiée et votre certificat sera automatiquement pivoté lors de la génération d’une nouvelle version de la clé secrète.
     description: ''
   - name: --vault-id
     summary: L’ID de ressource du Key Vault contenant le certificat SSL.
@@ -173,6 +173,61 @@ directCommands:
     name: --resource-group -g
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
+- uid: az_network_front-door_frontend-endpoint_wait
+  name: az network front-door frontend-endpoint wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition du point de terminaison frontal de la porte avant soit remplie.
+  description: ''
+  syntax: >-
+    az network front-door frontend-endpoint wait --front-door-name
+                                                 --name
+                                                 --resource-group
+                                                 [--created]
+                                                 [--custom]
+                                                 [--deleted]
+                                                 [--exists]
+                                                 [--interval]
+                                                 [--timeout]
+                                                 [--updated]
+  examples:
+  - summary: Attendez le déploiement du certificat d’un point de terminaison avant.
+    syntax: az network front-door frontend-endpoint wait -g MyResourceGroup --name endpoint1 --front-door-name frontdoor1 --custom "customHttpsProvisioningState=='Enabled'"
+  requiredParameters:
+  - isRequired: true
+    name: --front-door-name -f
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom du point de terminaison frontend.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
 commands:
 - az_network_front-door_frontend-endpoint_create
 - az_network_front-door_frontend-endpoint_delete
@@ -180,6 +235,7 @@ commands:
 - az_network_front-door_frontend-endpoint_enable-https
 - az_network_front-door_frontend-endpoint_list
 - az_network_front-door_frontend-endpoint_show
+- az_network_front-door_frontend-endpoint_wait
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -197,9 +253,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérer les points de terminaison frontend de la porte d’avant.
-  ms.openlocfilehash: b98231ad93bacd29f701d8357423281d6647df5c
-  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.openlocfilehash: 9dc0c98b2c7023a4cd9f1a559b2de6353ba92298
+  ms.sourcegitcommit: b7481a4363417987865106c343ef8e60c69c9170
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 04/07/2021
-  ms.locfileid: "106902461"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "107236406"
