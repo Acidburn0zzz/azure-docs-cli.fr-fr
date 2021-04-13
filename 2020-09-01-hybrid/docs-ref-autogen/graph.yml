@@ -1,0 +1,78 @@
+### YamlMime:AzureCLIGroup
+uid: az_graph
+name: az graph
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de **graphe de ressources** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ Graph** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Interrogez les ressources gérées par Azure Resource Manager.
+description: Exécutez la requête de graphique AZ--Help pour obtenir une aide détaillée.
+directCommands:
+- uid: az_graph_query
+  name: az graph query
+  summary: Interrogez les ressources gérées par Azure Resource Manager.
+  description: https://aka.ms/AzureResourceGraph-QueryLanguagePour en savoir plus sur le langage de requête et parcourir les exemples, consultez.
+  syntax: >-
+    az graph query --graph-query
+                   [--first]
+                   [--include]
+                   [--skip]
+                   [--subscriptions]
+  examples:
+  - summary: Ressources de requête demandant un sous-ensemble de champs de ressource.
+    syntax: az graph query -q "project id, name, type, location, tags"
+  - summary: Interroger des ressources avec la sélection de champs, le filtrage et la synthèse.
+    syntax: az graph query -q "project id, type, location | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by location | top 3 by count_"
+  - summary: Demandez un sous-ensemble de résultats en ignorant 20 éléments et en obtenant les 10 suivants.
+    syntax: az graph query -q "where type =~ "Microsoft.Compute" | project name, tags" --first 10 --skip 20
+  - summary: Sélectionnez les abonnements à interroger.
+    syntax: az graph query -q "where type =~ "Microsoft.Compute" | project name, tags" --subscriptions 11111111-1111-1111-1111-111111111111, 22222222-2222-2222-2222-222222222222
+  requiredParameters:
+  - isRequired: true
+    name: --graph-query --q -q
+    summary: Requête graphique de ressource à exécuter.
+    description: ''
+  optionalParameters:
+  - name: --first
+    defaultValue: "100"
+    summary: 'Nombre maximal d’objets à retourner. Plage acceptée : 1-5000.'
+    description: ''
+  - name: --include
+    summary: 'Indique si le résultat doit être étendu avec les noms d’abonnement et de locataires. Valeurs possibles : None, displayName.'
+    description: ''
+  - name: --skip
+    summary: Ignore les N premiers objets, puis obtient les objets restants.
+    description: ''
+  - name: --subscriptions -s
+    summary: Liste des abonnements sur lesquels exécuter la requête. Par défaut, tous les abonnements accessibles sont interrogés.
+    description: ''
+commands:
+- az_graph_query
+- az_graph_shared-query
+- az_graph_shared-query_create
+- az_graph_shared-query_delete
+- az_graph_shared-query_list
+- az_graph_shared-query_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Exécutez la requête de graphique AZ--Help pour obtenir une aide détaillée.
+  ms.openlocfilehash: f1c10c65a6789c013184f5ee31320cd86f679a54
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106903032"
