@@ -32,6 +32,7 @@ directCommands:
                                  [--kerberos5i-rw]
                                  [--kerberos5p-r]
                                  [--kerberos5p-rw]
+                                 [--ldap-enabled {false, true}]
                                  [--policy-enforced {false, true}]
                                  [--protocol-types]
                                  [--remote-volume-resource-id]
@@ -136,6 +137,10 @@ directCommands:
     description: ''
   - name: --kerberos5p-rw
     summary: Kerberos5p l’accès en lecture et en écriture.
+    description: ''
+  - name: --ldap-enabled
+    parameterValueGroup: false, true
+    summary: Spécifie si le protocole LDAP est activé ou non pour un volume NFS donné.
     description: ''
   - name: --policy-enforced
     parameterValueGroup: false, true
@@ -273,7 +278,7 @@ directCommands:
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/netappfiles/_help.py
-- uid: az_netappfiles_volume_pool_change
+- uid: az_netappfiles_volume_pool-change
   name: az netappfiles volume pool-change
   summary: Obtient le volume et spécifié.
   description: ''
@@ -405,7 +410,6 @@ directCommands:
                                  [--name]
                                  [--policy-enforced {false, true}]
                                  [--pool-name]
-                                 [--protocol-types]
                                  [--remove]
                                  [--resource-group]
                                  [--service-level {Premium, Standard, Ultra}]
@@ -448,9 +452,6 @@ directCommands:
   - name: --pool-name -p
     summary: Nom du pool et.
     description: ''
-  - name: --protocol-types
-    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
-    description: ''
   - name: --remove
     summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
     description: ''
@@ -489,15 +490,15 @@ commands:
 - az_netappfiles_volume_backup_update
 - az_netappfiles_volume_create
 - az_netappfiles_volume_delete
-- az_netappfiles_volume_export_policy
-- az_netappfiles_volume_export_policy_add
-- az_netappfiles_volume_export_policy_list
-- az_netappfiles_volume_export_policy_remove
+- az_netappfiles_volume_export-policy
+- az_netappfiles_volume_export-policy_add
+- az_netappfiles_volume_export-policy_list
+- az_netappfiles_volume_export-policy_remove
 - az_netappfiles_volume_list
-- az_netappfiles_volume_pool_change
+- az_netappfiles_volume_pool-change
 - az_netappfiles_volume_replication
 - az_netappfiles_volume_replication_approve
-- az_netappfiles_volume_replication_re_initialize
+- az_netappfiles_volume_replication_re-initialize
 - az_netappfiles_volume_replication_remove
 - az_netappfiles_volume_replication_resume
 - az_netappfiles_volume_replication_status
@@ -522,11 +523,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 03/10/2021
+  ms.date: 03/26/2021
   description: Gérer les ressources de volume Azure NetApp Files (et).
-  ms.openlocfilehash: 2f6fc0dee1011959f99c913b216e973a43abac57
-  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
+  ms.openlocfilehash: 1defb92e819bbc80085c41f10c3f99ad40e9fed3
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/23/2021
-  ms.locfileid: "104914676"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106841283"
