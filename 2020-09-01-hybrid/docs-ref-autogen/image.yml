@@ -197,6 +197,83 @@ directCommands:
   - name: --tags
     summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
     description: ''
+- uid: az_image_copy
+  name: az image copy
+  summary: Copiez une image managée (ou une machine virtuelle) dans d’autres régions. Le disque source doit être disponible.
+  description: ''
+  syntax: >-
+    az image copy --source-object-name
+                  --source-resource-group
+                  --target-location
+                  --target-resource-group
+                  [--cleanup]
+                  [--export-as-snapshot]
+                  [--parallel-degree]
+                  [--source-type {image, vm}]
+                  [--tags]
+                  [--target-name]
+                  [--target-subscription]
+                  [--temporary-resource-group-name]
+                  [--timeout]
+  examples:
+  - summary: Copiez une image dans plusieurs régions et nettoyez à la fin.
+    syntax: >-
+      az image copy --source-resource-group mySources-rg --source-object-name myImage \
+          --target-location uksouth northeurope --target-resource-group "images-repo-rg" --cleanup
+  - summary: Utilisez une machine virtuelle déjà généralisée pour créer des images dans d’autres régions.
+    syntax: >-
+      az image copy --source-resource-group mySources-rg --source-object-name myVm \
+          --source-type vm --target-location uksouth northeurope --target-resource-group "images-repo-rg"
+  requiredParameters:
+  - isRequired: true
+    name: --source-object-name
+    summary: Nom de l’image ou de la ressource de machine virtuelle.
+    description: ''
+  - isRequired: true
+    name: --source-resource-group
+    summary: Nom du groupe de ressources de la ressource source.
+    description: ''
+  - isRequired: true
+    name: --target-location
+    summary: Liste des emplacements séparés par des espaces pour créer l’image (par exemple, westeurope, etc.).
+    description: ''
+  - isRequired: true
+    name: --target-resource-group
+    summary: Nom du groupe de ressources dans lequel créer des images.
+    description: ''
+  optionalParameters:
+  - name: --cleanup
+    summary: Incluez ce commutateur pour supprimer les ressources temporaires une fois l’opération terminée.
+    description: ''
+  - name: --export-as-snapshot
+    summary: Incluez ce commutateur pour exporter les copies sous forme d’instantanés au lieu d’images.
+    description: ''
+  - name: --parallel-degree
+    defaultValue: "-1"
+    summary: Nombre d’opérations de copie parallèle.
+    description: ''
+  - name: --source-type
+    defaultValue: image
+    parameterValueGroup: image, vm
+    summary: Image ou machine virtuelle.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+  - name: --target-name
+    summary: Nom de la dernière image qui sera créée.
+    description: ''
+  - name: --target-subscription
+    summary: Nom ou ID de l’abonnement dans lequel l’image finale doit être créée.
+    description: ''
+  - name: --temporary-resource-group-name --temporary_resource_group_name
+    defaultValue: image-copy-rg
+    summary: Nom du groupe de ressources dans lequel le compte de stockage temporaire sera créé. --temporary_resource_group_name sera dépréciée dans 0.2.7.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Durée en secondes de la fin de l’opération de copie. Augmentez cette fois si vous souhaitez copier des images volumineuses (disques) comme 512 Go ou plus.
+    description: ''
 commands:
 - az_image_builder
 - az_image_builder_cancel
@@ -213,7 +290,7 @@ commands:
 - az_image_builder_output_remove
 - az_image_builder_run
 - az_image_builder_show
-- az_image_builder_show_runs
+- az_image_builder_show-runs
 - az_image_builder_update
 - az_image_builder_wait
 - az_image_create
@@ -221,6 +298,7 @@ commands:
 - az_image_list
 - az_image_show
 - az_image_update
+- az_image_copy
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -238,9 +316,9 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   description: Gérer les images de machine virtuelle personnalisées.
-  ms.openlocfilehash: ccf6e7417a7c15287393d52ffa58d7d77f8996e5
-  ms.sourcegitcommit: f379fad9c4e873cd2ca68b5494b6c240a5016b5b
+  ms.openlocfilehash: 90ee78aff5a90da7b4e47178ab369c7c960a09ce
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 12/09/2020
-  ms.locfileid: "102821981"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106876678"
