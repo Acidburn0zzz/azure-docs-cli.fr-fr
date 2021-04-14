@@ -1,0 +1,283 @@
+### YamlMime:AzureCLIGroup
+uid: az_csvmware_vm
+name: az csvmware vm
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **csvmware** pour Azure CLI et requiert la version 2.0.67 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ csvmware VM** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les machines virtuelles VMware.
+description: ''
+directCommands:
+- uid: az_csvmware_vm_create
+  name: az csvmware vm create
+  summary: Créer une machine virtuelle VMware.
+  description: ''
+  syntax: >-
+    az csvmware vm create --name
+                          --private-cloud
+                          --resource-group
+                          --resource-pool
+                          --template
+                          [--cores]
+                          [--disk]
+                          [--expose-to-guest-vm {false, true}]
+                          [--location]
+                          [--nic]
+                          [--ram]
+  examples:
+  - summary: Création d’une machine virtuelle avec des paramètres par défaut à partir du modèle d’ordinateur virtuel.
+    syntax: az csvmware vm create -n MyVm -g MyResourceGroup -p MyPrivateCloud -r MyResourcePool --template MyVmTemplate
+  - summary: La création d’une machine virtuelle et l’ajout d’une carte réseau supplémentaire à la machine virtuelle avec le réseau virtuel MyVirtualNetwork, adaptateur VMXNET3, qui est alimenté au démarrage. Le nom entré dans la carte réseau est à des fins d’identification uniquement, pour déterminer s’il existe un nom de carte d’interface réseau dans le modèle d’ordinateur virtuel, sinon une carte réseau est créée et un nouveau nom est affecté. Supposons que le modèle d’ordinateur virtuel contient une carte réseau nommée « carte réseau 1 ».
+    syntax: az csvmware vm create -n MyVm -g MyResourceGroup -p MyPrivateCloud -r MyResourcePool --template MyVmTemplate --nic name=NicNameWouldBeAssigned virtual-network=MyVirtualNetwork adapter=VMXNET3 power-on-boot=True
+  - summary: Personnalisation des propriétés spécifiques d’une machine virtuelle. En remplaçant le nombre de cœurs par 2 et l’adaptateur de la carte réseau « carte réseau 1 » par e1000, à partir de ce qui est spécifié dans le modèle. Toutes les autres propriétés sont par défaut issues du modèle.
+    syntax: az csvmware vm create -n MyVm -g MyResourceGroup -p MyPrivateCloud -r MyResourcePool --template MyVmTemplate --cores 2 --nic name="Network adapter 1" adapter=E1000E
+  - summary: Personnalisation des propriétés spécifiques d’une machine virtuelle. En remplaçant la carte réseau « carte réseau 1 » par e1000, à partir de celle spécifiée dans le modèle, et en ajoutant également une autre carte réseau avec un réseau virtuel MyVirtualNetwork, adaptateur VMXNET3, qui est alimenté au démarrage.
+    syntax: az csvmware vm create -n MyVm -g MyResourceGroup -p MyPrivateCloud -r MyResourcePool --template MyVmTemplate --nic name="Network adapter 1" adapter=E1000E --nic name=NicNameWouldBeAssigned virtual-network=MyVirtualNetwork adapter=VMXNET3 power-on-boot=True
+  - summary: Création d’une machine virtuelle et ajout d’un disque supplémentaire à la machine virtuelle avec le contrôleur SCSI 0, le mode persistant et la taille de 41943040 Ko. Le nom entré sur le disque est à des fins d’identification uniquement, pour déterminer si un tel nom de disque existe dans le modèle d’ordinateur virtuel, sinon un disque est créé et un nouveau nom est affecté. Supposons que le modèle de machine virtuelle contient un disque portant le nom « Hard Disk 1 ».
+    syntax: az csvmware vm create -n MyVm -g MyResourceGroup -p MyPrivateCloud -r MyResourcePool --template MyVmTemplate --disk name=DiskNameWouldBeAssigned controller=1000 mode=persistent size=41943040
+  - summary: Personnalisation des propriétés spécifiques d’une machine virtuelle. Modification de la taille du disque « disque dur 1 » à 21943040 Ko, à partir de ce qui est spécifié dans le modèle, et ajout également d’un autre disque avec le contrôleur SCSI 0, le mode persistant et la taille de 41943040 Ko.
+    syntax: az csvmware vm create -n MyVm -g MyResourceGroup -p MyPrivateCloud -r MyResourcePool --template MyVmTemplate --disk name="Hard disk 1" size=21943040 --disk name=DiskNameWouldBeAssigned controller=1000 mode=persistent size=41943040
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la machine virtuelle.
+    description: ''
+  - isRequired: true
+    name: --private-cloud -p
+    summary: Nom ou ID du Cloud privé CloudSimple.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --resource-pool -r
+    summary: ID du pool de ressources VMware pour cette machine virtuelle dans votre Cloud privé CloudSimple. Vous pouvez également transmettre le baseName de l’ID.
+    description: ''
+  - isRequired: true
+    name: --template
+    summary: ID du modèle vSphere à partir duquel cet ordinateur virtuel sera créé. Vous pouvez également transmettre le baseName de l’ID.
+    description: ''
+  optionalParameters:
+  - name: --cores
+    summary: Nombre de cœurs de processeur requis. La valeur par défaut est extraite du modèle de machine virtuelle vSphere spécifié.
+    description: ''
+  - name: --disk
+    summary: Ajouter ou modifier des disques.
+    description: >-
+      Par défaut, les disques sont ajoutés en fonction du modèle de machine virtuelle vSphere.
+
+      Vous pouvez ajouter d’autres disques ou modifier certaines propriétés d’un disque spécifié dans le modèle d’ordinateur virtuel.
+
+      Plusieurs disques peuvent être spécifiés à l’aide de plusieurs `--disk` arguments.
+
+      Si un nom de disque existe déjà dans le modèle d’ordinateur virtuel, ce disque est modifié en fonction de l’entrée utilisateur.
+
+      Si un nom de disque n’existe pas dans le modèle d’ordinateur virtuel, un nouveau disque est créé et un nouveau nom lui est assigné.
+
+      Utilisation :--Disk Name = MyDiskName Controller = SCSIControllerID mode = IndependenceMode Size = DiskSizeInKB.
+  - name: --expose-to-guest-vm
+    parameterValueGroup: false, true
+    summary: Va exposer la virtualisation de l’UC complète au système d’exploitation invité. La valeur par défaut est extraite du modèle de machine virtuelle vSphere spécifié.
+    description: ''
+  - name: --location -l
+    summary: Région dans laquelle le cloud privé est présent. Si l’emplacement par défaut n’est pas configuré, la valeur par défaut est l’emplacement du groupe de ressources.
+    description: ''
+  - name: --nic
+    summary: Ajoutez ou modifiez des cartes réseau.
+    description: >-
+      Par défaut, les cartes réseau sont ajoutées en fonction du modèle de machine virtuelle vSphere.
+
+      Vous pouvez ajouter d’autres cartes réseau ou modifier certaines propriétés d’une carte réseau spécifiée dans le modèle d’ordinateur virtuel.
+
+      Plusieurs cartes réseau peuvent être spécifiées à l’aide de plusieurs `--nic` arguments.
+
+      Si un nom de carte d’interface réseau existe déjà dans le modèle d’ordinateur virtuel, cette carte d’interface réseau est modifiée en fonction de l’entrée utilisateur.
+
+      Si un nom de carte d’interface réseau n’existe pas dans le modèle d’ordinateur virtuel, une nouvelle carte réseau est créée et un nouveau nom lui est assigné.
+
+      Utilisation :--Nic Name = MyNicName Virtual-Network = MyNetwork carte = MyAdapter Power-on-Boot = true/false.
+  - name: --ram
+    summary: Quantité de mémoire en Mo. La valeur par défaut est extraite du modèle de machine virtuelle vSphere spécifié.
+    description: ''
+- uid: az_csvmware_vm_delete
+  name: az csvmware vm delete
+  summary: Supprimer une machine virtuelle VMware.
+  description: ''
+  syntax: >-
+    az csvmware vm delete --name
+                          --resource-group
+  examples:
+  - summary: Supprimer une machine virtuelle VMware.
+    syntax: az csvmware vm delete -n MyVm -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la machine virtuelle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_csvmware_vm_list
+  name: az csvmware vm list
+  summary: Répertorier les détails des machines virtuelles VMware dans l’abonnement actuel. Si le groupe de ressources est spécifié, seuls les détails des machines virtuelles dans ce groupe de ressources sont listés.
+  description: ''
+  syntax: az csvmware vm list [--resource-group]
+  examples:
+  - summary: Répertorier les détails des machines virtuelles VMware dans l’abonnement actuel.
+    syntax: az csvmware vm list
+  - summary: Répertorier les détails des machines virtuelles VMware dans un groupe de ressources particulier.
+    syntax: az csvmware vm list -g MyResourceGroup
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_csvmware_vm_show
+  name: az csvmware vm show
+  summary: Obtenir les détails d’une machine virtuelle VMware.
+  description: ''
+  syntax: >-
+    az csvmware vm show --name
+                        --resource-group
+  examples:
+  - summary: Obtenir les détails d’une machine virtuelle VMware.
+    syntax: az csvmware vm show -n MyVm -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la machine virtuelle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_csvmware_vm_start
+  name: az csvmware vm start
+  summary: Démarrez une machine virtuelle VMware.
+  description: ''
+  syntax: >-
+    az csvmware vm start --name
+                         --resource-group
+  examples:
+  - summary: Démarrez une machine virtuelle VMware.
+    syntax: az csvmware vm start -n MyVm -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la machine virtuelle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_csvmware_vm_stop
+  name: az csvmware vm stop
+  summary: Arrêter/redémarrer/suspendre un ordinateur virtuel VMware.
+  description: ''
+  syntax: >-
+    az csvmware vm stop --mode {poweroff, reboot, shutdown, suspend}
+                        --name
+                        --resource-group
+  examples:
+  - summary: Mettez hors tension une machine virtuelle VMware.
+    syntax: az csvmware vm stop -n MyVm -g MyResourceGroup --mode poweroff
+  - summary: Redémarrez une machine virtuelle VMware.
+    syntax: az csvmware vm stop -n MyVm -g MyResourceGroup --mode reboot
+  requiredParameters:
+  - isRequired: true
+    name: --mode
+    parameterValueGroup: poweroff, reboot, shutdown, suspend
+    summary: Mode d’arrêt.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la machine virtuelle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_csvmware_vm_update
+  name: az csvmware vm update
+  summary: Mettez à jour le champ Tags d’une machine virtuelle VMware.
+  description: ''
+  syntax: >-
+    az csvmware vm update --name
+                          --resource-group
+                          [--add]
+                          [--force-string]
+                          [--no-wait]
+                          [--remove]
+                          [--set]
+  examples:
+  - summary: Ajoutez ou mettez à jour une balise.
+    syntax: az csvmware vm update -n MyVm -g MyResourceGroup --set tags.tagName=tagValue
+  - summary: Supprimer une balise.
+    syntax: az csvmware vm update -n MyVm -g MyResourceGroup --remove tags.tagName
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la machine virtuelle.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+commands:
+- az_csvmware_vm_create
+- az_csvmware_vm_delete
+- az_csvmware_vm_disk
+- az_csvmware_vm_disk_add
+- az_csvmware_vm_disk_delete
+- az_csvmware_vm_disk_list
+- az_csvmware_vm_disk_show
+- az_csvmware_vm_list
+- az_csvmware_vm_nic
+- az_csvmware_vm_nic_add
+- az_csvmware_vm_nic_delete
+- az_csvmware_vm_nic_list
+- az_csvmware_vm_nic_show
+- az_csvmware_vm_show
+- az_csvmware_vm_start
+- az_csvmware_vm_stop
+- az_csvmware_vm_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les machines virtuelles VMware.
+  ms.openlocfilehash: 8c33f62240e329bb8e1faf86a842d51bde3d1e39
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106905936"
