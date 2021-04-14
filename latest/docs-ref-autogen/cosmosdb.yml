@@ -33,10 +33,12 @@ directCommands:
   syntax: >-
     az cosmosdb create --name
                        --resource-group
+                       [--assign-identity]
                        [--backup-interval]
                        [--backup-retention]
                        [--capabilities]
                        [--default-consistency-level {BoundedStaleness, ConsistentPrefix, Eventual, Session, Strong}]
+                       [--default-identity]
                        [--disable-key-based-metadata-write-access {false, true}]
                        [--enable-analytical-storage {false, true}]
                        [--enable-automatic-failover {false, true}]
@@ -71,6 +73,9 @@ directCommands:
     summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
     description: ''
   optionalParameters:
+  - name: --assign-identity
+    summary: Accepter les identités affectées par le système ou l’utilisateur, séparées par des espaces. Utilisez « [System] » pour faire référence à l’identité attribuée par le système. Actuellement, seule l’identité attribuée par le système est prise en charge.
+    description: ''
   - name: --backup-interval
     summary: Fréquence (en minutes) à laquelle les sauvegardes sont effectuées (uniquement pour les comptes avec des sauvegardes en mode périodique).
     description: ''
@@ -83,6 +88,9 @@ directCommands:
   - name: --default-consistency-level
     parameterValueGroup: BoundedStaleness, ConsistentPrefix, Eventual, Session, Strong
     summary: Niveau de cohérence par défaut du compte de base de données Cosmos DB.
+    description: ''
+  - name: --default-identity
+    summary: Identité principale permettant d’accéder au coffre de clés dans les fonctionnalités liées à CMK. par exemple, « FirstPartyIdentity », « SystemAssignedIdentity » et bien plus encore.
     description: ''
   - name: --disable-key-based-metadata-write-access
     parameterValueGroup: false, true
@@ -391,6 +399,7 @@ directCommands:
                        [--backup-retention]
                        [--capabilities]
                        [--default-consistency-level {BoundedStaleness, ConsistentPrefix, Eventual, Session, Strong}]
+                       [--default-identity]
                        [--disable-key-based-metadata-write-access {false, true}]
                        [--enable-analytical-storage {false, true}]
                        [--enable-automatic-failover {false, true}]
@@ -428,6 +437,9 @@ directCommands:
   - name: --default-consistency-level
     parameterValueGroup: BoundedStaleness, ConsistentPrefix, Eventual, Session, Strong
     summary: Niveau de cohérence par défaut du compte de base de données Cosmos DB.
+    description: ''
+  - name: --default-identity
+    summary: Identité principale permettant d’accéder au coffre de clés dans les fonctionnalités liées à CMK. par exemple, « FirstPartyIdentity », « SystemAssignedIdentity » et bien plus encore.
     description: ''
   - name: --disable-key-based-metadata-write-access
     parameterValueGroup: false, true
@@ -603,6 +615,10 @@ commands:
 - az_cosmosdb_gremlin_graph_throughput_show
 - az_cosmosdb_gremlin_graph_throughput_update
 - az_cosmosdb_gremlin_graph_update
+- az_cosmosdb_identity
+- az_cosmosdb_identity_assign
+- az_cosmosdb_identity_remove
+- az_cosmosdb_identity_show
 - az_cosmosdb_keys
 - az_cosmosdb_keys_list
 - az_cosmosdb_keys_regenerate
@@ -744,11 +760,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 02/24/2021
+  ms.date: 04/08/2021
   description: Gérer les comptes de base de données Azure Cosmos DB.
-  ms.openlocfilehash: 1584d0f299a70e02d47bbf2781c1545c4ab5e190
-  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.openlocfilehash: f877bb0746eda9fe1524e88fcef660efc38fa20e
+  ms.sourcegitcommit: b7481a4363417987865106c343ef8e60c69c9170
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 04/07/2021
-  ms.locfileid: "106845381"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "107230643"
