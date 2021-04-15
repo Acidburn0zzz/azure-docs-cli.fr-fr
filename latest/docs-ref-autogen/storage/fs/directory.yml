@@ -53,7 +53,7 @@ directCommands:
     summary: Métadonnées dans les paires clé/valeur séparées par des espaces. Cela remplace toutes les métadonnées existantes.
     description: ''
   - name: --permissions
-    summary: Autorisations d’accès POSIX pour le propriétaire du fichier, le groupe propriétaire du fichier et d’autres. Chaque classe peut recevoir une autorisation de lecture, d’écriture ou d’exécution. Le bit permanent est également pris en charge. Les notations octales symboliques (rwxrw-RW) et à 4 chiffres (par exemple, 0766) sont prises en charge. Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#levels-of-permission">https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#levels-of-permission</a> .
+    summary: Autorisations d’accès POSIX pour le propriétaire du fichier, le groupe propriétaire du fichier et d’autres. Chaque classe peut recevoir une autorisation de lecture, d’écriture ou d’exécution. Le bit permanent est également pris en charge. Les notations octales symboliques (rwxrw-RW) et à 4 chiffres (par exemple, 0766) sont prises en charge. Pour plus d’informations, consultez https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#levels-of-permission .
     description: ''
   - name: --sas-token
     summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
@@ -65,7 +65,7 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
   - name: --umask
-    summary: Lorsque vous créez un fichier ou un répertoire et que le dossier parent n’a pas d’ACL par défaut, l’umask limite les autorisations du fichier ou du répertoire à créer. L’autorisation obtenue est donnée par p & ^ u, où p est l’autorisation et que vous êtes l’umask. Pour plus d’informations, consultez <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#umask">https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#umask</a> .
+    summary: Lorsque vous créez un fichier ou un répertoire et que le dossier parent n’a pas d’ACL par défaut, l’umask limite les autorisations du fichier ou du répertoire à créer. L’autorisation obtenue est donnée par p & ^ u, où p est l’autorisation et que vous êtes l’umask. Pour plus d’informations, consultez https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#umask .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
 - uid: az_storage_fs_directory_delete
@@ -122,6 +122,66 @@ directCommands:
     description: ''
   - name: --yes -y
     summary: Ne pas demander de confirmation.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_fs_directory_download
+  name: az storage fs directory download
+  summary: Téléchargez les fichiers à partir du répertoire dans ADLS Gen2 système de fichiers vers un chemin d’accès au fichier local.
+  description: ''
+  syntax: >-
+    az storage fs directory download --destination-path
+                                     --file-system
+                                     [--account-key]
+                                     [--account-name]
+                                     [--auth-mode {key, login}]
+                                     [--connection-string]
+                                     [--recursive]
+                                     [--sas-token]
+                                     [--source-path]
+                                     [--subscription]
+  examples:
+  - summary: Téléchargez un fichier unique dans un répertoire dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory download -f myfilesystem --account-name mystorageaccount -s "path/to/file" -d "<local-path>"
+  - summary: Téléchargez la totalité du système de fichiers ADLS Gen2.
+    syntax: az storage fs directory download -f myfilesystem --account-name mystorageaccount  -d "<local-path>" --recursive
+  - summary: Téléchargez l’intégralité du répertoire dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory download -f myfilesystem --account-name mystorageaccount -s SourceDirectoryPath -d "<local-path>" --recursive
+  - summary: Téléchargez un sous-répertoire entier dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory download -f myfilesystem --account-name mystorageaccount -s "path/to/subdirectory" -d "<local-path>" --recursive
+  requiredParameters:
+  - isRequired: true
+    name: --destination-path -d
+    summary: Chemin d’accès au répertoire local de destination à télécharger.
+    description: ''
+  - isRequired: true
+    name: --file-system -f
+    summary: Le système de fichiers source de téléchargement.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --recursive -r
+    summary: Télécharger des fichiers de manière récursive. S’il est activé, tous les fichiers, y compris les fichiers dans les sous-répertoires, seront téléchargés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --source-path -s
+    summary: Chemin d’accès au répertoire source de téléchargement. Il doit s’agir d’un chemin d’accès absolu au système de fichiers.
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
 - uid: az_storage_fs_directory_exists
@@ -356,9 +416,70 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_fs_directory_upload
+  name: az storage fs directory upload
+  summary: Chargez des fichiers ou des sous-répertoires dans un répertoire dans ADLS Gen2 système de fichiers.
+  description: ''
+  syntax: >-
+    az storage fs directory upload --file-system
+                                   --source
+                                   [--account-key]
+                                   [--account-name]
+                                   [--auth-mode {key, login}]
+                                   [--connection-string]
+                                   [--destination-path]
+                                   [--recursive]
+                                   [--sas-token]
+                                   [--subscription]
+  examples:
+  - summary: Chargez un seul fichier dans un répertoire d’objets BLOB de stockage.
+    syntax: az storage fs directory upload -f myfilesystem --account-name mystorageaccount -s "path/to/file" -d directory
+  - summary: Chargez un répertoire local dans le répertoire racine de ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory upload -f myfilesystem --account-name mystorageaccount -s "path/to/directory" --recursive
+  - summary: Chargez un répertoire local dans un répertoire dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory upload -f myfilesystem --account-name mystorageaccount -s "path/to/directory" -d directory --recursive
+  - summary: Chargez un ensemble de fichiers dans un répertoire local dans un répertoire dans ADLS Gen2 système de fichiers.
+    syntax: az storage fs directory upload -f myfilesystem --account-name mystorageaccount -s "path/to/file*" -d directory --recursive
+  requiredParameters:
+  - isRequired: true
+    name: --file-system -f
+    summary: Le système de fichiers de destination de téléchargement.
+    description: ''
+  - isRequired: true
+    name: --source -s
+    summary: Chemin d’accès du fichier source à partir duquel effectuer le téléchargement.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --destination-path -d
+    summary: Chemin d’accès au répertoire de destination du téléchargement. Il doit s’agir d’un chemin d’accès absolu au système de fichiers. Si le chemin d’accès de destination spécifié n’existe pas, un nouveau chemin d’accès de répertoire sera créé.
+    description: ''
+  - name: --recursive -r
+    summary: Charger des fichiers de manière récursive. S’il est activé, tous les fichiers, y compris les fichiers dans les sous-répertoires, seront téléchargés.
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --subscription
+    summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
 commands:
 - az_storage_fs_directory_create
 - az_storage_fs_directory_delete
+- az_storage_fs_directory_download
 - az_storage_fs_directory_exists
 - az_storage_fs_directory_list
 - az_storage_fs_directory_metadata
@@ -366,6 +487,7 @@ commands:
 - az_storage_fs_directory_metadata_update
 - az_storage_fs_directory_move
 - az_storage_fs_directory_show
+- az_storage_fs_directory_upload
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -383,11 +505,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 03/16/2021
+  ms.date: 04/08/2021
   description: Gérer les répertoires dans Azure Data Lake Storage Gen2 compte.
-  ms.openlocfilehash: b5558d2a9130c828b8135ba473636a7025759565
-  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
+  ms.openlocfilehash: 7b079d0057706b68209bbb5f7d2f3c22a61e48ce
+  ms.sourcegitcommit: b7481a4363417987865106c343ef8e60c69c9170
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/23/2021
-  ms.locfileid: "104916834"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "107249895"
