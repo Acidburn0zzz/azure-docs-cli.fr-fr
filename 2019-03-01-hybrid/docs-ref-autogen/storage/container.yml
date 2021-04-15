@@ -189,7 +189,7 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
-- uid: az_storage_container_generate_sas
+- uid: az_storage_container_generate-sas
   name: az storage container generate-sas
   summary: Générez un jeton SAP pour un conteneur de stockage.
   description: ''
@@ -340,7 +340,7 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
-- uid: az_storage_container_set_permission
+- uid: az_storage_container_set-permission
   name: az storage container set-permission
   summary: Définit les autorisations pour le conteneur spécifié ou les stratégies d’accès stockées qui peuvent être utilisées avec les signatures d’accès partagé.
   description: Les autorisations indiquent si les objets blob dans un conteneur sont accessibles publiquement.
@@ -449,7 +449,7 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
-- uid: az_storage_container_show_permission
+- uid: az_storage_container_show-permission
   name: az storage container show-permission
   summary: Obtient les autorisations pour le conteneur spécifié.
   description: Les autorisations indiquent si les données de conteneur sont accessibles publiquement.
@@ -495,11 +495,53 @@ directCommands:
     summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
     description: ''
   editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/storage/_help.py
+- uid: az_storage_container_restore
+  name: az storage container restore
+  summary: Restaure le conteneur supprimé de manière réversible.
+  description: "L’opération est réussie uniquement si elle est utilisée dans le nombre de jours spécifié défini dans la stratégie de rétention de suppression.  .. VersionAdded :: 12.4.0 cette opération a été introduite dans la version de l’API' 2019-12-12 '."
+  syntax: >-
+    az storage container restore --deleted-version
+                                 --name
+                                 [--account-key]
+                                 [--account-name]
+                                 [--auth-mode {key, login}]
+                                 [--connection-string]
+                                 [--sas-token]
+                                 [--timeout]
+  requiredParameters:
+  - isRequired: true
+    name: --deleted-version
+    summary: Spécifiez la version du conteneur supprimé à restaurer.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Spécifiez le nom du conteneur supprimé à restaurer.
+    description: ''
+  optionalParameters:
+  - name: --account-key
+    summary: 'Clé du compte de stockage. Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_KEY.'
+    description: ''
+  - name: --account-name
+    summary: 'Nom du compte de stockage. Variable d’environnement associée : AZURE_STORAGE_ACCOUNT. Doit être utilisé conjointement avec une clé de compte de stockage ou un jeton SAS. Si aucun n’est présent, la commande essaiera d’interroger la clé de compte de stockage à l’aide du compte Azure authentifié. Si un grand nombre de commandes de stockage sont exécutées, le quota d’API peut être atteint.'
+    description: ''
+  - name: --auth-mode
+    parameterValueGroup: key, login
+    summary: 'Mode dans lequel exécuter la commande. le mode « connexion » utilise directement vos informations d’identification de connexion pour l’authentification. Le mode « clé » hérité tente de rechercher une clé de compte si aucun paramètre d’authentification n’est fourni pour le compte. Variable d’environnement : AZURE_STORAGE_AUTH_MODE.'
+    description: ''
+  - name: --connection-string
+    summary: 'Chaîne de connexion du compte de stockage. Variable d’environnement : AZURE_STORAGE_CONNECTION_STRING.'
+    description: ''
+  - name: --sas-token
+    summary: 'Une signature d’accès partagé (SAP). Doit être utilisé conjointement avec le nom du compte de stockage. Variable d’environnement : AZURE_STORAGE_SAS_TOKEN.'
+    description: ''
+  - name: --timeout
+    summary: Délai d’expiration de la demande en secondes. S’applique à chaque appel au service.
+    description: ''
 commands:
 - az_storage_container_create
 - az_storage_container_delete
 - az_storage_container_exists
-- az_storage_container_generate_sas
+- az_storage_container_generate-sas
 - az_storage_container_lease
 - az_storage_container_lease_acquire
 - az_storage_container_lease_break
@@ -516,9 +558,10 @@ commands:
 - az_storage_container_policy_list
 - az_storage_container_policy_show
 - az_storage_container_policy_update
-- az_storage_container_set_permission
+- az_storage_container_set-permission
 - az_storage_container_show
-- az_storage_container_show_permission
+- az_storage_container_show-permission
+- az_storage_container_restore
 globalParameters:
 - name: --debug
   summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
@@ -536,11 +579,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 03/16/2021
+  ms.date: 03/22/2021
   description: Spécifiez l’un des paramètres d’authentification suivants pour vos commandes :--auth-mode,--Account-Key,--Connection-String,--SAS-token. Vous pouvez également utiliser les variables d’environnement correspondantes pour stocker vos informations d’authentification, par exemple AZURE_STORAGE_KEY, AZURE_STORAGE_CONNECTION_STRING et AZURE_STORAGE_SAS_TOKEN.
-  ms.openlocfilehash: 041051da52c75afacbd672ab27184c82d0b29dd3
-  ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
+  ms.openlocfilehash: 13fcc2dec6a77f4cbe8a501ad03144708b9df147
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 03/23/2021
-  ms.locfileid: "104918568"
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106839839"

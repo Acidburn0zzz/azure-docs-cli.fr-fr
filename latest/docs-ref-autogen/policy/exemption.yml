@@ -1,0 +1,241 @@
+### YamlMime:AzureCLIGroup
+uid: az_policy_exemption
+name: az policy exemption
+summary: Gérer les exemptions de stratégie de ressource.
+description: ''
+directCommands:
+- uid: az_policy_exemption_create
+  name: az policy exemption create
+  summary: Créer une exemption de stratégie.
+  description: ''
+  syntax: >-
+    az policy exemption create --name
+                               [--description]
+                               [--display-name]
+                               [--exemption-category {Mitigated, Waiver}]
+                               [--expires-on]
+                               [--metadata]
+                               [--policy-assignment]
+                               [--policy-definition-reference-ids]
+                               [--resource-group]
+                               [--scope]
+  examples:
+  - summary: Créer une exemption de stratégie dans l’abonnement par défaut.
+    syntax: >-
+      az policy exemption create -n exemptTestVM \
+          --policy-assignment "/subscriptions/mySubId/providers/Microsoft.Authorization/policyAssignments/limitVMSku" \
+          --exemption-category "Waiver"
+  - summary: Créez une exemption de stratégie dans le groupe de ressources.
+    syntax: >-
+      az policy exemption create -n exemptTestVM \
+          --policy-assignment "/subscriptions/mySubId/providers/Microsoft.Authorization/policyAssignments/limitVMSku" \
+          --exemption-category "Waiver" \
+          --resource-group "myResourceGroup"
+  - summary: Créer une exemption de stratégie dans un groupe d’administration.
+    syntax: >-
+      az policy exemption create -n exemptTestVM \
+          --policy-assignment "/providers/Microsoft.Management/managementGroups/myMG/providers/Microsoft.Authorization/policyAssignments/limitVMSku" \
+          --exemption-category "Waiver" \
+          --scope "/providers/Microsoft.Management/managementGroups/myMG"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la nouvelle exemption de stratégie.
+    description: ''
+  optionalParameters:
+  - name: --description
+    summary: Description de l’exemption de stratégie.
+    description: ''
+  - name: --display-name
+    summary: Nom d’affichage de l’exemption de stratégie.
+    description: ''
+  - name: --exemption-category -e
+    parameterValueGroup: Mitigated, Waiver
+    summary: Catégorie d’exemption de stratégie de l’exemption de stratégie.
+    description: ''
+  - name: --expires-on
+    summary: 'Date et heure d’expiration (au format UTC ISO 8601 AAAA-MM-JJThh : mm : ssZ) de l’exemption de stratégie.'
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces.
+    description: ''
+  - name: --policy-assignment -a
+    summary: ID d’attribution de stratégie référencé pour l’exemption de stratégie.
+    description: ''
+  - name: --policy-definition-reference-ids -r
+    summary: ID de référence de la définition de stratégie à exempter dans l’initiative (ensemble de stratégies).
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources dans lequel la stratégie sera appliquée.
+    description: ''
+  - name: --scope
+    summary: Étendue à laquelle s’applique cette exemption de stratégie.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_exemption_delete
+  name: az policy exemption delete
+  summary: Supprimer une exemption de stratégie.
+  description: ''
+  syntax: >-
+    az policy exemption delete --name
+                               [--resource-group]
+                               [--scope]
+  examples:
+  - summary: Supprimer une exemption de stratégie.
+    syntax: az policy exemption delete --name MyPolicyExemption --resource-group "myResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’exemption de stratégie.
+    description: ''
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Groupe de ressources dans lequel la stratégie sera appliquée.
+    description: ''
+  - name: --scope
+    summary: Étendue à laquelle s’applique cette exemption de stratégie.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_exemption_list
+  name: az policy exemption list
+  summary: Répertorier les exemptions de stratégie.
+  description: ''
+  syntax: >-
+    az policy exemption list [--disable-scope-strict-match]
+                             [--query-examples]
+                             [--resource-group]
+                             [--scope]
+  optionalParameters:
+  - name: --disable-scope-strict-match -i
+    summary: Incluez les exemptions de stratégie héritées de l’étendue parente ou de l’étendue enfant.
+    description: ''
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources dans lequel la stratégie sera appliquée.
+    description: ''
+  - name: --scope
+    summary: Étendue à laquelle s’applique cette exemption de stratégie.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_exemption_show
+  name: az policy exemption show
+  summary: Affichez une exemption de stratégie.
+  description: ''
+  syntax: >-
+    az policy exemption show --name
+                             [--query-examples]
+                             [--resource-group]
+                             [--scope]
+  examples:
+  - summary: Affichez une exemption de stratégie.
+    syntax: az policy exemption show --name MyPolicyExemption --resource-group "myResourceGroup"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’exemption de stratégie.
+    description: ''
+  optionalParameters:
+  - name: --query-examples
+    summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources dans lequel la stratégie sera appliquée.
+    description: ''
+  - name: --scope
+    summary: Étendue à laquelle s’applique cette exemption de stratégie.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+- uid: az_policy_exemption_update
+  name: az policy exemption update
+  summary: Mettre à jour une exemption de stratégie.
+  description: ''
+  syntax: >-
+    az policy exemption update --name
+                               [--description]
+                               [--display-name]
+                               [--exemption-category {Mitigated, Waiver}]
+                               [--expires-on]
+                               [--metadata]
+                               [--policy-definition-reference-ids]
+                               [--resource-group]
+                               [--scope]
+  examples:
+  - summary: Mettre à jour une exemption de stratégie.
+    syntax: >-
+      az policy exemption update -n exemptTestVM \
+          --exemption-category "Mitigated"
+  - summary: Mettez à jour une exemption de stratégie dans le groupe de ressources.
+    syntax: >-
+      az policy exemption update -n exemptTestVM \
+          --exemption-category "Mitigated" \
+          --resource-group "myResourceGroup"
+  - summary: Mettre à jour une exemption de stratégie dans un groupe d’administration.
+    syntax: >-
+      az policy exemption update -n exemptTestVM \
+          --exemption-category "Mitigated" \
+          --scope "/providers/Microsoft.Management/managementGroups/myMG"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de l’exemption de stratégie.
+    description: ''
+  optionalParameters:
+  - name: --description
+    summary: Description de l’exemption de stratégie.
+    description: ''
+  - name: --display-name
+    summary: Nom d’affichage de l’exemption de stratégie.
+    description: ''
+  - name: --exemption-category -e
+    parameterValueGroup: Mitigated, Waiver
+    summary: Catégorie d’exemption de stratégie de l’exemption de stratégie.
+    description: ''
+  - name: --expires-on
+    summary: 'Date et heure d’expiration (au format UTC ISO 8601 AAAA-MM-JJThh : mm : ssZ) de l’exemption de stratégie.'
+    description: ''
+  - name: --metadata
+    summary: Métadonnées dans les paires clé/valeur séparées par des espaces.
+    description: ''
+  - name: --policy-definition-reference-ids -r
+    summary: ID de référence de la définition de stratégie à exempter dans l’initiative (ensemble de stratégies).
+    description: ''
+  - name: --resource-group -g
+    summary: Groupe de ressources dans lequel la stratégie sera appliquée.
+    description: ''
+  - name: --scope
+    summary: Étendue à laquelle s’applique cette exemption de stratégie.
+    description: ''
+  editLink: https://github.com/Azure/azure-cli/blob/dev/src/azure-cli/azure/cli/command_modules/resource/_help.py
+commands:
+- az_policy_exemption_create
+- az_policy_exemption_delete
+- az_policy_exemption_list
+- az_policy_exemption_show
+- az_policy_exemption_update
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
+  ms.date: 04/09/2021
+  description: Gérer les exemptions de stratégie de ressource.
+  ms.openlocfilehash: e3ec08acacf1a9d7169ea7fd5e2bb12aa0176002
+  ms.sourcegitcommit: d01260d847ea835a8bbab0e0db73d1b39f5c18ef
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/13/2021
+  ms.locfileid: "107366590"
