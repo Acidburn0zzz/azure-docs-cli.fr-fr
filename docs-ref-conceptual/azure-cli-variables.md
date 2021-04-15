@@ -6,13 +6,13 @@ ms.author: dbradish
 ms.service: azure-cli
 ms.topic: how-to
 ms.date: 03/01/2021
-ms.custom: template-how-to
-ms.openlocfilehash: 6b43bb426ae0ad3e9d7b5c46fbf59ff1552d1560
-ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
+ms.custom: template-how-to, devx-track-azurecli
+ms.openlocfilehash: 4c8f9a4146e7343376eff670eabb1cdb89f4e204
+ms.sourcegitcommit: bff138c7d3cd3ce8c90c5809b0e812be71959504
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/26/2021
-ms.locfileid: "105581646"
+ms.lasthandoff: 04/14/2021
+ms.locfileid: "107385805"
 ---
 # <a name="specifying-values-in-azure-cli-commands"></a>Spécification de valeurs dans les commandes Azure CLI
 

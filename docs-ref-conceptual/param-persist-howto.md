@@ -9,13 +9,13 @@ ms.date: 10/30/2020
 ms.topic: conceptual
 ms.devlang: azurecli
 ms.technology: azure-cli
-ms.custom: devex-track-azurecli
-ms.openlocfilehash: 128847cb14b48fef326859eb77aab9e66e88b6fd
-ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 32d9435447c4cdcd5a0c7148b8ed02729cbe9088
+ms.sourcegitcommit: bff138c7d3cd3ce8c90c5809b0e812be71959504
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/23/2021
-ms.locfileid: "104928796"
+ms.lasthandoff: 04/14/2021
+ms.locfileid: "107385771"
 ---
 # <a name="azure-cli-persisted-parameter"></a>Paramètre persistant Azure CLI
 

@@ -6,13 +6,13 @@ ms.author: dbradish
 ms.service: azure-supportability
 ms.topic: how-to
 ms.date: 02/12/2021
-ms.custom: template-how-to
-ms.openlocfilehash: 297b8b65973a7d2b3d377a56865f1cbdd42e08f2
-ms.sourcegitcommit: 936ec07eb1c56e24d8000cc24a2a0e05102e0cf4
+ms.custom: template-how-to, devx-track-azurecli
+ms.openlocfilehash: 45387d352d94dcc044861e540932b38b954a16be
+ms.sourcegitcommit: bff138c7d3cd3ce8c90c5809b0e812be71959504
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/23/2021
-ms.locfileid: "104911122"
+ms.lasthandoff: 04/14/2021
+ms.locfileid: "107385788"
 ---
 # <a name="create-an-azure-support-request-in-azure-cli"></a>Créer une demande de support Azure dans Azure CLI
 

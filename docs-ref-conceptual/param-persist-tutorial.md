@@ -9,13 +9,13 @@ ms.date: 11/25/2020
 ms.topic: conceptual
 ms.devlang: azurecli
 ms.technology: azure-cli
-ms.custom: devex-track-azurecli
-ms.openlocfilehash: a5c46dcc428cc491e7153633c269faacfa2cebfc
-ms.sourcegitcommit: 8bff8b2ce4492ab99ad39390e4c802fb4f4425c8
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 9b826d41ad01a26392601c560d2379c5eafe6d8e
+ms.sourcegitcommit: bff138c7d3cd3ce8c90c5809b0e812be71959504
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/26/2021
-ms.locfileid: "105581561"
+ms.lasthandoff: 04/14/2021
+ms.locfileid: "107385754"
 ---
 # <a name="tutorial-use-persisted-parameters-to-simplify-sequential-azure-cli-commands"></a>Tutoriel : Utiliser des paramètres persistants pour simplifier les commandes Azure CLI séquentielles
 
