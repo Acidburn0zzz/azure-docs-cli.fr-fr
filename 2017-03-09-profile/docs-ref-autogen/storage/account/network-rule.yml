@@ -1,0 +1,147 @@
+### YamlMime:AzureCLIGroup
+uid: az_storage_account_network-rule
+name: az storage account network-rule
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Storage-Preview** pour Azure CLI et requiert la version 2.13.0 ou ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ storage account Network-Rule** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les règles de réseau.
+description: ''
+directCommands:
+- uid: az_storage_account_network-rule_add
+  name: az storage account network-rule add
+  summary: Ajoutez une règle de réseau.
+  description: Des règles peuvent être créées pour une adresse IPv4, une plage d’adresses (format CIDR) ou un sous-réseau de réseau virtuel.
+  syntax: >-
+    az storage account network-rule add --account-name
+                                        --resource-group
+                                        [--action]
+                                        [--ip-address]
+                                        [--resource-id]
+                                        [--subnet]
+                                        [--tenant-id]
+                                        [--vnet-name]
+  examples:
+  - summary: Créer une règle pour autoriser une plage d’adresses spécifique.
+    syntax: az storage account network-rule add -g myRg --account-name mystorageaccount --ip-address 23.45.1.0/24
+  - summary: Créez une règle pour autoriser l’accès à un sous-réseau.
+    syntax: az storage account network-rule add -g myRg --account-name mystorageaccount --vnet-name myvnet --subnet mysubnet
+  - summary: Créez une règle pour autoriser l’accès pour un sous-réseau d’un autre groupe de ressources.
+    syntax: az storage account network-rule add -g myRg --account-name mystorageaccount  --subnet $subnetId
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -n
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --action
+    defaultValue: Allow
+    summary: Action de la règle de réseau virtuel.
+    description: ''
+  - name: --ip-address
+    summary: Adresse IPv4 ou plage CIDR.
+    description: ''
+  - name: --resource-id
+    summary: ID de ressource à ajouter dans la règle réseau.
+    description: ''
+  - name: --subnet
+    summary: Nom ou ID du sous-réseau. Si le nom est fourni, `--vnet-name` doit être fourni.
+    description: ''
+  - name: --tenant-id
+    summary: ID de locataire à ajouter dans la règle de réseau.
+    description: ''
+  - name: --vnet-name
+    summary: Nom d’un réseau virtuel.
+    description: ''
+- uid: az_storage_account_network-rule_list
+  name: az storage account network-rule list
+  summary: Répertorier les règles de réseau.
+  description: ''
+  syntax: >-
+    az storage account network-rule list --account-name
+                                         --resource-group
+  examples:
+  - summary: Répertorier les règles de réseau. généré automatiquement
+    syntax: az storage account network-rule list --account-name MyAccount --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -n
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_storage_account_network-rule_remove
+  name: az storage account network-rule remove
+  summary: Supprimer une règle de réseau.
+  description: ''
+  syntax: >-
+    az storage account network-rule remove --account-name
+                                           --resource-group
+                                           [--ip-address]
+                                           [--resource-id]
+                                           [--subnet]
+                                           [--tenant-id]
+                                           [--vnet-name]
+  examples:
+  - summary: Supprimer une règle de réseau. généré automatiquement
+    syntax: az storage account network-rule remove --account-name MyAccount --resource-group MyResourceGroup --subnet MySubnetID
+  - summary: Supprimer une règle de réseau. généré automatiquement
+    syntax: az storage account network-rule remove --account-name MyAccount --ip-address 23.45.1.0/24 --resource-group MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --account-name -n
+    summary: nom du compte de stockage.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --ip-address
+    summary: Adresse IPv4 ou plage CIDR.
+    description: ''
+  - name: --resource-id
+    summary: ID de ressource à ajouter dans la règle réseau.
+    description: ''
+  - name: --subnet
+    summary: Nom ou ID du sous-réseau. Si le nom est fourni, `--vnet-name` doit être fourni.
+    description: ''
+  - name: --tenant-id
+    summary: ID de locataire à ajouter dans la règle de réseau.
+    description: ''
+  - name: --vnet-name
+    summary: Nom d’un réseau virtuel.
+    description: ''
+commands:
+- az_storage_account_network-rule_add
+- az_storage_account_network-rule_list
+- az_storage_account_network-rule_remove
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les règles de réseau.
+  ms.openlocfilehash: 7547ebb1f1bd18fb621905e61a1c5b7e829b878f
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106899539"
