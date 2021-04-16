@@ -9,31 +9,45 @@ directCommands:
   summary: Créer une attribution de rôle.
   description: ''
   syntax: >-
-    az synapse role assignment create --assignee
-                                      --role
+    az synapse role assignment create --role
                                       --workspace-name
+                                      [--assignee]
+                                      [--assignee-object-id]
+                                      [--assignee-principal-type {Group, ServicePrincipal, User}]
+                                      [--assignment-id]
+                                      [--item]
+                                      [--item-type {bigDataPools, credentials, integrationRuntimes, linkedServices}]
+                                      [--scope]
                                       [--subscription]
   examples:
   - summary: Créez une attribution de rôle à l’aide du nom de principal du service.
     syntax: >-
       az synapse role assignment create --workspace-name testsynapseworkspace \
 
-      --role "Sql Admin" --assignee sp_name
+      --role "Synapse Administrator" --assignee sp_name
   - summary: Créez une attribution de rôle à l’aide du nom d’utilisateur principal.
     syntax: >-
       az synapse role assignment create --workspace-name testsynapseworkspace \
 
-      --role "Sql Admin" --assignee username@contoso.com
+      --role "Synapse Administrator" --assignee username@contoso.com
   - summary: Créez une attribution de rôle à l’aide de objectId de l’utilisateur, du groupe ou du principal du service.
     syntax: >-
       az synapse role assignment create --workspace-name testsynapseworkspace \
 
-      --role "Sql Admin" --assignee 00000000-0000-0000-0000-000000000000
+      --role "Synapse Administrator" --assignee 00000000-0000-0000-0000-000000000000
+  - summary: Créer une attribution de rôle au niveau de l’étendue.
+    syntax: >-
+      az synapse role assignment create --workspace-name testsynapseworkspace \
+
+      --scope "workspaces/{workspaceName}" --role "Synapse Administrator" --assignee username@contoso.com
+  - summary: Créez une attribution de rôle au niveau de la portée de la combinaison du type d’élément et du nom de l’élément.
+    syntax: >-
+      az synapse role assignment create --workspace-name testsynapseworkspace \
+
+      --item-type "bigDataPools" --item "bigDataPoolName" --role "Synapse Administrator" \
+
+      --assignee username@contoso.com
   requiredParameters:
-  - isRequired: true
-    name: --assignee
-    summary: 'Représente un utilisateur, un groupe ou un principal du service. Format pris en charge : ID d’objet, nom de connexion de l’utilisateur ou nom de principal du service.'
-    description: ''
   - isRequired: true
     name: --role
     summary: Nom/ID du rôle assigné au principal.
@@ -43,6 +57,29 @@ directCommands:
     summary: Nom de l’espace de travail.
     description: ''
   optionalParameters:
+  - name: --assignee
+    summary: 'Représente un utilisateur ou un principal de service. Format pris en charge : ID d’objet, nom de connexion de l’utilisateur ou nom de principal du service.'
+    description: ''
+  - name: --assignee-object-id
+    summary: Utilisez ce paramètre à la place de'--assigned’pour ignorer API Graph appel en cas de privilèges insuffisants. Ce paramètre fonctionne uniquement avec les ID d’objet pour les utilisateurs, les groupes, les principaux de service et les identités gérées. Pour les identités gérées, utilisez l’ID du principal. Pour les principaux de service, utilisez l’ID d’objet et non l’ID d’application.
+    description: ''
+  - name: --assignee-principal-type --assignee-type
+    parameterValueGroup: Group, ServicePrincipal, User
+    summary: Utilisez with--Assigned-Object-ID pour éviter les erreurs provoquées par la latence de propagation dans le graphique AAD.
+    description: ''
+  - name: --assignment-id
+    summary: ID d’attribution de rôle personnalisé au format GUID, s’il n’est pas spécifié, l’ID d’attribution est généré de manière aléatoire.
+    description: ''
+  - name: --item
+    summary: L’accès à l’élément est autorisé dans l’espace de travail. Utilisation de with--Item-type pour combiner l’étendue de l’affectation.
+    description: ''
+  - name: --item-type
+    parameterValueGroup: bigDataPools, credentials, integrationRuntimes, linkedServices
+    summary: Type d’élément autorisé à accéder à l’espace de travail. Utilisation de with--Item pour combiner l’étendue de l’affectation.
+    description: ''
+  - name: --scope
+    summary: Une étendue définit les ressources ou artefacts auxquels l’accès s’applique. Synapse prend en charge les étendues hiérarchiques. Les autorisations accordées à une étendue de niveau supérieur sont héritées par les objets d’un niveau inférieur. Dans RBAC Synapse, l’étendue de niveau supérieur est un espace de travail. L’attribution d’un rôle à l’étendue de l’espace de travail accorde des autorisations à tous les objets applicables dans cet espace de travail.
+    description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
     description: ''
@@ -54,8 +91,12 @@ directCommands:
   syntax: >-
     az synapse role assignment delete --workspace-name
                                       [--assignee]
+                                      [--assignee-object-id]
                                       [--ids]
+                                      [--item]
+                                      [--item-type {bigDataPools, credentials, integrationRuntimes, linkedServices}]
                                       [--role]
+                                      [--scope]
                                       [--subscription]
                                       [--yes]
   examples:
@@ -63,12 +104,12 @@ directCommands:
     syntax: >-
       az synapse role assignment delete --workspace-name testsynapseworkspace \
 
-      --role "Sql Admin" --assignee sp_name
+      --role "Synapse Administrator" --assignee sp_name
   - summary: Supprimer les attributions de rôle par ID/nom de rôle.
     syntax: >-
       az synapse role assignment delete --workspace-name testsynapseworkspace \
 
-      --role "Sql Admin"
+      --role "Synapse Administrator"
   - summary: Supprimer les attributions de rôles par nom de principal du service.
     syntax: >-
       az synapse role assignment delete --workspace-name testsynapseworkspace \
@@ -89,6 +130,11 @@ directCommands:
       az synapse role assignment delete --workspace-name testsynapseworkspace \
 
       --ids 10000000-0000-0000-0000-10000000-10000000-0000-0000-0000-10000000
+  - summary: Supprimer les attributions de rôles par étendue.
+    syntax: >-
+      az synapse role assignment delete --workspace-name testsynapseworkspace \
+
+      --scope "workspaces/testsynapseworkspace/linkedServices/testlinkedServices"
   requiredParameters:
   - isRequired: true
     name: --workspace-name
@@ -96,13 +142,26 @@ directCommands:
     description: ''
   optionalParameters:
   - name: --assignee
-    summary: 'Représente un utilisateur, un groupe ou un principal du service. Format pris en charge : ID d’objet, nom de connexion de l’utilisateur ou nom de principal du service.'
+    summary: 'Représente un utilisateur ou un principal de service. Format pris en charge : ID d’objet, nom de connexion de l’utilisateur ou nom de principal du service.'
+    description: ''
+  - name: --assignee-object-id
+    summary: Utilisez ce paramètre à la place de'--assigned’pour ignorer API Graph appel en cas de privilèges insuffisants. Ce paramètre fonctionne uniquement avec les ID d’objet pour les utilisateurs, les groupes, les principaux de service et les identités gérées. Pour les identités gérées, utilisez l’ID du principal. Pour les principaux de service, utilisez l’ID d’objet et non l’ID d’application.
     description: ''
   - name: --ids
     summary: ID d’attribution de rôle séparés par des espaces. Vous ne devez pas fournir--Role ou--Assigned quand--IDS est fourni.
     description: ''
+  - name: --item
+    summary: L’accès à l’élément est autorisé dans l’espace de travail. Utilisation de with--Item-type pour combiner l’étendue de l’affectation. L’utilisation de la commande AZ Role Assignment avec condition de filtre avant l’exécution de l’opération de suppression est clairement consciente des affectations à supprimer.
+    description: ''
+  - name: --item-type
+    parameterValueGroup: bigDataPools, credentials, integrationRuntimes, linkedServices
+    summary: Type d’élément autorisé à accéder à l’espace de travail. Utilisation de with--Item pour combiner l’étendue de l’affectation. L’utilisation de la commande AZ Role Assignment avec condition de filtre avant l’exécution de l’opération de suppression est clairement consciente des affectations à supprimer.
+    description: ''
   - name: --role
     summary: Nom/ID du rôle assigné au principal.
+    description: ''
+  - name: --scope
+    summary: Une étendue définit les ressources ou artefacts auxquels l’accès s’applique. Synapse prend en charge les étendues hiérarchiques. Les autorisations accordées à une étendue de niveau supérieur sont héritées par les objets d’un niveau inférieur. Dans RBAC Synapse, l’étendue de niveau supérieur est un espace de travail. L’utilisation de la commande AZ Role Assignment avec condition de filtre avant l’exécution de l’opération de suppression est clairement consciente des affectations à supprimer.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -118,8 +177,12 @@ directCommands:
   syntax: >-
     az synapse role assignment list --workspace-name
                                     [--assignee]
+                                    [--assignee-object-id]
+                                    [--item]
+                                    [--item-type {bigDataPools, credentials, integrationRuntimes, linkedServices}]
                                     [--query-examples]
                                     [--role]
+                                    [--scope]
                                     [--subscription]
   examples:
   - summary: Répertorier les attributions de rôles.
@@ -128,7 +191,7 @@ directCommands:
     syntax: >-
       az synapse role assignment list --workspace-name testsynapseworkspace \
 
-      --role "Sql Admin"
+      --role "Synapse Apache Spark Administrator"
   - summary: Répertorier les attributions de rôles par cessionnaire.
     syntax: >-
       az synapse role assignment list --workspace-name testsynapseworkspace \
@@ -138,7 +201,17 @@ directCommands:
     syntax: >-
       az synapse role assignment list --workspace-name testsynapseworkspace \
 
-      --assignee 00000000-0000-0000-0000-000000000000
+      --assignee-object-id 00000000-0000-0000-0000-000000000000
+  - summary: Répertorier les attributions de rôles par étendue.
+    syntax: >-
+      az synapse role assignment list --workspace-name testsynapseworkspace \
+
+      --scope "workspaces/{workspaceName}"
+  - summary: Répertorier les attributions de rôles par type d’élément et nom d’élément.
+    syntax: >-
+      az synapse role assignment list --workspace-name testsynapseworkspace \
+
+      --item-type "bigDataPools" --item "bigDataPoolName"
   requiredParameters:
   - isRequired: true
     name: --workspace-name
@@ -146,13 +219,26 @@ directCommands:
     description: ''
   optionalParameters:
   - name: --assignee
-    summary: 'Représente un utilisateur, un groupe ou un principal du service. Format pris en charge : ID d’objet, nom de connexion de l’utilisateur ou nom de principal du service.'
+    summary: 'Représente un utilisateur ou un principal de service. Format pris en charge : ID d’objet, nom de connexion de l’utilisateur ou nom de principal du service.'
+    description: ''
+  - name: --assignee-object-id
+    summary: Utilisez ce paramètre à la place de'--assigned’pour ignorer API Graph appel en cas de privilèges insuffisants. Ce paramètre fonctionne uniquement avec les ID d’objet pour les utilisateurs, les groupes, les principaux de service et les identités gérées. Pour les identités gérées, utilisez l’ID du principal. Pour les principaux de service, utilisez l’ID d’objet et non l’ID d’application.
+    description: ''
+  - name: --item
+    summary: L’accès à l’élément est autorisé dans l’espace de travail. Utilisation de with--Item-type pour combiner l’étendue de l’affectation.
+    description: ''
+  - name: --item-type
+    parameterValueGroup: bigDataPools, credentials, integrationRuntimes, linkedServices
+    summary: Type d’élément autorisé à accéder à l’espace de travail. Utilisation de with--Item pour combiner l’étendue de l’affectation.
     description: ''
   - name: --query-examples
     summary: Recommandez JMESPath String pour vous. Vous pouvez copier une requête et la coller après--le paramètre de requête entre guillemets doubles pour voir les résultats. Vous pouvez ajouter un ou plusieurs mots clés positionnels pour pouvoir fournir des suggestions en fonction de ces mots clés.
     description: ''
   - name: --role
     summary: Nom/ID du rôle assigné au principal.
+    description: ''
+  - name: --scope
+    summary: Une étendue définit les ressources ou artefacts auxquels l’accès s’applique. Synapse prend en charge les étendues hiérarchiques. Les autorisations accordées à une étendue de niveau supérieur sont héritées par les objets d’un niveau inférieur. Dans RBAC Synapse, l’étendue de niveau supérieur est un espace de travail. L’attribution d’un rôle à l’étendue de l’espace de travail accorde des autorisations à tous les objets applicables dans cet espace de travail.
     description: ''
   - name: --subscription
     summary: Nom ou ID de l’abonnement. Vous pouvez configurer l’abonnement par défaut à l’aide de `az account set -s NAME_OR_ID` .
@@ -212,11 +298,11 @@ globalParameters:
   summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
 metadata:
   doc_source_url_repo: https://github.com/Azure/azure-cli/blob/dev/
-  ms.date: 01/26/2021
+  ms.date: 04/08/2021
   description: Gérer les attributions de rôle de Synapse.
-  ms.openlocfilehash: 31596e37cc3ff9cfa853424c4a8b05beeb7ab2a6
-  ms.sourcegitcommit: df9d6597535ef9103775afbaee5a8282e0e218ee
+  ms.openlocfilehash: 773819c7b2e84a5e194ab044be5ad2fef21be960
+  ms.sourcegitcommit: b7481a4363417987865106c343ef8e60c69c9170
   ms.translationtype: MT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 02/09/2021
-  ms.locfileid: "102963315"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "107250575"
