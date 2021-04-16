@@ -1,0 +1,143 @@
+### YamlMime:AzureCLIGroup
+uid: az_csvmware_vm_disk
+name: az csvmware vm disk
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **csvmware** pour Azure CLI et requiert la version 2.0.67 ou une version ultérieure.  L’extension est automatiquement installée la première fois que vous exécutez une commande **AZ csvmware VM Disk** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les disques de l’ordinateur virtuel VMware.
+description: ''
+directCommands:
+- uid: az_csvmware_vm_disk_add
+  name: az csvmware vm disk add
+  summary: Ajoutez un disque à une machine virtuelle VMware.
+  description: ''
+  syntax: >-
+    az csvmware vm disk add --resource-group
+                            --vm-name
+                            [--controller]
+                            [--mode {independent_nonpersistent, independent_persistent, persistent}]
+                            [--size]
+  examples:
+  - summary: Ajoutez un disque avec des paramètres par défaut dans une machine virtuelle.
+    syntax: az csvmware vm disk add --vm-name MyVm -g MyResourceGroup
+  - summary: Ajoutez un disque avec le contrôleur SATA 0 et une mémoire de 64 Go dans une machine virtuelle.
+    syntax: az csvmware vm disk add --vm-name MyVm -g MyResourceGroup --controller 15000 --size 67108864
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle.
+    description: ''
+  optionalParameters:
+  - name: --controller
+    defaultValue: "1000"
+    summary: ID du contrôleur. Entrée 1000 pour le contrôleur SCSI 0 et 15000 pour le contrôleur SATA 0.
+    description: ''
+  - name: --mode
+    defaultValue: persistent
+    parameterValueGroup: independent_nonpersistent, independent_persistent, persistent
+    summary: Mode d’indépendance du disque.
+    description: ''
+  - name: --size
+    defaultValue: "16777216"
+    summary: Taille du disque en Ko.
+    description: ''
+- uid: az_csvmware_vm_disk_delete
+  name: az csvmware vm disk delete
+  summary: Supprimer des disques d’une machine virtuelle.
+  description: ''
+  syntax: >-
+    az csvmware vm disk delete --disks
+                               --resource-group
+                               --vm-name
+  examples:
+  - summary: Supprimer deux disques d’une machine virtuelle.
+    syntax: az csvmware vm disk delete --vm-name MyVm -g MyResourceGroup --disks "My Disk Name 1" "My Disk Name 2"
+  requiredParameters:
+  - isRequired: true
+    name: --disks
+    summary: Noms des disques.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle.
+    description: ''
+- uid: az_csvmware_vm_disk_list
+  name: az csvmware vm disk list
+  summary: Répertorier les détails des disques disponibles sur une machine virtuelle VMware.
+  description: ''
+  syntax: >-
+    az csvmware vm disk list --resource-group
+                             --vm-name
+  examples:
+  - summary: Répertorier les détails des disques d’une machine virtuelle.
+    syntax: az csvmware vm disk list --vm-name MyVm -g MyResourceGroup
+  requiredParameters:
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle.
+    description: ''
+- uid: az_csvmware_vm_disk_show
+  name: az csvmware vm disk show
+  summary: Obtenir les détails du disque d’une machine virtuelle VMware.
+  description: ''
+  syntax: >-
+    az csvmware vm disk show --name
+                             --resource-group
+                             --vm-name
+  examples:
+  - summary: Obtenir les détails d’un disque d’une machine virtuelle.
+    syntax: az csvmware vm disk show --vm-name MyVm -g MyResourceGroup -n "My Disk Name"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom du disque.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  - isRequired: true
+    name: --vm-name
+    summary: Nom de la machine virtuelle.
+    description: ''
+commands:
+- az_csvmware_vm_disk_add
+- az_csvmware_vm_disk_delete
+- az_csvmware_vm_disk_list
+- az_csvmware_vm_disk_show
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les disques de l’ordinateur virtuel VMware.
+  ms.openlocfilehash: f47631f36b6ae82e076825c0d169d9793715cd14
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106907045"
