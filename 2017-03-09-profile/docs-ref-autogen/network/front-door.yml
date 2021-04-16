@@ -1,0 +1,423 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_front-door
+name: az network front-door
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension de la **porte avant** pour Azure CLI et requiert la version 2.0.68 ou ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez la commande **AZ Network Front-Door** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les portes frontales.
+description: ''
+directCommands:
+- uid: az_network_front-door_check-custom-domain
+  name: az network front-door check-custom-domain
+  summary: Valide le mappage de domaine personnalisé pour s’assurer qu’il est mappé au point de terminaison de la porte d’entrée approprié dans DNS.
+  description: ''
+  syntax: >-
+    az network front-door check-custom-domain --host-name
+                                              --name
+                                              --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --host-name
+    summary: Nom d’hôte du domaine personnalisé. Doit être un nom de domaine.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_front-door_check-name-availability
+  name: az network front-door check-name-availability
+  summary: Vérifiez la disponibilité d’un nom de ressource de porte d’entrée.
+  description: ''
+  syntax: >-
+    az network front-door check-name-availability --name
+                                                  --resource-type {Microsoft.Network/frontDoors, Microsoft.Network/frontDoors/frontendEndpoints}
+  examples:
+  - summary: Vérifiez la disponibilité d’un nom de ressource de porte d’entrée.
+    syntax: az network front-door check-name-availability --name frontdoor1 --resource-type Microsoft.Network/frontDoors
+  requiredParameters:
+  - isRequired: true
+    name: --name
+    summary: Nom de la ressource à valider.
+    description: ''
+  - isRequired: true
+    name: --resource-type
+    parameterValueGroup: Microsoft.Network/frontDoors, Microsoft.Network/frontDoors/frontendEndpoints
+    summary: Type de la ressource dont le nom doit être validé.
+    description: ''
+- uid: az_network_front-door_create
+  name: az network front-door create
+  summary: Créer une instance Front Door
+  description: ''
+  syntax: >-
+    az network front-door create --backend-address
+                                 --name
+                                 --resource-group
+                                 [--accepted-protocols]
+                                 [--backend-host-header]
+                                 [--disabled {false, true}]
+                                 [--enforce-certificate-name-check {Disabled, Enabled}]
+                                 [--forwarding-protocol {HttpOnly, HttpsOnly, MatchRequest}]
+                                 [--friendly-name]
+                                 [--frontend-host-name]
+                                 [--interval]
+                                 [--no-wait]
+                                 [--path]
+                                 [--patterns]
+                                 [--probeMethod {GET, HEAD}]
+                                 [--protocol {Http, Https}]
+                                 [--send-recv-timeout]
+                                 [--tags]
+  requiredParameters:
+  - isRequired: true
+    name: --backend-address
+    summary: Nom de domaine complet du point de terminaison principal.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --accepted-protocols
+    summary: 'Liste séparée par des espaces des protocoles à accepter. Valeur par défaut : http.'
+    description: ''
+  - name: --backend-host-header
+    summary: En-tête de l’hôte envoyé au serveur principal.
+    description: ''
+  - name: --disabled
+    parameterValueGroup: false, true
+    summary: Créer dans un état désactivé.
+    description: ''
+  - name: --enforce-certificate-name-check
+    defaultValue: Enabled
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique si la vérification du nom du certificat doit être désactivée sur les requêtes HTTPs pour tous les pools principaux. Aucun effet sur les requêtes non HTTPs.
+    description: ''
+  - name: --forwarding-protocol
+    defaultValue: MatchRequest
+    parameterValueGroup: HttpOnly, HttpsOnly, MatchRequest
+    summary: Protocole à utiliser pour transférer le trafic.
+    description: ''
+  - name: --friendly-name
+    summary: Nom convivial de la porte avant.
+    description: ''
+  - name: --frontend-host-name
+    summary: Nom de domaine du point de terminaison frontend.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle, en secondes, entre les sondes.
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --path
+    defaultValue: /
+    summary: Chemin d’accès à la sonde.
+    description: ''
+  - name: --patterns
+    summary: 'Liste séparée par des espaces des modèles à mettre en correspondance. Valeur par défaut : « / \* ».'
+    description: ''
+  - name: --probeMethod
+    defaultValue: HEAD
+    parameterValueGroup: GET, HEAD
+    summary: Configure la méthode HTTP à utiliser pour sonder les serveurs principaux définis sous backendPools.
+    description: ''
+  - name: --protocol
+    defaultValue: Https
+    parameterValueGroup: Http, Https
+    summary: Protocole à utiliser pour l’envoi de sondes.
+    description: ''
+  - name: --send-recv-timeout
+    summary: Délai d’attente d’envoi et de réception, en secondes, lors du transfert de la demande au serveur principal. Lorsque le délai d’attente est atteint, la requête échoue et retourne.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_network_front-door_delete
+  name: az network front-door delete
+  summary: Supprimer une porte avant.
+  description: ''
+  syntax: >-
+    az network front-door delete --name
+                                 --resource-group
+                                 [--no-wait]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+- uid: az_network_front-door_list
+  name: az network front-door list
+  summary: Répertorier les portes avant.
+  description: ''
+  syntax: az network front-door list [--resource-group]
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_front-door_purge-endpoint
+  name: az network front-door purge-endpoint
+  summary: Supprime un contenu de la porte de l’avant.
+  description: ''
+  syntax: >-
+    az network front-door purge-endpoint --content-paths
+                                         --name
+                                         --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --content-paths
+    summary: Chemin d’accès au contenu à purger. Peut décrire un chemin de fichier ou un répertoire générique.
+    description: ''
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_front-door_show
+  name: az network front-door show
+  summary: Obtenir les détails d’une porte d’entrée.
+  description: ''
+  syntax: >-
+    az network front-door show --name
+                               --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_front-door_update
+  name: az network front-door update
+  summary: Mettez à jour les paramètres d’une porte d’entrée.
+  description: ''
+  syntax: >-
+    az network front-door update --name
+                                 --resource-group
+                                 [--add]
+                                 [--enforce-certificate-name-check {Disabled, Enabled}]
+                                 [--force-string]
+                                 [--remove]
+                                 [--send-recv-timeout]
+                                 [--set]
+                                 [--tags]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --add
+    summary: Ajoutez un objet à une liste d’objets en spécifiant des paires chemin d’accès et valeur de clé.  Exemple :--Add Property. listProperty <key = value, String ou JSON String>.
+    description: ''
+  - name: --enforce-certificate-name-check
+    parameterValueGroup: Disabled, Enabled
+    summary: Indique si la vérification du nom du certificat doit être désactivée sur les requêtes HTTPs pour tous les pools principaux. Aucun effet sur les requêtes non HTTPs.
+    description: ''
+  - name: --force-string
+    summary: Quand vous utilisez’Set’ou’Add', conservez les littéraux de chaîne au lieu de tenter de les convertir au format JSON.
+    description: ''
+  - name: --remove
+    summary: Supprimer une propriété ou un élément d’une liste.  Exemple :--Remove Property. List <indexToRemove> ou--Remove propertyToRemove.
+    description: ''
+  - name: --send-recv-timeout
+    summary: Délai d’attente d’envoi et de réception, en secondes, lors du transfert de la demande au serveur principal. Lorsque le délai d’attente est atteint, la requête échoue et retourne.
+    description: ''
+  - name: --set
+    summary: Mettez à jour un objet en spécifiant un chemin d’accès à la propriété et une valeur à définir.  Exemple :--Set property1. Property2 =<value>.
+    description: ''
+  - name: --tags
+    summary: 'Balises séparées par des espaces : clé [= valeur] [clé [= valeur]...]. Utilisez «» pour effacer les balises existantes.'
+    description: ''
+- uid: az_network_front-door_wait
+  name: az network front-door wait
+  summary: Placez l’interface de commande dans un état d’attente jusqu’à ce qu’une condition de la porte avant soit remplie.
+  description: ''
+  syntax: >-
+    az network front-door wait --name
+                               --resource-group
+                               [--created]
+                               [--custom]
+                               [--deleted]
+                               [--exists]
+                               [--interval]
+                               [--timeout]
+                               [--updated]
+  examples:
+  - summary: Patientez jusqu’à la création d’une porte avant.
+    syntax: az network front-door wait -g MyResourceGroup --name frontdoor1 --created
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la porte avant.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_network_front-door_backend-pool
+- az_network_front-door_backend-pool_backend
+- az_network_front-door_backend-pool_backend_add
+- az_network_front-door_backend-pool_backend_list
+- az_network_front-door_backend-pool_backend_remove
+- az_network_front-door_backend-pool_create
+- az_network_front-door_backend-pool_delete
+- az_network_front-door_backend-pool_list
+- az_network_front-door_backend-pool_show
+- az_network_front-door_check-custom-domain
+- az_network_front-door_check-name-availability
+- az_network_front-door_create
+- az_network_front-door_delete
+- az_network_front-door_frontend-endpoint
+- az_network_front-door_frontend-endpoint_create
+- az_network_front-door_frontend-endpoint_delete
+- az_network_front-door_frontend-endpoint_disable-https
+- az_network_front-door_frontend-endpoint_enable-https
+- az_network_front-door_frontend-endpoint_list
+- az_network_front-door_frontend-endpoint_show
+- az_network_front-door_frontend-endpoint_wait
+- az_network_front-door_list
+- az_network_front-door_load-balancing
+- az_network_front-door_load-balancing_create
+- az_network_front-door_load-balancing_delete
+- az_network_front-door_load-balancing_list
+- az_network_front-door_load-balancing_show
+- az_network_front-door_load-balancing_update
+- az_network_front-door_probe
+- az_network_front-door_probe_create
+- az_network_front-door_probe_delete
+- az_network_front-door_probe_list
+- az_network_front-door_probe_show
+- az_network_front-door_probe_update
+- az_network_front-door_purge-endpoint
+- az_network_front-door_routing-rule
+- az_network_front-door_routing-rule_create
+- az_network_front-door_routing-rule_delete
+- az_network_front-door_routing-rule_list
+- az_network_front-door_routing-rule_show
+- az_network_front-door_routing-rule_update
+- az_network_front-door_rules-engine
+- az_network_front-door_rules-engine_delete
+- az_network_front-door_rules-engine_list
+- az_network_front-door_rules-engine_rule
+- az_network_front-door_rules-engine_rule_action
+- az_network_front-door_rules-engine_rule_action_add
+- az_network_front-door_rules-engine_rule_action_list
+- az_network_front-door_rules-engine_rule_action_remove
+- az_network_front-door_rules-engine_rule_condition
+- az_network_front-door_rules-engine_rule_condition_add
+- az_network_front-door_rules-engine_rule_condition_list
+- az_network_front-door_rules-engine_rule_condition_remove
+- az_network_front-door_rules-engine_rule_create
+- az_network_front-door_rules-engine_rule_delete
+- az_network_front-door_rules-engine_rule_list
+- az_network_front-door_rules-engine_rule_show
+- az_network_front-door_rules-engine_rule_update
+- az_network_front-door_rules-engine_show
+- az_network_front-door_show
+- az_network_front-door_update
+- az_network_front-door_waf-policy
+- az_network_front-door_waf-policy_create
+- az_network_front-door_waf-policy_delete
+- az_network_front-door_waf-policy_list
+- az_network_front-door_waf-policy_managed-rule-definition
+- az_network_front-door_waf-policy_managed-rule-definition_list
+- az_network_front-door_waf-policy_managed-rules
+- az_network_front-door_waf-policy_managed-rules_add
+- az_network_front-door_waf-policy_managed-rules_exclusion
+- az_network_front-door_waf-policy_managed-rules_exclusion_add
+- az_network_front-door_waf-policy_managed-rules_exclusion_list
+- az_network_front-door_waf-policy_managed-rules_exclusion_remove
+- az_network_front-door_waf-policy_managed-rules_list
+- az_network_front-door_waf-policy_managed-rules_override
+- az_network_front-door_waf-policy_managed-rules_override_add
+- az_network_front-door_waf-policy_managed-rules_override_list
+- az_network_front-door_waf-policy_managed-rules_override_remove
+- az_network_front-door_waf-policy_managed-rules_remove
+- az_network_front-door_waf-policy_rule
+- az_network_front-door_waf-policy_rule_create
+- az_network_front-door_waf-policy_rule_delete
+- az_network_front-door_waf-policy_rule_list
+- az_network_front-door_waf-policy_rule_match-condition
+- az_network_front-door_waf-policy_rule_match-condition_add
+- az_network_front-door_waf-policy_rule_match-condition_list
+- az_network_front-door_waf-policy_rule_match-condition_remove
+- az_network_front-door_waf-policy_rule_show
+- az_network_front-door_waf-policy_rule_update
+- az_network_front-door_waf-policy_show
+- az_network_front-door_waf-policy_update
+- az_network_front-door_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les portes frontales.
+  ms.openlocfilehash: 88fa3b031b0a00ee14c581e42994dee769797596
+  ms.sourcegitcommit: b7481a4363417987865106c343ef8e60c69c9170
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "107232921"
