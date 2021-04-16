@@ -1,0 +1,278 @@
+### YamlMime:AzureCLIGroup
+uid: az_network_vpn-server-config
+name: az network vpn-server-config
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **Virtual-WAN** pour Azure CLI et requiert la version 2.0.67 ou ultérieure.  L’extension sera automatiquement installée la première fois que vous exécuterez une commande **AZ Network VPN-Server-config** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérez la configuration du serveur VPN.
+description: ''
+directCommands:
+- uid: az_network_vpn-server-config_create
+  name: az network vpn-server-config create
+  summary: Créez une configuration de serveur VPN.
+  description: ''
+  syntax: >-
+    az network vpn-server-config create --name
+                                        --resource-group
+                                        [--aad-audience]
+                                        [--aad-issuer]
+                                        [--aad-tenant]
+                                        [--auth-types {AAD, Certificate, Radius}]
+                                        [--location]
+                                        [--no-wait]
+                                        [--protocols {IkeV2, OpenVPN}]
+                                        [--radius-client-root-certs]
+                                        [--radius-server-root-certs]
+                                        [--radius-servers]
+                                        [--vpn-client-revoked-certs]
+                                        [--vpn-client-root-certs]
+  examples:
+  - summary: Créer une configuration de serveur VPN avec le type d’authentification VPN
+    syntax: az network vpn-server-config create -n MyVPNServerConfig -g MyRG --vpn-client-root-certs "ApplicationGatewayAuthCert.cer" --vpn-client-revoked-certs "ApplicationGatewayAuthCert.pem"
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration du serveur VPN.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --aad-audience
+    summary: Paramètre d’authentification VPN AAD public AAD.
+    description: ''
+  - name: --aad-issuer
+    summary: Émetteur AAD du paramètre d’authentification VPN AAD.
+    description: ''
+  - name: --aad-tenant
+    summary: Client AAD du paramètre d’authentification VPN AAD.
+    description: ''
+  - name: --auth-types
+    parameterValueGroup: AAD, Certificate, Radius
+    summary: Types d’authentification VPN pour VpnServerConfiguration.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --protocols
+    parameterValueGroup: IkeV2, OpenVPN
+    summary: Protocoles VPN pour VpnServerConfiguration.
+    description: ''
+  - name: --radius-client-root-certs
+    summary: Liste des chemins d’accès au fichier de certificat racine du client RADIUS.
+    description: ''
+  - name: --radius-server-root-certs
+    summary: Liste des chemins d’accès au fichier de certificat racine du serveur RADIUS.
+    description: ''
+  - name: --radius-servers
+    summary: Configuration du serveur RADIUS.
+    description: ''
+  - name: --vpn-client-revoked-certs
+    summary: Liste des chemins d’accès aux fichiers de certificat révoqués du client VPN.
+    description: ''
+  - name: --vpn-client-root-certs
+    summary: Liste des chemins d’accès au fichier de certificat racine du client VPN.
+    description: ''
+- uid: az_network_vpn-server-config_delete
+  name: az network vpn-server-config delete
+  summary: Supprimer une configuration de serveur VPN.
+  description: ''
+  syntax: >-
+    az network vpn-server-config delete --name
+                                        --resource-group
+                                        [--yes]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration du serveur VPN.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --yes -y
+    summary: Ne pas demander de confirmation.
+    description: ''
+- uid: az_network_vpn-server-config_list
+  name: az network vpn-server-config list
+  summary: Répertorie toutes les configurations de serveur VPN.
+  description: ''
+  syntax: az network vpn-server-config list [--resource-group]
+  optionalParameters:
+  - name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_vpn-server-config_set
+  name: az network vpn-server-config set
+  summary: Définissez les paramètres d’une configuration de serveur VPN.
+  description: ''
+  syntax: >-
+    az network vpn-server-config set --name
+                                     --resource-group
+                                     [--aad-audience]
+                                     [--aad-issuer]
+                                     [--aad-tenant]
+                                     [--auth-types {AAD, Certificate, Radius}]
+                                     [--location]
+                                     [--no-wait]
+                                     [--protocols {IkeV2, OpenVPN}]
+                                     [--radius-client-root-certs]
+                                     [--radius-server-root-certs]
+                                     [--radius-servers]
+                                     [--vpn-client-revoked-certs]
+                                     [--vpn-client-root-certs]
+  examples:
+  - summary: Définir une configuration de serveur VPN avec le type d’authentification RADIUS
+    syntax: az network vpn-server-config set -n MyVPNServerConfig -g MyRG --radius-client-root-certs "ApplicationGatewayAuthCert.cer" --radius-server-root-certs "ApplicationGatewayAuthCert.pem" --radius-servers address=test1 secret=clitest score=10 --radius-servers address=test2 secret=clitest score=10
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration du serveur VPN.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --aad-audience
+    summary: Paramètre d’authentification VPN AAD public AAD.
+    description: ''
+  - name: --aad-issuer
+    summary: Émetteur AAD du paramètre d’authentification VPN AAD.
+    description: ''
+  - name: --aad-tenant
+    summary: Client AAD du paramètre d’authentification VPN AAD.
+    description: ''
+  - name: --auth-types
+    parameterValueGroup: AAD, Certificate, Radius
+    summary: Types d’authentification VPN pour VpnServerConfiguration.
+    description: ''
+  - name: --location -l
+    summary: 'Lieu. Valeurs provenant de : `az account list-locations`. Vous pouvez configurer le lieu par défaut en utilisant `az configure --defaults location=<location>`.'
+    description: ''
+  - name: --no-wait
+    summary: Ne pas attendre la fin de l’opération de longue durée.
+    description: ''
+  - name: --protocols
+    parameterValueGroup: IkeV2, OpenVPN
+    summary: Protocoles VPN pour VpnServerConfiguration.
+    description: ''
+  - name: --radius-client-root-certs
+    summary: Liste des chemins d’accès au fichier de certificat racine du client RADIUS.
+    description: ''
+  - name: --radius-server-root-certs
+    summary: Liste des chemins d’accès au fichier de certificat racine du serveur RADIUS.
+    description: ''
+  - name: --radius-servers
+    summary: Configuration du serveur RADIUS.
+    description: ''
+  - name: --vpn-client-revoked-certs
+    summary: Liste des chemins d’accès aux fichiers de certificat révoqués du client VPN.
+    description: ''
+  - name: --vpn-client-root-certs
+    summary: Liste des chemins d’accès au fichier de certificat racine du client VPN.
+    description: ''
+- uid: az_network_vpn-server-config_show
+  name: az network vpn-server-config show
+  summary: Affichez les détails d’une configuration de serveur VPN.
+  description: ''
+  syntax: >-
+    az network vpn-server-config show --name
+                                      --resource-group
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration du serveur VPN.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+- uid: az_network_vpn-server-config_wait
+  name: az network vpn-server-config wait
+  summary: Placez l’interface CLI dans un état d’attente jusqu’à ce qu’une condition de la configuration du serveur VPN soit remplie.
+  description: ''
+  syntax: >-
+    az network vpn-server-config wait --name
+                                      --resource-group
+                                      [--created]
+                                      [--custom]
+                                      [--deleted]
+                                      [--exists]
+                                      [--interval]
+                                      [--timeout]
+                                      [--updated]
+  requiredParameters:
+  - isRequired: true
+    name: --name -n
+    summary: Nom de la configuration du serveur VPN.
+    description: ''
+  - isRequired: true
+    name: --resource-group -g
+    summary: Nom du groupe de ressources. Vous pouvez configurer le groupe par défaut en utilisant `az configure --defaults group=<name>`.
+    description: ''
+  optionalParameters:
+  - name: --created
+    summary: Patientez jusqu’à ce qu’il soit créé avec « provisioningState » à « Succeeded ».
+    description: ''
+  - name: --custom
+    summary: Attendez que la condition satisfasse à une requête JMESPath personnalisée. Par exemple, provisioningState ! = « en cours », instanceView. Status [ ? code = = 'PowerState/Running'].
+    description: ''
+  - name: --deleted
+    summary: Attendez la suppression.
+    description: ''
+  - name: --exists
+    summary: Attendez que la ressource existe.
+    description: ''
+  - name: --interval
+    defaultValue: "30"
+    summary: Intervalle d’interrogation en secondes.
+    description: ''
+  - name: --timeout
+    defaultValue: "3600"
+    summary: Attente maximale en secondes.
+    description: ''
+  - name: --updated
+    summary: Patientez jusqu’à la mise à jour avec provisioningState dans’Succeeded'.
+    description: ''
+commands:
+- az_network_vpn-server-config_create
+- az_network_vpn-server-config_delete
+- az_network_vpn-server-config_ipsec-policy
+- az_network_vpn-server-config_ipsec-policy_add
+- az_network_vpn-server-config_ipsec-policy_list
+- az_network_vpn-server-config_ipsec-policy_remove
+- az_network_vpn-server-config_ipsec-policy_wait
+- az_network_vpn-server-config_list
+- az_network_vpn-server-config_set
+- az_network_vpn-server-config_show
+- az_network_vpn-server-config_wait
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérez la configuration du serveur VPN.
+  ms.openlocfilehash: a143c7410cc7b1aa1a217b07c35daac64bec1677
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106899726"
