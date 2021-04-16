@@ -1,0 +1,98 @@
+### YamlMime:AzureCLIGroup
+uid: az_costmanagement
+name: az costmanagement
+extensionInformation: >-
+  > [!Note]
+
+  > Cette référence fait partie de l’extension **costmanagement** pour Azure CLI et requiert la version 2.3.1 ou une version ultérieure.  L’extension s’installe automatiquement la première fois que vous exécutez une commande **AZ costmanagement** .  [Apprenez-en davantage](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview) sur les extensions.
+summary: Gérer les coûts et la facturation dans Azure.
+description: ''
+directCommands:
+- uid: az_costmanagement_query
+  name: az costmanagement query
+  summary: Interrogez les données d’utilisation pour l’étendue définie.
+  description: ''
+  syntax: >-
+    az costmanagement query --scope
+                            --timeframe {BillingMonthToDate, Custom, MonthToDate, TheLastBillingMonth, TheLastMonth, WeekToDate}
+                            --type {ActualCost, AmortizedCost, Usage}
+                            [--dataset-aggregation]
+                            [--dataset-configuration]
+                            [--dataset-filter]
+                            [--dataset-grouping]
+                            [--time-period]
+  examples:
+  - summary: Requête dans l’étendue de l’As
+    syntax: az costmanagement query --type "Usage" --dataset-filter "{\"and\":[{\"or\":[{\"dimension\":{\"name\":\"ResourceLocation\",\"operator\":\"In\",\"values\":[\"East US\",\"West Europe\"]}},{\"tag\":{\"name\":\"Environment\",\"operator\":\"In\",\"values\":[\"UAT\",\"Prod\"]}}]},{\"dimension\":{\"name\":\"ResourceGroup\",\"operator\":\"In\",\"values\":[\"API\"]}}]}" --timeframe "MonthToDate" --scope "providers/Microsoft.Management/managementGroups/MyMgId"
+  - summary: Interroger l’étendue ManagementGroupQuery via le regroupement
+    syntax: az costmanagement query --type "Usage" --dataset-aggregation "{\"totalCost\":{\"name\":\"PreTaxCost\",\"function\":\"Sum\"}}" --dataset-grouping name="ResourceGroup" type="Dimension" --timeframe "TheLastMonth" --scope "providers/Microsoft.Management/managementGroups/MyMgId"
+  - summary: Requête dans une étendue de groupe de ressources
+    syntax: az costmanagement query --type "Usage" --dataset-filter "{\"and\":[{\"or\":[{\"dimension\":{\"name\":\"ResourceLocation\",\"operator\":\"In\",\"values\":[\"East US\",\"West Europe\"]}},{\"tag\":{\"name\":\"Environment\",\"operator\":\"In\",\"values\":[\"UAT\",\"Prod\"]}}]},{\"dimension\":{\"name\":\"ResourceGroup\",\"operator\":\"In\",\"values\":[\"API\"]}}]}" --timeframe "MonthToDate" --scope "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ScreenSharingTest-peer"
+  - summary: Interroger une étendue ResourceGroupQuery via le regroupement
+    syntax: az costmanagement query --type "Usage" --dataset-aggregation "{\"totalCost\":{\"name\":\"PreTaxCost\",\"function\":\"Sum\"}}" --dataset-grouping name="ResourceType" type="Dimension" --timeframe "TheLastMonth" --scope "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ScreenSharingTest-peer"
+  - summary: Requête dans une étendue d’abonnement
+    syntax: az costmanagement query --type "Usage" --dataset-filter "{\"and\":[{\"or\":[{\"dimension\":{\"name\":\"ResourceLocation\",\"operator\":\"In\",\"values\":[\"East US\",\"West Europe\"]}},{\"tag\":{\"name\":\"Environment\",\"operator\":\"In\",\"values\":[\"UAT\",\"Prod\"]}}]},{\"dimension\":{\"name\":\"ResourceGroup\",\"operator\":\"In\",\"values\":[\"API\"]}}]}" --timeframe "MonthToDate" --scope "subscriptions/00000000-0000-0000-0000-000000000000"
+  - summary: Interroger une étendue d’abonnement via le regroupement
+    syntax: az costmanagement query --type "Usage" --dataset-aggregation "{\"totalCost\":{\"name\":\"PreTaxCost\",\"function\":\"Sum\"}}" --dataset-grouping name="ResourceGroup" type="Dimension" --timeframe "TheLastMonth" --scope "subscriptions/00000000-0000-0000-0000-000000000000"
+  requiredParameters:
+  - isRequired: true
+    name: --scope
+    summary: Étendue associée aux opérations de requête et d’exportation. Cela comprend « /subscriptions/{subscriptionId}/ » pour l’étendue de l’abonnement, « /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName} » pour l’étendue du groupe de ressources, « /providers/Microsoft.Management/managementGroups/{managementGroupId} » pour l’étendue du groupe d’administration.
+    description: ''
+  - isRequired: true
+    name: --timeframe
+    parameterValueGroup: BillingMonthToDate, Custom, MonthToDate, TheLastBillingMonth, TheLastMonth, WeekToDate
+    summary: Intervalle de temps pour l’extraction des données de la requête. Si la personnalisation est personnalisée, une période de temps spécifique doit être fournie.
+    description: ''
+  - isRequired: true
+    name: --type
+    parameterValueGroup: ActualCost, AmortizedCost, Usage
+    summary: Type de la requête.
+    description: ''
+  optionalParameters:
+  - name: --dataset-aggregation
+    summary: 'Dictionnaire de l’expression d’agrégation à utiliser dans la requête. La clé de chaque élément dans le dictionnaire est le aliasfor de la colonne agrégée. La requête peut contenir jusqu’à 2 clauses d’agrégation. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --dataset-configuration
+    summary: 'Contient des informations de configuration pour les données de l’exportation. La configuration sera ignorée si l’agrégation et le regroupement sont fournis. Valeur attendue : Columns = XX.'
+    description: ''
+  - name: --dataset-filter
+    summary: 'A une expression de filtre à utiliser dans la requête. Valeur attendue : json-string/@json-file .'
+    description: ''
+  - name: --dataset-grouping
+    summary: 'Tableau de l’expression Group by à utiliser dans la requête. La requête peut contenir jusqu’à 2 clauses Group by. Valeur attendue : KEY1 = VALUE1 KEY2 = VALUE2..., les clés disponibles sont : type, Name.'
+    description: ''
+  - name: --time-period
+    summary: 'Contient le délai d’extraction des données de la requête. Valeur attendue : de = TIMESTAMP1 à = TIMESTAMP2. Le format d’horodatage est semblable à 2020-05-01T00:00:00.'
+    description: ''
+commands:
+- az_costmanagement_export
+- az_costmanagement_export_create
+- az_costmanagement_export_delete
+- az_costmanagement_export_list
+- az_costmanagement_export_show
+- az_costmanagement_export_update
+- az_costmanagement_query
+globalParameters:
+- name: --debug
+  summary: Augmentez le niveau de détail de la journalisation pour afficher tous les journaux de débogage.
+- name: --help -h
+  summary: Affichez ce message d’aide et quittez.
+- name: --only-show-errors
+  summary: Afficher uniquement les erreurs, en supprimant les avertissements.
+- name: --output -o
+  defaultValue: json
+  parameterValueGroup: json, jsonc, table, tsv
+  summary: Format de sortie.
+- name: --query
+  summary: Chaîne de requêtes JMESPath. Pour obtenir plus d’informations et des exemples, consultez <a href="http://jmespath.org/">http://jmespath.org/</a>.
+- name: --verbose
+  summary: Augmentez le niveau de détail de la journalisation. Utilisez --debug pour des journaux de débogage complets.
+metadata:
+  description: Gérer les coûts et la facturation dans Azure.
+  ms.openlocfilehash: e699149cc12831a023189fa3dbd3cceda5f0a61b
+  ms.sourcegitcommit: 612554c029ba1f28d3a43fd22e743104a1a30ea0
+  ms.translationtype: MT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/07/2021
+  ms.locfileid: "106894746"
